@@ -36,7 +36,7 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ModelingAuthority";
-
+                base.parse_attributes (/<cim:ModelingAuthority.ModelingAuthoritySets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ModelingAuthoritySets", sub, context);
                 var bucket = context.parsed.ModelingAuthority;
                 if (null == bucket)
                    context.parsed.ModelingAuthority = bucket = {};
@@ -49,6 +49,7 @@ define
             {
                 var fields = [];
 
+                base.export_attribute (obj, "export_attributes", "ModelingAuthority", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -66,6 +67,7 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
+                    {{#ModelingAuthoritySets}}<div><b>ModelingAuthoritySets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ModelingAuthoritySets}}
                     </div>
                     <fieldset>
 
@@ -76,11 +78,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ModelingAuthoritySets) obj.ModelingAuthoritySets_string = obj.ModelingAuthoritySets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ModelingAuthoritySets_string;
             }
 
             edit_template ()
@@ -97,7 +101,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ModelingAuthoritySets", "ModelingAuthoritySet", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -131,7 +144,6 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ModelingAuthoritySet";
                 base.parse_attribute (/<cim:ModelingAuthoritySet.ModelingAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ModelingAuthority", sub, context);
-
                 var bucket = context.parsed.ModelingAuthoritySet;
                 if (null == bucket)
                    context.parsed.ModelingAuthoritySet = bucket = {};
@@ -144,7 +156,7 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "ModelingAuthoritySet", "ModelingAuthority", fields);
+                base.export_attribute (obj, "export_attribute", "ModelingAuthoritySet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -195,7 +207,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ModelingAuthority", "ModelingAuthority", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         return (

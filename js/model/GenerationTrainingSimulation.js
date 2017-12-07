@@ -60,7 +60,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "CTTempActivePowerCurve";
                 base.parse_attribute (/<cim:CTTempActivePowerCurve.CombustionTurbine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombustionTurbine", sub, context);
-
                 var bucket = context.parsed.CTTempActivePowerCurve;
                 if (null == bucket)
                    context.parsed.CTTempActivePowerCurve = bucket = {};
@@ -73,7 +72,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "CTTempActivePowerCurve", "CombustionTurbine", fields);
+                base.export_attribute (obj, "export_attribute", "CTTempActivePowerCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -124,7 +123,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CombustionTurbine", "CombustionTurbine", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -156,7 +164,7 @@ define
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "SteamSupply";
                 base.parse_element (/<cim:SteamSupply.steamSupplyRating>([\s\S]*?)<\/cim:SteamSupply.steamSupplyRating>/g, obj, "steamSupplyRating", base.to_float, sub, context);
-
+                base.parse_attributes (/<cim:SteamSupply.SteamTurbines\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SteamTurbines", sub, context);
                 var bucket = context.parsed.SteamSupply;
                 if (null == bucket)
                    context.parsed.SteamSupply = bucket = {};
@@ -170,6 +178,7 @@ define
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SteamSupply", "steamSupplyRating", base.from_float, fields);
+                base.export_attribute (obj, "export_attributes", "SteamSupply", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -188,6 +197,7 @@ define
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
                     {{#steamSupplyRating}}<div><b>steamSupplyRating</b>: {{steamSupplyRating}}</div>{{/steamSupplyRating}}
+                    {{#SteamTurbines}}<div><b>SteamTurbines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SteamTurbines}}
                     </div>
                     <fieldset>
 
@@ -198,11 +208,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SteamTurbines) obj.SteamTurbines_string = obj.SteamTurbines.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SteamTurbines_string;
             }
 
             edit_template ()
@@ -216,11 +228,21 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamSupplyRating'>steamSupplyRating: </label><div class='col-sm-8'><input id='steamSupplyRating' class='form-control' type='text'{{#steamSupplyRating}} value='{{steamSupplyRating}}'{{/steamSupplyRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SteamTurbines'>SteamTurbines: </label><div class='col-sm-8'><input id='SteamTurbines' class='form-control' type='text'{{#SteamTurbines}} value='{{SteamTurbines}}_string'{{/SteamTurbines}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SteamTurbines", "SteamTurbine", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -252,7 +274,7 @@ define
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "PrimeMover";
                 base.parse_element (/<cim:PrimeMover.primeMoverRating>([\s\S]*?)<\/cim:PrimeMover.primeMoverRating>/g, obj, "primeMoverRating", base.to_float, sub, context);
-
+                base.parse_attributes (/<cim:PrimeMover.SynchronousMachines\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachines", sub, context);
                 var bucket = context.parsed.PrimeMover;
                 if (null == bucket)
                    context.parsed.PrimeMover = bucket = {};
@@ -266,6 +288,7 @@ define
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PrimeMover", "primeMoverRating", base.from_float, fields);
+                base.export_attribute (obj, "export_attributes", "PrimeMover", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -284,6 +307,7 @@ define
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
                     {{#primeMoverRating}}<div><b>primeMoverRating</b>: {{primeMoverRating}}</div>{{/primeMoverRating}}
+                    {{#SynchronousMachines}}<div><b>SynchronousMachines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SynchronousMachines}}
                     </div>
                     <fieldset>
 
@@ -294,11 +318,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SynchronousMachines) obj.SynchronousMachines_string = obj.SynchronousMachines.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SynchronousMachines_string;
             }
 
             edit_template ()
@@ -312,11 +338,21 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='primeMoverRating'>primeMoverRating: </label><div class='col-sm-8'><input id='primeMoverRating' class='form-control' type='text'{{#primeMoverRating}} value='{{primeMoverRating}}'{{/primeMoverRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachines'>SynchronousMachines: </label><div class='col-sm-8'><input id='SynchronousMachines' class='form-control' type='text'{{#SynchronousMachines}} value='{{SynchronousMachines}}_string'{{/SynchronousMachines}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SynchronousMachines", "SynchronousMachine", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -368,7 +404,6 @@ define
                 base.parse_element (/<cim:BWRSteamSupply.rodPattern>([\s\S]*?)<\/cim:BWRSteamSupply.rodPattern>/g, obj, "rodPattern", base.to_string, sub, context);
                 base.parse_element (/<cim:BWRSteamSupply.rodPatternConstant>([\s\S]*?)<\/cim:BWRSteamSupply.rodPatternConstant>/g, obj, "rodPatternConstant", base.to_float, sub, context);
                 base.parse_element (/<cim:BWRSteamSupply.upperLimit>([\s\S]*?)<\/cim:BWRSteamSupply.upperLimit>/g, obj, "upperLimit", base.to_string, sub, context);
-
                 var bucket = context.parsed.BWRSteamSupply;
                 if (null == bucket)
                    context.parsed.BWRSteamSupply = bucket = {};
@@ -492,7 +527,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -549,7 +584,6 @@ define
                 base.parse_element (/<cim:FossilSteamSupply.superHeater2Capacity>([\s\S]*?)<\/cim:FossilSteamSupply.superHeater2Capacity>/g, obj, "superHeater2Capacity", base.to_float, sub, context);
                 base.parse_element (/<cim:FossilSteamSupply.superHeaterPipePD>([\s\S]*?)<\/cim:FossilSteamSupply.superHeaterPipePD>/g, obj, "superHeaterPipePD", base.to_float, sub, context);
                 base.parse_element (/<cim:FossilSteamSupply.throttlePressureSP>([\s\S]*?)<\/cim:FossilSteamSupply.throttlePressureSP>/g, obj, "throttlePressureSP", base.to_string, sub, context);
-
                 var bucket = context.parsed.FossilSteamSupply;
                 if (null == bucket)
                    context.parsed.FossilSteamSupply = bucket = {};
@@ -690,7 +724,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -721,7 +755,6 @@ define
 
                 obj = FossilSteamSupply.prototype.parse.call (this, context, sub);
                 obj.cls = "Supercritical";
-
                 var bucket = context.parsed.Supercritical;
                 if (null == bucket)
                    context.parsed.Supercritical = bucket = {};
@@ -782,7 +815,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -833,7 +866,6 @@ define
                 base.parse_element (/<cim:PWRSteamSupply.steamPressureFG>([\s\S]*?)<\/cim:PWRSteamSupply.steamPressureFG>/g, obj, "steamPressureFG", base.to_string, sub, context);
                 base.parse_element (/<cim:PWRSteamSupply.throttlePressureFactor>([\s\S]*?)<\/cim:PWRSteamSupply.throttlePressureFactor>/g, obj, "throttlePressureFactor", base.to_string, sub, context);
                 base.parse_element (/<cim:PWRSteamSupply.throttlePressureSP>([\s\S]*?)<\/cim:PWRSteamSupply.throttlePressureSP>/g, obj, "throttlePressureSP", base.to_string, sub, context);
-
                 var bucket = context.parsed.PWRSteamSupply;
                 if (null == bucket)
                    context.parsed.PWRSteamSupply = bucket = {};
@@ -954,7 +986,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -986,7 +1018,7 @@ define
                 obj = FossilSteamSupply.prototype.parse.call (this, context, sub);
                 obj.cls = "HeatRecoveryBoiler";
                 base.parse_element (/<cim:HeatRecoveryBoiler.steamSupplyRating2>([\s\S]*?)<\/cim:HeatRecoveryBoiler.steamSupplyRating2>/g, obj, "steamSupplyRating2", base.to_float, sub, context);
-
+                base.parse_attributes (/<cim:HeatRecoveryBoiler.CombustionTurbines\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombustionTurbines", sub, context);
                 var bucket = context.parsed.HeatRecoveryBoiler;
                 if (null == bucket)
                    context.parsed.HeatRecoveryBoiler = bucket = {};
@@ -1000,6 +1032,7 @@ define
                 var fields = FossilSteamSupply.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HeatRecoveryBoiler", "steamSupplyRating2", base.from_float, fields);
+                base.export_attribute (obj, "export_attributes", "HeatRecoveryBoiler", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1018,6 +1051,7 @@ define
                     + FossilSteamSupply.prototype.template.call (this) +
                     `
                     {{#steamSupplyRating2}}<div><b>steamSupplyRating2</b>: {{steamSupplyRating2}}</div>{{/steamSupplyRating2}}
+                    {{#CombustionTurbines}}<div><b>CombustionTurbines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CombustionTurbines}}
                     </div>
                     <fieldset>
 
@@ -1028,11 +1062,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CombustionTurbines) obj.CombustionTurbines_string = obj.CombustionTurbines.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CombustionTurbines_string;
             }
 
             edit_template ()
@@ -1050,7 +1086,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CombustionTurbines", "CombustionTurbine", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1082,7 +1127,6 @@ define
                 obj = FossilSteamSupply.prototype.parse.call (this, context, sub);
                 obj.cls = "DrumBoiler";
                 base.parse_element (/<cim:DrumBoiler.drumBoilerRating>([\s\S]*?)<\/cim:DrumBoiler.drumBoilerRating>/g, obj, "drumBoilerRating", base.to_float, sub, context);
-
                 var bucket = context.parsed.DrumBoiler;
                 if (null == bucket)
                    context.parsed.DrumBoiler = bucket = {};
@@ -1146,7 +1190,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1177,7 +1221,6 @@ define
 
                 obj = FossilSteamSupply.prototype.parse.call (this, context, sub);
                 obj.cls = "Subcritical";
-
                 var bucket = context.parsed.Subcritical;
                 if (null == bucket)
                    context.parsed.Subcritical = bucket = {};
@@ -1238,7 +1281,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1282,7 +1325,6 @@ define
                 base.parse_element (/<cim:HydroTurbine.turbineRating>([\s\S]*?)<\/cim:HydroTurbine.turbineRating>/g, obj, "turbineRating", base.to_string, sub, context);
                 base.parse_attribute (/<cim:HydroTurbine.turbineType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "turbineType", sub, context);
                 base.parse_element (/<cim:HydroTurbine.waterStartingTime>([\s\S]*?)<\/cim:HydroTurbine.waterStartingTime>/g, obj, "waterStartingTime", base.to_string, sub, context);
-
                 var bucket = context.parsed.HydroTurbine;
                 if (null == bucket)
                    context.parsed.HydroTurbine = bucket = {};
@@ -1378,7 +1420,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1421,7 +1463,7 @@ define
                 base.parse_element (/<cim:SteamTurbine.shaft2PowerLP1>([\s\S]*?)<\/cim:SteamTurbine.shaft2PowerLP1>/g, obj, "shaft2PowerLP1", base.to_float, sub, context);
                 base.parse_element (/<cim:SteamTurbine.shaft2PowerLP2>([\s\S]*?)<\/cim:SteamTurbine.shaft2PowerLP2>/g, obj, "shaft2PowerLP2", base.to_float, sub, context);
                 base.parse_element (/<cim:SteamTurbine.steamChestTC>([\s\S]*?)<\/cim:SteamTurbine.steamChestTC>/g, obj, "steamChestTC", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:SteamTurbine.SteamSupplys\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SteamSupplys", sub, context);
                 var bucket = context.parsed.SteamTurbine;
                 if (null == bucket)
                    context.parsed.SteamTurbine = bucket = {};
@@ -1446,6 +1488,7 @@ define
                 base.export_element (obj, "SteamTurbine", "shaft2PowerLP1", base.from_float, fields);
                 base.export_element (obj, "SteamTurbine", "shaft2PowerLP2", base.from_float, fields);
                 base.export_element (obj, "SteamTurbine", "steamChestTC", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "SteamTurbine", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1475,6 +1518,7 @@ define
                     {{#shaft2PowerLP1}}<div><b>shaft2PowerLP1</b>: {{shaft2PowerLP1}}</div>{{/shaft2PowerLP1}}
                     {{#shaft2PowerLP2}}<div><b>shaft2PowerLP2</b>: {{shaft2PowerLP2}}</div>{{/shaft2PowerLP2}}
                     {{#steamChestTC}}<div><b>steamChestTC</b>: {{steamChestTC}}</div>{{/steamChestTC}}
+                    {{#SteamSupplys}}<div><b>SteamSupplys</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SteamSupplys}}
                     </div>
                     <fieldset>
 
@@ -1485,11 +1529,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SteamSupplys) obj.SteamSupplys_string = obj.SteamSupplys.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SteamSupplys_string;
             }
 
             edit_template ()
@@ -1514,11 +1560,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerLP1'>shaft2PowerLP1: </label><div class='col-sm-8'><input id='shaft2PowerLP1' class='form-control' type='text'{{#shaft2PowerLP1}} value='{{shaft2PowerLP1}}'{{/shaft2PowerLP1}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerLP2'>shaft2PowerLP2: </label><div class='col-sm-8'><input id='shaft2PowerLP2' class='form-control' type='text'{{#shaft2PowerLP2}} value='{{shaft2PowerLP2}}'{{/shaft2PowerLP2}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamChestTC'>steamChestTC: </label><div class='col-sm-8'><input id='steamChestTC' class='form-control' type='text'{{#steamChestTC}} value='{{steamChestTC}}'{{/steamChestTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SteamSupplys'>SteamSupplys: </label><div class='col-sm-8'><input id='SteamSupplys' class='form-control' type='text'{{#SteamSupplys}} value='{{SteamSupplys}}_string'{{/SteamSupplys}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SteamSupplys", "SteamSupply", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1560,7 +1616,6 @@ define
                 base.parse_attribute (/<cim:CombustionTurbine.AirCompressor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AirCompressor", sub, context);
                 base.parse_attribute (/<cim:CombustionTurbine.HeatRecoveryBoiler\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HeatRecoveryBoiler", sub, context);
                 base.parse_attribute (/<cim:CombustionTurbine.CTTempActivePowerCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CTTempActivePowerCurve", sub, context);
-
                 var bucket = context.parsed.CombustionTurbine;
                 if (null == bucket)
                    context.parsed.CombustionTurbine = bucket = {};
@@ -1581,9 +1636,9 @@ define
                 base.export_element (obj, "CombustionTurbine", "powerVariationByTemp", base.from_string, fields);
                 base.export_element (obj, "CombustionTurbine", "referenceTemp", base.from_string, fields);
                 base.export_element (obj, "CombustionTurbine", "timeConstant", base.from_string, fields);
-                base.export_attribute (obj, "CombustionTurbine", "AirCompressor", fields);
-                base.export_attribute (obj, "CombustionTurbine", "HeatRecoveryBoiler", fields);
-                base.export_attribute (obj, "CombustionTurbine", "CTTempActivePowerCurve", fields);
+                base.export_attribute (obj, "export_attribute", "CombustionTurbine", fields);
+                base.export_attribute (obj, "export_attribute", "CombustionTurbine", fields);
+                base.export_attribute (obj, "export_attribute", "CombustionTurbine", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1654,7 +1709,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AirCompressor", "AirCompressor", "0..1", "1"],
+                        ["HeatRecoveryBoiler", "HeatRecoveryBoiler", "0..1", "0..*"],
+                        ["CTTempActivePowerCurve", "CTTempActivePowerCurve", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         return (

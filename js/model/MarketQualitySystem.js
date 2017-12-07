@@ -42,7 +42,7 @@ define
                 base.parse_element (/<cim:AuxiliaryCost.marketType>([\s\S]*?)<\/cim:AuxiliaryCost.marketType>/g, obj, "marketType", base.to_string, sub, context);
                 base.parse_element (/<cim:AuxiliaryCost.updateTimeStamp>([\s\S]*?)<\/cim:AuxiliaryCost.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
                 base.parse_element (/<cim:AuxiliaryCost.updateUser>([\s\S]*?)<\/cim:AuxiliaryCost.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:AuxiliaryCost.AuxillaryValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryValues", sub, context);
                 var bucket = context.parsed.AuxiliaryCost;
                 if (null == bucket)
                    context.parsed.AuxiliaryCost = bucket = {};
@@ -59,6 +59,7 @@ define
                 base.export_element (obj, "AuxiliaryCost", "marketType", base.from_string, fields);
                 base.export_element (obj, "AuxiliaryCost", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "AuxiliaryCost", "updateUser", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "AuxiliaryCost", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -80,6 +81,7 @@ define
                     {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    {{#AuxillaryValues}}<div><b>AuxillaryValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AuxillaryValues}}
                     </div>
                     <fieldset>
 
@@ -90,11 +92,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AuxillaryValues) obj.AuxillaryValues_string = obj.AuxillaryValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AuxillaryValues_string;
             }
 
             edit_template ()
@@ -115,7 +119,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AuxillaryValues", "AuxiliaryValues", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -150,7 +163,6 @@ define
                 base.parse_element (/<cim:ExpectedEnergyValues.expectedMwh>([\s\S]*?)<\/cim:ExpectedEnergyValues.expectedMwh>/g, obj, "expectedMwh", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ExpectedEnergyValues.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:ExpectedEnergyValues.ExpectedEnergy\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExpectedEnergy", sub, context);
-
                 var bucket = context.parsed.ExpectedEnergyValues;
                 if (null == bucket)
                    context.parsed.ExpectedEnergyValues = bucket = {};
@@ -165,8 +177,8 @@ define
 
                 base.export_element (obj, "ExpectedEnergyValues", "energyTypeCode", base.from_string, fields);
                 base.export_element (obj, "ExpectedEnergyValues", "expectedMwh", base.from_float, fields);
-                base.export_attribute (obj, "ExpectedEnergyValues", "RegisteredResource", fields);
-                base.export_attribute (obj, "ExpectedEnergyValues", "ExpectedEnergy", fields);
+                base.export_attribute (obj, "export_attribute", "ExpectedEnergyValues", fields);
+                base.export_attribute (obj, "export_attribute", "ExpectedEnergyValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -223,7 +235,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
+                        ["ExpectedEnergy", "ExpectedEnergy", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -256,7 +278,6 @@ define
                 obj.cls = "AuxiliaryObject";
                 base.parse_attribute (/<cim:AuxiliaryObject.RegisteredLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredLoad", sub, context);
                 base.parse_attribute (/<cim:AuxiliaryObject.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.AuxiliaryObject;
                 if (null == bucket)
                    context.parsed.AuxiliaryObject = bucket = {};
@@ -269,8 +290,8 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "AuxiliaryObject", "RegisteredLoad", fields);
-                base.export_attribute (obj, "AuxiliaryObject", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "AuxiliaryObject", fields);
+                base.export_attribute (obj, "export_attribute", "AuxiliaryObject", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -323,7 +344,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredLoad", "RegisteredLoad", "0..1", "0..*"],
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -357,7 +388,6 @@ define
                 base.parse_element (/<cim:TradingHubValues.price>([\s\S]*?)<\/cim:TradingHubValues.price>/g, obj, "price", base.to_float, sub, context);
                 base.parse_attribute (/<cim:TradingHubValues.TradingHubPrice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TradingHubPrice", sub, context);
                 base.parse_attribute (/<cim:TradingHubValues.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregatedPnode", sub, context);
-
                 var bucket = context.parsed.TradingHubValues;
                 if (null == bucket)
                    context.parsed.TradingHubValues = bucket = {};
@@ -371,8 +401,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "TradingHubValues", "price", base.from_float, fields);
-                base.export_attribute (obj, "TradingHubValues", "TradingHubPrice", fields);
-                base.export_attribute (obj, "TradingHubValues", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attribute", "TradingHubValues", fields);
+                base.export_attribute (obj, "export_attribute", "TradingHubValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -427,7 +457,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TradingHubPrice", "TradingHubPrice", "1", "1..*"],
+                        ["AggregatedPnode", "AggregatedPnode", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -462,7 +502,7 @@ define
                 base.parse_element (/<cim:TradingHubPrice.marketType>([\s\S]*?)<\/cim:TradingHubPrice.marketType>/g, obj, "marketType", base.to_string, sub, context);
                 base.parse_element (/<cim:TradingHubPrice.updateUser>([\s\S]*?)<\/cim:TradingHubPrice.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_element (/<cim:TradingHubPrice.updateTimeStamp>([\s\S]*?)<\/cim:TradingHubPrice.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
-
+                base.parse_attributes (/<cim:TradingHubPrice.TradingHubValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TradingHubValues", sub, context);
                 var bucket = context.parsed.TradingHubPrice;
                 if (null == bucket)
                    context.parsed.TradingHubPrice = bucket = {};
@@ -479,6 +519,7 @@ define
                 base.export_element (obj, "TradingHubPrice", "marketType", base.from_string, fields);
                 base.export_element (obj, "TradingHubPrice", "updateUser", base.from_string, fields);
                 base.export_element (obj, "TradingHubPrice", "updateTimeStamp", base.from_datetime, fields);
+                base.export_attribute (obj, "export_attributes", "TradingHubPrice", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -500,6 +541,7 @@ define
                     {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    {{#TradingHubValues}}<div><b>TradingHubValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TradingHubValues}}
                     </div>
                     <fieldset>
 
@@ -510,11 +552,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TradingHubValues) obj.TradingHubValues_string = obj.TradingHubValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TradingHubValues_string;
             }
 
             edit_template ()
@@ -535,7 +579,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TradingHubValues", "TradingHubValues", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -569,7 +622,7 @@ define
                 base.parse_element (/<cim:ExpectedEnergy.intervalStartTime>([\s\S]*?)<\/cim:ExpectedEnergy.intervalStartTime>/g, obj, "intervalStartTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ExpectedEnergy.updateUser>([\s\S]*?)<\/cim:ExpectedEnergy.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_element (/<cim:ExpectedEnergy.updateTimeStamp>([\s\S]*?)<\/cim:ExpectedEnergy.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
-
+                base.parse_attributes (/<cim:ExpectedEnergy.ExpectedEnergyValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExpectedEnergyValues", sub, context);
                 var bucket = context.parsed.ExpectedEnergy;
                 if (null == bucket)
                    context.parsed.ExpectedEnergy = bucket = {};
@@ -585,6 +638,7 @@ define
                 base.export_element (obj, "ExpectedEnergy", "intervalStartTime", base.from_datetime, fields);
                 base.export_element (obj, "ExpectedEnergy", "updateUser", base.from_string, fields);
                 base.export_element (obj, "ExpectedEnergy", "updateTimeStamp", base.from_datetime, fields);
+                base.export_attribute (obj, "export_attributes", "ExpectedEnergy", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -605,6 +659,7 @@ define
                     {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    {{#ExpectedEnergyValues}}<div><b>ExpectedEnergyValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ExpectedEnergyValues}}
                     </div>
                     <fieldset>
 
@@ -615,11 +670,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ExpectedEnergyValues) obj.ExpectedEnergyValues_string = obj.ExpectedEnergyValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ExpectedEnergyValues_string;
             }
 
             edit_template ()
@@ -639,7 +696,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExpectedEnergyValues", "ExpectedEnergyValues", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -673,7 +739,7 @@ define
                 base.parse_element (/<cim:TenMinAuxiliaryData.intervalStartTime>([\s\S]*?)<\/cim:TenMinAuxiliaryData.intervalStartTime>/g, obj, "intervalStartTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:TenMinAuxiliaryData.updateUser>([\s\S]*?)<\/cim:TenMinAuxiliaryData.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_element (/<cim:TenMinAuxiliaryData.updateTimeStamp>([\s\S]*?)<\/cim:TenMinAuxiliaryData.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
-
+                base.parse_attributes (/<cim:TenMinAuxiliaryData.AuxillaryData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryData", sub, context);
                 var bucket = context.parsed.TenMinAuxiliaryData;
                 if (null == bucket)
                    context.parsed.TenMinAuxiliaryData = bucket = {};
@@ -689,6 +755,7 @@ define
                 base.export_element (obj, "TenMinAuxiliaryData", "intervalStartTime", base.from_datetime, fields);
                 base.export_element (obj, "TenMinAuxiliaryData", "updateUser", base.from_string, fields);
                 base.export_element (obj, "TenMinAuxiliaryData", "updateTimeStamp", base.from_datetime, fields);
+                base.export_attribute (obj, "export_attributes", "TenMinAuxiliaryData", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -709,6 +776,7 @@ define
                     {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    {{#AuxillaryData}}<div><b>AuxillaryData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AuxillaryData}}
                     </div>
                     <fieldset>
 
@@ -719,11 +787,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AuxillaryData) obj.AuxillaryData_string = obj.AuxillaryData.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AuxillaryData_string;
             }
 
             edit_template ()
@@ -743,7 +813,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AuxillaryData", "AuxiliaryValues", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -779,7 +858,7 @@ define
                 base.parse_element (/<cim:AllocationResult.intervalStartTime>([\s\S]*?)<\/cim:AllocationResult.intervalStartTime>/g, obj, "intervalStartTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:AllocationResult.updateUser>([\s\S]*?)<\/cim:AllocationResult.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_element (/<cim:AllocationResult.updateTimeStamp>([\s\S]*?)<\/cim:AllocationResult.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
-
+                base.parse_attributes (/<cim:AllocationResult.AllocationResultValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AllocationResultValues", sub, context);
                 var bucket = context.parsed.AllocationResult;
                 if (null == bucket)
                    context.parsed.AllocationResult = bucket = {};
@@ -795,6 +874,7 @@ define
                 base.export_element (obj, "AllocationResult", "intervalStartTime", base.from_datetime, fields);
                 base.export_element (obj, "AllocationResult", "updateUser", base.from_string, fields);
                 base.export_element (obj, "AllocationResult", "updateTimeStamp", base.from_datetime, fields);
+                base.export_attribute (obj, "export_attributes", "AllocationResult", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -815,6 +895,7 @@ define
                     {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    {{#AllocationResultValues}}<div><b>AllocationResultValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AllocationResultValues}}
                     </div>
                     <fieldset>
 
@@ -825,11 +906,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AllocationResultValues) obj.AllocationResultValues_string = obj.AllocationResultValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AllocationResultValues_string;
             }
 
             edit_template ()
@@ -849,7 +932,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AllocationResultValues", "AllocationResultValues", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -887,7 +979,6 @@ define
                 base.parse_element (/<cim:AllocationResultValues.marketServiceType>([\s\S]*?)<\/cim:AllocationResultValues.marketServiceType>/g, obj, "marketServiceType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:AllocationResultValues.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:AllocationResultValues.AllocationResult\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AllocationResult", sub, context);
-
                 var bucket = context.parsed.AllocationResultValues;
                 if (null == bucket)
                    context.parsed.AllocationResultValues = bucket = {};
@@ -905,8 +996,8 @@ define
                 base.export_element (obj, "AllocationResultValues", "allocationPrice", base.from_float, fields);
                 base.export_element (obj, "AllocationResultValues", "energyTypeCode", base.from_string, fields);
                 base.export_element (obj, "AllocationResultValues", "marketServiceType", base.from_string, fields);
-                base.export_attribute (obj, "AllocationResultValues", "RegisteredResource", fields);
-                base.export_attribute (obj, "AllocationResultValues", "AllocationResult", fields);
+                base.export_attribute (obj, "export_attribute", "AllocationResultValues", fields);
+                base.export_attribute (obj, "export_attribute", "AllocationResultValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -969,7 +1060,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
+                        ["AllocationResult", "AllocationResult", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1003,7 +1104,7 @@ define
                 base.parse_element (/<cim:FiveMinAuxiliaryData.intervalStartTime>([\s\S]*?)<\/cim:FiveMinAuxiliaryData.intervalStartTime>/g, obj, "intervalStartTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FiveMinAuxiliaryData.updateUser>([\s\S]*?)<\/cim:FiveMinAuxiliaryData.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_element (/<cim:FiveMinAuxiliaryData.updateTimeStamp>([\s\S]*?)<\/cim:FiveMinAuxiliaryData.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
-
+                base.parse_attributes (/<cim:FiveMinAuxiliaryData.AuxillaryValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryValues", sub, context);
                 var bucket = context.parsed.FiveMinAuxiliaryData;
                 if (null == bucket)
                    context.parsed.FiveMinAuxiliaryData = bucket = {};
@@ -1019,6 +1120,7 @@ define
                 base.export_element (obj, "FiveMinAuxiliaryData", "intervalStartTime", base.from_datetime, fields);
                 base.export_element (obj, "FiveMinAuxiliaryData", "updateUser", base.from_string, fields);
                 base.export_element (obj, "FiveMinAuxiliaryData", "updateTimeStamp", base.from_datetime, fields);
+                base.export_attribute (obj, "export_attributes", "FiveMinAuxiliaryData", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1039,6 +1141,7 @@ define
                     {{#intervalStartTime}}<div><b>intervalStartTime</b>: {{intervalStartTime}}</div>{{/intervalStartTime}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
+                    {{#AuxillaryValues}}<div><b>AuxillaryValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AuxillaryValues}}
                     </div>
                     <fieldset>
 
@@ -1049,11 +1152,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AuxillaryValues) obj.AuxillaryValues_string = obj.AuxillaryValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AuxillaryValues_string;
             }
 
             edit_template ()
@@ -1073,7 +1178,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AuxillaryValues", "AuxiliaryValues", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1115,7 +1229,6 @@ define
                 base.parse_attribute (/<cim:AuxiliaryValues.AuxillaryCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryCost", sub, context);
                 base.parse_attribute (/<cim:AuxiliaryValues.FiveMinAuxillaryData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FiveMinAuxillaryData", sub, context);
                 base.parse_attribute (/<cim:AuxiliaryValues.TenMinAuxillaryData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TenMinAuxillaryData", sub, context);
-
                 var bucket = context.parsed.AuxiliaryValues;
                 if (null == bucket)
                    context.parsed.AuxiliaryValues = bucket = {};
@@ -1136,9 +1249,9 @@ define
                 base.export_element (obj, "AuxiliaryValues", "startUpCostEligibilityFlag", base.from_string, fields);
                 base.export_element (obj, "AuxiliaryValues", "noLoadCost", base.from_float, fields);
                 base.export_element (obj, "AuxiliaryValues", "noLoadCostEligibilityFlag", base.from_string, fields);
-                base.export_attribute (obj, "AuxiliaryValues", "AuxillaryCost", fields);
-                base.export_attribute (obj, "AuxiliaryValues", "FiveMinAuxillaryData", fields);
-                base.export_attribute (obj, "AuxiliaryValues", "TenMinAuxillaryData", fields);
+                base.export_attribute (obj, "export_attribute", "AuxiliaryValues", fields);
+                base.export_attribute (obj, "export_attribute", "AuxiliaryValues", fields);
+                base.export_attribute (obj, "export_attribute", "AuxiliaryValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1209,7 +1322,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AuxillaryCost", "AuxiliaryCost", "1", "1..*"],
+                        ["FiveMinAuxillaryData", "FiveMinAuxiliaryData", "1", "1..*"],
+                        ["TenMinAuxillaryData", "TenMinAuxiliaryData", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         return (

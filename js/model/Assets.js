@@ -121,13 +121,28 @@ define
                 base.parse_element (/<cim:Asset.status>([\s\S]*?)<\/cim:Asset.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.type>([\s\S]*?)<\/cim:Asset.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:Asset.utcNumber>([\s\S]*?)<\/cim:Asset.utcNumber>/g, obj, "utcNumber", base.to_string, sub, context);
+                base.parse_attributes (/<cim:Asset.OperationTags\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationTags", sub, context);
+                base.parse_attributes (/<cim:Asset.ActivityRecords\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ActivityRecords", sub, context);
                 base.parse_attribute (/<cim:Asset.FinancialInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FinancialInfo", sub, context);
                 base.parse_attribute (/<cim:Asset.ErpItemMaster\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpItemMaster", sub, context);
                 base.parse_attribute (/<cim:Asset.AssetContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetContainer", sub, context);
+                base.parse_attributes (/<cim:Asset.Mediums\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Mediums", sub, context);
+                base.parse_attributes (/<cim:Asset.ScheduledEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ScheduledEvents", sub, context);
+                base.parse_attributes (/<cim:Asset.OrganisationRoles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OrganisationRoles", sub, context);
+                base.parse_attributes (/<cim:Asset.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
+                base.parse_attributes (/<cim:Asset.Procedures\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Procedures", sub, context);
+                base.parse_attributes (/<cim:Asset.Reconditionings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reconditionings", sub, context);
+                base.parse_attributes (/<cim:Asset.PowerSystemResources\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResources", sub, context);
                 base.parse_attribute (/<cim:Asset.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Location", sub, context);
+                base.parse_attributes (/<cim:Asset.AssetPropertyCurves\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetPropertyCurves", sub, context);
+                base.parse_attributes (/<cim:Asset.ConfigurationEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConfigurationEvents", sub, context);
                 base.parse_attribute (/<cim:Asset.ErpInventory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInventory", sub, context);
+                base.parse_attributes (/<cim:Asset.ErpRecDeliveryItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpRecDeliveryItems", sub, context);
+                base.parse_attributes (/<cim:Asset.ReliabilityInfos\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReliabilityInfos", sub, context);
+                base.parse_attributes (/<cim:Asset.Measurements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurements", sub, context);
                 base.parse_attribute (/<cim:Asset.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetInfo", sub, context);
-
+                base.parse_attributes (/<cim:Asset.Ownerships\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Ownerships", sub, context);
+                base.parse_attributes (/<cim:Asset.ReplacementWorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReplacementWorkTasks", sub, context);
                 var bucket = context.parsed.Asset;
                 if (null == bucket)
                    context.parsed.Asset = bucket = {};
@@ -152,12 +167,28 @@ define
                 base.export_element (obj, "Asset", "status", base.from_string, fields);
                 base.export_element (obj, "Asset", "type", base.from_string, fields);
                 base.export_element (obj, "Asset", "utcNumber", base.from_string, fields);
-                base.export_attribute (obj, "Asset", "FinancialInfo", fields);
-                base.export_attribute (obj, "Asset", "ErpItemMaster", fields);
-                base.export_attribute (obj, "Asset", "AssetContainer", fields);
-                base.export_attribute (obj, "Asset", "Location", fields);
-                base.export_attribute (obj, "Asset", "ErpInventory", fields);
-                base.export_attribute (obj, "Asset", "AssetInfo", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attribute", "Asset", fields);
+                base.export_attribute (obj, "export_attribute", "Asset", fields);
+                base.export_attribute (obj, "export_attribute", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attribute", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attribute", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attribute", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_attribute (obj, "export_attributes", "Asset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -187,12 +218,28 @@ define
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#utcNumber}}<div><b>utcNumber</b>: {{utcNumber}}</div>{{/utcNumber}}
-                    {{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
+                    {{#OperationTags}}<div><b>OperationTags</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperationTags}}
+                    {{#ActivityRecords}}<div><b>ActivityRecords</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ActivityRecords}}
                     {{#FinancialInfo}}<div><b>FinancialInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FinancialInfo}}&quot;);})'>{{FinancialInfo}}</a></div>{{/FinancialInfo}}
                     {{#ErpItemMaster}}<div><b>ErpItemMaster</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpItemMaster}}&quot;);})'>{{ErpItemMaster}}</a></div>{{/ErpItemMaster}}
                     {{#AssetContainer}}<div><b>AssetContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetContainer}}&quot;);})'>{{AssetContainer}}</a></div>{{/AssetContainer}}
+                    {{#Mediums}}<div><b>Mediums</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Mediums}}
+                    {{#ScheduledEvents}}<div><b>ScheduledEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ScheduledEvents}}
+                    {{#OrganisationRoles}}<div><b>OrganisationRoles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OrganisationRoles}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
+                    {{#Procedures}}<div><b>Procedures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Procedures}}
+                    {{#Reconditionings}}<div><b>Reconditionings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Reconditionings}}
+                    {{#PowerSystemResources}}<div><b>PowerSystemResources</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PowerSystemResources}}
+                    {{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
+                    {{#AssetPropertyCurves}}<div><b>AssetPropertyCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AssetPropertyCurves}}
+                    {{#ConfigurationEvents}}<div><b>ConfigurationEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConfigurationEvents}}
                     {{#ErpInventory}}<div><b>ErpInventory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpInventory}}&quot;);})'>{{ErpInventory}}</a></div>{{/ErpInventory}}
+                    {{#ErpRecDeliveryItems}}<div><b>ErpRecDeliveryItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpRecDeliveryItems}}
+                    {{#ReliabilityInfos}}<div><b>ReliabilityInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReliabilityInfos}}
+                    {{#Measurements}}<div><b>Measurements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Measurements}}
                     {{#AssetInfo}}<div><b>AssetInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetInfo}}&quot;);})'>{{AssetInfo}}</a></div>{{/AssetInfo}}
+                    {{#Ownerships}}<div><b>Ownerships</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Ownerships}}
+                    {{#ReplacementWorkTasks}}<div><b>ReplacementWorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReplacementWorkTasks}}
                     </div>
                     <fieldset>
 
@@ -203,11 +250,43 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.OperationTags) obj.OperationTags_string = obj.OperationTags.join ();
+                if (obj.ActivityRecords) obj.ActivityRecords_string = obj.ActivityRecords.join ();
+                if (obj.Mediums) obj.Mediums_string = obj.Mediums.join ();
+                if (obj.ScheduledEvents) obj.ScheduledEvents_string = obj.ScheduledEvents.join ();
+                if (obj.OrganisationRoles) obj.OrganisationRoles_string = obj.OrganisationRoles.join ();
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
+                if (obj.Procedures) obj.Procedures_string = obj.Procedures.join ();
+                if (obj.Reconditionings) obj.Reconditionings_string = obj.Reconditionings.join ();
+                if (obj.PowerSystemResources) obj.PowerSystemResources_string = obj.PowerSystemResources.join ();
+                if (obj.AssetPropertyCurves) obj.AssetPropertyCurves_string = obj.AssetPropertyCurves.join ();
+                if (obj.ConfigurationEvents) obj.ConfigurationEvents_string = obj.ConfigurationEvents.join ();
+                if (obj.ErpRecDeliveryItems) obj.ErpRecDeliveryItems_string = obj.ErpRecDeliveryItems.join ();
+                if (obj.ReliabilityInfos) obj.ReliabilityInfos_string = obj.ReliabilityInfos.join ();
+                if (obj.Measurements) obj.Measurements_string = obj.Measurements.join ();
+                if (obj.Ownerships) obj.Ownerships_string = obj.Ownerships.join ();
+                if (obj.ReplacementWorkTasks) obj.ReplacementWorkTasks_string = obj.ReplacementWorkTasks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.OperationTags_string;
+                delete obj.ActivityRecords_string;
+                delete obj.Mediums_string;
+                delete obj.ScheduledEvents_string;
+                delete obj.OrganisationRoles_string;
+                delete obj.WorkTasks_string;
+                delete obj.Procedures_string;
+                delete obj.Reconditionings_string;
+                delete obj.PowerSystemResources_string;
+                delete obj.AssetPropertyCurves_string;
+                delete obj.ConfigurationEvents_string;
+                delete obj.ErpRecDeliveryItems_string;
+                delete obj.ReliabilityInfos_string;
+                delete obj.Measurements_string;
+                delete obj.Ownerships_string;
+                delete obj.ReplacementWorkTasks_string;
             }
 
             edit_template ()
@@ -232,17 +311,57 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='utcNumber'>utcNumber: </label><div class='col-sm-8'><input id='utcNumber' class='form-control' type='text'{{#utcNumber}} value='{{utcNumber}}'{{/utcNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Location'>Location: </label><div class='col-sm-8'><input id='Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ActivityRecords'>ActivityRecords: </label><div class='col-sm-8'><input id='ActivityRecords' class='form-control' type='text'{{#ActivityRecords}} value='{{ActivityRecords}}_string'{{/ActivityRecords}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='FinancialInfo'>FinancialInfo: </label><div class='col-sm-8'><input id='FinancialInfo' class='form-control' type='text'{{#FinancialInfo}} value='{{FinancialInfo}}'{{/FinancialInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpItemMaster'>ErpItemMaster: </label><div class='col-sm-8'><input id='ErpItemMaster' class='form-control' type='text'{{#ErpItemMaster}} value='{{ErpItemMaster}}'{{/ErpItemMaster}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetContainer'>AssetContainer: </label><div class='col-sm-8'><input id='AssetContainer' class='form-control' type='text'{{#AssetContainer}} value='{{AssetContainer}}'{{/AssetContainer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Mediums'>Mediums: </label><div class='col-sm-8'><input id='Mediums' class='form-control' type='text'{{#Mediums}} value='{{Mediums}}_string'{{/Mediums}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ScheduledEvents'>ScheduledEvents: </label><div class='col-sm-8'><input id='ScheduledEvents' class='form-control' type='text'{{#ScheduledEvents}} value='{{ScheduledEvents}}_string'{{/ScheduledEvents}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OrganisationRoles'>OrganisationRoles: </label><div class='col-sm-8'><input id='OrganisationRoles' class='form-control' type='text'{{#OrganisationRoles}} value='{{OrganisationRoles}}_string'{{/OrganisationRoles}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Procedures'>Procedures: </label><div class='col-sm-8'><input id='Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures}}_string'{{/Procedures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemResources'>PowerSystemResources: </label><div class='col-sm-8'><input id='PowerSystemResources' class='form-control' type='text'{{#PowerSystemResources}} value='{{PowerSystemResources}}_string'{{/PowerSystemResources}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Location'>Location: </label><div class='col-sm-8'><input id='Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetPropertyCurves'>AssetPropertyCurves: </label><div class='col-sm-8'><input id='AssetPropertyCurves' class='form-control' type='text'{{#AssetPropertyCurves}} value='{{AssetPropertyCurves}}_string'{{/AssetPropertyCurves}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInventory'>ErpInventory: </label><div class='col-sm-8'><input id='ErpInventory' class='form-control' type='text'{{#ErpInventory}} value='{{ErpInventory}}'{{/ErpInventory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecDeliveryItems'>ErpRecDeliveryItems: </label><div class='col-sm-8'><input id='ErpRecDeliveryItems' class='form-control' type='text'{{#ErpRecDeliveryItems}} value='{{ErpRecDeliveryItems}}_string'{{/ErpRecDeliveryItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReliabilityInfos'>ReliabilityInfos: </label><div class='col-sm-8'><input id='ReliabilityInfos' class='form-control' type='text'{{#ReliabilityInfos}} value='{{ReliabilityInfos}}_string'{{/ReliabilityInfos}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetInfo'>AssetInfo: </label><div class='col-sm-8'><input id='AssetInfo' class='form-control' type='text'{{#AssetInfo}} value='{{AssetInfo}}'{{/AssetInfo}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["OperationTags", "OperationTag", "0..*", "0..1"],
+                        ["ActivityRecords", "ActivityRecord", "0..*", "0..*"],
+                        ["FinancialInfo", "FinancialInfo", "0..1", "0..1"],
+                        ["ErpItemMaster", "ErpItemMaster", "0..1", "0..1"],
+                        ["AssetContainer", "AssetContainer", "0..1", "0..*"],
+                        ["Mediums", "Medium", "0..*", "0..*"],
+                        ["ScheduledEvents", "ScheduledEvent", "0..*", "0..*"],
+                        ["OrganisationRoles", "AssetOrganisationRole", "0..*", "0..*"],
+                        ["WorkTasks", "WorkTask", "0..*", "0..*"],
+                        ["Procedures", "Procedure", "0..*", "0..*"],
+                        ["Reconditionings", "Reconditioning", "0..*", "0..1"],
+                        ["PowerSystemResources", "PowerSystemResource", "0..*", "0..*"],
+                        ["Location", "Location", "0..1", "0..*"],
+                        ["AssetPropertyCurves", "AssetPropertyCurve", "0..*", "0..*"],
+                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
+                        ["ErpInventory", "ErpInventory", "0..1", "0..1"],
+                        ["ErpRecDeliveryItems", "ErpRecDelvLineItem", "0..*", "0..*"],
+                        ["ReliabilityInfos", "ReliabilityInfo", "0..*", "0..*"],
+                        ["Measurements", "Measurement", "0..*", "0..1"],
+                        ["AssetInfo", "AssetInfo", "0..1", "0..*"],
+                        ["Ownerships", "Ownership", "0..*", "0..1"],
+                        ["ReplacementWorkTasks", "WorkTask", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -276,7 +395,6 @@ define
                 base.parse_element (/<cim:AcceptanceTest.dateTime>([\s\S]*?)<\/cim:AcceptanceTest.dateTime>/g, obj, "dateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:AcceptanceTest.success>([\s\S]*?)<\/cim:AcceptanceTest.success>/g, obj, "success", base.to_boolean, sub, context);
                 base.parse_element (/<cim:AcceptanceTest.type>([\s\S]*?)<\/cim:AcceptanceTest.type>/g, obj, "type", base.to_string, sub, context);
-
                 var bucket = context.parsed.AcceptanceTest;
                 if (null == bucket)
                    context.parsed.AcceptanceTest = bucket = {};
@@ -346,7 +464,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -381,8 +499,9 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetInfo";
+                base.parse_attributes (/<cim:AssetInfo.PowerSystemResources\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResources", sub, context);
                 base.parse_attribute (/<cim:AssetInfo.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModel", sub, context);
-
+                base.parse_attributes (/<cim:AssetInfo.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
                 var bucket = context.parsed.AssetInfo;
                 if (null == bucket)
                    context.parsed.AssetInfo = bucket = {};
@@ -395,7 +514,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "AssetInfo", "AssetModel", fields);
+                base.export_attribute (obj, "export_attributes", "AssetInfo", fields);
+                base.export_attribute (obj, "export_attribute", "AssetInfo", fields);
+                base.export_attribute (obj, "export_attributes", "AssetInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -413,7 +534,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#PowerSystemResources}}<div><b>PowerSystemResources</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PowerSystemResources}}
                     {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
+                    {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Assets}}
                     </div>
                     <fieldset>
 
@@ -424,11 +547,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PowerSystemResources) obj.PowerSystemResources_string = obj.PowerSystemResources.join ();
+                if (obj.Assets) obj.Assets_string = obj.Assets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PowerSystemResources_string;
+                delete obj.Assets_string;
             }
 
             edit_template ()
@@ -446,7 +573,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PowerSystemResources", "PowerSystemResource", "0..*", "0..1"],
+                        ["AssetModel", "AssetModel", "0..1", "0..1"],
+                        ["Assets", "Asset", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -477,7 +615,7 @@ define
 
                 obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetOrganisationRole";
-
+                base.parse_attributes (/<cim:AssetOrganisationRole.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
                 var bucket = context.parsed.AssetOrganisationRole;
                 if (null == bucket)
                    context.parsed.AssetOrganisationRole = bucket = {};
@@ -490,6 +628,7 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "AssetOrganisationRole", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -507,6 +646,7 @@ define
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
                     `
+                    {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Assets}}
                     </div>
                     <fieldset>
 
@@ -517,11 +657,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Assets) obj.Assets_string = obj.Assets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Assets_string;
             }
 
             edit_template ()
@@ -534,11 +676,21 @@ define
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Assets'>Assets: </label><div class='col-sm-8'><input id='Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Assets", "Asset", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -569,7 +721,7 @@ define
 
                 obj = Common.OrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "Manufacturer";
-
+                base.parse_attributes (/<cim:Manufacturer.ProductAssetModels\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProductAssetModels", sub, context);
                 var bucket = context.parsed.Manufacturer;
                 if (null == bucket)
                    context.parsed.Manufacturer = bucket = {};
@@ -582,6 +734,7 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "Manufacturer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -599,6 +752,7 @@ define
                     `
                     + Common.OrganisationRole.prototype.template.call (this) +
                     `
+                    {{#ProductAssetModels}}<div><b>ProductAssetModels</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProductAssetModels}}
                     </div>
                     <fieldset>
 
@@ -609,11 +763,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProductAssetModels) obj.ProductAssetModels_string = obj.ProductAssetModels.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProductAssetModels_string;
             }
 
             edit_template ()
@@ -630,7 +786,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProductAssetModels", "ProductAssetModel", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -664,8 +829,10 @@ define
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "ProcedureDataSet";
                 base.parse_element (/<cim:ProcedureDataSet.completedDateTime>([\s\S]*?)<\/cim:ProcedureDataSet.completedDateTime>/g, obj, "completedDateTime", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:ProcedureDataSet.TransformerObservations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerObservations", sub, context);
+                base.parse_attributes (/<cim:ProcedureDataSet.MeasurementValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValues", sub, context);
+                base.parse_attributes (/<cim:ProcedureDataSet.Properties\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Properties", sub, context);
                 base.parse_attribute (/<cim:ProcedureDataSet.Procedure\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Procedure", sub, context);
-
                 var bucket = context.parsed.ProcedureDataSet;
                 if (null == bucket)
                    context.parsed.ProcedureDataSet = bucket = {};
@@ -679,7 +846,10 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProcedureDataSet", "completedDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "ProcedureDataSet", "Procedure", fields);
+                base.export_attribute (obj, "export_attributes", "ProcedureDataSet", fields);
+                base.export_attribute (obj, "export_attributes", "ProcedureDataSet", fields);
+                base.export_attribute (obj, "export_attributes", "ProcedureDataSet", fields);
+                base.export_attribute (obj, "export_attribute", "ProcedureDataSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -698,6 +868,9 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     {{#completedDateTime}}<div><b>completedDateTime</b>: {{completedDateTime}}</div>{{/completedDateTime}}
+                    {{#TransformerObservations}}<div><b>TransformerObservations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransformerObservations}}
+                    {{#MeasurementValues}}<div><b>MeasurementValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeasurementValues}}
+                    {{#Properties}}<div><b>Properties</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Properties}}
                     {{#Procedure}}<div><b>Procedure</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Procedure}}&quot;);})'>{{Procedure}}</a></div>{{/Procedure}}
                     </div>
                     <fieldset>
@@ -709,11 +882,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TransformerObservations) obj.TransformerObservations_string = obj.TransformerObservations.join ();
+                if (obj.MeasurementValues) obj.MeasurementValues_string = obj.MeasurementValues.join ();
+                if (obj.Properties) obj.Properties_string = obj.Properties.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TransformerObservations_string;
+                delete obj.MeasurementValues_string;
+                delete obj.Properties_string;
             }
 
             edit_template ()
@@ -727,12 +906,27 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='completedDateTime'>completedDateTime: </label><div class='col-sm-8'><input id='completedDateTime' class='form-control' type='text'{{#completedDateTime}} value='{{completedDateTime}}'{{/completedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerObservations'>TransformerObservations: </label><div class='col-sm-8'><input id='TransformerObservations' class='form-control' type='text'{{#TransformerObservations}} value='{{TransformerObservations}}_string'{{/TransformerObservations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementValues'>MeasurementValues: </label><div class='col-sm-8'><input id='MeasurementValues' class='form-control' type='text'{{#MeasurementValues}} value='{{MeasurementValues}}_string'{{/MeasurementValues}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Properties'>Properties: </label><div class='col-sm-8'><input id='Properties' class='form-control' type='text'{{#Properties}} value='{{Properties}}_string'{{/Properties}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Procedure'>Procedure: </label><div class='col-sm-8'><input id='Procedure' class='form-control' type='text'{{#Procedure}} value='{{Procedure}}'{{/Procedure}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TransformerObservations", "TransformerObservation", "0..*", "0..*"],
+                        ["MeasurementValues", "MeasurementValue", "0..*", "0..*"],
+                        ["Properties", "UserAttribute", "0..*", "0..*"],
+                        ["Procedure", "Procedure", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -768,7 +962,6 @@ define
                 base.parse_element (/<cim:AssetFunction.hardwareID>([\s\S]*?)<\/cim:AssetFunction.hardwareID>/g, obj, "hardwareID", base.to_string, sub, context);
                 base.parse_element (/<cim:AssetFunction.password>([\s\S]*?)<\/cim:AssetFunction.password>/g, obj, "password", base.to_string, sub, context);
                 base.parse_element (/<cim:AssetFunction.programID>([\s\S]*?)<\/cim:AssetFunction.programID>/g, obj, "programID", base.to_string, sub, context);
-
                 var bucket = context.parsed.AssetFunction;
                 if (null == bucket)
                    context.parsed.AssetFunction = bucket = {};
@@ -844,7 +1037,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -880,7 +1073,6 @@ define
                 base.parse_attribute (/<cim:Seal.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Seal.sealNumber>([\s\S]*?)<\/cim:Seal.sealNumber>/g, obj, "sealNumber", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Seal.AssetContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetContainer", sub, context);
-
                 var bucket = context.parsed.Seal;
                 if (null == bucket)
                    context.parsed.Seal = bucket = {};
@@ -897,7 +1089,7 @@ define
                 base.export_element (obj, "Seal", "condition", base.from_string, fields);
                 base.export_element (obj, "Seal", "kind", base.from_string, fields);
                 base.export_element (obj, "Seal", "sealNumber", base.from_string, fields);
-                base.export_attribute (obj, "Seal", "AssetContainer", fields);
+                base.export_attribute (obj, "export_attribute", "Seal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -960,7 +1152,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AssetContainer", "AssetContainer", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -993,7 +1194,7 @@ define
 
                 obj = Common.Hazard.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetLocationHazard";
-
+                base.parse_attributes (/<cim:AssetLocationHazard.Locations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Locations", sub, context);
                 var bucket = context.parsed.AssetLocationHazard;
                 if (null == bucket)
                    context.parsed.AssetLocationHazard = bucket = {};
@@ -1006,6 +1207,7 @@ define
             {
                 var fields = Common.Hazard.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "AssetLocationHazard", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1023,6 +1225,7 @@ define
                     `
                     + Common.Hazard.prototype.template.call (this) +
                     `
+                    {{#Locations}}<div><b>Locations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Locations}}
                     </div>
                     <fieldset>
 
@@ -1033,11 +1236,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Locations) obj.Locations_string = obj.Locations.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Locations_string;
             }
 
             edit_template ()
@@ -1050,11 +1255,21 @@ define
                     `
                     + Common.Hazard.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Locations'>Locations: </label><div class='col-sm-8'><input id='Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Locations", "Location", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1091,7 +1306,6 @@ define
                 base.parse_element (/<cim:LifecycleDate.receivedDate>([\s\S]*?)<\/cim:LifecycleDate.receivedDate>/g, obj, "receivedDate", base.to_string, sub, context);
                 base.parse_element (/<cim:LifecycleDate.removalDate>([\s\S]*?)<\/cim:LifecycleDate.removalDate>/g, obj, "removalDate", base.to_string, sub, context);
                 base.parse_element (/<cim:LifecycleDate.retiredDate>([\s\S]*?)<\/cim:LifecycleDate.retiredDate>/g, obj, "retiredDate", base.to_string, sub, context);
-
                 var bucket = context.parsed.LifecycleDate;
                 if (null == bucket)
                    context.parsed.LifecycleDate = bucket = {};
@@ -1170,7 +1384,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1203,8 +1417,8 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetModel";
+                base.parse_attributes (/<cim:AssetModel.ErpInventoryCounts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInventoryCounts", sub, context);
                 base.parse_attribute (/<cim:AssetModel.AssetInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetInfo", sub, context);
-
                 var bucket = context.parsed.AssetModel;
                 if (null == bucket)
                    context.parsed.AssetModel = bucket = {};
@@ -1217,7 +1431,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "AssetModel", "AssetInfo", fields);
+                base.export_attribute (obj, "export_attributes", "AssetModel", fields);
+                base.export_attribute (obj, "export_attribute", "AssetModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1235,6 +1450,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#ErpInventoryCounts}}<div><b>ErpInventoryCounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpInventoryCounts}}
                     {{#AssetInfo}}<div><b>AssetInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetInfo}}&quot;);})'>{{AssetInfo}}</a></div>{{/AssetInfo}}
                     </div>
                     <fieldset>
@@ -1246,11 +1462,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ErpInventoryCounts) obj.ErpInventoryCounts_string = obj.ErpInventoryCounts.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ErpInventoryCounts_string;
             }
 
             edit_template ()
@@ -1268,7 +1486,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ErpInventoryCounts", "ErpInventoryCount", "0..*", "0..1"],
+                        ["AssetInfo", "AssetInfo", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1302,7 +1530,11 @@ define
                 base.parse_element (/<cim:Procedure.instruction>([\s\S]*?)<\/cim:Procedure.instruction>/g, obj, "instruction", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Procedure.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:Procedure.sequenceNumber>([\s\S]*?)<\/cim:Procedure.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Procedure.Measurements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurements", sub, context);
+                base.parse_attributes (/<cim:Procedure.Limits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Limits", sub, context);
+                base.parse_attributes (/<cim:Procedure.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
+                base.parse_attributes (/<cim:Procedure.ProcedureDataSets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProcedureDataSets", sub, context);
+                base.parse_attributes (/<cim:Procedure.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
                 var bucket = context.parsed.Procedure;
                 if (null == bucket)
                    context.parsed.Procedure = bucket = {};
@@ -1318,6 +1550,11 @@ define
                 base.export_element (obj, "Procedure", "instruction", base.from_string, fields);
                 base.export_element (obj, "Procedure", "kind", base.from_string, fields);
                 base.export_element (obj, "Procedure", "sequenceNumber", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Procedure", fields);
+                base.export_attribute (obj, "export_attributes", "Procedure", fields);
+                base.export_attribute (obj, "export_attributes", "Procedure", fields);
+                base.export_attribute (obj, "export_attributes", "Procedure", fields);
+                base.export_attribute (obj, "export_attributes", "Procedure", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1338,6 +1575,11 @@ define
                     {{#instruction}}<div><b>instruction</b>: {{instruction}}</div>{{/instruction}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#Measurements}}<div><b>Measurements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Measurements}}
+                    {{#Limits}}<div><b>Limits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Limits}}
+                    {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Assets}}
+                    {{#ProcedureDataSets}}<div><b>ProcedureDataSets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProcedureDataSets}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
                     <fieldset>
 
@@ -1349,12 +1591,22 @@ define
             {
                 super.condition (obj);
                 obj.ProcedureKind = []; if (!obj.kind) obj.ProcedureKind.push ({ id: '', selected: true}); for (var property in ProcedureKind) obj.ProcedureKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.Measurements) obj.Measurements_string = obj.Measurements.join ();
+                if (obj.Limits) obj.Limits_string = obj.Limits.join ();
+                if (obj.Assets) obj.Assets_string = obj.Assets.join ();
+                if (obj.ProcedureDataSets) obj.ProcedureDataSets_string = obj.ProcedureDataSets.join ();
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.ProcedureKind;
+                delete obj.Measurements_string;
+                delete obj.Limits_string;
+                delete obj.Assets_string;
+                delete obj.ProcedureDataSets_string;
+                delete obj.CompatibleUnits_string;
             }
 
             edit_template ()
@@ -1370,11 +1622,28 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='instruction'>instruction: </label><div class='col-sm-8'><input id='instruction' class='form-control' type='text'{{#instruction}} value='{{instruction}}'{{/instruction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ProcedureKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProcedureKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Measurements'>Measurements: </label><div class='col-sm-8'><input id='Measurements' class='form-control' type='text'{{#Measurements}} value='{{Measurements}}_string'{{/Measurements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Limits'>Limits: </label><div class='col-sm-8'><input id='Limits' class='form-control' type='text'{{#Limits}} value='{{Limits}}_string'{{/Limits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Assets'>Assets: </label><div class='col-sm-8'><input id='Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Measurements", "Measurement", "0..*", "0..*"],
+                        ["Limits", "Limit", "0..*", "0..*"],
+                        ["Assets", "Asset", "0..*", "0..*"],
+                        ["ProcedureDataSets", "ProcedureDataSet", "0..*", "0..1"],
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1405,7 +1674,9 @@ define
 
                 obj = Asset.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetContainer";
-
+                base.parse_attributes (/<cim:AssetContainer.Seals\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Seals", sub, context);
+                base.parse_attributes (/<cim:AssetContainer.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
+                base.parse_attributes (/<cim:AssetContainer.LandProperties\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LandProperties", sub, context);
                 var bucket = context.parsed.AssetContainer;
                 if (null == bucket)
                    context.parsed.AssetContainer = bucket = {};
@@ -1418,6 +1689,9 @@ define
             {
                 var fields = Asset.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "AssetContainer", fields);
+                base.export_attribute (obj, "export_attributes", "AssetContainer", fields);
+                base.export_attribute (obj, "export_attributes", "AssetContainer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1435,6 +1709,9 @@ define
                     `
                     + Asset.prototype.template.call (this) +
                     `
+                    {{#Seals}}<div><b>Seals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Seals}}
+                    {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Assets}}
+                    {{#LandProperties}}<div><b>LandProperties</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LandProperties}}
                     </div>
                     <fieldset>
 
@@ -1445,11 +1722,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Seals) obj.Seals_string = obj.Seals.join ();
+                if (obj.Assets) obj.Assets_string = obj.Assets.join ();
+                if (obj.LandProperties) obj.LandProperties_string = obj.LandProperties.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Seals_string;
+                delete obj.Assets_string;
+                delete obj.LandProperties_string;
             }
 
             edit_template ()
@@ -1462,11 +1745,23 @@ define
                     `
                     + Asset.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties}}_string'{{/LandProperties}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Seals", "Seal", "0..*", "0..1"],
+                        ["Assets", "Asset", "0..*", "0..1"],
+                        ["LandProperties", "LandProperty", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1497,7 +1792,6 @@ define
 
                 obj = Asset.prototype.parse.call (this, context, sub);
                 obj.cls = "ComMedia";
-
                 var bucket = context.parsed.ComMedia;
                 if (null == bucket)
                    context.parsed.ComMedia = bucket = {};
@@ -1558,7 +1852,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1589,7 +1883,6 @@ define
 
                 obj = AssetOrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetUser";
-
                 var bucket = context.parsed.AssetUser;
                 if (null == bucket)
                    context.parsed.AssetUser = bucket = {};
@@ -1650,7 +1943,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1681,7 +1974,7 @@ define
 
                 obj = AssetOrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetOwner";
-
+                base.parse_attributes (/<cim:AssetOwner.Ownerships\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Ownerships", sub, context);
                 var bucket = context.parsed.AssetOwner;
                 if (null == bucket)
                    context.parsed.AssetOwner = bucket = {};
@@ -1694,6 +1987,7 @@ define
             {
                 var fields = AssetOrganisationRole.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "AssetOwner", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1711,6 +2005,7 @@ define
                     `
                     + AssetOrganisationRole.prototype.template.call (this) +
                     `
+                    {{#Ownerships}}<div><b>Ownerships</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Ownerships}}
                     </div>
                     <fieldset>
 
@@ -1721,11 +2016,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Ownerships) obj.Ownerships_string = obj.Ownerships.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Ownerships_string;
             }
 
             edit_template ()
@@ -1742,7 +2039,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Ownerships", "Ownership", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1773,7 +2079,6 @@ define
 
                 obj = AssetOrganisationRole.prototype.parse.call (this, context, sub);
                 obj.cls = "Maintainer";
-
                 var bucket = context.parsed.Maintainer;
                 if (null == bucket)
                    context.parsed.Maintainer = bucket = {};
@@ -1834,7 +2139,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1870,9 +2175,10 @@ define
                 base.parse_element (/<cim:ProductAssetModel.modelVersion>([\s\S]*?)<\/cim:ProductAssetModel.modelVersion>/g, obj, "modelVersion", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ProductAssetModel.usageKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "usageKind", sub, context);
                 base.parse_element (/<cim:ProductAssetModel.weightTotal>([\s\S]*?)<\/cim:ProductAssetModel.weightTotal>/g, obj, "weightTotal", base.to_string, sub, context);
+                base.parse_attributes (/<cim:ProductAssetModel.AssetModelCatalogueItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogueItems", sub, context);
                 base.parse_attribute (/<cim:ProductAssetModel.GenericAssetModelOrMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenericAssetModelOrMaterial", sub, context);
                 base.parse_attribute (/<cim:ProductAssetModel.Manufacturer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Manufacturer", sub, context);
-
+                base.parse_attributes (/<cim:ProductAssetModel.OperationalRestrictions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationalRestrictions", sub, context);
                 var bucket = context.parsed.ProductAssetModel;
                 if (null == bucket)
                    context.parsed.ProductAssetModel = bucket = {};
@@ -1890,8 +2196,10 @@ define
                 base.export_element (obj, "ProductAssetModel", "modelVersion", base.from_string, fields);
                 base.export_element (obj, "ProductAssetModel", "usageKind", base.from_string, fields);
                 base.export_element (obj, "ProductAssetModel", "weightTotal", base.from_string, fields);
-                base.export_attribute (obj, "ProductAssetModel", "GenericAssetModelOrMaterial", fields);
-                base.export_attribute (obj, "ProductAssetModel", "Manufacturer", fields);
+                base.export_attribute (obj, "export_attributes", "ProductAssetModel", fields);
+                base.export_attribute (obj, "export_attribute", "ProductAssetModel", fields);
+                base.export_attribute (obj, "export_attribute", "ProductAssetModel", fields);
+                base.export_attribute (obj, "export_attributes", "ProductAssetModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1914,8 +2222,10 @@ define
                     {{#modelVersion}}<div><b>modelVersion</b>: {{modelVersion}}</div>{{/modelVersion}}
                     {{#usageKind}}<div><b>usageKind</b>: {{usageKind}}</div>{{/usageKind}}
                     {{#weightTotal}}<div><b>weightTotal</b>: {{weightTotal}}</div>{{/weightTotal}}
+                    {{#AssetModelCatalogueItems}}<div><b>AssetModelCatalogueItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AssetModelCatalogueItems}}
                     {{#GenericAssetModelOrMaterial}}<div><b>GenericAssetModelOrMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenericAssetModelOrMaterial}}&quot;);})'>{{GenericAssetModelOrMaterial}}</a></div>{{/GenericAssetModelOrMaterial}}
                     {{#Manufacturer}}<div><b>Manufacturer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Manufacturer}}&quot;);})'>{{Manufacturer}}</a></div>{{/Manufacturer}}
+                    {{#OperationalRestrictions}}<div><b>OperationalRestrictions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperationalRestrictions}}
                     </div>
                     <fieldset>
 
@@ -1928,6 +2238,8 @@ define
                 super.condition (obj);
                 obj.CorporateStandardKind = []; if (!obj.corporateStandardKind) obj.CorporateStandardKind.push ({ id: '', selected: true}); for (var property in CorporateStandardKind) obj.CorporateStandardKind.push ({ id: property, selected: obj.corporateStandardKind && obj.corporateStandardKind.endsWith ('.' + property)});
                 obj.AssetModelUsageKind = []; if (!obj.usageKind) obj.AssetModelUsageKind.push ({ id: '', selected: true}); for (var property in AssetModelUsageKind) obj.AssetModelUsageKind.push ({ id: property, selected: obj.usageKind && obj.usageKind.endsWith ('.' + property)});
+                if (obj.AssetModelCatalogueItems) obj.AssetModelCatalogueItems_string = obj.AssetModelCatalogueItems.join ();
+                if (obj.OperationalRestrictions) obj.OperationalRestrictions_string = obj.OperationalRestrictions.join ();
             }
 
             uncondition (obj)
@@ -1935,6 +2247,8 @@ define
                 super.uncondition (obj);
                 delete obj.CorporateStandardKind;
                 delete obj.AssetModelUsageKind;
+                delete obj.AssetModelCatalogueItems_string;
+                delete obj.OperationalRestrictions_string;
             }
 
             edit_template ()
@@ -1958,7 +2272,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AssetModelCatalogueItems", "AssetModelCatalogueItem", "0..*", "0..1"],
+                        ["GenericAssetModelOrMaterial", "GenericAssetModelOrMaterial", "0..1", "0..*"],
+                        ["Manufacturer", "Manufacturer", "0..1", "0..*"],
+                        ["OperationalRestrictions", "OperationalRestriction", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

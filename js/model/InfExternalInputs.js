@@ -33,7 +33,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ResourceGroupReq";
                 base.parse_attribute (/<cim:ResourceGroupReq.ResourceGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroup", sub, context);
-
+                base.parse_attributes (/<cim:ResourceGroupReq.RTOs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTOs", sub, context);
                 var bucket = context.parsed.ResourceGroupReq;
                 if (null == bucket)
                    context.parsed.ResourceGroupReq = bucket = {};
@@ -46,7 +46,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ResourceGroupReq", "ResourceGroup", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceGroupReq", fields);
+                base.export_attribute (obj, "export_attributes", "ResourceGroupReq", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -65,6 +66,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#ResourceGroup}}<div><b>ResourceGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceGroup}}&quot;);})'>{{ResourceGroup}}</a></div>{{/ResourceGroup}}
+                    {{#RTOs}}<div><b>RTOs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RTOs}}
                     </div>
                     <fieldset>
 
@@ -75,11 +77,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RTOs) obj.RTOs_string = obj.RTOs.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RTOs_string;
             }
 
             edit_template ()
@@ -93,11 +97,22 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceGroup'>ResourceGroup: </label><div class='col-sm-8'><input id='ResourceGroup' class='form-control' type='text'{{#ResourceGroup}} value='{{ResourceGroup}}'{{/ResourceGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTOs'>RTOs: </label><div class='col-sm-8'><input id='RTOs' class='form-control' type='text'{{#RTOs}} value='{{RTOs}}_string'{{/RTOs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceGroup", "ResourceGroup", "1", "0..*"],
+                        ["RTOs", "RTO", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -131,7 +146,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "ReserveReqCurve";
                 base.parse_attribute (/<cim:ReserveReqCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
-
                 var bucket = context.parsed.ReserveReqCurve;
                 if (null == bucket)
                    context.parsed.ReserveReqCurve = bucket = {};
@@ -144,7 +158,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ReserveReqCurve", "ReserveReq", fields);
+                base.export_attribute (obj, "export_attribute", "ReserveReqCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -195,7 +209,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReserveReq", "ReserveReq", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -228,7 +251,8 @@ define
                 obj.cls = "ResourceGroup";
                 base.parse_element (/<cim:ResourceGroup.type>([\s\S]*?)<\/cim:ResourceGroup.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceGroup.status>([\s\S]*?)<\/cim:ResourceGroup.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ResourceGroup.ResourceGroupReqs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroupReqs", sub, context);
+                base.parse_attributes (/<cim:ResourceGroup.RegisteredResources\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResources", sub, context);
                 var bucket = context.parsed.ResourceGroup;
                 if (null == bucket)
                    context.parsed.ResourceGroup = bucket = {};
@@ -243,6 +267,8 @@ define
 
                 base.export_element (obj, "ResourceGroup", "type", base.from_string, fields);
                 base.export_element (obj, "ResourceGroup", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ResourceGroup", fields);
+                base.export_attribute (obj, "export_attributes", "ResourceGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -262,6 +288,8 @@ define
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ResourceGroupReqs}}<div><b>ResourceGroupReqs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ResourceGroupReqs}}
+                    {{#RegisteredResources}}<div><b>RegisteredResources</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResources}}
                     </div>
                     <fieldset>
 
@@ -272,11 +300,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ResourceGroupReqs) obj.ResourceGroupReqs_string = obj.ResourceGroupReqs.join ();
+                if (obj.RegisteredResources) obj.RegisteredResources_string = obj.RegisteredResources.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ResourceGroupReqs_string;
+                delete obj.RegisteredResources_string;
             }
 
             edit_template ()
@@ -291,11 +323,22 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources}}_string'{{/RegisteredResources}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceGroupReqs", "ResourceGroupReq", "0..*", "1"],
+                        ["RegisteredResources", "RegisteredResource", "1..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -329,7 +372,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "SensitivityPriceCurve";
                 base.parse_attribute (/<cim:SensitivityPriceCurve.ReserveReq\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReq", sub, context);
-
                 var bucket = context.parsed.SensitivityPriceCurve;
                 if (null == bucket)
                    context.parsed.SensitivityPriceCurve = bucket = {};
@@ -342,7 +384,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "SensitivityPriceCurve", "ReserveReq", fields);
+                base.export_attribute (obj, "export_attribute", "SensitivityPriceCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -393,7 +435,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReserveReq", "ReserveReq", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -427,7 +478,6 @@ define
                 base.parse_attribute (/<cim:ReserveReq.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
                 base.parse_attribute (/<cim:ReserveReq.SensitivityPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SensitivityPriceCurve", sub, context);
                 base.parse_attribute (/<cim:ReserveReq.ReserveReqCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveReqCurve", sub, context);
-
                 var bucket = context.parsed.ReserveReq;
                 if (null == bucket)
                    context.parsed.ReserveReq = bucket = {};
@@ -440,9 +490,9 @@ define
             {
                 var fields = ResourceGroupReq.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ReserveReq", "MarketProduct", fields);
-                base.export_attribute (obj, "ReserveReq", "SensitivityPriceCurve", fields);
-                base.export_attribute (obj, "ReserveReq", "ReserveReqCurve", fields);
+                base.export_attribute (obj, "export_attribute", "ReserveReq", fields);
+                base.export_attribute (obj, "export_attribute", "ReserveReq", fields);
+                base.export_attribute (obj, "export_attribute", "ReserveReq", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -497,7 +547,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketProduct", "MarketProduct", "1", "0..*"],
+                        ["SensitivityPriceCurve", "SensitivityPriceCurve", "0..1", "0..1"],
+                        ["ReserveReqCurve", "ReserveReqCurve", "1", "1"]
+                    ]
+                );
+            }
         }
 
         return (

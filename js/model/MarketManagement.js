@@ -40,8 +40,11 @@ define
                 base.parse_element (/<cim:Point.quality>([\s\S]*?)<\/cim:Point.quality>/g, obj, "quality", base.to_string, sub, context);
                 base.parse_element (/<cim:Point.quantity>([\s\S]*?)<\/cim:Point.quantity>/g, obj, "quantity", base.to_string, sub, context);
                 base.parse_element (/<cim:Point.secondaryQuantity>([\s\S]*?)<\/cim:Point.secondaryQuantity>/g, obj, "secondaryQuantity", base.to_string, sub, context);
+                base.parse_attributes (/<cim:Point.AceTariffType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AceTariffType", sub, context);
+                base.parse_attributes (/<cim:Point.Reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reason", sub, context);
                 base.parse_attribute (/<cim:Point.Period\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Period", sub, context);
-
+                base.parse_attributes (/<cim:Point.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
+                base.parse_attributes (/<cim:Point.Price\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Price", sub, context);
                 var bucket = context.parsed.Point;
                 if (null == bucket)
                    context.parsed.Point = bucket = {};
@@ -58,7 +61,11 @@ define
                 base.export_element (obj, "Point", "quality", base.from_string, fields);
                 base.export_element (obj, "Point", "quantity", base.from_string, fields);
                 base.export_element (obj, "Point", "secondaryQuantity", base.from_string, fields);
-                base.export_attribute (obj, "Point", "Period", fields);
+                base.export_attribute (obj, "export_attributes", "Point", fields);
+                base.export_attribute (obj, "export_attributes", "Point", fields);
+                base.export_attribute (obj, "export_attribute", "Point", fields);
+                base.export_attribute (obj, "export_attributes", "Point", fields);
+                base.export_attribute (obj, "export_attributes", "Point", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -80,7 +87,11 @@ define
                     {{#quality}}<div><b>quality</b>: {{quality}}</div>{{/quality}}
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
                     {{#secondaryQuantity}}<div><b>secondaryQuantity</b>: {{secondaryQuantity}}</div>{{/secondaryQuantity}}
+                    {{#AceTariffType}}<div><b>AceTariffType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AceTariffType}}
+                    {{#Reason}}<div><b>Reason</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Reason}}
                     {{#Period}}<div><b>Period</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Period}}&quot;);})'>{{Period}}</a></div>{{/Period}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
+                    {{#Price}}<div><b>Price</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Price}}
                     </div>
                     <fieldset>
 
@@ -91,11 +102,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AceTariffType) obj.AceTariffType_string = obj.AceTariffType.join ();
+                if (obj.Reason) obj.Reason_string = obj.Reason.join ();
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
+                if (obj.Price) obj.Price_string = obj.Price.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AceTariffType_string;
+                delete obj.Reason_string;
+                delete obj.TimeSeries_string;
+                delete obj.Price_string;
             }
 
             edit_template ()
@@ -112,12 +131,28 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='quality'>quality: </label><div class='col-sm-8'><input id='quality' class='form-control' type='text'{{#quality}} value='{{quality}}'{{/quality}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryQuantity'>secondaryQuantity: </label><div class='col-sm-8'><input id='secondaryQuantity' class='form-control' type='text'{{#secondaryQuantity}} value='{{secondaryQuantity}}'{{/secondaryQuantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AceTariffType'>AceTariffType: </label><div class='col-sm-8'><input id='AceTariffType' class='form-control' type='text'{{#AceTariffType}} value='{{AceTariffType}}_string'{{/AceTariffType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reason'>Reason: </label><div class='col-sm-8'><input id='Reason' class='form-control' type='text'{{#Reason}} value='{{Reason}}_string'{{/Reason}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Period'>Period: </label><div class='col-sm-8'><input id='Period' class='form-control' type='text'{{#Period}} value='{{Period}}'{{/Period}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AceTariffType", "AceTariffType", "0..*", "0..*"],
+                        ["Reason", "Reason", "0..*", "0..*"],
+                        ["Period", "Period", "1", "0..*"],
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
+                        ["Price", "Price", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -150,7 +185,10 @@ define
                 obj.cls = "Reason";
                 base.parse_element (/<cim:Reason.code>([\s\S]*?)<\/cim:Reason.code>/g, obj, "code", base.to_string, sub, context);
                 base.parse_element (/<cim:Reason.text>([\s\S]*?)<\/cim:Reason.text>/g, obj, "text", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Reason.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
+                base.parse_attributes (/<cim:Reason.Point\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Point", sub, context);
+                base.parse_attributes (/<cim:Reason.Period\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Period", sub, context);
+                base.parse_attributes (/<cim:Reason.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
                 var bucket = context.parsed.Reason;
                 if (null == bucket)
                    context.parsed.Reason = bucket = {};
@@ -165,6 +203,10 @@ define
 
                 base.export_element (obj, "Reason", "code", base.from_string, fields);
                 base.export_element (obj, "Reason", "text", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Reason", fields);
+                base.export_attribute (obj, "export_attributes", "Reason", fields);
+                base.export_attribute (obj, "export_attributes", "Reason", fields);
+                base.export_attribute (obj, "export_attributes", "Reason", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -184,6 +226,10 @@ define
                     `
                     {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
                     {{#text}}<div><b>text</b>: {{text}}</div>{{/text}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
+                    {{#Point}}<div><b>Point</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Point}}
+                    {{#Period}}<div><b>Period</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Period}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketDocument}}
                     </div>
                     <fieldset>
 
@@ -194,11 +240,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
+                if (obj.Point) obj.Point_string = obj.Point.join ();
+                if (obj.Period) obj.Period_string = obj.Period.join ();
+                if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
+                delete obj.Point_string;
+                delete obj.Period_string;
+                delete obj.MarketDocument_string;
             }
 
             edit_template ()
@@ -213,11 +267,27 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='text'>text: </label><div class='col-sm-8'><input id='text' class='form-control' type='text'{{#text}} value='{{text}}'{{/text}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Point'>Point: </label><div class='col-sm-8'><input id='Point' class='form-control' type='text'{{#Point}} value='{{Point}}_string'{{/Point}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Period'>Period: </label><div class='col-sm-8'><input id='Period' class='form-control' type='text'{{#Period}} value='{{Period}}_string'{{/Period}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
+                        ["Point", "Point", "0..*", "0..*"],
+                        ["Period", "Period", "0..*", "0..*"],
+                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -249,7 +319,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "Unit";
                 base.parse_element (/<cim:Unit.name>([\s\S]*?)<\/cim:Unit.name>/g, obj, "name", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Unit.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
+                base.parse_attributes (/<cim:Unit.AceTariffType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AceTariffType", sub, context);
                 var bucket = context.parsed.Unit;
                 if (null == bucket)
                    context.parsed.Unit = bucket = {};
@@ -263,6 +334,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "Unit", "name", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Unit", fields);
+                base.export_attribute (obj, "export_attributes", "Unit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -281,6 +354,8 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
+                    {{#AceTariffType}}<div><b>AceTariffType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AceTariffType}}
                     </div>
                     <fieldset>
 
@@ -291,11 +366,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
+                if (obj.AceTariffType) obj.AceTariffType_string = obj.AceTariffType.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
+                delete obj.AceTariffType_string;
             }
 
             edit_template ()
@@ -309,11 +388,23 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AceTariffType'>AceTariffType: </label><div class='col-sm-8'><input id='AceTariffType' class='form-control' type='text'{{#AceTariffType}} value='{{AceTariffType}}_string'{{/AceTariffType}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
+                        ["AceTariffType", "AceTariffType", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -346,7 +437,7 @@ define
                 obj.cls = "DateAndOrTime";
                 base.parse_element (/<cim:DateAndOrTime.date>([\s\S]*?)<\/cim:DateAndOrTime.date>/g, obj, "date", base.to_string, sub, context);
                 base.parse_element (/<cim:DateAndOrTime.time>([\s\S]*?)<\/cim:DateAndOrTime.time>/g, obj, "time", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:DateAndOrTime.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
                 var bucket = context.parsed.DateAndOrTime;
                 if (null == bucket)
                    context.parsed.DateAndOrTime = bucket = {};
@@ -361,6 +452,7 @@ define
 
                 base.export_element (obj, "DateAndOrTime", "date", base.from_string, fields);
                 base.export_element (obj, "DateAndOrTime", "time", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "DateAndOrTime", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -380,6 +472,7 @@ define
                     `
                     {{#date}}<div><b>date</b>: {{date}}</div>{{/date}}
                     {{#time}}<div><b>time</b>: {{time}}</div>{{/time}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
                     </div>
                     <fieldset>
 
@@ -390,11 +483,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
             }
 
             edit_template ()
@@ -409,11 +504,21 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='date'>date: </label><div class='col-sm-8'><input id='date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='time'>time: </label><div class='col-sm-8'><input id='time' class='form-control' type='text'{{#time}} value='{{time}}'{{/time}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -445,7 +550,7 @@ define
                 obj = Core.PSRType.prototype.parse.call (this, context, sub);
                 obj.cls = "MktPSRType";
                 base.parse_element (/<cim:MktPSRType.psrType>([\s\S]*?)<\/cim:MktPSRType.psrType>/g, obj, "psrType", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:MktPSRType.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
                 var bucket = context.parsed.MktPSRType;
                 if (null == bucket)
                    context.parsed.MktPSRType = bucket = {};
@@ -459,6 +564,7 @@ define
                 var fields = Core.PSRType.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MktPSRType", "psrType", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MktPSRType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -477,6 +583,7 @@ define
                     + Core.PSRType.prototype.template.call (this) +
                     `
                     {{#psrType}}<div><b>psrType</b>: {{psrType}}</div>{{/psrType}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
                     </div>
                     <fieldset>
 
@@ -487,11 +594,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
             }
 
             edit_template ()
@@ -505,11 +614,21 @@ define
                     + Core.PSRType.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='psrType'>psrType: </label><div class='col-sm-8'><input id='psrType' class='form-control' type='text'{{#psrType}} value='{{psrType}}'{{/psrType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -541,7 +660,9 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "AceTariffType";
                 base.parse_element (/<cim:AceTariffType.type>([\s\S]*?)<\/cim:AceTariffType.type>/g, obj, "type", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:AceTariffType.Point\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Point", sub, context);
+                base.parse_attributes (/<cim:AceTariffType.Unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Unit", sub, context);
+                base.parse_attributes (/<cim:AceTariffType.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
                 var bucket = context.parsed.AceTariffType;
                 if (null == bucket)
                    context.parsed.AceTariffType = bucket = {};
@@ -555,6 +676,9 @@ define
                 var fields = [];
 
                 base.export_element (obj, "AceTariffType", "type", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "AceTariffType", fields);
+                base.export_attribute (obj, "export_attributes", "AceTariffType", fields);
+                base.export_attribute (obj, "export_attributes", "AceTariffType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -573,6 +697,9 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#Point}}<div><b>Point</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Point}}
+                    {{#Unit}}<div><b>Unit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Unit}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketDocument}}
                     </div>
                     <fieldset>
 
@@ -583,11 +710,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Point) obj.Point_string = obj.Point.join ();
+                if (obj.Unit) obj.Unit_string = obj.Unit.join ();
+                if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Point_string;
+                delete obj.Unit_string;
+                delete obj.MarketDocument_string;
             }
 
             edit_template ()
@@ -601,11 +734,25 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Point'>Point: </label><div class='col-sm-8'><input id='Point' class='form-control' type='text'{{#Point}} value='{{Point}}_string'{{/Point}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Unit'>Unit: </label><div class='col-sm-8'><input id='Unit' class='form-control' type='text'{{#Unit}} value='{{Unit}}_string'{{/Unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Point", "Point", "0..*", "0..*"],
+                        ["Unit", "Unit", "0..*", "0..*"],
+                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -636,7 +783,16 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketDocument";
-
+                base.parse_attributes (/<cim:MarketDocument.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.Period\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Period", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.AttributeInstanceComponent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AttributeInstanceComponent", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.selfMarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "selfMarketDocument", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.Reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reason", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.Process\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Process", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.AceTariffType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AceTariffType", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.Domain\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Domain", sub, context);
+                base.parse_attributes (/<cim:MarketDocument.MarketParticipant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketParticipant", sub, context);
                 var bucket = context.parsed.MarketDocument;
                 if (null == bucket)
                    context.parsed.MarketDocument = bucket = {};
@@ -649,6 +805,16 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -666,6 +832,16 @@ define
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
+                    {{#Period}}<div><b>Period</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Period}}
+                    {{#AttributeInstanceComponent}}<div><b>AttributeInstanceComponent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AttributeInstanceComponent}}
+                    {{#selfMarketDocument}}<div><b>selfMarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/selfMarketDocument}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketDocument}}
+                    {{#Reason}}<div><b>Reason</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Reason}}
+                    {{#Process}}<div><b>Process</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Process}}
+                    {{#AceTariffType}}<div><b>AceTariffType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AceTariffType}}
+                    {{#Domain}}<div><b>Domain</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Domain}}
+                    {{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketParticipant}}
                     </div>
                     <fieldset>
 
@@ -676,11 +852,31 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
+                if (obj.Period) obj.Period_string = obj.Period.join ();
+                if (obj.AttributeInstanceComponent) obj.AttributeInstanceComponent_string = obj.AttributeInstanceComponent.join ();
+                if (obj.selfMarketDocument) obj.selfMarketDocument_string = obj.selfMarketDocument.join ();
+                if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
+                if (obj.Reason) obj.Reason_string = obj.Reason.join ();
+                if (obj.Process) obj.Process_string = obj.Process.join ();
+                if (obj.AceTariffType) obj.AceTariffType_string = obj.AceTariffType.join ();
+                if (obj.Domain) obj.Domain_string = obj.Domain.join ();
+                if (obj.MarketParticipant) obj.MarketParticipant_string = obj.MarketParticipant.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
+                delete obj.Period_string;
+                delete obj.AttributeInstanceComponent_string;
+                delete obj.selfMarketDocument_string;
+                delete obj.MarketDocument_string;
+                delete obj.Reason_string;
+                delete obj.Process_string;
+                delete obj.AceTariffType_string;
+                delete obj.Domain_string;
+                delete obj.MarketParticipant_string;
             }
 
             edit_template ()
@@ -693,11 +889,39 @@ define
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Period'>Period: </label><div class='col-sm-8'><input id='Period' class='form-control' type='text'{{#Period}} value='{{Period}}_string'{{/Period}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AttributeInstanceComponent'>AttributeInstanceComponent: </label><div class='col-sm-8'><input id='AttributeInstanceComponent' class='form-control' type='text'{{#AttributeInstanceComponent}} value='{{AttributeInstanceComponent}}_string'{{/AttributeInstanceComponent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='selfMarketDocument'>selfMarketDocument: </label><div class='col-sm-8'><input id='selfMarketDocument' class='form-control' type='text'{{#selfMarketDocument}} value='{{selfMarketDocument}}_string'{{/selfMarketDocument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reason'>Reason: </label><div class='col-sm-8'><input id='Reason' class='form-control' type='text'{{#Reason}} value='{{Reason}}_string'{{/Reason}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Process'>Process: </label><div class='col-sm-8'><input id='Process' class='form-control' type='text'{{#Process}} value='{{Process}}_string'{{/Process}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AceTariffType'>AceTariffType: </label><div class='col-sm-8'><input id='AceTariffType' class='form-control' type='text'{{#AceTariffType}} value='{{AceTariffType}}_string'{{/AceTariffType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Domain'>Domain: </label><div class='col-sm-8'><input id='Domain' class='form-control' type='text'{{#Domain}} value='{{Domain}}_string'{{/Domain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}_string'{{/MarketParticipant}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
+                        ["Period", "Period", "0..*", "0..*"],
+                        ["AttributeInstanceComponent", "AttributeInstanceComponent", "0..*", "0..*"],
+                        ["selfMarketDocument", "MarketDocument", "0..*", "0..*"],
+                        ["MarketDocument", "MarketDocument", "0..*", "0..*"],
+                        ["Reason", "Reason", "0..*", "0..*"],
+                        ["Process", "Process", "0..*", "0..*"],
+                        ["AceTariffType", "AceTariffType", "0..*", "0..*"],
+                        ["Domain", "Domain", "0..*", "0..*"],
+                        ["MarketParticipant", "MarketParticipant", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -728,7 +952,8 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Domain";
-
+                base.parse_attributes (/<cim:Domain.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
+                base.parse_attributes (/<cim:Domain.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
                 var bucket = context.parsed.Domain;
                 if (null == bucket)
                    context.parsed.Domain = bucket = {};
@@ -741,6 +966,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "Domain", fields);
+                base.export_attribute (obj, "export_attributes", "Domain", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -758,6 +985,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketDocument}}
                     </div>
                     <fieldset>
 
@@ -768,11 +997,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
+                if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
+                delete obj.MarketDocument_string;
             }
 
             edit_template ()
@@ -785,11 +1018,23 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
+                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -820,7 +1065,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketEvaluationPoint";
-
+                base.parse_attributes (/<cim:MarketEvaluationPoint.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
                 var bucket = context.parsed.MarketEvaluationPoint;
                 if (null == bucket)
                    context.parsed.MarketEvaluationPoint = bucket = {};
@@ -833,6 +1078,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "MarketEvaluationPoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -850,6 +1096,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
                     </div>
                     <fieldset>
 
@@ -860,11 +1107,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
             }
 
             edit_template ()
@@ -877,11 +1126,21 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -914,7 +1173,10 @@ define
                 obj.cls = "Period";
                 base.parse_element (/<cim:Period.resolution>([\s\S]*?)<\/cim:Period.resolution>/g, obj, "resolution", base.to_string, sub, context);
                 base.parse_element (/<cim:Period.timeInterval>([\s\S]*?)<\/cim:Period.timeInterval>/g, obj, "timeInterval", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Period.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
+                base.parse_attributes (/<cim:Period.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
+                base.parse_attributes (/<cim:Period.Reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reason", sub, context);
+                base.parse_attributes (/<cim:Period.Point\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Point", sub, context);
                 var bucket = context.parsed.Period;
                 if (null == bucket)
                    context.parsed.Period = bucket = {};
@@ -929,6 +1191,10 @@ define
 
                 base.export_element (obj, "Period", "resolution", base.from_string, fields);
                 base.export_element (obj, "Period", "timeInterval", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Period", fields);
+                base.export_attribute (obj, "export_attributes", "Period", fields);
+                base.export_attribute (obj, "export_attributes", "Period", fields);
+                base.export_attribute (obj, "export_attributes", "Period", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -948,6 +1214,10 @@ define
                     `
                     {{#resolution}}<div><b>resolution</b>: {{resolution}}</div>{{/resolution}}
                     {{#timeInterval}}<div><b>timeInterval</b>: {{timeInterval}}</div>{{/timeInterval}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketDocument}}
+                    {{#Reason}}<div><b>Reason</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Reason}}
+                    {{#Point}}<div><b>Point</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Point}}
                     </div>
                     <fieldset>
 
@@ -958,11 +1228,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
+                if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
+                if (obj.Reason) obj.Reason_string = obj.Reason.join ();
+                if (obj.Point) obj.Point_string = obj.Point.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
+                delete obj.MarketDocument_string;
+                delete obj.Reason_string;
+                delete obj.Point_string;
             }
 
             edit_template ()
@@ -977,11 +1255,26 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='resolution'>resolution: </label><div class='col-sm-8'><input id='resolution' class='form-control' type='text'{{#resolution}} value='{{resolution}}'{{/resolution}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeInterval'>timeInterval: </label><div class='col-sm-8'><input id='timeInterval' class='form-control' type='text'{{#timeInterval}} value='{{timeInterval}}'{{/timeInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reason'>Reason: </label><div class='col-sm-8'><input id='Reason' class='form-control' type='text'{{#Reason}} value='{{Reason}}_string'{{/Reason}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
+                        ["MarketDocument", "MarketDocument", "0..*", "0..*"],
+                        ["Reason", "Reason", "0..*", "0..*"],
+                        ["Point", "Point", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1013,7 +1306,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketObjectStatus";
                 base.parse_element (/<cim:MarketObjectStatus.status>([\s\S]*?)<\/cim:MarketObjectStatus.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:MarketObjectStatus.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
                 var bucket = context.parsed.MarketObjectStatus;
                 if (null == bucket)
                    context.parsed.MarketObjectStatus = bucket = {};
@@ -1027,6 +1320,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "MarketObjectStatus", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MarketObjectStatus", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1045,6 +1339,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
                     </div>
                     <fieldset>
 
@@ -1055,11 +1350,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
             }
 
             edit_template ()
@@ -1073,11 +1370,21 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1111,7 +1418,8 @@ define
                 base.parse_element (/<cim:AttributeInstanceComponent.attribute>([\s\S]*?)<\/cim:AttributeInstanceComponent.attribute>/g, obj, "attribute", base.to_string, sub, context);
                 base.parse_element (/<cim:AttributeInstanceComponent.attributeValue>([\s\S]*?)<\/cim:AttributeInstanceComponent.attributeValue>/g, obj, "attributeValue", base.to_string, sub, context);
                 base.parse_element (/<cim:AttributeInstanceComponent.position>([\s\S]*?)<\/cim:AttributeInstanceComponent.position>/g, obj, "position", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:AttributeInstanceComponent.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
+                base.parse_attributes (/<cim:AttributeInstanceComponent.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
                 var bucket = context.parsed.AttributeInstanceComponent;
                 if (null == bucket)
                    context.parsed.AttributeInstanceComponent = bucket = {};
@@ -1127,6 +1435,8 @@ define
                 base.export_element (obj, "AttributeInstanceComponent", "attribute", base.from_string, fields);
                 base.export_element (obj, "AttributeInstanceComponent", "attributeValue", base.from_string, fields);
                 base.export_element (obj, "AttributeInstanceComponent", "position", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "AttributeInstanceComponent", fields);
+                base.export_attribute (obj, "export_attributes", "AttributeInstanceComponent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1147,6 +1457,8 @@ define
                     {{#attribute}}<div><b>attribute</b>: {{attribute}}</div>{{/attribute}}
                     {{#attributeValue}}<div><b>attributeValue</b>: {{attributeValue}}</div>{{/attributeValue}}
                     {{#position}}<div><b>position</b>: {{position}}</div>{{/position}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketDocument}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
                     </div>
                     <fieldset>
 
@@ -1157,11 +1469,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketDocument_string;
+                delete obj.TimeSeries_string;
             }
 
             edit_template ()
@@ -1177,11 +1493,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='attribute'>attribute: </label><div class='col-sm-8'><input id='attribute' class='form-control' type='text'{{#attribute}} value='{{attribute}}'{{/attribute}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='attributeValue'>attributeValue: </label><div class='col-sm-8'><input id='attributeValue' class='form-control' type='text'{{#attributeValue}} value='{{attributeValue}}'{{/attributeValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='position'>position: </label><div class='col-sm-8'><input id='position' class='form-control' type='text'{{#position}} value='{{position}}'{{/position}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketDocument", "MarketDocument", "0..*", "0..*"],
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1218,7 +1546,7 @@ define
                 base.parse_element (/<cim:Auction.paymentTerms>([\s\S]*?)<\/cim:Auction.paymentTerms>/g, obj, "paymentTerms", base.to_string, sub, context);
                 base.parse_element (/<cim:Auction.rights>([\s\S]*?)<\/cim:Auction.rights>/g, obj, "rights", base.to_string, sub, context);
                 base.parse_element (/<cim:Auction.type>([\s\S]*?)<\/cim:Auction.type>/g, obj, "type", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Auction.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
                 var bucket = context.parsed.Auction;
                 if (null == bucket)
                    context.parsed.Auction = bucket = {};
@@ -1237,6 +1565,7 @@ define
                 base.export_element (obj, "Auction", "paymentTerms", base.from_string, fields);
                 base.export_element (obj, "Auction", "rights", base.from_string, fields);
                 base.export_element (obj, "Auction", "type", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Auction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1260,6 +1589,7 @@ define
                     {{#paymentTerms}}<div><b>paymentTerms</b>: {{paymentTerms}}</div>{{/paymentTerms}}
                     {{#rights}}<div><b>rights</b>: {{rights}}</div>{{/rights}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
                     </div>
                     <fieldset>
 
@@ -1270,11 +1600,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
             }
 
             edit_template ()
@@ -1293,11 +1625,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='paymentTerms'>paymentTerms: </label><div class='col-sm-8'><input id='paymentTerms' class='form-control' type='text'{{#paymentTerms}} value='{{paymentTerms}}'{{/paymentTerms}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='rights'>rights: </label><div class='col-sm-8'><input id='rights' class='form-control' type='text'{{#rights}} value='{{rights}}'{{/rights}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1332,7 +1674,6 @@ define
                 base.parse_element (/<cim:Price.category>([\s\S]*?)<\/cim:Price.category>/g, obj, "category", base.to_string, sub, context);
                 base.parse_element (/<cim:Price.direction>([\s\S]*?)<\/cim:Price.direction>/g, obj, "direction", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Price.Point\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Point", sub, context);
-
                 var bucket = context.parsed.Price;
                 if (null == bucket)
                    context.parsed.Price = bucket = {};
@@ -1348,7 +1689,7 @@ define
                 base.export_element (obj, "Price", "amount", base.from_string, fields);
                 base.export_element (obj, "Price", "category", base.from_string, fields);
                 base.export_element (obj, "Price", "direction", base.from_string, fields);
-                base.export_attribute (obj, "Price", "Point", fields);
+                base.export_attribute (obj, "export_attribute", "Price", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1405,7 +1746,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Point", "Point", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1438,7 +1788,7 @@ define
                 obj.cls = "Process";
                 base.parse_element (/<cim:Process.classificationType>([\s\S]*?)<\/cim:Process.classificationType>/g, obj, "classificationType", base.to_string, sub, context);
                 base.parse_element (/<cim:Process.processType>([\s\S]*?)<\/cim:Process.processType>/g, obj, "processType", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Process.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
                 var bucket = context.parsed.Process;
                 if (null == bucket)
                    context.parsed.Process = bucket = {};
@@ -1453,6 +1803,7 @@ define
 
                 base.export_element (obj, "Process", "classificationType", base.from_string, fields);
                 base.export_element (obj, "Process", "processType", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Process", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1472,6 +1823,7 @@ define
                     `
                     {{#classificationType}}<div><b>classificationType</b>: {{classificationType}}</div>{{/classificationType}}
                     {{#processType}}<div><b>processType</b>: {{processType}}</div>{{/processType}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketDocument}}
                     </div>
                     <fieldset>
 
@@ -1482,11 +1834,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketDocument_string;
             }
 
             edit_template ()
@@ -1501,11 +1855,21 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='classificationType'>classificationType: </label><div class='col-sm-8'><input id='classificationType' class='form-control' type='text'{{#classificationType}} value='{{classificationType}}'{{/classificationType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='processType'>processType: </label><div class='col-sm-8'><input id='processType' class='form-control' type='text'{{#processType}} value='{{processType}}'{{/processType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1542,7 +1906,21 @@ define
                 base.parse_element (/<cim:TimeSeries.objectAggregation>([\s\S]*?)<\/cim:TimeSeries.objectAggregation>/g, obj, "objectAggregation", base.to_string, sub, context);
                 base.parse_element (/<cim:TimeSeries.product>([\s\S]*?)<\/cim:TimeSeries.product>/g, obj, "product", base.to_string, sub, context);
                 base.parse_element (/<cim:TimeSeries.version>([\s\S]*?)<\/cim:TimeSeries.version>/g, obj, "version", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:TimeSeries.MarketDocument\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketDocument", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.FlowDirection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FlowDirection", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.Period\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Period", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.Auction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Auction", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.DateAndOrTime\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DateAndOrTime", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.AttributeInstanceComponent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AttributeInstanceComponent", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.Domain\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Domain", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.Unit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Unit", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.Reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reason", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.MarketParticipant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketParticipant", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.MarketEvaluationPoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketEvaluationPoint", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.MarketObjectStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketObjectStatus", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.Point\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Point", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.MktPSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktPSRType", sub, context);
+                base.parse_attributes (/<cim:TimeSeries.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 var bucket = context.parsed.TimeSeries;
                 if (null == bucket)
                    context.parsed.TimeSeries = bucket = {};
@@ -1561,6 +1939,21 @@ define
                 base.export_element (obj, "TimeSeries", "objectAggregation", base.from_string, fields);
                 base.export_element (obj, "TimeSeries", "product", base.from_string, fields);
                 base.export_element (obj, "TimeSeries", "version", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1584,6 +1977,21 @@ define
                     {{#objectAggregation}}<div><b>objectAggregation</b>: {{objectAggregation}}</div>{{/objectAggregation}}
                     {{#product}}<div><b>product</b>: {{product}}</div>{{/product}}
                     {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+                    {{#MarketDocument}}<div><b>MarketDocument</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketDocument}}
+                    {{#FlowDirection}}<div><b>FlowDirection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FlowDirection}}
+                    {{#Period}}<div><b>Period</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Period}}
+                    {{#Auction}}<div><b>Auction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Auction}}
+                    {{#DateAndOrTime}}<div><b>DateAndOrTime</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DateAndOrTime}}
+                    {{#AttributeInstanceComponent}}<div><b>AttributeInstanceComponent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AttributeInstanceComponent}}
+                    {{#Domain}}<div><b>Domain</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Domain}}
+                    {{#Unit}}<div><b>Unit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Unit}}
+                    {{#Reason}}<div><b>Reason</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Reason}}
+                    {{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketParticipant}}
+                    {{#MarketEvaluationPoint}}<div><b>MarketEvaluationPoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketEvaluationPoint}}
+                    {{#MarketObjectStatus}}<div><b>MarketObjectStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketObjectStatus}}
+                    {{#Point}}<div><b>Point</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Point}}
+                    {{#MktPSRType}}<div><b>MktPSRType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktPSRType}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
                     <fieldset>
 
@@ -1594,11 +2002,41 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MarketDocument) obj.MarketDocument_string = obj.MarketDocument.join ();
+                if (obj.FlowDirection) obj.FlowDirection_string = obj.FlowDirection.join ();
+                if (obj.Period) obj.Period_string = obj.Period.join ();
+                if (obj.Auction) obj.Auction_string = obj.Auction.join ();
+                if (obj.DateAndOrTime) obj.DateAndOrTime_string = obj.DateAndOrTime.join ();
+                if (obj.AttributeInstanceComponent) obj.AttributeInstanceComponent_string = obj.AttributeInstanceComponent.join ();
+                if (obj.Domain) obj.Domain_string = obj.Domain.join ();
+                if (obj.Unit) obj.Unit_string = obj.Unit.join ();
+                if (obj.Reason) obj.Reason_string = obj.Reason.join ();
+                if (obj.MarketParticipant) obj.MarketParticipant_string = obj.MarketParticipant.join ();
+                if (obj.MarketEvaluationPoint) obj.MarketEvaluationPoint_string = obj.MarketEvaluationPoint.join ();
+                if (obj.MarketObjectStatus) obj.MarketObjectStatus_string = obj.MarketObjectStatus.join ();
+                if (obj.Point) obj.Point_string = obj.Point.join ();
+                if (obj.MktPSRType) obj.MktPSRType_string = obj.MktPSRType.join ();
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketDocument_string;
+                delete obj.FlowDirection_string;
+                delete obj.Period_string;
+                delete obj.Auction_string;
+                delete obj.DateAndOrTime_string;
+                delete obj.AttributeInstanceComponent_string;
+                delete obj.Domain_string;
+                delete obj.Unit_string;
+                delete obj.Reason_string;
+                delete obj.MarketParticipant_string;
+                delete obj.MarketEvaluationPoint_string;
+                delete obj.MarketObjectStatus_string;
+                delete obj.Point_string;
+                delete obj.MktPSRType_string;
+                delete obj.RegisteredResource_string;
             }
 
             edit_template ()
@@ -1617,11 +2055,49 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='objectAggregation'>objectAggregation: </label><div class='col-sm-8'><input id='objectAggregation' class='form-control' type='text'{{#objectAggregation}} value='{{objectAggregation}}'{{/objectAggregation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='product'>product: </label><div class='col-sm-8'><input id='product' class='form-control' type='text'{{#product}} value='{{product}}'{{/product}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FlowDirection'>FlowDirection: </label><div class='col-sm-8'><input id='FlowDirection' class='form-control' type='text'{{#FlowDirection}} value='{{FlowDirection}}_string'{{/FlowDirection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Period'>Period: </label><div class='col-sm-8'><input id='Period' class='form-control' type='text'{{#Period}} value='{{Period}}_string'{{/Period}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Auction'>Auction: </label><div class='col-sm-8'><input id='Auction' class='form-control' type='text'{{#Auction}} value='{{Auction}}_string'{{/Auction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DateAndOrTime'>DateAndOrTime: </label><div class='col-sm-8'><input id='DateAndOrTime' class='form-control' type='text'{{#DateAndOrTime}} value='{{DateAndOrTime}}_string'{{/DateAndOrTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AttributeInstanceComponent'>AttributeInstanceComponent: </label><div class='col-sm-8'><input id='AttributeInstanceComponent' class='form-control' type='text'{{#AttributeInstanceComponent}} value='{{AttributeInstanceComponent}}_string'{{/AttributeInstanceComponent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Domain'>Domain: </label><div class='col-sm-8'><input id='Domain' class='form-control' type='text'{{#Domain}} value='{{Domain}}_string'{{/Domain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Unit'>Unit: </label><div class='col-sm-8'><input id='Unit' class='form-control' type='text'{{#Unit}} value='{{Unit}}_string'{{/Unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Reason'>Reason: </label><div class='col-sm-8'><input id='Reason' class='form-control' type='text'{{#Reason}} value='{{Reason}}_string'{{/Reason}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}_string'{{/MarketParticipant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketEvaluationPoint'>MarketEvaluationPoint: </label><div class='col-sm-8'><input id='MarketEvaluationPoint' class='form-control' type='text'{{#MarketEvaluationPoint}} value='{{MarketEvaluationPoint}}_string'{{/MarketEvaluationPoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketObjectStatus'>MarketObjectStatus: </label><div class='col-sm-8'><input id='MarketObjectStatus' class='form-control' type='text'{{#MarketObjectStatus}} value='{{MarketObjectStatus}}_string'{{/MarketObjectStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Point'>Point: </label><div class='col-sm-8'><input id='Point' class='form-control' type='text'{{#Point}} value='{{Point}}_string'{{/Point}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktPSRType'>MktPSRType: </label><div class='col-sm-8'><input id='MktPSRType' class='form-control' type='text'{{#MktPSRType}} value='{{MktPSRType}}_string'{{/MktPSRType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketDocument", "MarketDocument", "0..*", "0..*"],
+                        ["FlowDirection", "FlowDirection", "0..*", "0..*"],
+                        ["Period", "Period", "0..*", "0..*"],
+                        ["Auction", "Auction", "0..*", "0..*"],
+                        ["DateAndOrTime", "DateAndOrTime", "0..*", "0..*"],
+                        ["AttributeInstanceComponent", "AttributeInstanceComponent", "0..*", "0..*"],
+                        ["Domain", "Domain", "0..*", "0..*"],
+                        ["Unit", "Unit", "0..*", "0..*"],
+                        ["Reason", "Reason", "0..*", "0..*"],
+                        ["MarketParticipant", "MarketParticipant", "0..*", "0..*"],
+                        ["MarketEvaluationPoint", "MarketEvaluationPoint", "0..*", "0..*"],
+                        ["MarketObjectStatus", "MarketObjectStatus", "0..*", "0..*"],
+                        ["Point", "Point", "0..*", "0..*"],
+                        ["MktPSRType", "MktPSRType", "0..*", "0..*"],
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1653,7 +2129,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "FlowDirection";
                 base.parse_element (/<cim:FlowDirection.direction>([\s\S]*?)<\/cim:FlowDirection.direction>/g, obj, "direction", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:FlowDirection.TimeSeries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSeries", sub, context);
                 var bucket = context.parsed.FlowDirection;
                 if (null == bucket)
                    context.parsed.FlowDirection = bucket = {};
@@ -1667,6 +2143,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "FlowDirection", "direction", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "FlowDirection", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1685,6 +2162,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#direction}}<div><b>direction</b>: {{direction}}</div>{{/direction}}
+                    {{#TimeSeries}}<div><b>TimeSeries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSeries}}
                     </div>
                     <fieldset>
 
@@ -1695,11 +2173,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimeSeries) obj.TimeSeries_string = obj.TimeSeries.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimeSeries_string;
             }
 
             edit_template ()
@@ -1713,11 +2193,21 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='direction'>direction: </label><div class='col-sm-8'><input id='direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1748,7 +2238,6 @@ define
 
                 obj = MarketDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketAgreement";
-
                 var bucket = context.parsed.MarketAgreement;
                 if (null == bucket)
                    context.parsed.MarketAgreement = bucket = {};
@@ -1809,7 +2298,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1846,7 +2335,6 @@ define
                 base.parse_element (/<cim:BidTimeSeries.linkedBidsIdentification>([\s\S]*?)<\/cim:BidTimeSeries.linkedBidsIdentification>/g, obj, "linkedBidsIdentification", base.to_string, sub, context);
                 base.parse_element (/<cim:BidTimeSeries.minimumActivationQuantity>([\s\S]*?)<\/cim:BidTimeSeries.minimumActivationQuantity>/g, obj, "minimumActivationQuantity", base.to_string, sub, context);
                 base.parse_element (/<cim:BidTimeSeries.stepIncrementQuantity>([\s\S]*?)<\/cim:BidTimeSeries.stepIncrementQuantity>/g, obj, "stepIncrementQuantity", base.to_string, sub, context);
-
                 var bucket = context.parsed.BidTimeSeries;
                 if (null == bucket)
                    context.parsed.BidTimeSeries = bucket = {};
@@ -1925,7 +2413,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

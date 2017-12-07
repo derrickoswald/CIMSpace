@@ -78,7 +78,6 @@ define
                 obj = Common.ActivityRecord.prototype.parse.call (this, context, sub);
                 obj.cls = "WorkStatusEntry";
                 base.parse_element (/<cim:WorkStatusEntry.percentComplete>([\s\S]*?)<\/cim:WorkStatusEntry.percentComplete>/g, obj, "percentComplete", base.to_string, sub, context);
-
                 var bucket = context.parsed.WorkStatusEntry;
                 if (null == bucket)
                    context.parsed.WorkStatusEntry = bucket = {};
@@ -142,7 +141,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -175,7 +174,6 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "WorkDocument";
-
                 var bucket = context.parsed.WorkDocument;
                 if (null == bucket)
                    context.parsed.WorkDocument = bucket = {};
@@ -236,7 +234,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -269,7 +267,6 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "WorkIdentifiedObject";
-
                 var bucket = context.parsed.WorkIdentifiedObject;
                 if (null == bucket)
                    context.parsed.WorkIdentifiedObject = bucket = {};
@@ -330,7 +327,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -361,10 +358,17 @@ define
 
                 obj = Work.WorkTask.prototype.parse.call (this, context, sub);
                 obj.cls = "OldWorkTask";
+                base.parse_attributes (/<cim:OldWorkTask.QualificationRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "QualificationRequirements", sub, context);
+                base.parse_attributes (/<cim:OldWorkTask.MiscCostItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MiscCostItems", sub, context);
                 base.parse_attribute (/<cim:OldWorkTask.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Design", sub, context);
+                base.parse_attributes (/<cim:OldWorkTask.Capabilities\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Capabilities", sub, context);
                 base.parse_attribute (/<cim:OldWorkTask.WorkFlowStep\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkFlowStep", sub, context);
+                base.parse_attributes (/<cim:OldWorkTask.WorkCostDetails\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetails", sub, context);
+                base.parse_attributes (/<cim:OldWorkTask.Usages\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Usages", sub, context);
+                base.parse_attributes (/<cim:OldWorkTask.LaborItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LaborItems", sub, context);
                 base.parse_attribute (/<cim:OldWorkTask.OverheadCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OverheadCost", sub, context);
-
+                base.parse_attributes (/<cim:OldWorkTask.DesignLocationCUs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocationCUs", sub, context);
+                base.parse_attributes (/<cim:OldWorkTask.ContractorItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContractorItems", sub, context);
                 var bucket = context.parsed.OldWorkTask;
                 if (null == bucket)
                    context.parsed.OldWorkTask = bucket = {};
@@ -377,9 +381,17 @@ define
             {
                 var fields = Work.WorkTask.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "OldWorkTask", "Design", fields);
-                base.export_attribute (obj, "OldWorkTask", "WorkFlowStep", fields);
-                base.export_attribute (obj, "OldWorkTask", "OverheadCost", fields);
+                base.export_attribute (obj, "export_attributes", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "OldWorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "OldWorkTask", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -397,9 +409,17 @@ define
                     `
                     + Work.WorkTask.prototype.template.call (this) +
                     `
+                    {{#QualificationRequirements}}<div><b>QualificationRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/QualificationRequirements}}
+                    {{#MiscCostItems}}<div><b>MiscCostItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MiscCostItems}}
                     {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
+                    {{#Capabilities}}<div><b>Capabilities</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Capabilities}}
                     {{#WorkFlowStep}}<div><b>WorkFlowStep</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkFlowStep}}&quot;);})'>{{WorkFlowStep}}</a></div>{{/WorkFlowStep}}
+                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkCostDetails}}
+                    {{#Usages}}<div><b>Usages</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Usages}}
+                    {{#LaborItems}}<div><b>LaborItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LaborItems}}
                     {{#OverheadCost}}<div><b>OverheadCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverheadCost}}&quot;);})'>{{OverheadCost}}</a></div>{{/OverheadCost}}
+                    {{#DesignLocationCUs}}<div><b>DesignLocationCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocationCUs}}
+                    {{#ContractorItems}}<div><b>ContractorItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ContractorItems}}
                     </div>
                     <fieldset>
 
@@ -410,11 +430,27 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.QualificationRequirements) obj.QualificationRequirements_string = obj.QualificationRequirements.join ();
+                if (obj.MiscCostItems) obj.MiscCostItems_string = obj.MiscCostItems.join ();
+                if (obj.Capabilities) obj.Capabilities_string = obj.Capabilities.join ();
+                if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
+                if (obj.Usages) obj.Usages_string = obj.Usages.join ();
+                if (obj.LaborItems) obj.LaborItems_string = obj.LaborItems.join ();
+                if (obj.DesignLocationCUs) obj.DesignLocationCUs_string = obj.DesignLocationCUs.join ();
+                if (obj.ContractorItems) obj.ContractorItems_string = obj.ContractorItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.QualificationRequirements_string;
+                delete obj.MiscCostItems_string;
+                delete obj.Capabilities_string;
+                delete obj.WorkCostDetails_string;
+                delete obj.Usages_string;
+                delete obj.LaborItems_string;
+                delete obj.DesignLocationCUs_string;
+                delete obj.ContractorItems_string;
             }
 
             edit_template ()
@@ -427,14 +463,36 @@ define
                     `
                     + Work.WorkTask.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities}}_string'{{/Capabilities}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkFlowStep'>WorkFlowStep: </label><div class='col-sm-8'><input id='WorkFlowStep' class='form-control' type='text'{{#WorkFlowStep}} value='{{WorkFlowStep}}'{{/WorkFlowStep}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["QualificationRequirements", "QualificationRequirement", "0..*", "0..*"],
+                        ["MiscCostItems", "MiscCostItem", "0..*", "0..1"],
+                        ["Design", "Design", "0..1", "0..*"],
+                        ["Capabilities", "Capability", "0..*", "0..*"],
+                        ["WorkFlowStep", "WorkFlowStep", "0..1", "0..*"],
+                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..1"],
+                        ["Usages", "Usage", "0..*", "0..1"],
+                        ["LaborItems", "LaborItem", "0..*", "0..1"],
+                        ["OverheadCost", "OverheadCost", "0..1", "0..*"],
+                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"],
+                        ["ContractorItems", "ContractorItem", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -466,7 +524,8 @@ define
                 obj = WorkDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "BusinessCase";
                 base.parse_element (/<cim:BusinessCase.corporateCode>([\s\S]*?)<\/cim:BusinessCase.corporateCode>/g, obj, "corporateCode", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:BusinessCase.Projects\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Projects", sub, context);
+                base.parse_attributes (/<cim:BusinessCase.Works\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Works", sub, context);
                 var bucket = context.parsed.BusinessCase;
                 if (null == bucket)
                    context.parsed.BusinessCase = bucket = {};
@@ -480,6 +539,8 @@ define
                 var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BusinessCase", "corporateCode", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "BusinessCase", fields);
+                base.export_attribute (obj, "export_attributes", "BusinessCase", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -498,6 +559,8 @@ define
                     + WorkDocument.prototype.template.call (this) +
                     `
                     {{#corporateCode}}<div><b>corporateCode</b>: {{corporateCode}}</div>{{/corporateCode}}
+                    {{#Projects}}<div><b>Projects</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Projects}}
+                    {{#Works}}<div><b>Works</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Works}}
                     </div>
                     <fieldset>
 
@@ -508,11 +571,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Projects) obj.Projects_string = obj.Projects.join ();
+                if (obj.Works) obj.Works_string = obj.Works.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Projects_string;
+                delete obj.Works_string;
             }
 
             edit_template ()
@@ -530,7 +597,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Projects", "Project", "0..*", "0..1"],
+                        ["Works", "Work", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -564,7 +641,6 @@ define
                 obj = WorkDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "Regulation";
                 base.parse_element (/<cim:Regulation.referenceNumber>([\s\S]*?)<\/cim:Regulation.referenceNumber>/g, obj, "referenceNumber", base.to_string, sub, context);
-
                 var bucket = context.parsed.Regulation;
                 if (null == bucket)
                    context.parsed.Regulation = bucket = {};
@@ -628,7 +704,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -662,7 +738,7 @@ define
                 obj = WorkDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "Assignment";
                 base.parse_element (/<cim:Assignment.effectivePeriod>([\s\S]*?)<\/cim:Assignment.effectivePeriod>/g, obj, "effectivePeriod", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Assignment.Crews\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crews", sub, context);
                 var bucket = context.parsed.Assignment;
                 if (null == bucket)
                    context.parsed.Assignment = bucket = {};
@@ -676,6 +752,7 @@ define
                 var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Assignment", "effectivePeriod", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Assignment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -694,6 +771,7 @@ define
                     + WorkDocument.prototype.template.call (this) +
                     `
                     {{#effectivePeriod}}<div><b>effectivePeriod</b>: {{effectivePeriod}}</div>{{/effectivePeriod}}
+                    {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Crews}}
                     </div>
                     <fieldset>
 
@@ -704,11 +782,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Crews) obj.Crews_string = obj.Crews.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Crews_string;
             }
 
             edit_template ()
@@ -722,11 +802,21 @@ define
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectivePeriod'>effectivePeriod: </label><div class='col-sm-8'><input id='effectivePeriod' class='form-control' type='text'{{#effectivePeriod}} value='{{effectivePeriod}}'{{/effectivePeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crews'>Crews: </label><div class='col-sm-8'><input id='Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Crews", "OldCrew", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -760,10 +850,11 @@ define
                 obj = WorkDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "Project";
                 base.parse_element (/<cim:Project.budget>([\s\S]*?)<\/cim:Project.budget>/g, obj, "budget", base.to_string, sub, context);
+                base.parse_attributes (/<cim:Project.SubProjects\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubProjects", sub, context);
                 base.parse_attribute (/<cim:Project.ParentProject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentProject", sub, context);
                 base.parse_attribute (/<cim:Project.BusinessCase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BusinessCase", sub, context);
+                base.parse_attributes (/<cim:Project.Works\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Works", sub, context);
                 base.parse_attribute (/<cim:Project.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context);
-
                 var bucket = context.parsed.Project;
                 if (null == bucket)
                    context.parsed.Project = bucket = {};
@@ -777,9 +868,11 @@ define
                 var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Project", "budget", base.from_string, fields);
-                base.export_attribute (obj, "Project", "ParentProject", fields);
-                base.export_attribute (obj, "Project", "BusinessCase", fields);
-                base.export_attribute (obj, "Project", "ErpProjectAccounting", fields);
+                base.export_attribute (obj, "export_attributes", "Project", fields);
+                base.export_attribute (obj, "export_attribute", "Project", fields);
+                base.export_attribute (obj, "export_attribute", "Project", fields);
+                base.export_attribute (obj, "export_attributes", "Project", fields);
+                base.export_attribute (obj, "export_attribute", "Project", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -798,8 +891,10 @@ define
                     + WorkDocument.prototype.template.call (this) +
                     `
                     {{#budget}}<div><b>budget</b>: {{budget}}</div>{{/budget}}
+                    {{#SubProjects}}<div><b>SubProjects</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubProjects}}
                     {{#ParentProject}}<div><b>ParentProject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentProject}}&quot;);})'>{{ParentProject}}</a></div>{{/ParentProject}}
                     {{#BusinessCase}}<div><b>BusinessCase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusinessCase}}&quot;);})'>{{BusinessCase}}</a></div>{{/BusinessCase}}
+                    {{#Works}}<div><b>Works</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Works}}
                     {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
                     </div>
                     <fieldset>
@@ -811,11 +906,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SubProjects) obj.SubProjects_string = obj.SubProjects.join ();
+                if (obj.Works) obj.Works_string = obj.Works.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SubProjects_string;
+                delete obj.Works_string;
             }
 
             edit_template ()
@@ -836,7 +935,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SubProjects", "Project", "0..*", "0..1"],
+                        ["ParentProject", "Project", "0..1", "0..*"],
+                        ["BusinessCase", "BusinessCase", "0..1", "0..*"],
+                        ["Works", "Work", "0..*", "0..1"],
+                        ["ErpProjectAccounting", "ErpProjectAccounting", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -870,7 +982,6 @@ define
                 obj = WorkDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "WorkCostSummary";
                 base.parse_attribute (/<cim:WorkCostSummary.WorkCostDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetail", sub, context);
-
                 var bucket = context.parsed.WorkCostSummary;
                 if (null == bucket)
                    context.parsed.WorkCostSummary = bucket = {};
@@ -883,7 +994,7 @@ define
             {
                 var fields = WorkDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WorkCostSummary", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attribute", "WorkCostSummary", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -934,7 +1045,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkCostDetail", "WorkCostDetail", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -968,13 +1088,17 @@ define
                 base.parse_element (/<cim:WorkCostDetail.amount>([\s\S]*?)<\/cim:WorkCostDetail.amount>/g, obj, "amount", base.to_string, sub, context);
                 base.parse_element (/<cim:WorkCostDetail.isDebit>([\s\S]*?)<\/cim:WorkCostDetail.isDebit>/g, obj, "isDebit", base.to_boolean, sub, context);
                 base.parse_element (/<cim:WorkCostDetail.transactionDateTime>([\s\S]*?)<\/cim:WorkCostDetail.transactionDateTime>/g, obj, "transactionDateTime", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:WorkCostDetail.LaborItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LaborItems", sub, context);
                 base.parse_attribute (/<cim:WorkCostDetail.CostType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CostType", sub, context);
                 base.parse_attribute (/<cim:WorkCostDetail.OverheadCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OverheadCost", sub, context);
                 base.parse_attribute (/<cim:WorkCostDetail.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
                 base.parse_attribute (/<cim:WorkCostDetail.Design\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Design", sub, context);
                 base.parse_attribute (/<cim:WorkCostDetail.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context);
+                base.parse_attributes (/<cim:WorkCostDetail.MiscCostItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MiscCostItems", sub, context);
+                base.parse_attributes (/<cim:WorkCostDetail.ContractorItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContractorItems", sub, context);
+                base.parse_attributes (/<cim:WorkCostDetail.Works\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Works", sub, context);
                 base.parse_attribute (/<cim:WorkCostDetail.WorkCostSummary\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostSummary", sub, context);
-
+                base.parse_attributes (/<cim:WorkCostDetail.PropertyUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PropertyUnits", sub, context);
                 var bucket = context.parsed.WorkCostDetail;
                 if (null == bucket)
                    context.parsed.WorkCostDetail = bucket = {};
@@ -990,12 +1114,17 @@ define
                 base.export_element (obj, "WorkCostDetail", "amount", base.from_string, fields);
                 base.export_element (obj, "WorkCostDetail", "isDebit", base.from_boolean, fields);
                 base.export_element (obj, "WorkCostDetail", "transactionDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "WorkCostDetail", "CostType", fields);
-                base.export_attribute (obj, "WorkCostDetail", "OverheadCost", fields);
-                base.export_attribute (obj, "WorkCostDetail", "WorkTask", fields);
-                base.export_attribute (obj, "WorkCostDetail", "Design", fields);
-                base.export_attribute (obj, "WorkCostDetail", "ErpProjectAccounting", fields);
-                base.export_attribute (obj, "WorkCostDetail", "WorkCostSummary", fields);
+                base.export_attribute (obj, "export_attributes", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attribute", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attribute", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attribute", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attribute", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attribute", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attributes", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attributes", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attributes", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attribute", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attributes", "WorkCostDetail", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1016,12 +1145,17 @@ define
                     {{#amount}}<div><b>amount</b>: {{amount}}</div>{{/amount}}
                     {{#isDebit}}<div><b>isDebit</b>: {{isDebit}}</div>{{/isDebit}}
                     {{#transactionDateTime}}<div><b>transactionDateTime</b>: {{transactionDateTime}}</div>{{/transactionDateTime}}
+                    {{#LaborItems}}<div><b>LaborItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LaborItems}}
                     {{#CostType}}<div><b>CostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CostType}}&quot;);})'>{{CostType}}</a></div>{{/CostType}}
                     {{#OverheadCost}}<div><b>OverheadCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OverheadCost}}&quot;);})'>{{OverheadCost}}</a></div>{{/OverheadCost}}
                     {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
                     {{#Design}}<div><b>Design</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Design}}&quot;);})'>{{Design}}</a></div>{{/Design}}
                     {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
+                    {{#MiscCostItems}}<div><b>MiscCostItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MiscCostItems}}
+                    {{#ContractorItems}}<div><b>ContractorItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ContractorItems}}
+                    {{#Works}}<div><b>Works</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Works}}
                     {{#WorkCostSummary}}<div><b>WorkCostSummary</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostSummary}}&quot;);})'>{{WorkCostSummary}}</a></div>{{/WorkCostSummary}}
+                    {{#PropertyUnits}}<div><b>PropertyUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PropertyUnits}}
                     </div>
                     <fieldset>
 
@@ -1032,11 +1166,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.LaborItems) obj.LaborItems_string = obj.LaborItems.join ();
+                if (obj.MiscCostItems) obj.MiscCostItems_string = obj.MiscCostItems.join ();
+                if (obj.ContractorItems) obj.ContractorItems_string = obj.ContractorItems.join ();
+                if (obj.Works) obj.Works_string = obj.Works.join ();
+                if (obj.PropertyUnits) obj.PropertyUnits_string = obj.PropertyUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.LaborItems_string;
+                delete obj.MiscCostItems_string;
+                delete obj.ContractorItems_string;
+                delete obj.Works_string;
+                delete obj.PropertyUnits_string;
             }
 
             edit_template ()
@@ -1057,12 +1201,33 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Works'>Works: </label><div class='col-sm-8'><input id='Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostSummary'>WorkCostSummary: </label><div class='col-sm-8'><input id='WorkCostSummary' class='form-control' type='text'{{#WorkCostSummary}} value='{{WorkCostSummary}}'{{/WorkCostSummary}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits}}_string'{{/PropertyUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LaborItems", "LaborItem", "0..*", "1"],
+                        ["CostType", "CostType", "1", "0..*"],
+                        ["OverheadCost", "OverheadCost", "0..1", "0..*"],
+                        ["WorkTask", "OldWorkTask", "0..1", "0..*"],
+                        ["Design", "Design", "0..1", "0..*"],
+                        ["ErpProjectAccounting", "ErpProjectAccounting", "1", "0..*"],
+                        ["MiscCostItems", "MiscCostItem", "0..*", "0..1"],
+                        ["ContractorItems", "ContractorItem", "0..*", "1"],
+                        ["Works", "Work", "0..*", "0..*"],
+                        ["WorkCostSummary", "WorkCostSummary", "0..1", "0..1"],
+                        ["PropertyUnits", "PropertyUnit", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1095,11 +1260,17 @@ define
                 obj.cls = "CompatibleUnit";
                 base.parse_element (/<cim:CompatibleUnit.estCost>([\s\S]*?)<\/cim:CompatibleUnit.estCost>/g, obj, "estCost", base.to_string, sub, context);
                 base.parse_element (/<cim:CompatibleUnit.quantity>([\s\S]*?)<\/cim:CompatibleUnit.quantity>/g, obj, "quantity", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CompatibleUnit.CUWorkEquipmentItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUWorkEquipmentItems", sub, context);
+                base.parse_attributes (/<cim:CompatibleUnit.CUAssets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUAssets", sub, context);
+                base.parse_attributes (/<cim:CompatibleUnit.DesignLocationCUs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocationCUs", sub, context);
+                base.parse_attributes (/<cim:CompatibleUnit.CUContractorItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUContractorItems", sub, context);
                 base.parse_attribute (/<cim:CompatibleUnit.CUGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUGroup", sub, context);
                 base.parse_attribute (/<cim:CompatibleUnit.PropertyUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PropertyUnit", sub, context);
+                base.parse_attributes (/<cim:CompatibleUnit.CULaborItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CULaborItems", sub, context);
+                base.parse_attributes (/<cim:CompatibleUnit.CUMaterialItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUMaterialItems", sub, context);
+                base.parse_attributes (/<cim:CompatibleUnit.Procedures\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Procedures", sub, context);
                 base.parse_attribute (/<cim:CompatibleUnit.CostType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CostType", sub, context);
                 base.parse_attribute (/<cim:CompatibleUnit.CUAllowableAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUAllowableAction", sub, context);
-
                 var bucket = context.parsed.CompatibleUnit;
                 if (null == bucket)
                    context.parsed.CompatibleUnit = bucket = {};
@@ -1114,10 +1285,17 @@ define
 
                 base.export_element (obj, "CompatibleUnit", "estCost", base.from_string, fields);
                 base.export_element (obj, "CompatibleUnit", "quantity", base.from_string, fields);
-                base.export_attribute (obj, "CompatibleUnit", "CUGroup", fields);
-                base.export_attribute (obj, "CompatibleUnit", "PropertyUnit", fields);
-                base.export_attribute (obj, "CompatibleUnit", "CostType", fields);
-                base.export_attribute (obj, "CompatibleUnit", "CUAllowableAction", fields);
+                base.export_attribute (obj, "export_attributes", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attributes", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attributes", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attributes", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attribute", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attribute", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attributes", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attributes", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attributes", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attribute", "CompatibleUnit", fields);
+                base.export_attribute (obj, "export_attribute", "CompatibleUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1137,8 +1315,15 @@ define
                     `
                     {{#estCost}}<div><b>estCost</b>: {{estCost}}</div>{{/estCost}}
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
+                    {{#CUWorkEquipmentItems}}<div><b>CUWorkEquipmentItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CUWorkEquipmentItems}}
+                    {{#CUAssets}}<div><b>CUAssets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CUAssets}}
+                    {{#DesignLocationCUs}}<div><b>DesignLocationCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocationCUs}}
+                    {{#CUContractorItems}}<div><b>CUContractorItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CUContractorItems}}
                     {{#CUGroup}}<div><b>CUGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUGroup}}&quot;);})'>{{CUGroup}}</a></div>{{/CUGroup}}
                     {{#PropertyUnit}}<div><b>PropertyUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PropertyUnit}}&quot;);})'>{{PropertyUnit}}</a></div>{{/PropertyUnit}}
+                    {{#CULaborItems}}<div><b>CULaborItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CULaborItems}}
+                    {{#CUMaterialItems}}<div><b>CUMaterialItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CUMaterialItems}}
+                    {{#Procedures}}<div><b>Procedures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Procedures}}
                     {{#CostType}}<div><b>CostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CostType}}&quot;);})'>{{CostType}}</a></div>{{/CostType}}
                     {{#CUAllowableAction}}<div><b>CUAllowableAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CUAllowableAction}}&quot;);})'>{{CUAllowableAction}}</a></div>{{/CUAllowableAction}}
                     </div>
@@ -1151,11 +1336,25 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CUWorkEquipmentItems) obj.CUWorkEquipmentItems_string = obj.CUWorkEquipmentItems.join ();
+                if (obj.CUAssets) obj.CUAssets_string = obj.CUAssets.join ();
+                if (obj.DesignLocationCUs) obj.DesignLocationCUs_string = obj.DesignLocationCUs.join ();
+                if (obj.CUContractorItems) obj.CUContractorItems_string = obj.CUContractorItems.join ();
+                if (obj.CULaborItems) obj.CULaborItems_string = obj.CULaborItems.join ();
+                if (obj.CUMaterialItems) obj.CUMaterialItems_string = obj.CUMaterialItems.join ();
+                if (obj.Procedures) obj.Procedures_string = obj.Procedures.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CUWorkEquipmentItems_string;
+                delete obj.CUAssets_string;
+                delete obj.DesignLocationCUs_string;
+                delete obj.CUContractorItems_string;
+                delete obj.CULaborItems_string;
+                delete obj.CUMaterialItems_string;
+                delete obj.Procedures_string;
             }
 
             edit_template ()
@@ -1170,15 +1369,41 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='estCost'>estCost: </label><div class='col-sm-8'><input id='estCost' class='form-control' type='text'{{#estCost}} value='{{estCost}}'{{/estCost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUWorkEquipmentItems'>CUWorkEquipmentItems: </label><div class='col-sm-8'><input id='CUWorkEquipmentItems' class='form-control' type='text'{{#CUWorkEquipmentItems}} value='{{CUWorkEquipmentItems}}_string'{{/CUWorkEquipmentItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUAssets'>CUAssets: </label><div class='col-sm-8'><input id='CUAssets' class='form-control' type='text'{{#CUAssets}} value='{{CUAssets}}_string'{{/CUAssets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUContractorItems'>CUContractorItems: </label><div class='col-sm-8'><input id='CUContractorItems' class='form-control' type='text'{{#CUContractorItems}} value='{{CUContractorItems}}_string'{{/CUContractorItems}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUGroup'>CUGroup: </label><div class='col-sm-8'><input id='CUGroup' class='form-control' type='text'{{#CUGroup}} value='{{CUGroup}}'{{/CUGroup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='PropertyUnit'>PropertyUnit: </label><div class='col-sm-8'><input id='PropertyUnit' class='form-control' type='text'{{#PropertyUnit}} value='{{PropertyUnit}}'{{/PropertyUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems}}_string'{{/CULaborItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems}}_string'{{/CUMaterialItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Procedures'>Procedures: </label><div class='col-sm-8'><input id='Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures}}_string'{{/Procedures}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CostType'>CostType: </label><div class='col-sm-8'><input id='CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUAllowableAction'>CUAllowableAction: </label><div class='col-sm-8'><input id='CUAllowableAction' class='form-control' type='text'{{#CUAllowableAction}} value='{{CUAllowableAction}}'{{/CUAllowableAction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CUWorkEquipmentItems", "CUWorkEquipmentItem", "0..*", "0..*"],
+                        ["CUAssets", "CUAsset", "0..*", "0..*"],
+                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"],
+                        ["CUContractorItems", "CUContractorItem", "0..*", "0..*"],
+                        ["CUGroup", "CUGroup", "0..1", "0..*"],
+                        ["PropertyUnit", "PropertyUnit", "0..1", "0..*"],
+                        ["CULaborItems", "CULaborItem", "0..*", "0..*"],
+                        ["CUMaterialItems", "CUMaterialItem", "0..*", "0..*"],
+                        ["Procedures", "Procedure", "0..*", "0..*"],
+                        ["CostType", "CostType", "0..1", "0..*"],
+                        ["CUAllowableAction", "CUAllowableAction", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1218,7 +1443,6 @@ define
                 base.parse_element (/<cim:InfoQuestion.questionRemark>([\s\S]*?)<\/cim:InfoQuestion.questionRemark>/g, obj, "questionRemark", base.to_string, sub, context);
                 base.parse_element (/<cim:InfoQuestion.questionText>([\s\S]*?)<\/cim:InfoQuestion.questionText>/g, obj, "questionText", base.to_string, sub, context);
                 base.parse_element (/<cim:InfoQuestion.questionType>([\s\S]*?)<\/cim:InfoQuestion.questionType>/g, obj, "questionType", base.to_string, sub, context);
-
                 var bucket = context.parsed.InfoQuestion;
                 if (null == bucket)
                    context.parsed.InfoQuestion = bucket = {};
@@ -1300,7 +1524,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1337,7 +1561,10 @@ define
                 base.parse_element (/<cim:TypeMaterial.estUnitCost>([\s\S]*?)<\/cim:TypeMaterial.estUnitCost>/g, obj, "estUnitCost", base.to_string, sub, context);
                 base.parse_element (/<cim:TypeMaterial.quantity>([\s\S]*?)<\/cim:TypeMaterial.quantity>/g, obj, "quantity", base.to_string, sub, context);
                 base.parse_element (/<cim:TypeMaterial.stockItem>([\s\S]*?)<\/cim:TypeMaterial.stockItem>/g, obj, "stockItem", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:TypeMaterial.ErpIssueInventories\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpIssueInventories", sub, context);
+                base.parse_attributes (/<cim:TypeMaterial.ErpReqLineItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpReqLineItems", sub, context);
+                base.parse_attributes (/<cim:TypeMaterial.CUMaterialItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUMaterialItems", sub, context);
+                base.parse_attributes (/<cim:TypeMaterial.MaterialItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MaterialItems", sub, context);
                 var bucket = context.parsed.TypeMaterial;
                 if (null == bucket)
                    context.parsed.TypeMaterial = bucket = {};
@@ -1354,6 +1581,10 @@ define
                 base.export_element (obj, "TypeMaterial", "estUnitCost", base.from_string, fields);
                 base.export_element (obj, "TypeMaterial", "quantity", base.from_string, fields);
                 base.export_element (obj, "TypeMaterial", "stockItem", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "TypeMaterial", fields);
+                base.export_attribute (obj, "export_attributes", "TypeMaterial", fields);
+                base.export_attribute (obj, "export_attributes", "TypeMaterial", fields);
+                base.export_attribute (obj, "export_attributes", "TypeMaterial", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1375,6 +1606,10 @@ define
                     {{#estUnitCost}}<div><b>estUnitCost</b>: {{estUnitCost}}</div>{{/estUnitCost}}
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
                     {{#stockItem}}<div><b>stockItem</b>: {{stockItem}}</div>{{/stockItem}}
+                    {{#ErpIssueInventories}}<div><b>ErpIssueInventories</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpIssueInventories}}
+                    {{#ErpReqLineItems}}<div><b>ErpReqLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpReqLineItems}}
+                    {{#CUMaterialItems}}<div><b>CUMaterialItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CUMaterialItems}}
+                    {{#MaterialItems}}<div><b>MaterialItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MaterialItems}}
                     </div>
                     <fieldset>
 
@@ -1385,11 +1620,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ErpIssueInventories) obj.ErpIssueInventories_string = obj.ErpIssueInventories.join ();
+                if (obj.ErpReqLineItems) obj.ErpReqLineItems_string = obj.ErpReqLineItems.join ();
+                if (obj.CUMaterialItems) obj.CUMaterialItems_string = obj.CUMaterialItems.join ();
+                if (obj.MaterialItems) obj.MaterialItems_string = obj.MaterialItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ErpIssueInventories_string;
+                delete obj.ErpReqLineItems_string;
+                delete obj.CUMaterialItems_string;
+                delete obj.MaterialItems_string;
             }
 
             edit_template ()
@@ -1410,7 +1653,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ErpIssueInventories", "ErpIssueInventory", "0..*", "0..1"],
+                        ["ErpReqLineItems", "ErpReqLineItem", "0..*", "0..1"],
+                        ["CUMaterialItems", "CUMaterialItem", "0..*", "0..1"],
+                        ["MaterialItems", "MaterialItem", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1442,7 +1697,6 @@ define
                 obj = WorkDocument.prototype.parse.call (this, context, sub);
                 obj.cls = "NonStandardItem";
                 base.parse_element (/<cim:NonStandardItem.amount>([\s\S]*?)<\/cim:NonStandardItem.amount>/g, obj, "amount", base.to_string, sub, context);
-
                 var bucket = context.parsed.NonStandardItem;
                 if (null == bucket)
                    context.parsed.NonStandardItem = bucket = {};
@@ -1506,7 +1760,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1544,7 +1798,6 @@ define
                 base.parse_element (/<cim:AccessPermit.expirationDate>([\s\S]*?)<\/cim:AccessPermit.expirationDate>/g, obj, "expirationDate", base.to_string, sub, context);
                 base.parse_element (/<cim:AccessPermit.payment>([\s\S]*?)<\/cim:AccessPermit.payment>/g, obj, "payment", base.to_string, sub, context);
                 base.parse_element (/<cim:AccessPermit.permitID>([\s\S]*?)<\/cim:AccessPermit.permitID>/g, obj, "permitID", base.to_string, sub, context);
-
                 var bucket = context.parsed.AccessPermit;
                 if (null == bucket)
                    context.parsed.AccessPermit = bucket = {};
@@ -1620,7 +1873,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1654,7 +1907,7 @@ define
                 base.parse_element (/<cim:OneCallRequest.explosivesUsed>([\s\S]*?)<\/cim:OneCallRequest.explosivesUsed>/g, obj, "explosivesUsed", base.to_boolean, sub, context);
                 base.parse_element (/<cim:OneCallRequest.markedIndicator>([\s\S]*?)<\/cim:OneCallRequest.markedIndicator>/g, obj, "markedIndicator", base.to_boolean, sub, context);
                 base.parse_element (/<cim:OneCallRequest.markingInstruction>([\s\S]*?)<\/cim:OneCallRequest.markingInstruction>/g, obj, "markingInstruction", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:OneCallRequest.WorkLocations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkLocations", sub, context);
                 var bucket = context.parsed.OneCallRequest;
                 if (null == bucket)
                    context.parsed.OneCallRequest = bucket = {};
@@ -1670,6 +1923,7 @@ define
                 base.export_element (obj, "OneCallRequest", "explosivesUsed", base.from_boolean, fields);
                 base.export_element (obj, "OneCallRequest", "markedIndicator", base.from_boolean, fields);
                 base.export_element (obj, "OneCallRequest", "markingInstruction", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "OneCallRequest", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1690,6 +1944,7 @@ define
                     {{#explosivesUsed}}<div><b>explosivesUsed</b>: {{explosivesUsed}}</div>{{/explosivesUsed}}
                     {{#markedIndicator}}<div><b>markedIndicator</b>: {{markedIndicator}}</div>{{/markedIndicator}}
                     {{#markingInstruction}}<div><b>markingInstruction</b>: {{markingInstruction}}</div>{{/markingInstruction}}
+                    {{#WorkLocations}}<div><b>WorkLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkLocations}}
                     </div>
                     <fieldset>
 
@@ -1700,11 +1955,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WorkLocations) obj.WorkLocations_string = obj.WorkLocations.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WorkLocations_string;
             }
 
             edit_template ()
@@ -1724,7 +1981,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkLocations", "WorkLocation", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1762,7 +2028,12 @@ define
                 base.parse_element (/<cim:Design.price>([\s\S]*?)<\/cim:Design.price>/g, obj, "price", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Design.Work\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Work", sub, context);
                 base.parse_attribute (/<cim:Design.ErpQuoteLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuoteLineItem", sub, context);
-
+                base.parse_attributes (/<cim:Design.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
+                base.parse_attributes (/<cim:Design.ErpBOMs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpBOMs", sub, context);
+                base.parse_attributes (/<cim:Design.WorkCostDetails\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetails", sub, context);
+                base.parse_attributes (/<cim:Design.ConditionFactors\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConditionFactors", sub, context);
+                base.parse_attributes (/<cim:Design.DesignLocations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocations", sub, context);
+                base.parse_attributes (/<cim:Design.DesignLocationsCUs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocationsCUs", sub, context);
                 var bucket = context.parsed.Design;
                 if (null == bucket)
                    context.parsed.Design = bucket = {};
@@ -1778,8 +2049,14 @@ define
                 base.export_element (obj, "Design", "costEstimate", base.from_string, fields);
                 base.export_element (obj, "Design", "kind", base.from_string, fields);
                 base.export_element (obj, "Design", "price", base.from_string, fields);
-                base.export_attribute (obj, "Design", "Work", fields);
-                base.export_attribute (obj, "Design", "ErpQuoteLineItem", fields);
+                base.export_attribute (obj, "export_attribute", "Design", fields);
+                base.export_attribute (obj, "export_attribute", "Design", fields);
+                base.export_attribute (obj, "export_attributes", "Design", fields);
+                base.export_attribute (obj, "export_attributes", "Design", fields);
+                base.export_attribute (obj, "export_attributes", "Design", fields);
+                base.export_attribute (obj, "export_attributes", "Design", fields);
+                base.export_attribute (obj, "export_attributes", "Design", fields);
+                base.export_attribute (obj, "export_attributes", "Design", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1802,6 +2079,12 @@ define
                     {{#price}}<div><b>price</b>: {{price}}</div>{{/price}}
                     {{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
                     {{#ErpQuoteLineItem}}<div><b>ErpQuoteLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpQuoteLineItem}}&quot;);})'>{{ErpQuoteLineItem}}</a></div>{{/ErpQuoteLineItem}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
+                    {{#ErpBOMs}}<div><b>ErpBOMs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpBOMs}}
+                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkCostDetails}}
+                    {{#ConditionFactors}}<div><b>ConditionFactors</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConditionFactors}}
+                    {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocations}}
+                    {{#DesignLocationsCUs}}<div><b>DesignLocationsCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocationsCUs}}
                     </div>
                     <fieldset>
 
@@ -1813,12 +2096,24 @@ define
             {
                 super.condition (obj);
                 obj.DesignKind = []; if (!obj.kind) obj.DesignKind.push ({ id: '', selected: true}); for (var property in DesignKind) obj.DesignKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
+                if (obj.ErpBOMs) obj.ErpBOMs_string = obj.ErpBOMs.join ();
+                if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
+                if (obj.ConditionFactors) obj.ConditionFactors_string = obj.ConditionFactors.join ();
+                if (obj.DesignLocations) obj.DesignLocations_string = obj.DesignLocations.join ();
+                if (obj.DesignLocationsCUs) obj.DesignLocationsCUs_string = obj.DesignLocationsCUs.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.DesignKind;
+                delete obj.WorkTasks_string;
+                delete obj.ErpBOMs_string;
+                delete obj.WorkCostDetails_string;
+                delete obj.ConditionFactors_string;
+                delete obj.DesignLocations_string;
+                delete obj.DesignLocationsCUs_string;
             }
 
             edit_template ()
@@ -1836,11 +2131,30 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='price'>price: </label><div class='col-sm-8'><input id='price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Work'>Work: </label><div class='col-sm-8'><input id='Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationsCUs'>DesignLocationsCUs: </label><div class='col-sm-8'><input id='DesignLocationsCUs' class='form-control' type='text'{{#DesignLocationsCUs}} value='{{DesignLocationsCUs}}_string'{{/DesignLocationsCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Work", "Work", "0..1", "0..*"],
+                        ["ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"],
+                        ["WorkTasks", "OldWorkTask", "0..*", "0..1"],
+                        ["ErpBOMs", "ErpBOM", "0..*", "0..1"],
+                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..1"],
+                        ["ConditionFactors", "ConditionFactor", "0..*", "0..*"],
+                        ["DesignLocations", "DesignLocation", "0..*", "1..*"],
+                        ["DesignLocationsCUs", "DesignLocationCU", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1878,7 +2192,7 @@ define
                 base.parse_element (/<cim:LaborItem.status>([\s\S]*?)<\/cim:LaborItem.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_attribute (/<cim:LaborItem.WorkCostDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetail", sub, context);
                 base.parse_attribute (/<cim:LaborItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
-
+                base.parse_attributes (/<cim:LaborItem.ErpPersons\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersons", sub, context);
                 var bucket = context.parsed.LaborItem;
                 if (null == bucket)
                    context.parsed.LaborItem = bucket = {};
@@ -1896,8 +2210,9 @@ define
                 base.export_element (obj, "LaborItem", "laborDuration", base.from_string, fields);
                 base.export_element (obj, "LaborItem", "laborRate", base.from_string, fields);
                 base.export_element (obj, "LaborItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "LaborItem", "WorkCostDetail", fields);
-                base.export_attribute (obj, "LaborItem", "WorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "LaborItem", fields);
+                base.export_attribute (obj, "export_attribute", "LaborItem", fields);
+                base.export_attribute (obj, "export_attributes", "LaborItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1922,6 +2237,7 @@ define
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
                     {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
+                    {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpPersons}}
                     </div>
                     <fieldset>
 
@@ -1932,11 +2248,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ErpPersons_string;
             }
 
             edit_template ()
@@ -1956,11 +2274,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons}}_string'{{/ErpPersons}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkCostDetail", "WorkCostDetail", "1", "0..*"],
+                        ["WorkTask", "OldWorkTask", "0..1", "0..*"],
+                        ["ErpPersons", "OldPerson", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1994,7 +2324,9 @@ define
                 base.parse_element (/<cim:ConditionFactor.cfValue>([\s\S]*?)<\/cim:ConditionFactor.cfValue>/g, obj, "cfValue", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ConditionFactor.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:ConditionFactor.status>([\s\S]*?)<\/cim:ConditionFactor.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ConditionFactor.DesignLocations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocations", sub, context);
+                base.parse_attributes (/<cim:ConditionFactor.Designs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Designs", sub, context);
+                base.parse_attributes (/<cim:ConditionFactor.DesignLocationCUs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocationCUs", sub, context);
                 var bucket = context.parsed.ConditionFactor;
                 if (null == bucket)
                    context.parsed.ConditionFactor = bucket = {};
@@ -2010,6 +2342,9 @@ define
                 base.export_element (obj, "ConditionFactor", "cfValue", base.from_string, fields);
                 base.export_element (obj, "ConditionFactor", "kind", base.from_string, fields);
                 base.export_element (obj, "ConditionFactor", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ConditionFactor", fields);
+                base.export_attribute (obj, "export_attributes", "ConditionFactor", fields);
+                base.export_attribute (obj, "export_attributes", "ConditionFactor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2030,6 +2365,9 @@ define
                     {{#cfValue}}<div><b>cfValue</b>: {{cfValue}}</div>{{/cfValue}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocations}}
+                    {{#Designs}}<div><b>Designs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Designs}}
+                    {{#DesignLocationCUs}}<div><b>DesignLocationCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocationCUs}}
                     </div>
                     <fieldset>
 
@@ -2041,12 +2379,18 @@ define
             {
                 super.condition (obj);
                 obj.ConditionFactorKind = []; if (!obj.kind) obj.ConditionFactorKind.push ({ id: '', selected: true}); for (var property in ConditionFactorKind) obj.ConditionFactorKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.DesignLocations) obj.DesignLocations_string = obj.DesignLocations.join ();
+                if (obj.Designs) obj.Designs_string = obj.Designs.join ();
+                if (obj.DesignLocationCUs) obj.DesignLocationCUs_string = obj.DesignLocationCUs.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.ConditionFactorKind;
+                delete obj.DesignLocations_string;
+                delete obj.Designs_string;
+                delete obj.DesignLocationCUs_string;
             }
 
             edit_template ()
@@ -2062,11 +2406,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='cfValue'>cfValue: </label><div class='col-sm-8'><input id='cfValue' class='form-control' type='text'{{#cfValue}} value='{{cfValue}}'{{/cfValue}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ConditionFactorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ConditionFactorKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Designs'>Designs: </label><div class='col-sm-8'><input id='Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DesignLocations", "DesignLocation", "0..*", "0..*"],
+                        ["Designs", "Design", "0..*", "0..*"],
+                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2101,7 +2459,6 @@ define
                 obj.cls = "Usage";
                 base.parse_element (/<cim:Usage.status>([\s\S]*?)<\/cim:Usage.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Usage.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
-
                 var bucket = context.parsed.Usage;
                 if (null == bucket)
                    context.parsed.Usage = bucket = {};
@@ -2115,7 +2472,7 @@ define
                 var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Usage", "status", base.from_string, fields);
-                base.export_attribute (obj, "Usage", "WorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "Usage", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2168,7 +2525,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkTask", "OldWorkTask", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2206,8 +2572,11 @@ define
                 base.parse_element (/<cim:CostType.level>([\s\S]*?)<\/cim:CostType.level>/g, obj, "level", base.to_string, sub, context);
                 base.parse_element (/<cim:CostType.stage>([\s\S]*?)<\/cim:CostType.stage>/g, obj, "stage", base.to_string, sub, context);
                 base.parse_element (/<cim:CostType.status>([\s\S]*?)<\/cim:CostType.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CostType.WorkCostDetails\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetails", sub, context);
+                base.parse_attributes (/<cim:CostType.ChildCostTypes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChildCostTypes", sub, context);
                 base.parse_attribute (/<cim:CostType.ParentCostType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentCostType", sub, context);
-
+                base.parse_attributes (/<cim:CostType.ErpJournalEntries\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpJournalEntries", sub, context);
+                base.parse_attributes (/<cim:CostType.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
                 var bucket = context.parsed.CostType;
                 if (null == bucket)
                    context.parsed.CostType = bucket = {};
@@ -2225,7 +2594,11 @@ define
                 base.export_element (obj, "CostType", "level", base.from_string, fields);
                 base.export_element (obj, "CostType", "stage", base.from_string, fields);
                 base.export_element (obj, "CostType", "status", base.from_string, fields);
-                base.export_attribute (obj, "CostType", "ParentCostType", fields);
+                base.export_attribute (obj, "export_attributes", "CostType", fields);
+                base.export_attribute (obj, "export_attributes", "CostType", fields);
+                base.export_attribute (obj, "export_attribute", "CostType", fields);
+                base.export_attribute (obj, "export_attributes", "CostType", fields);
+                base.export_attribute (obj, "export_attributes", "CostType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2248,7 +2621,11 @@ define
                     {{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
                     {{#stage}}<div><b>stage</b>: {{stage}}</div>{{/stage}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkCostDetails}}
+                    {{#ChildCostTypes}}<div><b>ChildCostTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChildCostTypes}}
                     {{#ParentCostType}}<div><b>ParentCostType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentCostType}}&quot;);})'>{{ParentCostType}}</a></div>{{/ParentCostType}}
+                    {{#ErpJournalEntries}}<div><b>ErpJournalEntries</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpJournalEntries}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
                     <fieldset>
 
@@ -2259,11 +2636,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
+                if (obj.ChildCostTypes) obj.ChildCostTypes_string = obj.ChildCostTypes.join ();
+                if (obj.ErpJournalEntries) obj.ErpJournalEntries_string = obj.ErpJournalEntries.join ();
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WorkCostDetails_string;
+                delete obj.ChildCostTypes_string;
+                delete obj.ErpJournalEntries_string;
+                delete obj.CompatibleUnits_string;
             }
 
             edit_template ()
@@ -2282,11 +2667,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='stage'>stage: </label><div class='col-sm-8'><input id='stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentCostType'>ParentCostType: </label><div class='col-sm-8'><input id='ParentCostType' class='form-control' type='text'{{#ParentCostType}} value='{{ParentCostType}}'{{/ParentCostType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkCostDetails", "WorkCostDetail", "0..*", "1"],
+                        ["ChildCostTypes", "CostType", "0..*", "0..1"],
+                        ["ParentCostType", "CostType", "0..1", "0..*"],
+                        ["ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"],
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2319,7 +2718,7 @@ define
                 obj.cls = "CULaborCode";
                 base.parse_element (/<cim:CULaborCode.code>([\s\S]*?)<\/cim:CULaborCode.code>/g, obj, "code", base.to_string, sub, context);
                 base.parse_element (/<cim:CULaborCode.status>([\s\S]*?)<\/cim:CULaborCode.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:CULaborCode.CULaborItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CULaborItems", sub, context);
                 var bucket = context.parsed.CULaborCode;
                 if (null == bucket)
                    context.parsed.CULaborCode = bucket = {};
@@ -2334,6 +2733,7 @@ define
 
                 base.export_element (obj, "CULaborCode", "code", base.from_string, fields);
                 base.export_element (obj, "CULaborCode", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "CULaborCode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2353,6 +2753,7 @@ define
                     `
                     {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#CULaborItems}}<div><b>CULaborItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CULaborItems}}
                     </div>
                     <fieldset>
 
@@ -2363,11 +2764,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CULaborItems) obj.CULaborItems_string = obj.CULaborItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CULaborItems_string;
             }
 
             edit_template ()
@@ -2386,7 +2789,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CULaborItems", "CULaborItem", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2421,7 +2833,12 @@ define
                 obj.cls = "DesignLocation";
                 base.parse_element (/<cim:DesignLocation.spanLength>([\s\S]*?)<\/cim:DesignLocation.spanLength>/g, obj, "spanLength", base.to_string, sub, context);
                 base.parse_element (/<cim:DesignLocation.status>([\s\S]*?)<\/cim:DesignLocation.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:DesignLocation.ConditionFactors\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConditionFactors", sub, context);
+                base.parse_attributes (/<cim:DesignLocation.DesignLocationCUs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocationCUs", sub, context);
+                base.parse_attributes (/<cim:DesignLocation.MiscCostItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MiscCostItems", sub, context);
+                base.parse_attributes (/<cim:DesignLocation.ErpBomItemDatas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpBomItemDatas", sub, context);
+                base.parse_attributes (/<cim:DesignLocation.WorkLocations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkLocations", sub, context);
+                base.parse_attributes (/<cim:DesignLocation.Designs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Designs", sub, context);
                 var bucket = context.parsed.DesignLocation;
                 if (null == bucket)
                    context.parsed.DesignLocation = bucket = {};
@@ -2436,6 +2853,12 @@ define
 
                 base.export_element (obj, "DesignLocation", "spanLength", base.from_string, fields);
                 base.export_element (obj, "DesignLocation", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocation", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocation", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocation", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocation", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocation", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2455,6 +2878,12 @@ define
                     `
                     {{#spanLength}}<div><b>spanLength</b>: {{spanLength}}</div>{{/spanLength}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ConditionFactors}}<div><b>ConditionFactors</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConditionFactors}}
+                    {{#DesignLocationCUs}}<div><b>DesignLocationCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocationCUs}}
+                    {{#MiscCostItems}}<div><b>MiscCostItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MiscCostItems}}
+                    {{#ErpBomItemDatas}}<div><b>ErpBomItemDatas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpBomItemDatas}}
+                    {{#WorkLocations}}<div><b>WorkLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkLocations}}
+                    {{#Designs}}<div><b>Designs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Designs}}
                     </div>
                     <fieldset>
 
@@ -2465,11 +2894,23 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ConditionFactors) obj.ConditionFactors_string = obj.ConditionFactors.join ();
+                if (obj.DesignLocationCUs) obj.DesignLocationCUs_string = obj.DesignLocationCUs.join ();
+                if (obj.MiscCostItems) obj.MiscCostItems_string = obj.MiscCostItems.join ();
+                if (obj.ErpBomItemDatas) obj.ErpBomItemDatas_string = obj.ErpBomItemDatas.join ();
+                if (obj.WorkLocations) obj.WorkLocations_string = obj.WorkLocations.join ();
+                if (obj.Designs) obj.Designs_string = obj.Designs.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ConditionFactors_string;
+                delete obj.DesignLocationCUs_string;
+                delete obj.MiscCostItems_string;
+                delete obj.ErpBomItemDatas_string;
+                delete obj.WorkLocations_string;
+                delete obj.Designs_string;
             }
 
             edit_template ()
@@ -2484,11 +2925,28 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='spanLength'>spanLength: </label><div class='col-sm-8'><input id='spanLength' class='form-control' type='text'{{#spanLength}} value='{{spanLength}}'{{/spanLength}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkLocations'>WorkLocations: </label><div class='col-sm-8'><input id='WorkLocations' class='form-control' type='text'{{#WorkLocations}} value='{{WorkLocations}}_string'{{/WorkLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Designs'>Designs: </label><div class='col-sm-8'><input id='Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ConditionFactors", "ConditionFactor", "0..*", "0..*"],
+                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..1"],
+                        ["MiscCostItems", "MiscCostItem", "0..*", "0..1"],
+                        ["ErpBomItemDatas", "ErpBomItemData", "0..*", "0..1"],
+                        ["WorkLocations", "WorkLocation", "1..*", "0..*"],
+                        ["Designs", "Design", "1..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2522,8 +2980,8 @@ define
                 base.parse_element (/<cim:CUWorkEquipmentItem.equipCode>([\s\S]*?)<\/cim:CUWorkEquipmentItem.equipCode>/g, obj, "equipCode", base.to_string, sub, context);
                 base.parse_element (/<cim:CUWorkEquipmentItem.rate>([\s\S]*?)<\/cim:CUWorkEquipmentItem.rate>/g, obj, "rate", base.to_string, sub, context);
                 base.parse_element (/<cim:CUWorkEquipmentItem.status>([\s\S]*?)<\/cim:CUWorkEquipmentItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CUWorkEquipmentItem.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
                 base.parse_attribute (/<cim:CUWorkEquipmentItem.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context);
-
                 var bucket = context.parsed.CUWorkEquipmentItem;
                 if (null == bucket)
                    context.parsed.CUWorkEquipmentItem = bucket = {};
@@ -2539,7 +2997,8 @@ define
                 base.export_element (obj, "CUWorkEquipmentItem", "equipCode", base.from_string, fields);
                 base.export_element (obj, "CUWorkEquipmentItem", "rate", base.from_string, fields);
                 base.export_element (obj, "CUWorkEquipmentItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "CUWorkEquipmentItem", "TypeAsset", fields);
+                base.export_attribute (obj, "export_attributes", "CUWorkEquipmentItem", fields);
+                base.export_attribute (obj, "export_attribute", "CUWorkEquipmentItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2560,6 +3019,7 @@ define
                     {{#equipCode}}<div><b>equipCode</b>: {{equipCode}}</div>{{/equipCode}}
                     {{#rate}}<div><b>rate</b>: {{rate}}</div>{{/rate}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
                     </div>
                     <fieldset>
@@ -2571,11 +3031,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CompatibleUnits_string;
             }
 
             edit_template ()
@@ -2591,12 +3053,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='equipCode'>equipCode: </label><div class='col-sm-8'><input id='equipCode' class='form-control' type='text'{{#equipCode}} value='{{equipCode}}'{{/equipCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='rate'>rate: </label><div class='col-sm-8'><input id='rate' class='form-control' type='text'{{#rate}} value='{{rate}}'{{/rate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"],
+                        ["TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2633,7 +3106,8 @@ define
                 base.parse_element (/<cim:CUMaterialItem.quantity>([\s\S]*?)<\/cim:CUMaterialItem.quantity>/g, obj, "quantity", base.to_string, sub, context);
                 base.parse_element (/<cim:CUMaterialItem.status>([\s\S]*?)<\/cim:CUMaterialItem.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_attribute (/<cim:CUMaterialItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
-
+                base.parse_attributes (/<cim:CUMaterialItem.PropertyUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PropertyUnits", sub, context);
+                base.parse_attributes (/<cim:CUMaterialItem.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
                 var bucket = context.parsed.CUMaterialItem;
                 if (null == bucket)
                    context.parsed.CUMaterialItem = bucket = {};
@@ -2649,7 +3123,9 @@ define
                 base.export_element (obj, "CUMaterialItem", "corporateCode", base.from_string, fields);
                 base.export_element (obj, "CUMaterialItem", "quantity", base.from_string, fields);
                 base.export_element (obj, "CUMaterialItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "CUMaterialItem", "TypeMaterial", fields);
+                base.export_attribute (obj, "export_attribute", "CUMaterialItem", fields);
+                base.export_attribute (obj, "export_attributes", "CUMaterialItem", fields);
+                base.export_attribute (obj, "export_attributes", "CUMaterialItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2671,6 +3147,8 @@ define
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#TypeMaterial}}<div><b>TypeMaterial</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeMaterial}}&quot;);})'>{{TypeMaterial}}</a></div>{{/TypeMaterial}}
+                    {{#PropertyUnits}}<div><b>PropertyUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PropertyUnits}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
                     <fieldset>
 
@@ -2681,11 +3159,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PropertyUnits) obj.PropertyUnits_string = obj.PropertyUnits.join ();
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PropertyUnits_string;
+                delete obj.CompatibleUnits_string;
             }
 
             edit_template ()
@@ -2702,11 +3184,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits}}_string'{{/PropertyUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TypeMaterial", "TypeMaterial", "0..1", "0..*"],
+                        ["PropertyUnits", "PropertyUnit", "0..*", "0..*"],
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2740,7 +3235,8 @@ define
                 base.parse_element (/<cim:OverheadCost.code>([\s\S]*?)<\/cim:OverheadCost.code>/g, obj, "code", base.to_string, sub, context);
                 base.parse_element (/<cim:OverheadCost.cost>([\s\S]*?)<\/cim:OverheadCost.cost>/g, obj, "cost", base.to_string, sub, context);
                 base.parse_element (/<cim:OverheadCost.status>([\s\S]*?)<\/cim:OverheadCost.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:OverheadCost.WorkCostDetails\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetails", sub, context);
+                base.parse_attributes (/<cim:OverheadCost.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
                 var bucket = context.parsed.OverheadCost;
                 if (null == bucket)
                    context.parsed.OverheadCost = bucket = {};
@@ -2756,6 +3252,8 @@ define
                 base.export_element (obj, "OverheadCost", "code", base.from_string, fields);
                 base.export_element (obj, "OverheadCost", "cost", base.from_string, fields);
                 base.export_element (obj, "OverheadCost", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "OverheadCost", fields);
+                base.export_attribute (obj, "export_attributes", "OverheadCost", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2776,6 +3274,8 @@ define
                     {{#code}}<div><b>code</b>: {{code}}</div>{{/code}}
                     {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkCostDetails}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
                     </div>
                     <fieldset>
 
@@ -2786,11 +3286,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WorkCostDetails_string;
+                delete obj.WorkTasks_string;
             }
 
             edit_template ()
@@ -2810,7 +3314,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..1"],
+                        ["WorkTasks", "OldWorkTask", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2843,8 +3357,8 @@ define
                 obj.cls = "WorkFlowStep";
                 base.parse_element (/<cim:WorkFlowStep.sequenceNumber>([\s\S]*?)<\/cim:WorkFlowStep.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:WorkFlowStep.status>([\s\S]*?)<\/cim:WorkFlowStep.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attributes (/<cim:WorkFlowStep.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
                 base.parse_attribute (/<cim:WorkFlowStep.Work\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Work", sub, context);
-
                 var bucket = context.parsed.WorkFlowStep;
                 if (null == bucket)
                    context.parsed.WorkFlowStep = bucket = {};
@@ -2859,7 +3373,8 @@ define
 
                 base.export_element (obj, "WorkFlowStep", "sequenceNumber", base.from_string, fields);
                 base.export_element (obj, "WorkFlowStep", "status", base.from_string, fields);
-                base.export_attribute (obj, "WorkFlowStep", "Work", fields);
+                base.export_attribute (obj, "export_attributes", "WorkFlowStep", fields);
+                base.export_attribute (obj, "export_attribute", "WorkFlowStep", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2879,6 +3394,7 @@ define
                     `
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
                     {{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
                     </div>
                     <fieldset>
@@ -2890,11 +3406,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WorkTasks_string;
             }
 
             edit_template ()
@@ -2914,7 +3432,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkTasks", "OldWorkTask", "0..*", "0..1"],
+                        ["Work", "Work", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2946,7 +3474,7 @@ define
                 obj = WorkIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "CUAllowableAction";
                 base.parse_element (/<cim:CUAllowableAction.status>([\s\S]*?)<\/cim:CUAllowableAction.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:CUAllowableAction.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
                 var bucket = context.parsed.CUAllowableAction;
                 if (null == bucket)
                    context.parsed.CUAllowableAction = bucket = {};
@@ -2960,6 +3488,7 @@ define
                 var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CUAllowableAction", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "CUAllowableAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2978,6 +3507,7 @@ define
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
                     <fieldset>
 
@@ -2988,11 +3518,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CompatibleUnits_string;
             }
 
             edit_template ()
@@ -3010,7 +3542,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3042,7 +3583,10 @@ define
                 obj = WorkIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "QualificationRequirement";
                 base.parse_element (/<cim:QualificationRequirement.qualificationID>([\s\S]*?)<\/cim:QualificationRequirement.qualificationID>/g, obj, "qualificationID", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:QualificationRequirement.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
+                base.parse_attributes (/<cim:QualificationRequirement.Specifications\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Specifications", sub, context);
+                base.parse_attributes (/<cim:QualificationRequirement.CULaborItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CULaborItems", sub, context);
+                base.parse_attributes (/<cim:QualificationRequirement.Skills\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Skills", sub, context);
                 var bucket = context.parsed.QualificationRequirement;
                 if (null == bucket)
                    context.parsed.QualificationRequirement = bucket = {};
@@ -3056,6 +3600,10 @@ define
                 var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "QualificationRequirement", "qualificationID", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "QualificationRequirement", fields);
+                base.export_attribute (obj, "export_attributes", "QualificationRequirement", fields);
+                base.export_attribute (obj, "export_attributes", "QualificationRequirement", fields);
+                base.export_attribute (obj, "export_attributes", "QualificationRequirement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3074,6 +3622,10 @@ define
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
                     {{#qualificationID}}<div><b>qualificationID</b>: {{qualificationID}}</div>{{/qualificationID}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
+                    {{#Specifications}}<div><b>Specifications</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Specifications}}
+                    {{#CULaborItems}}<div><b>CULaborItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CULaborItems}}
+                    {{#Skills}}<div><b>Skills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Skills}}
                     </div>
                     <fieldset>
 
@@ -3084,11 +3636,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
+                if (obj.Specifications) obj.Specifications_string = obj.Specifications.join ();
+                if (obj.CULaborItems) obj.CULaborItems_string = obj.CULaborItems.join ();
+                if (obj.Skills) obj.Skills_string = obj.Skills.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WorkTasks_string;
+                delete obj.Specifications_string;
+                delete obj.CULaborItems_string;
+                delete obj.Skills_string;
             }
 
             edit_template ()
@@ -3102,11 +3662,27 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Specifications'>Specifications: </label><div class='col-sm-8'><input id='Specifications' class='form-control' type='text'{{#Specifications}} value='{{Specifications}}_string'{{/Specifications}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems}}_string'{{/CULaborItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Skills'>Skills: </label><div class='col-sm-8'><input id='Skills' class='form-control' type='text'{{#Skills}} value='{{Skills}}_string'{{/Skills}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkTasks", "OldWorkTask", "0..*", "0..*"],
+                        ["Specifications", "Specification", "0..*", "0..*"],
+                        ["CULaborItems", "CULaborItem", "0..*", "0..*"],
+                        ["Skills", "Skill", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3141,9 +3717,9 @@ define
                 base.parse_element (/<cim:ContractorItem.bidAmount>([\s\S]*?)<\/cim:ContractorItem.bidAmount>/g, obj, "bidAmount", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractorItem.cost>([\s\S]*?)<\/cim:ContractorItem.cost>/g, obj, "cost", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractorItem.status>([\s\S]*?)<\/cim:ContractorItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attributes (/<cim:ContractorItem.ErpPayables\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPayables", sub, context);
                 base.parse_attribute (/<cim:ContractorItem.WorkCostDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetail", sub, context);
                 base.parse_attribute (/<cim:ContractorItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
-
                 var bucket = context.parsed.ContractorItem;
                 if (null == bucket)
                    context.parsed.ContractorItem = bucket = {};
@@ -3160,8 +3736,9 @@ define
                 base.export_element (obj, "ContractorItem", "bidAmount", base.from_string, fields);
                 base.export_element (obj, "ContractorItem", "cost", base.from_string, fields);
                 base.export_element (obj, "ContractorItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "ContractorItem", "WorkCostDetail", fields);
-                base.export_attribute (obj, "ContractorItem", "WorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "ContractorItem", fields);
+                base.export_attribute (obj, "export_attribute", "ContractorItem", fields);
+                base.export_attribute (obj, "export_attribute", "ContractorItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3183,6 +3760,7 @@ define
                     {{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
                     {{#cost}}<div><b>cost</b>: {{cost}}</div>{{/cost}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ErpPayables}}<div><b>ErpPayables</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpPayables}}
                     {{#WorkCostDetail}}<div><b>WorkCostDetail</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkCostDetail}}&quot;);})'>{{WorkCostDetail}}</a></div>{{/WorkCostDetail}}
                     {{#WorkTask}}<div><b>WorkTask</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkTask}}&quot;);})'>{{WorkTask}}</a></div>{{/WorkTask}}
                     </div>
@@ -3195,11 +3773,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ErpPayables) obj.ErpPayables_string = obj.ErpPayables.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ErpPayables_string;
             }
 
             edit_template ()
@@ -3216,13 +3796,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayables'>ErpPayables: </label><div class='col-sm-8'><input id='ErpPayables' class='form-control' type='text'{{#ErpPayables}} value='{{ErpPayables}}_string'{{/ErpPayables}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ErpPayables", "ErpPayable", "0..*", "0..*"],
+                        ["WorkCostDetail", "WorkCostDetail", "1", "0..*"],
+                        ["WorkTask", "OldWorkTask", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3254,7 +3846,10 @@ define
                 obj = WorkIdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "CUGroup";
                 base.parse_element (/<cim:CUGroup.status>([\s\S]*?)<\/cim:CUGroup.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:CUGroup.ChildCUGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChildCUGroups", sub, context);
+                base.parse_attributes (/<cim:CUGroup.ParentCUGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentCUGroups", sub, context);
+                base.parse_attributes (/<cim:CUGroup.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
+                base.parse_attributes (/<cim:CUGroup.DesignLocationCUs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocationCUs", sub, context);
                 var bucket = context.parsed.CUGroup;
                 if (null == bucket)
                    context.parsed.CUGroup = bucket = {};
@@ -3268,6 +3863,10 @@ define
                 var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CUGroup", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "CUGroup", fields);
+                base.export_attribute (obj, "export_attributes", "CUGroup", fields);
+                base.export_attribute (obj, "export_attributes", "CUGroup", fields);
+                base.export_attribute (obj, "export_attributes", "CUGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3286,6 +3885,10 @@ define
                     + WorkIdentifiedObject.prototype.template.call (this) +
                     `
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ChildCUGroups}}<div><b>ChildCUGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChildCUGroups}}
+                    {{#ParentCUGroups}}<div><b>ParentCUGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ParentCUGroups}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
+                    {{#DesignLocationCUs}}<div><b>DesignLocationCUs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocationCUs}}
                     </div>
                     <fieldset>
 
@@ -3296,11 +3899,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ChildCUGroups) obj.ChildCUGroups_string = obj.ChildCUGroups.join ();
+                if (obj.ParentCUGroups) obj.ParentCUGroups_string = obj.ParentCUGroups.join ();
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
+                if (obj.DesignLocationCUs) obj.DesignLocationCUs_string = obj.DesignLocationCUs.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ChildCUGroups_string;
+                delete obj.ParentCUGroups_string;
+                delete obj.CompatibleUnits_string;
+                delete obj.DesignLocationCUs_string;
             }
 
             edit_template ()
@@ -3314,11 +3925,26 @@ define
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChildCUGroups'>ChildCUGroups: </label><div class='col-sm-8'><input id='ChildCUGroups' class='form-control' type='text'{{#ChildCUGroups}} value='{{ChildCUGroups}}_string'{{/ChildCUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentCUGroups'>ParentCUGroups: </label><div class='col-sm-8'><input id='ParentCUGroups' class='form-control' type='text'{{#ParentCUGroups}} value='{{ParentCUGroups}}_string'{{/ParentCUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ChildCUGroups", "CUGroup", "0..*", "0..*"],
+                        ["ParentCUGroups", "CUGroup", "0..*", "0..*"],
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..1"],
+                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3353,7 +3979,7 @@ define
                 base.parse_element (/<cim:ShiftPattern.cycleCount>([\s\S]*?)<\/cim:ShiftPattern.cycleCount>/g, obj, "cycleCount", base.to_string, sub, context);
                 base.parse_element (/<cim:ShiftPattern.status>([\s\S]*?)<\/cim:ShiftPattern.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:ShiftPattern.validityInterval>([\s\S]*?)<\/cim:ShiftPattern.validityInterval>/g, obj, "validityInterval", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ShiftPattern.Crews\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crews", sub, context);
                 var bucket = context.parsed.ShiftPattern;
                 if (null == bucket)
                    context.parsed.ShiftPattern = bucket = {};
@@ -3370,6 +3996,7 @@ define
                 base.export_element (obj, "ShiftPattern", "cycleCount", base.from_string, fields);
                 base.export_element (obj, "ShiftPattern", "status", base.from_string, fields);
                 base.export_element (obj, "ShiftPattern", "validityInterval", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ShiftPattern", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3391,6 +4018,7 @@ define
                     {{#cycleCount}}<div><b>cycleCount</b>: {{cycleCount}}</div>{{/cycleCount}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+                    {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Crews}}
                     </div>
                     <fieldset>
 
@@ -3401,11 +4029,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Crews) obj.Crews_string = obj.Crews.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Crews_string;
             }
 
             edit_template ()
@@ -3422,11 +4052,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='cycleCount'>cycleCount: </label><div class='col-sm-8'><input id='cycleCount' class='form-control' type='text'{{#cycleCount}} value='{{cycleCount}}'{{/cycleCount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crews'>Crews: </label><div class='col-sm-8'><input id='Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Crews", "OldCrew", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3461,8 +4101,9 @@ define
                 base.parse_element (/<cim:CULaborItem.laborDuration>([\s\S]*?)<\/cim:CULaborItem.laborDuration>/g, obj, "laborDuration", base.to_string, sub, context);
                 base.parse_element (/<cim:CULaborItem.laborRate>([\s\S]*?)<\/cim:CULaborItem.laborRate>/g, obj, "laborRate", base.to_string, sub, context);
                 base.parse_element (/<cim:CULaborItem.status>([\s\S]*?)<\/cim:CULaborItem.status>/g, obj, "status", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CULaborItem.QualificationRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "QualificationRequirements", sub, context);
+                base.parse_attributes (/<cim:CULaborItem.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
                 base.parse_attribute (/<cim:CULaborItem.CULaborCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CULaborCode", sub, context);
-
                 var bucket = context.parsed.CULaborItem;
                 if (null == bucket)
                    context.parsed.CULaborItem = bucket = {};
@@ -3479,7 +4120,9 @@ define
                 base.export_element (obj, "CULaborItem", "laborDuration", base.from_string, fields);
                 base.export_element (obj, "CULaborItem", "laborRate", base.from_string, fields);
                 base.export_element (obj, "CULaborItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "CULaborItem", "CULaborCode", fields);
+                base.export_attribute (obj, "export_attributes", "CULaborItem", fields);
+                base.export_attribute (obj, "export_attributes", "CULaborItem", fields);
+                base.export_attribute (obj, "export_attribute", "CULaborItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3501,6 +4144,8 @@ define
                     {{#laborDuration}}<div><b>laborDuration</b>: {{laborDuration}}</div>{{/laborDuration}}
                     {{#laborRate}}<div><b>laborRate</b>: {{laborRate}}</div>{{/laborRate}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#QualificationRequirements}}<div><b>QualificationRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/QualificationRequirements}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#CULaborCode}}<div><b>CULaborCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CULaborCode}}&quot;);})'>{{CULaborCode}}</a></div>{{/CULaborCode}}
                     </div>
                     <fieldset>
@@ -3512,11 +4157,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.QualificationRequirements) obj.QualificationRequirements_string = obj.QualificationRequirements.join ();
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.QualificationRequirements_string;
+                delete obj.CompatibleUnits_string;
             }
 
             edit_template ()
@@ -3533,12 +4182,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborRate'>laborRate: </label><div class='col-sm-8'><input id='laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CULaborCode'>CULaborCode: </label><div class='col-sm-8'><input id='CULaborCode' class='form-control' type='text'{{#CULaborCode}} value='{{CULaborCode}}'{{/CULaborCode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["QualificationRequirements", "QualificationRequirement", "0..*", "0..*"],
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"],
+                        ["CULaborCode", "CULaborCode", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3573,7 +4235,9 @@ define
                 base.parse_attribute (/<cim:PropertyUnit.activityCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "activityCode", sub, context);
                 base.parse_element (/<cim:PropertyUnit.propertyAccount>([\s\S]*?)<\/cim:PropertyUnit.propertyAccount>/g, obj, "propertyAccount", base.to_string, sub, context);
                 base.parse_element (/<cim:PropertyUnit.status>([\s\S]*?)<\/cim:PropertyUnit.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:PropertyUnit.CUMaterialItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUMaterialItems", sub, context);
+                base.parse_attributes (/<cim:PropertyUnit.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
+                base.parse_attributes (/<cim:PropertyUnit.WorkCostDetails\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetails", sub, context);
                 var bucket = context.parsed.PropertyUnit;
                 if (null == bucket)
                    context.parsed.PropertyUnit = bucket = {};
@@ -3590,6 +4254,9 @@ define
                 base.export_element (obj, "PropertyUnit", "activityCode", base.from_string, fields);
                 base.export_element (obj, "PropertyUnit", "propertyAccount", base.from_string, fields);
                 base.export_element (obj, "PropertyUnit", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "PropertyUnit", fields);
+                base.export_attribute (obj, "export_attributes", "PropertyUnit", fields);
+                base.export_attribute (obj, "export_attributes", "PropertyUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3611,6 +4278,9 @@ define
                     {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
                     {{#propertyAccount}}<div><b>propertyAccount</b>: {{propertyAccount}}</div>{{/propertyAccount}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#CUMaterialItems}}<div><b>CUMaterialItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CUMaterialItems}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
+                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkCostDetails}}
                     </div>
                     <fieldset>
 
@@ -3622,12 +4292,18 @@ define
             {
                 super.condition (obj);
                 obj.WorkActionKind = []; if (!obj.activityCode) obj.WorkActionKind.push ({ id: '', selected: true}); for (var property in WorkActionKind) obj.WorkActionKind.push ({ id: property, selected: obj.activityCode && obj.activityCode.endsWith ('.' + property)});
+                if (obj.CUMaterialItems) obj.CUMaterialItems_string = obj.CUMaterialItems.join ();
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
+                if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.WorkActionKind;
+                delete obj.CUMaterialItems_string;
+                delete obj.CompatibleUnits_string;
+                delete obj.WorkCostDetails_string;
             }
 
             edit_template ()
@@ -3644,11 +4320,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><select id='activityCode' class='form-control'>{{#WorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkActionKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='propertyAccount'>propertyAccount: </label><div class='col-sm-8'><input id='propertyAccount' class='form-control' type='text'{{#propertyAccount}} value='{{propertyAccount}}'{{/propertyAccount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems}}_string'{{/CUMaterialItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails}}_string'{{/WorkCostDetails}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CUMaterialItems", "CUMaterialItem", "0..*", "0..*"],
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..1"],
+                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3683,8 +4372,9 @@ define
                 base.parse_element (/<cim:Capability.status>([\s\S]*?)<\/cim:Capability.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:Capability.type>([\s\S]*?)<\/cim:Capability.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:Capability.validityInterval>([\s\S]*?)<\/cim:Capability.validityInterval>/g, obj, "validityInterval", base.to_string, sub, context);
+                base.parse_attributes (/<cim:Capability.Crafts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crafts", sub, context);
+                base.parse_attributes (/<cim:Capability.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
                 base.parse_attribute (/<cim:Capability.Crew\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crew", sub, context);
-
                 var bucket = context.parsed.Capability;
                 if (null == bucket)
                    context.parsed.Capability = bucket = {};
@@ -3701,7 +4391,9 @@ define
                 base.export_element (obj, "Capability", "status", base.from_string, fields);
                 base.export_element (obj, "Capability", "type", base.from_string, fields);
                 base.export_element (obj, "Capability", "validityInterval", base.from_string, fields);
-                base.export_attribute (obj, "Capability", "Crew", fields);
+                base.export_attribute (obj, "export_attributes", "Capability", fields);
+                base.export_attribute (obj, "export_attributes", "Capability", fields);
+                base.export_attribute (obj, "export_attribute", "Capability", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3723,6 +4415,8 @@ define
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+                    {{#Crafts}}<div><b>Crafts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Crafts}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
                     {{#Crew}}<div><b>Crew</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Crew}}&quot;);})'>{{Crew}}</a></div>{{/Crew}}
                     </div>
                     <fieldset>
@@ -3734,11 +4428,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Crafts) obj.Crafts_string = obj.Crafts.join ();
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Crafts_string;
+                delete obj.WorkTasks_string;
             }
 
             edit_template ()
@@ -3755,12 +4453,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crafts'>Crafts: </label><div class='col-sm-8'><input id='Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts}}_string'{{/Crafts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crew'>Crew: </label><div class='col-sm-8'><input id='Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Crafts", "Craft", "0..*", "0..*"],
+                        ["WorkTasks", "OldWorkTask", "0..*", "0..*"],
+                        ["Crew", "OldCrew", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3799,7 +4510,11 @@ define
                 base.parse_element (/<cim:DesignLocationCU.status>([\s\S]*?)<\/cim:DesignLocationCU.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:DesignLocationCU.toBeEnergised>([\s\S]*?)<\/cim:DesignLocationCU.toBeEnergised>/g, obj, "toBeEnergised", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:DesignLocationCU.DesignLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocation", sub, context);
-
+                base.parse_attributes (/<cim:DesignLocationCU.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
+                base.parse_attributes (/<cim:DesignLocationCU.CUGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CUGroups", sub, context);
+                base.parse_attributes (/<cim:DesignLocationCU.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
+                base.parse_attributes (/<cim:DesignLocationCU.Designs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Designs", sub, context);
+                base.parse_attributes (/<cim:DesignLocationCU.ConditionFactors\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConditionFactors", sub, context);
                 var bucket = context.parsed.DesignLocationCU;
                 if (null == bucket)
                    context.parsed.DesignLocationCU = bucket = {};
@@ -3819,7 +4534,12 @@ define
                 base.export_element (obj, "DesignLocationCU", "removalDate", base.from_string, fields);
                 base.export_element (obj, "DesignLocationCU", "status", base.from_string, fields);
                 base.export_element (obj, "DesignLocationCU", "toBeEnergised", base.from_boolean, fields);
-                base.export_attribute (obj, "DesignLocationCU", "DesignLocation", fields);
+                base.export_attribute (obj, "export_attribute", "DesignLocationCU", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocationCU", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocationCU", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocationCU", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocationCU", fields);
+                base.export_attribute (obj, "export_attributes", "DesignLocationCU", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3845,6 +4565,11 @@ define
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#toBeEnergised}}<div><b>toBeEnergised</b>: {{toBeEnergised}}</div>{{/toBeEnergised}}
                     {{#DesignLocation}}<div><b>DesignLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DesignLocation}}&quot;);})'>{{DesignLocation}}</a></div>{{/DesignLocation}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
+                    {{#CUGroups}}<div><b>CUGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CUGroups}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
+                    {{#Designs}}<div><b>Designs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Designs}}
+                    {{#ConditionFactors}}<div><b>ConditionFactors</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConditionFactors}}
                     </div>
                     <fieldset>
 
@@ -3856,12 +4581,22 @@ define
             {
                 super.condition (obj);
                 obj.WorkActionKind = []; if (!obj.cuAction) obj.WorkActionKind.push ({ id: '', selected: true}); for (var property in WorkActionKind) obj.WorkActionKind.push ({ id: property, selected: obj.cuAction && obj.cuAction.endsWith ('.' + property)});
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
+                if (obj.CUGroups) obj.CUGroups_string = obj.CUGroups.join ();
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
+                if (obj.Designs) obj.Designs_string = obj.Designs.join ();
+                if (obj.ConditionFactors) obj.ConditionFactors_string = obj.ConditionFactors.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.WorkActionKind;
+                delete obj.CompatibleUnits_string;
+                delete obj.CUGroups_string;
+                delete obj.WorkTasks_string;
+                delete obj.Designs_string;
+                delete obj.ConditionFactors_string;
             }
 
             edit_template ()
@@ -3882,11 +4617,30 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='toBeEnergised'>toBeEnergised: </label><div class='col-sm-8'><input id='toBeEnergised' class='form-check-input' type='checkbox'{{#toBeEnergised}} checked{{/toBeEnergised}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUGroups'>CUGroups: </label><div class='col-sm-8'><input id='CUGroups' class='form-control' type='text'{{#CUGroups}} value='{{CUGroups}}_string'{{/CUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Designs'>Designs: </label><div class='col-sm-8'><input id='Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DesignLocation", "DesignLocation", "0..1", "0..*"],
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"],
+                        ["CUGroups", "CUGroup", "0..*", "0..*"],
+                        ["WorkTasks", "OldWorkTask", "0..*", "0..*"],
+                        ["Designs", "Design", "0..*", "0..*"],
+                        ["ConditionFactors", "ConditionFactor", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3928,7 +4682,6 @@ define
                 base.parse_attribute (/<cim:MiscCostItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
                 base.parse_attribute (/<cim:MiscCostItem.DesignLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocation", sub, context);
                 base.parse_attribute (/<cim:MiscCostItem.WorkCostDetail\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetail", sub, context);
-
                 var bucket = context.parsed.MiscCostItem;
                 if (null == bucket)
                    context.parsed.MiscCostItem = bucket = {};
@@ -3947,9 +4700,9 @@ define
                 base.export_element (obj, "MiscCostItem", "externalRefID", base.from_string, fields);
                 base.export_element (obj, "MiscCostItem", "quantity", base.from_string, fields);
                 base.export_element (obj, "MiscCostItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "MiscCostItem", "WorkTask", fields);
-                base.export_attribute (obj, "MiscCostItem", "DesignLocation", fields);
-                base.export_attribute (obj, "MiscCostItem", "WorkCostDetail", fields);
+                base.export_attribute (obj, "export_attribute", "MiscCostItem", fields);
+                base.export_attribute (obj, "export_attribute", "MiscCostItem", fields);
+                base.export_attribute (obj, "export_attribute", "MiscCostItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4016,7 +4769,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkTask", "OldWorkTask", "0..1", "0..*"],
+                        ["DesignLocation", "DesignLocation", "0..1", "0..*"],
+                        ["WorkCostDetail", "WorkCostDetail", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4050,7 +4814,7 @@ define
                 base.parse_element (/<cim:CUContractorItem.activityCode>([\s\S]*?)<\/cim:CUContractorItem.activityCode>/g, obj, "activityCode", base.to_string, sub, context);
                 base.parse_element (/<cim:CUContractorItem.bidAmount>([\s\S]*?)<\/cim:CUContractorItem.bidAmount>/g, obj, "bidAmount", base.to_string, sub, context);
                 base.parse_element (/<cim:CUContractorItem.status>([\s\S]*?)<\/cim:CUContractorItem.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:CUContractorItem.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
                 var bucket = context.parsed.CUContractorItem;
                 if (null == bucket)
                    context.parsed.CUContractorItem = bucket = {};
@@ -4066,6 +4830,7 @@ define
                 base.export_element (obj, "CUContractorItem", "activityCode", base.from_string, fields);
                 base.export_element (obj, "CUContractorItem", "bidAmount", base.from_string, fields);
                 base.export_element (obj, "CUContractorItem", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "CUContractorItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4086,6 +4851,7 @@ define
                     {{#activityCode}}<div><b>activityCode</b>: {{activityCode}}</div>{{/activityCode}}
                     {{#bidAmount}}<div><b>bidAmount</b>: {{bidAmount}}</div>{{/bidAmount}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
                     </div>
                     <fieldset>
 
@@ -4096,11 +4862,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CompatibleUnits_string;
             }
 
             edit_template ()
@@ -4116,11 +4884,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4154,8 +4932,8 @@ define
                 base.parse_element (/<cim:CUAsset.quantity>([\s\S]*?)<\/cim:CUAsset.quantity>/g, obj, "quantity", base.to_string, sub, context);
                 base.parse_element (/<cim:CUAsset.status>([\s\S]*?)<\/cim:CUAsset.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:CUAsset.typeAssetCode>([\s\S]*?)<\/cim:CUAsset.typeAssetCode>/g, obj, "typeAssetCode", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CUAsset.CompatibleUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CompatibleUnits", sub, context);
                 base.parse_attribute (/<cim:CUAsset.TypeAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAsset", sub, context);
-
                 var bucket = context.parsed.CUAsset;
                 if (null == bucket)
                    context.parsed.CUAsset = bucket = {};
@@ -4171,7 +4949,8 @@ define
                 base.export_element (obj, "CUAsset", "quantity", base.from_string, fields);
                 base.export_element (obj, "CUAsset", "status", base.from_string, fields);
                 base.export_element (obj, "CUAsset", "typeAssetCode", base.from_string, fields);
-                base.export_attribute (obj, "CUAsset", "TypeAsset", fields);
+                base.export_attribute (obj, "export_attributes", "CUAsset", fields);
+                base.export_attribute (obj, "export_attribute", "CUAsset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4192,6 +4971,7 @@ define
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#typeAssetCode}}<div><b>typeAssetCode</b>: {{typeAssetCode}}</div>{{/typeAssetCode}}
+                    {{#CompatibleUnits}}<div><b>CompatibleUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CompatibleUnits}}
                     {{#TypeAsset}}<div><b>TypeAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TypeAsset}}&quot;);})'>{{TypeAsset}}</a></div>{{/TypeAsset}}
                     </div>
                     <fieldset>
@@ -4203,11 +4983,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CompatibleUnits) obj.CompatibleUnits_string = obj.CompatibleUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CompatibleUnits_string;
             }
 
             edit_template ()
@@ -4223,12 +5005,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='typeAssetCode'>typeAssetCode: </label><div class='col-sm-8'><input id='typeAssetCode' class='form-control' type='text'{{#typeAssetCode}} value='{{typeAssetCode}}'{{/typeAssetCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"],
+                        ["TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

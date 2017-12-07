@@ -40,7 +40,6 @@ define
                 obj.cls = "DiscontinuousExcitationControlDynamics";
                 base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
                 base.parse_attribute (/<cim:DiscontinuousExcitationControlDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-
                 var bucket = context.parsed.DiscontinuousExcitationControlDynamics;
                 if (null == bucket)
                    context.parsed.DiscontinuousExcitationControlDynamics = bucket = {};
@@ -53,8 +52,8 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "DiscontinuousExcitationControlDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "DiscontinuousExcitationControlDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -107,7 +106,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"],
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -145,7 +154,6 @@ define
                 base.parse_element (/<cim:DiscExcContIEEEDEC2A.vdmax>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vdmax>/g, obj, "vdmax", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC2A.vdmin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vdmin>/g, obj, "vdmin", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC2A.vk>([\s\S]*?)<\/cim:DiscExcContIEEEDEC2A.vk>/g, obj, "vk", base.to_string, sub, context);
-
                 var bucket = context.parsed.DiscExcContIEEEDEC2A;
                 if (null == bucket)
                    context.parsed.DiscExcContIEEEDEC2A = bucket = {};
@@ -221,7 +229,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -272,7 +280,6 @@ define
                 base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtlmt>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtlmt>/g, obj, "vtlmt", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtm>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtm>/g, obj, "vtm", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC1A.vtn>([\s\S]*?)<\/cim:DiscExcContIEEEDEC1A.vtn>/g, obj, "vtn", base.to_string, sub, context);
-
                 var bucket = context.parsed.DiscExcContIEEEDEC1A;
                 if (null == bucket)
                    context.parsed.DiscExcContIEEEDEC1A = bucket = {};
@@ -387,7 +394,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -422,7 +429,6 @@ define
                 obj.cls = "DiscExcContIEEEDEC3A";
                 base.parse_element (/<cim:DiscExcContIEEEDEC3A.tdr>([\s\S]*?)<\/cim:DiscExcContIEEEDEC3A.tdr>/g, obj, "tdr", base.to_string, sub, context);
                 base.parse_element (/<cim:DiscExcContIEEEDEC3A.vtmin>([\s\S]*?)<\/cim:DiscExcContIEEEDEC3A.vtmin>/g, obj, "vtmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.DiscExcContIEEEDEC3A;
                 if (null == bucket)
                    context.parsed.DiscExcContIEEEDEC3A = bucket = {};
@@ -489,7 +495,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

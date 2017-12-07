@@ -378,7 +378,7 @@ define
 
             if (null != CURRENT_SELECTION)
             {
-                if (1 < CURRENT_SELECTION.length)
+                if (CURRENT_SELECTION.some (function (element) { return (element != CURRENT_FEATURE); }))
                 {
                     text = text + "<div>Also selected:</div>\n";
                     for (var i = 0; i < CURRENT_SELECTION.length; i++)
@@ -968,8 +968,8 @@ define
                     for (var i = 0; i < features.length; i++)
                     {
                         var mrid = features[i].properties.mRID;
-                        if (null != mrid)
-                            selection[selection.length] = mrid;
+                        if (null != mrid && !selection.includes (mrid))
+                            selection.push (mrid);
                     }
                     if (selection.length > 0)
                     {

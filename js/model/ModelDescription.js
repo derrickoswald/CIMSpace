@@ -36,7 +36,6 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "URI";
-
                 var bucket = context.parsed.URI;
                 if (null == bucket)
                    context.parsed.URI = bucket = {};
@@ -97,7 +96,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class ModelDescriptionCIMVersion extends base.Element
@@ -126,7 +125,6 @@ define
                 obj.cls = "ModelDescriptionCIMVersion";
                 base.parse_element (/<cim:ModelDescriptionCIMVersion.date>([\s\S]*?)<\/cim:ModelDescriptionCIMVersion.date>/g, obj, "date", base.to_string, sub, context);
                 base.parse_element (/<cim:ModelDescriptionCIMVersion.version>([\s\S]*?)<\/cim:ModelDescriptionCIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-
                 var bucket = context.parsed.ModelDescriptionCIMVersion;
                 if (null == bucket)
                    context.parsed.ModelDescriptionCIMVersion = bucket = {};
@@ -193,7 +191,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class FullModelDocumentElement extends base.Element
@@ -220,7 +218,6 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "FullModelDocumentElement";
-
                 var bucket = context.parsed.FullModelDocumentElement;
                 if (null == bucket)
                    context.parsed.FullModelDocumentElement = bucket = {};
@@ -281,7 +278,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -315,7 +312,6 @@ define
                 base.parse_element (/<cim:Description.description>([\s\S]*?)<\/cim:Description.description>/g, obj, "description", base.to_string, sub, context);
                 base.parse_element (/<cim:Description.name>([\s\S]*?)<\/cim:Description.name>/g, obj, "name", base.to_string, sub, context);
                 base.parse_element (/<cim:Description.version>([\s\S]*?)<\/cim:Description.version>/g, obj, "version", base.to_string, sub, context);
-
                 var bucket = context.parsed.Description;
                 if (null == bucket)
                    context.parsed.Description = bucket = {};
@@ -385,7 +381,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class Model extends base.Element
@@ -418,7 +414,10 @@ define
                 base.parse_element (/<cim:Model.modelingAuthoritySet>([\s\S]*?)<\/cim:Model.modelingAuthoritySet>/g, obj, "modelingAuthoritySet", base.to_string, sub, context);
                 base.parse_element (/<cim:Model.profile>([\s\S]*?)<\/cim:Model.profile>/g, obj, "profile", base.to_string, sub, context);
                 base.parse_element (/<cim:Model.version>([\s\S]*?)<\/cim:Model.version>/g, obj, "version", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Model.Supersedes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Supersedes", sub, context);
+                base.parse_attributes (/<cim:Model.SupersededBy\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SupersededBy", sub, context);
+                base.parse_attributes (/<cim:Model.DependentOn\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DependentOn", sub, context);
+                base.parse_attributes (/<cim:Model.Depending\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Depending", sub, context);
                 var bucket = context.parsed.Model;
                 if (null == bucket)
                    context.parsed.Model = bucket = {};
@@ -437,6 +436,10 @@ define
                 base.export_element (obj, "Model", "modelingAuthoritySet", base.from_string, fields);
                 base.export_element (obj, "Model", "profile", base.from_string, fields);
                 base.export_element (obj, "Model", "version", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Model", fields);
+                base.export_attribute (obj, "export_attributes", "Model", fields);
+                base.export_attribute (obj, "export_attributes", "Model", fields);
+                base.export_attribute (obj, "export_attributes", "Model", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -460,6 +463,10 @@ define
                     {{#modelingAuthoritySet}}<div><b>modelingAuthoritySet</b>: {{modelingAuthoritySet}}</div>{{/modelingAuthoritySet}}
                     {{#profile}}<div><b>profile</b>: {{profile}}</div>{{/profile}}
                     {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
+                    {{#Supersedes}}<div><b>Supersedes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Supersedes}}
+                    {{#SupersededBy}}<div><b>SupersededBy</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SupersededBy}}
+                    {{#DependentOn}}<div><b>DependentOn</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DependentOn}}
+                    {{#Depending}}<div><b>Depending</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Depending}}
                     </div>
                     <fieldset>
 
@@ -470,11 +477,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Supersedes) obj.Supersedes_string = obj.Supersedes.join ();
+                if (obj.SupersededBy) obj.SupersededBy_string = obj.SupersededBy.join ();
+                if (obj.DependentOn) obj.DependentOn_string = obj.DependentOn.join ();
+                if (obj.Depending) obj.Depending_string = obj.Depending.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Supersedes_string;
+                delete obj.SupersededBy_string;
+                delete obj.DependentOn_string;
+                delete obj.Depending_string;
             }
 
             edit_template ()
@@ -493,11 +508,27 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='modelingAuthoritySet'>modelingAuthoritySet: </label><div class='col-sm-8'><input id='modelingAuthoritySet' class='form-control' type='text'{{#modelingAuthoritySet}} value='{{modelingAuthoritySet}}'{{/modelingAuthoritySet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='profile'>profile: </label><div class='col-sm-8'><input id='profile' class='form-control' type='text'{{#profile}} value='{{profile}}'{{/profile}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Supersedes'>Supersedes: </label><div class='col-sm-8'><input id='Supersedes' class='form-control' type='text'{{#Supersedes}} value='{{Supersedes}}_string'{{/Supersedes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SupersededBy'>SupersededBy: </label><div class='col-sm-8'><input id='SupersededBy' class='form-control' type='text'{{#SupersededBy}} value='{{SupersededBy}}_string'{{/SupersededBy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DependentOn'>DependentOn: </label><div class='col-sm-8'><input id='DependentOn' class='form-control' type='text'{{#DependentOn}} value='{{DependentOn}}_string'{{/DependentOn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Depending'>Depending: </label><div class='col-sm-8'><input id='Depending' class='form-control' type='text'{{#Depending}} value='{{Depending}}_string'{{/Depending}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Supersedes", "Model", "0..*", "0..*"],
+                        ["SupersededBy", "Model", "0..*", "0..*"],
+                        ["DependentOn", "Model", "0..*", "0..*"],
+                        ["Depending", "Model", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         class FullModel extends FullModelDocumentElement
@@ -524,7 +555,6 @@ define
 
                 obj = FullModelDocumentElement.prototype.parse.call (this, context, sub);
                 obj.cls = "FullModel";
-
                 var bucket = context.parsed.FullModel;
                 if (null == bucket)
                    context.parsed.FullModel = bucket = {};
@@ -585,7 +615,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class Statements extends FullModelDocumentElement
@@ -612,7 +642,8 @@ define
 
                 obj = FullModelDocumentElement.prototype.parse.call (this, context, sub);
                 obj.cls = "Statements";
-
+                base.parse_attributes (/<cim:Statements.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
+                base.parse_attributes (/<cim:Statements.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.Statements;
                 if (null == bucket)
                    context.parsed.Statements = bucket = {};
@@ -625,6 +656,8 @@ define
             {
                 var fields = FullModelDocumentElement.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "Statements", fields);
+                base.export_attribute (obj, "export_attributes", "Statements", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -642,6 +675,8 @@ define
                     `
                     + FullModelDocumentElement.prototype.template.call (this) +
                     `
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -652,11 +687,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
+                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.unknown_string;
+                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -673,7 +712,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["unknown", "DifferenceModel", "", "0..1"],
+                        ["unknown", "DifferenceModel", "", "0..1"]
+                    ]
+                );
+            }
         }
 
         class DescriptionID extends Description
@@ -701,7 +750,6 @@ define
                 obj = Description.prototype.parse.call (this, context, sub);
                 obj.cls = "DescriptionID";
                 base.parse_element (/<cim:DescriptionID.uri>([\s\S]*?)<\/cim:DescriptionID.uri>/g, obj, "uri", base.to_string, sub, context);
-
                 var bucket = context.parsed.DescriptionID;
                 if (null == bucket)
                    context.parsed.DescriptionID = bucket = {};
@@ -765,7 +813,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class DifferenceModel extends Model
@@ -793,8 +841,8 @@ define
                 obj = Model.prototype.parse.call (this, context, sub);
                 obj.cls = "DifferenceModel";
                 base.parse_attribute (/<cim:DifferenceModel.forwardDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "forwardDifferences", sub, context);
+                base.parse_attributes (/<cim:DifferenceModel.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 base.parse_attribute (/<cim:DifferenceModel.reverseDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reverseDifferences", sub, context);
-
                 var bucket = context.parsed.DifferenceModel;
                 if (null == bucket)
                    context.parsed.DifferenceModel = bucket = {};
@@ -807,8 +855,9 @@ define
             {
                 var fields = Model.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "DifferenceModel", "forwardDifferences", fields);
-                base.export_attribute (obj, "DifferenceModel", "reverseDifferences", fields);
+                base.export_attribute (obj, "export_attribute", "DifferenceModel", fields);
+                base.export_attribute (obj, "export_attributes", "DifferenceModel", fields);
+                base.export_attribute (obj, "export_attribute", "DifferenceModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -827,6 +876,7 @@ define
                     + Model.prototype.template.call (this) +
                     `
                     {{#forwardDifferences}}<div><b>forwardDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{forwardDifferences}}&quot;);})'>{{forwardDifferences}}</a></div>{{/forwardDifferences}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     {{#reverseDifferences}}<div><b>reverseDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{reverseDifferences}}&quot;);})'>{{reverseDifferences}}</a></div>{{/reverseDifferences}}
                     </div>
                     <fieldset>
@@ -838,11 +888,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -861,7 +913,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["forwardDifferences", "Statements", "0..1", ""],
+                        ["unknown", "PowerSystemProject", "0..*", "0..1"],
+                        ["reverseDifferences", "Statements", "0..1", ""]
+                    ]
+                );
+            }
         }
 
         return (

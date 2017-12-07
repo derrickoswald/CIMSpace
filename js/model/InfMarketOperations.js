@@ -40,7 +40,6 @@ define
                 base.parse_element (/<cim:BilateralTransaction.curtailTimeMin>([\s\S]*?)<\/cim:BilateralTransaction.curtailTimeMin>/g, obj, "curtailTimeMin", base.to_string, sub, context);
                 base.parse_element (/<cim:BilateralTransaction.curtailTimeMax>([\s\S]*?)<\/cim:BilateralTransaction.curtailTimeMax>/g, obj, "curtailTimeMax", base.to_string, sub, context);
                 base.parse_element (/<cim:BilateralTransaction.totalTranChargeMax>([\s\S]*?)<\/cim:BilateralTransaction.totalTranChargeMax>/g, obj, "totalTranChargeMax", base.to_string, sub, context);
-
                 var bucket = context.parsed.BilateralTransaction;
                 if (null == bucket)
                    context.parsed.BilateralTransaction = bucket = {};
@@ -125,7 +124,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -157,7 +156,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Participation";
                 base.parse_element (/<cim:Participation.factor>([\s\S]*?)<\/cim:Participation.factor>/g, obj, "factor", base.to_float, sub, context);
-
                 var bucket = context.parsed.Participation;
                 if (null == bucket)
                    context.parsed.Participation = bucket = {};
@@ -221,7 +219,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -267,7 +265,7 @@ define
                 base.parse_element (/<cim:ResourceCertification.certifiedSpinMw>([\s\S]*?)<\/cim:ResourceCertification.certifiedSpinMw>/g, obj, "certifiedSpinMw", base.to_float, sub, context);
                 base.parse_element (/<cim:ResourceCertification.certifiedRTM>([\s\S]*?)<\/cim:ResourceCertification.certifiedRTM>/g, obj, "certifiedRTM", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceCertification.certifiedRUC>([\s\S]*?)<\/cim:ResourceCertification.certifiedRUC>/g, obj, "certifiedRUC", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ResourceCertification.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 var bucket = context.parsed.ResourceCertification;
                 if (null == bucket)
                    context.parsed.ResourceCertification = bucket = {};
@@ -293,6 +291,7 @@ define
                 base.export_element (obj, "ResourceCertification", "certifiedSpinMw", base.from_float, fields);
                 base.export_element (obj, "ResourceCertification", "certifiedRTM", base.from_string, fields);
                 base.export_element (obj, "ResourceCertification", "certifiedRUC", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ResourceCertification", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -323,6 +322,7 @@ define
                     {{#certifiedSpinMw}}<div><b>certifiedSpinMw</b>: {{certifiedSpinMw}}</div>{{/certifiedSpinMw}}
                     {{#certifiedRTM}}<div><b>certifiedRTM</b>: {{certifiedRTM}}</div>{{/certifiedRTM}}
                     {{#certifiedRUC}}<div><b>certifiedRUC</b>: {{certifiedRUC}}</div>{{/certifiedRUC}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
                     <fieldset>
 
@@ -333,11 +333,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredResource_string;
             }
 
             edit_template ()
@@ -363,11 +365,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><input id='certifiedRTM' class='form-control' type='text'{{#certifiedRTM}} value='{{certifiedRTM}}'{{/certifiedRTM}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><input id='certifiedRUC' class='form-control' type='text'{{#certifiedRUC}} value='{{certifiedRUC}}'{{/certifiedRUC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

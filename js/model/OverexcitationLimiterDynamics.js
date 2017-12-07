@@ -39,7 +39,6 @@ define
                 obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "OverexcitationLimiterDynamics";
                 base.parse_attribute (/<cim:OverexcitationLimiterDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
-
                 var bucket = context.parsed.OverexcitationLimiterDynamics;
                 if (null == bucket)
                    context.parsed.OverexcitationLimiterDynamics = bucket = {};
@@ -52,7 +51,7 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "OverexcitationLimiterDynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "OverexcitationLimiterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -103,7 +102,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -140,7 +148,6 @@ define
                 base.parse_element (/<cim:OverexcLim2.koi>([\s\S]*?)<\/cim:OverexcLim2.koi>/g, obj, "koi", base.to_string, sub, context);
                 base.parse_element (/<cim:OverexcLim2.voimax>([\s\S]*?)<\/cim:OverexcLim2.voimax>/g, obj, "voimax", base.to_string, sub, context);
                 base.parse_element (/<cim:OverexcLim2.voimin>([\s\S]*?)<\/cim:OverexcLim2.voimin>/g, obj, "voimin", base.to_string, sub, context);
-
                 var bucket = context.parsed.OverexcLim2;
                 if (null == bucket)
                    context.parsed.OverexcLim2 = bucket = {};
@@ -213,7 +220,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -252,7 +259,6 @@ define
                 base.parse_element (/<cim:OverexcLimIEEE.itfpu>([\s\S]*?)<\/cim:OverexcLimIEEE.itfpu>/g, obj, "itfpu", base.to_string, sub, context);
                 base.parse_element (/<cim:OverexcLimIEEE.kcd>([\s\S]*?)<\/cim:OverexcLimIEEE.kcd>/g, obj, "kcd", base.to_string, sub, context);
                 base.parse_element (/<cim:OverexcLimIEEE.kramp>([\s\S]*?)<\/cim:OverexcLimIEEE.kramp>/g, obj, "kramp", base.to_float, sub, context);
-
                 var bucket = context.parsed.OverexcLimIEEE;
                 if (null == bucket)
                    context.parsed.OverexcLimIEEE = bucket = {};
@@ -331,7 +337,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -372,7 +378,6 @@ define
                 base.parse_element (/<cim:OverexcLimX1.t2>([\s\S]*?)<\/cim:OverexcLimX1.t2>/g, obj, "t2", base.to_string, sub, context);
                 base.parse_element (/<cim:OverexcLimX1.t3>([\s\S]*?)<\/cim:OverexcLimX1.t3>/g, obj, "t3", base.to_string, sub, context);
                 base.parse_element (/<cim:OverexcLimX1.vlow>([\s\S]*?)<\/cim:OverexcLimX1.vlow>/g, obj, "vlow", base.to_string, sub, context);
-
                 var bucket = context.parsed.OverexcLimX1;
                 if (null == bucket)
                    context.parsed.OverexcLimX1 = bucket = {};
@@ -463,7 +468,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -505,7 +510,6 @@ define
                 base.parse_element (/<cim:OverexcLimX2.t2>([\s\S]*?)<\/cim:OverexcLimX2.t2>/g, obj, "t2", base.to_string, sub, context);
                 base.parse_element (/<cim:OverexcLimX2.t3>([\s\S]*?)<\/cim:OverexcLimX2.t3>/g, obj, "t3", base.to_string, sub, context);
                 base.parse_element (/<cim:OverexcLimX2.vlow>([\s\S]*?)<\/cim:OverexcLimX2.vlow>/g, obj, "vlow", base.to_string, sub, context);
-
                 var bucket = context.parsed.OverexcLimX2;
                 if (null == bucket)
                    context.parsed.OverexcLimX2 = bucket = {};
@@ -599,7 +603,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

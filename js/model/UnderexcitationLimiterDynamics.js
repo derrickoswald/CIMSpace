@@ -40,7 +40,6 @@ define
                 obj.cls = "UnderexcitationLimiterDynamics";
                 base.parse_attribute (/<cim:UnderexcitationLimiterDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
                 base.parse_attribute (/<cim:UnderexcitationLimiterDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-
                 var bucket = context.parsed.UnderexcitationLimiterDynamics;
                 if (null == bucket)
                    context.parsed.UnderexcitationLimiterDynamics = bucket = {};
@@ -53,8 +52,8 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "UnderexcitationLimiterDynamics", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "UnderexcitationLimiterDynamics", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "UnderexcitationLimiterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "UnderexcitationLimiterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -107,7 +106,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"],
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -180,7 +189,6 @@ define
                 base.parse_element (/<cim:UnderexcLimIEEE2.vuimin>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vuimin>/g, obj, "vuimin", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLimIEEE2.vulmax>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vulmax>/g, obj, "vulmax", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLimIEEE2.vulmin>([\s\S]*?)<\/cim:UnderexcLimIEEE2.vulmin>/g, obj, "vulmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.UnderexcLimIEEE2;
                 if (null == bucket)
                    context.parsed.UnderexcLimIEEE2 = bucket = {};
@@ -361,7 +369,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -398,7 +406,6 @@ define
                 base.parse_element (/<cim:UnderexcLimX1.melmax>([\s\S]*?)<\/cim:UnderexcLimX1.melmax>/g, obj, "melmax", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLimX1.tf2>([\s\S]*?)<\/cim:UnderexcLimX1.tf2>/g, obj, "tf2", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLimX1.tm>([\s\S]*?)<\/cim:UnderexcLimX1.tm>/g, obj, "tm", base.to_string, sub, context);
-
                 var bucket = context.parsed.UnderexcLimX1;
                 if (null == bucket)
                    context.parsed.UnderexcLimX1 = bucket = {};
@@ -477,7 +484,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -515,7 +522,6 @@ define
                 base.parse_element (/<cim:UnderexcLimX2.r>([\s\S]*?)<\/cim:UnderexcLimX2.r>/g, obj, "r", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLimX2.tf2>([\s\S]*?)<\/cim:UnderexcLimX2.tf2>/g, obj, "tf2", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLimX2.tm>([\s\S]*?)<\/cim:UnderexcLimX2.tm>/g, obj, "tm", base.to_string, sub, context);
-
                 var bucket = context.parsed.UnderexcLimX2;
                 if (null == bucket)
                    context.parsed.UnderexcLimX2 = bucket = {};
@@ -597,7 +603,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -645,7 +651,6 @@ define
                 base.parse_element (/<cim:UnderexcLimIEEE1.vulmax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vulmax>/g, obj, "vulmax", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLimIEEE1.vulmin>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vulmin>/g, obj, "vulmin", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLimIEEE1.vurmax>([\s\S]*?)<\/cim:UnderexcLimIEEE1.vurmax>/g, obj, "vurmax", base.to_string, sub, context);
-
                 var bucket = context.parsed.UnderexcLimIEEE1;
                 if (null == bucket)
                    context.parsed.UnderexcLimIEEE1 = bucket = {};
@@ -751,7 +756,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -791,7 +796,6 @@ define
                 base.parse_element (/<cim:UnderexcLim2Simplified.q1>([\s\S]*?)<\/cim:UnderexcLim2Simplified.q1>/g, obj, "q1", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLim2Simplified.vuimax>([\s\S]*?)<\/cim:UnderexcLim2Simplified.vuimax>/g, obj, "vuimax", base.to_string, sub, context);
                 base.parse_element (/<cim:UnderexcLim2Simplified.vuimin>([\s\S]*?)<\/cim:UnderexcLim2Simplified.vuimin>/g, obj, "vuimin", base.to_string, sub, context);
-
                 var bucket = context.parsed.UnderexcLim2Simplified;
                 if (null == bucket)
                    context.parsed.UnderexcLim2Simplified = bucket = {};
@@ -873,7 +877,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

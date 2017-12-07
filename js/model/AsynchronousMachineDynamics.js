@@ -48,7 +48,6 @@ define
                 base.parse_attribute (/<cim:AsynchronousMachineDynamics.AsynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachine", sub, context);
                 base.parse_attribute (/<cim:AsynchronousMachineDynamics.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context);
                 base.parse_attribute (/<cim:AsynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadDynamics", sub, context);
-
                 var bucket = context.parsed.AsynchronousMachineDynamics;
                 if (null == bucket)
                    context.parsed.AsynchronousMachineDynamics = bucket = {};
@@ -61,10 +60,10 @@ define
             {
                 var fields = StandardModels.RotatingMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "AsynchronousMachineDynamics", "TurbineGovernorDynamics", fields);
-                base.export_attribute (obj, "AsynchronousMachineDynamics", "AsynchronousMachine", fields);
-                base.export_attribute (obj, "AsynchronousMachineDynamics", "WindTurbineType1or2Dynamics", fields);
-                base.export_attribute (obj, "AsynchronousMachineDynamics", "MechanicalLoadDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "AsynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "AsynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "AsynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "AsynchronousMachineDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -121,7 +120,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..1", "0..1"],
+                        ["AsynchronousMachine", "AsynchronousMachine", "1", "0..1"],
+                        ["WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "1"],
+                        ["MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -172,7 +183,6 @@ define
                 base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr1>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr1>/g, obj, "xlr1", base.to_string, sub, context);
                 base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xlr2>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xlr2>/g, obj, "xlr2", base.to_string, sub, context);
                 base.parse_element (/<cim:AsynchronousMachineEquivalentCircuit.xm>([\s\S]*?)<\/cim:AsynchronousMachineEquivalentCircuit.xm>/g, obj, "xm", base.to_string, sub, context);
-
                 var bucket = context.parsed.AsynchronousMachineEquivalentCircuit;
                 if (null == bucket)
                    context.parsed.AsynchronousMachineEquivalentCircuit = bucket = {};
@@ -248,7 +258,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -305,7 +315,6 @@ define
                 base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xp>/g, obj, "xp", base.to_string, sub, context);
                 base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xpp>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xpp>/g, obj, "xpp", base.to_string, sub, context);
                 base.parse_element (/<cim:AsynchronousMachineTimeConstantReactance.xs>([\s\S]*?)<\/cim:AsynchronousMachineTimeConstantReactance.xs>/g, obj, "xs", base.to_string, sub, context);
-
                 var bucket = context.parsed.AsynchronousMachineTimeConstantReactance;
                 if (null == bucket)
                    context.parsed.AsynchronousMachineTimeConstantReactance = bucket = {};
@@ -381,7 +390,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

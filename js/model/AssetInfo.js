@@ -149,7 +149,9 @@ define
                 base.parse_element (/<cim:WireSpacingInfo.phaseWireSpacing>([\s\S]*?)<\/cim:WireSpacingInfo.phaseWireSpacing>/g, obj, "phaseWireSpacing", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WireSpacingInfo.usage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "usage", sub, context);
                 base.parse_attribute (/<cim:WireSpacingInfo.DuctBank\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DuctBank", sub, context);
-
+                base.parse_attributes (/<cim:WireSpacingInfo.WirePositions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WirePositions", sub, context);
+                base.parse_attributes (/<cim:WireSpacingInfo.Structures\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Structures", sub, context);
+                base.parse_attributes (/<cim:WireSpacingInfo.PerLengthParameters\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PerLengthParameters", sub, context);
                 var bucket = context.parsed.WireSpacingInfo;
                 if (null == bucket)
                    context.parsed.WireSpacingInfo = bucket = {};
@@ -166,7 +168,10 @@ define
                 base.export_element (obj, "WireSpacingInfo", "phaseWireCount", base.from_string, fields);
                 base.export_element (obj, "WireSpacingInfo", "phaseWireSpacing", base.from_string, fields);
                 base.export_element (obj, "WireSpacingInfo", "usage", base.from_string, fields);
-                base.export_attribute (obj, "WireSpacingInfo", "DuctBank", fields);
+                base.export_attribute (obj, "export_attribute", "WireSpacingInfo", fields);
+                base.export_attribute (obj, "export_attributes", "WireSpacingInfo", fields);
+                base.export_attribute (obj, "export_attributes", "WireSpacingInfo", fields);
+                base.export_attribute (obj, "export_attributes", "WireSpacingInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -189,6 +194,9 @@ define
                     {{#phaseWireSpacing}}<div><b>phaseWireSpacing</b>: {{phaseWireSpacing}}</div>{{/phaseWireSpacing}}
                     {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
                     {{#DuctBank}}<div><b>DuctBank</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DuctBank}}&quot;);})'>{{DuctBank}}</a></div>{{/DuctBank}}
+                    {{#WirePositions}}<div><b>WirePositions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WirePositions}}
+                    {{#Structures}}<div><b>Structures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Structures}}
+                    {{#PerLengthParameters}}<div><b>PerLengthParameters</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PerLengthParameters}}
                     </div>
                     <fieldset>
 
@@ -200,12 +208,18 @@ define
             {
                 super.condition (obj);
                 obj.WireUsageKind = []; if (!obj.usage) obj.WireUsageKind.push ({ id: '', selected: true}); for (var property in WireUsageKind) obj.WireUsageKind.push ({ id: property, selected: obj.usage && obj.usage.endsWith ('.' + property)});
+                if (obj.WirePositions) obj.WirePositions_string = obj.WirePositions.join ();
+                if (obj.Structures) obj.Structures_string = obj.Structures.join ();
+                if (obj.PerLengthParameters) obj.PerLengthParameters_string = obj.PerLengthParameters.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.WireUsageKind;
+                delete obj.WirePositions_string;
+                delete obj.Structures_string;
+                delete obj.PerLengthParameters_string;
             }
 
             edit_template ()
@@ -223,11 +237,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseWireSpacing'>phaseWireSpacing: </label><div class='col-sm-8'><input id='phaseWireSpacing' class='form-control' type='text'{{#phaseWireSpacing}} value='{{phaseWireSpacing}}'{{/phaseWireSpacing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><select id='usage' class='form-control'>{{#WireUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireUsageKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='DuctBank'>DuctBank: </label><div class='col-sm-8'><input id='DuctBank' class='form-control' type='text'{{#DuctBank}} value='{{DuctBank}}'{{/DuctBank}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Structures'>Structures: </label><div class='col-sm-8'><input id='Structures' class='form-control' type='text'{{#Structures}} value='{{Structures}}_string'{{/Structures}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DuctBank", "DuctBank", "0..1", "0..*"],
+                        ["WirePositions", "WirePosition", "1..*", "0..1"],
+                        ["Structures", "Structure", "0..*", "0..*"],
+                        ["PerLengthParameters", "PerLengthLineParameter", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -273,7 +300,6 @@ define
                 base.parse_element (/<cim:TapChangerInfo.ratedVoltage>([\s\S]*?)<\/cim:TapChangerInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:TapChangerInfo.stepPhaseIncrement>([\s\S]*?)<\/cim:TapChangerInfo.stepPhaseIncrement>/g, obj, "stepPhaseIncrement", base.to_string, sub, context);
                 base.parse_element (/<cim:TapChangerInfo.stepVoltageIncrement>([\s\S]*?)<\/cim:TapChangerInfo.stepVoltageIncrement>/g, obj, "stepVoltageIncrement", base.to_string, sub, context);
-
                 var bucket = context.parsed.TapChangerInfo;
                 if (null == bucket)
                    context.parsed.TapChangerInfo = bucket = {};
@@ -379,7 +405,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -411,7 +437,7 @@ define
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "TransformerTankInfo";
                 base.parse_attribute (/<cim:TransformerTankInfo.PowerTransformerInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerTransformerInfo", sub, context);
-
+                base.parse_attributes (/<cim:TransformerTankInfo.TransformerEndInfos\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerEndInfos", sub, context);
                 var bucket = context.parsed.TransformerTankInfo;
                 if (null == bucket)
                    context.parsed.TransformerTankInfo = bucket = {};
@@ -424,7 +450,8 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "TransformerTankInfo", "PowerTransformerInfo", fields);
+                base.export_attribute (obj, "export_attribute", "TransformerTankInfo", fields);
+                base.export_attribute (obj, "export_attributes", "TransformerTankInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -443,6 +470,7 @@ define
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
                     {{#PowerTransformerInfo}}<div><b>PowerTransformerInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PowerTransformerInfo}}&quot;);})'>{{PowerTransformerInfo}}</a></div>{{/PowerTransformerInfo}}
+                    {{#TransformerEndInfos}}<div><b>TransformerEndInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransformerEndInfos}}
                     </div>
                     <fieldset>
 
@@ -453,11 +481,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TransformerEndInfos) obj.TransformerEndInfos_string = obj.TransformerEndInfos.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TransformerEndInfos_string;
             }
 
             edit_template ()
@@ -475,7 +505,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PowerTransformerInfo", "PowerTransformerInfo", "1", "1..*"],
+                        ["TransformerEndInfos", "TransformerEndInfo", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -508,7 +548,6 @@ define
                 obj.cls = "BusbarSectionInfo";
                 base.parse_element (/<cim:BusbarSectionInfo.ratedCurrent>([\s\S]*?)<\/cim:BusbarSectionInfo.ratedCurrent>/g, obj, "ratedCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:BusbarSectionInfo.ratedVoltage>([\s\S]*?)<\/cim:BusbarSectionInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
-
                 var bucket = context.parsed.BusbarSectionInfo;
                 if (null == bucket)
                    context.parsed.BusbarSectionInfo = bucket = {};
@@ -575,7 +614,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -606,7 +645,7 @@ define
 
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "PowerTransformerInfo";
-
+                base.parse_attributes (/<cim:PowerTransformerInfo.TransformerTankInfos\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerTankInfos", sub, context);
                 var bucket = context.parsed.PowerTransformerInfo;
                 if (null == bucket)
                    context.parsed.PowerTransformerInfo = bucket = {};
@@ -619,6 +658,7 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "PowerTransformerInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -636,6 +676,7 @@ define
                     `
                     + Assets.AssetInfo.prototype.template.call (this) +
                     `
+                    {{#TransformerTankInfos}}<div><b>TransformerTankInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransformerTankInfos}}
                     </div>
                     <fieldset>
 
@@ -646,11 +687,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TransformerTankInfos) obj.TransformerTankInfos_string = obj.TransformerTankInfos.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TransformerTankInfos_string;
             }
 
             edit_template ()
@@ -667,7 +710,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TransformerTankInfos", "TransformerTankInfo", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -713,7 +765,7 @@ define
                 base.parse_element (/<cim:WireInfo.rDC20>([\s\S]*?)<\/cim:WireInfo.rDC20>/g, obj, "rDC20", base.to_string, sub, context);
                 base.parse_element (/<cim:WireInfo.sizeDescription>([\s\S]*?)<\/cim:WireInfo.sizeDescription>/g, obj, "sizeDescription", base.to_string, sub, context);
                 base.parse_element (/<cim:WireInfo.strandCount>([\s\S]*?)<\/cim:WireInfo.strandCount>/g, obj, "strandCount", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:WireInfo.PerLengthParameters\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PerLengthParameters", sub, context);
                 var bucket = context.parsed.WireInfo;
                 if (null == bucket)
                    context.parsed.WireInfo = bucket = {};
@@ -741,6 +793,7 @@ define
                 base.export_element (obj, "WireInfo", "rDC20", base.from_string, fields);
                 base.export_element (obj, "WireInfo", "sizeDescription", base.from_string, fields);
                 base.export_element (obj, "WireInfo", "strandCount", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "WireInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -773,6 +826,7 @@ define
                     {{#rDC20}}<div><b>rDC20</b>: {{rDC20}}</div>{{/rDC20}}
                     {{#sizeDescription}}<div><b>sizeDescription</b>: {{sizeDescription}}</div>{{/sizeDescription}}
                     {{#strandCount}}<div><b>strandCount</b>: {{strandCount}}</div>{{/strandCount}}
+                    {{#PerLengthParameters}}<div><b>PerLengthParameters</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PerLengthParameters}}
                     </div>
                     <fieldset>
 
@@ -785,6 +839,7 @@ define
                 super.condition (obj);
                 obj.WireInsulationKind = []; if (!obj.insulationMaterial) obj.WireInsulationKind.push ({ id: '', selected: true}); for (var property in WireInsulationKind) obj.WireInsulationKind.push ({ id: property, selected: obj.insulationMaterial && obj.insulationMaterial.endsWith ('.' + property)});
                 obj.WireMaterialKind = []; if (!obj.material) obj.WireMaterialKind.push ({ id: '', selected: true}); for (var property in WireMaterialKind) obj.WireMaterialKind.push ({ id: property, selected: obj.material && obj.material.endsWith ('.' + property)});
+                if (obj.PerLengthParameters) obj.PerLengthParameters_string = obj.PerLengthParameters.join ();
             }
 
             uncondition (obj)
@@ -792,6 +847,7 @@ define
                 super.uncondition (obj);
                 delete obj.WireInsulationKind;
                 delete obj.WireMaterialKind;
+                delete obj.PerLengthParameters_string;
             }
 
             edit_template ()
@@ -819,11 +875,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='rDC20'>rDC20: </label><div class='col-sm-8'><input id='rDC20' class='form-control' type='text'{{#rDC20}} value='{{rDC20}}'{{/rDC20}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='sizeDescription'>sizeDescription: </label><div class='col-sm-8'><input id='sizeDescription' class='form-control' type='text'{{#sizeDescription}} value='{{sizeDescription}}'{{/sizeDescription}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='strandCount'>strandCount: </label><div class='col-sm-8'><input id='strandCount' class='form-control' type='text'{{#strandCount}} value='{{strandCount}}'{{/strandCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PerLengthParameters'>PerLengthParameters: </label><div class='col-sm-8'><input id='PerLengthParameters' class='form-control' type='text'{{#PerLengthParameters}} value='{{PerLengthParameters}}_string'{{/PerLengthParameters}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PerLengthParameters", "PerLengthLineParameter", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -859,7 +925,6 @@ define
                 base.parse_element (/<cim:ShuntCompensatorInfo.ratedVoltage>([\s\S]*?)<\/cim:ShuntCompensatorInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:ShuntCompensatorInfo.ratedReactivePower>([\s\S]*?)<\/cim:ShuntCompensatorInfo.ratedReactivePower>/g, obj, "ratedReactivePower", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ShuntCompensatorInfo.ShuntCompensatorControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ShuntCompensatorControl", sub, context);
-
                 var bucket = context.parsed.ShuntCompensatorInfo;
                 if (null == bucket)
                    context.parsed.ShuntCompensatorInfo = bucket = {};
@@ -876,7 +941,7 @@ define
                 base.export_element (obj, "ShuntCompensatorInfo", "ratedCurrent", base.from_string, fields);
                 base.export_element (obj, "ShuntCompensatorInfo", "ratedVoltage", base.from_string, fields);
                 base.export_element (obj, "ShuntCompensatorInfo", "ratedReactivePower", base.from_string, fields);
-                base.export_attribute (obj, "ShuntCompensatorInfo", "ShuntCompensatorControl", fields);
+                base.export_attribute (obj, "export_attribute", "ShuntCompensatorInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -935,7 +1000,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ShuntCompensatorControl", "ShuntCompensatorControl", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -971,7 +1045,6 @@ define
                 base.parse_element (/<cim:SwitchInfo.ratedVoltage>([\s\S]*?)<\/cim:SwitchInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:SwitchInfo.isSinglePhase>([\s\S]*?)<\/cim:SwitchInfo.isSinglePhase>/g, obj, "isSinglePhase", base.to_boolean, sub, context);
                 base.parse_element (/<cim:SwitchInfo.isUnganged>([\s\S]*?)<\/cim:SwitchInfo.isUnganged>/g, obj, "isUnganged", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.SwitchInfo;
                 if (null == bucket)
                    context.parsed.SwitchInfo = bucket = {};
@@ -1047,7 +1120,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1082,7 +1155,6 @@ define
                 base.parse_element (/<cim:WirePosition.xCoord>([\s\S]*?)<\/cim:WirePosition.xCoord>/g, obj, "xCoord", base.to_string, sub, context);
                 base.parse_element (/<cim:WirePosition.yCoord>([\s\S]*?)<\/cim:WirePosition.yCoord>/g, obj, "yCoord", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WirePosition.WireSpacingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WireSpacingInfo", sub, context);
-
                 var bucket = context.parsed.WirePosition;
                 if (null == bucket)
                    context.parsed.WirePosition = bucket = {};
@@ -1098,7 +1170,7 @@ define
                 base.export_element (obj, "WirePosition", "phase", base.from_string, fields);
                 base.export_element (obj, "WirePosition", "xCoord", base.from_string, fields);
                 base.export_element (obj, "WirePosition", "yCoord", base.from_string, fields);
-                base.export_attribute (obj, "WirePosition", "WireSpacingInfo", fields);
+                base.export_attribute (obj, "export_attribute", "WirePosition", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1155,7 +1227,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WireSpacingInfo", "WireSpacingInfo", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1195,10 +1276,16 @@ define
                 base.parse_element (/<cim:TransformerEndInfo.ratedS>([\s\S]*?)<\/cim:TransformerEndInfo.ratedS>/g, obj, "ratedS", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerEndInfo.ratedU>([\s\S]*?)<\/cim:TransformerEndInfo.ratedU>/g, obj, "ratedU", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerEndInfo.shortTermS>([\s\S]*?)<\/cim:TransformerEndInfo.shortTermS>/g, obj, "shortTermS", base.to_string, sub, context);
+                base.parse_attributes (/<cim:TransformerEndInfo.EnergisedEndNoLoadTests\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergisedEndNoLoadTests", sub, context);
+                base.parse_attributes (/<cim:TransformerEndInfo.ToMeshImpedances\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ToMeshImpedances", sub, context);
+                base.parse_attributes (/<cim:TransformerEndInfo.EnergisedEndShortCircuitTests\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergisedEndShortCircuitTests", sub, context);
+                base.parse_attributes (/<cim:TransformerEndInfo.GroundedEndShortCircuitTests\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GroundedEndShortCircuitTests", sub, context);
                 base.parse_attribute (/<cim:TransformerEndInfo.TransformerStarImpedance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerStarImpedance", sub, context);
                 base.parse_attribute (/<cim:TransformerEndInfo.TransformerTankInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerTankInfo", sub, context);
+                base.parse_attributes (/<cim:TransformerEndInfo.OpenEndOpenCircuitTests\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OpenEndOpenCircuitTests", sub, context);
+                base.parse_attributes (/<cim:TransformerEndInfo.FromMeshImpedances\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FromMeshImpedances", sub, context);
                 base.parse_attribute (/<cim:TransformerEndInfo.CoreAdmittance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CoreAdmittance", sub, context);
-
+                base.parse_attributes (/<cim:TransformerEndInfo.EnergisedEndOpenCircuitTests\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergisedEndOpenCircuitTests", sub, context);
                 var bucket = context.parsed.TransformerEndInfo;
                 if (null == bucket)
                    context.parsed.TransformerEndInfo = bucket = {};
@@ -1220,9 +1307,16 @@ define
                 base.export_element (obj, "TransformerEndInfo", "ratedS", base.from_string, fields);
                 base.export_element (obj, "TransformerEndInfo", "ratedU", base.from_string, fields);
                 base.export_element (obj, "TransformerEndInfo", "shortTermS", base.from_string, fields);
-                base.export_attribute (obj, "TransformerEndInfo", "TransformerStarImpedance", fields);
-                base.export_attribute (obj, "TransformerEndInfo", "TransformerTankInfo", fields);
-                base.export_attribute (obj, "TransformerEndInfo", "CoreAdmittance", fields);
+                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attribute", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attribute", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attribute", "TransformerEndInfo", fields);
+                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1249,9 +1343,16 @@ define
                     {{#ratedS}}<div><b>ratedS</b>: {{ratedS}}</div>{{/ratedS}}
                     {{#ratedU}}<div><b>ratedU</b>: {{ratedU}}</div>{{/ratedU}}
                     {{#shortTermS}}<div><b>shortTermS</b>: {{shortTermS}}</div>{{/shortTermS}}
+                    {{#EnergisedEndNoLoadTests}}<div><b>EnergisedEndNoLoadTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergisedEndNoLoadTests}}
+                    {{#ToMeshImpedances}}<div><b>ToMeshImpedances</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ToMeshImpedances}}
+                    {{#EnergisedEndShortCircuitTests}}<div><b>EnergisedEndShortCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergisedEndShortCircuitTests}}
+                    {{#GroundedEndShortCircuitTests}}<div><b>GroundedEndShortCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GroundedEndShortCircuitTests}}
                     {{#TransformerStarImpedance}}<div><b>TransformerStarImpedance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerStarImpedance}}&quot;);})'>{{TransformerStarImpedance}}</a></div>{{/TransformerStarImpedance}}
                     {{#TransformerTankInfo}}<div><b>TransformerTankInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransformerTankInfo}}&quot;);})'>{{TransformerTankInfo}}</a></div>{{/TransformerTankInfo}}
+                    {{#OpenEndOpenCircuitTests}}<div><b>OpenEndOpenCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OpenEndOpenCircuitTests}}
+                    {{#FromMeshImpedances}}<div><b>FromMeshImpedances</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FromMeshImpedances}}
                     {{#CoreAdmittance}}<div><b>CoreAdmittance</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CoreAdmittance}}&quot;);})'>{{CoreAdmittance}}</a></div>{{/CoreAdmittance}}
+                    {{#EnergisedEndOpenCircuitTests}}<div><b>EnergisedEndOpenCircuitTests</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergisedEndOpenCircuitTests}}
                     </div>
                     <fieldset>
 
@@ -1262,11 +1363,25 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergisedEndNoLoadTests) obj.EnergisedEndNoLoadTests_string = obj.EnergisedEndNoLoadTests.join ();
+                if (obj.ToMeshImpedances) obj.ToMeshImpedances_string = obj.ToMeshImpedances.join ();
+                if (obj.EnergisedEndShortCircuitTests) obj.EnergisedEndShortCircuitTests_string = obj.EnergisedEndShortCircuitTests.join ();
+                if (obj.GroundedEndShortCircuitTests) obj.GroundedEndShortCircuitTests_string = obj.GroundedEndShortCircuitTests.join ();
+                if (obj.OpenEndOpenCircuitTests) obj.OpenEndOpenCircuitTests_string = obj.OpenEndOpenCircuitTests.join ();
+                if (obj.FromMeshImpedances) obj.FromMeshImpedances_string = obj.FromMeshImpedances.join ();
+                if (obj.EnergisedEndOpenCircuitTests) obj.EnergisedEndOpenCircuitTests_string = obj.EnergisedEndOpenCircuitTests.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergisedEndNoLoadTests_string;
+                delete obj.ToMeshImpedances_string;
+                delete obj.EnergisedEndShortCircuitTests_string;
+                delete obj.GroundedEndShortCircuitTests_string;
+                delete obj.OpenEndOpenCircuitTests_string;
+                delete obj.FromMeshImpedances_string;
+                delete obj.EnergisedEndOpenCircuitTests_string;
             }
 
             edit_template ()
@@ -1288,6 +1403,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedS'>ratedS: </label><div class='col-sm-8'><input id='ratedS' class='form-control' type='text'{{#ratedS}} value='{{ratedS}}'{{/ratedS}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedU'>ratedU: </label><div class='col-sm-8'><input id='ratedU' class='form-control' type='text'{{#ratedU}} value='{{ratedU}}'{{/ratedU}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='shortTermS'>shortTermS: </label><div class='col-sm-8'><input id='shortTermS' class='form-control' type='text'{{#shortTermS}} value='{{shortTermS}}'{{/shortTermS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ToMeshImpedances'>ToMeshImpedances: </label><div class='col-sm-8'><input id='ToMeshImpedances' class='form-control' type='text'{{#ToMeshImpedances}} value='{{ToMeshImpedances}}_string'{{/ToMeshImpedances}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GroundedEndShortCircuitTests'>GroundedEndShortCircuitTests: </label><div class='col-sm-8'><input id='GroundedEndShortCircuitTests' class='form-control' type='text'{{#GroundedEndShortCircuitTests}} value='{{GroundedEndShortCircuitTests}}_string'{{/GroundedEndShortCircuitTests}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerStarImpedance'>TransformerStarImpedance: </label><div class='col-sm-8'><input id='TransformerStarImpedance' class='form-control' type='text'{{#TransformerStarImpedance}} value='{{TransformerStarImpedance}}'{{/TransformerStarImpedance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerTankInfo'>TransformerTankInfo: </label><div class='col-sm-8'><input id='TransformerTankInfo' class='form-control' type='text'{{#TransformerTankInfo}} value='{{TransformerTankInfo}}'{{/TransformerTankInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CoreAdmittance'>CoreAdmittance: </label><div class='col-sm-8'><input id='CoreAdmittance' class='form-control' type='text'{{#CoreAdmittance}} value='{{CoreAdmittance}}'{{/CoreAdmittance}}></div></div>
@@ -1295,7 +1412,25 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergisedEndNoLoadTests", "NoLoadTest", "0..*", "0..1"],
+                        ["ToMeshImpedances", "TransformerMeshImpedance", "0..*", "0..*"],
+                        ["EnergisedEndShortCircuitTests", "ShortCircuitTest", "0..*", "1"],
+                        ["GroundedEndShortCircuitTests", "ShortCircuitTest", "0..*", "1..*"],
+                        ["TransformerStarImpedance", "TransformerStarImpedance", "0..1", "0..1"],
+                        ["TransformerTankInfo", "TransformerTankInfo", "1", "1..*"],
+                        ["OpenEndOpenCircuitTests", "OpenCircuitTest", "0..*", "1"],
+                        ["FromMeshImpedances", "TransformerMeshImpedance", "0..*", "0..1"],
+                        ["CoreAdmittance", "TransformerCoreAdmittance", "0..1", "0..1"],
+                        ["EnergisedEndOpenCircuitTests", "OpenCircuitTest", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1328,7 +1463,6 @@ define
                 obj.cls = "TransformerTest";
                 base.parse_element (/<cim:TransformerTest.basePower>([\s\S]*?)<\/cim:TransformerTest.basePower>/g, obj, "basePower", base.to_string, sub, context);
                 base.parse_element (/<cim:TransformerTest.temperature>([\s\S]*?)<\/cim:TransformerTest.temperature>/g, obj, "temperature", base.to_string, sub, context);
-
                 var bucket = context.parsed.TransformerTest;
                 if (null == bucket)
                    context.parsed.TransformerTest = bucket = {};
@@ -1395,7 +1529,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1436,7 +1570,6 @@ define
                 base.parse_attribute (/<cim:CableInfo.outerJacketKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "outerJacketKind", sub, context);
                 base.parse_element (/<cim:CableInfo.sheathAsNeutral>([\s\S]*?)<\/cim:CableInfo.sheathAsNeutral>/g, obj, "sheathAsNeutral", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:CableInfo.shieldMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "shieldMaterial", sub, context);
-
                 var bucket = context.parsed.CableInfo;
                 if (null == bucket)
                    context.parsed.CableInfo = bucket = {};
@@ -1533,7 +1666,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1569,7 +1702,6 @@ define
                 base.parse_element (/<cim:ConcentricNeutralCableInfo.neutralStrandGmr>([\s\S]*?)<\/cim:ConcentricNeutralCableInfo.neutralStrandGmr>/g, obj, "neutralStrandGmr", base.to_string, sub, context);
                 base.parse_element (/<cim:ConcentricNeutralCableInfo.neutralStrandRadius>([\s\S]*?)<\/cim:ConcentricNeutralCableInfo.neutralStrandRadius>/g, obj, "neutralStrandRadius", base.to_string, sub, context);
                 base.parse_element (/<cim:ConcentricNeutralCableInfo.neutralStrandRDC20>([\s\S]*?)<\/cim:ConcentricNeutralCableInfo.neutralStrandRDC20>/g, obj, "neutralStrandRDC20", base.to_string, sub, context);
-
                 var bucket = context.parsed.ConcentricNeutralCableInfo;
                 if (null == bucket)
                    context.parsed.ConcentricNeutralCableInfo = bucket = {};
@@ -1645,7 +1777,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1676,7 +1808,6 @@ define
 
                 obj = WireInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "OverheadWireInfo";
-
                 var bucket = context.parsed.OverheadWireInfo;
                 if (null == bucket)
                    context.parsed.OverheadWireInfo = bucket = {};
@@ -1737,7 +1868,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1770,7 +1901,6 @@ define
                 obj.cls = "TapeShieldCableInfo";
                 base.parse_element (/<cim:TapeShieldCableInfo.tapeLap>([\s\S]*?)<\/cim:TapeShieldCableInfo.tapeLap>/g, obj, "tapeLap", base.to_string, sub, context);
                 base.parse_element (/<cim:TapeShieldCableInfo.tapeThickness>([\s\S]*?)<\/cim:TapeShieldCableInfo.tapeThickness>/g, obj, "tapeThickness", base.to_string, sub, context);
-
                 var bucket = context.parsed.TapeShieldCableInfo;
                 if (null == bucket)
                    context.parsed.TapeShieldCableInfo = bucket = {};
@@ -1837,7 +1967,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1877,7 +2007,7 @@ define
                 base.parse_element (/<cim:ShortCircuitTest.loss>([\s\S]*?)<\/cim:ShortCircuitTest.loss>/g, obj, "loss", base.to_string, sub, context);
                 base.parse_element (/<cim:ShortCircuitTest.lossZero>([\s\S]*?)<\/cim:ShortCircuitTest.lossZero>/g, obj, "lossZero", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ShortCircuitTest.EnergisedEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergisedEnd", sub, context);
-
+                base.parse_attributes (/<cim:ShortCircuitTest.GroundedEnds\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GroundedEnds", sub, context);
                 var bucket = context.parsed.ShortCircuitTest;
                 if (null == bucket)
                    context.parsed.ShortCircuitTest = bucket = {};
@@ -1896,7 +2026,8 @@ define
                 base.export_element (obj, "ShortCircuitTest", "leakageImpedanceZero", base.from_string, fields);
                 base.export_element (obj, "ShortCircuitTest", "loss", base.from_string, fields);
                 base.export_element (obj, "ShortCircuitTest", "lossZero", base.from_string, fields);
-                base.export_attribute (obj, "ShortCircuitTest", "EnergisedEnd", fields);
+                base.export_attribute (obj, "export_attribute", "ShortCircuitTest", fields);
+                base.export_attribute (obj, "export_attributes", "ShortCircuitTest", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1921,6 +2052,7 @@ define
                     {{#loss}}<div><b>loss</b>: {{loss}}</div>{{/loss}}
                     {{#lossZero}}<div><b>lossZero</b>: {{lossZero}}</div>{{/lossZero}}
                     {{#EnergisedEnd}}<div><b>EnergisedEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergisedEnd}}&quot;);})'>{{EnergisedEnd}}</a></div>{{/EnergisedEnd}}
+                    {{#GroundedEnds}}<div><b>GroundedEnds</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GroundedEnds}}
                     </div>
                     <fieldset>
 
@@ -1931,11 +2063,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GroundedEnds) obj.GroundedEnds_string = obj.GroundedEnds.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GroundedEnds_string;
             }
 
             edit_template ()
@@ -1955,11 +2089,22 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='loss'>loss: </label><div class='col-sm-8'><input id='loss' class='form-control' type='text'{{#loss}} value='{{loss}}'{{/loss}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossZero'>lossZero: </label><div class='col-sm-8'><input id='lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GroundedEnds'>GroundedEnds: </label><div class='col-sm-8'><input id='GroundedEnds' class='form-control' type='text'{{#GroundedEnds}} value='{{GroundedEnds}}_string'{{/GroundedEnds}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergisedEnd", "TransformerEndInfo", "1", "0..*"],
+                        ["GroundedEnds", "TransformerEndInfo", "1..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1998,7 +2143,6 @@ define
                 base.parse_element (/<cim:NoLoadTest.loss>([\s\S]*?)<\/cim:NoLoadTest.loss>/g, obj, "loss", base.to_string, sub, context);
                 base.parse_element (/<cim:NoLoadTest.lossZero>([\s\S]*?)<\/cim:NoLoadTest.lossZero>/g, obj, "lossZero", base.to_string, sub, context);
                 base.parse_attribute (/<cim:NoLoadTest.EnergisedEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergisedEnd", sub, context);
-
                 var bucket = context.parsed.NoLoadTest;
                 if (null == bucket)
                    context.parsed.NoLoadTest = bucket = {};
@@ -2016,7 +2160,7 @@ define
                 base.export_element (obj, "NoLoadTest", "excitingCurrentZero", base.from_string, fields);
                 base.export_element (obj, "NoLoadTest", "loss", base.from_string, fields);
                 base.export_element (obj, "NoLoadTest", "lossZero", base.from_string, fields);
-                base.export_attribute (obj, "NoLoadTest", "EnergisedEnd", fields);
+                base.export_attribute (obj, "export_attribute", "NoLoadTest", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2077,7 +2221,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergisedEnd", "TransformerEndInfo", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2117,7 +2270,6 @@ define
                 base.parse_element (/<cim:OpenCircuitTest.phaseShift>([\s\S]*?)<\/cim:OpenCircuitTest.phaseShift>/g, obj, "phaseShift", base.to_string, sub, context);
                 base.parse_attribute (/<cim:OpenCircuitTest.OpenEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OpenEnd", sub, context);
                 base.parse_attribute (/<cim:OpenCircuitTest.EnergisedEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergisedEnd", sub, context);
-
                 var bucket = context.parsed.OpenCircuitTest;
                 if (null == bucket)
                    context.parsed.OpenCircuitTest = bucket = {};
@@ -2135,8 +2287,8 @@ define
                 base.export_element (obj, "OpenCircuitTest", "openEndStep", base.from_string, fields);
                 base.export_element (obj, "OpenCircuitTest", "openEndVoltage", base.from_string, fields);
                 base.export_element (obj, "OpenCircuitTest", "phaseShift", base.from_string, fields);
-                base.export_attribute (obj, "OpenCircuitTest", "OpenEnd", fields);
-                base.export_attribute (obj, "OpenCircuitTest", "EnergisedEnd", fields);
+                base.export_attribute (obj, "export_attribute", "OpenCircuitTest", fields);
+                base.export_attribute (obj, "export_attribute", "OpenCircuitTest", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2199,7 +2351,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["OpenEnd", "TransformerEndInfo", "1", "0..*"],
+                        ["EnergisedEnd", "TransformerEndInfo", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

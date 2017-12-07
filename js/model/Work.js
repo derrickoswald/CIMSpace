@@ -114,7 +114,6 @@ define
                 obj.cls = "WorkTimeSchedule";
                 base.parse_attribute (/<cim:WorkTimeSchedule.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:WorkTimeSchedule.BaseWork\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BaseWork", sub, context);
-
                 var bucket = context.parsed.WorkTimeSchedule;
                 if (null == bucket)
                    context.parsed.WorkTimeSchedule = bucket = {};
@@ -128,7 +127,7 @@ define
                 var fields = Common.TimeSchedule.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WorkTimeSchedule", "kind", base.from_string, fields);
-                base.export_attribute (obj, "WorkTimeSchedule", "BaseWork", fields);
+                base.export_attribute (obj, "export_attribute", "WorkTimeSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -183,7 +182,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BaseWork", "BaseWork", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -218,7 +226,7 @@ define
                 base.parse_element (/<cim:BaseWork.priority>([\s\S]*?)<\/cim:BaseWork.priority>/g, obj, "priority", base.to_string, sub, context);
                 base.parse_attribute (/<cim:BaseWork.statusKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "statusKind", sub, context);
                 base.parse_attribute (/<cim:BaseWork.WorkLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkLocation", sub, context);
-
+                base.parse_attributes (/<cim:BaseWork.TimeSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimeSchedules", sub, context);
                 var bucket = context.parsed.BaseWork;
                 if (null == bucket)
                    context.parsed.BaseWork = bucket = {};
@@ -234,7 +242,8 @@ define
                 base.export_element (obj, "BaseWork", "kind", base.from_string, fields);
                 base.export_element (obj, "BaseWork", "priority", base.from_string, fields);
                 base.export_element (obj, "BaseWork", "statusKind", base.from_string, fields);
-                base.export_attribute (obj, "BaseWork", "WorkLocation", fields);
+                base.export_attribute (obj, "export_attribute", "BaseWork", fields);
+                base.export_attribute (obj, "export_attributes", "BaseWork", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -256,6 +265,7 @@ define
                     {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
                     {{#statusKind}}<div><b>statusKind</b>: {{statusKind}}</div>{{/statusKind}}
                     {{#WorkLocation}}<div><b>WorkLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkLocation}}&quot;);})'>{{WorkLocation}}</a></div>{{/WorkLocation}}
+                    {{#TimeSchedules}}<div><b>TimeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimeSchedules}}
                     </div>
                     <fieldset>
 
@@ -268,6 +278,7 @@ define
                 super.condition (obj);
                 obj.WorkKind = []; if (!obj.kind) obj.WorkKind.push ({ id: '', selected: true}); for (var property in WorkKind) obj.WorkKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
                 obj.WorkStatusKind = []; if (!obj.statusKind) obj.WorkStatusKind.push ({ id: '', selected: true}); for (var property in WorkStatusKind) obj.WorkStatusKind.push ({ id: property, selected: obj.statusKind && obj.statusKind.endsWith ('.' + property)});
+                if (obj.TimeSchedules) obj.TimeSchedules_string = obj.TimeSchedules.join ();
             }
 
             uncondition (obj)
@@ -275,6 +286,7 @@ define
                 super.uncondition (obj);
                 delete obj.WorkKind;
                 delete obj.WorkStatusKind;
+                delete obj.TimeSchedules_string;
             }
 
             edit_template ()
@@ -295,7 +307,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WorkLocation", "WorkLocation", "0..1", "0..*"],
+                        ["TimeSchedules", "WorkTimeSchedule", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -327,7 +349,8 @@ define
                 obj = Common.Location.prototype.parse.call (this, context, sub);
                 obj.cls = "WorkLocation";
                 base.parse_attribute (/<cim:WorkLocation.OneCallRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OneCallRequest", sub, context);
-
+                base.parse_attributes (/<cim:WorkLocation.BaseWorks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BaseWorks", sub, context);
+                base.parse_attributes (/<cim:WorkLocation.DesignLocations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DesignLocations", sub, context);
                 var bucket = context.parsed.WorkLocation;
                 if (null == bucket)
                    context.parsed.WorkLocation = bucket = {};
@@ -340,7 +363,9 @@ define
             {
                 var fields = Common.Location.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WorkLocation", "OneCallRequest", fields);
+                base.export_attribute (obj, "export_attribute", "WorkLocation", fields);
+                base.export_attribute (obj, "export_attributes", "WorkLocation", fields);
+                base.export_attribute (obj, "export_attributes", "WorkLocation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -359,6 +384,8 @@ define
                     + Common.Location.prototype.template.call (this) +
                     `
                     {{#OneCallRequest}}<div><b>OneCallRequest</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OneCallRequest}}&quot;);})'>{{OneCallRequest}}</a></div>{{/OneCallRequest}}
+                    {{#BaseWorks}}<div><b>BaseWorks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BaseWorks}}
+                    {{#DesignLocations}}<div><b>DesignLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DesignLocations}}
                     </div>
                     <fieldset>
 
@@ -369,11 +396,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.BaseWorks) obj.BaseWorks_string = obj.BaseWorks.join ();
+                if (obj.DesignLocations) obj.DesignLocations_string = obj.DesignLocations.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.BaseWorks_string;
+                delete obj.DesignLocations_string;
             }
 
             edit_template ()
@@ -387,11 +418,23 @@ define
                     + Common.Location.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='OneCallRequest'>OneCallRequest: </label><div class='col-sm-8'><input id='OneCallRequest' class='form-control' type='text'{{#OneCallRequest}} value='{{OneCallRequest}}'{{/OneCallRequest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["OneCallRequest", "OneCallRequest", "0..1", "0..*"],
+                        ["BaseWorks", "BaseWork", "0..*", "0..1"],
+                        ["DesignLocations", "DesignLocation", "0..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -427,7 +470,6 @@ define
                 base.parse_element (/<cim:MaterialItem.quantity>([\s\S]*?)<\/cim:MaterialItem.quantity>/g, obj, "quantity", base.to_string, sub, context);
                 base.parse_attribute (/<cim:MaterialItem.TypeMaterial\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeMaterial", sub, context);
                 base.parse_attribute (/<cim:MaterialItem.WorkTask\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTask", sub, context);
-
                 var bucket = context.parsed.MaterialItem;
                 if (null == bucket)
                    context.parsed.MaterialItem = bucket = {};
@@ -441,8 +483,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MaterialItem", "quantity", base.from_string, fields);
-                base.export_attribute (obj, "MaterialItem", "TypeMaterial", fields);
-                base.export_attribute (obj, "MaterialItem", "WorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "MaterialItem", fields);
+                base.export_attribute (obj, "export_attribute", "MaterialItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -497,7 +539,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TypeMaterial", "TypeMaterial", "0..1", "0..*"],
+                        ["WorkTask", "WorkTask", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -529,7 +581,6 @@ define
                 obj = Assets.Asset.prototype.parse.call (this, context, sub);
                 obj.cls = "WorkAsset";
                 base.parse_attribute (/<cim:WorkAsset.Crew\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crew", sub, context);
-
                 var bucket = context.parsed.WorkAsset;
                 if (null == bucket)
                    context.parsed.WorkAsset = bucket = {};
@@ -542,7 +593,7 @@ define
             {
                 var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WorkAsset", "Crew", fields);
+                base.export_attribute (obj, "export_attribute", "WorkAsset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -593,7 +644,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Crew", "Crew", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         class WorkTask extends BaseWork
@@ -624,10 +684,12 @@ define
                 base.parse_element (/<cim:WorkTask.schedOverride>([\s\S]*?)<\/cim:WorkTask.schedOverride>/g, obj, "schedOverride", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WorkTask.taskKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "taskKind", sub, context);
                 base.parse_element (/<cim:WorkTask.crewETA>([\s\S]*?)<\/cim:WorkTask.crewETA>/g, obj, "crewETA", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:WorkTask.Crews\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crews", sub, context);
+                base.parse_attributes (/<cim:WorkTask.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
                 base.parse_attribute (/<cim:WorkTask.Work\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Work", sub, context);
+                base.parse_attributes (/<cim:WorkTask.MaterialItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MaterialItems", sub, context);
                 base.parse_attribute (/<cim:WorkTask.OldAsset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OldAsset", sub, context);
                 base.parse_attribute (/<cim:WorkTask.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingPlan", sub, context);
-
                 var bucket = context.parsed.WorkTask;
                 if (null == bucket)
                    context.parsed.WorkTask = bucket = {};
@@ -644,9 +706,12 @@ define
                 base.export_element (obj, "WorkTask", "schedOverride", base.from_string, fields);
                 base.export_element (obj, "WorkTask", "taskKind", base.from_string, fields);
                 base.export_element (obj, "WorkTask", "crewETA", base.from_datetime, fields);
-                base.export_attribute (obj, "WorkTask", "Work", fields);
-                base.export_attribute (obj, "WorkTask", "OldAsset", fields);
-                base.export_attribute (obj, "WorkTask", "SwitchingPlan", fields);
+                base.export_attribute (obj, "export_attributes", "WorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "WorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "WorkTask", fields);
+                base.export_attribute (obj, "export_attributes", "WorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "WorkTask", fields);
+                base.export_attribute (obj, "export_attribute", "WorkTask", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -668,7 +733,10 @@ define
                     {{#schedOverride}}<div><b>schedOverride</b>: {{schedOverride}}</div>{{/schedOverride}}
                     {{#taskKind}}<div><b>taskKind</b>: {{taskKind}}</div>{{/taskKind}}
                     {{#crewETA}}<div><b>crewETA</b>: {{crewETA}}</div>{{/crewETA}}
+                    {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Crews}}
+                    {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Assets}}
                     {{#Work}}<div><b>Work</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Work}}&quot;);})'>{{Work}}</a></div>{{/Work}}
+                    {{#MaterialItems}}<div><b>MaterialItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MaterialItems}}
                     {{#OldAsset}}<div><b>OldAsset</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OldAsset}}&quot;);})'>{{OldAsset}}</a></div>{{/OldAsset}}
                     {{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingPlan}}&quot;);})'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
                     </div>
@@ -682,12 +750,18 @@ define
             {
                 super.condition (obj);
                 obj.WorkTaskKind = []; if (!obj.taskKind) obj.WorkTaskKind.push ({ id: '', selected: true}); for (var property in WorkTaskKind) obj.WorkTaskKind.push ({ id: property, selected: obj.taskKind && obj.taskKind.endsWith ('.' + property)});
+                if (obj.Crews) obj.Crews_string = obj.Crews.join ();
+                if (obj.Assets) obj.Assets_string = obj.Assets.join ();
+                if (obj.MaterialItems) obj.MaterialItems_string = obj.MaterialItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.WorkTaskKind;
+                delete obj.Crews_string;
+                delete obj.Assets_string;
+                delete obj.MaterialItems_string;
             }
 
             edit_template ()
@@ -704,6 +778,8 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='schedOverride'>schedOverride: </label><div class='col-sm-8'><input id='schedOverride' class='form-control' type='text'{{#schedOverride}} value='{{schedOverride}}'{{/schedOverride}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='taskKind'>taskKind: </label><div class='col-sm-8'><select id='taskKind' class='form-control'>{{#WorkTaskKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkTaskKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='crewETA'>crewETA: </label><div class='col-sm-8'><input id='crewETA' class='form-control' type='text'{{#crewETA}} value='{{crewETA}}'{{/crewETA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crews'>Crews: </label><div class='col-sm-8'><input id='Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Assets'>Assets: </label><div class='col-sm-8'><input id='Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Work'>Work: </label><div class='col-sm-8'><input id='Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='OldAsset'>OldAsset: </label><div class='col-sm-8'><input id='OldAsset' class='form-control' type='text'{{#OldAsset}} value='{{OldAsset}}'{{/OldAsset}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingPlan'>SwitchingPlan: </label><div class='col-sm-8'><input id='SwitchingPlan' class='form-control' type='text'{{#SwitchingPlan}} value='{{SwitchingPlan}}'{{/SwitchingPlan}}></div></div>
@@ -711,7 +787,21 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Crews", "Crew", "0..*", "0..*"],
+                        ["Assets", "Asset", "0..*", "0..*"],
+                        ["Work", "Work", "1", "0..*"],
+                        ["MaterialItems", "MaterialItem", "0..*", "0..1"],
+                        ["OldAsset", "Asset", "0..1", "0..*"],
+                        ["SwitchingPlan", "SwitchingPlan", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -743,11 +833,17 @@ define
                 obj = BaseWork.prototype.parse.call (this, context, sub);
                 obj.cls = "Work";
                 base.parse_element (/<cim:Work.requestDateTime>([\s\S]*?)<\/cim:Work.requestDateTime>/g, obj, "requestDateTime", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:Work.Appointments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Appointments", sub, context);
+                base.parse_attributes (/<cim:Work.Designs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Designs", sub, context);
+                base.parse_attributes (/<cim:Work.Customers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Customers", sub, context);
+                base.parse_attributes (/<cim:Work.WorkFlowSteps\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkFlowSteps", sub, context);
                 base.parse_attribute (/<cim:Work.WorkBillingInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkBillingInfo", sub, context);
                 base.parse_attribute (/<cim:Work.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Project", sub, context);
+                base.parse_attributes (/<cim:Work.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
+                base.parse_attributes (/<cim:Work.Incidents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Incidents", sub, context);
                 base.parse_attribute (/<cim:Work.BusinessCase\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BusinessCase", sub, context);
+                base.parse_attributes (/<cim:Work.WorkCostDetails\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkCostDetails", sub, context);
                 base.parse_attribute (/<cim:Work.ErpProjectAccounting\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpProjectAccounting", sub, context);
-
                 var bucket = context.parsed.Work;
                 if (null == bucket)
                    context.parsed.Work = bucket = {};
@@ -761,10 +857,17 @@ define
                 var fields = BaseWork.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Work", "requestDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "Work", "WorkBillingInfo", fields);
-                base.export_attribute (obj, "Work", "Project", fields);
-                base.export_attribute (obj, "Work", "BusinessCase", fields);
-                base.export_attribute (obj, "Work", "ErpProjectAccounting", fields);
+                base.export_attribute (obj, "export_attributes", "Work", fields);
+                base.export_attribute (obj, "export_attributes", "Work", fields);
+                base.export_attribute (obj, "export_attributes", "Work", fields);
+                base.export_attribute (obj, "export_attributes", "Work", fields);
+                base.export_attribute (obj, "export_attribute", "Work", fields);
+                base.export_attribute (obj, "export_attribute", "Work", fields);
+                base.export_attribute (obj, "export_attributes", "Work", fields);
+                base.export_attribute (obj, "export_attributes", "Work", fields);
+                base.export_attribute (obj, "export_attribute", "Work", fields);
+                base.export_attribute (obj, "export_attributes", "Work", fields);
+                base.export_attribute (obj, "export_attribute", "Work", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -783,9 +886,16 @@ define
                     + BaseWork.prototype.template.call (this) +
                     `
                     {{#requestDateTime}}<div><b>requestDateTime</b>: {{requestDateTime}}</div>{{/requestDateTime}}
+                    {{#Appointments}}<div><b>Appointments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Appointments}}
+                    {{#Designs}}<div><b>Designs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Designs}}
+                    {{#Customers}}<div><b>Customers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Customers}}
+                    {{#WorkFlowSteps}}<div><b>WorkFlowSteps</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkFlowSteps}}
                     {{#WorkBillingInfo}}<div><b>WorkBillingInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WorkBillingInfo}}&quot;);})'>{{WorkBillingInfo}}</a></div>{{/WorkBillingInfo}}
                     {{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
+                    {{#Incidents}}<div><b>Incidents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Incidents}}
                     {{#BusinessCase}}<div><b>BusinessCase</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusinessCase}}&quot;);})'>{{BusinessCase}}</a></div>{{/BusinessCase}}
+                    {{#WorkCostDetails}}<div><b>WorkCostDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkCostDetails}}
                     {{#ErpProjectAccounting}}<div><b>ErpProjectAccounting</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpProjectAccounting}}&quot;);})'>{{ErpProjectAccounting}}</a></div>{{/ErpProjectAccounting}}
                     </div>
                     <fieldset>
@@ -797,11 +907,25 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Appointments) obj.Appointments_string = obj.Appointments.join ();
+                if (obj.Designs) obj.Designs_string = obj.Designs.join ();
+                if (obj.Customers) obj.Customers_string = obj.Customers.join ();
+                if (obj.WorkFlowSteps) obj.WorkFlowSteps_string = obj.WorkFlowSteps.join ();
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
+                if (obj.Incidents) obj.Incidents_string = obj.Incidents.join ();
+                if (obj.WorkCostDetails) obj.WorkCostDetails_string = obj.WorkCostDetails.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Appointments_string;
+                delete obj.Designs_string;
+                delete obj.Customers_string;
+                delete obj.WorkFlowSteps_string;
+                delete obj.WorkTasks_string;
+                delete obj.Incidents_string;
+                delete obj.WorkCostDetails_string;
             }
 
             edit_template ()
@@ -815,15 +939,38 @@ define
                     + BaseWork.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='requestDateTime'>requestDateTime: </label><div class='col-sm-8'><input id='requestDateTime' class='form-control' type='text'{{#requestDateTime}} value='{{requestDateTime}}'{{/requestDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Appointments'>Appointments: </label><div class='col-sm-8'><input id='Appointments' class='form-control' type='text'{{#Appointments}} value='{{Appointments}}_string'{{/Appointments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Customers'>Customers: </label><div class='col-sm-8'><input id='Customers' class='form-control' type='text'{{#Customers}} value='{{Customers}}_string'{{/Customers}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkBillingInfo'>WorkBillingInfo: </label><div class='col-sm-8'><input id='WorkBillingInfo' class='form-control' type='text'{{#WorkBillingInfo}} value='{{WorkBillingInfo}}'{{/WorkBillingInfo}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Project'>Project: </label><div class='col-sm-8'><input id='Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Incidents'>Incidents: </label><div class='col-sm-8'><input id='Incidents' class='form-control' type='text'{{#Incidents}} value='{{Incidents}}_string'{{/Incidents}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='BusinessCase'>BusinessCase: </label><div class='col-sm-8'><input id='BusinessCase' class='form-control' type='text'{{#BusinessCase}} value='{{BusinessCase}}'{{/BusinessCase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails}}_string'{{/WorkCostDetails}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Appointments", "Appointment", "0..*", "0..*"],
+                        ["Designs", "Design", "0..*", "0..1"],
+                        ["Customers", "Customer", "0..*", "0..*"],
+                        ["WorkFlowSteps", "WorkFlowStep", "0..*", "0..1"],
+                        ["WorkBillingInfo", "WorkBillingInfo", "0..1", "0..*"],
+                        ["Project", "Project", "0..1", "0..*"],
+                        ["WorkTasks", "WorkTask", "0..*", "1"],
+                        ["Incidents", "Incident", "0..*", "0..*"],
+                        ["BusinessCase", "BusinessCase", "0..1", "0..*"],
+                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..*"],
+                        ["ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -858,7 +1005,6 @@ define
                 base.parse_element (/<cim:MaintenanceLocation.lot>([\s\S]*?)<\/cim:MaintenanceLocation.lot>/g, obj, "lot", base.to_string, sub, context);
                 base.parse_element (/<cim:MaintenanceLocation.nearestIntersection>([\s\S]*?)<\/cim:MaintenanceLocation.nearestIntersection>/g, obj, "nearestIntersection", base.to_string, sub, context);
                 base.parse_element (/<cim:MaintenanceLocation.subdivision>([\s\S]*?)<\/cim:MaintenanceLocation.subdivision>/g, obj, "subdivision", base.to_string, sub, context);
-
                 var bucket = context.parsed.MaintenanceLocation;
                 if (null == bucket)
                    context.parsed.MaintenanceLocation = bucket = {};
@@ -931,7 +1077,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -965,7 +1111,6 @@ define
                 base.parse_element (/<cim:Vehicle.odometerReadDateTime>([\s\S]*?)<\/cim:Vehicle.odometerReadDateTime>/g, obj, "odometerReadDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Vehicle.odometerReading>([\s\S]*?)<\/cim:Vehicle.odometerReading>/g, obj, "odometerReading", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Vehicle.usageKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "usageKind", sub, context);
-
                 var bucket = context.parsed.Vehicle;
                 if (null == bucket)
                    context.parsed.Vehicle = bucket = {};
@@ -1037,7 +1182,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1069,7 +1214,6 @@ define
                 obj = WorkAsset.prototype.parse.call (this, context, sub);
                 obj.cls = "Tool";
                 base.parse_element (/<cim:Tool.lastCalibrationDate>([\s\S]*?)<\/cim:Tool.lastCalibrationDate>/g, obj, "lastCalibrationDate", base.to_string, sub, context);
-
                 var bucket = context.parsed.Tool;
                 if (null == bucket)
                    context.parsed.Tool = bucket = {};
@@ -1133,7 +1277,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

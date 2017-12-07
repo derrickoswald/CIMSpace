@@ -50,7 +50,6 @@ define
                 base.parse_element (/<cim:GeneratorTypeAsset.xQuadSubtrans>([\s\S]*?)<\/cim:GeneratorTypeAsset.xQuadSubtrans>/g, obj, "xQuadSubtrans", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratorTypeAsset.xQuadSync>([\s\S]*?)<\/cim:GeneratorTypeAsset.xQuadSync>/g, obj, "xQuadSync", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratorTypeAsset.xQuadTrans>([\s\S]*?)<\/cim:GeneratorTypeAsset.xQuadTrans>/g, obj, "xQuadTrans", base.to_string, sub, context);
-
                 var bucket = context.parsed.GeneratorTypeAsset;
                 if (null == bucket)
                    context.parsed.GeneratorTypeAsset = bucket = {};
@@ -159,7 +158,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -193,7 +192,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "TypeAssetCatalogue";
                 base.parse_element (/<cim:TypeAssetCatalogue.status>([\s\S]*?)<\/cim:TypeAssetCatalogue.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:TypeAssetCatalogue.TypeAssets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TypeAssets", sub, context);
                 var bucket = context.parsed.TypeAssetCatalogue;
                 if (null == bucket)
                    context.parsed.TypeAssetCatalogue = bucket = {};
@@ -207,6 +206,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TypeAssetCatalogue", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "TypeAssetCatalogue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -225,6 +225,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#TypeAssets}}<div><b>TypeAssets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TypeAssets}}
                     </div>
                     <fieldset>
 
@@ -235,11 +236,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TypeAssets) obj.TypeAssets_string = obj.TypeAssets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TypeAssets_string;
             }
 
             edit_template ()
@@ -257,7 +260,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TypeAssets", "GenericAssetModelOrMaterial", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

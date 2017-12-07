@@ -90,7 +90,8 @@ define
                 base.parse_attribute (/<cim:SynchronousMachineDynamics.MechanicalLoadDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MechanicalLoadDynamics", sub, context);
                 base.parse_attribute (/<cim:SynchronousMachineDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
                 base.parse_attribute (/<cim:SynchronousMachineDynamics.SynchronousMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachine", sub, context);
-
+                base.parse_attributes (/<cim:SynchronousMachineDynamics.GenICompensationForGenJ\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenICompensationForGenJ", sub, context);
+                base.parse_attributes (/<cim:SynchronousMachineDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context);
                 var bucket = context.parsed.SynchronousMachineDynamics;
                 if (null == bucket)
                    context.parsed.SynchronousMachineDynamics = bucket = {};
@@ -103,9 +104,11 @@ define
             {
                 var fields = StandardModels.RotatingMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "SynchronousMachineDynamics", "MechanicalLoadDynamics", fields);
-                base.export_attribute (obj, "SynchronousMachineDynamics", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "SynchronousMachineDynamics", "SynchronousMachine", fields);
+                base.export_attribute (obj, "export_attribute", "SynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "SynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "SynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attributes", "SynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attributes", "SynchronousMachineDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -126,6 +129,8 @@ define
                     {{#MechanicalLoadDynamics}}<div><b>MechanicalLoadDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MechanicalLoadDynamics}}&quot;);})'>{{MechanicalLoadDynamics}}</a></div>{{/MechanicalLoadDynamics}}
                     {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
                     {{#SynchronousMachine}}<div><b>SynchronousMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SynchronousMachine}}&quot;);})'>{{SynchronousMachine}}</a></div>{{/SynchronousMachine}}
+                    {{#GenICompensationForGenJ}}<div><b>GenICompensationForGenJ</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GenICompensationForGenJ}}
+                    {{#TurbineGovernorDynamics}}<div><b>TurbineGovernorDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TurbineGovernorDynamics}}
                     </div>
                     <fieldset>
 
@@ -136,11 +141,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GenICompensationForGenJ) obj.GenICompensationForGenJ_string = obj.GenICompensationForGenJ.join ();
+                if (obj.TurbineGovernorDynamics) obj.TurbineGovernorDynamics_string = obj.TurbineGovernorDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GenICompensationForGenJ_string;
+                delete obj.TurbineGovernorDynamics_string;
             }
 
             edit_template ()
@@ -156,11 +165,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MechanicalLoadDynamics'>MechanicalLoadDynamics: </label><div class='col-sm-8'><input id='MechanicalLoadDynamics' class='form-control' type='text'{{#MechanicalLoadDynamics}} value='{{MechanicalLoadDynamics}}'{{/MechanicalLoadDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachine'>SynchronousMachine: </label><div class='col-sm-8'><input id='SynchronousMachine' class='form-control' type='text'{{#SynchronousMachine}} value='{{SynchronousMachine}}'{{/SynchronousMachine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics}}_string'{{/TurbineGovernorDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"],
+                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "0..1", "1"],
+                        ["SynchronousMachine", "SynchronousMachine", "1", "0..1"],
+                        ["GenICompensationForGenJ", "GenICompensationForGenJ", "0..*", "1"],
+                        ["TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -197,7 +220,6 @@ define
                 base.parse_attribute (/<cim:SynchronousMachineDetailed.ifdBaseType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ifdBaseType", sub, context);
                 base.parse_element (/<cim:SynchronousMachineDetailed.saturationFactor120QAxis>([\s\S]*?)<\/cim:SynchronousMachineDetailed.saturationFactor120QAxis>/g, obj, "saturationFactor120QAxis", base.to_float, sub, context);
                 base.parse_element (/<cim:SynchronousMachineDetailed.saturationFactorQAxis>([\s\S]*?)<\/cim:SynchronousMachineDetailed.saturationFactorQAxis>/g, obj, "saturationFactorQAxis", base.to_float, sub, context);
-
                 var bucket = context.parsed.SynchronousMachineDetailed;
                 if (null == bucket)
                    context.parsed.SynchronousMachineDetailed = bucket = {};
@@ -272,7 +294,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -340,7 +362,6 @@ define
                 base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xaq>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xaq>/g, obj, "xaq", base.to_string, sub, context);
                 base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xf1d>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xf1d>/g, obj, "xf1d", base.to_string, sub, context);
                 base.parse_element (/<cim:SynchronousMachineEquivalentCircuit.xfd>([\s\S]*?)<\/cim:SynchronousMachineEquivalentCircuit.xfd>/g, obj, "xfd", base.to_string, sub, context);
-
                 var bucket = context.parsed.SynchronousMachineEquivalentCircuit;
                 if (null == bucket)
                    context.parsed.SynchronousMachineEquivalentCircuit = bucket = {};
@@ -434,7 +455,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -467,7 +488,6 @@ define
 
                 obj = SynchronousMachineDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "SynchronousMachineSimplified";
-
                 var bucket = context.parsed.SynchronousMachineSimplified;
                 if (null == bucket)
                    context.parsed.SynchronousMachineSimplified = bucket = {};
@@ -528,7 +548,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -607,7 +627,6 @@ define
                 base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadSubtrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadSubtrans>/g, obj, "xQuadSubtrans", base.to_string, sub, context);
                 base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadSync>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadSync>/g, obj, "xQuadSync", base.to_string, sub, context);
                 base.parse_element (/<cim:SynchronousMachineTimeConstantReactance.xQuadTrans>([\s\S]*?)<\/cim:SynchronousMachineTimeConstantReactance.xQuadTrans>/g, obj, "xQuadTrans", base.to_string, sub, context);
-
                 var bucket = context.parsed.SynchronousMachineTimeConstantReactance;
                 if (null == bucket)
                    context.parsed.SynchronousMachineTimeConstantReactance = bucket = {};
@@ -714,7 +733,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

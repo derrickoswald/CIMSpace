@@ -38,7 +38,6 @@ define
                 obj.cls = "IEC61970CIMVersion";
                 base.parse_element (/<cim:IEC61970CIMVersion.date>([\s\S]*?)<\/cim:IEC61970CIMVersion.date>/g, obj, "date", base.to_string, sub, context);
                 base.parse_element (/<cim:IEC61970CIMVersion.version>([\s\S]*?)<\/cim:IEC61970CIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-
                 var bucket = context.parsed.IEC61970CIMVersion;
                 if (null == bucket)
                    context.parsed.IEC61970CIMVersion = bucket = {};
@@ -105,7 +104,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

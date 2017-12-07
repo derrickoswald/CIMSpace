@@ -41,7 +41,6 @@ define
                 base.parse_element (/<cim:TemperatureDependentLimitPoint.limitPercent>([\s\S]*?)<\/cim:TemperatureDependentLimitPoint.limitPercent>/g, obj, "limitPercent", base.to_string, sub, context);
                 base.parse_element (/<cim:TemperatureDependentLimitPoint.temperature>([\s\S]*?)<\/cim:TemperatureDependentLimitPoint.temperature>/g, obj, "temperature", base.to_string, sub, context);
                 base.parse_attribute (/<cim:TemperatureDependentLimitPoint.TemperatureDependentLimitTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TemperatureDependentLimitTable", sub, context);
-
                 var bucket = context.parsed.TemperatureDependentLimitPoint;
                 if (null == bucket)
                    context.parsed.TemperatureDependentLimitPoint = bucket = {};
@@ -56,7 +55,7 @@ define
 
                 base.export_element (obj, "TemperatureDependentLimitPoint", "limitPercent", base.from_string, fields);
                 base.export_element (obj, "TemperatureDependentLimitPoint", "temperature", base.from_string, fields);
-                base.export_attribute (obj, "TemperatureDependentLimitPoint", "TemperatureDependentLimitTable", fields);
+                base.export_attribute (obj, "export_attribute", "TemperatureDependentLimitPoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -111,7 +110,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TemperatureDependentLimitTable", "TemperatureDependentLimitTable", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -147,7 +155,6 @@ define
                 base.parse_element (/<cim:OperatonalLimitTypeScaling.scalingPercent>([\s\S]*?)<\/cim:OperatonalLimitTypeScaling.scalingPercent>/g, obj, "scalingPercent", base.to_string, sub, context);
                 base.parse_attribute (/<cim:OperatonalLimitTypeScaling.SourceOperationalLimitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SourceOperationalLimitType", sub, context);
                 base.parse_attribute (/<cim:OperatonalLimitTypeScaling.TargetOperationalLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TargetOperationalLimit", sub, context);
-
                 var bucket = context.parsed.OperatonalLimitTypeScaling;
                 if (null == bucket)
                    context.parsed.OperatonalLimitTypeScaling = bucket = {};
@@ -161,8 +168,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "OperatonalLimitTypeScaling", "scalingPercent", base.from_string, fields);
-                base.export_attribute (obj, "OperatonalLimitTypeScaling", "SourceOperationalLimitType", fields);
-                base.export_attribute (obj, "OperatonalLimitTypeScaling", "TargetOperationalLimit", fields);
+                base.export_attribute (obj, "export_attribute", "OperatonalLimitTypeScaling", fields);
+                base.export_attribute (obj, "export_attribute", "OperatonalLimitTypeScaling", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -217,7 +224,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SourceOperationalLimitType", "OperationalLimitType", "0..1", "0..*"],
+                        ["TargetOperationalLimit", "OperationalLimitType", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -250,7 +267,6 @@ define
                 obj.cls = "ScheduledLimitValue";
                 base.parse_attribute (/<cim:ScheduledLimitValue.Season\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Season", sub, context);
                 base.parse_attribute (/<cim:ScheduledLimitValue.ScheduledLimitDependency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ScheduledLimitDependency", sub, context);
-
                 var bucket = context.parsed.ScheduledLimitValue;
                 if (null == bucket)
                    context.parsed.ScheduledLimitValue = bucket = {};
@@ -263,8 +279,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ScheduledLimitValue", "Season", fields);
-                base.export_attribute (obj, "ScheduledLimitValue", "ScheduledLimitDependency", fields);
+                base.export_attribute (obj, "export_attribute", "ScheduledLimitValue", fields);
+                base.export_attribute (obj, "export_attribute", "ScheduledLimitValue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -317,7 +333,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Season", "Season", "0..1", "0..*"],
+                        ["ScheduledLimitDependency", "ScheduledLimitDependency", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -348,7 +374,7 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "WeatherStation";
-
+                base.parse_attributes (/<cim:WeatherStation.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
                 var bucket = context.parsed.WeatherStation;
                 if (null == bucket)
                    context.parsed.WeatherStation = bucket = {};
@@ -361,6 +387,7 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "WeatherStation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -378,6 +405,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
+                    {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Equipment}}
                     </div>
                     <fieldset>
 
@@ -388,11 +416,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Equipment) obj.Equipment_string = obj.Equipment.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Equipment_string;
             }
 
             edit_template ()
@@ -405,11 +435,21 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}_string'{{/Equipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Equipment", "Equipment", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -443,7 +483,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "LimitDependency";
                 base.parse_attribute (/<cim:LimitDependency.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
-
+                base.parse_attributes (/<cim:LimitDependency.OperationalLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationalLimit", sub, context);
                 var bucket = context.parsed.LimitDependency;
                 if (null == bucket)
                    context.parsed.LimitDependency = bucket = {};
@@ -456,7 +496,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "LimitDependency", "Equipment", fields);
+                base.export_attribute (obj, "export_attribute", "LimitDependency", fields);
+                base.export_attribute (obj, "export_attributes", "LimitDependency", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -475,6 +516,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#Equipment}}<div><b>Equipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Equipment}}&quot;);})'>{{Equipment}}</a></div>{{/Equipment}}
+                    {{#OperationalLimit}}<div><b>OperationalLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperationalLimit}}
                     </div>
                     <fieldset>
 
@@ -485,11 +527,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.OperationalLimit) obj.OperationalLimit_string = obj.OperationalLimit.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.OperationalLimit_string;
             }
 
             edit_template ()
@@ -503,11 +547,22 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperationalLimit'>OperationalLimit: </label><div class='col-sm-8'><input id='OperationalLimit' class='form-control' type='text'{{#OperationalLimit}} value='{{OperationalLimit}}_string'{{/OperationalLimit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Equipment", "Equipment", "0..1", "0..*"],
+                        ["OperationalLimit", "OperationalLimit", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -540,7 +595,6 @@ define
                 obj.cls = "EquipmentLimitSeriesComponent";
                 base.parse_attribute (/<cim:EquipmentLimitSeriesComponent.SeriesEquipmentDependentLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SeriesEquipmentDependentLimit", sub, context);
                 base.parse_attribute (/<cim:EquipmentLimitSeriesComponent.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
-
                 var bucket = context.parsed.EquipmentLimitSeriesComponent;
                 if (null == bucket)
                    context.parsed.EquipmentLimitSeriesComponent = bucket = {};
@@ -553,8 +607,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "EquipmentLimitSeriesComponent", "SeriesEquipmentDependentLimit", fields);
-                base.export_attribute (obj, "EquipmentLimitSeriesComponent", "Equipment", fields);
+                base.export_attribute (obj, "export_attribute", "EquipmentLimitSeriesComponent", fields);
+                base.export_attribute (obj, "export_attribute", "EquipmentLimitSeriesComponent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -607,7 +661,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SeriesEquipmentDependentLimit", "SeriesEquipmentDependentLimit", "1", "0..*"],
+                        ["Equipment", "Equipment", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -639,7 +703,6 @@ define
                 obj = ScheduledLimitValue.prototype.parse.call (this, context, sub);
                 obj.cls = "ScheduledCurrentLimitValue";
                 base.parse_element (/<cim:ScheduledCurrentLimitValue.value>([\s\S]*?)<\/cim:ScheduledCurrentLimitValue.value>/g, obj, "value", base.to_string, sub, context);
-
                 var bucket = context.parsed.ScheduledCurrentLimitValue;
                 if (null == bucket)
                    context.parsed.ScheduledCurrentLimitValue = bucket = {};
@@ -703,7 +766,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -735,7 +798,6 @@ define
                 obj = ScheduledLimitValue.prototype.parse.call (this, context, sub);
                 obj.cls = "ScheduledVoltageLimitValue";
                 base.parse_element (/<cim:ScheduledVoltageLimitValue.value>([\s\S]*?)<\/cim:ScheduledVoltageLimitValue.value>/g, obj, "value", base.to_string, sub, context);
-
                 var bucket = context.parsed.ScheduledVoltageLimitValue;
                 if (null == bucket)
                    context.parsed.ScheduledVoltageLimitValue = bucket = {};
@@ -799,7 +861,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class ScheduledActivePowerLimitValue extends ScheduledLimitValue
@@ -827,7 +889,6 @@ define
                 obj = ScheduledLimitValue.prototype.parse.call (this, context, sub);
                 obj.cls = "ScheduledActivePowerLimitValue";
                 base.parse_element (/<cim:ScheduledActivePowerLimitValue.value>([\s\S]*?)<\/cim:ScheduledActivePowerLimitValue.value>/g, obj, "value", base.to_string, sub, context);
-
                 var bucket = context.parsed.ScheduledActivePowerLimitValue;
                 if (null == bucket)
                    context.parsed.ScheduledActivePowerLimitValue = bucket = {};
@@ -891,7 +952,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -923,7 +984,6 @@ define
                 obj = ScheduledLimitValue.prototype.parse.call (this, context, sub);
                 obj.cls = "ScheduledApparentPowerLimitValue";
                 base.parse_element (/<cim:ScheduledApparentPowerLimitValue.value>([\s\S]*?)<\/cim:ScheduledApparentPowerLimitValue.value>/g, obj, "value", base.to_string, sub, context);
-
                 var bucket = context.parsed.ScheduledApparentPowerLimitValue;
                 if (null == bucket)
                    context.parsed.ScheduledApparentPowerLimitValue = bucket = {};
@@ -987,7 +1047,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1020,7 +1080,6 @@ define
                 obj.cls = "LimitScalingLimit";
                 base.parse_element (/<cim:LimitScalingLimit.limitScalingPercent>([\s\S]*?)<\/cim:LimitScalingLimit.limitScalingPercent>/g, obj, "limitScalingPercent", base.to_string, sub, context);
                 base.parse_attribute (/<cim:LimitScalingLimit.SourceOperationalLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SourceOperationalLimit", sub, context);
-
                 var bucket = context.parsed.LimitScalingLimit;
                 if (null == bucket)
                    context.parsed.LimitScalingLimit = bucket = {};
@@ -1034,7 +1093,7 @@ define
                 var fields = LimitDependency.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LimitScalingLimit", "limitScalingPercent", base.from_string, fields);
-                base.export_attribute (obj, "LimitScalingLimit", "SourceOperationalLimit", fields);
+                base.export_attribute (obj, "export_attribute", "LimitScalingLimit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1087,7 +1146,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SourceOperationalLimit", "OperationalLimit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1118,7 +1186,6 @@ define
 
                 obj = LimitDependency.prototype.parse.call (this, context, sub);
                 obj.cls = "EnvironmentalDependentLimit";
-
                 var bucket = context.parsed.EnvironmentalDependentLimit;
                 if (null == bucket)
                    context.parsed.EnvironmentalDependentLimit = bucket = {};
@@ -1179,7 +1246,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class ScheduledLimitDependency extends LimitDependency
@@ -1206,7 +1273,7 @@ define
 
                 obj = LimitDependency.prototype.parse.call (this, context, sub);
                 obj.cls = "ScheduledLimitDependency";
-
+                base.parse_attributes (/<cim:ScheduledLimitDependency.ScheduledLimitValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ScheduledLimitValues", sub, context);
                 var bucket = context.parsed.ScheduledLimitDependency;
                 if (null == bucket)
                    context.parsed.ScheduledLimitDependency = bucket = {};
@@ -1219,6 +1286,7 @@ define
             {
                 var fields = LimitDependency.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ScheduledLimitDependency", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1236,6 +1304,7 @@ define
                     `
                     + LimitDependency.prototype.template.call (this) +
                     `
+                    {{#ScheduledLimitValues}}<div><b>ScheduledLimitValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ScheduledLimitValues}}
                     </div>
                     <fieldset>
 
@@ -1246,11 +1315,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ScheduledLimitValues) obj.ScheduledLimitValues_string = obj.ScheduledLimitValues.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ScheduledLimitValues_string;
             }
 
             edit_template ()
@@ -1267,7 +1338,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ScheduledLimitValues", "ScheduledLimitValue", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1300,7 +1380,7 @@ define
 
                 obj = LimitDependency.prototype.parse.call (this, context, sub);
                 obj.cls = "SeriesEquipmentDependentLimit";
-
+                base.parse_attributes (/<cim:SeriesEquipmentDependentLimit.EquipmentLimitSeriesComponent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquipmentLimitSeriesComponent", sub, context);
                 var bucket = context.parsed.SeriesEquipmentDependentLimit;
                 if (null == bucket)
                    context.parsed.SeriesEquipmentDependentLimit = bucket = {};
@@ -1313,6 +1393,7 @@ define
             {
                 var fields = LimitDependency.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "SeriesEquipmentDependentLimit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1330,6 +1411,7 @@ define
                     `
                     + LimitDependency.prototype.template.call (this) +
                     `
+                    {{#EquipmentLimitSeriesComponent}}<div><b>EquipmentLimitSeriesComponent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EquipmentLimitSeriesComponent}}
                     </div>
                     <fieldset>
 
@@ -1340,11 +1422,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EquipmentLimitSeriesComponent) obj.EquipmentLimitSeriesComponent_string = obj.EquipmentLimitSeriesComponent.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EquipmentLimitSeriesComponent_string;
             }
 
             edit_template ()
@@ -1361,7 +1445,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EquipmentLimitSeriesComponent", "EquipmentLimitSeriesComponent", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1397,7 +1490,6 @@ define
                 base.parse_element (/<cim:TemperaturePolynomialLimit.coefficient2>([\s\S]*?)<\/cim:TemperaturePolynomialLimit.coefficient2>/g, obj, "coefficient2", base.to_float, sub, context);
                 base.parse_element (/<cim:TemperaturePolynomialLimit.coefficient3>([\s\S]*?)<\/cim:TemperaturePolynomialLimit.coefficient3>/g, obj, "coefficient3", base.to_float, sub, context);
                 base.parse_element (/<cim:TemperaturePolynomialLimit.coefficient4>([\s\S]*?)<\/cim:TemperaturePolynomialLimit.coefficient4>/g, obj, "coefficient4", base.to_float, sub, context);
-
                 var bucket = context.parsed.TemperaturePolynomialLimit;
                 if (null == bucket)
                    context.parsed.TemperaturePolynomialLimit = bucket = {};
@@ -1473,7 +1565,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1504,7 +1596,7 @@ define
 
                 obj = EnvironmentalDependentLimit.prototype.parse.call (this, context, sub);
                 obj.cls = "TemperatureDependentLimitTable";
-
+                base.parse_attributes (/<cim:TemperatureDependentLimitTable.TemperatureLimitTablePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TemperatureLimitTablePoint", sub, context);
                 var bucket = context.parsed.TemperatureDependentLimitTable;
                 if (null == bucket)
                    context.parsed.TemperatureDependentLimitTable = bucket = {};
@@ -1517,6 +1609,7 @@ define
             {
                 var fields = EnvironmentalDependentLimit.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "TemperatureDependentLimitTable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1534,6 +1627,7 @@ define
                     `
                     + EnvironmentalDependentLimit.prototype.template.call (this) +
                     `
+                    {{#TemperatureLimitTablePoint}}<div><b>TemperatureLimitTablePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TemperatureLimitTablePoint}}
                     </div>
                     <fieldset>
 
@@ -1544,11 +1638,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TemperatureLimitTablePoint) obj.TemperatureLimitTablePoint_string = obj.TemperatureLimitTablePoint.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TemperatureLimitTablePoint_string;
             }
 
             edit_template ()
@@ -1565,7 +1661,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TemperatureLimitTablePoint", "TemperatureDependentLimitPoint", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         return (

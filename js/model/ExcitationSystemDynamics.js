@@ -109,7 +109,6 @@ define
                 base.parse_attribute (/<cim:ExcitationSystemDynamics.VoltageCompensatorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageCompensatorDynamics", sub, context);
                 base.parse_attribute (/<cim:ExcitationSystemDynamics.OverexcitationLimiterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OverexcitationLimiterDynamics", sub, context);
                 base.parse_attribute (/<cim:ExcitationSystemDynamics.PFVArControllerType2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType2Dynamics", sub, context);
-
                 var bucket = context.parsed.ExcitationSystemDynamics;
                 if (null == bucket)
                    context.parsed.ExcitationSystemDynamics = bucket = {};
@@ -122,14 +121,14 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ExcitationSystemDynamics", "PowerSystemStabilizerDynamics", fields);
-                base.export_attribute (obj, "ExcitationSystemDynamics", "UnderexcitationLimiterDynamics", fields);
-                base.export_attribute (obj, "ExcitationSystemDynamics", "DiscontinuousExcitationControlDynamics", fields);
-                base.export_attribute (obj, "ExcitationSystemDynamics", "PFVArControllerType1Dynamics", fields);
-                base.export_attribute (obj, "ExcitationSystemDynamics", "SynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "ExcitationSystemDynamics", "VoltageCompensatorDynamics", fields);
-                base.export_attribute (obj, "ExcitationSystemDynamics", "OverexcitationLimiterDynamics", fields);
-                base.export_attribute (obj, "ExcitationSystemDynamics", "PFVArControllerType2Dynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -194,7 +193,23 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "1"],
+                        ["UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "1"],
+                        ["DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "1"],
+                        ["PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "1"],
+                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"],
+                        ["VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "1"],
+                        ["OverexcitationLimiterDynamics", "OverexcitationLimiterDynamics", "0..1", "1"],
+                        ["PFVArControllerType2Dynamics", "PFVArControllerType2Dynamics", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -243,7 +258,6 @@ define
                 base.parse_element (/<cim:ExcIEEEDC1A.uelin>([\s\S]*?)<\/cim:ExcIEEEDC1A.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ExcIEEEDC1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEDC1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEDC1A;
                 if (null == bucket)
                    context.parsed.ExcIEEEDC1A = bucket = {};
@@ -352,7 +366,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -391,7 +405,6 @@ define
                 base.parse_element (/<cim:ExcSCRX.tatb>([\s\S]*?)<\/cim:ExcSCRX.tatb>/g, obj, "tatb", base.to_float, sub, context);
                 base.parse_element (/<cim:ExcSCRX.tb>([\s\S]*?)<\/cim:ExcSCRX.tb>/g, obj, "tb", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcSCRX.te>([\s\S]*?)<\/cim:ExcSCRX.te>/g, obj, "te", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcSCRX;
                 if (null == bucket)
                    context.parsed.ExcSCRX = bucket = {};
@@ -476,7 +489,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -528,7 +541,6 @@ define
                 base.parse_element (/<cim:ExcIEEEDC4B.vemin>([\s\S]*?)<\/cim:ExcIEEEDC4B.vemin>/g, obj, "vemin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEDC4B.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC4B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEDC4B.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC4B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEDC4B;
                 if (null == bucket)
                    context.parsed.ExcIEEEDC4B = bucket = {};
@@ -646,7 +658,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -700,7 +712,6 @@ define
                 base.parse_element (/<cim:ExcIEEEAC3A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC3A.ve2>/g, obj, "ve2", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC3A.vemin>([\s\S]*?)<\/cim:ExcIEEEAC3A.vemin>/g, obj, "vemin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC3A.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC3A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEAC3A;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC3A = bucket = {};
@@ -824,7 +835,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -860,7 +871,6 @@ define
                 base.parse_element (/<cim:ExcAVR5.ka>([\s\S]*?)<\/cim:ExcAVR5.ka>/g, obj, "ka", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR5.rex>([\s\S]*?)<\/cim:ExcAVR5.rex>/g, obj, "rex", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR5.ta>([\s\S]*?)<\/cim:ExcAVR5.ta>/g, obj, "ta", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAVR5;
                 if (null == bucket)
                    context.parsed.ExcAVR5 = bucket = {};
@@ -930,7 +940,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -976,7 +986,6 @@ define
                 base.parse_element (/<cim:ExcST2A.uelin>([\s\S]*?)<\/cim:ExcST2A.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ExcST2A.vrmax>([\s\S]*?)<\/cim:ExcST2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST2A.vrmin>([\s\S]*?)<\/cim:ExcST2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcST2A;
                 if (null == bucket)
                    context.parsed.ExcST2A = bucket = {};
@@ -1082,7 +1091,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1142,7 +1151,6 @@ define
                 base.parse_element (/<cim:ExcELIN2.ve1>([\s\S]*?)<\/cim:ExcELIN2.ve1>/g, obj, "ve1", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN2.ve2>([\s\S]*?)<\/cim:ExcELIN2.ve2>/g, obj, "ve2", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN2.xp>([\s\S]*?)<\/cim:ExcELIN2.xp>/g, obj, "xp", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcELIN2;
                 if (null == bucket)
                    context.parsed.ExcELIN2 = bucket = {};
@@ -1284,7 +1292,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1328,7 +1336,6 @@ define
                 base.parse_element (/<cim:ExcIEEEDC3A.trh>([\s\S]*?)<\/cim:ExcIEEEDC3A.trh>/g, obj, "trh", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEDC3A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC3A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEDC3A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC3A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEDC3A;
                 if (null == bucket)
                    context.parsed.ExcIEEEDC3A = bucket = {};
@@ -1422,7 +1429,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1476,7 +1483,6 @@ define
                 base.parse_element (/<cim:ExcIEEEAC2A.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC2A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEAC2A;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC2A = bucket = {};
@@ -1600,7 +1606,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1653,7 +1659,6 @@ define
                 base.parse_element (/<cim:ExcAC1A.ve2>([\s\S]*?)<\/cim:ExcAC1A.ve2>/g, obj, "ve2", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC1A.vrmax>([\s\S]*?)<\/cim:ExcAC1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC1A.vrmin>([\s\S]*?)<\/cim:ExcAC1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAC1A;
                 if (null == bucket)
                    context.parsed.ExcAC1A = bucket = {};
@@ -1780,7 +1785,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1821,7 +1826,6 @@ define
                 base.parse_element (/<cim:ExcSEXS.tb>([\s\S]*?)<\/cim:ExcSEXS.tb>/g, obj, "tb", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcSEXS.tc>([\s\S]*?)<\/cim:ExcSEXS.tc>/g, obj, "tc", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcSEXS.te>([\s\S]*?)<\/cim:ExcSEXS.te>/g, obj, "te", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcSEXS;
                 if (null == bucket)
                    context.parsed.ExcSEXS = bucket = {};
@@ -1912,7 +1916,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1958,7 +1962,6 @@ define
                 base.parse_element (/<cim:ExcAVR2.tf2>([\s\S]*?)<\/cim:ExcAVR2.tf2>/g, obj, "tf2", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR2.vrmn>([\s\S]*?)<\/cim:ExcAVR2.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR2.vrmx>([\s\S]*?)<\/cim:ExcAVR2.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAVR2;
                 if (null == bucket)
                    context.parsed.ExcAVR2 = bucket = {};
@@ -2058,7 +2061,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2107,7 +2110,6 @@ define
                 base.parse_element (/<cim:ExcDC3A.trh>([\s\S]*?)<\/cim:ExcDC3A.trh>/g, obj, "trh", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcDC3A.vrmax>([\s\S]*?)<\/cim:ExcDC3A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcDC3A.vrmin>([\s\S]*?)<\/cim:ExcDC3A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcDC3A;
                 if (null == bucket)
                    context.parsed.ExcDC3A = bucket = {};
@@ -2216,7 +2218,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2270,7 +2272,6 @@ define
                 base.parse_element (/<cim:ExcST6B.vrmax>([\s\S]*?)<\/cim:ExcST6B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST6B.vrmin>([\s\S]*?)<\/cim:ExcST6B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST6B.xc>([\s\S]*?)<\/cim:ExcST6B.xc>/g, obj, "xc", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcST6B;
                 if (null == bucket)
                    context.parsed.ExcST6B = bucket = {};
@@ -2402,7 +2403,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2458,7 +2459,6 @@ define
                 base.parse_element (/<cim:ExcPIC.vr2>([\s\S]*?)<\/cim:ExcPIC.vr2>/g, obj, "vr2", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcPIC.vrmax>([\s\S]*?)<\/cim:ExcPIC.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcPIC.vrmin>([\s\S]*?)<\/cim:ExcPIC.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcPIC;
                 if (null == bucket)
                    context.parsed.ExcPIC = bucket = {};
@@ -2588,7 +2588,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2629,7 +2629,6 @@ define
                 base.parse_element (/<cim:ExcCZ.te>([\s\S]*?)<\/cim:ExcCZ.te>/g, obj, "te", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcCZ.vrmax>([\s\S]*?)<\/cim:ExcCZ.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcCZ.vrmin>([\s\S]*?)<\/cim:ExcCZ.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcCZ;
                 if (null == bucket)
                    context.parsed.ExcCZ = bucket = {};
@@ -2720,7 +2719,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2778,7 +2777,6 @@ define
                 base.parse_element (/<cim:ExcAC8B.vrmax>([\s\S]*?)<\/cim:ExcAC8B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC8B.vrmin>([\s\S]*?)<\/cim:ExcAC8B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC8B.vtmult>([\s\S]*?)<\/cim:ExcAC8B.vtmult>/g, obj, "vtmult", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.ExcAC8B;
                 if (null == bucket)
                    context.parsed.ExcAC8B = bucket = {};
@@ -2920,7 +2918,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2967,7 +2965,6 @@ define
                 base.parse_element (/<cim:ExcIEEEAC5A.tf3>([\s\S]*?)<\/cim:ExcIEEEAC5A.tf3>/g, obj, "tf3", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC5A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC5A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC5A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC5A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEAC5A;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC5A = bucket = {};
@@ -3070,7 +3067,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3116,7 +3113,6 @@ define
                 base.parse_element (/<cim:ExcIEEEST2A.uelin>([\s\S]*?)<\/cim:ExcIEEEST2A.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ExcIEEEST2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEST2A;
                 if (null == bucket)
                    context.parsed.ExcIEEEST2A = bucket = {};
@@ -3216,7 +3212,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3266,7 +3262,6 @@ define
                 base.parse_element (/<cim:ExcIEEEST5B.tuc2>([\s\S]*?)<\/cim:ExcIEEEST5B.tuc2>/g, obj, "tuc2", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST5B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST5B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST5B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST5B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEST5B;
                 if (null == bucket)
                    context.parsed.ExcIEEEST5B = bucket = {};
@@ -3378,7 +3373,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3418,7 +3413,6 @@ define
                 base.parse_element (/<cim:ExcAC4A.vimin>([\s\S]*?)<\/cim:ExcAC4A.vimin>/g, obj, "vimin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC4A.vrmax>([\s\S]*?)<\/cim:ExcAC4A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC4A.vrmin>([\s\S]*?)<\/cim:ExcAC4A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAC4A;
                 if (null == bucket)
                    context.parsed.ExcAC4A = bucket = {};
@@ -3506,7 +3500,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3557,7 +3551,6 @@ define
                 base.parse_element (/<cim:ExcIEEEAC8B.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC8B.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC8B.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC8B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC8B.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC8B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEAC8B;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC8B = bucket = {};
@@ -3672,7 +3665,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3737,7 +3730,6 @@ define
                 base.parse_element (/<cim:ExcSK.vtmax>([\s\S]*?)<\/cim:ExcSK.vtmax>/g, obj, "vtmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcSK.vtmin>([\s\S]*?)<\/cim:ExcSK.vtmin>/g, obj, "vtmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcSK.yp>([\s\S]*?)<\/cim:ExcSK.yp>/g, obj, "yp", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcSK;
                 if (null == bucket)
                    context.parsed.ExcSK = bucket = {};
@@ -3894,7 +3886,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3963,7 +3955,6 @@ define
                 base.parse_element (/<cim:ExcREXS.vrmax>([\s\S]*?)<\/cim:ExcREXS.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcREXS.vrmin>([\s\S]*?)<\/cim:ExcREXS.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcREXS.xc>([\s\S]*?)<\/cim:ExcREXS.xc>/g, obj, "xc", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcREXS;
                 if (null == bucket)
                    context.parsed.ExcREXS = bucket = {};
@@ -4134,7 +4125,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4181,7 +4172,6 @@ define
                 base.parse_element (/<cim:ExcANS.tb>([\s\S]*?)<\/cim:ExcANS.tb>/g, obj, "tb", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcANS.vrmn>([\s\S]*?)<\/cim:ExcANS.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcANS.vrmx>([\s\S]*?)<\/cim:ExcANS.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcANS;
                 if (null == bucket)
                    context.parsed.ExcANS = bucket = {};
@@ -4284,7 +4274,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4343,7 +4333,6 @@ define
                 base.parse_element (/<cim:ExcIEEEAC7B.vfemax>([\s\S]*?)<\/cim:ExcIEEEAC7B.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC7B.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC7B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC7B.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC7B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEAC7B;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC7B = bucket = {};
@@ -4482,7 +4471,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4531,7 +4520,6 @@ define
                 base.parse_element (/<cim:ExcIEEEST4B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST4B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST4B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST4B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST4B.xl>([\s\S]*?)<\/cim:ExcIEEEST4B.xl>/g, obj, "xl", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEST4B;
                 if (null == bucket)
                    context.parsed.ExcIEEEST4B = bucket = {};
@@ -4640,7 +4628,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4687,7 +4675,6 @@ define
                 base.parse_element (/<cim:ExcST7B.vmin>([\s\S]*?)<\/cim:ExcST7B.vmin>/g, obj, "vmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.vrmax>([\s\S]*?)<\/cim:ExcST7B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST7B.vrmin>([\s\S]*?)<\/cim:ExcST7B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcST7B;
                 if (null == bucket)
                    context.parsed.ExcST7B = bucket = {};
@@ -4800,7 +4787,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4849,7 +4836,6 @@ define
                 base.parse_element (/<cim:ExcDC1A.tf>([\s\S]*?)<\/cim:ExcDC1A.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcDC1A.vrmax>([\s\S]*?)<\/cim:ExcDC1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcDC1A.vrmin>([\s\S]*?)<\/cim:ExcDC1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcDC1A;
                 if (null == bucket)
                    context.parsed.ExcDC1A = bucket = {};
@@ -4964,7 +4950,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5015,7 +5001,6 @@ define
                 base.parse_element (/<cim:ExcST3A.vrmax>([\s\S]*?)<\/cim:ExcST3A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST3A.vrmin>([\s\S]*?)<\/cim:ExcST3A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST3A.xl>([\s\S]*?)<\/cim:ExcST3A.xl>/g, obj, "xl", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcST3A;
                 if (null == bucket)
                    context.parsed.ExcST3A = bucket = {};
@@ -5136,7 +5121,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5187,7 +5172,6 @@ define
                 base.parse_element (/<cim:ExcIEEEAC1A.ve2>([\s\S]*?)<\/cim:ExcIEEEAC1A.ve2>/g, obj, "ve2", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEAC1A;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC1A = bucket = {};
@@ -5302,7 +5286,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5351,7 +5335,6 @@ define
                 base.parse_element (/<cim:ExcAC5A.tf3>([\s\S]*?)<\/cim:ExcAC5A.tf3>/g, obj, "tf3", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC5A.vrmax>([\s\S]*?)<\/cim:ExcAC5A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC5A.vrmin>([\s\S]*?)<\/cim:ExcAC5A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAC5A;
                 if (null == bucket)
                    context.parsed.ExcAC5A = bucket = {};
@@ -5466,7 +5449,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5509,7 +5492,6 @@ define
                 base.parse_element (/<cim:ExcHU.te>([\s\S]*?)<\/cim:ExcHU.te>/g, obj, "te", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcHU.ti>([\s\S]*?)<\/cim:ExcHU.ti>/g, obj, "ti", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcHU.tr>([\s\S]*?)<\/cim:ExcHU.tr>/g, obj, "tr", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcHU;
                 if (null == bucket)
                    context.parsed.ExcHU = bucket = {};
@@ -5606,7 +5588,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5658,7 +5640,6 @@ define
                 base.parse_element (/<cim:ExcAVR7.vmin1>([\s\S]*?)<\/cim:ExcAVR7.vmin1>/g, obj, "vmin1", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR7.vmin3>([\s\S]*?)<\/cim:ExcAVR7.vmin3>/g, obj, "vmin3", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR7.vmin5>([\s\S]*?)<\/cim:ExcAVR7.vmin5>/g, obj, "vmin5", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAVR7;
                 if (null == bucket)
                    context.parsed.ExcAVR7 = bucket = {};
@@ -5782,7 +5763,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5830,7 +5811,6 @@ define
                 base.parse_element (/<cim:ExcIEEEST7B.vmin>([\s\S]*?)<\/cim:ExcIEEEST7B.vmin>/g, obj, "vmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST7B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST7B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST7B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEST7B;
                 if (null == bucket)
                    context.parsed.ExcIEEEST7B = bucket = {};
@@ -5940,7 +5920,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5989,7 +5969,6 @@ define
                 base.parse_element (/<cim:ExcIEEEDC2A.uelin>([\s\S]*?)<\/cim:ExcIEEEDC2A.uelin>/g, obj, "uelin", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ExcIEEEDC2A.vrmax>([\s\S]*?)<\/cim:ExcIEEEDC2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEDC2A.vrmin>([\s\S]*?)<\/cim:ExcIEEEDC2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEDC2A;
                 if (null == bucket)
                    context.parsed.ExcIEEEDC2A = bucket = {};
@@ -6098,7 +6077,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6143,7 +6122,6 @@ define
                 base.parse_element (/<cim:ExcAVR3.te>([\s\S]*?)<\/cim:ExcAVR3.te>/g, obj, "te", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR3.vrmn>([\s\S]*?)<\/cim:ExcAVR3.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR3.vrmx>([\s\S]*?)<\/cim:ExcAVR3.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAVR3;
                 if (null == bucket)
                    context.parsed.ExcAVR3 = bucket = {};
@@ -6240,7 +6218,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6282,7 +6260,6 @@ define
                 base.parse_element (/<cim:ExcIEEEAC4A.vimin>([\s\S]*?)<\/cim:ExcIEEEAC4A.vimin>/g, obj, "vimin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC4A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC4A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC4A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC4A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEAC4A;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC4A = bucket = {};
@@ -6370,7 +6347,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6429,7 +6406,6 @@ define
                 base.parse_element (/<cim:ExcAC2A.vlr>([\s\S]*?)<\/cim:ExcAC2A.vlr>/g, obj, "vlr", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC2A.vrmax>([\s\S]*?)<\/cim:ExcAC2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC2A.vrmin>([\s\S]*?)<\/cim:ExcAC2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAC2A;
                 if (null == bucket)
                    context.parsed.ExcAC2A = bucket = {};
@@ -6574,7 +6550,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6619,7 +6595,6 @@ define
                 base.parse_element (/<cim:ExcDC3A1.vbmax>([\s\S]*?)<\/cim:ExcDC3A1.vbmax>/g, obj, "vbmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcDC3A1.vrmax>([\s\S]*?)<\/cim:ExcDC3A1.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcDC3A1.vrmin>([\s\S]*?)<\/cim:ExcDC3A1.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcDC3A1;
                 if (null == bucket)
                    context.parsed.ExcDC3A1 = bucket = {};
@@ -6722,7 +6697,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6774,7 +6749,6 @@ define
                 base.parse_element (/<cim:ExcIEEEST1A.vimin>([\s\S]*?)<\/cim:ExcIEEEST1A.vimin>/g, obj, "vimin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST1A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST1A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEST1A;
                 if (null == bucket)
                    context.parsed.ExcIEEEST1A = bucket = {};
@@ -6894,7 +6868,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6938,7 +6912,6 @@ define
                 base.parse_element (/<cim:ExcBBC.vrmax>([\s\S]*?)<\/cim:ExcBBC.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcBBC.vrmin>([\s\S]*?)<\/cim:ExcBBC.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcBBC.xe>([\s\S]*?)<\/cim:ExcBBC.xe>/g, obj, "xe", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcBBC;
                 if (null == bucket)
                    context.parsed.ExcBBC = bucket = {};
@@ -7032,7 +7005,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -7082,7 +7055,6 @@ define
                 base.parse_element (/<cim:ExcST4B.vrmax>([\s\S]*?)<\/cim:ExcST4B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST4B.vrmin>([\s\S]*?)<\/cim:ExcST4B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST4B.xl>([\s\S]*?)<\/cim:ExcST4B.xl>/g, obj, "xl", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcST4B;
                 if (null == bucket)
                    context.parsed.ExcST4B = bucket = {};
@@ -7200,7 +7172,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -7254,7 +7226,6 @@ define
                 base.parse_element (/<cim:ExcAC6A.vhmax>([\s\S]*?)<\/cim:ExcAC6A.vhmax>/g, obj, "vhmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC6A.vrmax>([\s\S]*?)<\/cim:ExcAC6A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC6A.vrmin>([\s\S]*?)<\/cim:ExcAC6A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAC6A;
                 if (null == bucket)
                    context.parsed.ExcAC6A = bucket = {};
@@ -7384,7 +7355,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -7434,7 +7405,6 @@ define
                 base.parse_element (/<cim:ExcOEX3T.tf>([\s\S]*?)<\/cim:ExcOEX3T.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcOEX3T.vrmax>([\s\S]*?)<\/cim:ExcOEX3T.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcOEX3T.vrmin>([\s\S]*?)<\/cim:ExcOEX3T.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcOEX3T;
                 if (null == bucket)
                    context.parsed.ExcOEX3T = bucket = {};
@@ -7552,7 +7522,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -7609,7 +7579,6 @@ define
                 base.parse_element (/<cim:ExcAC3A.vemin>([\s\S]*?)<\/cim:ExcAC3A.vemin>/g, obj, "vemin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC3A.vfemax>([\s\S]*?)<\/cim:ExcAC3A.vfemax>/g, obj, "vfemax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAC3A.vlv>([\s\S]*?)<\/cim:ExcAC3A.vlv>/g, obj, "vlv", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAC3A;
                 if (null == bucket)
                    context.parsed.ExcAC3A = bucket = {};
@@ -7748,7 +7717,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -7803,7 +7772,6 @@ define
                 base.parse_element (/<cim:ExcIEEEAC6A.vhmax>([\s\S]*?)<\/cim:ExcIEEEAC6A.vhmax>/g, obj, "vhmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC6A.vrmax>([\s\S]*?)<\/cim:ExcIEEEAC6A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEAC6A.vrmin>([\s\S]*?)<\/cim:ExcIEEEAC6A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEAC6A;
                 if (null == bucket)
                    context.parsed.ExcIEEEAC6A = bucket = {};
@@ -7930,7 +7898,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -7979,7 +7947,6 @@ define
                 base.parse_element (/<cim:ExcST1A.vrmax>([\s\S]*?)<\/cim:ExcST1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST1A.vrmin>([\s\S]*?)<\/cim:ExcST1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcST1A.xe>([\s\S]*?)<\/cim:ExcST1A.xe>/g, obj, "xe", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcST1A;
                 if (null == bucket)
                    context.parsed.ExcST1A = bucket = {};
@@ -8094,7 +8061,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -8142,7 +8109,6 @@ define
                 base.parse_element (/<cim:ExcELIN1.vpnf>([\s\S]*?)<\/cim:ExcELIN1.vpnf>/g, obj, "vpnf", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN1.vpu>([\s\S]*?)<\/cim:ExcELIN1.vpu>/g, obj, "vpu", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcELIN1.xe>([\s\S]*?)<\/cim:ExcELIN1.xe>/g, obj, "xe", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcELIN1;
                 if (null == bucket)
                    context.parsed.ExcELIN1 = bucket = {};
@@ -8248,7 +8214,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -8295,7 +8261,6 @@ define
                 base.parse_element (/<cim:ExcAVR4.vfmx>([\s\S]*?)<\/cim:ExcAVR4.vfmx>/g, obj, "vfmx", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR4.vrmn>([\s\S]*?)<\/cim:ExcAVR4.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR4.vrmx>([\s\S]*?)<\/cim:ExcAVR4.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAVR4;
                 if (null == bucket)
                    context.parsed.ExcAVR4 = bucket = {};
@@ -8398,7 +8363,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -8451,7 +8416,6 @@ define
                 base.parse_element (/<cim:ExcIEEEST3A.vrmax>([\s\S]*?)<\/cim:ExcIEEEST3A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST3A.vrmin>([\s\S]*?)<\/cim:ExcIEEEST3A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST3A.xl>([\s\S]*?)<\/cim:ExcIEEEST3A.xl>/g, obj, "xl", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEST3A;
                 if (null == bucket)
                    context.parsed.ExcIEEEST3A = bucket = {};
@@ -8572,7 +8536,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -8623,7 +8587,6 @@ define
                 base.parse_element (/<cim:ExcDC2A.vrmax>([\s\S]*?)<\/cim:ExcDC2A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcDC2A.vrmin>([\s\S]*?)<\/cim:ExcDC2A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcDC2A.vtlim>([\s\S]*?)<\/cim:ExcDC2A.vtlim>/g, obj, "vtlim", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.ExcDC2A;
                 if (null == bucket)
                    context.parsed.ExcDC2A = bucket = {};
@@ -8738,7 +8701,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -8783,7 +8746,6 @@ define
                 base.parse_element (/<cim:ExcAVR1.tf>([\s\S]*?)<\/cim:ExcAVR1.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR1.vrmn>([\s\S]*?)<\/cim:ExcAVR1.vrmn>/g, obj, "vrmn", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcAVR1.vrmx>([\s\S]*?)<\/cim:ExcAVR1.vrmx>/g, obj, "vrmx", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcAVR1;
                 if (null == bucket)
                    context.parsed.ExcAVR1 = bucket = {};
@@ -8880,7 +8842,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -8927,7 +8889,6 @@ define
                 base.parse_element (/<cim:ExcIEEEST6B.vamin>([\s\S]*?)<\/cim:ExcIEEEST6B.vamin>/g, obj, "vamin", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST6B.vrmax>([\s\S]*?)<\/cim:ExcIEEEST6B.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:ExcIEEEST6B.vrmin>([\s\S]*?)<\/cim:ExcIEEEST6B.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.ExcIEEEST6B;
                 if (null == bucket)
                    context.parsed.ExcIEEEST6B = bucket = {};
@@ -9032,7 +8993,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

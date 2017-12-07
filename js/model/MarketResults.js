@@ -38,7 +38,8 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "ResourceClearing";
-
+                base.parse_attributes (/<cim:ResourceClearing.ResourceLoadFollowingInst\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceLoadFollowingInst", sub, context);
+                base.parse_attributes (/<cim:ResourceClearing.ResourceDispatchResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceDispatchResults", sub, context);
                 var bucket = context.parsed.ResourceClearing;
                 if (null == bucket)
                    context.parsed.ResourceClearing = bucket = {};
@@ -51,6 +52,8 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ResourceClearing", fields);
+                base.export_attribute (obj, "export_attributes", "ResourceClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -68,6 +71,8 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#ResourceLoadFollowingInst}}<div><b>ResourceLoadFollowingInst</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ResourceLoadFollowingInst}}
+                    {{#ResourceDispatchResults}}<div><b>ResourceDispatchResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ResourceDispatchResults}}
                     </div>
                     <fieldset>
 
@@ -78,11 +83,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ResourceLoadFollowingInst) obj.ResourceLoadFollowingInst_string = obj.ResourceLoadFollowingInst.join ();
+                if (obj.ResourceDispatchResults) obj.ResourceDispatchResults_string = obj.ResourceDispatchResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ResourceLoadFollowingInst_string;
+                delete obj.ResourceDispatchResults_string;
             }
 
             edit_template ()
@@ -99,7 +108,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceLoadFollowingInst", "ResourceLoadFollowingInst", "0..*", "0..1"],
+                        ["ResourceDispatchResults", "ResourceDispatchResults", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -140,7 +159,6 @@ define
                 base.parse_element (/<cim:MarketResults.ancillarySvcCost>([\s\S]*?)<\/cim:MarketResults.ancillarySvcCost>/g, obj, "ancillarySvcCost", base.to_float, sub, context);
                 base.parse_element (/<cim:MarketResults.totalRucCost>([\s\S]*?)<\/cim:MarketResults.totalRucCost>/g, obj, "totalRucCost", base.to_float, sub, context);
                 base.parse_attribute (/<cim:MarketResults.EnergyMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyMarket", sub, context);
-
                 var bucket = context.parsed.MarketResults;
                 if (null == bucket)
                    context.parsed.MarketResults = bucket = {};
@@ -160,7 +178,7 @@ define
                 base.export_element (obj, "MarketResults", "totalCost", base.from_float, fields);
                 base.export_element (obj, "MarketResults", "ancillarySvcCost", base.from_float, fields);
                 base.export_element (obj, "MarketResults", "totalRucCost", base.from_float, fields);
-                base.export_attribute (obj, "MarketResults", "EnergyMarket", fields);
+                base.export_attribute (obj, "export_attribute", "MarketResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -225,7 +243,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyMarket", "EnergyMarket", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -268,7 +295,6 @@ define
                 base.parse_element (/<cim:PnodeResults.updateType>([\s\S]*?)<\/cim:PnodeResults.updateType>/g, obj, "updateType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:PnodeResults.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pnode", sub, context);
                 base.parse_attribute (/<cim:PnodeResults.PnodeClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PnodeClearing", sub, context);
-
                 var bucket = context.parsed.PnodeResults;
                 if (null == bucket)
                    context.parsed.PnodeResults = bucket = {};
@@ -289,8 +315,8 @@ define
                 base.export_element (obj, "PnodeResults", "updateUser", base.from_string, fields);
                 base.export_element (obj, "PnodeResults", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "PnodeResults", "updateType", base.from_string, fields);
-                base.export_attribute (obj, "PnodeResults", "Pnode", fields);
-                base.export_attribute (obj, "PnodeResults", "PnodeClearing", fields);
+                base.export_attribute (obj, "export_attribute", "PnodeResults", fields);
+                base.export_attribute (obj, "export_attribute", "PnodeResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -359,7 +385,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Pnode", "Pnode", "0..1", "1..*"],
+                        ["PnodeClearing", "PnodeClearing", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -390,7 +426,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "ConstraintClearing";
-
+                base.parse_attributes (/<cim:ConstraintClearing.ConstraintResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConstraintResults", sub, context);
                 var bucket = context.parsed.ConstraintClearing;
                 if (null == bucket)
                    context.parsed.ConstraintClearing = bucket = {};
@@ -403,6 +439,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ConstraintClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -420,6 +457,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#ConstraintResults}}<div><b>ConstraintResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConstraintResults}}
                     </div>
                     <fieldset>
 
@@ -430,11 +468,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ConstraintResults) obj.ConstraintResults_string = obj.ConstraintResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ConstraintResults_string;
             }
 
             edit_template ()
@@ -451,7 +491,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ConstraintResults", "ConstraintResults", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -484,7 +533,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "InstructionClearing";
-
+                base.parse_attributes (/<cim:InstructionClearing.Instructions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Instructions", sub, context);
                 var bucket = context.parsed.InstructionClearing;
                 if (null == bucket)
                    context.parsed.InstructionClearing = bucket = {};
@@ -497,6 +546,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "InstructionClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -514,6 +564,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#Instructions}}<div><b>Instructions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Instructions}}
                     </div>
                     <fieldset>
 
@@ -524,11 +575,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Instructions) obj.Instructions_string = obj.Instructions.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Instructions_string;
             }
 
             edit_template ()
@@ -541,11 +594,21 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Instructions'>Instructions: </label><div class='col-sm-8'><input id='Instructions' class='form-control' type='text'{{#Instructions}} value='{{Instructions}}_string'{{/Instructions}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Instructions", "Instructions", "1..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -581,7 +644,6 @@ define
                 base.parse_element (/<cim:SelfScheduleBreakdown.selfSchedMW>([\s\S]*?)<\/cim:SelfScheduleBreakdown.selfSchedMW>/g, obj, "selfSchedMW", base.to_float, sub, context);
                 base.parse_element (/<cim:SelfScheduleBreakdown.selfSchedType>([\s\S]*?)<\/cim:SelfScheduleBreakdown.selfSchedType>/g, obj, "selfSchedType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:SelfScheduleBreakdown.ResourceAwardInstruction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceAwardInstruction", sub, context);
-
                 var bucket = context.parsed.SelfScheduleBreakdown;
                 if (null == bucket)
                    context.parsed.SelfScheduleBreakdown = bucket = {};
@@ -596,7 +658,7 @@ define
 
                 base.export_element (obj, "SelfScheduleBreakdown", "selfSchedMW", base.from_float, fields);
                 base.export_element (obj, "SelfScheduleBreakdown", "selfSchedType", base.from_string, fields);
-                base.export_attribute (obj, "SelfScheduleBreakdown", "ResourceAwardInstruction", fields);
+                base.export_attribute (obj, "export_attribute", "SelfScheduleBreakdown", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -651,7 +713,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceAwardInstruction", "ResourceAwardInstruction", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -688,7 +759,6 @@ define
                 base.parse_element (/<cim:ExPostLossResults.ehvLossMW>([\s\S]*?)<\/cim:ExPostLossResults.ehvLossMW>/g, obj, "ehvLossMW", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ExPostLossResults.ExPostLoss\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostLoss", sub, context);
                 base.parse_attribute (/<cim:ExPostLossResults.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
-
                 var bucket = context.parsed.ExPostLossResults;
                 if (null == bucket)
                    context.parsed.ExPostLossResults = bucket = {};
@@ -703,8 +773,8 @@ define
 
                 base.export_element (obj, "ExPostLossResults", "totalLossMW", base.from_float, fields);
                 base.export_element (obj, "ExPostLossResults", "ehvLossMW", base.from_float, fields);
-                base.export_attribute (obj, "ExPostLossResults", "ExPostLoss", fields);
-                base.export_attribute (obj, "ExPostLossResults", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostLossResults", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostLossResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -761,7 +831,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExPostLoss", "ExPostLoss", "1", "0..*"],
+                        ["SubControlArea", "SubControlArea", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -813,7 +893,6 @@ define
                 base.parse_element (/<cim:ResourceDispatchResults.upperLimit>([\s\S]*?)<\/cim:ResourceDispatchResults.upperLimit>/g, obj, "upperLimit", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ResourceDispatchResults.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:ResourceDispatchResults.ResourceClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceClearing", sub, context);
-
                 var bucket = context.parsed.ResourceDispatchResults;
                 if (null == bucket)
                    context.parsed.ResourceDispatchResults = bucket = {};
@@ -843,8 +922,8 @@ define
                 base.export_element (obj, "ResourceDispatchResults", "updateType", base.from_string, fields);
                 base.export_element (obj, "ResourceDispatchResults", "updateUser", base.from_string, fields);
                 base.export_element (obj, "ResourceDispatchResults", "upperLimit", base.from_float, fields);
-                base.export_attribute (obj, "ResourceDispatchResults", "RegisteredResource", fields);
-                base.export_attribute (obj, "ResourceDispatchResults", "ResourceClearing", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceDispatchResults", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceDispatchResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -931,7 +1010,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
+                        ["ResourceClearing", "ResourceClearing", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -985,7 +1074,7 @@ define
                 base.parse_element (/<cim:DotInstruction.supplementalEnergy>([\s\S]*?)<\/cim:DotInstruction.supplementalEnergy>/g, obj, "supplementalEnergy", base.to_float, sub, context);
                 base.parse_element (/<cim:DotInstruction.unitStatus>([\s\S]*?)<\/cim:DotInstruction.unitStatus>/g, obj, "unitStatus", base.to_string, sub, context);
                 base.parse_attribute (/<cim:DotInstruction.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
+                base.parse_attributes (/<cim:DotInstruction.InstructionClearingDOT\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InstructionClearingDOT", sub, context);
                 var bucket = context.parsed.DotInstruction;
                 if (null == bucket)
                    context.parsed.DotInstruction = bucket = {};
@@ -1018,7 +1107,8 @@ define
                 base.export_element (obj, "DotInstruction", "standardRampEnergy", base.from_float, fields);
                 base.export_element (obj, "DotInstruction", "supplementalEnergy", base.from_float, fields);
                 base.export_element (obj, "DotInstruction", "unitStatus", base.from_string, fields);
-                base.export_attribute (obj, "DotInstruction", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "DotInstruction", fields);
+                base.export_attribute (obj, "export_attributes", "DotInstruction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1057,6 +1147,7 @@ define
                     {{#supplementalEnergy}}<div><b>supplementalEnergy</b>: {{supplementalEnergy}}</div>{{/supplementalEnergy}}
                     {{#unitStatus}}<div><b>unitStatus</b>: {{unitStatus}}</div>{{/unitStatus}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#InstructionClearingDOT}}<div><b>InstructionClearingDOT</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InstructionClearingDOT}}
                     </div>
                     <fieldset>
 
@@ -1067,11 +1158,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.InstructionClearingDOT) obj.InstructionClearingDOT_string = obj.InstructionClearingDOT.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.InstructionClearingDOT_string;
             }
 
             edit_template ()
@@ -1105,11 +1198,22 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='supplementalEnergy'>supplementalEnergy: </label><div class='col-sm-8'><input id='supplementalEnergy' class='form-control' type='text'{{#supplementalEnergy}} value='{{supplementalEnergy}}'{{/supplementalEnergy}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitStatus'>unitStatus: </label><div class='col-sm-8'><input id='unitStatus' class='form-control' type='text'{{#unitStatus}} value='{{unitStatus}}'{{/unitStatus}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InstructionClearingDOT'>InstructionClearingDOT: </label><div class='col-sm-8'><input id='InstructionClearingDOT' class='form-control' type='text'{{#InstructionClearingDOT}} value='{{InstructionClearingDOT}}_string'{{/InstructionClearingDOT}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
+                        ["InstructionClearingDOT", "InstructionClearingDOT", "1..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1147,7 +1251,6 @@ define
                 base.parse_attribute (/<cim:MPMTestResults.MPMClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMClearing", sub, context);
                 base.parse_attribute (/<cim:MPMTestResults.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregatedPnode", sub, context);
                 base.parse_attribute (/<cim:MPMTestResults.MPMTestCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestCategory", sub, context);
-
                 var bucket = context.parsed.MPMTestResults;
                 if (null == bucket)
                    context.parsed.MPMTestResults = bucket = {};
@@ -1162,9 +1265,9 @@ define
 
                 base.export_element (obj, "MPMTestResults", "outcome", base.from_string, fields);
                 base.export_element (obj, "MPMTestResults", "marginPercent", base.from_string, fields);
-                base.export_attribute (obj, "MPMTestResults", "MPMClearing", fields);
-                base.export_attribute (obj, "MPMTestResults", "AggregatedPnode", fields);
-                base.export_attribute (obj, "MPMTestResults", "MPMTestCategory", fields);
+                base.export_attribute (obj, "export_attribute", "MPMTestResults", fields);
+                base.export_attribute (obj, "export_attribute", "MPMTestResults", fields);
+                base.export_attribute (obj, "export_attribute", "MPMTestResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1223,7 +1326,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MPMClearing", "MPMClearing", "0..1", "0..*"],
+                        ["AggregatedPnode", "AggregatedPnode", "1", "1..*"],
+                        ["MPMTestCategory", "MPMTestCategory", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1259,7 +1373,6 @@ define
                 base.parse_element (/<cim:RMROperatorInput.updateTimeStamp>([\s\S]*?)<\/cim:RMROperatorInput.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
                 base.parse_element (/<cim:RMROperatorInput.updateType>([\s\S]*?)<\/cim:RMROperatorInput.updateType>/g, obj, "updateType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:RMROperatorInput.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.RMROperatorInput;
                 if (null == bucket)
                    context.parsed.RMROperatorInput = bucket = {};
@@ -1276,7 +1389,7 @@ define
                 base.export_element (obj, "RMROperatorInput", "updateUser", base.from_string, fields);
                 base.export_element (obj, "RMROperatorInput", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "RMROperatorInput", "updateType", base.from_string, fields);
-                base.export_attribute (obj, "RMROperatorInput", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "RMROperatorInput", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1335,7 +1448,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1398,7 +1520,8 @@ define
                 base.parse_element (/<cim:ResourceAwardInstruction.updateUser>([\s\S]*?)<\/cim:ResourceAwardInstruction.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ResourceAwardInstruction.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:ResourceAwardInstruction.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
-
+                base.parse_attributes (/<cim:ResourceAwardInstruction.ClearingResourceAward\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ClearingResourceAward", sub, context);
+                base.parse_attributes (/<cim:ResourceAwardInstruction.SelfScheduleBreakdown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SelfScheduleBreakdown", sub, context);
                 var bucket = context.parsed.ResourceAwardInstruction;
                 if (null == bucket)
                    context.parsed.ResourceAwardInstruction = bucket = {};
@@ -1439,8 +1562,10 @@ define
                 base.export_element (obj, "ResourceAwardInstruction", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "ResourceAwardInstruction", "updateType", base.from_string, fields);
                 base.export_element (obj, "ResourceAwardInstruction", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "ResourceAwardInstruction", "RegisteredResource", fields);
-                base.export_attribute (obj, "ResourceAwardInstruction", "MarketProduct", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceAwardInstruction", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceAwardInstruction", fields);
+                base.export_attribute (obj, "export_attributes", "ResourceAwardInstruction", fields);
+                base.export_attribute (obj, "export_attributes", "ResourceAwardInstruction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1488,6 +1613,8 @@ define
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);})'>{{MarketProduct}}</a></div>{{/MarketProduct}}
+                    {{#ClearingResourceAward}}<div><b>ClearingResourceAward</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ClearingResourceAward}}
+                    {{#SelfScheduleBreakdown}}<div><b>SelfScheduleBreakdown</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SelfScheduleBreakdown}}
                     </div>
                     <fieldset>
 
@@ -1498,11 +1625,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ClearingResourceAward) obj.ClearingResourceAward_string = obj.ClearingResourceAward.join ();
+                if (obj.SelfScheduleBreakdown) obj.SelfScheduleBreakdown_string = obj.SelfScheduleBreakdown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ClearingResourceAward_string;
+                delete obj.SelfScheduleBreakdown_string;
             }
 
             edit_template ()
@@ -1545,11 +1676,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ClearingResourceAward'>ClearingResourceAward: </label><div class='col-sm-8'><input id='ClearingResourceAward' class='form-control' type='text'{{#ClearingResourceAward}} value='{{ClearingResourceAward}}_string'{{/ClearingResourceAward}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
+                        ["MarketProduct", "MarketProduct", "1", "0..*"],
+                        ["ClearingResourceAward", "ResourceAwardClearing", "1..*", "1..*"],
+                        ["SelfScheduleBreakdown", "SelfScheduleBreakdown", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1589,7 +1733,6 @@ define
                 base.parse_element (/<cim:LoadFollowingOperatorInput.updateTimeStamp>([\s\S]*?)<\/cim:LoadFollowingOperatorInput.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
                 base.parse_element (/<cim:LoadFollowingOperatorInput.updateType>([\s\S]*?)<\/cim:LoadFollowingOperatorInput.updateType>/g, obj, "updateType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:LoadFollowingOperatorInput.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.LoadFollowingOperatorInput;
                 if (null == bucket)
                    context.parsed.LoadFollowingOperatorInput = bucket = {};
@@ -1608,7 +1751,7 @@ define
                 base.export_element (obj, "LoadFollowingOperatorInput", "updateUser", base.from_string, fields);
                 base.export_element (obj, "LoadFollowingOperatorInput", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "LoadFollowingOperatorInput", "updateType", base.from_string, fields);
-                base.export_attribute (obj, "LoadFollowingOperatorInput", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "LoadFollowingOperatorInput", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1671,7 +1814,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1705,7 +1857,7 @@ define
                 base.parse_element (/<cim:MPMResourceStatus.resourceStatus>([\s\S]*?)<\/cim:MPMResourceStatus.resourceStatus>/g, obj, "resourceStatus", base.to_string, sub, context);
                 base.parse_attribute (/<cim:MPMResourceStatus.MPMTestCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestCategory", sub, context);
                 base.parse_attribute (/<cim:MPMResourceStatus.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
+                base.parse_attributes (/<cim:MPMResourceStatus.MitigatedBidClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBidClearing", sub, context);
                 var bucket = context.parsed.MPMResourceStatus;
                 if (null == bucket)
                    context.parsed.MPMResourceStatus = bucket = {};
@@ -1719,8 +1871,9 @@ define
                 var fields = [];
 
                 base.export_element (obj, "MPMResourceStatus", "resourceStatus", base.from_string, fields);
-                base.export_attribute (obj, "MPMResourceStatus", "MPMTestCategory", fields);
-                base.export_attribute (obj, "MPMResourceStatus", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "MPMResourceStatus", fields);
+                base.export_attribute (obj, "export_attribute", "MPMResourceStatus", fields);
+                base.export_attribute (obj, "export_attributes", "MPMResourceStatus", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1741,6 +1894,7 @@ define
                     {{#resourceStatus}}<div><b>resourceStatus</b>: {{resourceStatus}}</div>{{/resourceStatus}}
                     {{#MPMTestCategory}}<div><b>MPMTestCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MPMTestCategory}}&quot;);})'>{{MPMTestCategory}}</a></div>{{/MPMTestCategory}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#MitigatedBidClearing}}<div><b>MitigatedBidClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MitigatedBidClearing}}
                     </div>
                     <fieldset>
 
@@ -1751,11 +1905,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MitigatedBidClearing) obj.MitigatedBidClearing_string = obj.MitigatedBidClearing.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MitigatedBidClearing_string;
             }
 
             edit_template ()
@@ -1771,11 +1927,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceStatus'>resourceStatus: </label><div class='col-sm-8'><input id='resourceStatus' class='form-control' type='text'{{#resourceStatus}} value='{{resourceStatus}}'{{/resourceStatus}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MPMTestCategory'>MPMTestCategory: </label><div class='col-sm-8'><input id='MPMTestCategory' class='form-control' type='text'{{#MPMTestCategory}} value='{{MPMTestCategory}}'{{/MPMTestCategory}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing}}_string'{{/MitigatedBidClearing}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MPMTestCategory", "MPMTestCategory", "1", "0..*"],
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
+                        ["MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1813,7 +1981,6 @@ define
                 base.parse_element (/<cim:MitigatedBidSegment.segmentNumber>([\s\S]*?)<\/cim:MitigatedBidSegment.segmentNumber>/g, obj, "segmentNumber", base.to_string, sub, context);
                 base.parse_element (/<cim:MitigatedBidSegment.segmentMW>([\s\S]*?)<\/cim:MitigatedBidSegment.segmentMW>/g, obj, "segmentMW", base.to_float, sub, context);
                 base.parse_attribute (/<cim:MitigatedBidSegment.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-
                 var bucket = context.parsed.MitigatedBidSegment;
                 if (null == bucket)
                    context.parsed.MitigatedBidSegment = bucket = {};
@@ -1830,7 +1997,7 @@ define
                 base.export_element (obj, "MitigatedBidSegment", "thresholdType", base.from_string, fields);
                 base.export_element (obj, "MitigatedBidSegment", "segmentNumber", base.from_string, fields);
                 base.export_element (obj, "MitigatedBidSegment", "segmentMW", base.from_float, fields);
-                base.export_attribute (obj, "MitigatedBidSegment", "Bid", fields);
+                base.export_attribute (obj, "export_attribute", "MitigatedBidSegment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1889,7 +2056,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Bid", "Bid", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1927,7 +2103,7 @@ define
                 base.parse_element (/<cim:MarketStatement.start>([\s\S]*?)<\/cim:MarketStatement.start>/g, obj, "start", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MarketStatement.end>([\s\S]*?)<\/cim:MarketStatement.end>/g, obj, "end", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MarketStatement.transactionDate>([\s\S]*?)<\/cim:MarketStatement.transactionDate>/g, obj, "transactionDate", base.to_datetime, sub, context);
-
+                base.parse_attributes (/<cim:MarketStatement.MarketStatementLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketStatementLineItem", sub, context);
                 var bucket = context.parsed.MarketStatement;
                 if (null == bucket)
                    context.parsed.MarketStatement = bucket = {};
@@ -1945,6 +2121,7 @@ define
                 base.export_element (obj, "MarketStatement", "start", base.from_datetime, fields);
                 base.export_element (obj, "MarketStatement", "end", base.from_datetime, fields);
                 base.export_element (obj, "MarketStatement", "transactionDate", base.from_datetime, fields);
+                base.export_attribute (obj, "export_attributes", "MarketStatement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1967,6 +2144,7 @@ define
                     {{#start}}<div><b>start</b>: {{start}}</div>{{/start}}
                     {{#end}}<div><b>end</b>: {{end}}</div>{{/end}}
                     {{#transactionDate}}<div><b>transactionDate</b>: {{transactionDate}}</div>{{/transactionDate}}
+                    {{#MarketStatementLineItem}}<div><b>MarketStatementLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketStatementLineItem}}
                     </div>
                     <fieldset>
 
@@ -1977,11 +2155,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MarketStatementLineItem) obj.MarketStatementLineItem_string = obj.MarketStatementLineItem.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketStatementLineItem_string;
             }
 
             edit_template ()
@@ -2003,7 +2183,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketStatementLineItem", "MarketStatementLineItem", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2041,7 +2230,6 @@ define
                 base.parse_element (/<cim:ResourceLoadFollowingInst.dispWindowHighLimt>([\s\S]*?)<\/cim:ResourceLoadFollowingInst.dispWindowHighLimt>/g, obj, "dispWindowHighLimt", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ResourceLoadFollowingInst.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:ResourceLoadFollowingInst.ResourceClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceClearing", sub, context);
-
                 var bucket = context.parsed.ResourceLoadFollowingInst;
                 if (null == bucket)
                    context.parsed.ResourceLoadFollowingInst = bucket = {};
@@ -2059,8 +2247,8 @@ define
                 base.export_element (obj, "ResourceLoadFollowingInst", "calcLoadFollowingMW", base.from_float, fields);
                 base.export_element (obj, "ResourceLoadFollowingInst", "dispWindowLowLimt", base.from_float, fields);
                 base.export_element (obj, "ResourceLoadFollowingInst", "dispWindowHighLimt", base.from_float, fields);
-                base.export_attribute (obj, "ResourceLoadFollowingInst", "RegisteredResource", fields);
-                base.export_attribute (obj, "ResourceLoadFollowingInst", "ResourceClearing", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceLoadFollowingInst", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceLoadFollowingInst", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2123,7 +2311,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
+                        ["ResourceClearing", "ResourceClearing", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2154,7 +2352,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "PnodeClearing";
-
+                base.parse_attributes (/<cim:PnodeClearing.PnodeResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PnodeResults", sub, context);
                 var bucket = context.parsed.PnodeClearing;
                 if (null == bucket)
                    context.parsed.PnodeClearing = bucket = {};
@@ -2167,6 +2365,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "PnodeClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2184,6 +2383,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#PnodeResults}}<div><b>PnodeResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PnodeResults}}
                     </div>
                     <fieldset>
 
@@ -2194,11 +2394,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PnodeResults) obj.PnodeResults_string = obj.PnodeResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PnodeResults_string;
             }
 
             edit_template ()
@@ -2215,7 +2417,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PnodeResults", "PnodeResults", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2250,7 +2461,7 @@ define
                 obj.cls = "InstructionClearingDOT";
                 base.parse_element (/<cim:InstructionClearingDOT.contingencyActive>([\s\S]*?)<\/cim:InstructionClearingDOT.contingencyActive>/g, obj, "contingencyActive", base.to_string, sub, context);
                 base.parse_element (/<cim:InstructionClearingDOT.dispatchMode>([\s\S]*?)<\/cim:InstructionClearingDOT.dispatchMode>/g, obj, "dispatchMode", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:InstructionClearingDOT.DotInstruction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DotInstruction", sub, context);
                 var bucket = context.parsed.InstructionClearingDOT;
                 if (null == bucket)
                    context.parsed.InstructionClearingDOT = bucket = {};
@@ -2265,6 +2476,7 @@ define
 
                 base.export_element (obj, "InstructionClearingDOT", "contingencyActive", base.from_string, fields);
                 base.export_element (obj, "InstructionClearingDOT", "dispatchMode", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "InstructionClearingDOT", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2284,6 +2496,7 @@ define
                     `
                     {{#contingencyActive}}<div><b>contingencyActive</b>: {{contingencyActive}}</div>{{/contingencyActive}}
                     {{#dispatchMode}}<div><b>dispatchMode</b>: {{dispatchMode}}</div>{{/dispatchMode}}
+                    {{#DotInstruction}}<div><b>DotInstruction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DotInstruction}}
                     </div>
                     <fieldset>
 
@@ -2294,11 +2507,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DotInstruction) obj.DotInstruction_string = obj.DotInstruction.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DotInstruction_string;
             }
 
             edit_template ()
@@ -2313,11 +2528,21 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='contingencyActive'>contingencyActive: </label><div class='col-sm-8'><input id='contingencyActive' class='form-control' type='text'{{#contingencyActive}} value='{{contingencyActive}}'{{/contingencyActive}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='dispatchMode'>dispatchMode: </label><div class='col-sm-8'><input id='dispatchMode' class='form-control' type='text'{{#dispatchMode}} value='{{dispatchMode}}'{{/dispatchMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DotInstruction'>DotInstruction: </label><div class='col-sm-8'><input id='DotInstruction' class='form-control' type='text'{{#DotInstruction}} value='{{DotInstruction}}_string'{{/DotInstruction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DotInstruction", "DotInstruction", "1..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2353,7 +2578,6 @@ define
                 base.parse_attribute (/<cim:LossClearingResults.RUCZone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RUCZone", sub, context);
                 base.parse_attribute (/<cim:LossClearingResults.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
                 base.parse_attribute (/<cim:LossClearingResults.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HostControlArea", sub, context);
-
                 var bucket = context.parsed.LossClearingResults;
                 if (null == bucket)
                    context.parsed.LossClearingResults = bucket = {};
@@ -2367,10 +2591,10 @@ define
                 var fields = [];
 
                 base.export_element (obj, "LossClearingResults", "lossMW", base.from_float, fields);
-                base.export_attribute (obj, "LossClearingResults", "LossClearing", fields);
-                base.export_attribute (obj, "LossClearingResults", "RUCZone", fields);
-                base.export_attribute (obj, "LossClearingResults", "SubControlArea", fields);
-                base.export_attribute (obj, "LossClearingResults", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "LossClearingResults", fields);
+                base.export_attribute (obj, "export_attribute", "LossClearingResults", fields);
+                base.export_attribute (obj, "export_attribute", "LossClearingResults", fields);
+                base.export_attribute (obj, "export_attribute", "LossClearingResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2429,7 +2653,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LossClearing", "LossClearing", "0..1", "0..*"],
+                        ["RUCZone", "RUCZone", "0..1", "0..*"],
+                        ["SubControlArea", "SubControlArea", "0..1", "1..*"],
+                        ["HostControlArea", "HostControlArea", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2468,8 +2704,8 @@ define
                 base.parse_element (/<cim:RUCAwardInstruction.updateTimeStamp>([\s\S]*?)<\/cim:RUCAwardInstruction.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
                 base.parse_element (/<cim:RUCAwardInstruction.updateType>([\s\S]*?)<\/cim:RUCAwardInstruction.updateType>/g, obj, "updateType", base.to_string, sub, context);
                 base.parse_element (/<cim:RUCAwardInstruction.updateUser>([\s\S]*?)<\/cim:RUCAwardInstruction.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
+                base.parse_attributes (/<cim:RUCAwardInstruction.ClearingResourceAward\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ClearingResourceAward", sub, context);
                 base.parse_attribute (/<cim:RUCAwardInstruction.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.RUCAwardInstruction;
                 if (null == bucket)
                    context.parsed.RUCAwardInstruction = bucket = {};
@@ -2490,7 +2726,8 @@ define
                 base.export_element (obj, "RUCAwardInstruction", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "RUCAwardInstruction", "updateType", base.from_string, fields);
                 base.export_element (obj, "RUCAwardInstruction", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "RUCAwardInstruction", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attributes", "RUCAwardInstruction", fields);
+                base.export_attribute (obj, "export_attribute", "RUCAwardInstruction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2516,6 +2753,7 @@ define
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#updateType}}<div><b>updateType</b>: {{updateType}}</div>{{/updateType}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    {{#ClearingResourceAward}}<div><b>ClearingResourceAward</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ClearingResourceAward}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     </div>
                     <fieldset>
@@ -2527,11 +2765,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ClearingResourceAward) obj.ClearingResourceAward_string = obj.ClearingResourceAward.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ClearingResourceAward_string;
             }
 
             edit_template ()
@@ -2552,12 +2792,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateType'>updateType: </label><div class='col-sm-8'><input id='updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ClearingResourceAward'>ClearingResourceAward: </label><div class='col-sm-8'><input id='ClearingResourceAward' class='form-control' type='text'{{#ClearingResourceAward}} value='{{ClearingResourceAward}}_string'{{/ClearingResourceAward}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ClearingResourceAward", "ResourceAwardClearing", "1..*", "1..*"],
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2593,7 +2844,7 @@ define
                 base.parse_element (/<cim:MPMClearing.LMPMFinalFlag>([\s\S]*?)<\/cim:MPMClearing.LMPMFinalFlag>/g, obj, "LMPMFinalFlag", base.to_string, sub, context);
                 base.parse_element (/<cim:MPMClearing.SMPMFinalFlag>([\s\S]*?)<\/cim:MPMClearing.SMPMFinalFlag>/g, obj, "SMPMFinalFlag", base.to_string, sub, context);
                 base.parse_element (/<cim:MPMClearing.mitigationOccuredFlag>([\s\S]*?)<\/cim:MPMClearing.mitigationOccuredFlag>/g, obj, "mitigationOccuredFlag", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:MPMClearing.MPMTestResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestResults", sub, context);
                 var bucket = context.parsed.MPMClearing;
                 if (null == bucket)
                    context.parsed.MPMClearing = bucket = {};
@@ -2609,6 +2860,7 @@ define
                 base.export_element (obj, "MPMClearing", "LMPMFinalFlag", base.from_string, fields);
                 base.export_element (obj, "MPMClearing", "SMPMFinalFlag", base.from_string, fields);
                 base.export_element (obj, "MPMClearing", "mitigationOccuredFlag", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MPMClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2629,6 +2881,7 @@ define
                     {{#LMPMFinalFlag}}<div><b>LMPMFinalFlag</b>: {{LMPMFinalFlag}}</div>{{/LMPMFinalFlag}}
                     {{#SMPMFinalFlag}}<div><b>SMPMFinalFlag</b>: {{SMPMFinalFlag}}</div>{{/SMPMFinalFlag}}
                     {{#mitigationOccuredFlag}}<div><b>mitigationOccuredFlag</b>: {{mitigationOccuredFlag}}</div>{{/mitigationOccuredFlag}}
+                    {{#MPMTestResults}}<div><b>MPMTestResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MPMTestResults}}
                     </div>
                     <fieldset>
 
@@ -2639,11 +2892,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MPMTestResults) obj.MPMTestResults_string = obj.MPMTestResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MPMTestResults_string;
             }
 
             edit_template ()
@@ -2663,7 +2918,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MPMTestResults", "MPMTestResults", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2712,7 +2976,9 @@ define
                 base.parse_element (/<cim:BillDeterminant.terminationDate>([\s\S]*?)<\/cim:BillDeterminant.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:BillDeterminant.unitOfMeasure>([\s\S]*?)<\/cim:BillDeterminant.unitOfMeasure>/g, obj, "unitOfMeasure", base.to_string, sub, context);
                 base.parse_attribute (/<cim:BillDeterminant.ChargeProfile\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeProfile", sub, context);
-
+                base.parse_attributes (/<cim:BillDeterminant.MktUserAttribute\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
+                base.parse_attributes (/<cim:BillDeterminant.ChargeProfileData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeProfileData", sub, context);
+                base.parse_attributes (/<cim:BillDeterminant.ChargeComponents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeComponents", sub, context);
                 var bucket = context.parsed.BillDeterminant;
                 if (null == bucket)
                    context.parsed.BillDeterminant = bucket = {};
@@ -2742,7 +3008,10 @@ define
                 base.export_element (obj, "BillDeterminant", "source", base.from_string, fields);
                 base.export_element (obj, "BillDeterminant", "terminationDate", base.from_datetime, fields);
                 base.export_element (obj, "BillDeterminant", "unitOfMeasure", base.from_string, fields);
-                base.export_attribute (obj, "BillDeterminant", "ChargeProfile", fields);
+                base.export_attribute (obj, "export_attribute", "BillDeterminant", fields);
+                base.export_attribute (obj, "export_attributes", "BillDeterminant", fields);
+                base.export_attribute (obj, "export_attributes", "BillDeterminant", fields);
+                base.export_attribute (obj, "export_attributes", "BillDeterminant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2778,6 +3047,9 @@ define
                     {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
                     {{#unitOfMeasure}}<div><b>unitOfMeasure</b>: {{unitOfMeasure}}</div>{{/unitOfMeasure}}
                     {{#ChargeProfile}}<div><b>ChargeProfile</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChargeProfile}}&quot;);})'>{{ChargeProfile}}</a></div>{{/ChargeProfile}}
+                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktUserAttribute}}
+                    {{#ChargeProfileData}}<div><b>ChargeProfileData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeProfileData}}
+                    {{#ChargeComponents}}<div><b>ChargeComponents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeComponents}}
                     </div>
                     <fieldset>
 
@@ -2788,11 +3060,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MktUserAttribute) obj.MktUserAttribute_string = obj.MktUserAttribute.join ();
+                if (obj.ChargeProfileData) obj.ChargeProfileData_string = obj.ChargeProfileData.join ();
+                if (obj.ChargeComponents) obj.ChargeComponents_string = obj.ChargeComponents.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MktUserAttribute_string;
+                delete obj.ChargeProfileData_string;
+                delete obj.ChargeComponents_string;
             }
 
             edit_template ()
@@ -2823,11 +3101,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitOfMeasure'>unitOfMeasure: </label><div class='col-sm-8'><input id='unitOfMeasure' class='form-control' type='text'{{#unitOfMeasure}} value='{{unitOfMeasure}}'{{/unitOfMeasure}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeProfile'>ChargeProfile: </label><div class='col-sm-8'><input id='ChargeProfile' class='form-control' type='text'{{#ChargeProfile}} value='{{ChargeProfile}}'{{/ChargeProfile}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents}}_string'{{/ChargeComponents}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ChargeProfile", "ChargeProfile", "0..1", "0..1"],
+                        ["MktUserAttribute", "MktUserAttribute", "0..*", "0..*"],
+                        ["ChargeProfileData", "ChargeProfileData", "0..*", "0..1"],
+                        ["ChargeComponents", "ChargeComponent", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2859,7 +3151,7 @@ define
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "ExPostPricing";
                 base.parse_element (/<cim:ExPostPricing.energyPrice>([\s\S]*?)<\/cim:ExPostPricing.energyPrice>/g, obj, "energyPrice", base.to_float, sub, context);
-
+                base.parse_attributes (/<cim:ExPostPricing.ExPostResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostResults", sub, context);
                 var bucket = context.parsed.ExPostPricing;
                 if (null == bucket)
                    context.parsed.ExPostPricing = bucket = {};
@@ -2873,6 +3165,7 @@ define
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExPostPricing", "energyPrice", base.from_float, fields);
+                base.export_attribute (obj, "export_attributes", "ExPostPricing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2891,6 +3184,7 @@ define
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
                     {{#energyPrice}}<div><b>energyPrice</b>: {{energyPrice}}</div>{{/energyPrice}}
+                    {{#ExPostResults}}<div><b>ExPostResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ExPostResults}}
                     </div>
                     <fieldset>
 
@@ -2901,11 +3195,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ExPostResults) obj.ExPostResults_string = obj.ExPostResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ExPostResults_string;
             }
 
             edit_template ()
@@ -2923,7 +3219,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExPostResults", "ExPostPricingResults", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2958,7 +3263,6 @@ define
                 base.parse_element (/<cim:TransactionBidResults.clearedPrice>([\s\S]*?)<\/cim:TransactionBidResults.clearedPrice>/g, obj, "clearedPrice", base.to_float, sub, context);
                 base.parse_attribute (/<cim:TransactionBidResults.TransactionBidClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransactionBidClearing", sub, context);
                 base.parse_attribute (/<cim:TransactionBidResults.TransactionBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransactionBid", sub, context);
-
                 var bucket = context.parsed.TransactionBidResults;
                 if (null == bucket)
                    context.parsed.TransactionBidResults = bucket = {};
@@ -2973,8 +3277,8 @@ define
 
                 base.export_element (obj, "TransactionBidResults", "clearedMW", base.from_float, fields);
                 base.export_element (obj, "TransactionBidResults", "clearedPrice", base.from_float, fields);
-                base.export_attribute (obj, "TransactionBidResults", "TransactionBidClearing", fields);
-                base.export_attribute (obj, "TransactionBidResults", "TransactionBid", fields);
+                base.export_attribute (obj, "export_attribute", "TransactionBidResults", fields);
+                base.export_attribute (obj, "export_attribute", "TransactionBidResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3031,7 +3335,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TransactionBidClearing", "TransactionBidClearing", "1", "0..*"],
+                        ["TransactionBid", "TransactionBid", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3062,8 +3376,8 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "AncillaryServiceClearing";
+                base.parse_attributes (/<cim:AncillaryServiceClearing.MarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRegionResults", sub, context);
                 base.parse_attribute (/<cim:AncillaryServiceClearing.MarketCaseClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketCaseClearing", sub, context);
-
                 var bucket = context.parsed.AncillaryServiceClearing;
                 if (null == bucket)
                    context.parsed.AncillaryServiceClearing = bucket = {};
@@ -3076,7 +3390,8 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "AncillaryServiceClearing", "MarketCaseClearing", fields);
+                base.export_attribute (obj, "export_attributes", "AncillaryServiceClearing", fields);
+                base.export_attribute (obj, "export_attribute", "AncillaryServiceClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3094,6 +3409,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#MarketRegionResults}}<div><b>MarketRegionResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketRegionResults}}
                     {{#MarketCaseClearing}}<div><b>MarketCaseClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketCaseClearing}}&quot;);})'>{{MarketCaseClearing}}</a></div>{{/MarketCaseClearing}}
                     </div>
                     <fieldset>
@@ -3105,11 +3421,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MarketRegionResults) obj.MarketRegionResults_string = obj.MarketRegionResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketRegionResults_string;
             }
 
             edit_template ()
@@ -3127,7 +3445,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketRegionResults", "MarketRegionResults", "1..*", "0..1"],
+                        ["MarketCaseClearing", "MarketCaseClearing", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3163,7 +3491,6 @@ define
                 base.parse_element (/<cim:GeneralClearingResults.totalNetInterchange>([\s\S]*?)<\/cim:GeneralClearingResults.totalNetInterchange>/g, obj, "totalNetInterchange", base.to_float, sub, context);
                 base.parse_attribute (/<cim:GeneralClearingResults.GeneralClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneralClearing", sub, context);
                 base.parse_attribute (/<cim:GeneralClearingResults.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
-
                 var bucket = context.parsed.GeneralClearingResults;
                 if (null == bucket)
                    context.parsed.GeneralClearingResults = bucket = {};
@@ -3179,8 +3506,8 @@ define
                 base.export_element (obj, "GeneralClearingResults", "loadForecast", base.from_string, fields);
                 base.export_element (obj, "GeneralClearingResults", "totalLoad", base.from_float, fields);
                 base.export_element (obj, "GeneralClearingResults", "totalNetInterchange", base.from_float, fields);
-                base.export_attribute (obj, "GeneralClearingResults", "GeneralClearing", fields);
-                base.export_attribute (obj, "GeneralClearingResults", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "GeneralClearingResults", fields);
+                base.export_attribute (obj, "export_attribute", "GeneralClearingResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3239,7 +3566,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneralClearing", "GeneralClearing", "0..1", "0..*"],
+                        ["SubControlArea", "SubControlArea", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3282,8 +3619,8 @@ define
                 base.parse_element (/<cim:Commitments.updateTimeStamp>([\s\S]*?)<\/cim:Commitments.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Commitments.updateType>([\s\S]*?)<\/cim:Commitments.updateType>/g, obj, "updateType", base.to_string, sub, context);
                 base.parse_element (/<cim:Commitments.updateUser>([\s\S]*?)<\/cim:Commitments.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
+                base.parse_attributes (/<cim:Commitments.CommitmentClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CommitmentClearing", sub, context);
                 base.parse_attribute (/<cim:Commitments.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.Commitments;
                 if (null == bucket)
                    context.parsed.Commitments = bucket = {};
@@ -3306,7 +3643,8 @@ define
                 base.export_element (obj, "Commitments", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "Commitments", "updateType", base.from_string, fields);
                 base.export_element (obj, "Commitments", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "Commitments", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attributes", "Commitments", fields);
+                base.export_attribute (obj, "export_attribute", "Commitments", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3334,6 +3672,7 @@ define
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#updateType}}<div><b>updateType</b>: {{updateType}}</div>{{/updateType}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
+                    {{#CommitmentClearing}}<div><b>CommitmentClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CommitmentClearing}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     </div>
                     <fieldset>
@@ -3345,11 +3684,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CommitmentClearing) obj.CommitmentClearing_string = obj.CommitmentClearing.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CommitmentClearing_string;
             }
 
             edit_template ()
@@ -3372,12 +3713,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateType'>updateType: </label><div class='col-sm-8'><input id='updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CommitmentClearing'>CommitmentClearing: </label><div class='col-sm-8'><input id='CommitmentClearing' class='form-control' type='text'{{#CommitmentClearing}} value='{{CommitmentClearing}}_string'{{/CommitmentClearing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CommitmentClearing", "CommitmentClearing", "1..*", "1..*"],
+                        ["RegisteredResource", "RegisteredResource", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3408,8 +3760,8 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MitigatedBid";
+                base.parse_attributes (/<cim:MitigatedBid.MitigatedBidClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBidClearing", sub, context);
                 base.parse_attribute (/<cim:MitigatedBid.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-
                 var bucket = context.parsed.MitigatedBid;
                 if (null == bucket)
                    context.parsed.MitigatedBid = bucket = {};
@@ -3422,7 +3774,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "MitigatedBid", "Bid", fields);
+                base.export_attribute (obj, "export_attributes", "MitigatedBid", fields);
+                base.export_attribute (obj, "export_attribute", "MitigatedBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3440,6 +3793,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#MitigatedBidClearing}}<div><b>MitigatedBidClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MitigatedBidClearing}}
                     {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bid}}&quot;);})'>{{Bid}}</a></div>{{/Bid}}
                     </div>
                     <fieldset>
@@ -3451,11 +3805,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MitigatedBidClearing) obj.MitigatedBidClearing_string = obj.MitigatedBidClearing.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MitigatedBidClearing_string;
             }
 
             edit_template ()
@@ -3468,12 +3824,23 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing}}_string'{{/MitigatedBidClearing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Bid'>Bid: </label><div class='col-sm-8'><input id='Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*"],
+                        ["Bid", "Bid", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3504,7 +3871,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "ExPostResource";
-
+                base.parse_attributes (/<cim:ExPostResource.ExPostResourceResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostResourceResults", sub, context);
                 var bucket = context.parsed.ExPostResource;
                 if (null == bucket)
                    context.parsed.ExPostResource = bucket = {};
@@ -3517,6 +3884,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ExPostResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3534,6 +3902,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#ExPostResourceResults}}<div><b>ExPostResourceResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ExPostResourceResults}}
                     </div>
                     <fieldset>
 
@@ -3544,11 +3913,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ExPostResourceResults) obj.ExPostResourceResults_string = obj.ExPostResourceResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ExPostResourceResults_string;
             }
 
             edit_template ()
@@ -3565,7 +3936,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExPostResourceResults", "ExPostResourceResults", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3598,7 +3978,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "GeneralClearing";
-
+                base.parse_attributes (/<cim:GeneralClearing.GeneralClearingResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneralClearingResults", sub, context);
                 var bucket = context.parsed.GeneralClearing;
                 if (null == bucket)
                    context.parsed.GeneralClearing = bucket = {};
@@ -3611,6 +3991,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "GeneralClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3628,6 +4009,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#GeneralClearingResults}}<div><b>GeneralClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GeneralClearingResults}}
                     </div>
                     <fieldset>
 
@@ -3638,11 +4020,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GeneralClearingResults) obj.GeneralClearingResults_string = obj.GeneralClearingResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GeneralClearingResults_string;
             }
 
             edit_template ()
@@ -3659,7 +4043,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneralClearingResults", "GeneralClearingResults", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3718,8 +4111,9 @@ define
                 base.parse_element (/<cim:PassThroughBill.tradeDate>([\s\S]*?)<\/cim:PassThroughBill.tradeDate>/g, obj, "tradeDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:PassThroughBill.transactionDate>([\s\S]*?)<\/cim:PassThroughBill.transactionDate>/g, obj, "transactionDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:PassThroughBill.transactionType>([\s\S]*?)<\/cim:PassThroughBill.transactionType>/g, obj, "transactionType", base.to_string, sub, context);
+                base.parse_attributes (/<cim:PassThroughBill.MktUserAttribute\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
+                base.parse_attributes (/<cim:PassThroughBill.ChargeProfiles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeProfiles", sub, context);
                 base.parse_attribute (/<cim:PassThroughBill.MarketStatementLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketStatementLineItem", sub, context);
-
                 var bucket = context.parsed.PassThroughBill;
                 if (null == bucket)
                    context.parsed.PassThroughBill = bucket = {};
@@ -3756,7 +4150,9 @@ define
                 base.export_element (obj, "PassThroughBill", "tradeDate", base.from_datetime, fields);
                 base.export_element (obj, "PassThroughBill", "transactionDate", base.from_datetime, fields);
                 base.export_element (obj, "PassThroughBill", "transactionType", base.from_string, fields);
-                base.export_attribute (obj, "PassThroughBill", "MarketStatementLineItem", fields);
+                base.export_attribute (obj, "export_attributes", "PassThroughBill", fields);
+                base.export_attribute (obj, "export_attributes", "PassThroughBill", fields);
+                base.export_attribute (obj, "export_attribute", "PassThroughBill", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3798,6 +4194,8 @@ define
                     {{#tradeDate}}<div><b>tradeDate</b>: {{tradeDate}}</div>{{/tradeDate}}
                     {{#transactionDate}}<div><b>transactionDate</b>: {{transactionDate}}</div>{{/transactionDate}}
                     {{#transactionType}}<div><b>transactionType</b>: {{transactionType}}</div>{{/transactionType}}
+                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktUserAttribute}}
+                    {{#ChargeProfiles}}<div><b>ChargeProfiles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeProfiles}}
                     {{#MarketStatementLineItem}}<div><b>MarketStatementLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketStatementLineItem}}&quot;);})'>{{MarketStatementLineItem}}</a></div>{{/MarketStatementLineItem}}
                     </div>
                     <fieldset>
@@ -3809,11 +4207,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MktUserAttribute) obj.MktUserAttribute_string = obj.MktUserAttribute.join ();
+                if (obj.ChargeProfiles) obj.ChargeProfiles_string = obj.ChargeProfiles.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MktUserAttribute_string;
+                delete obj.ChargeProfiles_string;
             }
 
             edit_template ()
@@ -3850,12 +4252,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradeDate'>tradeDate: </label><div class='col-sm-8'><input id='tradeDate' class='form-control' type='text'{{#tradeDate}} value='{{tradeDate}}'{{/tradeDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDate'>transactionDate: </label><div class='col-sm-8'><input id='transactionDate' class='form-control' type='text'{{#transactionDate}} value='{{transactionDate}}'{{/transactionDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionType'>transactionType: </label><div class='col-sm-8'><input id='transactionType' class='form-control' type='text'{{#transactionType}} value='{{transactionType}}'{{/transactionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketStatementLineItem'>MarketStatementLineItem: </label><div class='col-sm-8'><input id='MarketStatementLineItem' class='form-control' type='text'{{#MarketStatementLineItem}} value='{{MarketStatementLineItem}}'{{/MarketStatementLineItem}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktUserAttribute", "MktUserAttribute", "0..*", "0..*"],
+                        ["ChargeProfiles", "ChargeProfile", "0..*", "0..1"],
+                        ["MarketStatementLineItem", "MarketStatementLineItem", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3899,7 +4313,6 @@ define
                 base.parse_element (/<cim:ExPostResourceResults.status>([\s\S]*?)<\/cim:ExPostResourceResults.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ExPostResourceResults.ExPostResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostResource", sub, context);
                 base.parse_attribute (/<cim:ExPostResourceResults.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.ExPostResourceResults;
                 if (null == bucket)
                    context.parsed.ExPostResourceResults = bucket = {};
@@ -3921,8 +4334,8 @@ define
                 base.export_element (obj, "ExPostResourceResults", "minEconomicMW", base.from_float, fields);
                 base.export_element (obj, "ExPostResourceResults", "resourceMW", base.from_float, fields);
                 base.export_element (obj, "ExPostResourceResults", "status", base.from_string, fields);
-                base.export_attribute (obj, "ExPostResourceResults", "ExPostResource", fields);
-                base.export_attribute (obj, "ExPostResourceResults", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostResourceResults", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostResourceResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3993,7 +4406,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExPostResource", "ExPostResource", "1", "0..*"],
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4026,7 +4449,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "TransactionBidClearing";
-
+                base.parse_attributes (/<cim:TransactionBidClearing.TransactionBidResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransactionBidResults", sub, context);
                 var bucket = context.parsed.TransactionBidClearing;
                 if (null == bucket)
                    context.parsed.TransactionBidClearing = bucket = {};
@@ -4039,6 +4462,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "TransactionBidClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4056,6 +4480,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#TransactionBidResults}}<div><b>TransactionBidResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransactionBidResults}}
                     </div>
                     <fieldset>
 
@@ -4066,11 +4491,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TransactionBidResults) obj.TransactionBidResults_string = obj.TransactionBidResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TransactionBidResults_string;
             }
 
             edit_template ()
@@ -4087,7 +4514,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TransactionBidResults", "TransactionBidResults", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4119,8 +4555,10 @@ define
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "Settlement";
                 base.parse_element (/<cim:Settlement.tradeDate>([\s\S]*?)<\/cim:Settlement.tradeDate>/g, obj, "tradeDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:Settlement.MajorChargeGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MajorChargeGroup", sub, context);
+                base.parse_attributes (/<cim:Settlement.MarketInvoiceLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketInvoiceLineItem", sub, context);
+                base.parse_attributes (/<cim:Settlement.MarketLedgerEntry\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketLedgerEntry", sub, context);
                 base.parse_attribute (/<cim:Settlement.EnergyMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyMarket", sub, context);
-
                 var bucket = context.parsed.Settlement;
                 if (null == bucket)
                    context.parsed.Settlement = bucket = {};
@@ -4134,7 +4572,10 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Settlement", "tradeDate", base.from_datetime, fields);
-                base.export_attribute (obj, "Settlement", "EnergyMarket", fields);
+                base.export_attribute (obj, "export_attributes", "Settlement", fields);
+                base.export_attribute (obj, "export_attributes", "Settlement", fields);
+                base.export_attribute (obj, "export_attributes", "Settlement", fields);
+                base.export_attribute (obj, "export_attribute", "Settlement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4153,6 +4594,9 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     {{#tradeDate}}<div><b>tradeDate</b>: {{tradeDate}}</div>{{/tradeDate}}
+                    {{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MajorChargeGroup}}
+                    {{#MarketInvoiceLineItem}}<div><b>MarketInvoiceLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketInvoiceLineItem}}
+                    {{#MarketLedgerEntry}}<div><b>MarketLedgerEntry</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketLedgerEntry}}
                     {{#EnergyMarket}}<div><b>EnergyMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyMarket}}&quot;);})'>{{EnergyMarket}}</a></div>{{/EnergyMarket}}
                     </div>
                     <fieldset>
@@ -4164,11 +4608,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MajorChargeGroup) obj.MajorChargeGroup_string = obj.MajorChargeGroup.join ();
+                if (obj.MarketInvoiceLineItem) obj.MarketInvoiceLineItem_string = obj.MarketInvoiceLineItem.join ();
+                if (obj.MarketLedgerEntry) obj.MarketLedgerEntry_string = obj.MarketLedgerEntry.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MajorChargeGroup_string;
+                delete obj.MarketInvoiceLineItem_string;
+                delete obj.MarketLedgerEntry_string;
             }
 
             edit_template ()
@@ -4182,12 +4632,27 @@ define
                     + Common.Document.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradeDate'>tradeDate: </label><div class='col-sm-8'><input id='tradeDate' class='form-control' type='text'{{#tradeDate}} value='{{tradeDate}}'{{/tradeDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}_string'{{/MajorChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketInvoiceLineItem'>MarketInvoiceLineItem: </label><div class='col-sm-8'><input id='MarketInvoiceLineItem' class='form-control' type='text'{{#MarketInvoiceLineItem}} value='{{MarketInvoiceLineItem}}_string'{{/MarketInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketLedgerEntry'>MarketLedgerEntry: </label><div class='col-sm-8'><input id='MarketLedgerEntry' class='form-control' type='text'{{#MarketLedgerEntry}} value='{{MarketLedgerEntry}}_string'{{/MarketLedgerEntry}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyMarket'>EnergyMarket: </label><div class='col-sm-8'><input id='EnergyMarket' class='form-control' type='text'{{#EnergyMarket}} value='{{EnergyMarket}}'{{/EnergyMarket}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MajorChargeGroup", "MajorChargeGroup", "1..*", "0..*"],
+                        ["MarketInvoiceLineItem", "MarketInvoiceLineItem", "0..*", "0..*"],
+                        ["MarketLedgerEntry", "MarketLedgerEntry", "0..*", "0..*"],
+                        ["EnergyMarket", "EnergyMarket", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4225,7 +4690,6 @@ define
                 base.parse_element (/<cim:ExPostPricingResults.lossLMP>([\s\S]*?)<\/cim:ExPostPricingResults.lossLMP>/g, obj, "lossLMP", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ExPostPricingResults.ExPostPricing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostPricing", sub, context);
                 base.parse_attribute (/<cim:ExPostPricingResults.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pnode", sub, context);
-
                 var bucket = context.parsed.ExPostPricingResults;
                 if (null == bucket)
                    context.parsed.ExPostPricingResults = bucket = {};
@@ -4241,8 +4705,8 @@ define
                 base.export_element (obj, "ExPostPricingResults", "congestLMP", base.from_float, fields);
                 base.export_element (obj, "ExPostPricingResults", "lmp", base.from_float, fields);
                 base.export_element (obj, "ExPostPricingResults", "lossLMP", base.from_float, fields);
-                base.export_attribute (obj, "ExPostPricingResults", "ExPostPricing", fields);
-                base.export_attribute (obj, "ExPostPricingResults", "Pnode", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostPricingResults", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostPricingResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4301,7 +4765,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExPostPricing", "ExPostPricing", "1", "0..*"],
+                        ["Pnode", "Pnode", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4346,7 +4820,7 @@ define
                 base.parse_element (/<cim:Instructions.updateType>([\s\S]*?)<\/cim:Instructions.updateType>/g, obj, "updateType", base.to_string, sub, context);
                 base.parse_element (/<cim:Instructions.updateUser>([\s\S]*?)<\/cim:Instructions.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Instructions.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
+                base.parse_attributes (/<cim:Instructions.InstructionClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InstructionClearing", sub, context);
                 var bucket = context.parsed.Instructions;
                 if (null == bucket)
                    context.parsed.Instructions = bucket = {};
@@ -4370,7 +4844,8 @@ define
                 base.export_element (obj, "Instructions", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "Instructions", "updateType", base.from_string, fields);
                 base.export_element (obj, "Instructions", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "Instructions", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "Instructions", fields);
+                base.export_attribute (obj, "export_attributes", "Instructions", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4400,6 +4875,7 @@ define
                     {{#updateType}}<div><b>updateType</b>: {{updateType}}</div>{{/updateType}}
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
+                    {{#InstructionClearing}}<div><b>InstructionClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InstructionClearing}}
                     </div>
                     <fieldset>
 
@@ -4410,11 +4886,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.InstructionClearing) obj.InstructionClearing_string = obj.InstructionClearing.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.InstructionClearing_string;
             }
 
             edit_template ()
@@ -4439,11 +4917,22 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateType'>updateType: </label><div class='col-sm-8'><input id='updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InstructionClearing'>InstructionClearing: </label><div class='col-sm-8'><input id='InstructionClearing' class='form-control' type='text'{{#InstructionClearing}} value='{{InstructionClearing}}_string'{{/InstructionClearing}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "1", "0..*"],
+                        ["InstructionClearing", "InstructionClearing", "1..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4478,7 +4967,8 @@ define
                 obj.cls = "ResourceAwardClearing";
                 base.parse_element (/<cim:ResourceAwardClearing.dispatchMode>([\s\S]*?)<\/cim:ResourceAwardClearing.dispatchMode>/g, obj, "dispatchMode", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceAwardClearing.contingencyActive>([\s\S]*?)<\/cim:ResourceAwardClearing.contingencyActive>/g, obj, "contingencyActive", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ResourceAwardClearing.RUCAwardInstruction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RUCAwardInstruction", sub, context);
+                base.parse_attributes (/<cim:ResourceAwardClearing.ResourceAwardInstruction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceAwardInstruction", sub, context);
                 var bucket = context.parsed.ResourceAwardClearing;
                 if (null == bucket)
                    context.parsed.ResourceAwardClearing = bucket = {};
@@ -4493,6 +4983,8 @@ define
 
                 base.export_element (obj, "ResourceAwardClearing", "dispatchMode", base.from_string, fields);
                 base.export_element (obj, "ResourceAwardClearing", "contingencyActive", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ResourceAwardClearing", fields);
+                base.export_attribute (obj, "export_attributes", "ResourceAwardClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4512,6 +5004,8 @@ define
                     `
                     {{#dispatchMode}}<div><b>dispatchMode</b>: {{dispatchMode}}</div>{{/dispatchMode}}
                     {{#contingencyActive}}<div><b>contingencyActive</b>: {{contingencyActive}}</div>{{/contingencyActive}}
+                    {{#RUCAwardInstruction}}<div><b>RUCAwardInstruction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RUCAwardInstruction}}
+                    {{#ResourceAwardInstruction}}<div><b>ResourceAwardInstruction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ResourceAwardInstruction}}
                     </div>
                     <fieldset>
 
@@ -4522,11 +5016,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RUCAwardInstruction) obj.RUCAwardInstruction_string = obj.RUCAwardInstruction.join ();
+                if (obj.ResourceAwardInstruction) obj.ResourceAwardInstruction_string = obj.ResourceAwardInstruction.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RUCAwardInstruction_string;
+                delete obj.ResourceAwardInstruction_string;
             }
 
             edit_template ()
@@ -4541,11 +5039,23 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='dispatchMode'>dispatchMode: </label><div class='col-sm-8'><input id='dispatchMode' class='form-control' type='text'{{#dispatchMode}} value='{{dispatchMode}}'{{/dispatchMode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='contingencyActive'>contingencyActive: </label><div class='col-sm-8'><input id='contingencyActive' class='form-control' type='text'{{#contingencyActive}} value='{{contingencyActive}}'{{/contingencyActive}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RUCAwardInstruction'>RUCAwardInstruction: </label><div class='col-sm-8'><input id='RUCAwardInstruction' class='form-control' type='text'{{#RUCAwardInstruction}} value='{{RUCAwardInstruction}}_string'{{/RUCAwardInstruction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceAwardInstruction'>ResourceAwardInstruction: </label><div class='col-sm-8'><input id='ResourceAwardInstruction' class='form-control' type='text'{{#ResourceAwardInstruction}} value='{{ResourceAwardInstruction}}_string'{{/ResourceAwardInstruction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RUCAwardInstruction", "RUCAwardInstruction", "1..*", "1..*"],
+                        ["ResourceAwardInstruction", "ResourceAwardInstruction", "1..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4581,7 +5091,6 @@ define
                 base.parse_element (/<cim:ExPostMarketRegionResults.exPostClearedPrice>([\s\S]*?)<\/cim:ExPostMarketRegionResults.exPostClearedPrice>/g, obj, "exPostClearedPrice", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ExPostMarketRegionResults.MarketRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRegion", sub, context);
                 base.parse_attribute (/<cim:ExPostMarketRegionResults.ExPostMarketRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostMarketRegion", sub, context);
-
                 var bucket = context.parsed.ExPostMarketRegionResults;
                 if (null == bucket)
                    context.parsed.ExPostMarketRegionResults = bucket = {};
@@ -4595,8 +5104,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "ExPostMarketRegionResults", "exPostClearedPrice", base.from_float, fields);
-                base.export_attribute (obj, "ExPostMarketRegionResults", "MarketRegion", fields);
-                base.export_attribute (obj, "ExPostMarketRegionResults", "ExPostMarketRegion", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostMarketRegionResults", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostMarketRegionResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4651,7 +5160,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketRegion", "MarketRegion", "1", "0..*"],
+                        ["ExPostMarketRegion", "ExPostMarketRegion", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4683,7 +5202,6 @@ define
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "ExPostMarketRegion";
                 base.parse_attribute (/<cim:ExPostMarketRegion.ExPostMarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostMarketRegionResults", sub, context);
-
                 var bucket = context.parsed.ExPostMarketRegion;
                 if (null == bucket)
                    context.parsed.ExPostMarketRegion = bucket = {};
@@ -4696,7 +5214,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ExPostMarketRegion", "ExPostMarketRegionResults", fields);
+                base.export_attribute (obj, "export_attribute", "ExPostMarketRegion", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4747,7 +5265,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExPostMarketRegionResults", "ExPostMarketRegionResults", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4783,9 +5310,9 @@ define
                 base.parse_element (/<cim:ChargeProfile.numberInterval>([\s\S]*?)<\/cim:ChargeProfile.numberInterval>/g, obj, "numberInterval", base.to_string, sub, context);
                 base.parse_element (/<cim:ChargeProfile.unitOfMeasure>([\s\S]*?)<\/cim:ChargeProfile.unitOfMeasure>/g, obj, "unitOfMeasure", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ChargeProfile.BillDeterminant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BillDeterminant", sub, context);
+                base.parse_attributes (/<cim:ChargeProfile.ChargeProfileData\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeProfileData", sub, context);
                 base.parse_attribute (/<cim:ChargeProfile.PassTroughBill\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PassTroughBill", sub, context);
                 base.parse_attribute (/<cim:ChargeProfile.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-
                 var bucket = context.parsed.ChargeProfile;
                 if (null == bucket)
                    context.parsed.ChargeProfile = bucket = {};
@@ -4802,9 +5329,10 @@ define
                 base.export_element (obj, "ChargeProfile", "frequency", base.from_string, fields);
                 base.export_element (obj, "ChargeProfile", "numberInterval", base.from_string, fields);
                 base.export_element (obj, "ChargeProfile", "unitOfMeasure", base.from_string, fields);
-                base.export_attribute (obj, "ChargeProfile", "BillDeterminant", fields);
-                base.export_attribute (obj, "ChargeProfile", "PassTroughBill", fields);
-                base.export_attribute (obj, "ChargeProfile", "Bid", fields);
+                base.export_attribute (obj, "export_attribute", "ChargeProfile", fields);
+                base.export_attribute (obj, "export_attributes", "ChargeProfile", fields);
+                base.export_attribute (obj, "export_attribute", "ChargeProfile", fields);
+                base.export_attribute (obj, "export_attribute", "ChargeProfile", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4827,6 +5355,7 @@ define
                     {{#numberInterval}}<div><b>numberInterval</b>: {{numberInterval}}</div>{{/numberInterval}}
                     {{#unitOfMeasure}}<div><b>unitOfMeasure</b>: {{unitOfMeasure}}</div>{{/unitOfMeasure}}
                     {{#BillDeterminant}}<div><b>BillDeterminant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BillDeterminant}}&quot;);})'>{{BillDeterminant}}</a></div>{{/BillDeterminant}}
+                    {{#ChargeProfileData}}<div><b>ChargeProfileData</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeProfileData}}
                     {{#PassTroughBill}}<div><b>PassTroughBill</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PassTroughBill}}&quot;);})'>{{PassTroughBill}}</a></div>{{/PassTroughBill}}
                     {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bid}}&quot;);})'>{{Bid}}</a></div>{{/Bid}}
                     </div>
@@ -4839,11 +5368,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ChargeProfileData) obj.ChargeProfileData_string = obj.ChargeProfileData.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ChargeProfileData_string;
             }
 
             edit_template ()
@@ -4867,7 +5398,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BillDeterminant", "BillDeterminant", "0..1", "0..1"],
+                        ["ChargeProfileData", "ChargeProfileData", "0..*", "0..1"],
+                        ["PassTroughBill", "PassThroughBill", "0..1", "0..*"],
+                        ["Bid", "Bid", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4898,7 +5441,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "LossClearing";
-
+                base.parse_attributes (/<cim:LossClearing.LossClearingResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LossClearingResults", sub, context);
                 var bucket = context.parsed.LossClearing;
                 if (null == bucket)
                    context.parsed.LossClearing = bucket = {};
@@ -4911,6 +5454,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "LossClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4928,6 +5472,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#LossClearingResults}}<div><b>LossClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LossClearingResults}}
                     </div>
                     <fieldset>
 
@@ -4938,11 +5483,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.LossClearingResults) obj.LossClearingResults_string = obj.LossClearingResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.LossClearingResults_string;
             }
 
             edit_template ()
@@ -4959,7 +5506,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LossClearingResults", "LossClearingResults", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4991,7 +5547,7 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "RMRDetermination";
                 base.parse_attribute (/<cim:RMRDetermination.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-
+                base.parse_attributes (/<cim:RMRDetermination.MitigatedBidClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBidClearing", sub, context);
                 var bucket = context.parsed.RMRDetermination;
                 if (null == bucket)
                    context.parsed.RMRDetermination = bucket = {};
@@ -5004,7 +5560,8 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "RMRDetermination", "Bid", fields);
+                base.export_attribute (obj, "export_attribute", "RMRDetermination", fields);
+                base.export_attribute (obj, "export_attributes", "RMRDetermination", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5023,6 +5580,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bid}}&quot;);})'>{{Bid}}</a></div>{{/Bid}}
+                    {{#MitigatedBidClearing}}<div><b>MitigatedBidClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MitigatedBidClearing}}
                     </div>
                     <fieldset>
 
@@ -5033,11 +5591,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MitigatedBidClearing) obj.MitigatedBidClearing_string = obj.MitigatedBidClearing.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MitigatedBidClearing_string;
             }
 
             edit_template ()
@@ -5051,11 +5611,22 @@ define
                     + base.Element.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Bid'>Bid: </label><div class='col-sm-8'><input id='Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MitigatedBidClearing'>MitigatedBidClearing: </label><div class='col-sm-8'><input id='MitigatedBidClearing' class='form-control' type='text'{{#MitigatedBidClearing}} value='{{MitigatedBidClearing}}_string'{{/MitigatedBidClearing}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Bid", "Bid", "0..1", "0..*"],
+                        ["MitigatedBidClearing", "MitigatedBidClearing", "1..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5088,7 +5659,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "InstructionClearingDOP";
-
+                base.parse_attributes (/<cim:InstructionClearingDOP.DopInstruction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DopInstruction", sub, context);
                 var bucket = context.parsed.InstructionClearingDOP;
                 if (null == bucket)
                    context.parsed.InstructionClearingDOP = bucket = {};
@@ -5101,6 +5672,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "InstructionClearingDOP", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5118,6 +5690,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#DopInstruction}}<div><b>DopInstruction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DopInstruction}}
                     </div>
                     <fieldset>
 
@@ -5128,11 +5701,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DopInstruction) obj.DopInstruction_string = obj.DopInstruction.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DopInstruction_string;
             }
 
             edit_template ()
@@ -5145,11 +5720,21 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DopInstruction'>DopInstruction: </label><div class='col-sm-8'><input id='DopInstruction' class='form-control' type='text'{{#DopInstruction}} value='{{DopInstruction}}_string'{{/DopInstruction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DopInstruction", "DopInstruction", "1..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5200,7 +5785,6 @@ define
                 base.parse_attribute (/<cim:ConstraintResults.MktContingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktContingency", sub, context);
                 base.parse_attribute (/<cim:ConstraintResults.ConstraintClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConstraintClearing", sub, context);
                 base.parse_attribute (/<cim:ConstraintResults.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
-
                 var bucket = context.parsed.ConstraintResults;
                 if (null == bucket)
                    context.parsed.ConstraintResults = bucket = {};
@@ -5228,9 +5812,9 @@ define
                 base.export_element (obj, "ConstraintResults", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "ConstraintResults", "updateType", base.from_string, fields);
                 base.export_element (obj, "ConstraintResults", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "ConstraintResults", "MktContingency", fields);
-                base.export_attribute (obj, "ConstraintResults", "ConstraintClearing", fields);
-                base.export_attribute (obj, "ConstraintResults", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "ConstraintResults", fields);
+                base.export_attribute (obj, "export_attribute", "ConstraintResults", fields);
+                base.export_attribute (obj, "export_attribute", "ConstraintResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5315,7 +5899,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktContingency", "MktContingency", "1", "0..*"],
+                        ["ConstraintClearing", "ConstraintClearing", "0..1", "0..*"],
+                        ["Flowgate", "Flowgate", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5365,7 +5960,6 @@ define
                 base.parse_attribute (/<cim:MarketRegionResults.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
                 base.parse_attribute (/<cim:MarketRegionResults.MarketRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRegion", sub, context);
                 base.parse_attribute (/<cim:MarketRegionResults.AncillaryServiceClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AncillaryServiceClearing", sub, context);
-
                 var bucket = context.parsed.MarketRegionResults;
                 if (null == bucket)
                    context.parsed.MarketRegionResults = bucket = {};
@@ -5392,9 +5986,9 @@ define
                 base.export_element (obj, "MarketRegionResults", "reqMaxMW", base.from_float, fields);
                 base.export_element (obj, "MarketRegionResults", "reqMinMW", base.from_float, fields);
                 base.export_element (obj, "MarketRegionResults", "selfScheduleMW", base.from_float, fields);
-                base.export_attribute (obj, "MarketRegionResults", "MarketProduct", fields);
-                base.export_attribute (obj, "MarketRegionResults", "MarketRegion", fields);
-                base.export_attribute (obj, "MarketRegionResults", "AncillaryServiceClearing", fields);
+                base.export_attribute (obj, "export_attribute", "MarketRegionResults", fields);
+                base.export_attribute (obj, "export_attribute", "MarketRegionResults", fields);
+                base.export_attribute (obj, "export_attribute", "MarketRegionResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5477,7 +6071,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketProduct", "MarketProduct", "0..1", "0..1"],
+                        ["MarketRegion", "MarketRegion", "1", "1..*"],
+                        ["AncillaryServiceClearing", "AncillaryServiceClearing", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5517,8 +6122,8 @@ define
                 base.parse_element (/<cim:DopInstruction.updateUser>([\s\S]*?)<\/cim:DopInstruction.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_element (/<cim:DopInstruction.updateTimeStamp>([\s\S]*?)<\/cim:DopInstruction.updateTimeStamp>/g, obj, "updateTimeStamp", base.to_datetime, sub, context);
                 base.parse_element (/<cim:DopInstruction.updateType>([\s\S]*?)<\/cim:DopInstruction.updateType>/g, obj, "updateType", base.to_string, sub, context);
+                base.parse_attributes (/<cim:DopInstruction.InstructionClearingDOP\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InstructionClearingDOP", sub, context);
                 base.parse_attribute (/<cim:DopInstruction.RegisteredResouce\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResouce", sub, context);
-
                 var bucket = context.parsed.DopInstruction;
                 if (null == bucket)
                    context.parsed.DopInstruction = bucket = {};
@@ -5538,7 +6143,8 @@ define
                 base.export_element (obj, "DopInstruction", "updateUser", base.from_string, fields);
                 base.export_element (obj, "DopInstruction", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "DopInstruction", "updateType", base.from_string, fields);
-                base.export_attribute (obj, "DopInstruction", "RegisteredResouce", fields);
+                base.export_attribute (obj, "export_attributes", "DopInstruction", fields);
+                base.export_attribute (obj, "export_attribute", "DopInstruction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5563,6 +6169,7 @@ define
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#updateTimeStamp}}<div><b>updateTimeStamp</b>: {{updateTimeStamp}}</div>{{/updateTimeStamp}}
                     {{#updateType}}<div><b>updateType</b>: {{updateType}}</div>{{/updateType}}
+                    {{#InstructionClearingDOP}}<div><b>InstructionClearingDOP</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InstructionClearingDOP}}
                     {{#RegisteredResouce}}<div><b>RegisteredResouce</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResouce}}&quot;);})'>{{RegisteredResouce}}</a></div>{{/RegisteredResouce}}
                     </div>
                     <fieldset>
@@ -5574,11 +6181,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.InstructionClearingDOP) obj.InstructionClearingDOP_string = obj.InstructionClearingDOP.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.InstructionClearingDOP_string;
             }
 
             edit_template ()
@@ -5598,12 +6207,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateType'>updateType: </label><div class='col-sm-8'><input id='updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InstructionClearingDOP'>InstructionClearingDOP: </label><div class='col-sm-8'><input id='InstructionClearingDOP' class='form-control' type='text'{{#InstructionClearingDOP}} value='{{InstructionClearingDOP}}_string'{{/InstructionClearingDOP}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResouce'>RegisteredResouce: </label><div class='col-sm-8'><input id='RegisteredResouce' class='form-control' type='text'{{#RegisteredResouce}} value='{{RegisteredResouce}}'{{/RegisteredResouce}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["InstructionClearingDOP", "InstructionClearingDOP", "1..*", "1..*"],
+                        ["RegisteredResouce", "RegisteredResource", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5634,7 +6254,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "ExPostLoss";
-
+                base.parse_attributes (/<cim:ExPostLoss.ExPostLossResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostLossResults", sub, context);
                 var bucket = context.parsed.ExPostLoss;
                 if (null == bucket)
                    context.parsed.ExPostLoss = bucket = {};
@@ -5647,6 +6267,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ExPostLoss", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5664,6 +6285,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#ExPostLossResults}}<div><b>ExPostLossResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ExPostLossResults}}
                     </div>
                     <fieldset>
 
@@ -5674,11 +6296,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ExPostLossResults) obj.ExPostLossResults_string = obj.ExPostLossResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ExPostLossResults_string;
             }
 
             edit_template ()
@@ -5695,7 +6319,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExPostLossResults", "ExPostLossResults", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5745,9 +6378,10 @@ define
                 base.parse_element (/<cim:MarketStatementLineItem.currentISOQuantity>([\s\S]*?)<\/cim:MarketStatementLineItem.currentISOQuantity>/g, obj, "currentISOQuantity", base.to_float, sub, context);
                 base.parse_element (/<cim:MarketStatementLineItem.netISOQuantity>([\s\S]*?)<\/cim:MarketStatementLineItem.netISOQuantity>/g, obj, "netISOQuantity", base.to_float, sub, context);
                 base.parse_attribute (/<cim:MarketStatementLineItem.MarketStatement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketStatement", sub, context);
+                base.parse_attributes (/<cim:MarketStatementLineItem.MktUserAttribute\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
                 base.parse_attribute (/<cim:MarketStatementLineItem.ContainerMarketStatementLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContainerMarketStatementLineItem", sub, context);
+                base.parse_attributes (/<cim:MarketStatementLineItem.ComponentMarketStatementLineItem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ComponentMarketStatementLineItem", sub, context);
                 base.parse_attribute (/<cim:MarketStatementLineItem.PassThroughBill\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PassThroughBill", sub, context);
-
                 var bucket = context.parsed.MarketStatementLineItem;
                 if (null == bucket)
                    context.parsed.MarketStatementLineItem = bucket = {};
@@ -5778,9 +6412,11 @@ define
                 base.export_element (obj, "MarketStatementLineItem", "previousISOQuantity", base.from_float, fields);
                 base.export_element (obj, "MarketStatementLineItem", "currentISOQuantity", base.from_float, fields);
                 base.export_element (obj, "MarketStatementLineItem", "netISOQuantity", base.from_float, fields);
-                base.export_attribute (obj, "MarketStatementLineItem", "MarketStatement", fields);
-                base.export_attribute (obj, "MarketStatementLineItem", "ContainerMarketStatementLineItem", fields);
-                base.export_attribute (obj, "MarketStatementLineItem", "PassThroughBill", fields);
+                base.export_attribute (obj, "export_attribute", "MarketStatementLineItem", fields);
+                base.export_attribute (obj, "export_attributes", "MarketStatementLineItem", fields);
+                base.export_attribute (obj, "export_attribute", "MarketStatementLineItem", fields);
+                base.export_attribute (obj, "export_attributes", "MarketStatementLineItem", fields);
+                base.export_attribute (obj, "export_attribute", "MarketStatementLineItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5817,7 +6453,9 @@ define
                     {{#currentISOQuantity}}<div><b>currentISOQuantity</b>: {{currentISOQuantity}}</div>{{/currentISOQuantity}}
                     {{#netISOQuantity}}<div><b>netISOQuantity</b>: {{netISOQuantity}}</div>{{/netISOQuantity}}
                     {{#MarketStatement}}<div><b>MarketStatement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketStatement}}&quot;);})'>{{MarketStatement}}</a></div>{{/MarketStatement}}
+                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktUserAttribute}}
                     {{#ContainerMarketStatementLineItem}}<div><b>ContainerMarketStatementLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ContainerMarketStatementLineItem}}&quot;);})'>{{ContainerMarketStatementLineItem}}</a></div>{{/ContainerMarketStatementLineItem}}
+                    {{#ComponentMarketStatementLineItem}}<div><b>ComponentMarketStatementLineItem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ComponentMarketStatementLineItem}}
                     {{#PassThroughBill}}<div><b>PassThroughBill</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PassThroughBill}}&quot;);})'>{{PassThroughBill}}</a></div>{{/PassThroughBill}}
                     </div>
                     <fieldset>
@@ -5829,11 +6467,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MktUserAttribute) obj.MktUserAttribute_string = obj.MktUserAttribute.join ();
+                if (obj.ComponentMarketStatementLineItem) obj.ComponentMarketStatementLineItem_string = obj.ComponentMarketStatementLineItem.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MktUserAttribute_string;
+                delete obj.ComponentMarketStatementLineItem_string;
             }
 
             edit_template ()
@@ -5865,13 +6507,27 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentISOQuantity'>currentISOQuantity: </label><div class='col-sm-8'><input id='currentISOQuantity' class='form-control' type='text'{{#currentISOQuantity}} value='{{currentISOQuantity}}'{{/currentISOQuantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='netISOQuantity'>netISOQuantity: </label><div class='col-sm-8'><input id='netISOQuantity' class='form-control' type='text'{{#netISOQuantity}} value='{{netISOQuantity}}'{{/netISOQuantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketStatement'>MarketStatement: </label><div class='col-sm-8'><input id='MarketStatement' class='form-control' type='text'{{#MarketStatement}} value='{{MarketStatement}}'{{/MarketStatement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ContainerMarketStatementLineItem'>ContainerMarketStatementLineItem: </label><div class='col-sm-8'><input id='ContainerMarketStatementLineItem' class='form-control' type='text'{{#ContainerMarketStatementLineItem}} value='{{ContainerMarketStatementLineItem}}'{{/ContainerMarketStatementLineItem}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='PassThroughBill'>PassThroughBill: </label><div class='col-sm-8'><input id='PassThroughBill' class='form-control' type='text'{{#PassThroughBill}} value='{{PassThroughBill}}'{{/PassThroughBill}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketStatement", "MarketStatement", "1", "0..*"],
+                        ["MktUserAttribute", "MktUserAttribute", "0..*", "0..*"],
+                        ["ContainerMarketStatementLineItem", "MarketStatementLineItem", "0..1", "0..*"],
+                        ["ComponentMarketStatementLineItem", "MarketStatementLineItem", "0..*", "0..1"],
+                        ["PassThroughBill", "PassThroughBill", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5904,7 +6560,9 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "MitigatedBidClearing";
-
+                base.parse_attributes (/<cim:MitigatedBidClearing.MitigatedBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBid", sub, context);
+                base.parse_attributes (/<cim:MitigatedBidClearing.RMRDetermination\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRDetermination", sub, context);
+                base.parse_attributes (/<cim:MitigatedBidClearing.MPMResourceStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMResourceStatus", sub, context);
                 var bucket = context.parsed.MitigatedBidClearing;
                 if (null == bucket)
                    context.parsed.MitigatedBidClearing = bucket = {};
@@ -5917,6 +6575,9 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "MitigatedBidClearing", fields);
+                base.export_attribute (obj, "export_attributes", "MitigatedBidClearing", fields);
+                base.export_attribute (obj, "export_attributes", "MitigatedBidClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5934,6 +6595,9 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#MitigatedBid}}<div><b>MitigatedBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MitigatedBid}}
+                    {{#RMRDetermination}}<div><b>RMRDetermination</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RMRDetermination}}
+                    {{#MPMResourceStatus}}<div><b>MPMResourceStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MPMResourceStatus}}
                     </div>
                     <fieldset>
 
@@ -5944,11 +6608,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MitigatedBid) obj.MitigatedBid_string = obj.MitigatedBid.join ();
+                if (obj.RMRDetermination) obj.RMRDetermination_string = obj.RMRDetermination.join ();
+                if (obj.MPMResourceStatus) obj.MPMResourceStatus_string = obj.MPMResourceStatus.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MitigatedBid_string;
+                delete obj.RMRDetermination_string;
+                delete obj.MPMResourceStatus_string;
             }
 
             edit_template ()
@@ -5961,11 +6631,25 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MitigatedBid'>MitigatedBid: </label><div class='col-sm-8'><input id='MitigatedBid' class='form-control' type='text'{{#MitigatedBid}} value='{{MitigatedBid}}_string'{{/MitigatedBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRDetermination'>RMRDetermination: </label><div class='col-sm-8'><input id='RMRDetermination' class='form-control' type='text'{{#RMRDetermination}} value='{{RMRDetermination}}_string'{{/RMRDetermination}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MPMResourceStatus'>MPMResourceStatus: </label><div class='col-sm-8'><input id='MPMResourceStatus' class='form-control' type='text'{{#MPMResourceStatus}} value='{{MPMResourceStatus}}_string'{{/MPMResourceStatus}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MitigatedBid", "MitigatedBid", "0..*", "1..*"],
+                        ["RMRDetermination", "RMRDetermination", "0..*", "1..*"],
+                        ["MPMResourceStatus", "MPMResourceStatus", "0..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6001,7 +6685,6 @@ define
                 base.parse_element (/<cim:ChargeProfileData.value>([\s\S]*?)<\/cim:ChargeProfileData.value>/g, obj, "value", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ChargeProfileData.BillDeterminant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BillDeterminant", sub, context);
                 base.parse_attribute (/<cim:ChargeProfileData.ChargeProfile\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeProfile", sub, context);
-
                 var bucket = context.parsed.ChargeProfileData;
                 if (null == bucket)
                    context.parsed.ChargeProfileData = bucket = {};
@@ -6017,8 +6700,8 @@ define
                 base.export_element (obj, "ChargeProfileData", "sequence", base.from_string, fields);
                 base.export_element (obj, "ChargeProfileData", "timeStamp", base.from_datetime, fields);
                 base.export_element (obj, "ChargeProfileData", "value", base.from_float, fields);
-                base.export_attribute (obj, "ChargeProfileData", "BillDeterminant", fields);
-                base.export_attribute (obj, "ChargeProfileData", "ChargeProfile", fields);
+                base.export_attribute (obj, "export_attribute", "ChargeProfileData", fields);
+                base.export_attribute (obj, "export_attribute", "ChargeProfileData", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6077,7 +6760,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BillDeterminant", "BillDeterminant", "0..1", "0..*"],
+                        ["ChargeProfile", "ChargeProfile", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6108,7 +6801,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "CommitmentClearing";
-
+                base.parse_attributes (/<cim:CommitmentClearing.Commitments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Commitments", sub, context);
                 var bucket = context.parsed.CommitmentClearing;
                 if (null == bucket)
                    context.parsed.CommitmentClearing = bucket = {};
@@ -6121,6 +6814,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "CommitmentClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6138,6 +6832,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#Commitments}}<div><b>Commitments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Commitments}}
                     </div>
                     <fieldset>
 
@@ -6148,11 +6843,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Commitments) obj.Commitments_string = obj.Commitments.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Commitments_string;
             }
 
             edit_template ()
@@ -6165,11 +6862,21 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Commitments'>Commitments: </label><div class='col-sm-8'><input id='Commitments' class='form-control' type='text'{{#Commitments}} value='{{Commitments}}_string'{{/Commitments}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Commitments", "Commitments", "1..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         return (

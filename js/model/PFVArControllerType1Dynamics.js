@@ -41,7 +41,6 @@ define
                 base.parse_attribute (/<cim:PFVArControllerType1Dynamics.VoltageAdjusterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageAdjusterDynamics", sub, context);
                 base.parse_attribute (/<cim:PFVArControllerType1Dynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
                 base.parse_attribute (/<cim:PFVArControllerType1Dynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-
                 var bucket = context.parsed.PFVArControllerType1Dynamics;
                 if (null == bucket)
                    context.parsed.PFVArControllerType1Dynamics = bucket = {};
@@ -54,9 +53,9 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PFVArControllerType1Dynamics", "VoltageAdjusterDynamics", fields);
-                base.export_attribute (obj, "PFVArControllerType1Dynamics", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "PFVArControllerType1Dynamics", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "PFVArControllerType1Dynamics", fields);
+                base.export_attribute (obj, "export_attribute", "PFVArControllerType1Dynamics", fields);
+                base.export_attribute (obj, "export_attribute", "PFVArControllerType1Dynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -111,7 +110,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["VoltageAdjusterDynamics", "VoltageAdjusterDynamics", "0..1", "1"],
+                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"],
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -150,7 +160,6 @@ define
                 base.parse_element (/<cim:PFVArType1IEEEVArController.vvarref>([\s\S]*?)<\/cim:PFVArType1IEEEVArController.vvarref>/g, obj, "vvarref", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEVArController.vvtmax>([\s\S]*?)<\/cim:PFVArType1IEEEVArController.vvtmax>/g, obj, "vvtmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEVArController.vvtmin>([\s\S]*?)<\/cim:PFVArType1IEEEVArController.vvtmin>/g, obj, "vvtmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PFVArType1IEEEVArController;
                 if (null == bucket)
                    context.parsed.PFVArType1IEEEVArController = bucket = {};
@@ -229,7 +238,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -270,7 +279,6 @@ define
                 base.parse_element (/<cim:PFVArType1IEEEPFController.vpfref>([\s\S]*?)<\/cim:PFVArType1IEEEPFController.vpfref>/g, obj, "vpfref", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEPFController.vvtmax>([\s\S]*?)<\/cim:PFVArType1IEEEPFController.vvtmax>/g, obj, "vvtmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType1IEEEPFController.vvtmin>([\s\S]*?)<\/cim:PFVArType1IEEEPFController.vvtmin>/g, obj, "vvtmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PFVArType1IEEEPFController;
                 if (null == bucket)
                    context.parsed.PFVArType1IEEEPFController = bucket = {};
@@ -355,7 +363,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

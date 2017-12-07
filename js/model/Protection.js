@@ -41,7 +41,6 @@ define
                 base.parse_element (/<cim:RecloseSequence.recloseDelay>([\s\S]*?)<\/cim:RecloseSequence.recloseDelay>/g, obj, "recloseDelay", base.to_string, sub, context);
                 base.parse_element (/<cim:RecloseSequence.recloseStep>([\s\S]*?)<\/cim:RecloseSequence.recloseStep>/g, obj, "recloseStep", base.to_string, sub, context);
                 base.parse_attribute (/<cim:RecloseSequence.ProtectedSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectedSwitch", sub, context);
-
                 var bucket = context.parsed.RecloseSequence;
                 if (null == bucket)
                    context.parsed.RecloseSequence = bucket = {};
@@ -56,7 +55,7 @@ define
 
                 base.export_element (obj, "RecloseSequence", "recloseDelay", base.from_string, fields);
                 base.export_element (obj, "RecloseSequence", "recloseStep", base.from_string, fields);
-                base.export_attribute (obj, "RecloseSequence", "ProtectedSwitch", fields);
+                base.export_attribute (obj, "export_attribute", "RecloseSequence", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -111,7 +110,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProtectedSwitch", "ProtectedSwitch", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -150,7 +158,9 @@ define
                 base.parse_element (/<cim:ProtectionEquipment.relayDelayTime>([\s\S]*?)<\/cim:ProtectionEquipment.relayDelayTime>/g, obj, "relayDelayTime", base.to_string, sub, context);
                 base.parse_element (/<cim:ProtectionEquipment.unitMultiplier>([\s\S]*?)<\/cim:ProtectionEquipment.unitMultiplier>/g, obj, "unitMultiplier", base.to_string, sub, context);
                 base.parse_element (/<cim:ProtectionEquipment.unitSymbol>([\s\S]*?)<\/cim:ProtectionEquipment.unitSymbol>/g, obj, "unitSymbol", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ProtectionEquipment.ProtectiveAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveAction", sub, context);
+                base.parse_attributes (/<cim:ProtectionEquipment.ConductingEquipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipments", sub, context);
+                base.parse_attributes (/<cim:ProtectionEquipment.ProtectedSwitches\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectedSwitches", sub, context);
                 var bucket = context.parsed.ProtectionEquipment;
                 if (null == bucket)
                    context.parsed.ProtectionEquipment = bucket = {};
@@ -169,6 +179,9 @@ define
                 base.export_element (obj, "ProtectionEquipment", "relayDelayTime", base.from_string, fields);
                 base.export_element (obj, "ProtectionEquipment", "unitMultiplier", base.from_string, fields);
                 base.export_element (obj, "ProtectionEquipment", "unitSymbol", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ProtectionEquipment", fields);
+                base.export_attribute (obj, "export_attributes", "ProtectionEquipment", fields);
+                base.export_attribute (obj, "export_attributes", "ProtectionEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -192,6 +205,9 @@ define
                     {{#relayDelayTime}}<div><b>relayDelayTime</b>: {{relayDelayTime}}</div>{{/relayDelayTime}}
                     {{#unitMultiplier}}<div><b>unitMultiplier</b>: {{unitMultiplier}}</div>{{/unitMultiplier}}
                     {{#unitSymbol}}<div><b>unitSymbol</b>: {{unitSymbol}}</div>{{/unitSymbol}}
+                    {{#ProtectiveAction}}<div><b>ProtectiveAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectiveAction}}
+                    {{#ConductingEquipments}}<div><b>ConductingEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConductingEquipments}}
+                    {{#ProtectedSwitches}}<div><b>ProtectedSwitches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectedSwitches}}
                     </div>
                     <fieldset>
 
@@ -202,11 +218,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProtectiveAction) obj.ProtectiveAction_string = obj.ProtectiveAction.join ();
+                if (obj.ConductingEquipments) obj.ConductingEquipments_string = obj.ConductingEquipments.join ();
+                if (obj.ProtectedSwitches) obj.ProtectedSwitches_string = obj.ProtectedSwitches.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProtectiveAction_string;
+                delete obj.ConductingEquipments_string;
+                delete obj.ProtectedSwitches_string;
             }
 
             edit_template ()
@@ -225,11 +247,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='relayDelayTime'>relayDelayTime: </label><div class='col-sm-8'><input id='relayDelayTime' class='form-control' type='text'{{#relayDelayTime}} value='{{relayDelayTime}}'{{/relayDelayTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConductingEquipments'>ConductingEquipments: </label><div class='col-sm-8'><input id='ConductingEquipments' class='form-control' type='text'{{#ConductingEquipments}} value='{{ConductingEquipments}}_string'{{/ConductingEquipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProtectedSwitches'>ProtectedSwitches: </label><div class='col-sm-8'><input id='ProtectedSwitches' class='form-control' type='text'{{#ProtectedSwitches}} value='{{ProtectedSwitches}}_string'{{/ProtectedSwitches}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProtectiveAction", "ProtectiveAction", "0..*", "0..1"],
+                        ["ConductingEquipments", "ConductingEquipment", "0..*", "0..*"],
+                        ["ProtectedSwitches", "ProtectedSwitch", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -267,7 +302,6 @@ define
                 base.parse_element (/<cim:CurrentRelay.timeDelay1>([\s\S]*?)<\/cim:CurrentRelay.timeDelay1>/g, obj, "timeDelay1", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentRelay.timeDelay2>([\s\S]*?)<\/cim:CurrentRelay.timeDelay2>/g, obj, "timeDelay2", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentRelay.timeDelay3>([\s\S]*?)<\/cim:CurrentRelay.timeDelay3>/g, obj, "timeDelay3", base.to_string, sub, context);
-
                 var bucket = context.parsed.CurrentRelay;
                 if (null == bucket)
                    context.parsed.CurrentRelay = bucket = {};
@@ -349,7 +383,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -385,7 +419,6 @@ define
                 base.parse_element (/<cim:SynchrocheckRelay.maxAngleDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxAngleDiff>/g, obj, "maxAngleDiff", base.to_string, sub, context);
                 base.parse_element (/<cim:SynchrocheckRelay.maxFreqDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxFreqDiff>/g, obj, "maxFreqDiff", base.to_string, sub, context);
                 base.parse_element (/<cim:SynchrocheckRelay.maxVoltDiff>([\s\S]*?)<\/cim:SynchrocheckRelay.maxVoltDiff>/g, obj, "maxVoltDiff", base.to_string, sub, context);
-
                 var bucket = context.parsed.SynchrocheckRelay;
                 if (null == bucket)
                    context.parsed.SynchrocheckRelay = bucket = {};
@@ -455,7 +488,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

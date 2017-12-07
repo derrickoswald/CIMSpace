@@ -38,7 +38,7 @@ define
 
                 obj = Core.ConnectivityNodeContainer.prototype.parse.call (this, context, sub);
                 obj.cls = "EquivalentNetwork";
-
+                base.parse_attributes (/<cim:EquivalentNetwork.EquivalentEquipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquivalentEquipments", sub, context);
                 var bucket = context.parsed.EquivalentNetwork;
                 if (null == bucket)
                    context.parsed.EquivalentNetwork = bucket = {};
@@ -51,6 +51,7 @@ define
             {
                 var fields = Core.ConnectivityNodeContainer.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "EquivalentNetwork", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -68,6 +69,7 @@ define
                     `
                     + Core.ConnectivityNodeContainer.prototype.template.call (this) +
                     `
+                    {{#EquivalentEquipments}}<div><b>EquivalentEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EquivalentEquipments}}
                     </div>
                     <fieldset>
 
@@ -78,11 +80,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EquivalentEquipments) obj.EquivalentEquipments_string = obj.EquivalentEquipments.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EquivalentEquipments_string;
             }
 
             edit_template ()
@@ -99,7 +103,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EquivalentEquipments", "EquivalentEquipment", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -133,7 +146,6 @@ define
                 obj = Core.ConductingEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "EquivalentEquipment";
                 base.parse_attribute (/<cim:EquivalentEquipment.EquivalentNetwork\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquivalentNetwork", sub, context);
-
                 var bucket = context.parsed.EquivalentEquipment;
                 if (null == bucket)
                    context.parsed.EquivalentEquipment = bucket = {};
@@ -146,7 +158,7 @@ define
             {
                 var fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "EquivalentEquipment", "EquivalentNetwork", fields);
+                base.export_attribute (obj, "export_attribute", "EquivalentEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -197,7 +209,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EquivalentNetwork", "EquivalentNetwork", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -230,7 +251,6 @@ define
                 obj.cls = "EquivalentShunt";
                 base.parse_element (/<cim:EquivalentShunt.b>([\s\S]*?)<\/cim:EquivalentShunt.b>/g, obj, "b", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentShunt.g>([\s\S]*?)<\/cim:EquivalentShunt.g>/g, obj, "g", base.to_string, sub, context);
-
                 var bucket = context.parsed.EquivalentShunt;
                 if (null == bucket)
                    context.parsed.EquivalentShunt = bucket = {};
@@ -297,7 +317,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -344,7 +364,6 @@ define
                 base.parse_element (/<cim:EquivalentBranch.zeroR21>([\s\S]*?)<\/cim:EquivalentBranch.zeroR21>/g, obj, "zeroR21", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentBranch.zeroX12>([\s\S]*?)<\/cim:EquivalentBranch.zeroX12>/g, obj, "zeroX12", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentBranch.zeroX21>([\s\S]*?)<\/cim:EquivalentBranch.zeroX21>/g, obj, "zeroX21", base.to_string, sub, context);
-
                 var bucket = context.parsed.EquivalentBranch;
                 if (null == bucket)
                    context.parsed.EquivalentBranch = bucket = {};
@@ -453,7 +472,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -502,7 +521,6 @@ define
                 base.parse_element (/<cim:EquivalentInjection.p>([\s\S]*?)<\/cim:EquivalentInjection.p>/g, obj, "p", base.to_string, sub, context);
                 base.parse_element (/<cim:EquivalentInjection.q>([\s\S]*?)<\/cim:EquivalentInjection.q>/g, obj, "q", base.to_string, sub, context);
                 base.parse_attribute (/<cim:EquivalentInjection.ReactiveCapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReactiveCapabilityCurve", sub, context);
-
                 var bucket = context.parsed.EquivalentInjection;
                 if (null == bucket)
                    context.parsed.EquivalentInjection = bucket = {};
@@ -530,7 +548,7 @@ define
                 base.export_element (obj, "EquivalentInjection", "x2", base.from_string, fields);
                 base.export_element (obj, "EquivalentInjection", "p", base.from_string, fields);
                 base.export_element (obj, "EquivalentInjection", "q", base.from_string, fields);
-                base.export_attribute (obj, "EquivalentInjection", "ReactiveCapabilityCurve", fields);
+                base.export_attribute (obj, "export_attribute", "EquivalentInjection", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -611,7 +629,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReactiveCapabilityCurve", "ReactiveCapabilityCurve", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

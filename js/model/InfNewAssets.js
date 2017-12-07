@@ -35,7 +35,6 @@ define
                 base.parse_element (/<cim:MaintenanceDataSet.conditionAfter>([\s\S]*?)<\/cim:MaintenanceDataSet.conditionAfter>/g, obj, "conditionAfter", base.to_string, sub, context);
                 base.parse_element (/<cim:MaintenanceDataSet.conditionBefore>([\s\S]*?)<\/cim:MaintenanceDataSet.conditionBefore>/g, obj, "conditionBefore", base.to_string, sub, context);
                 base.parse_element (/<cim:MaintenanceDataSet.maintCode>([\s\S]*?)<\/cim:MaintenanceDataSet.maintCode>/g, obj, "maintCode", base.to_string, sub, context);
-
                 var bucket = context.parsed.MaintenanceDataSet;
                 if (null == bucket)
                    context.parsed.MaintenanceDataSet = bucket = {};
@@ -105,7 +104,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -137,7 +136,7 @@ define
                 obj = Assets.ProcedureDataSet.prototype.parse.call (this, context, sub);
                 obj.cls = "InspectionDataSet";
                 base.parse_element (/<cim:InspectionDataSet.locationCondition>([\s\S]*?)<\/cim:InspectionDataSet.locationCondition>/g, obj, "locationCondition", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:InspectionDataSet.AccordingToSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AccordingToSchedules", sub, context);
                 var bucket = context.parsed.InspectionDataSet;
                 if (null == bucket)
                    context.parsed.InspectionDataSet = bucket = {};
@@ -151,6 +150,7 @@ define
                 var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "InspectionDataSet", "locationCondition", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "InspectionDataSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -169,6 +169,7 @@ define
                     + Assets.ProcedureDataSet.prototype.template.call (this) +
                     `
                     {{#locationCondition}}<div><b>locationCondition</b>: {{locationCondition}}</div>{{/locationCondition}}
+                    {{#AccordingToSchedules}}<div><b>AccordingToSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AccordingToSchedules}}
                     </div>
                     <fieldset>
 
@@ -179,11 +180,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AccordingToSchedules) obj.AccordingToSchedules_string = obj.AccordingToSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AccordingToSchedules_string;
             }
 
             edit_template ()
@@ -201,7 +204,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AccordingToSchedules", "ScheduledEventData", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -245,7 +257,6 @@ define
                 base.parse_element (/<cim:DiagnosisDataSet.rootCause>([\s\S]*?)<\/cim:DiagnosisDataSet.rootCause>/g, obj, "rootCause", base.to_string, sub, context);
                 base.parse_element (/<cim:DiagnosisDataSet.rootOrigin>([\s\S]*?)<\/cim:DiagnosisDataSet.rootOrigin>/g, obj, "rootOrigin", base.to_string, sub, context);
                 base.parse_element (/<cim:DiagnosisDataSet.rootRemark>([\s\S]*?)<\/cim:DiagnosisDataSet.rootRemark>/g, obj, "rootRemark", base.to_string, sub, context);
-
                 var bucket = context.parsed.DiagnosisDataSet;
                 if (null == bucket)
                    context.parsed.DiagnosisDataSet = bucket = {};
@@ -345,7 +356,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -379,7 +390,6 @@ define
                 base.parse_element (/<cim:TestDataSet.conclusion>([\s\S]*?)<\/cim:TestDataSet.conclusion>/g, obj, "conclusion", base.to_string, sub, context);
                 base.parse_element (/<cim:TestDataSet.specimenID>([\s\S]*?)<\/cim:TestDataSet.specimenID>/g, obj, "specimenID", base.to_string, sub, context);
                 base.parse_element (/<cim:TestDataSet.specimenToLabDateTime>([\s\S]*?)<\/cim:TestDataSet.specimenToLabDateTime>/g, obj, "specimenToLabDateTime", base.to_datetime, sub, context);
-
                 var bucket = context.parsed.TestDataSet;
                 if (null == bucket)
                    context.parsed.TestDataSet = bucket = {};
@@ -449,7 +459,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

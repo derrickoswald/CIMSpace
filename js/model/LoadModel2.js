@@ -39,7 +39,6 @@ define
                 obj = Wires.EnergyConsumer.prototype.parse.call (this, context, sub);
                 obj.cls = "NonConformLoad";
                 base.parse_attribute (/<cim:NonConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroup", sub, context);
-
                 var bucket = context.parsed.NonConformLoad;
                 if (null == bucket)
                    context.parsed.NonConformLoad = bucket = {};
@@ -52,7 +51,7 @@ define
             {
                 var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "NonConformLoad", "LoadGroup", fields);
+                base.export_attribute (obj, "export_attribute", "NonConformLoad", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -103,7 +102,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadGroup", "NonConformLoadGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -135,7 +143,6 @@ define
                 obj = Wires.EnergyConsumer.prototype.parse.call (this, context, sub);
                 obj.cls = "ConformLoad";
                 base.parse_attribute (/<cim:ConformLoad.LoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroup", sub, context);
-
                 var bucket = context.parsed.ConformLoad;
                 if (null == bucket)
                    context.parsed.ConformLoad = bucket = {};
@@ -148,7 +155,7 @@ define
             {
                 var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ConformLoad", "LoadGroup", fields);
+                base.export_attribute (obj, "export_attribute", "ConformLoad", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -199,7 +206,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadGroup", "ConformLoadGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -230,7 +246,6 @@ define
 
                 obj = Wires.EnergyConsumer.prototype.parse.call (this, context, sub);
                 obj.cls = "StationSupply";
-
                 var bucket = context.parsed.StationSupply;
                 if (null == bucket)
                    context.parsed.StationSupply = bucket = {};
@@ -291,7 +306,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

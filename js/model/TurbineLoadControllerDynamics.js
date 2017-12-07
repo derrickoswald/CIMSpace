@@ -37,7 +37,6 @@ define
                 obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "TurbineLoadControllerDynamics";
                 base.parse_attribute (/<cim:TurbineLoadControllerDynamics.TurbineGovernorDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineGovernorDynamics", sub, context);
-
                 var bucket = context.parsed.TurbineLoadControllerDynamics;
                 if (null == bucket)
                    context.parsed.TurbineLoadControllerDynamics = bucket = {};
@@ -50,7 +49,7 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "TurbineLoadControllerDynamics", "TurbineGovernorDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "TurbineLoadControllerDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -101,7 +100,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TurbineGovernorDynamics", "TurbineGovernorDynamics", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -146,7 +154,6 @@ define
                 base.parse_element (/<cim:TurbLCFB1.pmwset>([\s\S]*?)<\/cim:TurbLCFB1.pmwset>/g, obj, "pmwset", base.to_string, sub, context);
                 base.parse_element (/<cim:TurbLCFB1.speedReferenceGovernor>([\s\S]*?)<\/cim:TurbLCFB1.speedReferenceGovernor>/g, obj, "speedReferenceGovernor", base.to_boolean, sub, context);
                 base.parse_element (/<cim:TurbLCFB1.tpelec>([\s\S]*?)<\/cim:TurbLCFB1.tpelec>/g, obj, "tpelec", base.to_string, sub, context);
-
                 var bucket = context.parsed.TurbLCFB1;
                 if (null == bucket)
                    context.parsed.TurbLCFB1 = bucket = {};
@@ -243,7 +250,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

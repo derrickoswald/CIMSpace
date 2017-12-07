@@ -111,8 +111,8 @@ define
                 obj.cls = "NameType";
                 base.parse_element (/<cim:NameType.description>([\s\S]*?)<\/cim:NameType.description>/g, obj, "description", base.to_string, sub, context);
                 base.parse_element (/<cim:NameType.name>([\s\S]*?)<\/cim:NameType.name>/g, obj, "name", base.to_string, sub, context);
+                base.parse_attributes (/<cim:NameType.Names\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Names", sub, context);
                 base.parse_attribute (/<cim:NameType.NameTypeAuthority\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NameTypeAuthority", sub, context);
-
                 var bucket = context.parsed.NameType;
                 if (null == bucket)
                    context.parsed.NameType = bucket = {};
@@ -127,7 +127,8 @@ define
 
                 base.export_element (obj, "NameType", "description", base.from_string, fields);
                 base.export_element (obj, "NameType", "name", base.from_string, fields);
-                base.export_attribute (obj, "NameType", "NameTypeAuthority", fields);
+                base.export_attribute (obj, "export_attributes", "NameType", fields);
+                base.export_attribute (obj, "export_attribute", "NameType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -147,6 +148,7 @@ define
                     `
                     {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
                     {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#Names}}<div><b>Names</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Names}}
                     {{#NameTypeAuthority}}<div><b>NameTypeAuthority</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NameTypeAuthority}}&quot;);})'>{{NameTypeAuthority}}</a></div>{{/NameTypeAuthority}}
                     </div>
                     <fieldset>
@@ -158,11 +160,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Names) obj.Names_string = obj.Names.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Names_string;
             }
 
             edit_template ()
@@ -182,7 +186,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Names", "Name", "0..*", "1"],
+                        ["NameTypeAuthority", "NameTypeAuthority", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -217,7 +231,6 @@ define
                 base.parse_element (/<cim:IrregularTimePoint.value1>([\s\S]*?)<\/cim:IrregularTimePoint.value1>/g, obj, "value1", base.to_float, sub, context);
                 base.parse_element (/<cim:IrregularTimePoint.value2>([\s\S]*?)<\/cim:IrregularTimePoint.value2>/g, obj, "value2", base.to_float, sub, context);
                 base.parse_attribute (/<cim:IrregularTimePoint.IntervalSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IntervalSchedule", sub, context);
-
                 var bucket = context.parsed.IrregularTimePoint;
                 if (null == bucket)
                    context.parsed.IrregularTimePoint = bucket = {};
@@ -233,7 +246,7 @@ define
                 base.export_element (obj, "IrregularTimePoint", "time", base.from_string, fields);
                 base.export_element (obj, "IrregularTimePoint", "value1", base.from_float, fields);
                 base.export_element (obj, "IrregularTimePoint", "value2", base.from_float, fields);
-                base.export_attribute (obj, "IrregularTimePoint", "IntervalSchedule", fields);
+                base.export_attribute (obj, "export_attribute", "IrregularTimePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -290,7 +303,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["IntervalSchedule", "IrregularIntervalSchedule", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -325,7 +347,6 @@ define
                 base.parse_element (/<cim:RegularTimePoint.value1>([\s\S]*?)<\/cim:RegularTimePoint.value1>/g, obj, "value1", base.to_float, sub, context);
                 base.parse_element (/<cim:RegularTimePoint.value2>([\s\S]*?)<\/cim:RegularTimePoint.value2>/g, obj, "value2", base.to_float, sub, context);
                 base.parse_attribute (/<cim:RegularTimePoint.IntervalSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IntervalSchedule", sub, context);
-
                 var bucket = context.parsed.RegularTimePoint;
                 if (null == bucket)
                    context.parsed.RegularTimePoint = bucket = {};
@@ -341,7 +362,7 @@ define
                 base.export_element (obj, "RegularTimePoint", "sequenceNumber", base.from_string, fields);
                 base.export_element (obj, "RegularTimePoint", "value1", base.from_float, fields);
                 base.export_element (obj, "RegularTimePoint", "value2", base.from_float, fields);
-                base.export_attribute (obj, "RegularTimePoint", "IntervalSchedule", fields);
+                base.export_attribute (obj, "export_attribute", "RegularTimePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -398,7 +419,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["IntervalSchedule", "RegularIntervalSchedule", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -434,7 +464,6 @@ define
                 base.parse_element (/<cim:Name.name>([\s\S]*?)<\/cim:Name.name>/g, obj, "name", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Name.NameType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NameType", sub, context);
                 base.parse_attribute (/<cim:Name.IdentifiedObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IdentifiedObject", sub, context);
-
                 var bucket = context.parsed.Name;
                 if (null == bucket)
                    context.parsed.Name = bucket = {};
@@ -448,8 +477,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "Name", "name", base.from_string, fields);
-                base.export_attribute (obj, "Name", "NameType", fields);
-                base.export_attribute (obj, "Name", "IdentifiedObject", fields);
+                base.export_attribute (obj, "export_attribute", "Name", fields);
+                base.export_attribute (obj, "export_attribute", "Name", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -504,7 +533,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["NameType", "NameType", "1", "0..*"],
+                        ["IdentifiedObject", "IdentifiedObject", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -539,6 +578,10 @@ define
                 base.parse_element (/<cim:IdentifiedObject.mRID>([\s\S]*?)<\/cim:IdentifiedObject.mRID>/g, obj, "mRID", base.to_string, sub, context);
                 base.parse_element (/<cim:IdentifiedObject.name>([\s\S]*?)<\/cim:IdentifiedObject.name>/g, obj, "name", base.to_string, sub, context);
                 base.parse_element (/<cim:IdentifiedObject.description>([\s\S]*?)<\/cim:IdentifiedObject.description>/g, obj, "description", base.to_string, sub, context);
+                base.parse_attributes (/<cim:IdentifiedObject.Names\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Names", sub, context);
+                base.parse_attributes (/<cim:IdentifiedObject.DiagramObjects\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiagramObjects", sub, context);
+
+
                 if (null == obj.mRID)
                     obj.mRID = obj.id;
                 if ((null != obj.mRID) && (obj.id != obj.mRID))
@@ -549,7 +592,6 @@ define
                         print ("***Warning*** rdf:ID != mRID [" + obj.id + " != " + obj.mRID + "]");
                     obj.id = obj.mRID;
                 }
-
                 var bucket = context.parsed.IdentifiedObject;
                 if (null == bucket)
                    context.parsed.IdentifiedObject = bucket = {};
@@ -565,6 +607,8 @@ define
                 base.export_element (obj, "IdentifiedObject", "aliasName", base.from_string, fields);
                 base.export_element (obj, "IdentifiedObject", "name", base.from_string, fields);
                 base.export_element (obj, "IdentifiedObject", "description", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "IdentifiedObject", fields);
+                base.export_attribute (obj, "export_attributes", "IdentifiedObject", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -586,6 +630,8 @@ define
                     {{#mRID}}<div><b>mRID</b>: {{mRID}}</div>{{/mRID}}
                     {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
                     {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
+                    {{#Names}}<div><b>Names</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Names}}
+                    {{#DiagramObjects}}<div><b>DiagramObjects</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DiagramObjects}}
                     </div>
                     <fieldset>
 
@@ -596,11 +642,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Names) obj.Names_string = obj.Names.join ();
+                if (obj.DiagramObjects) obj.DiagramObjects_string = obj.DiagramObjects.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Names_string;
+                delete obj.DiagramObjects_string;
             }
 
             edit_template ()
@@ -621,7 +671,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Names", "Name", "0..*", "1"],
+                        ["DiagramObjects", "DiagramObject", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -659,7 +719,6 @@ define
                 base.parse_element (/<cim:CurveData.y2value>([\s\S]*?)<\/cim:CurveData.y2value>/g, obj, "y2value", base.to_float, sub, context);
                 base.parse_element (/<cim:CurveData.y3value>([\s\S]*?)<\/cim:CurveData.y3value>/g, obj, "y3value", base.to_float, sub, context);
                 base.parse_attribute (/<cim:CurveData.Curve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Curve", sub, context);
-
                 var bucket = context.parsed.CurveData;
                 if (null == bucket)
                    context.parsed.CurveData = bucket = {};
@@ -676,7 +735,7 @@ define
                 base.export_element (obj, "CurveData", "y1value", base.from_float, fields);
                 base.export_element (obj, "CurveData", "y2value", base.from_float, fields);
                 base.export_element (obj, "CurveData", "y3value", base.from_float, fields);
-                base.export_attribute (obj, "CurveData", "Curve", fields);
+                base.export_attribute (obj, "export_attribute", "CurveData", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -735,7 +794,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Curve", "Curve", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -768,7 +836,7 @@ define
                 obj.cls = "NameTypeAuthority";
                 base.parse_element (/<cim:NameTypeAuthority.description>([\s\S]*?)<\/cim:NameTypeAuthority.description>/g, obj, "description", base.to_string, sub, context);
                 base.parse_element (/<cim:NameTypeAuthority.name>([\s\S]*?)<\/cim:NameTypeAuthority.name>/g, obj, "name", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:NameTypeAuthority.NameTypes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NameTypes", sub, context);
                 var bucket = context.parsed.NameTypeAuthority;
                 if (null == bucket)
                    context.parsed.NameTypeAuthority = bucket = {};
@@ -783,6 +851,7 @@ define
 
                 base.export_element (obj, "NameTypeAuthority", "description", base.from_string, fields);
                 base.export_element (obj, "NameTypeAuthority", "name", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "NameTypeAuthority", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -802,6 +871,7 @@ define
                     `
                     {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
                     {{#name}}<div><b>name</b>: {{name}}</div>{{/name}}
+                    {{#NameTypes}}<div><b>NameTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/NameTypes}}
                     </div>
                     <fieldset>
 
@@ -812,11 +882,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.NameTypes) obj.NameTypes_string = obj.NameTypes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.NameTypes_string;
             }
 
             edit_template ()
@@ -835,7 +907,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["NameTypes", "NameType", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -869,7 +950,6 @@ define
                 base.parse_element (/<cim:OperatingShare.percentage>([\s\S]*?)<\/cim:OperatingShare.percentage>/g, obj, "percentage", base.to_string, sub, context);
                 base.parse_attribute (/<cim:OperatingShare.OperatingParticipant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperatingParticipant", sub, context);
                 base.parse_attribute (/<cim:OperatingShare.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context);
-
                 var bucket = context.parsed.OperatingShare;
                 if (null == bucket)
                    context.parsed.OperatingShare = bucket = {};
@@ -883,8 +963,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "OperatingShare", "percentage", base.from_string, fields);
-                base.export_attribute (obj, "OperatingShare", "OperatingParticipant", fields);
-                base.export_attribute (obj, "OperatingShare", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attribute", "OperatingShare", fields);
+                base.export_attribute (obj, "export_attribute", "OperatingShare", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -939,7 +1019,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["OperatingParticipant", "OperatingParticipant", "1", "0..*"],
+                        ["PowerSystemResource", "PowerSystemResource", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -979,7 +1069,7 @@ define
                 base.parse_element (/<cim:Curve.y2Unit>([\s\S]*?)<\/cim:Curve.y2Unit>/g, obj, "y2Unit", base.to_string, sub, context);
                 base.parse_element (/<cim:Curve.y3Multiplier>([\s\S]*?)<\/cim:Curve.y3Multiplier>/g, obj, "y3Multiplier", base.to_string, sub, context);
                 base.parse_element (/<cim:Curve.y3Unit>([\s\S]*?)<\/cim:Curve.y3Unit>/g, obj, "y3Unit", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Curve.CurveDatas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CurveDatas", sub, context);
                 var bucket = context.parsed.Curve;
                 if (null == bucket)
                    context.parsed.Curve = bucket = {};
@@ -1001,6 +1091,7 @@ define
                 base.export_element (obj, "Curve", "y2Unit", base.from_string, fields);
                 base.export_element (obj, "Curve", "y3Multiplier", base.from_string, fields);
                 base.export_element (obj, "Curve", "y3Unit", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Curve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1027,6 +1118,7 @@ define
                     {{#y2Unit}}<div><b>y2Unit</b>: {{y2Unit}}</div>{{/y2Unit}}
                     {{#y3Multiplier}}<div><b>y3Multiplier</b>: {{y3Multiplier}}</div>{{/y3Multiplier}}
                     {{#y3Unit}}<div><b>y3Unit</b>: {{y3Unit}}</div>{{/y3Unit}}
+                    {{#CurveDatas}}<div><b>CurveDatas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CurveDatas}}
                     </div>
                     <fieldset>
 
@@ -1038,12 +1130,14 @@ define
             {
                 super.condition (obj);
                 obj.CurveStyle = []; if (!obj.curveStyle) obj.CurveStyle.push ({ id: '', selected: true}); for (var property in CurveStyle) obj.CurveStyle.push ({ id: property, selected: obj.curveStyle && obj.curveStyle.endsWith ('.' + property)});
+                if (obj.CurveDatas) obj.CurveDatas_string = obj.CurveDatas.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.CurveStyle;
+                delete obj.CurveDatas_string;
             }
 
             edit_template ()
@@ -1069,7 +1163,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CurveDatas", "CurveData", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1102,7 +1205,7 @@ define
 
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "PSRType";
-
+                base.parse_attributes (/<cim:PSRType.PowerSystemResources\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResources", sub, context);
                 var bucket = context.parsed.PSRType;
                 if (null == bucket)
                    context.parsed.PSRType = bucket = {};
@@ -1115,6 +1218,7 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "PSRType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1132,6 +1236,7 @@ define
                     `
                     + IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#PowerSystemResources}}<div><b>PowerSystemResources</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PowerSystemResources}}
                     </div>
                     <fieldset>
 
@@ -1142,11 +1247,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PowerSystemResources) obj.PowerSystemResources_string = obj.PowerSystemResources.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PowerSystemResources_string;
             }
 
             edit_template ()
@@ -1163,7 +1270,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PowerSystemResources", "PowerSystemResource", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1195,7 +1311,10 @@ define
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "BaseVoltage";
                 base.parse_element (/<cim:BaseVoltage.nominalVoltage>([\s\S]*?)<\/cim:BaseVoltage.nominalVoltage>/g, obj, "nominalVoltage", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:BaseVoltage.VoltageLevel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageLevel", sub, context);
+                base.parse_attributes (/<cim:BaseVoltage.TransformerEnds\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerEnds", sub, context);
+                base.parse_attributes (/<cim:BaseVoltage.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context);
+                base.parse_attributes (/<cim:BaseVoltage.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipment", sub, context);
                 var bucket = context.parsed.BaseVoltage;
                 if (null == bucket)
                    context.parsed.BaseVoltage = bucket = {};
@@ -1209,6 +1328,10 @@ define
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BaseVoltage", "nominalVoltage", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "BaseVoltage", fields);
+                base.export_attribute (obj, "export_attributes", "BaseVoltage", fields);
+                base.export_attribute (obj, "export_attributes", "BaseVoltage", fields);
+                base.export_attribute (obj, "export_attributes", "BaseVoltage", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1227,6 +1350,10 @@ define
                     + IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#nominalVoltage}}<div><b>nominalVoltage</b>: {{nominalVoltage}}</div>{{/nominalVoltage}}
+                    {{#VoltageLevel}}<div><b>VoltageLevel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/VoltageLevel}}
+                    {{#TransformerEnds}}<div><b>TransformerEnds</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransformerEnds}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TopologicalNode}}
+                    {{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConductingEquipment}}
                     </div>
                     <fieldset>
 
@@ -1237,11 +1364,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.VoltageLevel) obj.VoltageLevel_string = obj.VoltageLevel.join ();
+                if (obj.TransformerEnds) obj.TransformerEnds_string = obj.TransformerEnds.join ();
+                if (obj.TopologicalNode) obj.TopologicalNode_string = obj.TopologicalNode.join ();
+                if (obj.ConductingEquipment) obj.ConductingEquipment_string = obj.ConductingEquipment.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.VoltageLevel_string;
+                delete obj.TransformerEnds_string;
+                delete obj.TopologicalNode_string;
+                delete obj.ConductingEquipment_string;
             }
 
             edit_template ()
@@ -1259,7 +1394,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["VoltageLevel", "VoltageLevel", "0..*", "1"],
+                        ["TransformerEnds", "TransformerEnd", "0..*", "0..1"],
+                        ["TopologicalNode", "TopologicalNode", "0..*", "0..1"],
+                        ["ConductingEquipment", "ConductingEquipment", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1292,7 +1439,7 @@ define
                 obj.cls = "ConnectivityNode";
                 base.parse_attribute (/<cim:ConnectivityNode.ConnectivityNodeContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConnectivityNodeContainer", sub, context);
                 base.parse_attribute (/<cim:ConnectivityNode.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context);
-
+                base.parse_attributes (/<cim:ConnectivityNode.Terminals\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminals", sub, context);
                 var bucket = context.parsed.ConnectivityNode;
                 if (null == bucket)
                    context.parsed.ConnectivityNode = bucket = {};
@@ -1305,8 +1452,9 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ConnectivityNode", "ConnectivityNodeContainer", fields);
-                base.export_attribute (obj, "ConnectivityNode", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "ConnectivityNode", fields);
+                base.export_attribute (obj, "export_attribute", "ConnectivityNode", fields);
+                base.export_attribute (obj, "export_attributes", "ConnectivityNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1326,6 +1474,7 @@ define
                     `
                     {{#ConnectivityNodeContainer}}<div><b>ConnectivityNodeContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNodeContainer}}&quot;);})'>{{ConnectivityNodeContainer}}</a></div>{{/ConnectivityNodeContainer}}
                     {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    {{#Terminals}}<div><b>Terminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Terminals}}
                     </div>
                     <fieldset>
 
@@ -1336,11 +1485,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Terminals) obj.Terminals_string = obj.Terminals.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Terminals_string;
             }
 
             edit_template ()
@@ -1359,7 +1510,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ConnectivityNodeContainer", "ConnectivityNodeContainer", "1", "0..*"],
+                        ["TopologicalNode", "TopologicalNode", "0..1", "0..*"],
+                        ["Terminals", "Terminal", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1390,7 +1552,7 @@ define
 
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "GeographicalRegion";
-
+                base.parse_attributes (/<cim:GeographicalRegion.Regions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Regions", sub, context);
                 var bucket = context.parsed.GeographicalRegion;
                 if (null == bucket)
                    context.parsed.GeographicalRegion = bucket = {};
@@ -1403,6 +1565,7 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "GeographicalRegion", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1420,6 +1583,7 @@ define
                     `
                     + IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#Regions}}<div><b>Regions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Regions}}
                     </div>
                     <fieldset>
 
@@ -1430,11 +1594,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Regions) obj.Regions_string = obj.Regions.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Regions_string;
             }
 
             edit_template ()
@@ -1451,7 +1617,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Regions", "SubGeographicalRegion", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1487,7 +1662,6 @@ define
                 base.parse_element (/<cim:BasicIntervalSchedule.value1Unit>([\s\S]*?)<\/cim:BasicIntervalSchedule.value1Unit>/g, obj, "value1Unit", base.to_string, sub, context);
                 base.parse_element (/<cim:BasicIntervalSchedule.value2Multiplier>([\s\S]*?)<\/cim:BasicIntervalSchedule.value2Multiplier>/g, obj, "value2Multiplier", base.to_string, sub, context);
                 base.parse_element (/<cim:BasicIntervalSchedule.value2Unit>([\s\S]*?)<\/cim:BasicIntervalSchedule.value2Unit>/g, obj, "value2Unit", base.to_string, sub, context);
-
                 var bucket = context.parsed.BasicIntervalSchedule;
                 if (null == bucket)
                    context.parsed.BasicIntervalSchedule = bucket = {};
@@ -1563,7 +1737,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1598,8 +1772,9 @@ define
                 obj.cls = "ACDCTerminal";
                 base.parse_element (/<cim:ACDCTerminal.connected>([\s\S]*?)<\/cim:ACDCTerminal.connected>/g, obj, "connected", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ACDCTerminal.sequenceNumber>([\s\S]*?)<\/cim:ACDCTerminal.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+                base.parse_attributes (/<cim:ACDCTerminal.Measurements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurements", sub, context);
                 base.parse_attribute (/<cim:ACDCTerminal.BusNameMarker\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BusNameMarker", sub, context);
-
+                base.parse_attributes (/<cim:ACDCTerminal.OperationalLimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationalLimitSet", sub, context);
                 var bucket = context.parsed.ACDCTerminal;
                 if (null == bucket)
                    context.parsed.ACDCTerminal = bucket = {};
@@ -1614,7 +1789,9 @@ define
 
                 base.export_element (obj, "ACDCTerminal", "connected", base.from_boolean, fields);
                 base.export_element (obj, "ACDCTerminal", "sequenceNumber", base.from_string, fields);
-                base.export_attribute (obj, "ACDCTerminal", "BusNameMarker", fields);
+                base.export_attribute (obj, "export_attributes", "ACDCTerminal", fields);
+                base.export_attribute (obj, "export_attribute", "ACDCTerminal", fields);
+                base.export_attribute (obj, "export_attributes", "ACDCTerminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1634,7 +1811,9 @@ define
                     `
                     {{#connected}}<div><b>connected</b>: {{connected}}</div>{{/connected}}
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#Measurements}}<div><b>Measurements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Measurements}}
                     {{#BusNameMarker}}<div><b>BusNameMarker</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BusNameMarker}}&quot;);})'>{{BusNameMarker}}</a></div>{{/BusNameMarker}}
+                    {{#OperationalLimitSet}}<div><b>OperationalLimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperationalLimitSet}}
                     </div>
                     <fieldset>
 
@@ -1645,11 +1824,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Measurements) obj.Measurements_string = obj.Measurements.join ();
+                if (obj.OperationalLimitSet) obj.OperationalLimitSet_string = obj.OperationalLimitSet.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Measurements_string;
+                delete obj.OperationalLimitSet_string;
             }
 
             edit_template ()
@@ -1669,7 +1852,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Measurements", "Measurement", "0..*", "0..1"],
+                        ["BusNameMarker", "BusNameMarker", "0..1", "1..*"],
+                        ["OperationalLimitSet", "OperationalLimitSet", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1702,7 +1896,7 @@ define
 
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "OperatingParticipant";
-
+                base.parse_attributes (/<cim:OperatingParticipant.OperatingShare\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperatingShare", sub, context);
                 var bucket = context.parsed.OperatingParticipant;
                 if (null == bucket)
                    context.parsed.OperatingParticipant = bucket = {};
@@ -1715,6 +1909,7 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "OperatingParticipant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1732,6 +1927,7 @@ define
                     `
                     + IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#OperatingShare}}<div><b>OperatingShare</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperatingShare}}
                     </div>
                     <fieldset>
 
@@ -1742,11 +1938,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.OperatingShare) obj.OperatingShare_string = obj.OperatingShare.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.OperatingShare_string;
             }
 
             edit_template ()
@@ -1763,7 +1961,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["OperatingShare", "OperatingShare", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1795,7 +2002,6 @@ define
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "BasePower";
                 base.parse_element (/<cim:BasePower.basePower>([\s\S]*?)<\/cim:BasePower.basePower>/g, obj, "basePower", base.to_string, sub, context);
-
                 var bucket = context.parsed.BasePower;
                 if (null == bucket)
                    context.parsed.BasePower = bucket = {};
@@ -1859,7 +2065,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1890,7 +2096,7 @@ define
 
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ReportingSuperGroup";
-
+                base.parse_attributes (/<cim:ReportingSuperGroup.ReportingGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReportingGroup", sub, context);
                 var bucket = context.parsed.ReportingSuperGroup;
                 if (null == bucket)
                    context.parsed.ReportingSuperGroup = bucket = {};
@@ -1903,6 +2109,7 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ReportingSuperGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1920,6 +2127,7 @@ define
                     `
                     + IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#ReportingGroup}}<div><b>ReportingGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReportingGroup}}
                     </div>
                     <fieldset>
 
@@ -1930,11 +2138,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ReportingGroup) obj.ReportingGroup_string = obj.ReportingGroup.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ReportingGroup_string;
             }
 
             edit_template ()
@@ -1951,7 +2161,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReportingGroup", "ReportingGroup", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1985,12 +2204,22 @@ define
                 obj = ACDCTerminal.prototype.parse.call (this, context, sub);
                 obj.cls = "Terminal";
                 base.parse_attribute (/<cim:Terminal.phases\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "phases", sub, context);
+                base.parse_attributes (/<cim:Terminal.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
+                base.parse_attributes (/<cim:Terminal.TieFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TieFlow", sub, context);
                 base.parse_attribute (/<cim:Terminal.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context);
+                base.parse_attributes (/<cim:Terminal.HasSecondMutualCoupling\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HasSecondMutualCoupling", sub, context);
+                base.parse_attributes (/<cim:Terminal.HasFirstMutualCoupling\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HasFirstMutualCoupling", sub, context);
+                base.parse_attributes (/<cim:Terminal.TransformerEnd\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransformerEnd", sub, context);
+                base.parse_attributes (/<cim:Terminal.RegulatingControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegulatingControl", sub, context);
                 base.parse_attribute (/<cim:Terminal.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipment", sub, context);
+                base.parse_attributes (/<cim:Terminal.EquipmentFaults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquipmentFaults", sub, context);
+                base.parse_attributes (/<cim:Terminal.ConverterDCSides\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConverterDCSides", sub, context);
                 base.parse_attribute (/<cim:Terminal.SvPowerFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SvPowerFlow", sub, context);
+                base.parse_attributes (/<cim:Terminal.PinTerminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PinTerminal", sub, context);
                 base.parse_attribute (/<cim:Terminal.Bushing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bushing", sub, context);
                 base.parse_attribute (/<cim:Terminal.ConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConnectivityNode", sub, context);
-
+                base.parse_attributes (/<cim:Terminal.AuxiliaryEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryEquipment", sub, context);
+                base.parse_attributes (/<cim:Terminal.BranchGroupTerminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BranchGroupTerminal", sub, context);
                 var bucket = context.parsed.Terminal;
                 if (null == bucket)
                    context.parsed.Terminal = bucket = {};
@@ -2004,11 +2233,22 @@ define
                 var fields = ACDCTerminal.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Terminal", "phases", base.from_string, fields);
-                base.export_attribute (obj, "Terminal", "TopologicalNode", fields);
-                base.export_attribute (obj, "Terminal", "ConductingEquipment", fields);
-                base.export_attribute (obj, "Terminal", "SvPowerFlow", fields);
-                base.export_attribute (obj, "Terminal", "Bushing", fields);
-                base.export_attribute (obj, "Terminal", "ConnectivityNode", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_attribute (obj, "export_attributes", "Terminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2027,11 +2267,22 @@ define
                     + ACDCTerminal.prototype.template.call (this) +
                     `
                     {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RemoteInputSignal}}
+                    {{#TieFlow}}<div><b>TieFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TieFlow}}
                     {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalNode}}&quot;);})'>{{TopologicalNode}}</a></div>{{/TopologicalNode}}
+                    {{#HasSecondMutualCoupling}}<div><b>HasSecondMutualCoupling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/HasSecondMutualCoupling}}
+                    {{#HasFirstMutualCoupling}}<div><b>HasFirstMutualCoupling</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/HasFirstMutualCoupling}}
+                    {{#TransformerEnd}}<div><b>TransformerEnd</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransformerEnd}}
+                    {{#RegulatingControl}}<div><b>RegulatingControl</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegulatingControl}}
+                    {{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
+                    {{#EquipmentFaults}}<div><b>EquipmentFaults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EquipmentFaults}}
+                    {{#ConverterDCSides}}<div><b>ConverterDCSides</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConverterDCSides}}
                     {{#SvPowerFlow}}<div><b>SvPowerFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvPowerFlow}}&quot;);})'>{{SvPowerFlow}}</a></div>{{/SvPowerFlow}}
+                    {{#PinTerminal}}<div><b>PinTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PinTerminal}}
                     {{#Bushing}}<div><b>Bushing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bushing}}&quot;);})'>{{Bushing}}</a></div>{{/Bushing}}
                     {{#ConnectivityNode}}<div><b>ConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNode}}&quot;);})'>{{ConnectivityNode}}</a></div>{{/ConnectivityNode}}
-                    {{#ConductingEquipment}}<div><b>ConductingEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConductingEquipment}}&quot;);})'>{{ConductingEquipment}}</a></div>{{/ConductingEquipment}}
+                    {{#AuxiliaryEquipment}}<div><b>AuxiliaryEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AuxiliaryEquipment}}
+                    {{#BranchGroupTerminal}}<div><b>BranchGroupTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BranchGroupTerminal}}
                     </div>
                     <fieldset>
 
@@ -2043,12 +2294,34 @@ define
             {
                 super.condition (obj);
                 obj.PhaseCode = []; if (!obj.phases) obj.PhaseCode.push ({ id: '', selected: true}); for (var property in PhaseCode) obj.PhaseCode.push ({ id: property, selected: obj.phases && obj.phases.endsWith ('.' + property)});
+                if (obj.RemoteInputSignal) obj.RemoteInputSignal_string = obj.RemoteInputSignal.join ();
+                if (obj.TieFlow) obj.TieFlow_string = obj.TieFlow.join ();
+                if (obj.HasSecondMutualCoupling) obj.HasSecondMutualCoupling_string = obj.HasSecondMutualCoupling.join ();
+                if (obj.HasFirstMutualCoupling) obj.HasFirstMutualCoupling_string = obj.HasFirstMutualCoupling.join ();
+                if (obj.TransformerEnd) obj.TransformerEnd_string = obj.TransformerEnd.join ();
+                if (obj.RegulatingControl) obj.RegulatingControl_string = obj.RegulatingControl.join ();
+                if (obj.EquipmentFaults) obj.EquipmentFaults_string = obj.EquipmentFaults.join ();
+                if (obj.ConverterDCSides) obj.ConverterDCSides_string = obj.ConverterDCSides.join ();
+                if (obj.PinTerminal) obj.PinTerminal_string = obj.PinTerminal.join ();
+                if (obj.AuxiliaryEquipment) obj.AuxiliaryEquipment_string = obj.AuxiliaryEquipment.join ();
+                if (obj.BranchGroupTerminal) obj.BranchGroupTerminal_string = obj.BranchGroupTerminal.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.PhaseCode;
+                delete obj.RemoteInputSignal_string;
+                delete obj.TieFlow_string;
+                delete obj.HasSecondMutualCoupling_string;
+                delete obj.HasFirstMutualCoupling_string;
+                delete obj.TransformerEnd_string;
+                delete obj.RegulatingControl_string;
+                delete obj.EquipmentFaults_string;
+                delete obj.ConverterDCSides_string;
+                delete obj.PinTerminal_string;
+                delete obj.AuxiliaryEquipment_string;
+                delete obj.BranchGroupTerminal_string;
             }
 
             edit_template ()
@@ -2063,15 +2336,39 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='phases'>phases: </label><div class='col-sm-8'><select id='phases' class='form-control'>{{#PhaseCode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseCode}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='SvPowerFlow'>SvPowerFlow: </label><div class='col-sm-8'><input id='SvPowerFlow' class='form-control' type='text'{{#SvPowerFlow}} value='{{SvPowerFlow}}'{{/SvPowerFlow}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Bushing'>Bushing: </label><div class='col-sm-8'><input id='Bushing' class='form-control' type='text'{{#Bushing}} value='{{Bushing}}'{{/Bushing}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConnectivityNode'>ConnectivityNode: </label><div class='col-sm-8'><input id='ConnectivityNode' class='form-control' type='text'{{#ConnectivityNode}} value='{{ConnectivityNode}}'{{/ConnectivityNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..*", "1"],
+                        ["TieFlow", "TieFlow", "0..2", "1"],
+                        ["TopologicalNode", "TopologicalNode", "0..1", "0..*"],
+                        ["HasSecondMutualCoupling", "MutualCoupling", "0..*", "1"],
+                        ["HasFirstMutualCoupling", "MutualCoupling", "0..*", "1"],
+                        ["TransformerEnd", "TransformerEnd", "0..*", "0..1"],
+                        ["RegulatingControl", "RegulatingControl", "0..*", "0..1"],
+                        ["ConductingEquipment", "ConductingEquipment", "1", "0..*"],
+                        ["EquipmentFaults", "EquipmentFault", "0..*", "0..1"],
+                        ["ConverterDCSides", "ACDCConverter", "0..*", "0..1"],
+                        ["SvPowerFlow", "SvPowerFlow", "0..1", "1"],
+                        ["PinTerminal", "PinTerminal", "0..*", "1"],
+                        ["Bushing", "Bushing", "0..1", "0..1"],
+                        ["ConnectivityNode", "ConnectivityNode", "0..1", "0..*"],
+                        ["AuxiliaryEquipment", "AuxiliaryEquipment", "0..*", "1"],
+                        ["BranchGroupTerminal", "BranchGroupTerminal", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2102,8 +2399,10 @@ define
 
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "SubGeographicalRegion";
+                base.parse_attributes (/<cim:SubGeographicalRegion.DCLines\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCLines", sub, context);
+                base.parse_attributes (/<cim:SubGeographicalRegion.Lines\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Lines", sub, context);
                 base.parse_attribute (/<cim:SubGeographicalRegion.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Region", sub, context);
-
+                base.parse_attributes (/<cim:SubGeographicalRegion.Substations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Substations", sub, context);
                 var bucket = context.parsed.SubGeographicalRegion;
                 if (null == bucket)
                    context.parsed.SubGeographicalRegion = bucket = {};
@@ -2116,7 +2415,10 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "SubGeographicalRegion", "Region", fields);
+                base.export_attribute (obj, "export_attributes", "SubGeographicalRegion", fields);
+                base.export_attribute (obj, "export_attributes", "SubGeographicalRegion", fields);
+                base.export_attribute (obj, "export_attribute", "SubGeographicalRegion", fields);
+                base.export_attribute (obj, "export_attributes", "SubGeographicalRegion", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2134,7 +2436,10 @@ define
                     `
                     + IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#DCLines}}<div><b>DCLines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCLines}}
+                    {{#Lines}}<div><b>Lines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Lines}}
                     {{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+                    {{#Substations}}<div><b>Substations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Substations}}
                     </div>
                     <fieldset>
 
@@ -2145,11 +2450,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCLines) obj.DCLines_string = obj.DCLines.join ();
+                if (obj.Lines) obj.Lines_string = obj.Lines.join ();
+                if (obj.Substations) obj.Substations_string = obj.Substations.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCLines_string;
+                delete obj.Lines_string;
+                delete obj.Substations_string;
             }
 
             edit_template ()
@@ -2167,7 +2478,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCLines", "DCLine", "0..*", "0..1"],
+                        ["Lines", "Line", "0..*", "0..1"],
+                        ["Region", "GeographicalRegion", "0..1", "0..*"],
+                        ["Substations", "Substation", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2201,9 +2524,16 @@ define
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "PowerSystemResource";
                 base.parse_attribute (/<cim:PowerSystemResource.AssetDatasheet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetDatasheet", sub, context);
+                base.parse_attributes (/<cim:PowerSystemResource.Clearances\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Clearances", sub, context);
                 base.parse_attribute (/<cim:PowerSystemResource.Location\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Location", sub, context);
+                base.parse_attributes (/<cim:PowerSystemResource.ReportingGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReportingGroup", sub, context);
+                base.parse_attributes (/<cim:PowerSystemResource.PSREvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PSREvents", sub, context);
                 base.parse_attribute (/<cim:PowerSystemResource.PSRType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PSRType", sub, context);
-
+                base.parse_attributes (/<cim:PowerSystemResource.OperatingShare\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperatingShare", sub, context);
+                base.parse_attributes (/<cim:PowerSystemResource.OperationTags\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationTags", sub, context);
+                base.parse_attributes (/<cim:PowerSystemResource.Controls\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Controls", sub, context);
+                base.parse_attributes (/<cim:PowerSystemResource.Assets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Assets", sub, context);
+                base.parse_attributes (/<cim:PowerSystemResource.Measurements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurements", sub, context);
                 var bucket = context.parsed.PowerSystemResource;
                 if (null == bucket)
                    context.parsed.PowerSystemResource = bucket = {};
@@ -2216,9 +2546,17 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PowerSystemResource", "AssetDatasheet", fields);
-                base.export_attribute (obj, "PowerSystemResource", "Location", fields);
-                base.export_attribute (obj, "PowerSystemResource", "PSRType", fields);
+                base.export_attribute (obj, "export_attribute", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attribute", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attribute", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2237,8 +2575,16 @@ define
                     + IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#AssetDatasheet}}<div><b>AssetDatasheet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetDatasheet}}&quot;);})'>{{AssetDatasheet}}</a></div>{{/AssetDatasheet}}
+                    {{#Clearances}}<div><b>Clearances</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Clearances}}
                     {{#Location}}<div><b>Location</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Location}}&quot;);})'>{{Location}}</a></div>{{/Location}}
+                    {{#ReportingGroup}}<div><b>ReportingGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReportingGroup}}
+                    {{#PSREvents}}<div><b>PSREvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PSREvents}}
                     {{#PSRType}}<div><b>PSRType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PSRType}}&quot;);})'>{{PSRType}}</a></div>{{/PSRType}}
+                    {{#OperatingShare}}<div><b>OperatingShare</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperatingShare}}
+                    {{#OperationTags}}<div><b>OperationTags</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperationTags}}
+                    {{#Controls}}<div><b>Controls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Controls}}
+                    {{#Assets}}<div><b>Assets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Assets}}
+                    {{#Measurements}}<div><b>Measurements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Measurements}}
                     </div>
                     <fieldset>
 
@@ -2249,11 +2595,27 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Clearances) obj.Clearances_string = obj.Clearances.join ();
+                if (obj.ReportingGroup) obj.ReportingGroup_string = obj.ReportingGroup.join ();
+                if (obj.PSREvents) obj.PSREvents_string = obj.PSREvents.join ();
+                if (obj.OperatingShare) obj.OperatingShare_string = obj.OperatingShare.join ();
+                if (obj.OperationTags) obj.OperationTags_string = obj.OperationTags.join ();
+                if (obj.Controls) obj.Controls_string = obj.Controls.join ();
+                if (obj.Assets) obj.Assets_string = obj.Assets.join ();
+                if (obj.Measurements) obj.Measurements_string = obj.Measurements.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Clearances_string;
+                delete obj.ReportingGroup_string;
+                delete obj.PSREvents_string;
+                delete obj.OperatingShare_string;
+                delete obj.OperationTags_string;
+                delete obj.Controls_string;
+                delete obj.Assets_string;
+                delete obj.Measurements_string;
             }
 
             edit_template ()
@@ -2267,13 +2629,35 @@ define
                     + IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetDatasheet'>AssetDatasheet: </label><div class='col-sm-8'><input id='AssetDatasheet' class='form-control' type='text'{{#AssetDatasheet}} value='{{AssetDatasheet}}'{{/AssetDatasheet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Clearances'>Clearances: </label><div class='col-sm-8'><input id='Clearances' class='form-control' type='text'{{#Clearances}} value='{{Clearances}}_string'{{/Clearances}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Location'>Location: </label><div class='col-sm-8'><input id='Location' class='form-control' type='text'{{#Location}} value='{{Location}}'{{/Location}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReportingGroup'>ReportingGroup: </label><div class='col-sm-8'><input id='ReportingGroup' class='form-control' type='text'{{#ReportingGroup}} value='{{ReportingGroup}}_string'{{/ReportingGroup}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='PSRType'>PSRType: </label><div class='col-sm-8'><input id='PSRType' class='form-control' type='text'{{#PSRType}} value='{{PSRType}}'{{/PSRType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Assets'>Assets: </label><div class='col-sm-8'><input id='Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AssetDatasheet", "AssetInfo", "0..1", "0..*"],
+                        ["Clearances", "ClearanceDocument", "0..*", "0..*"],
+                        ["Location", "Location", "0..1", "0..*"],
+                        ["ReportingGroup", "ReportingGroup", "0..*", "0..*"],
+                        ["PSREvents", "PSREvent", "0..*", "0..1"],
+                        ["PSRType", "PSRType", "0..1", "0..*"],
+                        ["OperatingShare", "OperatingShare", "0..*", "1"],
+                        ["OperationTags", "OperationTag", "0..*", "0..1"],
+                        ["Controls", "Control", "0..*", "0..1"],
+                        ["Assets", "Asset", "0..*", "0..*"],
+                        ["Measurements", "Measurement", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2304,7 +2688,7 @@ define
 
                 obj = BasicIntervalSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "IrregularIntervalSchedule";
-
+                base.parse_attributes (/<cim:IrregularIntervalSchedule.TimePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimePoints", sub, context);
                 var bucket = context.parsed.IrregularIntervalSchedule;
                 if (null == bucket)
                    context.parsed.IrregularIntervalSchedule = bucket = {};
@@ -2317,6 +2701,7 @@ define
             {
                 var fields = BasicIntervalSchedule.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "IrregularIntervalSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2334,6 +2719,7 @@ define
                     `
                     + BasicIntervalSchedule.prototype.template.call (this) +
                     `
+                    {{#TimePoints}}<div><b>TimePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimePoints}}
                     </div>
                     <fieldset>
 
@@ -2344,11 +2730,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimePoints) obj.TimePoints_string = obj.TimePoints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimePoints_string;
             }
 
             edit_template ()
@@ -2365,7 +2753,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimePoints", "IrregularTimePoint", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2399,7 +2796,6 @@ define
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "BaseFrequency";
                 base.parse_element (/<cim:BaseFrequency.frequency>([\s\S]*?)<\/cim:BaseFrequency.frequency>/g, obj, "frequency", base.to_string, sub, context);
-
                 var bucket = context.parsed.BaseFrequency;
                 if (null == bucket)
                    context.parsed.BaseFrequency = bucket = {};
@@ -2463,7 +2859,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2494,8 +2890,10 @@ define
 
                 obj = IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ReportingGroup";
+                base.parse_attributes (/<cim:ReportingGroup.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context);
+                base.parse_attributes (/<cim:ReportingGroup.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context);
                 base.parse_attribute (/<cim:ReportingGroup.ReportingSuperGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReportingSuperGroup", sub, context);
-
+                base.parse_attributes (/<cim:ReportingGroup.BusNameMarker\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BusNameMarker", sub, context);
                 var bucket = context.parsed.ReportingGroup;
                 if (null == bucket)
                    context.parsed.ReportingGroup = bucket = {};
@@ -2508,7 +2906,10 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ReportingGroup", "ReportingSuperGroup", fields);
+                base.export_attribute (obj, "export_attributes", "ReportingGroup", fields);
+                base.export_attribute (obj, "export_attributes", "ReportingGroup", fields);
+                base.export_attribute (obj, "export_attribute", "ReportingGroup", fields);
+                base.export_attribute (obj, "export_attributes", "ReportingGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2526,7 +2927,10 @@ define
                     `
                     + IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#PowerSystemResource}}<div><b>PowerSystemResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PowerSystemResource}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TopologicalNode}}
                     {{#ReportingSuperGroup}}<div><b>ReportingSuperGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingSuperGroup}}&quot;);})'>{{ReportingSuperGroup}}</a></div>{{/ReportingSuperGroup}}
+                    {{#BusNameMarker}}<div><b>BusNameMarker</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BusNameMarker}}
                     </div>
                     <fieldset>
 
@@ -2537,11 +2941,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PowerSystemResource) obj.PowerSystemResource_string = obj.PowerSystemResource.join ();
+                if (obj.TopologicalNode) obj.TopologicalNode_string = obj.TopologicalNode.join ();
+                if (obj.BusNameMarker) obj.BusNameMarker_string = obj.BusNameMarker.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PowerSystemResource_string;
+                delete obj.TopologicalNode_string;
+                delete obj.BusNameMarker_string;
             }
 
             edit_template ()
@@ -2554,12 +2964,25 @@ define
                     `
                     + IdentifiedObject.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}_string'{{/PowerSystemResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReportingSuperGroup'>ReportingSuperGroup: </label><div class='col-sm-8'><input id='ReportingSuperGroup' class='form-control' type='text'{{#ReportingSuperGroup}} value='{{ReportingSuperGroup}}'{{/ReportingSuperGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PowerSystemResource", "PowerSystemResource", "0..*", "0..*"],
+                        ["TopologicalNode", "TopologicalNode", "0..*", "0..1"],
+                        ["ReportingSuperGroup", "ReportingSuperGroup", "0..1", "0..*"],
+                        ["BusNameMarker", "BusNameMarker", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2592,7 +3015,7 @@ define
                 obj.cls = "RegularIntervalSchedule";
                 base.parse_element (/<cim:RegularIntervalSchedule.endTime>([\s\S]*?)<\/cim:RegularIntervalSchedule.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:RegularIntervalSchedule.timeStep>([\s\S]*?)<\/cim:RegularIntervalSchedule.timeStep>/g, obj, "timeStep", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:RegularIntervalSchedule.TimePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TimePoints", sub, context);
                 var bucket = context.parsed.RegularIntervalSchedule;
                 if (null == bucket)
                    context.parsed.RegularIntervalSchedule = bucket = {};
@@ -2607,6 +3030,7 @@ define
 
                 base.export_element (obj, "RegularIntervalSchedule", "endTime", base.from_datetime, fields);
                 base.export_element (obj, "RegularIntervalSchedule", "timeStep", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "RegularIntervalSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2626,6 +3050,7 @@ define
                     `
                     {{#endTime}}<div><b>endTime</b>: {{endTime}}</div>{{/endTime}}
                     {{#timeStep}}<div><b>timeStep</b>: {{timeStep}}</div>{{/timeStep}}
+                    {{#TimePoints}}<div><b>TimePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TimePoints}}
                     </div>
                     <fieldset>
 
@@ -2636,11 +3061,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TimePoints) obj.TimePoints_string = obj.TimePoints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TimePoints_string;
             }
 
             edit_template ()
@@ -2659,7 +3086,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TimePoints", "RegularTimePoint", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2690,7 +3126,8 @@ define
 
                 obj = PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "ConnectivityNodeContainer";
-
+                base.parse_attributes (/<cim:ConnectivityNodeContainer.ConnectivityNodes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConnectivityNodes", sub, context);
+                base.parse_attributes (/<cim:ConnectivityNodeContainer.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context);
                 var bucket = context.parsed.ConnectivityNodeContainer;
                 if (null == bucket)
                    context.parsed.ConnectivityNodeContainer = bucket = {};
@@ -2703,6 +3140,8 @@ define
             {
                 var fields = PowerSystemResource.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ConnectivityNodeContainer", fields);
+                base.export_attribute (obj, "export_attributes", "ConnectivityNodeContainer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2720,6 +3159,8 @@ define
                     `
                     + PowerSystemResource.prototype.template.call (this) +
                     `
+                    {{#ConnectivityNodes}}<div><b>ConnectivityNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConnectivityNodes}}
+                    {{#TopologicalNode}}<div><b>TopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TopologicalNode}}
                     </div>
                     <fieldset>
 
@@ -2730,11 +3171,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ConnectivityNodes) obj.ConnectivityNodes_string = obj.ConnectivityNodes.join ();
+                if (obj.TopologicalNode) obj.TopologicalNode_string = obj.TopologicalNode.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ConnectivityNodes_string;
+                delete obj.TopologicalNode_string;
             }
 
             edit_template ()
@@ -2751,7 +3196,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ConnectivityNodes", "ConnectivityNode", "0..*", "1"],
+                        ["TopologicalNode", "TopologicalNode", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2784,8 +3239,18 @@ define
                 obj.cls = "Equipment";
                 base.parse_element (/<cim:Equipment.normallyInService>([\s\S]*?)<\/cim:Equipment.normallyInService>/g, obj, "normallyInService", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Equipment.aggregate>([\s\S]*?)<\/cim:Equipment.aggregate>/g, obj, "aggregate", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:Equipment.PinEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PinEquipment", sub, context);
+                base.parse_attributes (/<cim:Equipment.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
+                base.parse_attributes (/<cim:Equipment.Faults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Faults", sub, context);
                 base.parse_attribute (/<cim:Equipment.EquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EquipmentContainer", sub, context);
-
+                base.parse_attributes (/<cim:Equipment.OperationalRestrictions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationalRestrictions", sub, context);
+                base.parse_attributes (/<cim:Equipment.Outages\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outages", sub, context);
+                base.parse_attributes (/<cim:Equipment.ContingencyEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContingencyEquipment", sub, context);
+                base.parse_attributes (/<cim:Equipment.ProtectiveActionEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionEquipment", sub, context);
+                base.parse_attributes (/<cim:Equipment.WeatherStation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WeatherStation", sub, context);
+                base.parse_attributes (/<cim:Equipment.LimitDependencyModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LimitDependencyModel", sub, context);
+                base.parse_attributes (/<cim:Equipment.EqiupmentLimitSeriesComponent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EqiupmentLimitSeriesComponent", sub, context);
+                base.parse_attributes (/<cim:Equipment.OperationalLimitSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationalLimitSet", sub, context);
                 var bucket = context.parsed.Equipment;
                 if (null == bucket)
                    context.parsed.Equipment = bucket = {};
@@ -2800,7 +3265,18 @@ define
 
                 base.export_element (obj, "Equipment", "normallyInService", base.from_boolean, fields);
                 base.export_element (obj, "Equipment", "aggregate", base.from_boolean, fields);
-                base.export_attribute (obj, "Equipment", "EquipmentContainer", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attribute", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_attribute (obj, "export_attributes", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2820,7 +3296,18 @@ define
                     `
                     {{#normallyInService}}<div><b>normallyInService</b>: {{normallyInService}}</div>{{/normallyInService}}
                     {{#aggregate}}<div><b>aggregate</b>: {{aggregate}}</div>{{/aggregate}}
+                    {{#PinEquipment}}<div><b>PinEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PinEquipment}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#Faults}}<div><b>Faults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Faults}}
                     {{#EquipmentContainer}}<div><b>EquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EquipmentContainer}}&quot;);})'>{{EquipmentContainer}}</a></div>{{/EquipmentContainer}}
+                    {{#OperationalRestrictions}}<div><b>OperationalRestrictions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperationalRestrictions}}
+                    {{#Outages}}<div><b>Outages</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Outages}}
+                    {{#ContingencyEquipment}}<div><b>ContingencyEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ContingencyEquipment}}
+                    {{#ProtectiveActionEquipment}}<div><b>ProtectiveActionEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectiveActionEquipment}}
+                    {{#WeatherStation}}<div><b>WeatherStation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WeatherStation}}
+                    {{#LimitDependencyModel}}<div><b>LimitDependencyModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LimitDependencyModel}}
+                    {{#EqiupmentLimitSeriesComponent}}<div><b>EqiupmentLimitSeriesComponent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EqiupmentLimitSeriesComponent}}
+                    {{#OperationalLimitSet}}<div><b>OperationalLimitSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OperationalLimitSet}}
                     </div>
                     <fieldset>
 
@@ -2831,11 +3318,33 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PinEquipment) obj.PinEquipment_string = obj.PinEquipment.join ();
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
+                if (obj.Faults) obj.Faults_string = obj.Faults.join ();
+                if (obj.OperationalRestrictions) obj.OperationalRestrictions_string = obj.OperationalRestrictions.join ();
+                if (obj.Outages) obj.Outages_string = obj.Outages.join ();
+                if (obj.ContingencyEquipment) obj.ContingencyEquipment_string = obj.ContingencyEquipment.join ();
+                if (obj.ProtectiveActionEquipment) obj.ProtectiveActionEquipment_string = obj.ProtectiveActionEquipment.join ();
+                if (obj.WeatherStation) obj.WeatherStation_string = obj.WeatherStation.join ();
+                if (obj.LimitDependencyModel) obj.LimitDependencyModel_string = obj.LimitDependencyModel.join ();
+                if (obj.EqiupmentLimitSeriesComponent) obj.EqiupmentLimitSeriesComponent_string = obj.EqiupmentLimitSeriesComponent.join ();
+                if (obj.OperationalLimitSet) obj.OperationalLimitSet_string = obj.OperationalLimitSet.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PinEquipment_string;
+                delete obj.UsagePoints_string;
+                delete obj.Faults_string;
+                delete obj.OperationalRestrictions_string;
+                delete obj.Outages_string;
+                delete obj.ContingencyEquipment_string;
+                delete obj.ProtectiveActionEquipment_string;
+                delete obj.WeatherStation_string;
+                delete obj.LimitDependencyModel_string;
+                delete obj.EqiupmentLimitSeriesComponent_string;
+                delete obj.OperationalLimitSet_string;
             }
 
             edit_template ()
@@ -2850,12 +3359,36 @@ define
                     `
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='normallyInService'>normallyInService: </label><div class='col-sm-8'><input id='normallyInService' class='form-check-input' type='checkbox'{{#normallyInService}} checked{{/normallyInService}}></div></div>
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='aggregate'>aggregate: </label><div class='col-sm-8'><input id='aggregate' class='form-check-input' type='checkbox'{{#aggregate}} checked{{/aggregate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='EquipmentContainer'>EquipmentContainer: </label><div class='col-sm-8'><input id='EquipmentContainer' class='form-control' type='text'{{#EquipmentContainer}} value='{{EquipmentContainer}}'{{/EquipmentContainer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperationalRestrictions'>OperationalRestrictions: </label><div class='col-sm-8'><input id='OperationalRestrictions' class='form-control' type='text'{{#OperationalRestrictions}} value='{{OperationalRestrictions}}_string'{{/OperationalRestrictions}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Outages'>Outages: </label><div class='col-sm-8'><input id='Outages' class='form-control' type='text'{{#Outages}} value='{{Outages}}_string'{{/Outages}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WeatherStation'>WeatherStation: </label><div class='col-sm-8'><input id='WeatherStation' class='form-control' type='text'{{#WeatherStation}} value='{{WeatherStation}}_string'{{/WeatherStation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PinEquipment", "PinEquipment", "0..*", "1"],
+                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
+                        ["Faults", "Fault", "0..*", "0..1"],
+                        ["EquipmentContainer", "EquipmentContainer", "0..1", "0..*"],
+                        ["OperationalRestrictions", "OperationalRestriction", "0..*", "0..*"],
+                        ["Outages", "Outage", "0..*", "0..*"],
+                        ["ContingencyEquipment", "ContingencyEquipment", "0..*", "1"],
+                        ["ProtectiveActionEquipment", "ProtectiveActionEquipment", "0..*", "1"],
+                        ["WeatherStation", "WeatherStation", "0..*", "0..*"],
+                        ["LimitDependencyModel", "LimitDependency", "0..*", "0..1"],
+                        ["EqiupmentLimitSeriesComponent", "EquipmentLimitSeriesComponent", "0..*", "1"],
+                        ["OperationalLimitSet", "OperationalLimitSet", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2886,7 +3419,7 @@ define
 
                 obj = ConnectivityNodeContainer.prototype.parse.call (this, context, sub);
                 obj.cls = "EquipmentContainer";
-
+                base.parse_attributes (/<cim:EquipmentContainer.Equipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipments", sub, context);
                 var bucket = context.parsed.EquipmentContainer;
                 if (null == bucket)
                    context.parsed.EquipmentContainer = bucket = {};
@@ -2899,6 +3432,7 @@ define
             {
                 var fields = ConnectivityNodeContainer.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "EquipmentContainer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2916,6 +3450,7 @@ define
                     `
                     + ConnectivityNodeContainer.prototype.template.call (this) +
                     `
+                    {{#Equipments}}<div><b>Equipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Equipments}}
                     </div>
                     <fieldset>
 
@@ -2926,11 +3461,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Equipments_string;
             }
 
             edit_template ()
@@ -2947,7 +3484,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Equipments", "Equipment", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2983,8 +3529,8 @@ define
                 base.parse_element (/<cim:VoltageLevel.highVoltageLimit>([\s\S]*?)<\/cim:VoltageLevel.highVoltageLimit>/g, obj, "highVoltageLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:VoltageLevel.lowVoltageLimit>([\s\S]*?)<\/cim:VoltageLevel.lowVoltageLimit>/g, obj, "lowVoltageLimit", base.to_string, sub, context);
                 base.parse_attribute (/<cim:VoltageLevel.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BaseVoltage", sub, context);
+                base.parse_attributes (/<cim:VoltageLevel.Bays\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bays", sub, context);
                 base.parse_attribute (/<cim:VoltageLevel.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Substation", sub, context);
-
                 var bucket = context.parsed.VoltageLevel;
                 if (null == bucket)
                    context.parsed.VoltageLevel = bucket = {};
@@ -2999,8 +3545,9 @@ define
 
                 base.export_element (obj, "VoltageLevel", "highVoltageLimit", base.from_string, fields);
                 base.export_element (obj, "VoltageLevel", "lowVoltageLimit", base.from_string, fields);
-                base.export_attribute (obj, "VoltageLevel", "BaseVoltage", fields);
-                base.export_attribute (obj, "VoltageLevel", "Substation", fields);
+                base.export_attribute (obj, "export_attribute", "VoltageLevel", fields);
+                base.export_attribute (obj, "export_attributes", "VoltageLevel", fields);
+                base.export_attribute (obj, "export_attribute", "VoltageLevel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3021,6 +3568,7 @@ define
                     {{#highVoltageLimit}}<div><b>highVoltageLimit</b>: {{highVoltageLimit}}</div>{{/highVoltageLimit}}
                     {{#lowVoltageLimit}}<div><b>lowVoltageLimit</b>: {{lowVoltageLimit}}</div>{{/lowVoltageLimit}}
                     {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+                    {{#Bays}}<div><b>Bays</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Bays}}
                     {{#Substation}}<div><b>Substation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Substation}}&quot;);})'>{{Substation}}</a></div>{{/Substation}}
                     </div>
                     <fieldset>
@@ -3032,11 +3580,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Bays) obj.Bays_string = obj.Bays.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Bays_string;
             }
 
             edit_template ()
@@ -3057,7 +3607,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BaseVoltage", "BaseVoltage", "1", "0..*"],
+                        ["Bays", "Bay", "0..*", "0..1"],
+                        ["Substation", "Substation", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3088,11 +3649,13 @@ define
 
                 obj = Equipment.prototype.parse.call (this, context, sub);
                 obj.cls = "ConductingEquipment";
+                base.parse_attributes (/<cim:ConductingEquipment.ProtectionEquipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectionEquipments", sub, context);
                 base.parse_attribute (/<cim:ConductingEquipment.GroundingAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GroundingAction", sub, context);
                 base.parse_attribute (/<cim:ConductingEquipment.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BaseVoltage", sub, context);
+                base.parse_attributes (/<cim:ConductingEquipment.ProtectiveActionAdjustment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionAdjustment", sub, context);
                 base.parse_attribute (/<cim:ConductingEquipment.SvStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SvStatus", sub, context);
+                base.parse_attributes (/<cim:ConductingEquipment.Terminals\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminals", sub, context);
                 base.parse_attribute (/<cim:ConductingEquipment.JumpingAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "JumpingAction", sub, context);
-
                 var bucket = context.parsed.ConductingEquipment;
                 if (null == bucket)
                    context.parsed.ConductingEquipment = bucket = {};
@@ -3105,10 +3668,13 @@ define
             {
                 var fields = Equipment.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ConductingEquipment", "GroundingAction", fields);
-                base.export_attribute (obj, "ConductingEquipment", "BaseVoltage", fields);
-                base.export_attribute (obj, "ConductingEquipment", "SvStatus", fields);
-                base.export_attribute (obj, "ConductingEquipment", "JumpingAction", fields);
+                base.export_attribute (obj, "export_attributes", "ConductingEquipment", fields);
+                base.export_attribute (obj, "export_attribute", "ConductingEquipment", fields);
+                base.export_attribute (obj, "export_attribute", "ConductingEquipment", fields);
+                base.export_attribute (obj, "export_attributes", "ConductingEquipment", fields);
+                base.export_attribute (obj, "export_attribute", "ConductingEquipment", fields);
+                base.export_attribute (obj, "export_attributes", "ConductingEquipment", fields);
+                base.export_attribute (obj, "export_attribute", "ConductingEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3126,9 +3692,12 @@ define
                     `
                     + Equipment.prototype.template.call (this) +
                     `
+                    {{#ProtectionEquipments}}<div><b>ProtectionEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectionEquipments}}
                     {{#GroundingAction}}<div><b>GroundingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GroundingAction}}&quot;);})'>{{GroundingAction}}</a></div>{{/GroundingAction}}
                     {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+                    {{#ProtectiveActionAdjustment}}<div><b>ProtectiveActionAdjustment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectiveActionAdjustment}}
                     {{#SvStatus}}<div><b>SvStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvStatus}}&quot;);})'>{{SvStatus}}</a></div>{{/SvStatus}}
+                    {{#Terminals}}<div><b>Terminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Terminals}}
                     {{#JumpingAction}}<div><b>JumpingAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{JumpingAction}}&quot;);})'>{{JumpingAction}}</a></div>{{/JumpingAction}}
                     </div>
                     <fieldset>
@@ -3140,11 +3709,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProtectionEquipments) obj.ProtectionEquipments_string = obj.ProtectionEquipments.join ();
+                if (obj.ProtectiveActionAdjustment) obj.ProtectiveActionAdjustment_string = obj.ProtectiveActionAdjustment.join ();
+                if (obj.Terminals) obj.Terminals_string = obj.Terminals.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProtectionEquipments_string;
+                delete obj.ProtectiveActionAdjustment_string;
+                delete obj.Terminals_string;
             }
 
             edit_template ()
@@ -3157,6 +3732,7 @@ define
                     `
                     + Equipment.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProtectionEquipments'>ProtectionEquipments: </label><div class='col-sm-8'><input id='ProtectionEquipments' class='form-control' type='text'{{#ProtectionEquipments}} value='{{ProtectionEquipments}}_string'{{/ProtectionEquipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='GroundingAction'>GroundingAction: </label><div class='col-sm-8'><input id='GroundingAction' class='form-control' type='text'{{#GroundingAction}} value='{{GroundingAction}}'{{/GroundingAction}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='BaseVoltage'>BaseVoltage: </label><div class='col-sm-8'><input id='BaseVoltage' class='form-control' type='text'{{#BaseVoltage}} value='{{BaseVoltage}}'{{/BaseVoltage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='SvStatus'>SvStatus: </label><div class='col-sm-8'><input id='SvStatus' class='form-control' type='text'{{#SvStatus}} value='{{SvStatus}}'{{/SvStatus}}></div></div>
@@ -3165,7 +3741,22 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProtectionEquipments", "ProtectionEquipment", "0..*", "0..*"],
+                        ["GroundingAction", "GroundAction", "0..1", "0..1"],
+                        ["BaseVoltage", "BaseVoltage", "0..1", "0..*"],
+                        ["ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1"],
+                        ["SvStatus", "SvStatus", "0..1", "1"],
+                        ["Terminals", "Terminal", "0..*", "1"],
+                        ["JumpingAction", "JumperAction", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3196,8 +3787,10 @@ define
 
                 obj = EquipmentContainer.prototype.parse.call (this, context, sub);
                 obj.cls = "Substation";
+                base.parse_attributes (/<cim:Substation.DCConverterUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCConverterUnit", sub, context);
+                base.parse_attributes (/<cim:Substation.Bays\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bays", sub, context);
                 base.parse_attribute (/<cim:Substation.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Region", sub, context);
-
+                base.parse_attributes (/<cim:Substation.VoltageLevels\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageLevels", sub, context);
                 var bucket = context.parsed.Substation;
                 if (null == bucket)
                    context.parsed.Substation = bucket = {};
@@ -3210,7 +3803,10 @@ define
             {
                 var fields = EquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "Substation", "Region", fields);
+                base.export_attribute (obj, "export_attributes", "Substation", fields);
+                base.export_attribute (obj, "export_attributes", "Substation", fields);
+                base.export_attribute (obj, "export_attribute", "Substation", fields);
+                base.export_attribute (obj, "export_attributes", "Substation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3228,7 +3824,10 @@ define
                     `
                     + EquipmentContainer.prototype.template.call (this) +
                     `
+                    {{#DCConverterUnit}}<div><b>DCConverterUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCConverterUnit}}
+                    {{#Bays}}<div><b>Bays</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Bays}}
                     {{#Region}}<div><b>Region</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Region}}&quot;);})'>{{Region}}</a></div>{{/Region}}
+                    {{#VoltageLevels}}<div><b>VoltageLevels</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/VoltageLevels}}
                     </div>
                     <fieldset>
 
@@ -3239,11 +3838,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCConverterUnit) obj.DCConverterUnit_string = obj.DCConverterUnit.join ();
+                if (obj.Bays) obj.Bays_string = obj.Bays.join ();
+                if (obj.VoltageLevels) obj.VoltageLevels_string = obj.VoltageLevels.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCConverterUnit_string;
+                delete obj.Bays_string;
+                delete obj.VoltageLevels_string;
             }
 
             edit_template ()
@@ -3261,7 +3866,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCConverterUnit", "DCConverterUnit", "0..*", "0..1"],
+                        ["Bays", "Bay", "0..*", "0..1"],
+                        ["Region", "SubGeographicalRegion", "0..1", "0..*"],
+                        ["VoltageLevels", "VoltageLevel", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3300,7 +3917,6 @@ define
                 base.parse_attribute (/<cim:Bay.busBarConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "busBarConfiguration", sub, context);
                 base.parse_attribute (/<cim:Bay.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Substation", sub, context);
                 base.parse_attribute (/<cim:Bay.VoltageLevel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VoltageLevel", sub, context);
-
                 var bucket = context.parsed.Bay;
                 if (null == bucket)
                    context.parsed.Bay = bucket = {};
@@ -3317,8 +3933,8 @@ define
                 base.export_element (obj, "Bay", "bayPowerMeasFlag", base.from_boolean, fields);
                 base.export_element (obj, "Bay", "breakerConfiguration", base.from_string, fields);
                 base.export_element (obj, "Bay", "busBarConfiguration", base.from_string, fields);
-                base.export_attribute (obj, "Bay", "Substation", fields);
-                base.export_attribute (obj, "Bay", "VoltageLevel", fields);
+                base.export_attribute (obj, "export_attribute", "Bay", fields);
+                base.export_attribute (obj, "export_attribute", "Bay", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3383,7 +3999,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Substation", "Substation", "0..1", "0..*"],
+                        ["VoltageLevel", "VoltageLevel", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

@@ -186,6 +186,34 @@ define
         }
 
         /**
+         * Parse multiple attribute - the second capture group of a regular expression.
+         *
+         * @param {Object} regex - the regular expression
+         * @param {Object} obj - the object to assign the attribute to
+         * @param {String} attribute - the attribute name
+         * @param {String} str - the string to look in
+         * @param {Object} context - the context object
+         * @param {Number[]} context.newlines - the index of newline positions within the text
+         * @param {Number} context.start_character - the starting character position for this context
+         * @memberOf module:model/base
+         */
+        function parse_attributes (regex, obj, attribute, str, context)
+        {
+            var result;
+            var value;
+            var array = [];
+
+            while (null != (result = regex.exec (str)))
+            {
+                value = result[2];
+                if (value.charAt (0) == '#') // remove '#'
+                    value = value.substring (1);
+                array.push (value);
+                obj[attribute] = array;
+            }
+        }
+
+        /**
          * Change the value into a string.
          * @param {object} value - the value of the element
          * @returns {String} the element value converted to a string
@@ -265,6 +293,25 @@ define
             var value = obj[attribute];
             if ("undefined" != typeof (value))
                 fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"#" + value.toString () + "\"/>");
+        }
+
+        /**
+         * Export multiple attributes.
+         * e.g. &lt;cim:Asset.PowerSystemResources rdf:resource="#STA196"/&gt;
+         *	    &lt;cim:Asset.PowerSystemResources rdf:resource="#STA197"/&gt;
+         * @param {Object} obj - the CIM object
+         * @param {String} cls - the CIM class being written e.g. Location in the example above
+         * Note that this is not necessarily the same as obj.cls due to hierarchy
+         * @param {String} attribute - the attribute being written, e.g. PowerSystemResources in the example above
+         * @param {String[]} fields - the forming element array of strings to add to
+         * @memberOf module:model/base
+         */
+        function export_attributes (obj, cls, attribute, fields)
+        {
+            var value = obj[attribute];
+            if ("undefined" != typeof (value))
+                for (var i = 0; i < value.length; i++)
+                    fields.push ("\t\t<cim:" + cls + "." + attribute + " rdf:resource=\"#" + value[i].toString () + "\"/>");
         }
 
         class Element
@@ -365,12 +412,14 @@ define
                 line_number: line_number,
                 parse_element: parse_element,
                 parse_attribute: parse_attribute,
+                parse_attributes: parse_attributes,
                 from_string: from_string,
                 from_boolean: from_boolean,
                 from_float: from_float,
                 from_datetime: from_datetime,
                 export_element: export_element,
                 export_attribute: export_attribute,
+                export_attributes: export_attributes,
                 Element: Element
             }
         );

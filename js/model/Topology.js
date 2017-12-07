@@ -41,8 +41,8 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "BusNameMarker";
                 base.parse_element (/<cim:BusNameMarker.priority>([\s\S]*?)<\/cim:BusNameMarker.priority>/g, obj, "priority", base.to_string, sub, context);
+                base.parse_attributes (/<cim:BusNameMarker.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
                 base.parse_attribute (/<cim:BusNameMarker.ReportingGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReportingGroup", sub, context);
-
                 var bucket = context.parsed.BusNameMarker;
                 if (null == bucket)
                    context.parsed.BusNameMarker = bucket = {};
@@ -56,7 +56,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BusNameMarker", "priority", base.from_string, fields);
-                base.export_attribute (obj, "BusNameMarker", "ReportingGroup", fields);
+                base.export_attribute (obj, "export_attributes", "BusNameMarker", fields);
+                base.export_attribute (obj, "export_attribute", "BusNameMarker", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -75,6 +76,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Terminal}}
                     {{#ReportingGroup}}<div><b>ReportingGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingGroup}}&quot;);})'>{{ReportingGroup}}</a></div>{{/ReportingGroup}}
                     </div>
                     <fieldset>
@@ -86,11 +88,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Terminal) obj.Terminal_string = obj.Terminal.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Terminal_string;
             }
 
             edit_template ()
@@ -109,7 +113,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Terminal", "ACDCTerminal", "1..*", "0..1"],
+                        ["ReportingGroup", "ReportingGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -140,9 +154,10 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "DCTopologicalNode";
+                base.parse_attributes (/<cim:DCTopologicalNode.DCNodes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCNodes", sub, context);
                 base.parse_attribute (/<cim:DCTopologicalNode.DCEquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCEquipmentContainer", sub, context);
+                base.parse_attributes (/<cim:DCTopologicalNode.DCTerminals\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTerminals", sub, context);
                 base.parse_attribute (/<cim:DCTopologicalNode.DCTopologicalIsland\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTopologicalIsland", sub, context);
-
                 var bucket = context.parsed.DCTopologicalNode;
                 if (null == bucket)
                    context.parsed.DCTopologicalNode = bucket = {};
@@ -155,8 +170,10 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "DCTopologicalNode", "DCEquipmentContainer", fields);
-                base.export_attribute (obj, "DCTopologicalNode", "DCTopologicalIsland", fields);
+                base.export_attribute (obj, "export_attributes", "DCTopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "DCTopologicalNode", fields);
+                base.export_attribute (obj, "export_attributes", "DCTopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "DCTopologicalNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -174,7 +191,9 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#DCNodes}}<div><b>DCNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCNodes}}
                     {{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCEquipmentContainer}}&quot;);})'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
+                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCTerminals}}
                     {{#DCTopologicalIsland}}<div><b>DCTopologicalIsland</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalIsland}}&quot;);})'>{{DCTopologicalIsland}}</a></div>{{/DCTopologicalIsland}}
                     </div>
                     <fieldset>
@@ -186,11 +205,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCNodes) obj.DCNodes_string = obj.DCNodes.join ();
+                if (obj.DCTerminals) obj.DCTerminals_string = obj.DCTerminals.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCNodes_string;
+                delete obj.DCTerminals_string;
             }
 
             edit_template ()
@@ -209,7 +232,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCNodes", "DCNode", "0..*", "0..1"],
+                        ["DCEquipmentContainer", "DCEquipmentContainer", "0..1", "0..*"],
+                        ["DCTerminals", "DCBaseTerminal", "0..*", "0..1"],
+                        ["DCTopologicalIsland", "DCTopologicalIsland", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -248,10 +283,11 @@ define
                 base.parse_attribute (/<cim:TopologicalNode.SvVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SvVoltage", sub, context);
                 base.parse_attribute (/<cim:TopologicalNode.ReportingGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReportingGroup", sub, context);
                 base.parse_attribute (/<cim:TopologicalNode.SvInjection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SvInjection", sub, context);
+                base.parse_attributes (/<cim:TopologicalNode.ConnectivityNodes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConnectivityNodes", sub, context);
                 base.parse_attribute (/<cim:TopologicalNode.BaseVoltage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BaseVoltage", sub, context);
+                base.parse_attributes (/<cim:TopologicalNode.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
                 base.parse_attribute (/<cim:TopologicalNode.TopologicalIsland\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalIsland", sub, context);
                 base.parse_attribute (/<cim:TopologicalNode.ConnectivityNodeContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConnectivityNodeContainer", sub, context);
-
                 var bucket = context.parsed.TopologicalNode;
                 if (null == bucket)
                    context.parsed.TopologicalNode = bucket = {};
@@ -266,13 +302,15 @@ define
 
                 base.export_element (obj, "TopologicalNode", "pInjection", base.from_string, fields);
                 base.export_element (obj, "TopologicalNode", "qInjection", base.from_string, fields);
-                base.export_attribute (obj, "TopologicalNode", "AngleRefTopologicalIsland", fields);
-                base.export_attribute (obj, "TopologicalNode", "SvVoltage", fields);
-                base.export_attribute (obj, "TopologicalNode", "ReportingGroup", fields);
-                base.export_attribute (obj, "TopologicalNode", "SvInjection", fields);
-                base.export_attribute (obj, "TopologicalNode", "BaseVoltage", fields);
-                base.export_attribute (obj, "TopologicalNode", "TopologicalIsland", fields);
-                base.export_attribute (obj, "TopologicalNode", "ConnectivityNodeContainer", fields);
+                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attributes", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attributes", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -296,7 +334,9 @@ define
                     {{#SvVoltage}}<div><b>SvVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvVoltage}}&quot;);})'>{{SvVoltage}}</a></div>{{/SvVoltage}}
                     {{#ReportingGroup}}<div><b>ReportingGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReportingGroup}}&quot;);})'>{{ReportingGroup}}</a></div>{{/ReportingGroup}}
                     {{#SvInjection}}<div><b>SvInjection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SvInjection}}&quot;);})'>{{SvInjection}}</a></div>{{/SvInjection}}
+                    {{#ConnectivityNodes}}<div><b>ConnectivityNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConnectivityNodes}}
                     {{#BaseVoltage}}<div><b>BaseVoltage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BaseVoltage}}&quot;);})'>{{BaseVoltage}}</a></div>{{/BaseVoltage}}
+                    {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Terminal}}
                     {{#TopologicalIsland}}<div><b>TopologicalIsland</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TopologicalIsland}}&quot;);})'>{{TopologicalIsland}}</a></div>{{/TopologicalIsland}}
                     {{#ConnectivityNodeContainer}}<div><b>ConnectivityNodeContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ConnectivityNodeContainer}}&quot;);})'>{{ConnectivityNodeContainer}}</a></div>{{/ConnectivityNodeContainer}}
                     </div>
@@ -309,11 +349,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ConnectivityNodes) obj.ConnectivityNodes_string = obj.ConnectivityNodes.join ();
+                if (obj.Terminal) obj.Terminal_string = obj.Terminal.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ConnectivityNodes_string;
+                delete obj.Terminal_string;
             }
 
             edit_template ()
@@ -339,7 +383,24 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AngleRefTopologicalIsland", "TopologicalIsland", "0..1", "0..1"],
+                        ["SvVoltage", "SvVoltage", "0..1", "1"],
+                        ["ReportingGroup", "ReportingGroup", "0..1", "0..*"],
+                        ["SvInjection", "SvInjection", "0..1", "1"],
+                        ["ConnectivityNodes", "ConnectivityNode", "0..*", "0..1"],
+                        ["BaseVoltage", "BaseVoltage", "0..1", "0..*"],
+                        ["Terminal", "Terminal", "0..*", "0..1"],
+                        ["TopologicalIsland", "TopologicalIsland", "0..1", "1..*"],
+                        ["ConnectivityNodeContainer", "ConnectivityNodeContainer", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -373,7 +434,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "TopologicalIsland";
                 base.parse_attribute (/<cim:TopologicalIsland.AngleRefTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AngleRefTopologicalNode", sub, context);
-
+                base.parse_attributes (/<cim:TopologicalIsland.TopologicalNodes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNodes", sub, context);
                 var bucket = context.parsed.TopologicalIsland;
                 if (null == bucket)
                    context.parsed.TopologicalIsland = bucket = {};
@@ -386,7 +447,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "TopologicalIsland", "AngleRefTopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "TopologicalIsland", fields);
+                base.export_attribute (obj, "export_attributes", "TopologicalIsland", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -405,6 +467,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#AngleRefTopologicalNode}}<div><b>AngleRefTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AngleRefTopologicalNode}}&quot;);})'>{{AngleRefTopologicalNode}}</a></div>{{/AngleRefTopologicalNode}}
+                    {{#TopologicalNodes}}<div><b>TopologicalNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TopologicalNodes}}
                     </div>
                     <fieldset>
 
@@ -415,11 +478,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TopologicalNodes) obj.TopologicalNodes_string = obj.TopologicalNodes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TopologicalNodes_string;
             }
 
             edit_template ()
@@ -437,7 +502,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AngleRefTopologicalNode", "TopologicalNode", "0..1", "0..1"],
+                        ["TopologicalNodes", "TopologicalNode", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

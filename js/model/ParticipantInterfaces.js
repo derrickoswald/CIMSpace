@@ -42,7 +42,9 @@ define
                 base.parse_element (/<cim:ChargeGroup.effectiveDate>([\s\S]*?)<\/cim:ChargeGroup.effectiveDate>/g, obj, "effectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ChargeGroup.terminationDate>([\s\S]*?)<\/cim:ChargeGroup.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ChargeGroup.ChargeGroupParent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroupParent", sub, context);
-
+                base.parse_attributes (/<cim:ChargeGroup.ChargeGroupChild\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroupChild", sub, context);
+                base.parse_attributes (/<cim:ChargeGroup.MktUserAttribute\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
+                base.parse_attributes (/<cim:ChargeGroup.ChargeType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeType", sub, context);
                 var bucket = context.parsed.ChargeGroup;
                 if (null == bucket)
                    context.parsed.ChargeGroup = bucket = {};
@@ -58,7 +60,10 @@ define
                 base.export_element (obj, "ChargeGroup", "marketCode", base.from_string, fields);
                 base.export_element (obj, "ChargeGroup", "effectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "ChargeGroup", "terminationDate", base.from_datetime, fields);
-                base.export_attribute (obj, "ChargeGroup", "ChargeGroupParent", fields);
+                base.export_attribute (obj, "export_attribute", "ChargeGroup", fields);
+                base.export_attribute (obj, "export_attributes", "ChargeGroup", fields);
+                base.export_attribute (obj, "export_attributes", "ChargeGroup", fields);
+                base.export_attribute (obj, "export_attributes", "ChargeGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -80,6 +85,9 @@ define
                     {{#effectiveDate}}<div><b>effectiveDate</b>: {{effectiveDate}}</div>{{/effectiveDate}}
                     {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
                     {{#ChargeGroupParent}}<div><b>ChargeGroupParent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ChargeGroupParent}}&quot;);})'>{{ChargeGroupParent}}</a></div>{{/ChargeGroupParent}}
+                    {{#ChargeGroupChild}}<div><b>ChargeGroupChild</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeGroupChild}}
+                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktUserAttribute}}
+                    {{#ChargeType}}<div><b>ChargeType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeType}}
                     </div>
                     <fieldset>
 
@@ -90,11 +98,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ChargeGroupChild) obj.ChargeGroupChild_string = obj.ChargeGroupChild.join ();
+                if (obj.MktUserAttribute) obj.MktUserAttribute_string = obj.MktUserAttribute.join ();
+                if (obj.ChargeType) obj.ChargeType_string = obj.ChargeType.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ChargeGroupChild_string;
+                delete obj.MktUserAttribute_string;
+                delete obj.ChargeType_string;
             }
 
             edit_template ()
@@ -111,11 +125,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeGroupParent'>ChargeGroupParent: </label><div class='col-sm-8'><input id='ChargeGroupParent' class='form-control' type='text'{{#ChargeGroupParent}} value='{{ChargeGroupParent}}'{{/ChargeGroupParent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType}}_string'{{/ChargeType}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ChargeGroupParent", "ChargeGroup", "0..1", "0..*"],
+                        ["ChargeGroupChild", "ChargeGroup", "0..*", "0..1"],
+                        ["MktUserAttribute", "MktUserAttribute", "0..*", "0..*"],
+                        ["ChargeType", "ChargeType", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -146,9 +174,12 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ProductBid";
+                base.parse_attributes (/<cim:ProductBid.BidSelfSched\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
                 base.parse_attribute (/<cim:ProductBid.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
+                base.parse_attributes (/<cim:ProductBid.BidDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidDistributionFactor", sub, context);
+                base.parse_attributes (/<cim:ProductBid.BidHourlyProductSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidHourlyProductSchedule", sub, context);
                 base.parse_attribute (/<cim:ProductBid.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-
+                base.parse_attributes (/<cim:ProductBid.BidSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSchedule", sub, context);
                 var bucket = context.parsed.ProductBid;
                 if (null == bucket)
                    context.parsed.ProductBid = bucket = {};
@@ -161,8 +192,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ProductBid", "MarketProduct", fields);
-                base.export_attribute (obj, "ProductBid", "Bid", fields);
+                base.export_attribute (obj, "export_attributes", "ProductBid", fields);
+                base.export_attribute (obj, "export_attribute", "ProductBid", fields);
+                base.export_attribute (obj, "export_attributes", "ProductBid", fields);
+                base.export_attribute (obj, "export_attributes", "ProductBid", fields);
+                base.export_attribute (obj, "export_attribute", "ProductBid", fields);
+                base.export_attribute (obj, "export_attributes", "ProductBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -180,8 +215,12 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidSelfSched}}
                     {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);})'>{{MarketProduct}}</a></div>{{/MarketProduct}}
+                    {{#BidDistributionFactor}}<div><b>BidDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidDistributionFactor}}
+                    {{#BidHourlyProductSchedule}}<div><b>BidHourlyProductSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidHourlyProductSchedule}}
                     {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Bid}}&quot;);})'>{{Bid}}</a></div>{{/Bid}}
+                    {{#BidSchedule}}<div><b>BidSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidSchedule}}
                     </div>
                     <fieldset>
 
@@ -192,11 +231,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
+                if (obj.BidDistributionFactor) obj.BidDistributionFactor_string = obj.BidDistributionFactor.join ();
+                if (obj.BidHourlyProductSchedule) obj.BidHourlyProductSchedule_string = obj.BidHourlyProductSchedule.join ();
+                if (obj.BidSchedule) obj.BidSchedule_string = obj.BidSchedule.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.BidSelfSched_string;
+                delete obj.BidDistributionFactor_string;
+                delete obj.BidHourlyProductSchedule_string;
+                delete obj.BidSchedule_string;
             }
 
             edit_template ()
@@ -215,7 +262,21 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BidSelfSched", "BidSelfSched", "0..*", "1"],
+                        ["MarketProduct", "MarketProduct", "1", "0..*"],
+                        ["BidDistributionFactor", "BidDistributionFactor", "0..*", "1"],
+                        ["BidHourlyProductSchedule", "BidHourlyProductSchedule", "0..*", "1"],
+                        ["Bid", "Bid", "1", "1..*"],
+                        ["BidSchedule", "BidPriceSchedule", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -251,7 +312,6 @@ define
                 base.parse_element (/<cim:LoadFollowingInst.endTime>([\s\S]*?)<\/cim:LoadFollowingInst.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:LoadFollowingInst.loadFollowingMW>([\s\S]*?)<\/cim:LoadFollowingInst.loadFollowingMW>/g, obj, "loadFollowingMW", base.to_float, sub, context);
                 base.parse_attribute (/<cim:LoadFollowingInst.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.LoadFollowingInst;
                 if (null == bucket)
                    context.parsed.LoadFollowingInst = bucket = {};
@@ -268,7 +328,7 @@ define
                 base.export_element (obj, "LoadFollowingInst", "startTime", base.from_datetime, fields);
                 base.export_element (obj, "LoadFollowingInst", "endTime", base.from_datetime, fields);
                 base.export_element (obj, "LoadFollowingInst", "loadFollowingMW", base.from_float, fields);
-                base.export_attribute (obj, "LoadFollowingInst", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "LoadFollowingInst", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -327,7 +387,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -362,7 +431,6 @@ define
                 base.parse_element (/<cim:AttributeProperty.propertyName>([\s\S]*?)<\/cim:AttributeProperty.propertyName>/g, obj, "propertyName", base.to_string, sub, context);
                 base.parse_element (/<cim:AttributeProperty.propertyValue>([\s\S]*?)<\/cim:AttributeProperty.propertyValue>/g, obj, "propertyValue", base.to_string, sub, context);
                 base.parse_attribute (/<cim:AttributeProperty.MktUserAttribute\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
-
                 var bucket = context.parsed.AttributeProperty;
                 if (null == bucket)
                    context.parsed.AttributeProperty = bucket = {};
@@ -378,7 +446,7 @@ define
                 base.export_element (obj, "AttributeProperty", "sequence", base.from_string, fields);
                 base.export_element (obj, "AttributeProperty", "propertyName", base.from_string, fields);
                 base.export_element (obj, "AttributeProperty", "propertyValue", base.from_string, fields);
-                base.export_attribute (obj, "AttributeProperty", "MktUserAttribute", fields);
+                base.export_attribute (obj, "export_attribute", "AttributeProperty", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -435,7 +503,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktUserAttribute", "MktUserAttribute", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -469,7 +546,7 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadReductionPriceCurve";
                 base.parse_attribute (/<cim:LoadReductionPriceCurve.LoadBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
-
+                base.parse_attributes (/<cim:LoadReductionPriceCurve.RegisteredLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredLoad", sub, context);
                 var bucket = context.parsed.LoadReductionPriceCurve;
                 if (null == bucket)
                    context.parsed.LoadReductionPriceCurve = bucket = {};
@@ -482,7 +559,8 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "LoadReductionPriceCurve", "LoadBid", fields);
+                base.export_attribute (obj, "export_attribute", "LoadReductionPriceCurve", fields);
+                base.export_attribute (obj, "export_attributes", "LoadReductionPriceCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -501,6 +579,7 @@ define
                     + Core.Curve.prototype.template.call (this) +
                     `
                     {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadBid}}&quot;);})'>{{LoadBid}}</a></div>{{/LoadBid}}
+                    {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredLoad}}
                     </div>
                     <fieldset>
 
@@ -511,11 +590,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredLoad) obj.RegisteredLoad_string = obj.RegisteredLoad.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredLoad_string;
             }
 
             edit_template ()
@@ -529,11 +610,22 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}_string'{{/RegisteredLoad}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadBid", "LoadBid", "1", "0..*"],
+                        ["RegisteredLoad", "RegisteredLoad", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -565,7 +657,6 @@ define
                 obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "BidHourlyProductSchedule";
                 base.parse_attribute (/<cim:BidHourlyProductSchedule.ProductBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProductBid", sub, context);
-
                 var bucket = context.parsed.BidHourlyProductSchedule;
                 if (null == bucket)
                    context.parsed.BidHourlyProductSchedule = bucket = {};
@@ -578,7 +669,7 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "BidHourlyProductSchedule", "ProductBid", fields);
+                base.export_attribute (obj, "export_attribute", "BidHourlyProductSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -629,7 +720,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProductBid", "ProductBid", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -663,7 +763,7 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "StartUpTimeCurve";
                 base.parse_attribute (/<cim:StartUpTimeCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
+                base.parse_attributes (/<cim:StartUpTimeCurve.GeneratingBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
                 var bucket = context.parsed.StartUpTimeCurve;
                 if (null == bucket)
                    context.parsed.StartUpTimeCurve = bucket = {};
@@ -676,7 +776,8 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "StartUpTimeCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "StartUpTimeCurve", fields);
+                base.export_attribute (obj, "export_attributes", "StartUpTimeCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -695,6 +796,7 @@ define
                     + Core.Curve.prototype.template.call (this) +
                     `
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GeneratingBid}}
                     </div>
                     <fieldset>
 
@@ -705,11 +807,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GeneratingBid) obj.GeneratingBid_string = obj.GeneratingBid.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GeneratingBid_string;
             }
 
             edit_template ()
@@ -727,7 +831,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"],
+                        ["GeneratingBid", "GeneratingBid", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -758,7 +872,8 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "EnergyPriceCurve";
-
+                base.parse_attributes (/<cim:EnergyPriceCurve.EnergyTransactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyTransactions", sub, context);
+                base.parse_attributes (/<cim:EnergyPriceCurve.FTRs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FTRs", sub, context);
                 var bucket = context.parsed.EnergyPriceCurve;
                 if (null == bucket)
                    context.parsed.EnergyPriceCurve = bucket = {};
@@ -771,6 +886,8 @@ define
             {
                 var fields = [];
 
+                base.export_attribute (obj, "export_attributes", "EnergyPriceCurve", fields);
+                base.export_attribute (obj, "export_attributes", "EnergyPriceCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -788,6 +905,8 @@ define
                     `
                     + base.Element.prototype.template.call (this) +
                     `
+                    {{#EnergyTransactions}}<div><b>EnergyTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyTransactions}}
+                    {{#FTRs}}<div><b>FTRs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FTRs}}
                     </div>
                     <fieldset>
 
@@ -798,11 +917,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergyTransactions) obj.EnergyTransactions_string = obj.EnergyTransactions.join ();
+                if (obj.FTRs) obj.FTRs_string = obj.FTRs.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyTransactions_string;
+                delete obj.FTRs_string;
             }
 
             edit_template ()
@@ -815,11 +938,22 @@ define
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransactions'>EnergyTransactions: </label><div class='col-sm-8'><input id='EnergyTransactions' class='form-control' type='text'{{#EnergyTransactions}} value='{{EnergyTransactions}}_string'{{/EnergyTransactions}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyTransactions", "EnergyTransaction", "0..*", "0..*"],
+                        ["FTRs", "FTR", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -865,7 +999,6 @@ define
                 base.parse_attribute (/<cim:BidSelfSched.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HostControlArea", sub, context);
                 base.parse_attribute (/<cim:BidSelfSched.AdjacentCASet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AdjacentCASet", sub, context);
                 base.parse_attribute (/<cim:BidSelfSched.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
-
                 var bucket = context.parsed.BidSelfSched;
                 if (null == bucket)
                    context.parsed.BidSelfSched = bucket = {};
@@ -888,11 +1021,11 @@ define
                 base.export_element (obj, "BidSelfSched", "selfSchedType", base.from_string, fields);
                 base.export_element (obj, "BidSelfSched", "updateType", base.from_string, fields);
                 base.export_element (obj, "BidSelfSched", "wheelingTransactionReference", base.from_string, fields);
-                base.export_attribute (obj, "BidSelfSched", "ProductBid", fields);
-                base.export_attribute (obj, "BidSelfSched", "TransmissionContractRight", fields);
-                base.export_attribute (obj, "BidSelfSched", "HostControlArea", fields);
-                base.export_attribute (obj, "BidSelfSched", "AdjacentCASet", fields);
-                base.export_attribute (obj, "BidSelfSched", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "BidSelfSched", fields);
+                base.export_attribute (obj, "export_attribute", "BidSelfSched", fields);
+                base.export_attribute (obj, "export_attribute", "BidSelfSched", fields);
+                base.export_attribute (obj, "export_attribute", "BidSelfSched", fields);
+                base.export_attribute (obj, "export_attribute", "BidSelfSched", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -971,7 +1104,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProductBid", "ProductBid", "1", "0..*"],
+                        ["TransmissionContractRight", "ContractRight", "0..1", "0..*"],
+                        ["HostControlArea", "HostControlArea", "0..1", "0..*"],
+                        ["AdjacentCASet", "AdjacentCASet", "0..1", "0..*"],
+                        ["SubControlArea", "SubControlArea", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1006,7 +1152,6 @@ define
                 base.parse_element (/<cim:BidPriceSchedule.mitigationStatus>([\s\S]*?)<\/cim:BidPriceSchedule.mitigationStatus>/g, obj, "mitigationStatus", base.to_string, sub, context);
                 base.parse_attribute (/<cim:BidPriceSchedule.BidPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidPriceCurve", sub, context);
                 base.parse_attribute (/<cim:BidPriceSchedule.ProductBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProductBid", sub, context);
-
                 var bucket = context.parsed.BidPriceSchedule;
                 if (null == bucket)
                    context.parsed.BidPriceSchedule = bucket = {};
@@ -1021,8 +1166,8 @@ define
 
                 base.export_element (obj, "BidPriceSchedule", "bidType", base.from_string, fields);
                 base.export_element (obj, "BidPriceSchedule", "mitigationStatus", base.from_string, fields);
-                base.export_attribute (obj, "BidPriceSchedule", "BidPriceCurve", fields);
-                base.export_attribute (obj, "BidPriceSchedule", "ProductBid", fields);
+                base.export_attribute (obj, "export_attribute", "BidPriceSchedule", fields);
+                base.export_attribute (obj, "export_attribute", "BidPriceSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1079,7 +1224,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BidPriceCurve", "BidPriceCurve", "1", "0..*"],
+                        ["ProductBid", "ProductBid", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1118,7 +1273,8 @@ define
                 base.parse_element (/<cim:ChargeComponent.sum>([\s\S]*?)<\/cim:ChargeComponent.sum>/g, obj, "sum", base.to_string, sub, context);
                 base.parse_element (/<cim:ChargeComponent.roundOff>([\s\S]*?)<\/cim:ChargeComponent.roundOff>/g, obj, "roundOff", base.to_string, sub, context);
                 base.parse_element (/<cim:ChargeComponent.equation>([\s\S]*?)<\/cim:ChargeComponent.equation>/g, obj, "equation", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ChargeComponent.ChargeTypes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeTypes", sub, context);
+                base.parse_attributes (/<cim:ChargeComponent.BillDeterminants\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BillDeterminants", sub, context);
                 var bucket = context.parsed.ChargeComponent;
                 if (null == bucket)
                    context.parsed.ChargeComponent = bucket = {};
@@ -1139,6 +1295,8 @@ define
                 base.export_element (obj, "ChargeComponent", "sum", base.from_string, fields);
                 base.export_element (obj, "ChargeComponent", "roundOff", base.from_string, fields);
                 base.export_element (obj, "ChargeComponent", "equation", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ChargeComponent", fields);
+                base.export_attribute (obj, "export_attributes", "ChargeComponent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1164,6 +1322,8 @@ define
                     {{#sum}}<div><b>sum</b>: {{sum}}</div>{{/sum}}
                     {{#roundOff}}<div><b>roundOff</b>: {{roundOff}}</div>{{/roundOff}}
                     {{#equation}}<div><b>equation</b>: {{equation}}</div>{{/equation}}
+                    {{#ChargeTypes}}<div><b>ChargeTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeTypes}}
+                    {{#BillDeterminants}}<div><b>BillDeterminants</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BillDeterminants}}
                     </div>
                     <fieldset>
 
@@ -1174,11 +1334,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ChargeTypes) obj.ChargeTypes_string = obj.ChargeTypes.join ();
+                if (obj.BillDeterminants) obj.BillDeterminants_string = obj.BillDeterminants.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ChargeTypes_string;
+                delete obj.BillDeterminants_string;
             }
 
             edit_template ()
@@ -1199,11 +1363,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='sum'>sum: </label><div class='col-sm-8'><input id='sum' class='form-control' type='text'{{#sum}} value='{{sum}}'{{/sum}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='roundOff'>roundOff: </label><div class='col-sm-8'><input id='roundOff' class='form-control' type='text'{{#roundOff}} value='{{roundOff}}'{{/roundOff}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='equation'>equation: </label><div class='col-sm-8'><input id='equation' class='form-control' type='text'{{#equation}} value='{{equation}}'{{/equation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeTypes'>ChargeTypes: </label><div class='col-sm-8'><input id='ChargeTypes' class='form-control' type='text'{{#ChargeTypes}} value='{{ChargeTypes}}_string'{{/ChargeTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BillDeterminants'>BillDeterminants: </label><div class='col-sm-8'><input id='BillDeterminants' class='form-control' type='text'{{#BillDeterminants}} value='{{BillDeterminants}}_string'{{/BillDeterminants}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ChargeTypes", "ChargeType", "0..*", "0..*"],
+                        ["BillDeterminants", "BillDeterminant", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1244,7 +1420,10 @@ define
                 base.parse_element (/<cim:MajorChargeGroup.terminationDate>([\s\S]*?)<\/cim:MajorChargeGroup.terminationDate>/g, obj, "terminationDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MajorChargeGroup.requireAutorun>([\s\S]*?)<\/cim:MajorChargeGroup.requireAutorun>/g, obj, "requireAutorun", base.to_string, sub, context);
                 base.parse_element (/<cim:MajorChargeGroup.revisionNumber>([\s\S]*?)<\/cim:MajorChargeGroup.revisionNumber>/g, obj, "revisionNumber", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:MajorChargeGroup.Settlement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Settlement", sub, context);
+                base.parse_attributes (/<cim:MajorChargeGroup.MarketInvoice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketInvoice", sub, context);
+                base.parse_attributes (/<cim:MajorChargeGroup.ChargeType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeType", sub, context);
+                base.parse_attributes (/<cim:MajorChargeGroup.MktScheduledEvent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktScheduledEvent", sub, context);
                 var bucket = context.parsed.MajorChargeGroup;
                 if (null == bucket)
                    context.parsed.MajorChargeGroup = bucket = {};
@@ -1265,6 +1444,10 @@ define
                 base.export_element (obj, "MajorChargeGroup", "terminationDate", base.from_datetime, fields);
                 base.export_element (obj, "MajorChargeGroup", "requireAutorun", base.from_string, fields);
                 base.export_element (obj, "MajorChargeGroup", "revisionNumber", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MajorChargeGroup", fields);
+                base.export_attribute (obj, "export_attributes", "MajorChargeGroup", fields);
+                base.export_attribute (obj, "export_attributes", "MajorChargeGroup", fields);
+                base.export_attribute (obj, "export_attributes", "MajorChargeGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1290,6 +1473,10 @@ define
                     {{#terminationDate}}<div><b>terminationDate</b>: {{terminationDate}}</div>{{/terminationDate}}
                     {{#requireAutorun}}<div><b>requireAutorun</b>: {{requireAutorun}}</div>{{/requireAutorun}}
                     {{#revisionNumber}}<div><b>revisionNumber</b>: {{revisionNumber}}</div>{{/revisionNumber}}
+                    {{#Settlement}}<div><b>Settlement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Settlement}}
+                    {{#MarketInvoice}}<div><b>MarketInvoice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketInvoice}}
+                    {{#ChargeType}}<div><b>ChargeType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeType}}
+                    {{#MktScheduledEvent}}<div><b>MktScheduledEvent</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktScheduledEvent}}
                     </div>
                     <fieldset>
 
@@ -1300,11 +1487,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Settlement) obj.Settlement_string = obj.Settlement.join ();
+                if (obj.MarketInvoice) obj.MarketInvoice_string = obj.MarketInvoice.join ();
+                if (obj.ChargeType) obj.ChargeType_string = obj.ChargeType.join ();
+                if (obj.MktScheduledEvent) obj.MktScheduledEvent_string = obj.MktScheduledEvent.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Settlement_string;
+                delete obj.MarketInvoice_string;
+                delete obj.ChargeType_string;
+                delete obj.MktScheduledEvent_string;
             }
 
             edit_template ()
@@ -1325,11 +1520,26 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='requireAutorun'>requireAutorun: </label><div class='col-sm-8'><input id='requireAutorun' class='form-control' type='text'{{#requireAutorun}} value='{{requireAutorun}}'{{/requireAutorun}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='revisionNumber'>revisionNumber: </label><div class='col-sm-8'><input id='revisionNumber' class='form-control' type='text'{{#revisionNumber}} value='{{revisionNumber}}'{{/revisionNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Settlement'>Settlement: </label><div class='col-sm-8'><input id='Settlement' class='form-control' type='text'{{#Settlement}} value='{{Settlement}}_string'{{/Settlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketInvoice'>MarketInvoice: </label><div class='col-sm-8'><input id='MarketInvoice' class='form-control' type='text'{{#MarketInvoice}} value='{{MarketInvoice}}_string'{{/MarketInvoice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType}}_string'{{/ChargeType}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Settlement", "Settlement", "0..*", "1..*"],
+                        ["MarketInvoice", "MarketInvoice", "0..*", "1..*"],
+                        ["ChargeType", "ChargeType", "0..*", "0..*"],
+                        ["MktScheduledEvent", "MarketScheduledEvent", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1369,7 +1579,10 @@ define
                 base.parse_element (/<cim:ChargeType.frequencyType>([\s\S]*?)<\/cim:ChargeType.frequencyType>/g, obj, "frequencyType", base.to_string, sub, context);
                 base.parse_element (/<cim:ChargeType.chargeVersion>([\s\S]*?)<\/cim:ChargeType.chargeVersion>/g, obj, "chargeVersion", base.to_string, sub, context);
                 base.parse_element (/<cim:ChargeType.totalInterval>([\s\S]*?)<\/cim:ChargeType.totalInterval>/g, obj, "totalInterval", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ChargeType.MajorChargeGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MajorChargeGroup", sub, context);
+                base.parse_attributes (/<cim:ChargeType.MktUserAttribute\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktUserAttribute", sub, context);
+                base.parse_attributes (/<cim:ChargeType.ChargeComponents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeComponents", sub, context);
+                base.parse_attributes (/<cim:ChargeType.ChargeGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeGroup", sub, context);
                 var bucket = context.parsed.ChargeType;
                 if (null == bucket)
                    context.parsed.ChargeType = bucket = {};
@@ -1389,6 +1602,10 @@ define
                 base.export_element (obj, "ChargeType", "frequencyType", base.from_string, fields);
                 base.export_element (obj, "ChargeType", "chargeVersion", base.from_string, fields);
                 base.export_element (obj, "ChargeType", "totalInterval", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ChargeType", fields);
+                base.export_attribute (obj, "export_attributes", "ChargeType", fields);
+                base.export_attribute (obj, "export_attributes", "ChargeType", fields);
+                base.export_attribute (obj, "export_attributes", "ChargeType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1413,6 +1630,10 @@ define
                     {{#frequencyType}}<div><b>frequencyType</b>: {{frequencyType}}</div>{{/frequencyType}}
                     {{#chargeVersion}}<div><b>chargeVersion</b>: {{chargeVersion}}</div>{{/chargeVersion}}
                     {{#totalInterval}}<div><b>totalInterval</b>: {{totalInterval}}</div>{{/totalInterval}}
+                    {{#MajorChargeGroup}}<div><b>MajorChargeGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MajorChargeGroup}}
+                    {{#MktUserAttribute}}<div><b>MktUserAttribute</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktUserAttribute}}
+                    {{#ChargeComponents}}<div><b>ChargeComponents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeComponents}}
+                    {{#ChargeGroup}}<div><b>ChargeGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeGroup}}
                     </div>
                     <fieldset>
 
@@ -1423,11 +1644,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MajorChargeGroup) obj.MajorChargeGroup_string = obj.MajorChargeGroup.join ();
+                if (obj.MktUserAttribute) obj.MktUserAttribute_string = obj.MktUserAttribute.join ();
+                if (obj.ChargeComponents) obj.ChargeComponents_string = obj.ChargeComponents.join ();
+                if (obj.ChargeGroup) obj.ChargeGroup_string = obj.ChargeGroup.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MajorChargeGroup_string;
+                delete obj.MktUserAttribute_string;
+                delete obj.ChargeComponents_string;
+                delete obj.ChargeGroup_string;
             }
 
             edit_template ()
@@ -1447,11 +1676,27 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='chargeVersion'>chargeVersion: </label><div class='col-sm-8'><input id='chargeVersion' class='form-control' type='text'{{#chargeVersion}} value='{{chargeVersion}}'{{/chargeVersion}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='totalInterval'>totalInterval: </label><div class='col-sm-8'><input id='totalInterval' class='form-control' type='text'{{#totalInterval}} value='{{totalInterval}}'{{/totalInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}_string'{{/MajorChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents}}_string'{{/ChargeComponents}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeGroup'>ChargeGroup: </label><div class='col-sm-8'><input id='ChargeGroup' class='form-control' type='text'{{#ChargeGroup}} value='{{ChargeGroup}}_string'{{/ChargeGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MajorChargeGroup", "MajorChargeGroup", "0..*", "0..*"],
+                        ["MktUserAttribute", "MktUserAttribute", "0..*", "0..*"],
+                        ["ChargeComponents", "ChargeComponent", "0..*", "0..*"],
+                        ["ChargeGroup", "ChargeGroup", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1484,7 +1729,8 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "StartUpCostCurve";
-
+                base.parse_attributes (/<cim:StartUpCostCurve.GeneratingBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
+                base.parse_attributes (/<cim:StartUpCostCurve.RegisteredGenerators\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerators", sub, context);
                 var bucket = context.parsed.StartUpCostCurve;
                 if (null == bucket)
                    context.parsed.StartUpCostCurve = bucket = {};
@@ -1497,6 +1743,8 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "StartUpCostCurve", fields);
+                base.export_attribute (obj, "export_attributes", "StartUpCostCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1514,6 +1762,8 @@ define
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
+                    {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GeneratingBid}}
+                    {{#RegisteredGenerators}}<div><b>RegisteredGenerators</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredGenerators}}
                     </div>
                     <fieldset>
 
@@ -1524,11 +1774,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GeneratingBid) obj.GeneratingBid_string = obj.GeneratingBid.join ();
+                if (obj.RegisteredGenerators) obj.RegisteredGenerators_string = obj.RegisteredGenerators.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GeneratingBid_string;
+                delete obj.RegisteredGenerators_string;
             }
 
             edit_template ()
@@ -1541,11 +1795,22 @@ define
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerators'>RegisteredGenerators: </label><div class='col-sm-8'><input id='RegisteredGenerators' class='form-control' type='text'{{#RegisteredGenerators}} value='{{RegisteredGenerators}}_string'{{/RegisteredGenerators}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneratingBid", "GeneratingBid", "0..*", "0..1"],
+                        ["RegisteredGenerators", "RegisteredGenerator", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1579,7 +1844,7 @@ define
                 base.parse_element (/<cim:BidDistributionFactor.timeIntervalStart>([\s\S]*?)<\/cim:BidDistributionFactor.timeIntervalStart>/g, obj, "timeIntervalStart", base.to_datetime, sub, context);
                 base.parse_element (/<cim:BidDistributionFactor.timeIntervalEnd>([\s\S]*?)<\/cim:BidDistributionFactor.timeIntervalEnd>/g, obj, "timeIntervalEnd", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:BidDistributionFactor.ProductBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProductBid", sub, context);
-
+                base.parse_attributes (/<cim:BidDistributionFactor.PnodeDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PnodeDistributionFactor", sub, context);
                 var bucket = context.parsed.BidDistributionFactor;
                 if (null == bucket)
                    context.parsed.BidDistributionFactor = bucket = {};
@@ -1594,7 +1859,8 @@ define
 
                 base.export_element (obj, "BidDistributionFactor", "timeIntervalStart", base.from_datetime, fields);
                 base.export_element (obj, "BidDistributionFactor", "timeIntervalEnd", base.from_datetime, fields);
-                base.export_attribute (obj, "BidDistributionFactor", "ProductBid", fields);
+                base.export_attribute (obj, "export_attribute", "BidDistributionFactor", fields);
+                base.export_attribute (obj, "export_attributes", "BidDistributionFactor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1615,6 +1881,7 @@ define
                     {{#timeIntervalStart}}<div><b>timeIntervalStart</b>: {{timeIntervalStart}}</div>{{/timeIntervalStart}}
                     {{#timeIntervalEnd}}<div><b>timeIntervalEnd</b>: {{timeIntervalEnd}}</div>{{/timeIntervalEnd}}
                     {{#ProductBid}}<div><b>ProductBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProductBid}}&quot;);})'>{{ProductBid}}</a></div>{{/ProductBid}}
+                    {{#PnodeDistributionFactor}}<div><b>PnodeDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PnodeDistributionFactor}}
                     </div>
                     <fieldset>
 
@@ -1625,11 +1892,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PnodeDistributionFactor) obj.PnodeDistributionFactor_string = obj.PnodeDistributionFactor.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PnodeDistributionFactor_string;
             }
 
             edit_template ()
@@ -1649,7 +1918,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProductBid", "ProductBid", "1", "0..*"],
+                        ["PnodeDistributionFactor", "PnodeDistributionFactor", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1691,7 +1970,7 @@ define
                 obj.cls = "TradeProduct";
                 base.parse_element (/<cim:TradeProduct.tradeType>([\s\S]*?)<\/cim:TradeProduct.tradeType>/g, obj, "tradeType", base.to_string, sub, context);
                 base.parse_element (/<cim:TradeProduct.tradeProductType>([\s\S]*?)<\/cim:TradeProduct.tradeProductType>/g, obj, "tradeProductType", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:TradeProduct.Trade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
                 var bucket = context.parsed.TradeProduct;
                 if (null == bucket)
                    context.parsed.TradeProduct = bucket = {};
@@ -1706,6 +1985,7 @@ define
 
                 base.export_element (obj, "TradeProduct", "tradeType", base.from_string, fields);
                 base.export_element (obj, "TradeProduct", "tradeProductType", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "TradeProduct", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1725,6 +2005,7 @@ define
                     `
                     {{#tradeType}}<div><b>tradeType</b>: {{tradeType}}</div>{{/tradeType}}
                     {{#tradeProductType}}<div><b>tradeProductType</b>: {{tradeProductType}}</div>{{/tradeProductType}}
+                    {{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Trade}}
                     </div>
                     <fieldset>
 
@@ -1735,11 +2016,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Trade) obj.Trade_string = obj.Trade.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Trade_string;
             }
 
             edit_template ()
@@ -1758,7 +2041,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Trade", "Trade", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1796,7 +2088,6 @@ define
                 base.parse_element (/<cim:TradeError.endTime>([\s\S]*?)<\/cim:TradeError.endTime>/g, obj, "endTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:TradeError.logTimeStamp>([\s\S]*?)<\/cim:TradeError.logTimeStamp>/g, obj, "logTimeStamp", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:TradeError.Trade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
-
                 var bucket = context.parsed.TradeError;
                 if (null == bucket)
                    context.parsed.TradeError = bucket = {};
@@ -1815,7 +2106,7 @@ define
                 base.export_element (obj, "TradeError", "startTime", base.from_datetime, fields);
                 base.export_element (obj, "TradeError", "endTime", base.from_datetime, fields);
                 base.export_element (obj, "TradeError", "logTimeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "TradeError", "Trade", fields);
+                base.export_attribute (obj, "export_attribute", "TradeError", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1878,7 +2169,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Trade", "Trade", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1913,10 +2213,15 @@ define
                 base.parse_element (/<cim:Bid.stopTime>([\s\S]*?)<\/cim:Bid.stopTime>/g, obj, "stopTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Bid.marketType>([\s\S]*?)<\/cim:Bid.marketType>/g, obj, "marketType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Bid.ActionRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ActionRequest", sub, context);
+                base.parse_attributes (/<cim:Bid.BidHourlySchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidHourlySchedule", sub, context);
+                base.parse_attributes (/<cim:Bid.RMRDetermination\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRDetermination", sub, context);
+                base.parse_attributes (/<cim:Bid.ProductBids\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProductBids", sub, context);
                 base.parse_attribute (/<cim:Bid.MarketParticipant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketParticipant", sub, context);
                 base.parse_attribute (/<cim:Bid.EnergyMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyMarket", sub, context);
+                base.parse_attributes (/<cim:Bid.MitigatedBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBid", sub, context);
+                base.parse_attributes (/<cim:Bid.ChargeProfiles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ChargeProfiles", sub, context);
+                base.parse_attributes (/<cim:Bid.MitigatedBidSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MitigatedBidSegment", sub, context);
                 base.parse_attribute (/<cim:Bid.SchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SchedulingCoordinator", sub, context);
-
                 var bucket = context.parsed.Bid;
                 if (null == bucket)
                    context.parsed.Bid = bucket = {};
@@ -1932,10 +2237,16 @@ define
                 base.export_element (obj, "Bid", "startTime", base.from_datetime, fields);
                 base.export_element (obj, "Bid", "stopTime", base.from_datetime, fields);
                 base.export_element (obj, "Bid", "marketType", base.from_string, fields);
-                base.export_attribute (obj, "Bid", "ActionRequest", fields);
-                base.export_attribute (obj, "Bid", "MarketParticipant", fields);
-                base.export_attribute (obj, "Bid", "EnergyMarket", fields);
-                base.export_attribute (obj, "Bid", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attribute", "Bid", fields);
+                base.export_attribute (obj, "export_attributes", "Bid", fields);
+                base.export_attribute (obj, "export_attributes", "Bid", fields);
+                base.export_attribute (obj, "export_attributes", "Bid", fields);
+                base.export_attribute (obj, "export_attribute", "Bid", fields);
+                base.export_attribute (obj, "export_attribute", "Bid", fields);
+                base.export_attribute (obj, "export_attributes", "Bid", fields);
+                base.export_attribute (obj, "export_attributes", "Bid", fields);
+                base.export_attribute (obj, "export_attributes", "Bid", fields);
+                base.export_attribute (obj, "export_attribute", "Bid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1957,8 +2268,14 @@ define
                     {{#stopTime}}<div><b>stopTime</b>: {{stopTime}}</div>{{/stopTime}}
                     {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
                     {{#ActionRequest}}<div><b>ActionRequest</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ActionRequest}}&quot;);})'>{{ActionRequest}}</a></div>{{/ActionRequest}}
+                    {{#BidHourlySchedule}}<div><b>BidHourlySchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidHourlySchedule}}
+                    {{#RMRDetermination}}<div><b>RMRDetermination</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RMRDetermination}}
+                    {{#ProductBids}}<div><b>ProductBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProductBids}}
                     {{#MarketParticipant}}<div><b>MarketParticipant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketParticipant}}&quot;);})'>{{MarketParticipant}}</a></div>{{/MarketParticipant}}
                     {{#EnergyMarket}}<div><b>EnergyMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyMarket}}&quot;);})'>{{EnergyMarket}}</a></div>{{/EnergyMarket}}
+                    {{#MitigatedBid}}<div><b>MitigatedBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MitigatedBid}}
+                    {{#ChargeProfiles}}<div><b>ChargeProfiles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ChargeProfiles}}
+                    {{#MitigatedBidSegment}}<div><b>MitigatedBidSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MitigatedBidSegment}}
                     {{#SchedulingCoordinator}}<div><b>SchedulingCoordinator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SchedulingCoordinator}}&quot;);})'>{{SchedulingCoordinator}}</a></div>{{/SchedulingCoordinator}}
                     </div>
                     <fieldset>
@@ -1970,11 +2287,23 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.BidHourlySchedule) obj.BidHourlySchedule_string = obj.BidHourlySchedule.join ();
+                if (obj.RMRDetermination) obj.RMRDetermination_string = obj.RMRDetermination.join ();
+                if (obj.ProductBids) obj.ProductBids_string = obj.ProductBids.join ();
+                if (obj.MitigatedBid) obj.MitigatedBid_string = obj.MitigatedBid.join ();
+                if (obj.ChargeProfiles) obj.ChargeProfiles_string = obj.ChargeProfiles.join ();
+                if (obj.MitigatedBidSegment) obj.MitigatedBidSegment_string = obj.MitigatedBidSegment.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.BidHourlySchedule_string;
+                delete obj.RMRDetermination_string;
+                delete obj.ProductBids_string;
+                delete obj.MitigatedBid_string;
+                delete obj.ChargeProfiles_string;
+                delete obj.MitigatedBidSegment_string;
             }
 
             edit_template ()
@@ -1998,7 +2327,25 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ActionRequest", "ActionRequest", "1", "0..*"],
+                        ["BidHourlySchedule", "BidHourlySchedule", "0..*", "1"],
+                        ["RMRDetermination", "RMRDetermination", "0..*", "0..1"],
+                        ["ProductBids", "ProductBid", "1..*", "1"],
+                        ["MarketParticipant", "MarketParticipant", "0..1", "0..*"],
+                        ["EnergyMarket", "EnergyMarket", "1", "0..*"],
+                        ["MitigatedBid", "MitigatedBid", "0..*", "0..1"],
+                        ["ChargeProfiles", "ChargeProfile", "0..*", "0..1"],
+                        ["MitigatedBidSegment", "MitigatedBidSegment", "0..*", "1"],
+                        ["SchedulingCoordinator", "SchedulingCoordinator", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2046,13 +2393,13 @@ define
                 base.parse_element (/<cim:Trade.updateUser>([\s\S]*?)<\/cim:Trade.updateUser>/g, obj, "updateUser", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Trade.TradeProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TradeProduct", sub, context);
                 base.parse_attribute (/<cim:Trade.submitFromSchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "submitFromSchedulingCoordinator", sub, context);
+                base.parse_attributes (/<cim:Trade.TradeError\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TradeError", sub, context);
                 base.parse_attribute (/<cim:Trade.ActionRequest\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ActionRequest", sub, context);
                 base.parse_attribute (/<cim:Trade.To_SC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "To_SC", sub, context);
                 base.parse_attribute (/<cim:Trade.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pnode", sub, context);
                 base.parse_attribute (/<cim:Trade.submitToSchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "submitToSchedulingCoordinator", sub, context);
                 base.parse_attribute (/<cim:Trade.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
                 base.parse_attribute (/<cim:Trade.From_SC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "From_SC", sub, context);
-
                 var bucket = context.parsed.Trade;
                 if (null == bucket)
                    context.parsed.Trade = bucket = {};
@@ -2080,14 +2427,15 @@ define
                 base.export_element (obj, "Trade", "tradeStatus", base.from_string, fields);
                 base.export_element (obj, "Trade", "updateTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "Trade", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "Trade", "TradeProduct", fields);
-                base.export_attribute (obj, "Trade", "submitFromSchedulingCoordinator", fields);
-                base.export_attribute (obj, "Trade", "ActionRequest", fields);
-                base.export_attribute (obj, "Trade", "To_SC", fields);
-                base.export_attribute (obj, "Trade", "Pnode", fields);
-                base.export_attribute (obj, "Trade", "submitToSchedulingCoordinator", fields);
-                base.export_attribute (obj, "Trade", "RegisteredGenerator", fields);
-                base.export_attribute (obj, "Trade", "From_SC", fields);
+                base.export_attribute (obj, "export_attribute", "Trade", fields);
+                base.export_attribute (obj, "export_attribute", "Trade", fields);
+                base.export_attribute (obj, "export_attributes", "Trade", fields);
+                base.export_attribute (obj, "export_attribute", "Trade", fields);
+                base.export_attribute (obj, "export_attribute", "Trade", fields);
+                base.export_attribute (obj, "export_attribute", "Trade", fields);
+                base.export_attribute (obj, "export_attribute", "Trade", fields);
+                base.export_attribute (obj, "export_attribute", "Trade", fields);
+                base.export_attribute (obj, "export_attribute", "Trade", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2122,6 +2470,7 @@ define
                     {{#updateUser}}<div><b>updateUser</b>: {{updateUser}}</div>{{/updateUser}}
                     {{#TradeProduct}}<div><b>TradeProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TradeProduct}}&quot;);})'>{{TradeProduct}}</a></div>{{/TradeProduct}}
                     {{#submitFromSchedulingCoordinator}}<div><b>submitFromSchedulingCoordinator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{submitFromSchedulingCoordinator}}&quot;);})'>{{submitFromSchedulingCoordinator}}</a></div>{{/submitFromSchedulingCoordinator}}
+                    {{#TradeError}}<div><b>TradeError</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TradeError}}
                     {{#ActionRequest}}<div><b>ActionRequest</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ActionRequest}}&quot;);})'>{{ActionRequest}}</a></div>{{/ActionRequest}}
                     {{#To_SC}}<div><b>To_SC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{To_SC}}&quot;);})'>{{To_SC}}</a></div>{{/To_SC}}
                     {{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Pnode}}&quot;);})'>{{Pnode}}</a></div>{{/Pnode}}
@@ -2138,11 +2487,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TradeError) obj.TradeError_string = obj.TradeError.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TradeError_string;
             }
 
             edit_template ()
@@ -2182,7 +2533,24 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TradeProduct", "TradeProduct", "1", "0..*"],
+                        ["submitFromSchedulingCoordinator", "SchedulingCoordinator", "0..1", "0..*"],
+                        ["TradeError", "TradeError", "0..*", "0..1"],
+                        ["ActionRequest", "ActionRequest", "1", "0..*"],
+                        ["To_SC", "SchedulingCoordinator", "1", "0..*"],
+                        ["Pnode", "Pnode", "0..1", "0..*"],
+                        ["submitToSchedulingCoordinator", "SchedulingCoordinator", "0..1", "0..*"],
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*"],
+                        ["From_SC", "SchedulingCoordinator", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2221,8 +2589,8 @@ define
                 base.parse_element (/<cim:BidError.logTimeStamp>([\s\S]*?)<\/cim:BidError.logTimeStamp>/g, obj, "logTimeStamp", base.to_datetime, sub, context);
                 base.parse_element (/<cim:BidError.componentType>([\s\S]*?)<\/cim:BidError.componentType>/g, obj, "componentType", base.to_string, sub, context);
                 base.parse_element (/<cim:BidError.msgLevel>([\s\S]*?)<\/cim:BidError.msgLevel>/g, obj, "msgLevel", base.to_string, sub, context);
+                base.parse_attributes (/<cim:BidError.ResourceBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceBid", sub, context);
                 base.parse_attribute (/<cim:BidError.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
-
                 var bucket = context.parsed.BidError;
                 if (null == bucket)
                    context.parsed.BidError = bucket = {};
@@ -2243,7 +2611,8 @@ define
                 base.export_element (obj, "BidError", "logTimeStamp", base.from_datetime, fields);
                 base.export_element (obj, "BidError", "componentType", base.from_string, fields);
                 base.export_element (obj, "BidError", "msgLevel", base.from_string, fields);
-                base.export_attribute (obj, "BidError", "MarketProduct", fields);
+                base.export_attribute (obj, "export_attributes", "BidError", fields);
+                base.export_attribute (obj, "export_attribute", "BidError", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2269,6 +2638,7 @@ define
                     {{#logTimeStamp}}<div><b>logTimeStamp</b>: {{logTimeStamp}}</div>{{/logTimeStamp}}
                     {{#componentType}}<div><b>componentType</b>: {{componentType}}</div>{{/componentType}}
                     {{#msgLevel}}<div><b>msgLevel</b>: {{msgLevel}}</div>{{/msgLevel}}
+                    {{#ResourceBid}}<div><b>ResourceBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ResourceBid}}
                     {{#MarketProduct}}<div><b>MarketProduct</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketProduct}}&quot;);})'>{{MarketProduct}}</a></div>{{/MarketProduct}}
                     </div>
                     <fieldset>
@@ -2280,11 +2650,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ResourceBid) obj.ResourceBid_string = obj.ResourceBid.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ResourceBid_string;
             }
 
             edit_template ()
@@ -2305,12 +2677,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='componentType'>componentType: </label><div class='col-sm-8'><input id='componentType' class='form-control' type='text'{{#componentType}} value='{{componentType}}'{{/componentType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='msgLevel'>msgLevel: </label><div class='col-sm-8'><input id='msgLevel' class='form-control' type='text'{{#msgLevel}} value='{{msgLevel}}'{{/msgLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceBid'>ResourceBid: </label><div class='col-sm-8'><input id='ResourceBid' class='form-control' type='text'{{#ResourceBid}} value='{{ResourceBid}}_string'{{/ResourceBid}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceBid", "ResourceBid", "0..*", "0..*"],
+                        ["MarketProduct", "MarketProduct", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2342,7 +2725,8 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "ActionRequest";
                 base.parse_element (/<cim:ActionRequest.actionName>([\s\S]*?)<\/cim:ActionRequest.actionName>/g, obj, "actionName", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ActionRequest.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
+                base.parse_attributes (/<cim:ActionRequest.Trade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
                 var bucket = context.parsed.ActionRequest;
                 if (null == bucket)
                    context.parsed.ActionRequest = bucket = {};
@@ -2356,6 +2740,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "ActionRequest", "actionName", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ActionRequest", fields);
+                base.export_attribute (obj, "export_attributes", "ActionRequest", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2374,6 +2760,8 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#actionName}}<div><b>actionName</b>: {{actionName}}</div>{{/actionName}}
+                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Bid}}
+                    {{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Trade}}
                     </div>
                     <fieldset>
 
@@ -2384,11 +2772,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Bid) obj.Bid_string = obj.Bid.join ();
+                if (obj.Trade) obj.Trade_string = obj.Trade.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Bid_string;
+                delete obj.Trade_string;
             }
 
             edit_template ()
@@ -2406,7 +2798,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Bid", "Bid", "0..*", "1"],
+                        ["Trade", "Trade", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2443,7 +2845,6 @@ define
                 base.parse_element (/<cim:InterTieDispatchResponse.startTime>([\s\S]*?)<\/cim:InterTieDispatchResponse.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:InterTieDispatchResponse.passIndicator>([\s\S]*?)<\/cim:InterTieDispatchResponse.passIndicator>/g, obj, "passIndicator", base.to_string, sub, context);
                 base.parse_attribute (/<cim:InterTieDispatchResponse.RegisteredInterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredInterTie", sub, context);
-
                 var bucket = context.parsed.InterTieDispatchResponse;
                 if (null == bucket)
                    context.parsed.InterTieDispatchResponse = bucket = {};
@@ -2461,7 +2862,7 @@ define
                 base.export_element (obj, "InterTieDispatchResponse", "clearedMW", base.from_float, fields);
                 base.export_element (obj, "InterTieDispatchResponse", "startTime", base.from_datetime, fields);
                 base.export_element (obj, "InterTieDispatchResponse", "passIndicator", base.from_string, fields);
-                base.export_attribute (obj, "InterTieDispatchResponse", "RegisteredInterTie", fields);
+                base.export_attribute (obj, "export_attribute", "InterTieDispatchResponse", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2522,7 +2923,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredInterTie", "RegisteredInterTie", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2555,7 +2965,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "BidSet";
-
+                base.parse_attributes (/<cim:BidSet.GeneratingBids\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBids", sub, context);
                 var bucket = context.parsed.BidSet;
                 if (null == bucket)
                    context.parsed.BidSet = bucket = {};
@@ -2568,6 +2978,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "BidSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2585,6 +2996,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#GeneratingBids}}<div><b>GeneratingBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GeneratingBids}}
                     </div>
                     <fieldset>
 
@@ -2595,11 +3007,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GeneratingBids) obj.GeneratingBids_string = obj.GeneratingBids.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GeneratingBids_string;
             }
 
             edit_template ()
@@ -2616,7 +3030,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneratingBids", "GeneratingBid", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2652,8 +3075,8 @@ define
                 base.parse_element (/<cim:RampRateCurve.rampRateType>([\s\S]*?)<\/cim:RampRateCurve.rampRateType>/g, obj, "rampRateType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:RampRateCurve.GeneratingBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBid", sub, context);
                 base.parse_attribute (/<cim:RampRateCurve.LoadBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
+                base.parse_attributes (/<cim:RampRateCurve.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:RampRateCurve.InterTieBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieBid", sub, context);
-
                 var bucket = context.parsed.RampRateCurve;
                 if (null == bucket)
                    context.parsed.RampRateCurve = bucket = {};
@@ -2669,9 +3092,10 @@ define
                 base.export_element (obj, "RampRateCurve", "condition", base.from_string, fields);
                 base.export_element (obj, "RampRateCurve", "constraintRampType", base.from_string, fields);
                 base.export_element (obj, "RampRateCurve", "rampRateType", base.from_string, fields);
-                base.export_attribute (obj, "RampRateCurve", "GeneratingBid", fields);
-                base.export_attribute (obj, "RampRateCurve", "LoadBid", fields);
-                base.export_attribute (obj, "RampRateCurve", "InterTieBid", fields);
+                base.export_attribute (obj, "export_attribute", "RampRateCurve", fields);
+                base.export_attribute (obj, "export_attribute", "RampRateCurve", fields);
+                base.export_attribute (obj, "export_attributes", "RampRateCurve", fields);
+                base.export_attribute (obj, "export_attribute", "RampRateCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2694,6 +3118,7 @@ define
                     {{#rampRateType}}<div><b>rampRateType</b>: {{rampRateType}}</div>{{/rampRateType}}
                     {{#GeneratingBid}}<div><b>GeneratingBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingBid}}&quot;);})'>{{GeneratingBid}}</a></div>{{/GeneratingBid}}
                     {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadBid}}&quot;);})'>{{LoadBid}}</a></div>{{/LoadBid}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
                     {{#InterTieBid}}<div><b>InterTieBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTieBid}}&quot;);})'>{{InterTieBid}}</a></div>{{/InterTieBid}}
                     </div>
                     <fieldset>
@@ -2705,11 +3130,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredResource_string;
             }
 
             edit_template ()
@@ -2727,12 +3154,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='rampRateType'>rampRateType: </label><div class='col-sm-8'><input id='rampRateType' class='form-control' type='text'{{#rampRateType}} value='{{rampRateType}}'{{/rampRateType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='GeneratingBid'>GeneratingBid: </label><div class='col-sm-8'><input id='GeneratingBid' class='form-control' type='text'{{#GeneratingBid}} value='{{GeneratingBid}}'{{/GeneratingBid}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneratingBid", "GeneratingBid", "0..1", "0..*"],
+                        ["LoadBid", "LoadBid", "0..1", "0..*"],
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"],
+                        ["InterTieBid", "InterTieBid", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2773,7 +3213,6 @@ define
                 base.parse_element (/<cim:DispatchInstReply.receivedTime>([\s\S]*?)<\/cim:DispatchInstReply.receivedTime>/g, obj, "receivedTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:DispatchInstReply.startTime>([\s\S]*?)<\/cim:DispatchInstReply.startTime>/g, obj, "startTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:DispatchInstReply.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.DispatchInstReply;
                 if (null == bucket)
                    context.parsed.DispatchInstReply = bucket = {};
@@ -2795,7 +3234,7 @@ define
                 base.export_element (obj, "DispatchInstReply", "passIndicator", base.from_string, fields);
                 base.export_element (obj, "DispatchInstReply", "receivedTime", base.from_datetime, fields);
                 base.export_element (obj, "DispatchInstReply", "startTime", base.from_datetime, fields);
-                base.export_attribute (obj, "DispatchInstReply", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "DispatchInstReply", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2864,7 +3303,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2897,7 +3345,7 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "NotificationTimeCurve";
-
+                base.parse_attributes (/<cim:NotificationTimeCurve.GeneratingBids\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBids", sub, context);
                 var bucket = context.parsed.NotificationTimeCurve;
                 if (null == bucket)
                    context.parsed.NotificationTimeCurve = bucket = {};
@@ -2910,6 +3358,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "NotificationTimeCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2927,6 +3376,7 @@ define
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
+                    {{#GeneratingBids}}<div><b>GeneratingBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GeneratingBids}}
                     </div>
                     <fieldset>
 
@@ -2937,11 +3387,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GeneratingBids) obj.GeneratingBids_string = obj.GeneratingBids.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GeneratingBids_string;
             }
 
             edit_template ()
@@ -2958,7 +3410,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneratingBids", "GeneratingBid", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2993,7 +3454,6 @@ define
                 base.parse_element (/<cim:MarketScheduledEvent.duration>([\s\S]*?)<\/cim:MarketScheduledEvent.duration>/g, obj, "duration", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketScheduledEvent.status>([\s\S]*?)<\/cim:MarketScheduledEvent.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_attribute (/<cim:MarketScheduledEvent.MajorChargeGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MajorChargeGroup", sub, context);
-
                 var bucket = context.parsed.MarketScheduledEvent;
                 if (null == bucket)
                    context.parsed.MarketScheduledEvent = bucket = {};
@@ -3009,7 +3469,7 @@ define
                 base.export_element (obj, "MarketScheduledEvent", "category", base.from_string, fields);
                 base.export_element (obj, "MarketScheduledEvent", "duration", base.from_string, fields);
                 base.export_element (obj, "MarketScheduledEvent", "status", base.from_string, fields);
-                base.export_attribute (obj, "MarketScheduledEvent", "MajorChargeGroup", fields);
+                base.export_attribute (obj, "export_attribute", "MarketScheduledEvent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3066,7 +3526,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MajorChargeGroup", "MajorChargeGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3097,7 +3566,7 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "BidPriceCurve";
-
+                base.parse_attributes (/<cim:BidPriceCurve.BidSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSchedule", sub, context);
                 var bucket = context.parsed.BidPriceCurve;
                 if (null == bucket)
                    context.parsed.BidPriceCurve = bucket = {};
@@ -3110,6 +3579,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "BidPriceCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3127,6 +3597,7 @@ define
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
+                    {{#BidSchedule}}<div><b>BidSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidSchedule}}
                     </div>
                     <fieldset>
 
@@ -3137,11 +3608,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.BidSchedule) obj.BidSchedule_string = obj.BidSchedule.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.BidSchedule_string;
             }
 
             edit_template ()
@@ -3158,7 +3631,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BidSchedule", "BidPriceSchedule", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3190,7 +3672,6 @@ define
                 obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "BidHourlySchedule";
                 base.parse_attribute (/<cim:BidHourlySchedule.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
-
                 var bucket = context.parsed.BidHourlySchedule;
                 if (null == bucket)
                    context.parsed.BidHourlySchedule = bucket = {};
@@ -3203,7 +3684,7 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "BidHourlySchedule", "Bid", fields);
+                base.export_attribute (obj, "export_attribute", "BidHourlySchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3254,7 +3735,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Bid", "Bid", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3288,7 +3778,6 @@ define
                 obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "PumpingLevelSchedule";
                 base.parse_element (/<cim:PumpingLevelSchedule.value>([\s\S]*?)<\/cim:PumpingLevelSchedule.value>/g, obj, "value", base.to_float, sub, context);
-
                 var bucket = context.parsed.PumpingLevelSchedule;
                 if (null == bucket)
                    context.parsed.PumpingLevelSchedule = bucket = {};
@@ -3352,7 +3841,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3386,7 +3875,6 @@ define
                 obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "PumpingCostSchedule";
                 base.parse_element (/<cim:PumpingCostSchedule.value>([\s\S]*?)<\/cim:PumpingCostSchedule.value>/g, obj, "value", base.to_float, sub, context);
-
                 var bucket = context.parsed.PumpingCostSchedule;
                 if (null == bucket)
                    context.parsed.PumpingCostSchedule = bucket = {};
@@ -3450,7 +3938,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3484,7 +3972,6 @@ define
                 obj = BidHourlyProductSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "PumpingShutDownCostSchedule";
                 base.parse_element (/<cim:PumpingShutDownCostSchedule.value>([\s\S]*?)<\/cim:PumpingShutDownCostSchedule.value>/g, obj, "value", base.to_float, sub, context);
-
                 var bucket = context.parsed.PumpingShutDownCostSchedule;
                 if (null == bucket)
                    context.parsed.PumpingShutDownCostSchedule = bucket = {};
@@ -3548,7 +4035,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3594,7 +4081,7 @@ define
                 base.parse_element (/<cim:ResourceBid.startUpsMaxDay>([\s\S]*?)<\/cim:ResourceBid.startUpsMaxDay>/g, obj, "startUpsMaxDay", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceBid.startUpsMaxWeek>([\s\S]*?)<\/cim:ResourceBid.startUpsMaxWeek>/g, obj, "startUpsMaxWeek", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceBid.virtual>([\s\S]*?)<\/cim:ResourceBid.virtual>/g, obj, "virtual", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:ResourceBid.BidError\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidError", sub, context);
                 var bucket = context.parsed.ResourceBid;
                 if (null == bucket)
                    context.parsed.ResourceBid = bucket = {};
@@ -3622,6 +4109,7 @@ define
                 base.export_element (obj, "ResourceBid", "startUpsMaxDay", base.from_string, fields);
                 base.export_element (obj, "ResourceBid", "startUpsMaxWeek", base.from_string, fields);
                 base.export_element (obj, "ResourceBid", "virtual", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "ResourceBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3654,6 +4142,7 @@ define
                     {{#startUpsMaxDay}}<div><b>startUpsMaxDay</b>: {{startUpsMaxDay}}</div>{{/startUpsMaxDay}}
                     {{#startUpsMaxWeek}}<div><b>startUpsMaxWeek</b>: {{startUpsMaxWeek}}</div>{{/startUpsMaxWeek}}
                     {{#virtual}}<div><b>virtual</b>: {{virtual}}</div>{{/virtual}}
+                    {{#BidError}}<div><b>BidError</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidError}}
                     </div>
                     <fieldset>
 
@@ -3664,11 +4153,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.BidError) obj.BidError_string = obj.BidError.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.BidError_string;
             }
 
             edit_template ()
@@ -3696,11 +4187,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpsMaxDay'>startUpsMaxDay: </label><div class='col-sm-8'><input id='startUpsMaxDay' class='form-control' type='text'{{#startUpsMaxDay}} value='{{startUpsMaxDay}}'{{/startUpsMaxDay}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpsMaxWeek'>startUpsMaxWeek: </label><div class='col-sm-8'><input id='startUpsMaxWeek' class='form-control' type='text'{{#startUpsMaxWeek}} value='{{startUpsMaxWeek}}'{{/startUpsMaxWeek}}></div></div>
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='virtual'>virtual: </label><div class='col-sm-8'><input id='virtual' class='form-check-input' type='checkbox'{{#virtual}} checked{{/virtual}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BidError'>BidError: </label><div class='col-sm-8'><input id='BidError' class='form-control' type='text'{{#BidError}} value='{{BidError}}_string'{{/BidError}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BidError", "BidError", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3733,7 +4234,7 @@ define
                 obj.cls = "InterTieBid";
                 base.parse_element (/<cim:InterTieBid.minHourlyBlock >([\s\S]*?)<\/cim:InterTieBid.minHourlyBlock >/g, obj, "minHourlyBlock ", base.to_string, sub, context);
                 base.parse_attribute (/<cim:InterTieBid.RegisteredInterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredInterTie", sub, context);
-
+                base.parse_attributes (/<cim:InterTieBid.RampRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RampRateCurve", sub, context);
                 var bucket = context.parsed.InterTieBid;
                 if (null == bucket)
                    context.parsed.InterTieBid = bucket = {};
@@ -3747,7 +4248,8 @@ define
                 var fields = ResourceBid.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "InterTieBid", "minHourlyBlock ", base.from_string, fields);
-                base.export_attribute (obj, "InterTieBid", "RegisteredInterTie", fields);
+                base.export_attribute (obj, "export_attribute", "InterTieBid", fields);
+                base.export_attribute (obj, "export_attributes", "InterTieBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3767,6 +4269,7 @@ define
                     `
                     {{#minHourlyBlock }}<div><b>minHourlyBlock </b>: {{minHourlyBlock }}</div>{{/minHourlyBlock }}
                     {{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredInterTie}}&quot;);})'>{{RegisteredInterTie}}</a></div>{{/RegisteredInterTie}}
+                    {{#RampRateCurve}}<div><b>RampRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RampRateCurve}}
                     </div>
                     <fieldset>
 
@@ -3777,11 +4280,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RampRateCurve) obj.RampRateCurve_string = obj.RampRateCurve.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RampRateCurve_string;
             }
 
             edit_template ()
@@ -3800,7 +4305,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredInterTie", "RegisteredInterTie", "0..1", "0..1"],
+                        ["RampRateCurve", "RampRateCurve", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3834,10 +4349,11 @@ define
                 base.parse_element (/<cim:TransactionBid.demandTransaction>([\s\S]*?)<\/cim:TransactionBid.demandTransaction>/g, obj, "demandTransaction", base.to_boolean, sub, context);
                 base.parse_element (/<cim:TransactionBid.dispatchable>([\s\S]*?)<\/cim:TransactionBid.dispatchable>/g, obj, "dispatchable", base.to_boolean, sub, context);
                 base.parse_element (/<cim:TransactionBid.payCongestion>([\s\S]*?)<\/cim:TransactionBid.payCongestion>/g, obj, "payCongestion", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:TransactionBid.EnergyProfiles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyProfiles", sub, context);
                 base.parse_attribute (/<cim:TransactionBid.Receipt_Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receipt_Pnode", sub, context);
                 base.parse_attribute (/<cim:TransactionBid.Delivery_Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Delivery_Pnode", sub, context);
                 base.parse_attribute (/<cim:TransactionBid.TransmissionReservation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionReservation", sub, context);
-
+                base.parse_attributes (/<cim:TransactionBid.TransactionBidResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransactionBidResults", sub, context);
                 var bucket = context.parsed.TransactionBid;
                 if (null == bucket)
                    context.parsed.TransactionBid = bucket = {};
@@ -3853,9 +4369,11 @@ define
                 base.export_element (obj, "TransactionBid", "demandTransaction", base.from_boolean, fields);
                 base.export_element (obj, "TransactionBid", "dispatchable", base.from_boolean, fields);
                 base.export_element (obj, "TransactionBid", "payCongestion", base.from_boolean, fields);
-                base.export_attribute (obj, "TransactionBid", "Receipt_Pnode", fields);
-                base.export_attribute (obj, "TransactionBid", "Delivery_Pnode", fields);
-                base.export_attribute (obj, "TransactionBid", "TransmissionReservation", fields);
+                base.export_attribute (obj, "export_attributes", "TransactionBid", fields);
+                base.export_attribute (obj, "export_attribute", "TransactionBid", fields);
+                base.export_attribute (obj, "export_attribute", "TransactionBid", fields);
+                base.export_attribute (obj, "export_attribute", "TransactionBid", fields);
+                base.export_attribute (obj, "export_attributes", "TransactionBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3876,9 +4394,11 @@ define
                     {{#demandTransaction}}<div><b>demandTransaction</b>: {{demandTransaction}}</div>{{/demandTransaction}}
                     {{#dispatchable}}<div><b>dispatchable</b>: {{dispatchable}}</div>{{/dispatchable}}
                     {{#payCongestion}}<div><b>payCongestion</b>: {{payCongestion}}</div>{{/payCongestion}}
+                    {{#EnergyProfiles}}<div><b>EnergyProfiles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyProfiles}}
                     {{#Receipt_Pnode}}<div><b>Receipt_Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Receipt_Pnode}}&quot;);})'>{{Receipt_Pnode}}</a></div>{{/Receipt_Pnode}}
                     {{#Delivery_Pnode}}<div><b>Delivery_Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Delivery_Pnode}}&quot;);})'>{{Delivery_Pnode}}</a></div>{{/Delivery_Pnode}}
                     {{#TransmissionReservation}}<div><b>TransmissionReservation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionReservation}}&quot;);})'>{{TransmissionReservation}}</a></div>{{/TransmissionReservation}}
+                    {{#TransactionBidResults}}<div><b>TransactionBidResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransactionBidResults}}
                     </div>
                     <fieldset>
 
@@ -3889,11 +4409,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergyProfiles) obj.EnergyProfiles_string = obj.EnergyProfiles.join ();
+                if (obj.TransactionBidResults) obj.TransactionBidResults_string = obj.TransactionBidResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyProfiles_string;
+                delete obj.TransactionBidResults_string;
             }
 
             edit_template ()
@@ -3916,7 +4440,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyProfiles", "EnergyProfile", "1..*", "1"],
+                        ["Receipt_Pnode", "Pnode", "0..1", "0..*"],
+                        ["Delivery_Pnode", "Pnode", "0..1", "0..*"],
+                        ["TransmissionReservation", "TransmissionReservation", "0..1", "0..1"],
+                        ["TransactionBidResults", "TransactionBidResults", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3950,7 +4487,7 @@ define
                 obj = Bid.prototype.parse.call (this, context, sub);
                 obj.cls = "AreaLoadBid";
                 base.parse_element (/<cim:AreaLoadBid.demandBidMW>([\s\S]*?)<\/cim:AreaLoadBid.demandBidMW>/g, obj, "demandBidMW", base.to_float, sub, context);
-
+                base.parse_attributes (/<cim:AreaLoadBid.LoadBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadBid", sub, context);
                 var bucket = context.parsed.AreaLoadBid;
                 if (null == bucket)
                    context.parsed.AreaLoadBid = bucket = {};
@@ -3964,6 +4501,7 @@ define
                 var fields = Bid.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AreaLoadBid", "demandBidMW", base.from_float, fields);
+                base.export_attribute (obj, "export_attributes", "AreaLoadBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3982,6 +4520,7 @@ define
                     + Bid.prototype.template.call (this) +
                     `
                     {{#demandBidMW}}<div><b>demandBidMW</b>: {{demandBidMW}}</div>{{/demandBidMW}}
+                    {{#LoadBid}}<div><b>LoadBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LoadBid}}
                     </div>
                     <fieldset>
 
@@ -3992,11 +4531,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.LoadBid) obj.LoadBid_string = obj.LoadBid.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.LoadBid_string;
             }
 
             edit_template ()
@@ -4014,7 +4555,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadBid", "LoadBid", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4059,9 +4609,10 @@ define
                 base.parse_element (/<cim:LoadBid.priceSetting>([\s\S]*?)<\/cim:LoadBid.priceSetting>/g, obj, "priceSetting", base.to_boolean, sub, context);
                 base.parse_element (/<cim:LoadBid.reqNoticeTime>([\s\S]*?)<\/cim:LoadBid.reqNoticeTime>/g, obj, "reqNoticeTime", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadBid.shutdownCost>([\s\S]*?)<\/cim:LoadBid.shutdownCost>/g, obj, "shutdownCost", base.to_string, sub, context);
+                base.parse_attributes (/<cim:LoadBid.RampRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RampRateCurve", sub, context);
+                base.parse_attributes (/<cim:LoadBid.LoadReductionPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadReductionPriceCurve", sub, context);
                 base.parse_attribute (/<cim:LoadBid.AreaLoadBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AreaLoadBid", sub, context);
                 base.parse_attribute (/<cim:LoadBid.RegisteredLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredLoad", sub, context);
-
                 var bucket = context.parsed.LoadBid;
                 if (null == bucket)
                    context.parsed.LoadBid = bucket = {};
@@ -4088,8 +4639,10 @@ define
                 base.export_element (obj, "LoadBid", "priceSetting", base.from_boolean, fields);
                 base.export_element (obj, "LoadBid", "reqNoticeTime", base.from_float, fields);
                 base.export_element (obj, "LoadBid", "shutdownCost", base.from_string, fields);
-                base.export_attribute (obj, "LoadBid", "AreaLoadBid", fields);
-                base.export_attribute (obj, "LoadBid", "RegisteredLoad", fields);
+                base.export_attribute (obj, "export_attributes", "LoadBid", fields);
+                base.export_attribute (obj, "export_attributes", "LoadBid", fields);
+                base.export_attribute (obj, "export_attribute", "LoadBid", fields);
+                base.export_attribute (obj, "export_attribute", "LoadBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4121,6 +4674,8 @@ define
                     {{#priceSetting}}<div><b>priceSetting</b>: {{priceSetting}}</div>{{/priceSetting}}
                     {{#reqNoticeTime}}<div><b>reqNoticeTime</b>: {{reqNoticeTime}}</div>{{/reqNoticeTime}}
                     {{#shutdownCost}}<div><b>shutdownCost</b>: {{shutdownCost}}</div>{{/shutdownCost}}
+                    {{#RampRateCurve}}<div><b>RampRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RampRateCurve}}
+                    {{#LoadReductionPriceCurve}}<div><b>LoadReductionPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LoadReductionPriceCurve}}
                     {{#AreaLoadBid}}<div><b>AreaLoadBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AreaLoadBid}}&quot;);})'>{{AreaLoadBid}}</a></div>{{/AreaLoadBid}}
                     {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredLoad}}&quot;);})'>{{RegisteredLoad}}</a></div>{{/RegisteredLoad}}
                     </div>
@@ -4133,11 +4688,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RampRateCurve) obj.RampRateCurve_string = obj.RampRateCurve.join ();
+                if (obj.LoadReductionPriceCurve) obj.LoadReductionPriceCurve_string = obj.LoadReductionPriceCurve.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RampRateCurve_string;
+                delete obj.LoadReductionPriceCurve_string;
             }
 
             edit_template ()
@@ -4170,7 +4729,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RampRateCurve", "RampRateCurve", "0..*", "0..1"],
+                        ["LoadReductionPriceCurve", "LoadReductionPriceCurve", "0..*", "1"],
+                        ["AreaLoadBid", "AreaLoadBid", "0..1", "0..*"],
+                        ["RegisteredLoad", "RegisteredLoad", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4220,10 +4791,11 @@ define
                 base.parse_element (/<cim:GeneratingBid.upTimeMax>([\s\S]*?)<\/cim:GeneratingBid.upTimeMax>/g, obj, "upTimeMax", base.to_float, sub, context);
                 base.parse_attribute (/<cim:GeneratingBid.NotificationTimeCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NotificationTimeCurve", sub, context);
                 base.parse_attribute (/<cim:GeneratingBid.StartUpCostCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartUpCostCurve", sub, context);
+                base.parse_attributes (/<cim:GeneratingBid.RampRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RampRateCurve", sub, context);
                 base.parse_attribute (/<cim:GeneratingBid.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
+                base.parse_attributes (/<cim:GeneratingBid.SecurityConstraints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SecurityConstraints", sub, context);
                 base.parse_attribute (/<cim:GeneratingBid.StartUpTimeCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartUpTimeCurve", sub, context);
                 base.parse_attribute (/<cim:GeneratingBid.BidSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSet", sub, context);
-
                 var bucket = context.parsed.GeneratingBid;
                 if (null == bucket)
                    context.parsed.GeneratingBid = bucket = {};
@@ -4253,11 +4825,13 @@ define
                 base.export_element (obj, "GeneratingBid", "startUpRampRate", base.from_string, fields);
                 base.export_element (obj, "GeneratingBid", "startUpType", base.from_string, fields);
                 base.export_element (obj, "GeneratingBid", "upTimeMax", base.from_float, fields);
-                base.export_attribute (obj, "GeneratingBid", "NotificationTimeCurve", fields);
-                base.export_attribute (obj, "GeneratingBid", "StartUpCostCurve", fields);
-                base.export_attribute (obj, "GeneratingBid", "RegisteredGenerator", fields);
-                base.export_attribute (obj, "GeneratingBid", "StartUpTimeCurve", fields);
-                base.export_attribute (obj, "GeneratingBid", "BidSet", fields);
+                base.export_attribute (obj, "export_attribute", "GeneratingBid", fields);
+                base.export_attribute (obj, "export_attribute", "GeneratingBid", fields);
+                base.export_attribute (obj, "export_attributes", "GeneratingBid", fields);
+                base.export_attribute (obj, "export_attribute", "GeneratingBid", fields);
+                base.export_attribute (obj, "export_attributes", "GeneratingBid", fields);
+                base.export_attribute (obj, "export_attribute", "GeneratingBid", fields);
+                base.export_attribute (obj, "export_attribute", "GeneratingBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4294,7 +4868,9 @@ define
                     {{#upTimeMax}}<div><b>upTimeMax</b>: {{upTimeMax}}</div>{{/upTimeMax}}
                     {{#NotificationTimeCurve}}<div><b>NotificationTimeCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{NotificationTimeCurve}}&quot;);})'>{{NotificationTimeCurve}}</a></div>{{/NotificationTimeCurve}}
                     {{#StartUpCostCurve}}<div><b>StartUpCostCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartUpCostCurve}}&quot;);})'>{{StartUpCostCurve}}</a></div>{{/StartUpCostCurve}}
+                    {{#RampRateCurve}}<div><b>RampRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RampRateCurve}}
                     {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredGenerator}}&quot;);})'>{{RegisteredGenerator}}</a></div>{{/RegisteredGenerator}}
+                    {{#SecurityConstraints}}<div><b>SecurityConstraints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SecurityConstraints}}
                     {{#StartUpTimeCurve}}<div><b>StartUpTimeCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartUpTimeCurve}}&quot;);})'>{{StartUpTimeCurve}}</a></div>{{/StartUpTimeCurve}}
                     {{#BidSet}}<div><b>BidSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BidSet}}&quot;);})'>{{BidSet}}</a></div>{{/BidSet}}
                     </div>
@@ -4307,11 +4883,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RampRateCurve) obj.RampRateCurve_string = obj.RampRateCurve.join ();
+                if (obj.SecurityConstraints) obj.SecurityConstraints_string = obj.SecurityConstraints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RampRateCurve_string;
+                delete obj.SecurityConstraints_string;
             }
 
             edit_template ()
@@ -4350,7 +4930,22 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["NotificationTimeCurve", "NotificationTimeCurve", "0..1", "0..*"],
+                        ["StartUpCostCurve", "StartUpCostCurve", "0..1", "0..*"],
+                        ["RampRateCurve", "RampRateCurve", "0..*", "0..1"],
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*"],
+                        ["SecurityConstraints", "SecurityConstraints", "0..*", "0..1"],
+                        ["StartUpTimeCurve", "StartUpTimeCurve", "0..1", "0..*"],
+                        ["BidSet", "BidSet", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4384,7 +4979,6 @@ define
                 obj = BidHourlySchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "OpenTieSchedule";
                 base.parse_element (/<cim:OpenTieSchedule.value>([\s\S]*?)<\/cim:OpenTieSchedule.value>/g, obj, "value", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.OpenTieSchedule;
                 if (null == bucket)
                    context.parsed.OpenTieSchedule = bucket = {};
@@ -4448,7 +5042,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4482,7 +5076,6 @@ define
                 obj = BidHourlySchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "HourlyPreDispatchSchedule";
                 base.parse_element (/<cim:HourlyPreDispatchSchedule.value>([\s\S]*?)<\/cim:HourlyPreDispatchSchedule.value>/g, obj, "value", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.HourlyPreDispatchSchedule;
                 if (null == bucket)
                    context.parsed.HourlyPreDispatchSchedule = bucket = {};
@@ -4546,7 +5139,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

@@ -40,7 +40,6 @@ define
                 obj.cls = "PackageDependenciesCIMVersion";
                 base.parse_element (/<cim:PackageDependenciesCIMVersion.date>([\s\S]*?)<\/cim:PackageDependenciesCIMVersion.date>/g, obj, "date", base.to_string, sub, context);
                 base.parse_element (/<cim:PackageDependenciesCIMVersion.version>([\s\S]*?)<\/cim:PackageDependenciesCIMVersion.version>/g, obj, "version", base.to_string, sub, context);
-
                 var bucket = context.parsed.PackageDependenciesCIMVersion;
                 if (null == bucket)
                    context.parsed.PackageDependenciesCIMVersion = bucket = {};
@@ -107,7 +106,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

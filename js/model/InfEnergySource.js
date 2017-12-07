@@ -32,7 +32,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "EnergySchedulingType";
-
+                base.parse_attributes (/<cim:EnergySchedulingType.EnergySource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergySource", sub, context);
                 var bucket = context.parsed.EnergySchedulingType;
                 if (null == bucket)
                    context.parsed.EnergySchedulingType = bucket = {};
@@ -45,6 +45,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "EnergySchedulingType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -62,6 +63,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#EnergySource}}<div><b>EnergySource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergySource}}
                     </div>
                     <fieldset>
 
@@ -72,11 +74,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergySource) obj.EnergySource_string = obj.EnergySource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergySource_string;
             }
 
             edit_template ()
@@ -93,7 +97,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergySource", "EnergySource", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

@@ -65,7 +65,7 @@ define
                 obj.cls = "TurbineGovernorDynamics";
                 base.parse_attribute (/<cim:TurbineGovernorDynamics.AsynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachineDynamics", sub, context);
                 base.parse_attribute (/<cim:TurbineGovernorDynamics.TurbineLoadControllerDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TurbineLoadControllerDynamics", sub, context);
-
+                base.parse_attributes (/<cim:TurbineGovernorDynamics.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context);
                 var bucket = context.parsed.TurbineGovernorDynamics;
                 if (null == bucket)
                    context.parsed.TurbineGovernorDynamics = bucket = {};
@@ -78,8 +78,9 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "TurbineGovernorDynamics", "AsynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "TurbineGovernorDynamics", "TurbineLoadControllerDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "TurbineGovernorDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "TurbineGovernorDynamics", fields);
+                base.export_attribute (obj, "export_attributes", "TurbineGovernorDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -99,6 +100,7 @@ define
                     `
                     {{#AsynchronousMachineDynamics}}<div><b>AsynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AsynchronousMachineDynamics}}&quot;);})'>{{AsynchronousMachineDynamics}}</a></div>{{/AsynchronousMachineDynamics}}
                     {{#TurbineLoadControllerDynamics}}<div><b>TurbineLoadControllerDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TurbineLoadControllerDynamics}}&quot;);})'>{{TurbineLoadControllerDynamics}}</a></div>{{/TurbineLoadControllerDynamics}}
+                    {{#SynchronousMachineDynamics}}<div><b>SynchronousMachineDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SynchronousMachineDynamics}}
                     </div>
                     <fieldset>
 
@@ -109,11 +111,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SynchronousMachineDynamics) obj.SynchronousMachineDynamics_string = obj.SynchronousMachineDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SynchronousMachineDynamics_string;
             }
 
             edit_template ()
@@ -128,11 +132,23 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineLoadControllerDynamics'>TurbineLoadControllerDynamics: </label><div class='col-sm-8'><input id='TurbineLoadControllerDynamics' class='form-control' type='text'{{#TurbineLoadControllerDynamics}} value='{{TurbineLoadControllerDynamics}}'{{/TurbineLoadControllerDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}_string'{{/SynchronousMachineDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"],
+                        ["TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", "0..1", "1"],
+                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -180,7 +196,6 @@ define
                 base.parse_element (/<cim:GovSteamCC.t4lp>([\s\S]*?)<\/cim:GovSteamCC.t4lp>/g, obj, "t4lp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamCC.t5hp>([\s\S]*?)<\/cim:GovSteamCC.t5hp>/g, obj, "t5hp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamCC.t5lp>([\s\S]*?)<\/cim:GovSteamCC.t5lp>/g, obj, "t5lp", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovSteamCC;
                 if (null == bucket)
                    context.parsed.GovSteamCC = bucket = {};
@@ -292,7 +307,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -356,7 +371,6 @@ define
                 base.parse_element (/<cim:GovHydroPID.tturb>([\s\S]*?)<\/cim:GovHydroPID.tturb>/g, obj, "tturb", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroPID.velcl>([\s\S]*?)<\/cim:GovHydroPID.velcl>/g, obj, "velcl", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydroPID.velop>([\s\S]*?)<\/cim:GovHydroPID.velop>/g, obj, "velop", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydroPID;
                 if (null == bucket)
                    context.parsed.GovHydroPID = bucket = {};
@@ -516,7 +530,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -605,7 +619,6 @@ define
                 base.parse_element (/<cim:GovCT2.vmin>([\s\S]*?)<\/cim:GovCT2.vmin>/g, obj, "vmin", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT2.wfnl>([\s\S]*?)<\/cim:GovCT2.wfnl>/g, obj, "wfnl", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT2.wfspd>([\s\S]*?)<\/cim:GovCT2.wfspd>/g, obj, "wfspd", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.GovCT2;
                 if (null == bucket)
                    context.parsed.GovCT2 = bucket = {};
@@ -836,7 +849,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -896,7 +909,6 @@ define
                 base.parse_element (/<cim:GovHydro2.tw>([\s\S]*?)<\/cim:GovHydro2.tw>/g, obj, "tw", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydro2.uc>([\s\S]*?)<\/cim:GovHydro2.uc>/g, obj, "uc", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydro2.uo>([\s\S]*?)<\/cim:GovHydro2.uo>/g, obj, "uo", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydro2;
                 if (null == bucket)
                    context.parsed.GovHydro2 = bucket = {};
@@ -1044,7 +1056,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1103,7 +1115,6 @@ define
                 base.parse_element (/<cim:GovHydroIEEE2.tw>([\s\S]*?)<\/cim:GovHydroIEEE2.tw>/g, obj, "tw", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroIEEE2.uc>([\s\S]*?)<\/cim:GovHydroIEEE2.uc>/g, obj, "uc", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydroIEEE2.uo>([\s\S]*?)<\/cim:GovHydroIEEE2.uo>/g, obj, "uo", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydroIEEE2;
                 if (null == bucket)
                    context.parsed.GovHydroIEEE2 = bucket = {};
@@ -1242,7 +1253,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1295,7 +1306,6 @@ define
                 base.parse_element (/<cim:GovHydroWPID.tw>([\s\S]*?)<\/cim:GovHydroWPID.tw>/g, obj, "tw", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroWPID.velmax>([\s\S]*?)<\/cim:GovHydroWPID.velmax>/g, obj, "velmax", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroWPID.velmin>([\s\S]*?)<\/cim:GovHydroWPID.velmin>/g, obj, "velmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovHydroWPID;
                 if (null == bucket)
                    context.parsed.GovHydroWPID = bucket = {};
@@ -1422,7 +1432,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1504,7 +1514,6 @@ define
                 base.parse_element (/<cim:GovSteamFV4.yhpmx>([\s\S]*?)<\/cim:GovSteamFV4.yhpmx>/g, obj, "yhpmx", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamFV4.ympmn>([\s\S]*?)<\/cim:GovSteamFV4.ympmn>/g, obj, "ympmn", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamFV4.ympmx>([\s\S]*?)<\/cim:GovSteamFV4.ympmx>/g, obj, "ympmx", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovSteamFV4;
                 if (null == bucket)
                    context.parsed.GovSteamFV4 = bucket = {};
@@ -1718,7 +1727,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1773,7 +1782,6 @@ define
                 base.parse_element (/<cim:GovHydroPID2.tw>([\s\S]*?)<\/cim:GovHydroPID2.tw>/g, obj, "tw", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroPID2.velmax>([\s\S]*?)<\/cim:GovHydroPID2.velmax>/g, obj, "velmax", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydroPID2.velmin>([\s\S]*?)<\/cim:GovHydroPID2.velmin>/g, obj, "velmin", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydroPID2;
                 if (null == bucket)
                    context.parsed.GovHydroPID2 = bucket = {};
@@ -1900,7 +1908,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1941,7 +1949,6 @@ define
                 base.parse_element (/<cim:GovGAST.t3>([\s\S]*?)<\/cim:GovGAST.t3>/g, obj, "t3", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST.vmax>([\s\S]*?)<\/cim:GovGAST.vmax>/g, obj, "vmax", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST.vmin>([\s\S]*?)<\/cim:GovGAST.vmin>/g, obj, "vmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovGAST;
                 if (null == bucket)
                    context.parsed.GovGAST = bucket = {};
@@ -2032,7 +2039,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2098,7 +2105,6 @@ define
                 base.parse_element (/<cim:GovSteamEU.wmax2>([\s\S]*?)<\/cim:GovSteamEU.wmax2>/g, obj, "wmax2", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamEU.wwmax>([\s\S]*?)<\/cim:GovSteamEU.wwmax>/g, obj, "wwmax", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamEU.wwmin>([\s\S]*?)<\/cim:GovSteamEU.wwmin>/g, obj, "wwmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovSteamEU;
                 if (null == bucket)
                    context.parsed.GovSteamEU = bucket = {};
@@ -2264,7 +2270,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2333,7 +2339,6 @@ define
                 base.parse_element (/<cim:GovHydro3.tw>([\s\S]*?)<\/cim:GovHydro3.tw>/g, obj, "tw", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydro3.velcl>([\s\S]*?)<\/cim:GovHydro3.velcl>/g, obj, "velcl", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydro3.velop>([\s\S]*?)<\/cim:GovHydro3.velop>/g, obj, "velop", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydro3;
                 if (null == bucket)
                    context.parsed.GovHydro3 = bucket = {};
@@ -2502,7 +2507,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2556,7 +2561,6 @@ define
                 base.parse_element (/<cim:GovSteamIEEE1.t7>([\s\S]*?)<\/cim:GovSteamIEEE1.t7>/g, obj, "t7", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamIEEE1.uc>([\s\S]*?)<\/cim:GovSteamIEEE1.uc>/g, obj, "uc", base.to_float, sub, context);
                 base.parse_element (/<cim:GovSteamIEEE1.uo>([\s\S]*?)<\/cim:GovSteamIEEE1.uo>/g, obj, "uo", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovSteamIEEE1;
                 if (null == bucket)
                    context.parsed.GovSteamIEEE1 = bucket = {};
@@ -2680,7 +2684,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2744,7 +2748,6 @@ define
                 base.parse_element (/<cim:GovGASTWD.tr>([\s\S]*?)<\/cim:GovGASTWD.tr>/g, obj, "tr", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.trate>([\s\S]*?)<\/cim:GovGASTWD.trate>/g, obj, "trate", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGASTWD.tt>([\s\S]*?)<\/cim:GovGASTWD.tt>/g, obj, "tt", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovGASTWD;
                 if (null == bucket)
                    context.parsed.GovGASTWD = bucket = {};
@@ -2904,7 +2907,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2956,7 +2959,6 @@ define
                 base.parse_element (/<cim:GovGAST3.tt>([\s\S]*?)<\/cim:GovGAST3.tt>/g, obj, "tt", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST3.ttc>([\s\S]*?)<\/cim:GovGAST3.ttc>/g, obj, "ttc", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST3.ty>([\s\S]*?)<\/cim:GovGAST3.ty>/g, obj, "ty", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovGAST3;
                 if (null == bucket)
                    context.parsed.GovGAST3 = bucket = {};
@@ -3080,7 +3082,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3124,7 +3126,6 @@ define
                 base.parse_element (/<cim:GovSteamFV2.tt>([\s\S]*?)<\/cim:GovSteamFV2.tt>/g, obj, "tt", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamFV2.vmax>([\s\S]*?)<\/cim:GovSteamFV2.vmax>/g, obj, "vmax", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamFV2.vmin>([\s\S]*?)<\/cim:GovSteamFV2.vmin>/g, obj, "vmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovSteamFV2;
                 if (null == bucket)
                    context.parsed.GovSteamFV2 = bucket = {};
@@ -3224,7 +3225,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3285,7 +3286,6 @@ define
                 base.parse_element (/<cim:GovHydroPelton.vcv>([\s\S]*?)<\/cim:GovHydroPelton.vcv>/g, obj, "vcv", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroPelton.waterTunnelSurgeChamberSimulation>([\s\S]*?)<\/cim:GovHydroPelton.waterTunnelSurgeChamberSimulation>/g, obj, "waterTunnelSurgeChamberSimulation", base.to_boolean, sub, context);
                 base.parse_element (/<cim:GovHydroPelton.zsfc>([\s\S]*?)<\/cim:GovHydroPelton.zsfc>/g, obj, "zsfc", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovHydroPelton;
                 if (null == bucket)
                    context.parsed.GovHydroPelton = bucket = {};
@@ -3430,7 +3430,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3498,7 +3498,6 @@ define
                 base.parse_element (/<cim:GovCT1.vmin>([\s\S]*?)<\/cim:GovCT1.vmin>/g, obj, "vmin", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT1.wfnl>([\s\S]*?)<\/cim:GovCT1.wfnl>/g, obj, "wfnl", base.to_string, sub, context);
                 base.parse_element (/<cim:GovCT1.wfspd>([\s\S]*?)<\/cim:GovCT1.wfspd>/g, obj, "wfspd", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.GovCT1;
                 if (null == bucket)
                    context.parsed.GovCT1 = bucket = {};
@@ -3666,7 +3665,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3711,7 +3710,6 @@ define
                 base.parse_element (/<cim:GovHydro1.tr>([\s\S]*?)<\/cim:GovHydro1.tr>/g, obj, "tr", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydro1.tw>([\s\S]*?)<\/cim:GovHydro1.tw>/g, obj, "tw", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydro1.velm>([\s\S]*?)<\/cim:GovHydro1.velm>/g, obj, "velm", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydro1;
                 if (null == bucket)
                    context.parsed.GovHydro1 = bucket = {};
@@ -3814,7 +3812,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3853,7 +3851,6 @@ define
                 base.parse_element (/<cim:GovSteam2.pmin>([\s\S]*?)<\/cim:GovSteam2.pmin>/g, obj, "pmin", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteam2.t1>([\s\S]*?)<\/cim:GovSteam2.t1>/g, obj, "t1", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteam2.t2>([\s\S]*?)<\/cim:GovSteam2.t2>/g, obj, "t2", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovSteam2;
                 if (null == bucket)
                    context.parsed.GovSteam2 = bucket = {};
@@ -3938,7 +3935,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4004,7 +4001,6 @@ define
                 base.parse_element (/<cim:GovHydroDD.tturb>([\s\S]*?)<\/cim:GovHydroDD.tturb>/g, obj, "tturb", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroDD.velcl>([\s\S]*?)<\/cim:GovHydroDD.velcl>/g, obj, "velcl", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydroDD.velop>([\s\S]*?)<\/cim:GovHydroDD.velop>/g, obj, "velop", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydroDD;
                 if (null == bucket)
                    context.parsed.GovHydroDD = bucket = {};
@@ -4170,7 +4166,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4211,7 +4207,6 @@ define
                 base.parse_element (/<cim:GovHydroIEEE0.t2>([\s\S]*?)<\/cim:GovHydroIEEE0.t2>/g, obj, "t2", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroIEEE0.t3>([\s\S]*?)<\/cim:GovHydroIEEE0.t3>/g, obj, "t3", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroIEEE0.t4>([\s\S]*?)<\/cim:GovHydroIEEE0.t4>/g, obj, "t4", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovHydroIEEE0;
                 if (null == bucket)
                    context.parsed.GovHydroIEEE0 = bucket = {};
@@ -4296,7 +4291,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4335,7 +4330,6 @@ define
                 base.parse_element (/<cim:GovSteam0.t3>([\s\S]*?)<\/cim:GovSteam0.t3>/g, obj, "t3", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteam0.vmax>([\s\S]*?)<\/cim:GovSteam0.vmax>/g, obj, "vmax", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteam0.vmin>([\s\S]*?)<\/cim:GovSteam0.vmin>/g, obj, "vmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovSteam0;
                 if (null == bucket)
                    context.parsed.GovSteam0 = bucket = {};
@@ -4420,7 +4414,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4463,7 +4457,6 @@ define
                 base.parse_element (/<cim:GovSteamSGO.t4>([\s\S]*?)<\/cim:GovSteamSGO.t4>/g, obj, "t4", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamSGO.t5>([\s\S]*?)<\/cim:GovSteamSGO.t5>/g, obj, "t5", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamSGO.t6>([\s\S]*?)<\/cim:GovSteamSGO.t6>/g, obj, "t6", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovSteamSGO;
                 if (null == bucket)
                    context.parsed.GovSteamSGO = bucket = {};
@@ -4560,7 +4553,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4633,7 +4626,6 @@ define
                 base.parse_element (/<cim:GovHydroR.tw>([\s\S]*?)<\/cim:GovHydroR.tw>/g, obj, "tw", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroR.velcl>([\s\S]*?)<\/cim:GovHydroR.velcl>/g, obj, "velcl", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydroR.velop>([\s\S]*?)<\/cim:GovHydroR.velop>/g, obj, "velop", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydroR;
                 if (null == bucket)
                    context.parsed.GovHydroR = bucket = {};
@@ -4820,7 +4812,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4891,7 +4883,6 @@ define
                 base.parse_element (/<cim:GovHydro4.tw>([\s\S]*?)<\/cim:GovHydro4.tw>/g, obj, "tw", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydro4.uc>([\s\S]*?)<\/cim:GovHydro4.uc>/g, obj, "uc", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydro4.uo>([\s\S]*?)<\/cim:GovHydro4.uo>/g, obj, "uo", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovHydro4;
                 if (null == bucket)
                    context.parsed.GovHydro4 = bucket = {};
@@ -5066,7 +5057,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5131,7 +5122,6 @@ define
                 base.parse_element (/<cim:GovGAST1.tltr>([\s\S]*?)<\/cim:GovGAST1.tltr>/g, obj, "tltr", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST1.vmax>([\s\S]*?)<\/cim:GovGAST1.vmax>/g, obj, "vmax", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST1.vmin>([\s\S]*?)<\/cim:GovGAST1.vmin>/g, obj, "vmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovGAST1;
                 if (null == bucket)
                    context.parsed.GovGAST1 = bucket = {};
@@ -5294,7 +5284,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5364,7 +5354,6 @@ define
                 base.parse_element (/<cim:GovSteam1.uc>([\s\S]*?)<\/cim:GovSteam1.uc>/g, obj, "uc", base.to_float, sub, context);
                 base.parse_element (/<cim:GovSteam1.uo>([\s\S]*?)<\/cim:GovSteam1.uo>/g, obj, "uo", base.to_float, sub, context);
                 base.parse_element (/<cim:GovSteam1.valve>([\s\S]*?)<\/cim:GovSteam1.valve>/g, obj, "valve", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.GovSteam1;
                 if (null == bucket)
                    context.parsed.GovSteam1 = bucket = {};
@@ -5542,7 +5531,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5602,7 +5591,6 @@ define
                 base.parse_element (/<cim:GovHydroFrancis.vc>([\s\S]*?)<\/cim:GovHydroFrancis.vc>/g, obj, "vc", base.to_float, sub, context);
                 base.parse_element (/<cim:GovHydroFrancis.waterTunnelSurgeChamberSimulation>([\s\S]*?)<\/cim:GovHydroFrancis.waterTunnelSurgeChamberSimulation>/g, obj, "waterTunnelSurgeChamberSimulation", base.to_boolean, sub, context);
                 base.parse_element (/<cim:GovHydroFrancis.zsfc>([\s\S]*?)<\/cim:GovHydroFrancis.zsfc>/g, obj, "zsfc", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovHydroFrancis;
                 if (null == bucket)
                    context.parsed.GovHydroFrancis = bucket = {};
@@ -5746,7 +5734,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5788,7 +5776,6 @@ define
                 base.parse_element (/<cim:GovGAST4.tcm>([\s\S]*?)<\/cim:GovGAST4.tcm>/g, obj, "tcm", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST4.tm>([\s\S]*?)<\/cim:GovGAST4.tm>/g, obj, "tm", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST4.tv>([\s\S]*?)<\/cim:GovGAST4.tv>/g, obj, "tv", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovGAST4;
                 if (null == bucket)
                    context.parsed.GovGAST4 = bucket = {};
@@ -5882,7 +5869,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -5932,7 +5919,6 @@ define
                 base.parse_element (/<cim:GovSteamFV3.tc>([\s\S]*?)<\/cim:GovSteamFV3.tc>/g, obj, "tc", base.to_string, sub, context);
                 base.parse_element (/<cim:GovSteamFV3.uc>([\s\S]*?)<\/cim:GovSteamFV3.uc>/g, obj, "uc", base.to_float, sub, context);
                 base.parse_element (/<cim:GovSteamFV3.uo>([\s\S]*?)<\/cim:GovSteamFV3.uo>/g, obj, "uo", base.to_float, sub, context);
-
                 var bucket = context.parsed.GovSteamFV3;
                 if (null == bucket)
                    context.parsed.GovSteamFV3 = bucket = {};
@@ -6050,7 +6036,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6132,7 +6118,6 @@ define
                 base.parse_element (/<cim:GovHydroWEH.tp>([\s\S]*?)<\/cim:GovHydroWEH.tp>/g, obj, "tp", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroWEH.tpe>([\s\S]*?)<\/cim:GovHydroWEH.tpe>/g, obj, "tpe", base.to_string, sub, context);
                 base.parse_element (/<cim:GovHydroWEH.tw>([\s\S]*?)<\/cim:GovHydroWEH.tw>/g, obj, "tw", base.to_string, sub, context);
-
                 var bucket = context.parsed.GovHydroWEH;
                 if (null == bucket)
                    context.parsed.GovHydroWEH = bucket = {};
@@ -6346,7 +6331,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6409,7 +6394,6 @@ define
                 base.parse_element (/<cim:GovGAST2.x>([\s\S]*?)<\/cim:GovGAST2.x>/g, obj, "x", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST2.y>([\s\S]*?)<\/cim:GovGAST2.y>/g, obj, "y", base.to_string, sub, context);
                 base.parse_element (/<cim:GovGAST2.z>([\s\S]*?)<\/cim:GovGAST2.z>/g, obj, "z", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.GovGAST2;
                 if (null == bucket)
                    context.parsed.GovGAST2 = bucket = {};
@@ -6566,7 +6550,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

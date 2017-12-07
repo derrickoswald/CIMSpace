@@ -142,7 +142,6 @@ define
                 base.parse_element (/<cim:Emission.multiplier>([\s\S]*?)<\/cim:Emission.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
                 base.parse_element (/<cim:Emission.unit>([\s\S]*?)<\/cim:Emission.unit>/g, obj, "unit", base.to_string, sub, context);
                 base.parse_element (/<cim:Emission.value>([\s\S]*?)<\/cim:Emission.value>/g, obj, "value", base.to_float, sub, context);
-
                 var bucket = context.parsed.Emission;
                 if (null == bucket)
                    context.parsed.Emission = bucket = {};
@@ -218,7 +217,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -256,7 +255,6 @@ define
                 base.parse_attribute (/<cim:HydroPump.RotatingMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RotatingMachine", sub, context);
                 base.parse_attribute (/<cim:HydroPump.HydroPumpOpSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPumpOpSchedule", sub, context);
                 base.parse_attribute (/<cim:HydroPump.HydroPowerPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPowerPlant", sub, context);
-
                 var bucket = context.parsed.HydroPump;
                 if (null == bucket)
                    context.parsed.HydroPump = bucket = {};
@@ -273,9 +271,9 @@ define
                 base.export_element (obj, "HydroPump", "pumpDischAtMinHead", base.from_string, fields);
                 base.export_element (obj, "HydroPump", "pumpPowerAtMaxHead", base.from_string, fields);
                 base.export_element (obj, "HydroPump", "pumpPowerAtMinHead", base.from_string, fields);
-                base.export_attribute (obj, "HydroPump", "RotatingMachine", fields);
-                base.export_attribute (obj, "HydroPump", "HydroPumpOpSchedule", fields);
-                base.export_attribute (obj, "HydroPump", "HydroPowerPlant", fields);
+                base.export_attribute (obj, "export_attribute", "HydroPump", fields);
+                base.export_attribute (obj, "export_attribute", "HydroPump", fields);
+                base.export_attribute (obj, "export_attribute", "HydroPump", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -338,7 +336,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RotatingMachine", "RotatingMachine", "1", "0..1"],
+                        ["HydroPumpOpSchedule", "HydroPumpOpSchedule", "0..1", "1"],
+                        ["HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -372,7 +381,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "PenstockLossCurve";
                 base.parse_attribute (/<cim:PenstockLossCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.PenstockLossCurve;
                 if (null == bucket)
                    context.parsed.PenstockLossCurve = bucket = {};
@@ -385,7 +393,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PenstockLossCurve", "HydroGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "PenstockLossCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -436,7 +444,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -474,8 +491,8 @@ define
                 base.parse_element (/<cim:CogenerationPlant.cogenLPSendoutRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenLPSendoutRating>/g, obj, "cogenLPSendoutRating", base.to_float, sub, context);
                 base.parse_element (/<cim:CogenerationPlant.cogenLPSteamRating>([\s\S]*?)<\/cim:CogenerationPlant.cogenLPSteamRating>/g, obj, "cogenLPSteamRating", base.to_float, sub, context);
                 base.parse_element (/<cim:CogenerationPlant.ratedP>([\s\S]*?)<\/cim:CogenerationPlant.ratedP>/g, obj, "ratedP", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CogenerationPlant.ThermalGeneratingUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnits", sub, context);
                 base.parse_attribute (/<cim:CogenerationPlant.SteamSendoutSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SteamSendoutSchedule", sub, context);
-
                 var bucket = context.parsed.CogenerationPlant;
                 if (null == bucket)
                    context.parsed.CogenerationPlant = bucket = {};
@@ -493,7 +510,8 @@ define
                 base.export_element (obj, "CogenerationPlant", "cogenLPSendoutRating", base.from_float, fields);
                 base.export_element (obj, "CogenerationPlant", "cogenLPSteamRating", base.from_float, fields);
                 base.export_element (obj, "CogenerationPlant", "ratedP", base.from_string, fields);
-                base.export_attribute (obj, "CogenerationPlant", "SteamSendoutSchedule", fields);
+                base.export_attribute (obj, "export_attributes", "CogenerationPlant", fields);
+                base.export_attribute (obj, "export_attribute", "CogenerationPlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -516,6 +534,7 @@ define
                     {{#cogenLPSendoutRating}}<div><b>cogenLPSendoutRating</b>: {{cogenLPSendoutRating}}</div>{{/cogenLPSendoutRating}}
                     {{#cogenLPSteamRating}}<div><b>cogenLPSteamRating</b>: {{cogenLPSteamRating}}</div>{{/cogenLPSteamRating}}
                     {{#ratedP}}<div><b>ratedP</b>: {{ratedP}}</div>{{/ratedP}}
+                    {{#ThermalGeneratingUnits}}<div><b>ThermalGeneratingUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ThermalGeneratingUnits}}
                     {{#SteamSendoutSchedule}}<div><b>SteamSendoutSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SteamSendoutSchedule}}&quot;);})'>{{SteamSendoutSchedule}}</a></div>{{/SteamSendoutSchedule}}
                     </div>
                     <fieldset>
@@ -527,11 +546,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ThermalGeneratingUnits) obj.ThermalGeneratingUnits_string = obj.ThermalGeneratingUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ThermalGeneratingUnits_string;
             }
 
             edit_template ()
@@ -554,7 +575,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1"],
+                        ["SteamSendoutSchedule", "SteamSendoutSchedule", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -589,7 +620,6 @@ define
                 obj.cls = "IncrementalHeatRateCurve";
                 base.parse_element (/<cim:IncrementalHeatRateCurve.isNetGrossP>([\s\S]*?)<\/cim:IncrementalHeatRateCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:IncrementalHeatRateCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.IncrementalHeatRateCurve;
                 if (null == bucket)
                    context.parsed.IncrementalHeatRateCurve = bucket = {};
@@ -603,7 +633,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "IncrementalHeatRateCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "IncrementalHeatRateCurve", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "IncrementalHeatRateCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -656,7 +686,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -701,8 +740,12 @@ define
                 base.parse_element (/<cim:Reservoir.spillwayCrestLevel>([\s\S]*?)<\/cim:Reservoir.spillwayCrestLevel>/g, obj, "spillwayCrestLevel", base.to_string, sub, context);
                 base.parse_element (/<cim:Reservoir.spillWayGateType>([\s\S]*?)<\/cim:Reservoir.spillWayGateType>/g, obj, "spillWayGateType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Reservoir.TargetLevelSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TargetLevelSchedule", sub, context);
+                base.parse_attributes (/<cim:Reservoir.LevelVsVolumeCurves\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LevelVsVolumeCurves", sub, context);
+                base.parse_attributes (/<cim:Reservoir.SpillsIntoReservoirs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SpillsIntoReservoirs", sub, context);
                 base.parse_attribute (/<cim:Reservoir.SpillsFromReservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SpillsFromReservoir", sub, context);
-
+                base.parse_attributes (/<cim:Reservoir.HydroPowerPlants\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPowerPlants", sub, context);
+                base.parse_attributes (/<cim:Reservoir.UpstreamFromHydroPowerPlants\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UpstreamFromHydroPowerPlants", sub, context);
+                base.parse_attributes (/<cim:Reservoir.InflowForecasts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InflowForecasts", sub, context);
                 var bucket = context.parsed.Reservoir;
                 if (null == bucket)
                    context.parsed.Reservoir = bucket = {};
@@ -726,8 +769,13 @@ define
                 base.export_element (obj, "Reservoir", "spillwayCrestLength", base.from_string, fields);
                 base.export_element (obj, "Reservoir", "spillwayCrestLevel", base.from_string, fields);
                 base.export_element (obj, "Reservoir", "spillWayGateType", base.from_string, fields);
-                base.export_attribute (obj, "Reservoir", "TargetLevelSchedule", fields);
-                base.export_attribute (obj, "Reservoir", "SpillsFromReservoir", fields);
+                base.export_attribute (obj, "export_attribute", "Reservoir", fields);
+                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
+                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
+                base.export_attribute (obj, "export_attribute", "Reservoir", fields);
+                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
+                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
+                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -757,7 +805,12 @@ define
                     {{#spillwayCrestLevel}}<div><b>spillwayCrestLevel</b>: {{spillwayCrestLevel}}</div>{{/spillwayCrestLevel}}
                     {{#spillWayGateType}}<div><b>spillWayGateType</b>: {{spillWayGateType}}</div>{{/spillWayGateType}}
                     {{#TargetLevelSchedule}}<div><b>TargetLevelSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TargetLevelSchedule}}&quot;);})'>{{TargetLevelSchedule}}</a></div>{{/TargetLevelSchedule}}
+                    {{#LevelVsVolumeCurves}}<div><b>LevelVsVolumeCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LevelVsVolumeCurves}}
+                    {{#SpillsIntoReservoirs}}<div><b>SpillsIntoReservoirs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SpillsIntoReservoirs}}
                     {{#SpillsFromReservoir}}<div><b>SpillsFromReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SpillsFromReservoir}}&quot;);})'>{{SpillsFromReservoir}}</a></div>{{/SpillsFromReservoir}}
+                    {{#HydroPowerPlants}}<div><b>HydroPowerPlants</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/HydroPowerPlants}}
+                    {{#UpstreamFromHydroPowerPlants}}<div><b>UpstreamFromHydroPowerPlants</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UpstreamFromHydroPowerPlants}}
+                    {{#InflowForecasts}}<div><b>InflowForecasts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InflowForecasts}}
                     </div>
                     <fieldset>
 
@@ -768,11 +821,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.LevelVsVolumeCurves) obj.LevelVsVolumeCurves_string = obj.LevelVsVolumeCurves.join ();
+                if (obj.SpillsIntoReservoirs) obj.SpillsIntoReservoirs_string = obj.SpillsIntoReservoirs.join ();
+                if (obj.HydroPowerPlants) obj.HydroPowerPlants_string = obj.HydroPowerPlants.join ();
+                if (obj.UpstreamFromHydroPowerPlants) obj.UpstreamFromHydroPowerPlants_string = obj.UpstreamFromHydroPowerPlants.join ();
+                if (obj.InflowForecasts) obj.InflowForecasts_string = obj.InflowForecasts.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.LevelVsVolumeCurves_string;
+                delete obj.SpillsIntoReservoirs_string;
+                delete obj.HydroPowerPlants_string;
+                delete obj.UpstreamFromHydroPowerPlants_string;
+                delete obj.InflowForecasts_string;
             }
 
             edit_template ()
@@ -802,7 +865,22 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TargetLevelSchedule", "TargetLevelSchedule", "0..1", "1"],
+                        ["LevelVsVolumeCurves", "LevelVsVolumeCurve", "0..*", "1"],
+                        ["SpillsIntoReservoirs", "Reservoir", "0..*", "0..1"],
+                        ["SpillsFromReservoir", "Reservoir", "0..1", "0..*"],
+                        ["HydroPowerPlants", "HydroPowerPlant", "0..*", "0..1"],
+                        ["UpstreamFromHydroPowerPlants", "HydroPowerPlant", "0..*", "1"],
+                        ["InflowForecasts", "InflowForecast", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -838,7 +916,6 @@ define
                 base.parse_element (/<cim:Classification.multiplier>([\s\S]*?)<\/cim:Classification.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
                 base.parse_element (/<cim:Classification.unit>([\s\S]*?)<\/cim:Classification.unit>/g, obj, "unit", base.to_string, sub, context);
                 base.parse_element (/<cim:Classification.value>([\s\S]*?)<\/cim:Classification.value>/g, obj, "value", base.to_string, sub, context);
-
                 var bucket = context.parsed.Classification;
                 if (null == bucket)
                    context.parsed.Classification = bucket = {};
@@ -908,7 +985,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -941,7 +1018,6 @@ define
                 obj.cls = "StartIgnFuelCurve";
                 base.parse_attribute (/<cim:StartIgnFuelCurve.ignitionFuelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ignitionFuelType", sub, context);
                 base.parse_attribute (/<cim:StartIgnFuelCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context);
-
                 var bucket = context.parsed.StartIgnFuelCurve;
                 if (null == bucket)
                    context.parsed.StartIgnFuelCurve = bucket = {};
@@ -955,7 +1031,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StartIgnFuelCurve", "ignitionFuelType", base.from_string, fields);
-                base.export_attribute (obj, "StartIgnFuelCurve", "StartupModel", fields);
+                base.export_attribute (obj, "export_attribute", "StartIgnFuelCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1010,7 +1086,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["StartupModel", "StartupModel", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1044,7 +1129,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "LevelVsVolumeCurve";
                 base.parse_attribute (/<cim:LevelVsVolumeCurve.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reservoir", sub, context);
-
                 var bucket = context.parsed.LevelVsVolumeCurve;
                 if (null == bucket)
                    context.parsed.LevelVsVolumeCurve = bucket = {};
@@ -1057,7 +1141,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "LevelVsVolumeCurve", "Reservoir", fields);
+                base.export_attribute (obj, "export_attribute", "LevelVsVolumeCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1108,7 +1192,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Reservoir", "Reservoir", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1142,7 +1235,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "GrossToNetActivePowerCurve";
                 base.parse_attribute (/<cim:GrossToNetActivePowerCurve.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context);
-
                 var bucket = context.parsed.GrossToNetActivePowerCurve;
                 if (null == bucket)
                    context.parsed.GrossToNetActivePowerCurve = bucket = {};
@@ -1155,7 +1247,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "GrossToNetActivePowerCurve", "GeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "GrossToNetActivePowerCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1206,7 +1298,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneratingUnit", "GeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1240,7 +1341,6 @@ define
                 base.parse_element (/<cim:AirCompressor.airCompressorRating>([\s\S]*?)<\/cim:AirCompressor.airCompressorRating>/g, obj, "airCompressorRating", base.to_float, sub, context);
                 base.parse_attribute (/<cim:AirCompressor.CombustionTurbine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombustionTurbine", sub, context);
                 base.parse_attribute (/<cim:AirCompressor.CAESPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CAESPlant", sub, context);
-
                 var bucket = context.parsed.AirCompressor;
                 if (null == bucket)
                    context.parsed.AirCompressor = bucket = {};
@@ -1254,8 +1354,8 @@ define
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AirCompressor", "airCompressorRating", base.from_float, fields);
-                base.export_attribute (obj, "AirCompressor", "CombustionTurbine", fields);
-                base.export_attribute (obj, "AirCompressor", "CAESPlant", fields);
+                base.export_attribute (obj, "export_attribute", "AirCompressor", fields);
+                base.export_attribute (obj, "export_attribute", "AirCompressor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1310,7 +1410,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CombustionTurbine", "CombustionTurbine", "1", "0..1"],
+                        ["CAESPlant", "CAESPlant", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1346,7 +1456,6 @@ define
                 base.parse_element (/<cim:HeatRate.multiplier>([\s\S]*?)<\/cim:HeatRate.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
                 base.parse_element (/<cim:HeatRate.unit>([\s\S]*?)<\/cim:HeatRate.unit>/g, obj, "unit", base.to_string, sub, context);
                 base.parse_element (/<cim:HeatRate.value>([\s\S]*?)<\/cim:HeatRate.value>/g, obj, "value", base.to_float, sub, context);
-
                 var bucket = context.parsed.HeatRate;
                 if (null == bucket)
                    context.parsed.HeatRate = bucket = {};
@@ -1422,7 +1531,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1460,7 +1569,6 @@ define
                 base.parse_element (/<cim:FuelAllocationSchedule.minFuelAllocation>([\s\S]*?)<\/cim:FuelAllocationSchedule.minFuelAllocation>/g, obj, "minFuelAllocation", base.to_float, sub, context);
                 base.parse_attribute (/<cim:FuelAllocationSchedule.FossilFuel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FossilFuel", sub, context);
                 base.parse_attribute (/<cim:FuelAllocationSchedule.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.FuelAllocationSchedule;
                 if (null == bucket)
                    context.parsed.FuelAllocationSchedule = bucket = {};
@@ -1478,8 +1586,8 @@ define
                 base.export_element (obj, "FuelAllocationSchedule", "fuelType", base.from_string, fields);
                 base.export_element (obj, "FuelAllocationSchedule", "maxFuelAllocation", base.from_float, fields);
                 base.export_element (obj, "FuelAllocationSchedule", "minFuelAllocation", base.from_float, fields);
-                base.export_attribute (obj, "FuelAllocationSchedule", "FossilFuel", fields);
-                base.export_attribute (obj, "FuelAllocationSchedule", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "FuelAllocationSchedule", fields);
+                base.export_attribute (obj, "export_attribute", "FuelAllocationSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1544,7 +1652,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["FossilFuel", "FossilFuel", "1", "0..*"],
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1578,7 +1696,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "HydroGeneratingEfficiencyCurve";
                 base.parse_attribute (/<cim:HydroGeneratingEfficiencyCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.HydroGeneratingEfficiencyCurve;
                 if (null == bucket)
                    context.parsed.HydroGeneratingEfficiencyCurve = bucket = {};
@@ -1591,7 +1708,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "HydroGeneratingEfficiencyCurve", "HydroGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "HydroGeneratingEfficiencyCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1642,7 +1759,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1676,7 +1802,6 @@ define
                 obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "GenUnitOpSchedule";
                 base.parse_attribute (/<cim:GenUnitOpSchedule.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context);
-
                 var bucket = context.parsed.GenUnitOpSchedule;
                 if (null == bucket)
                    context.parsed.GenUnitOpSchedule = bucket = {};
@@ -1689,7 +1814,7 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "GenUnitOpSchedule", "GeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "GenUnitOpSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1740,7 +1865,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneratingUnit", "GeneratingUnit", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1775,7 +1909,6 @@ define
                 obj.cls = "HeatRateCurve";
                 base.parse_element (/<cim:HeatRateCurve.isNetGrossP>([\s\S]*?)<\/cim:HeatRateCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:HeatRateCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.HeatRateCurve;
                 if (null == bucket)
                    context.parsed.HeatRateCurve = bucket = {};
@@ -1789,7 +1922,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "HeatRateCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "HeatRateCurve", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "HeatRateCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1842,7 +1975,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1877,7 +2019,6 @@ define
                 obj.cls = "GenUnitOpCostCurve";
                 base.parse_element (/<cim:GenUnitOpCostCurve.isNetGrossP>([\s\S]*?)<\/cim:GenUnitOpCostCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:GenUnitOpCostCurve.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context);
-
                 var bucket = context.parsed.GenUnitOpCostCurve;
                 if (null == bucket)
                    context.parsed.GenUnitOpCostCurve = bucket = {};
@@ -1891,7 +2032,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GenUnitOpCostCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "GenUnitOpCostCurve", "GeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "GenUnitOpCostCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1944,7 +2085,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GeneratingUnit", "GeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1976,7 +2126,6 @@ define
                 obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "SteamSendoutSchedule";
                 base.parse_attribute (/<cim:SteamSendoutSchedule.CogenerationPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CogenerationPlant", sub, context);
-
                 var bucket = context.parsed.SteamSendoutSchedule;
                 if (null == bucket)
                    context.parsed.SteamSendoutSchedule = bucket = {};
@@ -1989,7 +2138,7 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "SteamSendoutSchedule", "CogenerationPlant", fields);
+                base.export_attribute (obj, "export_attribute", "SteamSendoutSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2040,7 +2189,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CogenerationPlant", "CogenerationPlant", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2074,7 +2232,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "TailbayLossCurve";
                 base.parse_attribute (/<cim:TailbayLossCurve.HydroGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.TailbayLossCurve;
                 if (null == bucket)
                    context.parsed.TailbayLossCurve = bucket = {};
@@ -2087,7 +2244,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "TailbayLossCurve", "HydroGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "TailbayLossCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2138,7 +2295,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2173,7 +2339,6 @@ define
                 base.parse_element (/<cim:CAESPlant.ratedCapacityP>([\s\S]*?)<\/cim:CAESPlant.ratedCapacityP>/g, obj, "ratedCapacityP", base.to_string, sub, context);
                 base.parse_attribute (/<cim:CAESPlant.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
                 base.parse_attribute (/<cim:CAESPlant.AirCompressor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AirCompressor", sub, context);
-
                 var bucket = context.parsed.CAESPlant;
                 if (null == bucket)
                    context.parsed.CAESPlant = bucket = {};
@@ -2188,8 +2353,8 @@ define
 
                 base.export_element (obj, "CAESPlant", "energyStorageCapacity", base.from_string, fields);
                 base.export_element (obj, "CAESPlant", "ratedCapacityP", base.from_string, fields);
-                base.export_attribute (obj, "CAESPlant", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "CAESPlant", "AirCompressor", fields);
+                base.export_attribute (obj, "export_attribute", "CAESPlant", fields);
+                base.export_attribute (obj, "export_attribute", "CAESPlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2246,7 +2411,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "0..1", "0..1"],
+                        ["AirCompressor", "AirCompressor", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2283,7 +2458,6 @@ define
                 base.parse_attribute (/<cim:EmissionCurve.emissionType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "emissionType", sub, context);
                 base.parse_element (/<cim:EmissionCurve.isNetGrossP>([\s\S]*?)<\/cim:EmissionCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:EmissionCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.EmissionCurve;
                 if (null == bucket)
                    context.parsed.EmissionCurve = bucket = {};
@@ -2299,7 +2473,7 @@ define
                 base.export_element (obj, "EmissionCurve", "emissionContent", base.from_string, fields);
                 base.export_element (obj, "EmissionCurve", "emissionType", base.from_string, fields);
                 base.export_element (obj, "EmissionCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "EmissionCurve", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "EmissionCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2358,7 +2532,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2391,7 +2574,6 @@ define
                 obj.cls = "StartMainFuelCurve";
                 base.parse_attribute (/<cim:StartMainFuelCurve.mainFuelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "mainFuelType", sub, context);
                 base.parse_attribute (/<cim:StartMainFuelCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context);
-
                 var bucket = context.parsed.StartMainFuelCurve;
                 if (null == bucket)
                    context.parsed.StartMainFuelCurve = bucket = {};
@@ -2405,7 +2587,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StartMainFuelCurve", "mainFuelType", base.from_string, fields);
-                base.export_attribute (obj, "StartMainFuelCurve", "StartupModel", fields);
+                base.export_attribute (obj, "export_attribute", "StartMainFuelCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2460,7 +2642,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["StartupModel", "StartupModel", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2493,7 +2684,6 @@ define
                 obj.cls = "StartRampCurve";
                 base.parse_element (/<cim:StartRampCurve.hotStandbyRamp>([\s\S]*?)<\/cim:StartRampCurve.hotStandbyRamp>/g, obj, "hotStandbyRamp", base.to_string, sub, context);
                 base.parse_attribute (/<cim:StartRampCurve.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context);
-
                 var bucket = context.parsed.StartRampCurve;
                 if (null == bucket)
                    context.parsed.StartRampCurve = bucket = {};
@@ -2507,7 +2697,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "StartRampCurve", "hotStandbyRamp", base.from_string, fields);
-                base.export_attribute (obj, "StartRampCurve", "StartupModel", fields);
+                base.export_attribute (obj, "export_attribute", "StartRampCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2560,7 +2750,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["StartupModel", "StartupModel", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2603,8 +2802,8 @@ define
                 base.parse_element (/<cim:FossilFuel.fuelSulfur>([\s\S]*?)<\/cim:FossilFuel.fuelSulfur>/g, obj, "fuelSulfur", base.to_string, sub, context);
                 base.parse_element (/<cim:FossilFuel.highBreakpointP>([\s\S]*?)<\/cim:FossilFuel.highBreakpointP>/g, obj, "highBreakpointP", base.to_string, sub, context);
                 base.parse_element (/<cim:FossilFuel.lowBreakpointP>([\s\S]*?)<\/cim:FossilFuel.lowBreakpointP>/g, obj, "lowBreakpointP", base.to_string, sub, context);
+                base.parse_attributes (/<cim:FossilFuel.FuelAllocationSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FuelAllocationSchedules", sub, context);
                 base.parse_attribute (/<cim:FossilFuel.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.FossilFuel;
                 if (null == bucket)
                    context.parsed.FossilFuel = bucket = {};
@@ -2627,7 +2826,8 @@ define
                 base.export_element (obj, "FossilFuel", "fuelSulfur", base.from_string, fields);
                 base.export_element (obj, "FossilFuel", "highBreakpointP", base.from_string, fields);
                 base.export_element (obj, "FossilFuel", "lowBreakpointP", base.from_string, fields);
-                base.export_attribute (obj, "FossilFuel", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "FossilFuel", fields);
+                base.export_attribute (obj, "export_attribute", "FossilFuel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2655,6 +2855,7 @@ define
                     {{#fuelSulfur}}<div><b>fuelSulfur</b>: {{fuelSulfur}}</div>{{/fuelSulfur}}
                     {{#highBreakpointP}}<div><b>highBreakpointP</b>: {{highBreakpointP}}</div>{{/highBreakpointP}}
                     {{#lowBreakpointP}}<div><b>lowBreakpointP</b>: {{lowBreakpointP}}</div>{{/lowBreakpointP}}
+                    {{#FuelAllocationSchedules}}<div><b>FuelAllocationSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FuelAllocationSchedules}}
                     {{#ThermalGeneratingUnit}}<div><b>ThermalGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ThermalGeneratingUnit}}&quot;);})'>{{ThermalGeneratingUnit}}</a></div>{{/ThermalGeneratingUnit}}
                     </div>
                     <fieldset>
@@ -2667,12 +2868,14 @@ define
             {
                 super.condition (obj);
                 obj.FuelType = []; if (!obj.fossilFuelType) obj.FuelType.push ({ id: '', selected: true}); for (var property in FuelType) obj.FuelType.push ({ id: property, selected: obj.fossilFuelType && obj.fossilFuelType.endsWith ('.' + property)});
+                if (obj.FuelAllocationSchedules) obj.FuelAllocationSchedules_string = obj.FuelAllocationSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.FuelType;
+                delete obj.FuelAllocationSchedules_string;
             }
 
             edit_template ()
@@ -2700,7 +2903,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"],
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2770,8 +2983,11 @@ define
                 base.parse_element (/<cim:GeneratingUnit.tieLinePF>([\s\S]*?)<\/cim:GeneratingUnit.tieLinePF>/g, obj, "tieLinePF", base.to_float, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.variableCost>([\s\S]*?)<\/cim:GeneratingUnit.variableCost>/g, obj, "variableCost", base.to_string, sub, context);
                 base.parse_element (/<cim:GeneratingUnit.totalEfficiency>([\s\S]*?)<\/cim:GeneratingUnit.totalEfficiency>/g, obj, "totalEfficiency", base.to_string, sub, context);
+                base.parse_attributes (/<cim:GeneratingUnit.RotatingMachine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RotatingMachine", sub, context);
                 base.parse_attribute (/<cim:GeneratingUnit.GenUnitOpSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenUnitOpSchedule", sub, context);
-
+                base.parse_attributes (/<cim:GeneratingUnit.GenUnitOpCostCurves\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenUnitOpCostCurves", sub, context);
+                base.parse_attributes (/<cim:GeneratingUnit.ControlAreaGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlAreaGeneratingUnit", sub, context);
+                base.parse_attributes (/<cim:GeneratingUnit.GrossToNetActivePowerCurves\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GrossToNetActivePowerCurves", sub, context);
                 var bucket = context.parsed.GeneratingUnit;
                 if (null == bucket)
                    context.parsed.GeneratingUnit = bucket = {};
@@ -2821,7 +3037,11 @@ define
                 base.export_element (obj, "GeneratingUnit", "tieLinePF", base.from_float, fields);
                 base.export_element (obj, "GeneratingUnit", "variableCost", base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "totalEfficiency", base.from_string, fields);
-                base.export_attribute (obj, "GeneratingUnit", "GenUnitOpSchedule", fields);
+                base.export_attribute (obj, "export_attributes", "GeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "GeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "GeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "GeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "GeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2876,7 +3096,11 @@ define
                     {{#tieLinePF}}<div><b>tieLinePF</b>: {{tieLinePF}}</div>{{/tieLinePF}}
                     {{#variableCost}}<div><b>variableCost</b>: {{variableCost}}</div>{{/variableCost}}
                     {{#totalEfficiency}}<div><b>totalEfficiency</b>: {{totalEfficiency}}</div>{{/totalEfficiency}}
+                    {{#RotatingMachine}}<div><b>RotatingMachine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RotatingMachine}}
                     {{#GenUnitOpSchedule}}<div><b>GenUnitOpSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenUnitOpSchedule}}&quot;);})'>{{GenUnitOpSchedule}}</a></div>{{/GenUnitOpSchedule}}
+                    {{#GenUnitOpCostCurves}}<div><b>GenUnitOpCostCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GenUnitOpCostCurves}}
+                    {{#ControlAreaGeneratingUnit}}<div><b>ControlAreaGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ControlAreaGeneratingUnit}}
+                    {{#GrossToNetActivePowerCurves}}<div><b>GrossToNetActivePowerCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GrossToNetActivePowerCurves}}
                     </div>
                     <fieldset>
 
@@ -2889,6 +3113,10 @@ define
                 super.condition (obj);
                 obj.GeneratorControlMode = []; if (!obj.genControlMode) obj.GeneratorControlMode.push ({ id: '', selected: true}); for (var property in GeneratorControlMode) obj.GeneratorControlMode.push ({ id: property, selected: obj.genControlMode && obj.genControlMode.endsWith ('.' + property)});
                 obj.GeneratorControlSource = []; if (!obj.genControlSource) obj.GeneratorControlSource.push ({ id: '', selected: true}); for (var property in GeneratorControlSource) obj.GeneratorControlSource.push ({ id: property, selected: obj.genControlSource && obj.genControlSource.endsWith ('.' + property)});
+                if (obj.RotatingMachine) obj.RotatingMachine_string = obj.RotatingMachine.join ();
+                if (obj.GenUnitOpCostCurves) obj.GenUnitOpCostCurves_string = obj.GenUnitOpCostCurves.join ();
+                if (obj.ControlAreaGeneratingUnit) obj.ControlAreaGeneratingUnit_string = obj.ControlAreaGeneratingUnit.join ();
+                if (obj.GrossToNetActivePowerCurves) obj.GrossToNetActivePowerCurves_string = obj.GrossToNetActivePowerCurves.join ();
             }
 
             uncondition (obj)
@@ -2896,6 +3124,10 @@ define
                 super.uncondition (obj);
                 delete obj.GeneratorControlMode;
                 delete obj.GeneratorControlSource;
+                delete obj.RotatingMachine_string;
+                delete obj.GenUnitOpCostCurves_string;
+                delete obj.ControlAreaGeneratingUnit_string;
+                delete obj.GrossToNetActivePowerCurves_string;
             }
 
             edit_template ()
@@ -2950,7 +3182,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RotatingMachine", "RotatingMachine", "1..*", "0..1"],
+                        ["GenUnitOpSchedule", "GenUnitOpSchedule", "0..1", "1"],
+                        ["GenUnitOpCostCurves", "GenUnitOpCostCurve", "0..*", "1"],
+                        ["ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"],
+                        ["GrossToNetActivePowerCurves", "GrossToNetActivePowerCurve", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2992,9 +3237,10 @@ define
                 base.parse_element (/<cim:HydroPowerPlant.pumpRatedP>([\s\S]*?)<\/cim:HydroPowerPlant.pumpRatedP>/g, obj, "pumpRatedP", base.to_string, sub, context);
                 base.parse_element (/<cim:HydroPowerPlant.surgeTankCode>([\s\S]*?)<\/cim:HydroPowerPlant.surgeTankCode>/g, obj, "surgeTankCode", base.to_string, sub, context);
                 base.parse_element (/<cim:HydroPowerPlant.surgeTankCrestLevel>([\s\S]*?)<\/cim:HydroPowerPlant.surgeTankCrestLevel>/g, obj, "surgeTankCrestLevel", base.to_string, sub, context);
+                base.parse_attributes (/<cim:HydroPowerPlant.HydroPumps\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPumps", sub, context);
                 base.parse_attribute (/<cim:HydroPowerPlant.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reservoir", sub, context);
                 base.parse_attribute (/<cim:HydroPowerPlant.GenSourcePumpDischargeReservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenSourcePumpDischargeReservoir", sub, context);
-
+                base.parse_attributes (/<cim:HydroPowerPlant.HydroGeneratingUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroGeneratingUnits", sub, context);
                 var bucket = context.parsed.HydroPowerPlant;
                 if (null == bucket)
                    context.parsed.HydroPowerPlant = bucket = {};
@@ -3016,8 +3262,10 @@ define
                 base.export_element (obj, "HydroPowerPlant", "pumpRatedP", base.from_string, fields);
                 base.export_element (obj, "HydroPowerPlant", "surgeTankCode", base.from_string, fields);
                 base.export_element (obj, "HydroPowerPlant", "surgeTankCrestLevel", base.from_string, fields);
-                base.export_attribute (obj, "HydroPowerPlant", "Reservoir", fields);
-                base.export_attribute (obj, "HydroPowerPlant", "GenSourcePumpDischargeReservoir", fields);
+                base.export_attribute (obj, "export_attributes", "HydroPowerPlant", fields);
+                base.export_attribute (obj, "export_attribute", "HydroPowerPlant", fields);
+                base.export_attribute (obj, "export_attribute", "HydroPowerPlant", fields);
+                base.export_attribute (obj, "export_attributes", "HydroPowerPlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3044,8 +3292,10 @@ define
                     {{#pumpRatedP}}<div><b>pumpRatedP</b>: {{pumpRatedP}}</div>{{/pumpRatedP}}
                     {{#surgeTankCode}}<div><b>surgeTankCode</b>: {{surgeTankCode}}</div>{{/surgeTankCode}}
                     {{#surgeTankCrestLevel}}<div><b>surgeTankCrestLevel</b>: {{surgeTankCrestLevel}}</div>{{/surgeTankCrestLevel}}
+                    {{#HydroPumps}}<div><b>HydroPumps</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/HydroPumps}}
                     {{#Reservoir}}<div><b>Reservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Reservoir}}&quot;);})'>{{Reservoir}}</a></div>{{/Reservoir}}
                     {{#GenSourcePumpDischargeReservoir}}<div><b>GenSourcePumpDischargeReservoir</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenSourcePumpDischargeReservoir}}&quot;);})'>{{GenSourcePumpDischargeReservoir}}</a></div>{{/GenSourcePumpDischargeReservoir}}
+                    {{#HydroGeneratingUnits}}<div><b>HydroGeneratingUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/HydroGeneratingUnits}}
                     </div>
                     <fieldset>
 
@@ -3057,12 +3307,16 @@ define
             {
                 super.condition (obj);
                 obj.HydroPlantStorageKind = []; if (!obj.hydroPlantStorageType) obj.HydroPlantStorageKind.push ({ id: '', selected: true}); for (var property in HydroPlantStorageKind) obj.HydroPlantStorageKind.push ({ id: property, selected: obj.hydroPlantStorageType && obj.hydroPlantStorageType.endsWith ('.' + property)});
+                if (obj.HydroPumps) obj.HydroPumps_string = obj.HydroPumps.join ();
+                if (obj.HydroGeneratingUnits) obj.HydroGeneratingUnits_string = obj.HydroGeneratingUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.HydroPlantStorageKind;
+                delete obj.HydroPumps_string;
+                delete obj.HydroGeneratingUnits_string;
             }
 
             edit_template ()
@@ -3090,7 +3344,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["HydroPumps", "HydroPump", "0..*", "0..1"],
+                        ["Reservoir", "Reservoir", "0..1", "0..*"],
+                        ["GenSourcePumpDischargeReservoir", "Reservoir", "1", "0..*"],
+                        ["HydroGeneratingUnits", "HydroGeneratingUnit", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3124,7 +3390,6 @@ define
                 obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "HydroPumpOpSchedule";
                 base.parse_attribute (/<cim:HydroPumpOpSchedule.HydroPump\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPump", sub, context);
-
                 var bucket = context.parsed.HydroPumpOpSchedule;
                 if (null == bucket)
                    context.parsed.HydroPumpOpSchedule = bucket = {};
@@ -3137,7 +3402,7 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "HydroPumpOpSchedule", "HydroPump", fields);
+                base.export_attribute (obj, "export_attribute", "HydroPumpOpSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3188,7 +3453,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["HydroPump", "HydroPump", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3222,7 +3496,6 @@ define
                 base.parse_element (/<cim:ShutdownCurve.shutdownCost>([\s\S]*?)<\/cim:ShutdownCurve.shutdownCost>/g, obj, "shutdownCost", base.to_string, sub, context);
                 base.parse_element (/<cim:ShutdownCurve.shutdownDate>([\s\S]*?)<\/cim:ShutdownCurve.shutdownDate>/g, obj, "shutdownDate", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ShutdownCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.ShutdownCurve;
                 if (null == bucket)
                    context.parsed.ShutdownCurve = bucket = {};
@@ -3237,7 +3510,7 @@ define
 
                 base.export_element (obj, "ShutdownCurve", "shutdownCost", base.from_string, fields);
                 base.export_element (obj, "ShutdownCurve", "shutdownDate", base.from_datetime, fields);
-                base.export_attribute (obj, "ShutdownCurve", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ShutdownCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3292,7 +3565,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3328,7 +3610,6 @@ define
                 base.parse_attribute (/<cim:EmissionAccount.emissionType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "emissionType", sub, context);
                 base.parse_attribute (/<cim:EmissionAccount.emissionValueSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "emissionValueSource", sub, context);
                 base.parse_attribute (/<cim:EmissionAccount.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.EmissionAccount;
                 if (null == bucket)
                    context.parsed.EmissionAccount = bucket = {};
@@ -3343,7 +3624,7 @@ define
 
                 base.export_element (obj, "EmissionAccount", "emissionType", base.from_string, fields);
                 base.export_element (obj, "EmissionAccount", "emissionValueSource", base.from_string, fields);
-                base.export_attribute (obj, "EmissionAccount", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "EmissionAccount", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3402,7 +3683,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3441,7 +3731,6 @@ define
                 base.parse_element (/<cim:HeatInputCurve.heatInputOffset>([\s\S]*?)<\/cim:HeatInputCurve.heatInputOffset>/g, obj, "heatInputOffset", base.to_string, sub, context);
                 base.parse_element (/<cim:HeatInputCurve.isNetGrossP>([\s\S]*?)<\/cim:HeatInputCurve.isNetGrossP>/g, obj, "isNetGrossP", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:HeatInputCurve.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.HeatInputCurve;
                 if (null == bucket)
                    context.parsed.HeatInputCurve = bucket = {};
@@ -3459,7 +3748,7 @@ define
                 base.export_element (obj, "HeatInputCurve", "heatInputEff", base.from_string, fields);
                 base.export_element (obj, "HeatInputCurve", "heatInputOffset", base.from_string, fields);
                 base.export_element (obj, "HeatInputCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "HeatInputCurve", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "HeatInputCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3520,7 +3809,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3565,7 +3863,6 @@ define
                 base.parse_attribute (/<cim:StartupModel.ThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnit", sub, context);
                 base.parse_attribute (/<cim:StartupModel.StartMainFuelCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartMainFuelCurve", sub, context);
                 base.parse_attribute (/<cim:StartupModel.StartRampCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartRampCurve", sub, context);
-
                 var bucket = context.parsed.StartupModel;
                 if (null == bucket)
                    context.parsed.StartupModel = bucket = {};
@@ -3588,10 +3885,10 @@ define
                 base.export_element (obj, "StartupModel", "startupDate", base.from_datetime, fields);
                 base.export_element (obj, "StartupModel", "startupPriority", base.from_string, fields);
                 base.export_element (obj, "StartupModel", "stbyAuxP", base.from_string, fields);
-                base.export_attribute (obj, "StartupModel", "StartIgnFuelCurve", fields);
-                base.export_attribute (obj, "StartupModel", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "StartupModel", "StartMainFuelCurve", fields);
-                base.export_attribute (obj, "StartupModel", "StartRampCurve", fields);
+                base.export_attribute (obj, "export_attribute", "StartupModel", fields);
+                base.export_attribute (obj, "export_attribute", "StartupModel", fields);
+                base.export_attribute (obj, "export_attribute", "StartupModel", fields);
+                base.export_attribute (obj, "export_attribute", "StartupModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3668,7 +3965,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["StartIgnFuelCurve", "StartIgnFuelCurve", "0..1", "1"],
+                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"],
+                        ["StartMainFuelCurve", "StartMainFuelCurve", "0..1", "1"],
+                        ["StartRampCurve", "StartRampCurve", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3704,7 +4013,6 @@ define
                 base.parse_element (/<cim:CostPerHeatUnit.multiplier>([\s\S]*?)<\/cim:CostPerHeatUnit.multiplier>/g, obj, "multiplier", base.to_string, sub, context);
                 base.parse_element (/<cim:CostPerHeatUnit.unit>([\s\S]*?)<\/cim:CostPerHeatUnit.unit>/g, obj, "unit", base.to_string, sub, context);
                 base.parse_element (/<cim:CostPerHeatUnit.value>([\s\S]*?)<\/cim:CostPerHeatUnit.value>/g, obj, "value", base.to_float, sub, context);
-
                 var bucket = context.parsed.CostPerHeatUnit;
                 if (null == bucket)
                    context.parsed.CostPerHeatUnit = bucket = {};
@@ -3780,7 +4088,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3812,7 +4120,7 @@ define
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "CombinedCyclePlant";
                 base.parse_element (/<cim:CombinedCyclePlant.combCyclePlantRating>([\s\S]*?)<\/cim:CombinedCyclePlant.combCyclePlantRating>/g, obj, "combCyclePlantRating", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:CombinedCyclePlant.ThermalGeneratingUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ThermalGeneratingUnits", sub, context);
                 var bucket = context.parsed.CombinedCyclePlant;
                 if (null == bucket)
                    context.parsed.CombinedCyclePlant = bucket = {};
@@ -3826,6 +4134,7 @@ define
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CombinedCyclePlant", "combCyclePlantRating", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "CombinedCyclePlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3844,6 +4153,7 @@ define
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
                     {{#combCyclePlantRating}}<div><b>combCyclePlantRating</b>: {{combCyclePlantRating}}</div>{{/combCyclePlantRating}}
+                    {{#ThermalGeneratingUnits}}<div><b>ThermalGeneratingUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ThermalGeneratingUnits}}
                     </div>
                     <fieldset>
 
@@ -3854,11 +4164,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ThermalGeneratingUnits) obj.ThermalGeneratingUnits_string = obj.ThermalGeneratingUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ThermalGeneratingUnits_string;
             }
 
             edit_template ()
@@ -3876,7 +4188,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3912,7 +4233,6 @@ define
                 base.parse_element (/<cim:TargetLevelSchedule.highLevelLimit>([\s\S]*?)<\/cim:TargetLevelSchedule.highLevelLimit>/g, obj, "highLevelLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:TargetLevelSchedule.lowLevelLimit>([\s\S]*?)<\/cim:TargetLevelSchedule.lowLevelLimit>/g, obj, "lowLevelLimit", base.to_string, sub, context);
                 base.parse_attribute (/<cim:TargetLevelSchedule.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reservoir", sub, context);
-
                 var bucket = context.parsed.TargetLevelSchedule;
                 if (null == bucket)
                    context.parsed.TargetLevelSchedule = bucket = {};
@@ -3927,7 +4247,7 @@ define
 
                 base.export_element (obj, "TargetLevelSchedule", "highLevelLimit", base.from_string, fields);
                 base.export_element (obj, "TargetLevelSchedule", "lowLevelLimit", base.from_string, fields);
-                base.export_attribute (obj, "TargetLevelSchedule", "Reservoir", fields);
+                base.export_attribute (obj, "export_attribute", "TargetLevelSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3982,7 +4302,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Reservoir", "Reservoir", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4016,7 +4345,6 @@ define
                 obj = Core.RegularIntervalSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "InflowForecast";
                 base.parse_attribute (/<cim:InflowForecast.Reservoir\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reservoir", sub, context);
-
                 var bucket = context.parsed.InflowForecast;
                 if (null == bucket)
                    context.parsed.InflowForecast = bucket = {};
@@ -4029,7 +4357,7 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "InflowForecast", "Reservoir", fields);
+                base.export_attribute (obj, "export_attribute", "InflowForecast", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4080,7 +4408,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Reservoir", "Reservoir", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4115,12 +4452,15 @@ define
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.ShutdownCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ShutdownCurve", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.CogenerationPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CogenerationPlant", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.HeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HeatRateCurve", sub, context);
+                base.parse_attributes (/<cim:ThermalGeneratingUnit.EmissionCurves\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EmissionCurves", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.CAESPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CAESPlant", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.StartupModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartupModel", sub, context);
+                base.parse_attributes (/<cim:ThermalGeneratingUnit.EmmissionAccounts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EmmissionAccounts", sub, context);
+                base.parse_attributes (/<cim:ThermalGeneratingUnit.FuelAllocationSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FuelAllocationSchedules", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.CombinedCyclePlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombinedCyclePlant", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.IncrementalHeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IncrementalHeatRateCurve", sub, context);
+                base.parse_attributes (/<cim:ThermalGeneratingUnit.FossilFuels\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FossilFuels", sub, context);
                 base.parse_attribute (/<cim:ThermalGeneratingUnit.HeatInputCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HeatInputCurve", sub, context);
-
                 var bucket = context.parsed.ThermalGeneratingUnit;
                 if (null == bucket)
                    context.parsed.ThermalGeneratingUnit = bucket = {};
@@ -4134,14 +4474,18 @@ define
                 var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ThermalGeneratingUnit", "oMCost", base.from_string, fields);
-                base.export_attribute (obj, "ThermalGeneratingUnit", "ShutdownCurve", fields);
-                base.export_attribute (obj, "ThermalGeneratingUnit", "CogenerationPlant", fields);
-                base.export_attribute (obj, "ThermalGeneratingUnit", "HeatRateCurve", fields);
-                base.export_attribute (obj, "ThermalGeneratingUnit", "CAESPlant", fields);
-                base.export_attribute (obj, "ThermalGeneratingUnit", "StartupModel", fields);
-                base.export_attribute (obj, "ThermalGeneratingUnit", "CombinedCyclePlant", fields);
-                base.export_attribute (obj, "ThermalGeneratingUnit", "IncrementalHeatRateCurve", fields);
-                base.export_attribute (obj, "ThermalGeneratingUnit", "HeatInputCurve", fields);
+                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4163,10 +4507,14 @@ define
                     {{#ShutdownCurve}}<div><b>ShutdownCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ShutdownCurve}}&quot;);})'>{{ShutdownCurve}}</a></div>{{/ShutdownCurve}}
                     {{#CogenerationPlant}}<div><b>CogenerationPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CogenerationPlant}}&quot;);})'>{{CogenerationPlant}}</a></div>{{/CogenerationPlant}}
                     {{#HeatRateCurve}}<div><b>HeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatRateCurve}}&quot;);})'>{{HeatRateCurve}}</a></div>{{/HeatRateCurve}}
+                    {{#EmissionCurves}}<div><b>EmissionCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EmissionCurves}}
                     {{#CAESPlant}}<div><b>CAESPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CAESPlant}}&quot;);})'>{{CAESPlant}}</a></div>{{/CAESPlant}}
                     {{#StartupModel}}<div><b>StartupModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartupModel}}&quot;);})'>{{StartupModel}}</a></div>{{/StartupModel}}
+                    {{#EmmissionAccounts}}<div><b>EmmissionAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EmmissionAccounts}}
+                    {{#FuelAllocationSchedules}}<div><b>FuelAllocationSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FuelAllocationSchedules}}
                     {{#CombinedCyclePlant}}<div><b>CombinedCyclePlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombinedCyclePlant}}&quot;);})'>{{CombinedCyclePlant}}</a></div>{{/CombinedCyclePlant}}
                     {{#IncrementalHeatRateCurve}}<div><b>IncrementalHeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IncrementalHeatRateCurve}}&quot;);})'>{{IncrementalHeatRateCurve}}</a></div>{{/IncrementalHeatRateCurve}}
+                    {{#FossilFuels}}<div><b>FossilFuels</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FossilFuels}}
                     {{#HeatInputCurve}}<div><b>HeatInputCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HeatInputCurve}}&quot;);})'>{{HeatInputCurve}}</a></div>{{/HeatInputCurve}}
                     </div>
                     <fieldset>
@@ -4178,11 +4526,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EmissionCurves) obj.EmissionCurves_string = obj.EmissionCurves.join ();
+                if (obj.EmmissionAccounts) obj.EmmissionAccounts_string = obj.EmmissionAccounts.join ();
+                if (obj.FuelAllocationSchedules) obj.FuelAllocationSchedules_string = obj.FuelAllocationSchedules.join ();
+                if (obj.FossilFuels) obj.FossilFuels_string = obj.FossilFuels.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EmissionCurves_string;
+                delete obj.EmmissionAccounts_string;
+                delete obj.FuelAllocationSchedules_string;
+                delete obj.FossilFuels_string;
             }
 
             edit_template ()
@@ -4208,7 +4564,27 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ShutdownCurve", "ShutdownCurve", "0..1", "1"],
+                        ["CogenerationPlant", "CogenerationPlant", "0..1", "0..*"],
+                        ["HeatRateCurve", "HeatRateCurve", "0..1", "1"],
+                        ["EmissionCurves", "EmissionCurve", "0..*", "1"],
+                        ["CAESPlant", "CAESPlant", "0..1", "0..1"],
+                        ["StartupModel", "StartupModel", "0..1", "1"],
+                        ["EmmissionAccounts", "EmissionAccount", "0..*", "1"],
+                        ["FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"],
+                        ["CombinedCyclePlant", "CombinedCyclePlant", "0..1", "0..*"],
+                        ["IncrementalHeatRateCurve", "IncrementalHeatRateCurve", "0..1", "1"],
+                        ["FossilFuels", "FossilFuel", "0..*", "1"],
+                        ["HeatInputCurve", "HeatInputCurve", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4241,9 +4617,10 @@ define
                 obj.cls = "HydroGeneratingUnit";
                 base.parse_attribute (/<cim:HydroGeneratingUnit.energyConversionCapability\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "energyConversionCapability", sub, context);
                 base.parse_element (/<cim:HydroGeneratingUnit.hydroUnitWaterCost>([\s\S]*?)<\/cim:HydroGeneratingUnit.hydroUnitWaterCost>/g, obj, "hydroUnitWaterCost", base.to_string, sub, context);
+                base.parse_attributes (/<cim:HydroGeneratingUnit.TailbayLossCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TailbayLossCurve", sub, context);
+                base.parse_attributes (/<cim:HydroGeneratingUnit.HydroGeneratingEfficiencyCurves\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroGeneratingEfficiencyCurves", sub, context);
                 base.parse_attribute (/<cim:HydroGeneratingUnit.PenstockLossCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PenstockLossCurve", sub, context);
                 base.parse_attribute (/<cim:HydroGeneratingUnit.HydroPowerPlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HydroPowerPlant", sub, context);
-
                 var bucket = context.parsed.HydroGeneratingUnit;
                 if (null == bucket)
                    context.parsed.HydroGeneratingUnit = bucket = {};
@@ -4258,8 +4635,10 @@ define
 
                 base.export_element (obj, "HydroGeneratingUnit", "energyConversionCapability", base.from_string, fields);
                 base.export_element (obj, "HydroGeneratingUnit", "hydroUnitWaterCost", base.from_string, fields);
-                base.export_attribute (obj, "HydroGeneratingUnit", "PenstockLossCurve", fields);
-                base.export_attribute (obj, "HydroGeneratingUnit", "HydroPowerPlant", fields);
+                base.export_attribute (obj, "export_attributes", "HydroGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "HydroGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "HydroGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "HydroGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4279,6 +4658,8 @@ define
                     `
                     {{#energyConversionCapability}}<div><b>energyConversionCapability</b>: {{energyConversionCapability}}</div>{{/energyConversionCapability}}
                     {{#hydroUnitWaterCost}}<div><b>hydroUnitWaterCost</b>: {{hydroUnitWaterCost}}</div>{{/hydroUnitWaterCost}}
+                    {{#TailbayLossCurve}}<div><b>TailbayLossCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TailbayLossCurve}}
+                    {{#HydroGeneratingEfficiencyCurves}}<div><b>HydroGeneratingEfficiencyCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/HydroGeneratingEfficiencyCurves}}
                     {{#PenstockLossCurve}}<div><b>PenstockLossCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PenstockLossCurve}}&quot;);})'>{{PenstockLossCurve}}</a></div>{{/PenstockLossCurve}}
                     {{#HydroPowerPlant}}<div><b>HydroPowerPlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HydroPowerPlant}}&quot;);})'>{{HydroPowerPlant}}</a></div>{{/HydroPowerPlant}}
                     </div>
@@ -4292,12 +4673,16 @@ define
             {
                 super.condition (obj);
                 obj.HydroEnergyConversionKind = []; if (!obj.energyConversionCapability) obj.HydroEnergyConversionKind.push ({ id: '', selected: true}); for (var property in HydroEnergyConversionKind) obj.HydroEnergyConversionKind.push ({ id: property, selected: obj.energyConversionCapability && obj.energyConversionCapability.endsWith ('.' + property)});
+                if (obj.TailbayLossCurve) obj.TailbayLossCurve_string = obj.TailbayLossCurve.join ();
+                if (obj.HydroGeneratingEfficiencyCurves) obj.HydroGeneratingEfficiencyCurves_string = obj.HydroGeneratingEfficiencyCurves.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.HydroEnergyConversionKind;
+                delete obj.TailbayLossCurve_string;
+                delete obj.HydroGeneratingEfficiencyCurves_string;
             }
 
             edit_template ()
@@ -4318,7 +4703,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TailbayLossCurve", "TailbayLossCurve", "0..*", "1"],
+                        ["HydroGeneratingEfficiencyCurves", "HydroGeneratingEfficiencyCurve", "0..*", "1"],
+                        ["PenstockLossCurve", "PenstockLossCurve", "0..1", "1"],
+                        ["HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4352,7 +4749,6 @@ define
                 obj = GeneratingUnit.prototype.parse.call (this, context, sub);
                 obj.cls = "WindGeneratingUnit";
                 base.parse_attribute (/<cim:WindGeneratingUnit.windGenUnitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windGenUnitType", sub, context);
-
                 var bucket = context.parsed.WindGeneratingUnit;
                 if (null == bucket)
                    context.parsed.WindGeneratingUnit = bucket = {};
@@ -4418,7 +4814,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4449,7 +4845,6 @@ define
 
                 obj = GeneratingUnit.prototype.parse.call (this, context, sub);
                 obj.cls = "NuclearGeneratingUnit";
-
                 var bucket = context.parsed.NuclearGeneratingUnit;
                 if (null == bucket)
                    context.parsed.NuclearGeneratingUnit = bucket = {};
@@ -4510,7 +4905,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4541,7 +4936,6 @@ define
 
                 obj = GeneratingUnit.prototype.parse.call (this, context, sub);
                 obj.cls = "SolarGeneratingUnit";
-
                 var bucket = context.parsed.SolarGeneratingUnit;
                 if (null == bucket)
                    context.parsed.SolarGeneratingUnit = bucket = {};
@@ -4602,7 +4996,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

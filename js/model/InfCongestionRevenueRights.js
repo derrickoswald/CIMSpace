@@ -34,8 +34,8 @@ define
                 obj.cls = "ViolationLimit";
                 base.parse_element (/<cim:ViolationLimit.enforced>([\s\S]*?)<\/cim:ViolationLimit.enforced>/g, obj, "enforced", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:ViolationLimit.MktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktMeasurement", sub, context);
+                base.parse_attributes (/<cim:ViolationLimit.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrganisation", sub, context);
                 base.parse_attribute (/<cim:ViolationLimit.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
-
                 var bucket = context.parsed.ViolationLimit;
                 if (null == bucket)
                    context.parsed.ViolationLimit = bucket = {};
@@ -49,8 +49,9 @@ define
                 var fields = Meas.Limit.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ViolationLimit", "enforced", base.from_boolean, fields);
-                base.export_attribute (obj, "ViolationLimit", "MktMeasurement", fields);
-                base.export_attribute (obj, "ViolationLimit", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "ViolationLimit", fields);
+                base.export_attribute (obj, "export_attributes", "ViolationLimit", fields);
+                base.export_attribute (obj, "export_attribute", "ViolationLimit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -70,6 +71,7 @@ define
                     `
                     {{#enforced}}<div><b>enforced</b>: {{enforced}}</div>{{/enforced}}
                     {{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktMeasurement}}&quot;);})'>{{MktMeasurement}}</a></div>{{/MktMeasurement}}
+                    {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktOrganisation}}
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
                     </div>
                     <fieldset>
@@ -81,11 +83,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MktOrganisation) obj.MktOrganisation_string = obj.MktOrganisation.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MktOrganisation_string;
             }
 
             edit_template ()
@@ -100,12 +104,24 @@ define
                     `
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='enforced'>enforced: </label><div class='col-sm-8'><input id='enforced' class='form-check-input' type='checkbox'{{#enforced}} checked{{/enforced}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktMeasurement", "MktMeasurement", "0..1", "0..*"],
+                        ["MktOrganisation", "MktOrganisation", "0..*", "0..*"],
+                        ["Flowgate", "Flowgate", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -143,7 +159,7 @@ define
                 base.parse_element (/<cim:FTR.class>([\s\S]*?)<\/cim:FTR.class>/g, obj, "class", base.to_string, sub, context);
                 base.parse_attribute (/<cim:FTR.EnergyPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyPriceCurve", sub, context);
                 base.parse_attribute (/<cim:FTR.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
-
+                base.parse_attributes (/<cim:FTR.Pnodes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pnodes", sub, context);
                 var bucket = context.parsed.FTR;
                 if (null == bucket)
                    context.parsed.FTR = bucket = {};
@@ -161,8 +177,9 @@ define
                 base.export_element (obj, "FTR", "baseEnergy", base.from_string, fields);
                 base.export_element (obj, "FTR", "ftrType", base.from_string, fields);
                 base.export_element (obj, "FTR", "class", base.from_string, fields);
-                base.export_attribute (obj, "FTR", "EnergyPriceCurve", fields);
-                base.export_attribute (obj, "FTR", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "FTR", fields);
+                base.export_attribute (obj, "export_attribute", "FTR", fields);
+                base.export_attribute (obj, "export_attributes", "FTR", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -187,6 +204,7 @@ define
                     {{#class}}<div><b>class</b>: {{class}}</div>{{/class}}
                     {{#EnergyPriceCurve}}<div><b>EnergyPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyPriceCurve}}&quot;);})'>{{EnergyPriceCurve}}</a></div>{{/EnergyPriceCurve}}
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#Pnodes}}<div><b>Pnodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Pnodes}}
                     </div>
                     <fieldset>
 
@@ -197,11 +215,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Pnodes) obj.Pnodes_string = obj.Pnodes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Pnodes_string;
             }
 
             edit_template ()
@@ -221,11 +241,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='class'>class: </label><div class='col-sm-8'><input id='class' class='form-control' type='text'{{#class}} value='{{class}}'{{/class}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyPriceCurve'>EnergyPriceCurve: </label><div class='col-sm-8'><input id='EnergyPriceCurve' class='form-control' type='text'{{#EnergyPriceCurve}} value='{{EnergyPriceCurve}}'{{/EnergyPriceCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pnodes'>Pnodes: </label><div class='col-sm-8'><input id='Pnodes' class='form-control' type='text'{{#Pnodes}} value='{{Pnodes}}_string'{{/Pnodes}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyPriceCurve", "EnergyPriceCurve", "0..1", "0..*"],
+                        ["Flowgate", "Flowgate", "0..1", "0..*"],
+                        ["Pnodes", "Pnode", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

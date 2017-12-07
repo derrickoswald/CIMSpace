@@ -42,7 +42,7 @@ define
                 base.parse_element (/<cim:ResourceCapacity.maximumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.maximumCapacity>/g, obj, "maximumCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceCapacity.minimumCapacity>([\s\S]*?)<\/cim:ResourceCapacity.minimumCapacity>/g, obj, "minimumCapacity", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceCapacity.defaultCapacity>([\s\S]*?)<\/cim:ResourceCapacity.defaultCapacity>/g, obj, "defaultCapacity", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ResourceCapacity.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 var bucket = context.parsed.ResourceCapacity;
                 if (null == bucket)
                    context.parsed.ResourceCapacity = bucket = {};
@@ -59,6 +59,7 @@ define
                 base.export_element (obj, "ResourceCapacity", "maximumCapacity", base.from_string, fields);
                 base.export_element (obj, "ResourceCapacity", "minimumCapacity", base.from_string, fields);
                 base.export_element (obj, "ResourceCapacity", "defaultCapacity", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ResourceCapacity", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -80,6 +81,7 @@ define
                     {{#maximumCapacity}}<div><b>maximumCapacity</b>: {{maximumCapacity}}</div>{{/maximumCapacity}}
                     {{#minimumCapacity}}<div><b>minimumCapacity</b>: {{minimumCapacity}}</div>{{/minimumCapacity}}
                     {{#defaultCapacity}}<div><b>defaultCapacity</b>: {{defaultCapacity}}</div>{{/defaultCapacity}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
                     <fieldset>
 
@@ -90,11 +92,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredResource_string;
             }
 
             edit_template ()
@@ -111,11 +115,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumCapacity'>maximumCapacity: </label><div class='col-sm-8'><input id='maximumCapacity' class='form-control' type='text'{{#maximumCapacity}} value='{{maximumCapacity}}'{{/maximumCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumCapacity'>minimumCapacity: </label><div class='col-sm-8'><input id='minimumCapacity' class='form-control' type='text'{{#minimumCapacity}} value='{{minimumCapacity}}'{{/minimumCapacity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='defaultCapacity'>defaultCapacity: </label><div class='col-sm-8'><input id='defaultCapacity' class='form-control' type='text'{{#defaultCapacity}} value='{{defaultCapacity}}'{{/defaultCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -153,7 +167,6 @@ define
                 base.parse_element (/<cim:ResourceAncillaryServiceQualification.startEffectiveDate>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:ResourceAncillaryServiceQualification.type>([\s\S]*?)<\/cim:ResourceAncillaryServiceQualification.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ResourceAncillaryServiceQualification.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.ResourceAncillaryServiceQualification;
                 if (null == bucket)
                    context.parsed.ResourceAncillaryServiceQualification = bucket = {};
@@ -172,7 +185,7 @@ define
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "qualificationFlag", base.from_string, fields);
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "startEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "ResourceAncillaryServiceQualification", "type", base.from_string, fields);
-                base.export_attribute (obj, "ResourceAncillaryServiceQualification", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceAncillaryServiceQualification", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -235,7 +248,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -270,9 +292,10 @@ define
                 base.parse_element (/<cim:MktContingency.ltcControlFlag>([\s\S]*?)<\/cim:MktContingency.ltcControlFlag>/g, obj, "ltcControlFlag", base.to_boolean, sub, context);
                 base.parse_element (/<cim:MktContingency.participationFactorSet>([\s\S]*?)<\/cim:MktContingency.participationFactorSet>/g, obj, "participationFactorSet", base.to_string, sub, context);
                 base.parse_element (/<cim:MktContingency.screeningFlag>([\s\S]*?)<\/cim:MktContingency.screeningFlag>/g, obj, "screeningFlag", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:MktContingency.ConstraintResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConstraintResults", sub, context);
                 base.parse_attribute (/<cim:MktContingency.TransferInterfaceSolutionB\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransferInterfaceSolutionB", sub, context);
+                base.parse_attributes (/<cim:MktContingency.ContingencyConstraintLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContingencyConstraintLimit", sub, context);
                 base.parse_attribute (/<cim:MktContingency.TransferInterfaceSolutionA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransferInterfaceSolutionA", sub, context);
-
                 var bucket = context.parsed.MktContingency;
                 if (null == bucket)
                    context.parsed.MktContingency = bucket = {};
@@ -289,8 +312,10 @@ define
                 base.export_element (obj, "MktContingency", "ltcControlFlag", base.from_boolean, fields);
                 base.export_element (obj, "MktContingency", "participationFactorSet", base.from_string, fields);
                 base.export_element (obj, "MktContingency", "screeningFlag", base.from_boolean, fields);
-                base.export_attribute (obj, "MktContingency", "TransferInterfaceSolutionB", fields);
-                base.export_attribute (obj, "MktContingency", "TransferInterfaceSolutionA", fields);
+                base.export_attribute (obj, "export_attributes", "MktContingency", fields);
+                base.export_attribute (obj, "export_attribute", "MktContingency", fields);
+                base.export_attribute (obj, "export_attributes", "MktContingency", fields);
+                base.export_attribute (obj, "export_attribute", "MktContingency", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -312,7 +337,9 @@ define
                     {{#ltcControlFlag}}<div><b>ltcControlFlag</b>: {{ltcControlFlag}}</div>{{/ltcControlFlag}}
                     {{#participationFactorSet}}<div><b>participationFactorSet</b>: {{participationFactorSet}}</div>{{/participationFactorSet}}
                     {{#screeningFlag}}<div><b>screeningFlag</b>: {{screeningFlag}}</div>{{/screeningFlag}}
+                    {{#ConstraintResults}}<div><b>ConstraintResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConstraintResults}}
                     {{#TransferInterfaceSolutionB}}<div><b>TransferInterfaceSolutionB</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransferInterfaceSolutionB}}&quot;);})'>{{TransferInterfaceSolutionB}}</a></div>{{/TransferInterfaceSolutionB}}
+                    {{#ContingencyConstraintLimit}}<div><b>ContingencyConstraintLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ContingencyConstraintLimit}}
                     {{#TransferInterfaceSolutionA}}<div><b>TransferInterfaceSolutionA</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransferInterfaceSolutionA}}&quot;);})'>{{TransferInterfaceSolutionA}}</a></div>{{/TransferInterfaceSolutionA}}
                     </div>
                     <fieldset>
@@ -324,11 +351,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ConstraintResults) obj.ConstraintResults_string = obj.ConstraintResults.join ();
+                if (obj.ContingencyConstraintLimit) obj.ContingencyConstraintLimit_string = obj.ContingencyConstraintLimit.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ConstraintResults_string;
+                delete obj.ContingencyConstraintLimit_string;
             }
 
             edit_template ()
@@ -351,7 +382,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ConstraintResults", "ConstraintResults", "0..*", "1"],
+                        ["TransferInterfaceSolutionB", "TransferInterfaceSolution", "0..1", "0..1"],
+                        ["ContingencyConstraintLimit", "ContingencyConstraintLimit", "0..*", "1"],
+                        ["TransferInterfaceSolutionA", "TransferInterfaceSolution", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -383,7 +426,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "RMRStartUpCostCurve";
                 base.parse_attribute (/<cim:RMRStartUpCostCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.RMRStartUpCostCurve;
                 if (null == bucket)
                    context.parsed.RMRStartUpCostCurve = bucket = {};
@@ -396,7 +438,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "RMRStartUpCostCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RMRStartUpCostCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -447,7 +489,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -484,7 +535,7 @@ define
                 base.parse_element (/<cim:PnodeDistributionFactor.podLossFactor>([\s\S]*?)<\/cim:PnodeDistributionFactor.podLossFactor>/g, obj, "podLossFactor", base.to_float, sub, context);
                 base.parse_attribute (/<cim:PnodeDistributionFactor.IndividualPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IndividualPnode", sub, context);
                 base.parse_attribute (/<cim:PnodeDistributionFactor.BidDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidDistributionFactor", sub, context);
-
+                base.parse_attributes (/<cim:PnodeDistributionFactor.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregatedPnode", sub, context);
                 var bucket = context.parsed.PnodeDistributionFactor;
                 if (null == bucket)
                    context.parsed.PnodeDistributionFactor = bucket = {};
@@ -501,8 +552,9 @@ define
                 base.export_element (obj, "PnodeDistributionFactor", "offPeak", base.from_string, fields);
                 base.export_element (obj, "PnodeDistributionFactor", "onPeak", base.from_string, fields);
                 base.export_element (obj, "PnodeDistributionFactor", "podLossFactor", base.from_float, fields);
-                base.export_attribute (obj, "PnodeDistributionFactor", "IndividualPnode", fields);
-                base.export_attribute (obj, "PnodeDistributionFactor", "BidDistributionFactor", fields);
+                base.export_attribute (obj, "export_attribute", "PnodeDistributionFactor", fields);
+                base.export_attribute (obj, "export_attribute", "PnodeDistributionFactor", fields);
+                base.export_attribute (obj, "export_attributes", "PnodeDistributionFactor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -526,6 +578,7 @@ define
                     {{#podLossFactor}}<div><b>podLossFactor</b>: {{podLossFactor}}</div>{{/podLossFactor}}
                     {{#IndividualPnode}}<div><b>IndividualPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{IndividualPnode}}&quot;);})'>{{IndividualPnode}}</a></div>{{/IndividualPnode}}
                     {{#BidDistributionFactor}}<div><b>BidDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{BidDistributionFactor}}&quot;);})'>{{BidDistributionFactor}}</a></div>{{/BidDistributionFactor}}
+                    {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AggregatedPnode}}
                     </div>
                     <fieldset>
 
@@ -536,11 +589,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AggregatedPnode) obj.AggregatedPnode_string = obj.AggregatedPnode.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AggregatedPnode_string;
             }
 
             edit_template ()
@@ -563,7 +618,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["IndividualPnode", "IndividualPnode", "1", "0..*"],
+                        ["BidDistributionFactor", "BidDistributionFactor", "0..1", "0..*"],
+                        ["AggregatedPnode", "AggregatedPnode", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -594,7 +660,21 @@ define
 
                 obj = MarketOpCommon.MktOrganisation.prototype.parse.call (this, context, sub);
                 obj.cls = "RTO";
-
+                base.parse_attributes (/<cim:RTO.MktConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktConnectivityNode", sub, context);
+                base.parse_attributes (/<cim:RTO.EnergyMarkets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyMarkets", sub, context);
+                base.parse_attributes (/<cim:RTO.ResourceGroupReqs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceGroupReqs", sub, context);
+                base.parse_attributes (/<cim:RTO.SecurityConstraintsLinear\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SecurityConstraintsLinear", sub, context);
+                base.parse_attributes (/<cim:RTO.MSSAggregation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MSSAggregation", sub, context);
+                base.parse_attributes (/<cim:RTO.LocalReliabilityArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LocalReliabilityArea", sub, context);
+                base.parse_attributes (/<cim:RTO.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HostControlArea", sub, context);
+                base.parse_attributes (/<cim:RTO.FuelRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FuelRegion", sub, context);
+                base.parse_attributes (/<cim:RTO.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
+                base.parse_attributes (/<cim:RTO.SecurityConstraints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SecurityConstraints", sub, context);
+                base.parse_attributes (/<cim:RTO.Pnodes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pnodes", sub, context);
+                base.parse_attributes (/<cim:RTO.AggregateNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregateNode", sub, context);
+                base.parse_attributes (/<cim:RTO.AdjacentCASet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AdjacentCASet", sub, context);
+                base.parse_attributes (/<cim:RTO.TransmissionContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionContractRight", sub, context);
+                base.parse_attributes (/<cim:RTO.TransmissionRightChain\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionRightChain", sub, context);
                 var bucket = context.parsed.RTO;
                 if (null == bucket)
                    context.parsed.RTO = bucket = {};
@@ -607,6 +687,21 @@ define
             {
                 var fields = MarketOpCommon.MktOrganisation.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "RTO", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -624,6 +719,21 @@ define
                     `
                     + MarketOpCommon.MktOrganisation.prototype.template.call (this) +
                     `
+                    {{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktConnectivityNode}}
+                    {{#EnergyMarkets}}<div><b>EnergyMarkets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyMarkets}}
+                    {{#ResourceGroupReqs}}<div><b>ResourceGroupReqs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ResourceGroupReqs}}
+                    {{#SecurityConstraintsLinear}}<div><b>SecurityConstraintsLinear</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SecurityConstraintsLinear}}
+                    {{#MSSAggregation}}<div><b>MSSAggregation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MSSAggregation}}
+                    {{#LocalReliabilityArea}}<div><b>LocalReliabilityArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LocalReliabilityArea}}
+                    {{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/HostControlArea}}
+                    {{#FuelRegion}}<div><b>FuelRegion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FuelRegion}}
+                    {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubControlArea}}
+                    {{#SecurityConstraints}}<div><b>SecurityConstraints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SecurityConstraints}}
+                    {{#Pnodes}}<div><b>Pnodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Pnodes}}
+                    {{#AggregateNode}}<div><b>AggregateNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AggregateNode}}
+                    {{#AdjacentCASet}}<div><b>AdjacentCASet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AdjacentCASet}}
+                    {{#TransmissionContractRight}}<div><b>TransmissionContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransmissionContractRight}}
+                    {{#TransmissionRightChain}}<div><b>TransmissionRightChain</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransmissionRightChain}}
                     </div>
                     <fieldset>
 
@@ -634,11 +744,41 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MktConnectivityNode) obj.MktConnectivityNode_string = obj.MktConnectivityNode.join ();
+                if (obj.EnergyMarkets) obj.EnergyMarkets_string = obj.EnergyMarkets.join ();
+                if (obj.ResourceGroupReqs) obj.ResourceGroupReqs_string = obj.ResourceGroupReqs.join ();
+                if (obj.SecurityConstraintsLinear) obj.SecurityConstraintsLinear_string = obj.SecurityConstraintsLinear.join ();
+                if (obj.MSSAggregation) obj.MSSAggregation_string = obj.MSSAggregation.join ();
+                if (obj.LocalReliabilityArea) obj.LocalReliabilityArea_string = obj.LocalReliabilityArea.join ();
+                if (obj.HostControlArea) obj.HostControlArea_string = obj.HostControlArea.join ();
+                if (obj.FuelRegion) obj.FuelRegion_string = obj.FuelRegion.join ();
+                if (obj.SubControlArea) obj.SubControlArea_string = obj.SubControlArea.join ();
+                if (obj.SecurityConstraints) obj.SecurityConstraints_string = obj.SecurityConstraints.join ();
+                if (obj.Pnodes) obj.Pnodes_string = obj.Pnodes.join ();
+                if (obj.AggregateNode) obj.AggregateNode_string = obj.AggregateNode.join ();
+                if (obj.AdjacentCASet) obj.AdjacentCASet_string = obj.AdjacentCASet.join ();
+                if (obj.TransmissionContractRight) obj.TransmissionContractRight_string = obj.TransmissionContractRight.join ();
+                if (obj.TransmissionRightChain) obj.TransmissionRightChain_string = obj.TransmissionRightChain.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MktConnectivityNode_string;
+                delete obj.EnergyMarkets_string;
+                delete obj.ResourceGroupReqs_string;
+                delete obj.SecurityConstraintsLinear_string;
+                delete obj.MSSAggregation_string;
+                delete obj.LocalReliabilityArea_string;
+                delete obj.HostControlArea_string;
+                delete obj.FuelRegion_string;
+                delete obj.SubControlArea_string;
+                delete obj.SecurityConstraints_string;
+                delete obj.Pnodes_string;
+                delete obj.AggregateNode_string;
+                delete obj.AdjacentCASet_string;
+                delete obj.TransmissionContractRight_string;
+                delete obj.TransmissionRightChain_string;
             }
 
             edit_template ()
@@ -651,11 +791,35 @@ define
                     `
                     + MarketOpCommon.MktOrganisation.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceGroupReqs'>ResourceGroupReqs: </label><div class='col-sm-8'><input id='ResourceGroupReqs' class='form-control' type='text'{{#ResourceGroupReqs}} value='{{ResourceGroupReqs}}_string'{{/ResourceGroupReqs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktConnectivityNode", "MktConnectivityNode", "0..*", "1"],
+                        ["EnergyMarkets", "EnergyMarket", "0..*", "0..1"],
+                        ["ResourceGroupReqs", "ResourceGroupReq", "0..*", "0..*"],
+                        ["SecurityConstraintsLinear", "SecurityConstraintSum", "0..*", "0..1"],
+                        ["MSSAggregation", "MSSAggregation", "0..*", "1"],
+                        ["LocalReliabilityArea", "LocalReliabilityArea", "0..*", "1"],
+                        ["HostControlArea", "HostControlArea", "0..*", "1"],
+                        ["FuelRegion", "FuelRegion", "0..*", "1"],
+                        ["SubControlArea", "SubControlArea", "0..*", "1"],
+                        ["SecurityConstraints", "SecurityConstraints", "0..*", "0..1"],
+                        ["Pnodes", "Pnode", "0..*", "0..1"],
+                        ["AggregateNode", "AggregateNode", "0..*", "1"],
+                        ["AdjacentCASet", "AdjacentCASet", "0..*", "1"],
+                        ["TransmissionContractRight", "ContractRight", "0..*", "1"],
+                        ["TransmissionRightChain", "TransmissionRightChain", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -690,8 +854,7 @@ define
                 base.parse_element (/<cim:SchedulingCoordinatorUser.endEffectiveDate>([\s\S]*?)<\/cim:SchedulingCoordinatorUser.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:SchedulingCoordinatorUser.loginID>([\s\S]*?)<\/cim:SchedulingCoordinatorUser.loginID>/g, obj, "loginID", base.to_string, sub, context);
                 base.parse_element (/<cim:SchedulingCoordinatorUser.loginRole>([\s\S]*?)<\/cim:SchedulingCoordinatorUser.loginRole>/g, obj, "loginRole", base.to_string, sub, context);
-                base.parse_attribute (/<cim:SchedulingCoordinatorUser.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
-
+                base.parse_attribute (/<cim:SchedulingCoordinatorUser.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.SchedulingCoordinatorUser;
                 if (null == bucket)
                    context.parsed.SchedulingCoordinatorUser = bucket = {};
@@ -708,7 +871,7 @@ define
                 base.export_element (obj, "SchedulingCoordinatorUser", "endEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "SchedulingCoordinatorUser", "loginID", base.from_string, fields);
                 base.export_element (obj, "SchedulingCoordinatorUser", "loginRole", base.from_string, fields);
-                base.export_attribute (obj, "SchedulingCoordinatorUser", "", fields);
+                base.export_attribute (obj, "export_attribute", "SchedulingCoordinatorUser", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -767,7 +930,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["unknown", "SchedulingCoordinator", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -806,7 +978,6 @@ define
                 base.parse_element (/<cim:FlowgateValue.netFirmNetworkLimit>([\s\S]*?)<\/cim:FlowgateValue.netFirmNetworkLimit>/g, obj, "netFirmNetworkLimit", base.to_string, sub, context);
                 base.parse_attribute (/<cim:FlowgateValue.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
                 base.parse_attribute (/<cim:FlowgateValue.FlowgatePartner\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FlowgatePartner", sub, context);
-
                 var bucket = context.parsed.FlowgateValue;
                 if (null == bucket)
                    context.parsed.FlowgateValue = bucket = {};
@@ -825,8 +996,8 @@ define
                 base.export_element (obj, "FlowgateValue", "flowDirectionFlag", base.from_string, fields);
                 base.export_element (obj, "FlowgateValue", "mktFlow", base.from_string, fields);
                 base.export_element (obj, "FlowgateValue", "netFirmNetworkLimit", base.from_string, fields);
-                base.export_attribute (obj, "FlowgateValue", "Flowgate", fields);
-                base.export_attribute (obj, "FlowgateValue", "FlowgatePartner", fields);
+                base.export_attribute (obj, "export_attribute", "FlowgateValue", fields);
+                base.export_attribute (obj, "export_attribute", "FlowgateValue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -891,7 +1062,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Flowgate", "Flowgate", "1", "0..*"],
+                        ["FlowgatePartner", "FlowgatePartner", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -924,8 +1105,8 @@ define
                 obj.cls = "ResourceVerifiableCosts";
                 base.parse_attribute (/<cim:ResourceVerifiableCosts.ResourceOperationMaintenanceCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceOperationMaintenanceCost", sub, context);
                 base.parse_attribute (/<cim:ResourceVerifiableCosts.MktHeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktHeatRateCurve", sub, context);
+                base.parse_attributes (/<cim:ResourceVerifiableCosts.ResourceStartupCost\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceStartupCost", sub, context);
                 base.parse_attribute (/<cim:ResourceVerifiableCosts.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.ResourceVerifiableCosts;
                 if (null == bucket)
                    context.parsed.ResourceVerifiableCosts = bucket = {};
@@ -938,9 +1119,10 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "ResourceVerifiableCosts", "ResourceOperationMaintenanceCost", fields);
-                base.export_attribute (obj, "ResourceVerifiableCosts", "MktHeatRateCurve", fields);
-                base.export_attribute (obj, "ResourceVerifiableCosts", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceVerifiableCosts", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceVerifiableCosts", fields);
+                base.export_attribute (obj, "export_attributes", "ResourceVerifiableCosts", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceVerifiableCosts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -960,6 +1142,7 @@ define
                     `
                     {{#ResourceOperationMaintenanceCost}}<div><b>ResourceOperationMaintenanceCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ResourceOperationMaintenanceCost}}&quot;);})'>{{ResourceOperationMaintenanceCost}}</a></div>{{/ResourceOperationMaintenanceCost}}
                     {{#MktHeatRateCurve}}<div><b>MktHeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktHeatRateCurve}}&quot;);})'>{{MktHeatRateCurve}}</a></div>{{/MktHeatRateCurve}}
+                    {{#ResourceStartupCost}}<div><b>ResourceStartupCost</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ResourceStartupCost}}
                     {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegisteredResource}}&quot;);})'>{{RegisteredResource}}</a></div>{{/RegisteredResource}}
                     </div>
                     <fieldset>
@@ -971,11 +1154,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ResourceStartupCost) obj.ResourceStartupCost_string = obj.ResourceStartupCost.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ResourceStartupCost_string;
             }
 
             edit_template ()
@@ -995,7 +1180,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceOperationMaintenanceCost", "ResourceOperationMaintenanceCost", "1", "0..1"],
+                        ["MktHeatRateCurve", "MktHeatRateCurve", "1", "0..1"],
+                        ["ResourceStartupCost", "ResourceStartupCost", "0..*", "1"],
+                        ["RegisteredResource", "RegisteredResource", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1027,7 +1224,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "StartUpFuelCurve";
                 base.parse_attribute (/<cim:StartUpFuelCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.StartUpFuelCurve;
                 if (null == bucket)
                    context.parsed.StartUpFuelCurve = bucket = {};
@@ -1040,7 +1236,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "StartUpFuelCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "StartUpFuelCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1091,7 +1287,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1125,8 +1330,8 @@ define
                 base.parse_element (/<cim:MarketSkill.certificationPeriod>([\s\S]*?)<\/cim:MarketSkill.certificationPeriod>/g, obj, "certificationPeriod", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketSkill.effectiveDateTime>([\s\S]*?)<\/cim:MarketSkill.effectiveDateTime>/g, obj, "effectiveDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MarketSkill.level>([\s\S]*?)<\/cim:MarketSkill.level>/g, obj, "level", base.to_string, sub, context);
+                base.parse_attributes (/<cim:MarketSkill.MarketQualificationRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketQualificationRequirements", sub, context);
                 base.parse_attribute (/<cim:MarketSkill.MarketPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketPerson", sub, context);
-
                 var bucket = context.parsed.MarketSkill;
                 if (null == bucket)
                    context.parsed.MarketSkill = bucket = {};
@@ -1142,7 +1347,8 @@ define
                 base.export_element (obj, "MarketSkill", "certificationPeriod", base.from_string, fields);
                 base.export_element (obj, "MarketSkill", "effectiveDateTime", base.from_datetime, fields);
                 base.export_element (obj, "MarketSkill", "level", base.from_string, fields);
-                base.export_attribute (obj, "MarketSkill", "MarketPerson", fields);
+                base.export_attribute (obj, "export_attributes", "MarketSkill", fields);
+                base.export_attribute (obj, "export_attribute", "MarketSkill", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1163,6 +1369,7 @@ define
                     {{#certificationPeriod}}<div><b>certificationPeriod</b>: {{certificationPeriod}}</div>{{/certificationPeriod}}
                     {{#effectiveDateTime}}<div><b>effectiveDateTime</b>: {{effectiveDateTime}}</div>{{/effectiveDateTime}}
                     {{#level}}<div><b>level</b>: {{level}}</div>{{/level}}
+                    {{#MarketQualificationRequirements}}<div><b>MarketQualificationRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketQualificationRequirements}}
                     {{#MarketPerson}}<div><b>MarketPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MarketPerson}}&quot;);})'>{{MarketPerson}}</a></div>{{/MarketPerson}}
                     </div>
                     <fieldset>
@@ -1174,11 +1381,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MarketQualificationRequirements) obj.MarketQualificationRequirements_string = obj.MarketQualificationRequirements.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketQualificationRequirements_string;
             }
 
             edit_template ()
@@ -1194,12 +1403,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='level'>level: </label><div class='col-sm-8'><input id='level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketQualificationRequirements'>MarketQualificationRequirements: </label><div class='col-sm-8'><input id='MarketQualificationRequirements' class='form-control' type='text'{{#MarketQualificationRequirements}} value='{{MarketQualificationRequirements}}_string'{{/MarketQualificationRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketPerson'>MarketPerson: </label><div class='col-sm-8'><input id='MarketPerson' class='form-control' type='text'{{#MarketPerson}} value='{{MarketPerson}}'{{/MarketPerson}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketQualificationRequirements", "MarketQualificationRequirement", "0..*", "0..*"],
+                        ["MarketPerson", "MarketPerson", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1230,8 +1450,8 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MeteredSubSystem";
+                base.parse_attributes (/<cim:MeteredSubSystem.MSSZone\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MSSZone", sub, context);
                 base.parse_attribute (/<cim:MeteredSubSystem.MSSAggregation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MSSAggregation", sub, context);
-
                 var bucket = context.parsed.MeteredSubSystem;
                 if (null == bucket)
                    context.parsed.MeteredSubSystem = bucket = {};
@@ -1244,7 +1464,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "MeteredSubSystem", "MSSAggregation", fields);
+                base.export_attribute (obj, "export_attributes", "MeteredSubSystem", fields);
+                base.export_attribute (obj, "export_attribute", "MeteredSubSystem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1262,6 +1483,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#MSSZone}}<div><b>MSSZone</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MSSZone}}
                     {{#MSSAggregation}}<div><b>MSSAggregation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MSSAggregation}}&quot;);})'>{{MSSAggregation}}</a></div>{{/MSSAggregation}}
                     </div>
                     <fieldset>
@@ -1273,11 +1495,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MSSZone) obj.MSSZone_string = obj.MSSZone.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MSSZone_string;
             }
 
             edit_template ()
@@ -1295,7 +1519,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MSSZone", "MSSZone", "0..*", "0..1"],
+                        ["MSSAggregation", "MSSAggregation", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1326,7 +1560,7 @@ define
 
                 obj = Production.ThermalGeneratingUnit.prototype.parse.call (this, context, sub);
                 obj.cls = "MktThermalGeneratingUnit";
-
+                base.parse_attributes (/<cim:MktThermalGeneratingUnit.CombinedCycleConfigurationMember\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombinedCycleConfigurationMember", sub, context);
                 var bucket = context.parsed.MktThermalGeneratingUnit;
                 if (null == bucket)
                    context.parsed.MktThermalGeneratingUnit = bucket = {};
@@ -1339,6 +1573,7 @@ define
             {
                 var fields = Production.ThermalGeneratingUnit.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "MktThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1356,6 +1591,7 @@ define
                     `
                     + Production.ThermalGeneratingUnit.prototype.template.call (this) +
                     `
+                    {{#CombinedCycleConfigurationMember}}<div><b>CombinedCycleConfigurationMember</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CombinedCycleConfigurationMember}}
                     </div>
                     <fieldset>
 
@@ -1366,11 +1602,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CombinedCycleConfigurationMember) obj.CombinedCycleConfigurationMember_string = obj.CombinedCycleConfigurationMember.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CombinedCycleConfigurationMember_string;
             }
 
             edit_template ()
@@ -1387,7 +1625,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CombinedCycleConfigurationMember", "CombinedCycleConfigurationMember", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1423,9 +1670,9 @@ define
                 base.parse_element (/<cim:FuelRegion.lastModified>([\s\S]*?)<\/cim:FuelRegion.lastModified>/g, obj, "lastModified", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FuelRegion.startEffectiveDate>([\s\S]*?)<\/cim:FuelRegion.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:FuelRegion.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
+                base.parse_attributes (/<cim:FuelRegion.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
                 base.parse_attribute (/<cim:FuelRegion.GasPrice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GasPrice", sub, context);
                 base.parse_attribute (/<cim:FuelRegion.OilPrice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OilPrice", sub, context);
-
                 var bucket = context.parsed.FuelRegion;
                 if (null == bucket)
                    context.parsed.FuelRegion = bucket = {};
@@ -1442,9 +1689,10 @@ define
                 base.export_element (obj, "FuelRegion", "fuelRegionType", base.from_string, fields);
                 base.export_element (obj, "FuelRegion", "lastModified", base.from_datetime, fields);
                 base.export_element (obj, "FuelRegion", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "FuelRegion", "RTO", fields);
-                base.export_attribute (obj, "FuelRegion", "GasPrice", fields);
-                base.export_attribute (obj, "FuelRegion", "OilPrice", fields);
+                base.export_attribute (obj, "export_attribute", "FuelRegion", fields);
+                base.export_attribute (obj, "export_attributes", "FuelRegion", fields);
+                base.export_attribute (obj, "export_attribute", "FuelRegion", fields);
+                base.export_attribute (obj, "export_attribute", "FuelRegion", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1467,6 +1715,7 @@ define
                     {{#lastModified}}<div><b>lastModified</b>: {{lastModified}}</div>{{/lastModified}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredGenerator}}
                     {{#GasPrice}}<div><b>GasPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GasPrice}}&quot;);})'>{{GasPrice}}</a></div>{{/GasPrice}}
                     {{#OilPrice}}<div><b>OilPrice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OilPrice}}&quot;);})'>{{OilPrice}}</a></div>{{/OilPrice}}
                     </div>
@@ -1479,11 +1728,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredGenerator) obj.RegisteredGenerator_string = obj.RegisteredGenerator.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredGenerator_string;
             }
 
             edit_template ()
@@ -1507,7 +1758,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RTO", "RTO", "1", "0..*"],
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..*", "0..1"],
+                        ["GasPrice", "GasPrice", "1", "1"],
+                        ["OilPrice", "OilPrice", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1539,7 +1802,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "RMRHeatRateCurve";
                 base.parse_attribute (/<cim:RMRHeatRateCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.RMRHeatRateCurve;
                 if (null == bucket)
                    context.parsed.RMRHeatRateCurve = bucket = {};
@@ -1552,7 +1814,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "RMRHeatRateCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RMRHeatRateCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1603,7 +1865,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1642,8 +1913,8 @@ define
                 base.parse_element (/<cim:MSSAggregation.loadFollowing>([\s\S]*?)<\/cim:MSSAggregation.loadFollowing>/g, obj, "loadFollowing", base.to_string, sub, context);
                 base.parse_element (/<cim:MSSAggregation.rucProcurement>([\s\S]*?)<\/cim:MSSAggregation.rucProcurement>/g, obj, "rucProcurement", base.to_string, sub, context);
                 base.parse_element (/<cim:MSSAggregation.startEffectiveDate>([\s\S]*?)<\/cim:MSSAggregation.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:MSSAggregation.MeteredSubSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeteredSubSystem", sub, context);
                 base.parse_attribute (/<cim:MSSAggregation.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
-
                 var bucket = context.parsed.MSSAggregation;
                 if (null == bucket)
                    context.parsed.MSSAggregation = bucket = {};
@@ -1664,7 +1935,8 @@ define
                 base.export_element (obj, "MSSAggregation", "loadFollowing", base.from_string, fields);
                 base.export_element (obj, "MSSAggregation", "rucProcurement", base.from_string, fields);
                 base.export_element (obj, "MSSAggregation", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "MSSAggregation", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "MSSAggregation", fields);
+                base.export_attribute (obj, "export_attribute", "MSSAggregation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1690,6 +1962,7 @@ define
                     {{#loadFollowing}}<div><b>loadFollowing</b>: {{loadFollowing}}</div>{{/loadFollowing}}
                     {{#rucProcurement}}<div><b>rucProcurement</b>: {{rucProcurement}}</div>{{/rucProcurement}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#MeteredSubSystem}}<div><b>MeteredSubSystem</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeteredSubSystem}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
                     </div>
                     <fieldset>
@@ -1701,11 +1974,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MeteredSubSystem) obj.MeteredSubSystem_string = obj.MeteredSubSystem.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MeteredSubSystem_string;
             }
 
             edit_template ()
@@ -1731,7 +2006,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MeteredSubSystem", "MeteredSubSystem", "1..*", "0..1"],
+                        ["RTO", "RTO", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1766,7 +2051,8 @@ define
                 base.parse_element (/<cim:MPMTestThreshold.percent>([\s\S]*?)<\/cim:MPMTestThreshold.percent>/g, obj, "percent", base.to_string, sub, context);
                 base.parse_element (/<cim:MPMTestThreshold.marketType>([\s\S]*?)<\/cim:MPMTestThreshold.marketType>/g, obj, "marketType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:MPMTestThreshold.MPMTestCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestCategory", sub, context);
-
+                base.parse_attributes (/<cim:MPMTestThreshold.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregatedPnode", sub, context);
+                base.parse_attributes (/<cim:MPMTestThreshold.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 var bucket = context.parsed.MPMTestThreshold;
                 if (null == bucket)
                    context.parsed.MPMTestThreshold = bucket = {};
@@ -1782,7 +2068,9 @@ define
                 base.export_element (obj, "MPMTestThreshold", "price", base.from_string, fields);
                 base.export_element (obj, "MPMTestThreshold", "percent", base.from_string, fields);
                 base.export_element (obj, "MPMTestThreshold", "marketType", base.from_string, fields);
-                base.export_attribute (obj, "MPMTestThreshold", "MPMTestCategory", fields);
+                base.export_attribute (obj, "export_attribute", "MPMTestThreshold", fields);
+                base.export_attribute (obj, "export_attributes", "MPMTestThreshold", fields);
+                base.export_attribute (obj, "export_attributes", "MPMTestThreshold", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1804,6 +2092,8 @@ define
                     {{#percent}}<div><b>percent</b>: {{percent}}</div>{{/percent}}
                     {{#marketType}}<div><b>marketType</b>: {{marketType}}</div>{{/marketType}}
                     {{#MPMTestCategory}}<div><b>MPMTestCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MPMTestCategory}}&quot;);})'>{{MPMTestCategory}}</a></div>{{/MPMTestCategory}}
+                    {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AggregatedPnode}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
                     <fieldset>
 
@@ -1814,11 +2104,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AggregatedPnode) obj.AggregatedPnode_string = obj.AggregatedPnode.join ();
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AggregatedPnode_string;
+                delete obj.RegisteredResource_string;
             }
 
             edit_template ()
@@ -1835,11 +2129,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='percent'>percent: </label><div class='col-sm-8'><input id='percent' class='form-control' type='text'{{#percent}} value='{{percent}}'{{/percent}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MPMTestCategory'>MPMTestCategory: </label><div class='col-sm-8'><input id='MPMTestCategory' class='form-control' type='text'{{#MPMTestCategory}} value='{{MPMTestCategory}}'{{/MPMTestCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}_string'{{/AggregatedPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MPMTestCategory", "MPMTestCategory", "1", "0..*"],
+                        ["AggregatedPnode", "AggregatedPnode", "0..*", "1..*"],
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1873,7 +2180,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "FormerReference";
                 base.parse_attribute (/<cim:FormerReference.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.FormerReference;
                 if (null == bucket)
                    context.parsed.FormerReference = bucket = {};
@@ -1886,7 +2192,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "FormerReference", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "FormerReference", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1937,7 +2243,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1982,7 +2297,8 @@ define
                 base.parse_element (/<cim:MarketPerson.status>([\s\S]*?)<\/cim:MarketPerson.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.suffix>([\s\S]*?)<\/cim:MarketPerson.suffix>/g, obj, "suffix", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketPerson.userID>([\s\S]*?)<\/cim:MarketPerson.userID>/g, obj, "userID", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:MarketPerson.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrganisation", sub, context);
+                base.parse_attributes (/<cim:MarketPerson.MarketSkills\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketSkills", sub, context);
                 var bucket = context.parsed.MarketPerson;
                 if (null == bucket)
                    context.parsed.MarketPerson = bucket = {};
@@ -2009,6 +2325,8 @@ define
                 base.export_element (obj, "MarketPerson", "status", base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "suffix", base.from_string, fields);
                 base.export_element (obj, "MarketPerson", "userID", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MarketPerson", fields);
+                base.export_attribute (obj, "export_attributes", "MarketPerson", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2040,6 +2358,8 @@ define
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#suffix}}<div><b>suffix</b>: {{suffix}}</div>{{/suffix}}
                     {{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
+                    {{#MktOrganisation}}<div><b>MktOrganisation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktOrganisation}}
+                    {{#MarketSkills}}<div><b>MarketSkills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketSkills}}
                     </div>
                     <fieldset>
 
@@ -2050,11 +2370,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MktOrganisation) obj.MktOrganisation_string = obj.MktOrganisation.join ();
+                if (obj.MarketSkills) obj.MarketSkills_string = obj.MarketSkills.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MktOrganisation_string;
+                delete obj.MarketSkills_string;
             }
 
             edit_template ()
@@ -2081,11 +2405,22 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='suffix'>suffix: </label><div class='col-sm-8'><input id='suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='userID'>userID: </label><div class='col-sm-8'><input id='userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktOrganisation", "MktOrganisation", "0..*", "0..*"],
+                        ["MarketSkills", "MarketSkill", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2120,9 +2455,9 @@ define
                 obj.cls = "TransmissionRightChain";
                 base.parse_element (/<cim:TransmissionRightChain.endEffectiveDate>([\s\S]*?)<\/cim:TransmissionRightChain.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:TransmissionRightChain.startEffectiveDate>([\s\S]*?)<\/cim:TransmissionRightChain.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:TransmissionRightChain.Ind_ContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Ind_ContractRight", sub, context);
                 base.parse_attribute (/<cim:TransmissionRightChain.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
                 base.parse_attribute (/<cim:TransmissionRightChain.Chain_ContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Chain_ContractRight", sub, context);
-
                 var bucket = context.parsed.TransmissionRightChain;
                 if (null == bucket)
                    context.parsed.TransmissionRightChain = bucket = {};
@@ -2137,8 +2472,9 @@ define
 
                 base.export_element (obj, "TransmissionRightChain", "endEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "TransmissionRightChain", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "TransmissionRightChain", "RTO", fields);
-                base.export_attribute (obj, "TransmissionRightChain", "Chain_ContractRight", fields);
+                base.export_attribute (obj, "export_attributes", "TransmissionRightChain", fields);
+                base.export_attribute (obj, "export_attribute", "TransmissionRightChain", fields);
+                base.export_attribute (obj, "export_attribute", "TransmissionRightChain", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2158,6 +2494,7 @@ define
                     `
                     {{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#Ind_ContractRight}}<div><b>Ind_ContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Ind_ContractRight}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
                     {{#Chain_ContractRight}}<div><b>Chain_ContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Chain_ContractRight}}&quot;);})'>{{Chain_ContractRight}}</a></div>{{/Chain_ContractRight}}
                     </div>
@@ -2170,11 +2507,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Ind_ContractRight) obj.Ind_ContractRight_string = obj.Ind_ContractRight.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Ind_ContractRight_string;
             }
 
             edit_template ()
@@ -2195,7 +2534,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Ind_ContractRight", "ContractRight", "1..*", "0..1"],
+                        ["RTO", "RTO", "1", "0..*"],
+                        ["Chain_ContractRight", "ContractRight", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2230,8 +2580,14 @@ define
                 obj.cls = "SchedulingCoordinator";
                 base.parse_element (/<cim:SchedulingCoordinator.scid>([\s\S]*?)<\/cim:SchedulingCoordinator.scid>/g, obj, "scid", base.to_string, sub, context);
                 base.parse_attribute (/<cim:SchedulingCoordinator.LoadRatio\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadRatio", sub, context);
+                base.parse_attributes (/<cim:SchedulingCoordinator.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
+                base.parse_attributes (/<cim:SchedulingCoordinator.TransmissionContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionContractRight", sub, context);
+                base.parse_attributes (/<cim:SchedulingCoordinator.SubmitFromSCTrade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubmitFromSCTrade", sub, context);
+                base.parse_attributes (/<cim:SchedulingCoordinator.ToSCTrade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ToSCTrade", sub, context);
+                base.parse_attributes (/<cim:SchedulingCoordinator.SubmitToSCTrade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubmitToSCTrade", sub, context);
                 base.parse_attribute (/<cim:SchedulingCoordinator.MktOrgansation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrgansation", sub, context);
-
+                base.parse_attributes (/<cim:SchedulingCoordinator.FromSCTrade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FromSCTrade", sub, context);
+                base.parse_attributes (/<cim:SchedulingCoordinator.Bid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Bid", sub, context);
                 var bucket = context.parsed.SchedulingCoordinator;
                 if (null == bucket)
                    context.parsed.SchedulingCoordinator = bucket = {};
@@ -2245,8 +2601,15 @@ define
                 var fields = MarketOpCommon.MktOrganisation.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SchedulingCoordinator", "scid", base.from_string, fields);
-                base.export_attribute (obj, "SchedulingCoordinator", "LoadRatio", fields);
-                base.export_attribute (obj, "SchedulingCoordinator", "MktOrgansation", fields);
+                base.export_attribute (obj, "export_attribute", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attribute", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingCoordinator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2266,7 +2629,14 @@ define
                     `
                     {{#scid}}<div><b>scid</b>: {{scid}}</div>{{/scid}}
                     {{#LoadRatio}}<div><b>LoadRatio</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadRatio}}&quot;);})'>{{LoadRatio}}</a></div>{{/LoadRatio}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
+                    {{#TransmissionContractRight}}<div><b>TransmissionContractRight</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransmissionContractRight}}
+                    {{#SubmitFromSCTrade}}<div><b>SubmitFromSCTrade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubmitFromSCTrade}}
+                    {{#ToSCTrade}}<div><b>ToSCTrade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ToSCTrade}}
+                    {{#SubmitToSCTrade}}<div><b>SubmitToSCTrade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubmitToSCTrade}}
                     {{#MktOrgansation}}<div><b>MktOrgansation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktOrgansation}}&quot;);})'>{{MktOrgansation}}</a></div>{{/MktOrgansation}}
+                    {{#FromSCTrade}}<div><b>FromSCTrade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FromSCTrade}}
+                    {{#Bid}}<div><b>Bid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Bid}}
                     </div>
                     <fieldset>
 
@@ -2277,11 +2647,25 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
+                if (obj.TransmissionContractRight) obj.TransmissionContractRight_string = obj.TransmissionContractRight.join ();
+                if (obj.SubmitFromSCTrade) obj.SubmitFromSCTrade_string = obj.SubmitFromSCTrade.join ();
+                if (obj.ToSCTrade) obj.ToSCTrade_string = obj.ToSCTrade.join ();
+                if (obj.SubmitToSCTrade) obj.SubmitToSCTrade_string = obj.SubmitToSCTrade.join ();
+                if (obj.FromSCTrade) obj.FromSCTrade_string = obj.FromSCTrade.join ();
+                if (obj.Bid) obj.Bid_string = obj.Bid.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.unknown_string;
+                delete obj.TransmissionContractRight_string;
+                delete obj.SubmitFromSCTrade_string;
+                delete obj.ToSCTrade_string;
+                delete obj.SubmitToSCTrade_string;
+                delete obj.FromSCTrade_string;
+                delete obj.Bid_string;
             }
 
             edit_template ()
@@ -2301,7 +2685,24 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadRatio", "LoadRatio", "1", "0..1"],
+                        ["unknown", "SchedulingCoordinatorUser", "0..*", "1"],
+                        ["TransmissionContractRight", "ContractRight", "0..*", "1"],
+                        ["SubmitFromSCTrade", "Trade", "0..*", "0..1"],
+                        ["ToSCTrade", "Trade", "0..*", "1"],
+                        ["SubmitToSCTrade", "Trade", "0..*", "0..1"],
+                        ["MktOrgansation", "MktOrganisation", "1", "0..*"],
+                        ["FromSCTrade", "Trade", "0..*", "1"],
+                        ["Bid", "Bid", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2401,13 +2802,18 @@ define
                 base.parse_attribute (/<cim:RegisteredGenerator.StartUpFuelCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartUpFuelCurve", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.EnergyPriceIndex\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyPriceIndex", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.RMRStartUpFuelCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRStartUpFuelCurve", sub, context);
+                base.parse_attributes (/<cim:RegisteredGenerator.UnitInitialConditions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UnitInitialConditions", sub, context);
+                base.parse_attributes (/<cim:RegisteredGenerator.Trade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.MktHeatRateCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktHeatRateCurve", sub, context);
+                base.parse_attributes (/<cim:RegisteredGenerator.StartUpCostCurves\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartUpCostCurves", sub, context);
+                base.parse_attributes (/<cim:RegisteredGenerator.AuxillaryObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryObject", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.LocalReliabilityArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LocalReliabilityArea", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.RMRStartUpEnergyCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RMRStartUpEnergyCurve", sub, context);
+                base.parse_attributes (/<cim:RegisteredGenerator.MktGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktGeneratingUnit", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.FuelRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FuelRegion", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.StartUpEnergyCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StartUpEnergyCurve", sub, context);
                 base.parse_attribute (/<cim:RegisteredGenerator.RegulatingLimit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegulatingLimit", sub, context);
-
+                base.parse_attributes (/<cim:RegisteredGenerator.GeneratingBids\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingBids", sub, context);
                 var bucket = context.parsed.RegisteredGenerator;
                 if (null == bucket)
                    context.parsed.RegisteredGenerator = bucket = {};
@@ -2481,20 +2887,26 @@ define
                 base.export_element (obj, "RegisteredGenerator", "syncCondCapable", base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "unitType", base.from_string, fields);
                 base.export_element (obj, "RegisteredGenerator", "useLimitFlag", base.from_string, fields);
-                base.export_attribute (obj, "RegisteredGenerator", "RMRHeatRateCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "StartUpTimeCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "FuelCostCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "RMRStartUpCostCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "RMRStartUpTimeCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "StartUpFuelCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "EnergyPriceIndex", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "RMRStartUpFuelCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "MktHeatRateCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "LocalReliabilityArea", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "RMRStartUpEnergyCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "FuelRegion", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "StartUpEnergyCurve", fields);
-                base.export_attribute (obj, "RegisteredGenerator", "RegulatingLimit", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredGenerator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2581,12 +2993,18 @@ define
                     {{#StartUpFuelCurve}}<div><b>StartUpFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartUpFuelCurve}}&quot;);})'>{{StartUpFuelCurve}}</a></div>{{/StartUpFuelCurve}}
                     {{#EnergyPriceIndex}}<div><b>EnergyPriceIndex</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyPriceIndex}}&quot;);})'>{{EnergyPriceIndex}}</a></div>{{/EnergyPriceIndex}}
                     {{#RMRStartUpFuelCurve}}<div><b>RMRStartUpFuelCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RMRStartUpFuelCurve}}&quot;);})'>{{RMRStartUpFuelCurve}}</a></div>{{/RMRStartUpFuelCurve}}
+                    {{#UnitInitialConditions}}<div><b>UnitInitialConditions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UnitInitialConditions}}
+                    {{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Trade}}
                     {{#MktHeatRateCurve}}<div><b>MktHeatRateCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktHeatRateCurve}}&quot;);})'>{{MktHeatRateCurve}}</a></div>{{/MktHeatRateCurve}}
-                    {{#RMRStartUpEnergyCurve}}<div><b>RMRStartUpEnergyCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RMRStartUpEnergyCurve}}&quot;);})'>{{RMRStartUpEnergyCurve}}</a></div>{{/RMRStartUpEnergyCurve}}
+                    {{#StartUpCostCurves}}<div><b>StartUpCostCurves</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/StartUpCostCurves}}
+                    {{#AuxillaryObject}}<div><b>AuxillaryObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AuxillaryObject}}
                     {{#LocalReliabilityArea}}<div><b>LocalReliabilityArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LocalReliabilityArea}}&quot;);})'>{{LocalReliabilityArea}}</a></div>{{/LocalReliabilityArea}}
+                    {{#RMRStartUpEnergyCurve}}<div><b>RMRStartUpEnergyCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RMRStartUpEnergyCurve}}&quot;);})'>{{RMRStartUpEnergyCurve}}</a></div>{{/RMRStartUpEnergyCurve}}
+                    {{#MktGeneratingUnit}}<div><b>MktGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktGeneratingUnit}}
                     {{#FuelRegion}}<div><b>FuelRegion</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FuelRegion}}&quot;);})'>{{FuelRegion}}</a></div>{{/FuelRegion}}
                     {{#StartUpEnergyCurve}}<div><b>StartUpEnergyCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StartUpEnergyCurve}}&quot;);})'>{{StartUpEnergyCurve}}</a></div>{{/StartUpEnergyCurve}}
                     {{#RegulatingLimit}}<div><b>RegulatingLimit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RegulatingLimit}}&quot;);})'>{{RegulatingLimit}}</a></div>{{/RegulatingLimit}}
+                    {{#GeneratingBids}}<div><b>GeneratingBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GeneratingBids}}
                     </div>
                     <fieldset>
 
@@ -2597,11 +3015,23 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.UnitInitialConditions) obj.UnitInitialConditions_string = obj.UnitInitialConditions.join ();
+                if (obj.Trade) obj.Trade_string = obj.Trade.join ();
+                if (obj.StartUpCostCurves) obj.StartUpCostCurves_string = obj.StartUpCostCurves.join ();
+                if (obj.AuxillaryObject) obj.AuxillaryObject_string = obj.AuxillaryObject.join ();
+                if (obj.MktGeneratingUnit) obj.MktGeneratingUnit_string = obj.MktGeneratingUnit.join ();
+                if (obj.GeneratingBids) obj.GeneratingBids_string = obj.GeneratingBids.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UnitInitialConditions_string;
+                delete obj.Trade_string;
+                delete obj.StartUpCostCurves_string;
+                delete obj.AuxillaryObject_string;
+                delete obj.MktGeneratingUnit_string;
+                delete obj.GeneratingBids_string;
             }
 
             edit_template ()
@@ -2684,8 +3114,9 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyPriceIndex'>EnergyPriceIndex: </label><div class='col-sm-8'><input id='EnergyPriceIndex' class='form-control' type='text'{{#EnergyPriceIndex}} value='{{EnergyPriceIndex}}'{{/EnergyPriceIndex}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRStartUpFuelCurve'>RMRStartUpFuelCurve: </label><div class='col-sm-8'><input id='RMRStartUpFuelCurve' class='form-control' type='text'{{#RMRStartUpFuelCurve}} value='{{RMRStartUpFuelCurve}}'{{/RMRStartUpFuelCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktHeatRateCurve'>MktHeatRateCurve: </label><div class='col-sm-8'><input id='MktHeatRateCurve' class='form-control' type='text'{{#MktHeatRateCurve}} value='{{MktHeatRateCurve}}'{{/MktHeatRateCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRStartUpEnergyCurve'>RMRStartUpEnergyCurve: </label><div class='col-sm-8'><input id='RMRStartUpEnergyCurve' class='form-control' type='text'{{#RMRStartUpEnergyCurve}} value='{{RMRStartUpEnergyCurve}}'{{/RMRStartUpEnergyCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartUpCostCurves'>StartUpCostCurves: </label><div class='col-sm-8'><input id='StartUpCostCurves' class='form-control' type='text'{{#StartUpCostCurves}} value='{{StartUpCostCurves}}_string'{{/StartUpCostCurves}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='LocalReliabilityArea'>LocalReliabilityArea: </label><div class='col-sm-8'><input id='LocalReliabilityArea' class='form-control' type='text'{{#LocalReliabilityArea}} value='{{LocalReliabilityArea}}'{{/LocalReliabilityArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRStartUpEnergyCurve'>RMRStartUpEnergyCurve: </label><div class='col-sm-8'><input id='RMRStartUpEnergyCurve' class='form-control' type='text'{{#RMRStartUpEnergyCurve}} value='{{RMRStartUpEnergyCurve}}'{{/RMRStartUpEnergyCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartUpEnergyCurve'>StartUpEnergyCurve: </label><div class='col-sm-8'><input id='StartUpEnergyCurve' class='form-control' type='text'{{#StartUpEnergyCurve}} value='{{StartUpEnergyCurve}}'{{/StartUpEnergyCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegulatingLimit'>RegulatingLimit: </label><div class='col-sm-8'><input id='RegulatingLimit' class='form-control' type='text'{{#RegulatingLimit}} value='{{RegulatingLimit}}'{{/RegulatingLimit}}></div></div>
@@ -2693,7 +3124,35 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RMRHeatRateCurve", "RMRHeatRateCurve", "0..1", "0..1"],
+                        ["StartUpTimeCurve", "StartUpTimeCurve", "0..1", "0..1"],
+                        ["FuelCostCurve", "FuelCostCurve", "0..1", "0..1"],
+                        ["RMRStartUpCostCurve", "RMRStartUpCostCurve", "0..1", "0..1"],
+                        ["RMRStartUpTimeCurve", "RMRStartUpTimeCurve", "0..1", "0..1"],
+                        ["StartUpFuelCurve", "StartUpFuelCurve", "0..1", "0..1"],
+                        ["EnergyPriceIndex", "EnergyPriceIndex", "1", "1"],
+                        ["RMRStartUpFuelCurve", "RMRStartUpFuelCurve", "0..1", "0..1"],
+                        ["UnitInitialConditions", "UnitInitialConditions", "0..*", "0..1"],
+                        ["Trade", "Trade", "0..*", "0..1"],
+                        ["MktHeatRateCurve", "MktHeatRateCurve", "0..1", "0..1"],
+                        ["StartUpCostCurves", "StartUpCostCurve", "0..*", "0..*"],
+                        ["AuxillaryObject", "AuxiliaryObject", "0..*", "0..1"],
+                        ["LocalReliabilityArea", "LocalReliabilityArea", "0..1", "0..*"],
+                        ["RMRStartUpEnergyCurve", "RMRStartUpEnergyCurve", "0..1", "0..1"],
+                        ["MktGeneratingUnit", "MktGeneratingUnit", "0..*", "0..1"],
+                        ["FuelRegion", "FuelRegion", "0..1", "0..*"],
+                        ["StartUpEnergyCurve", "StartUpEnergyCurve", "0..1", "0..1"],
+                        ["RegulatingLimit", "RegulatingLimit", "0..1", "0..1"],
+                        ["GeneratingBids", "GeneratingBid", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2730,12 +3189,26 @@ define
                 base.parse_element (/<cim:Flowgate.importMWRating>([\s\S]*?)<\/cim:Flowgate.importMWRating>/g, obj, "importMWRating", base.to_string, sub, context);
                 base.parse_element (/<cim:Flowgate.startEffectiveDate>([\s\S]*?)<\/cim:Flowgate.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:Flowgate.To_SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "To_SubControlArea", sub, context);
+                base.parse_attributes (/<cim:Flowgate.FlowgateValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FlowgateValue", sub, context);
                 base.parse_attribute (/<cim:Flowgate.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HostControlArea", sub, context);
+                base.parse_attributes (/<cim:Flowgate.TransmissionCapacity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionCapacity", sub, context);
+                base.parse_attributes (/<cim:Flowgate.MktTerminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktTerminal", sub, context);
                 base.parse_attribute (/<cim:Flowgate.SecurityConstraints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SecurityConstraints", sub, context);
+                base.parse_attributes (/<cim:Flowgate.ContractDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContractDistributionFactor", sub, context);
+                base.parse_attributes (/<cim:Flowgate.MktPowerTransformer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktPowerTransformer", sub, context);
                 base.parse_attribute (/<cim:Flowgate.CRR\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRR", sub, context);
+                base.parse_attributes (/<cim:Flowgate.InterTieResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieResults", sub, context);
+                base.parse_attributes (/<cim:Flowgate.ConstraintResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConstraintResults", sub, context);
+                base.parse_attributes (/<cim:Flowgate.ViolationLimits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ViolationLimits", sub, context);
+                base.parse_attributes (/<cim:Flowgate.FlowgateRelief\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FlowgateRelief", sub, context);
+                base.parse_attributes (/<cim:Flowgate.GeneratingUnitDynamicValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnitDynamicValues", sub, context);
+                base.parse_attributes (/<cim:Flowgate.MktLine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktLine", sub, context);
+                base.parse_attributes (/<cim:Flowgate.TranmissionRightEntitlement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TranmissionRightEntitlement", sub, context);
+                base.parse_attributes (/<cim:Flowgate.RegisteredInterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredInterTie", sub, context);
+                base.parse_attributes (/<cim:Flowgate.FTRs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FTRs", sub, context);
                 base.parse_attribute (/<cim:Flowgate.From_SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "From_SubControlArea", sub, context);
                 base.parse_attribute (/<cim:Flowgate.GenericConstraints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenericConstraints", sub, context);
-
+                base.parse_attributes (/<cim:Flowgate.InterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTie", sub, context);
                 var bucket = context.parsed.Flowgate;
                 if (null == bucket)
                    context.parsed.Flowgate = bucket = {};
@@ -2753,12 +3226,27 @@ define
                 base.export_element (obj, "Flowgate", "exportMWRating", base.from_string, fields);
                 base.export_element (obj, "Flowgate", "importMWRating", base.from_string, fields);
                 base.export_element (obj, "Flowgate", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "Flowgate", "To_SubControlArea", fields);
-                base.export_attribute (obj, "Flowgate", "HostControlArea", fields);
-                base.export_attribute (obj, "Flowgate", "SecurityConstraints", fields);
-                base.export_attribute (obj, "Flowgate", "CRR", fields);
-                base.export_attribute (obj, "Flowgate", "From_SubControlArea", fields);
-                base.export_attribute (obj, "Flowgate", "GenericConstraints", fields);
+                base.export_attribute (obj, "export_attribute", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "Flowgate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2782,11 +3270,26 @@ define
                     {{#importMWRating}}<div><b>importMWRating</b>: {{importMWRating}}</div>{{/importMWRating}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
                     {{#To_SubControlArea}}<div><b>To_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{To_SubControlArea}}&quot;);})'>{{To_SubControlArea}}</a></div>{{/To_SubControlArea}}
+                    {{#FlowgateValue}}<div><b>FlowgateValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FlowgateValue}}
                     {{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
+                    {{#TransmissionCapacity}}<div><b>TransmissionCapacity</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransmissionCapacity}}
+                    {{#MktTerminal}}<div><b>MktTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktTerminal}}
                     {{#SecurityConstraints}}<div><b>SecurityConstraints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SecurityConstraints}}&quot;);})'>{{SecurityConstraints}}</a></div>{{/SecurityConstraints}}
-                    {{#GenericConstraints}}<div><b>GenericConstraints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenericConstraints}}&quot;);})'>{{GenericConstraints}}</a></div>{{/GenericConstraints}}
-                    {{#From_SubControlArea}}<div><b>From_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{From_SubControlArea}}&quot;);})'>{{From_SubControlArea}}</a></div>{{/From_SubControlArea}}
+                    {{#ContractDistributionFactor}}<div><b>ContractDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ContractDistributionFactor}}
+                    {{#MktPowerTransformer}}<div><b>MktPowerTransformer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktPowerTransformer}}
                     {{#CRR}}<div><b>CRR</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRR}}&quot;);})'>{{CRR}}</a></div>{{/CRR}}
+                    {{#InterTieResults}}<div><b>InterTieResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InterTieResults}}
+                    {{#ConstraintResults}}<div><b>ConstraintResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConstraintResults}}
+                    {{#ViolationLimits}}<div><b>ViolationLimits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ViolationLimits}}
+                    {{#FlowgateRelief}}<div><b>FlowgateRelief</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FlowgateRelief}}
+                    {{#GeneratingUnitDynamicValues}}<div><b>GeneratingUnitDynamicValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GeneratingUnitDynamicValues}}
+                    {{#MktLine}}<div><b>MktLine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktLine}}
+                    {{#TranmissionRightEntitlement}}<div><b>TranmissionRightEntitlement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TranmissionRightEntitlement}}
+                    {{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredInterTie}}
+                    {{#FTRs}}<div><b>FTRs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FTRs}}
+                    {{#From_SubControlArea}}<div><b>From_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{From_SubControlArea}}&quot;);})'>{{From_SubControlArea}}</a></div>{{/From_SubControlArea}}
+                    {{#GenericConstraints}}<div><b>GenericConstraints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenericConstraints}}&quot;);})'>{{GenericConstraints}}</a></div>{{/GenericConstraints}}
+                    {{#InterTie}}<div><b>InterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InterTie}}
                     </div>
                     <fieldset>
 
@@ -2797,11 +3300,41 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.FlowgateValue) obj.FlowgateValue_string = obj.FlowgateValue.join ();
+                if (obj.TransmissionCapacity) obj.TransmissionCapacity_string = obj.TransmissionCapacity.join ();
+                if (obj.MktTerminal) obj.MktTerminal_string = obj.MktTerminal.join ();
+                if (obj.ContractDistributionFactor) obj.ContractDistributionFactor_string = obj.ContractDistributionFactor.join ();
+                if (obj.MktPowerTransformer) obj.MktPowerTransformer_string = obj.MktPowerTransformer.join ();
+                if (obj.InterTieResults) obj.InterTieResults_string = obj.InterTieResults.join ();
+                if (obj.ConstraintResults) obj.ConstraintResults_string = obj.ConstraintResults.join ();
+                if (obj.ViolationLimits) obj.ViolationLimits_string = obj.ViolationLimits.join ();
+                if (obj.FlowgateRelief) obj.FlowgateRelief_string = obj.FlowgateRelief.join ();
+                if (obj.GeneratingUnitDynamicValues) obj.GeneratingUnitDynamicValues_string = obj.GeneratingUnitDynamicValues.join ();
+                if (obj.MktLine) obj.MktLine_string = obj.MktLine.join ();
+                if (obj.TranmissionRightEntitlement) obj.TranmissionRightEntitlement_string = obj.TranmissionRightEntitlement.join ();
+                if (obj.RegisteredInterTie) obj.RegisteredInterTie_string = obj.RegisteredInterTie.join ();
+                if (obj.FTRs) obj.FTRs_string = obj.FTRs.join ();
+                if (obj.InterTie) obj.InterTie_string = obj.InterTie.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.FlowgateValue_string;
+                delete obj.TransmissionCapacity_string;
+                delete obj.MktTerminal_string;
+                delete obj.ContractDistributionFactor_string;
+                delete obj.MktPowerTransformer_string;
+                delete obj.InterTieResults_string;
+                delete obj.ConstraintResults_string;
+                delete obj.ViolationLimits_string;
+                delete obj.FlowgateRelief_string;
+                delete obj.GeneratingUnitDynamicValues_string;
+                delete obj.MktLine_string;
+                delete obj.TranmissionRightEntitlement_string;
+                delete obj.RegisteredInterTie_string;
+                delete obj.FTRs_string;
+                delete obj.InterTie_string;
             }
 
             edit_template ()
@@ -2822,14 +3355,45 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='To_SubControlArea'>To_SubControlArea: </label><div class='col-sm-8'><input id='To_SubControlArea' class='form-control' type='text'{{#To_SubControlArea}} value='{{To_SubControlArea}}'{{/To_SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='SecurityConstraints'>SecurityConstraints: </label><div class='col-sm-8'><input id='SecurityConstraints' class='form-control' type='text'{{#SecurityConstraints}} value='{{SecurityConstraints}}'{{/SecurityConstraints}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenericConstraints'>GenericConstraints: </label><div class='col-sm-8'><input id='GenericConstraints' class='form-control' type='text'{{#GenericConstraints}} value='{{GenericConstraints}}'{{/GenericConstraints}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='From_SubControlArea'>From_SubControlArea: </label><div class='col-sm-8'><input id='From_SubControlArea' class='form-control' type='text'{{#From_SubControlArea}} value='{{From_SubControlArea}}'{{/From_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktPowerTransformer'>MktPowerTransformer: </label><div class='col-sm-8'><input id='MktPowerTransformer' class='form-control' type='text'{{#MktPowerTransformer}} value='{{MktPowerTransformer}}_string'{{/MktPowerTransformer}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRR'>CRR: </label><div class='col-sm-8'><input id='CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktLine'>MktLine: </label><div class='col-sm-8'><input id='MktLine' class='form-control' type='text'{{#MktLine}} value='{{MktLine}}_string'{{/MktLine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='From_SubControlArea'>From_SubControlArea: </label><div class='col-sm-8'><input id='From_SubControlArea' class='form-control' type='text'{{#From_SubControlArea}} value='{{From_SubControlArea}}'{{/From_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenericConstraints'>GenericConstraints: </label><div class='col-sm-8'><input id='GenericConstraints' class='form-control' type='text'{{#GenericConstraints}} value='{{GenericConstraints}}'{{/GenericConstraints}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["To_SubControlArea", "SubControlArea", "0..1", "0..*"],
+                        ["FlowgateValue", "FlowgateValue", "0..*", "1"],
+                        ["HostControlArea", "HostControlArea", "0..1", "0..*"],
+                        ["TransmissionCapacity", "TransmissionCapacity", "0..*", "0..1"],
+                        ["MktTerminal", "MktTerminal", "0..*", "0..1"],
+                        ["SecurityConstraints", "SecurityConstraints", "0..1", "0..1"],
+                        ["ContractDistributionFactor", "ContractDistributionFactor", "0..*", "0..1"],
+                        ["MktPowerTransformer", "MktPowerTransformer", "0..*", "0..*"],
+                        ["CRR", "CRR", "0..1", "0..1"],
+                        ["InterTieResults", "InterTieResults", "1..*", "1"],
+                        ["ConstraintResults", "ConstraintResults", "1..*", "1"],
+                        ["ViolationLimits", "ViolationLimit", "0..*", "0..1"],
+                        ["FlowgateRelief", "FlowgateRelief", "0..*", "1"],
+                        ["GeneratingUnitDynamicValues", "GeneratingUnitDynamicValues", "0..*", "0..1"],
+                        ["MktLine", "MktLine", "0..*", "0..*"],
+                        ["TranmissionRightEntitlement", "TransmissionInterfaceRightEntitlement", "0..*", "0..1"],
+                        ["RegisteredInterTie", "RegisteredInterTie", "0..*", "1"],
+                        ["FTRs", "FTR", "0..*", "0..1"],
+                        ["From_SubControlArea", "SubControlArea", "0..1", "0..*"],
+                        ["GenericConstraints", "GenericConstraints", "0..1", "0..*"],
+                        ["InterTie", "SchedulingPoint", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2861,7 +3425,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "FlowgatePartner";
                 base.parse_attribute (/<cim:FlowgatePartner.FlowgateValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FlowgateValue", sub, context);
-
                 var bucket = context.parsed.FlowgatePartner;
                 if (null == bucket)
                    context.parsed.FlowgatePartner = bucket = {};
@@ -2874,7 +3437,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "FlowgatePartner", "FlowgateValue", fields);
+                base.export_attribute (obj, "export_attribute", "FlowgatePartner", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2925,7 +3488,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["FlowgateValue", "FlowgateValue", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2973,7 +3545,6 @@ define
                 base.parse_element (/<cim:ResourceStartupCost.solidfuelPercentIntermediateStartup>([\s\S]*?)<\/cim:ResourceStartupCost.solidfuelPercentIntermediateStartup>/g, obj, "solidfuelPercentIntermediateStartup", base.to_string, sub, context);
                 base.parse_element (/<cim:ResourceStartupCost.solidfuelPercentLowSustainedLimit>([\s\S]*?)<\/cim:ResourceStartupCost.solidfuelPercentLowSustainedLimit>/g, obj, "solidfuelPercentLowSustainedLimit", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ResourceStartupCost.ResourceVerifiableCosts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceVerifiableCosts", sub, context);
-
                 var bucket = context.parsed.ResourceStartupCost;
                 if (null == bucket)
                    context.parsed.ResourceStartupCost = bucket = {};
@@ -3002,7 +3573,7 @@ define
                 base.export_element (obj, "ResourceStartupCost", "solidfuelPercentHotStartup", base.from_string, fields);
                 base.export_element (obj, "ResourceStartupCost", "solidfuelPercentIntermediateStartup", base.from_string, fields);
                 base.export_element (obj, "ResourceStartupCost", "solidfuelPercentLowSustainedLimit", base.from_string, fields);
-                base.export_attribute (obj, "ResourceStartupCost", "ResourceVerifiableCosts", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceStartupCost", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3085,7 +3656,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceVerifiableCosts", "ResourceVerifiableCosts", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3118,7 +3698,6 @@ define
                 obj.cls = "GasPrice";
                 base.parse_element (/<cim:GasPrice.gasPriceIndex>([\s\S]*?)<\/cim:GasPrice.gasPriceIndex>/g, obj, "gasPriceIndex", base.to_float, sub, context);
                 base.parse_attribute (/<cim:GasPrice.FuelRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FuelRegion", sub, context);
-
                 var bucket = context.parsed.GasPrice;
                 if (null == bucket)
                    context.parsed.GasPrice = bucket = {};
@@ -3132,7 +3711,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "GasPrice", "gasPriceIndex", base.from_float, fields);
-                base.export_attribute (obj, "GasPrice", "FuelRegion", fields);
+                base.export_attribute (obj, "export_attribute", "GasPrice", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3185,7 +3764,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["FuelRegion", "FuelRegion", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3220,7 +3808,6 @@ define
                 base.parse_element (/<cim:LoadRatio.intervalEndTime>([\s\S]*?)<\/cim:LoadRatio.intervalEndTime>/g, obj, "intervalEndTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:LoadRatio.share>([\s\S]*?)<\/cim:LoadRatio.share>/g, obj, "share", base.to_string, sub, context);
                 base.parse_attribute (/<cim:LoadRatio.SchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SchedulingCoordinator", sub, context);
-
                 var bucket = context.parsed.LoadRatio;
                 if (null == bucket)
                    context.parsed.LoadRatio = bucket = {};
@@ -3236,7 +3823,7 @@ define
                 base.export_element (obj, "LoadRatio", "intervalStartTime", base.from_datetime, fields);
                 base.export_element (obj, "LoadRatio", "intervalEndTime", base.from_datetime, fields);
                 base.export_element (obj, "LoadRatio", "share", base.from_string, fields);
-                base.export_attribute (obj, "LoadRatio", "SchedulingCoordinator", fields);
+                base.export_attribute (obj, "export_attribute", "LoadRatio", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3293,7 +3880,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SchedulingCoordinator", "SchedulingCoordinator", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3329,9 +3925,11 @@ define
                 base.parse_element (/<cim:RegisteredInterTie.isDCTie>([\s\S]*?)<\/cim:RegisteredInterTie.isDCTie>/g, obj, "isDCTie", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredInterTie.isDynamicInterchange>([\s\S]*?)<\/cim:RegisteredInterTie.isDynamicInterchange>/g, obj, "isDynamicInterchange", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredInterTie.minHourlyBlockLimit>([\s\S]*?)<\/cim:RegisteredInterTie.minHourlyBlockLimit>/g, obj, "minHourlyBlockLimit", base.to_string, sub, context);
+                base.parse_attributes (/<cim:RegisteredInterTie.InterchangeSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterchangeSchedule", sub, context);
+                base.parse_attributes (/<cim:RegisteredInterTie.InterTieDispatchResponse\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieDispatchResponse", sub, context);
                 base.parse_attribute (/<cim:RegisteredInterTie.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
+                base.parse_attributes (/<cim:RegisteredInterTie.WheelingCounterParty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WheelingCounterParty", sub, context);
                 base.parse_attribute (/<cim:RegisteredInterTie.InterTieBid\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieBid", sub, context);
-
                 var bucket = context.parsed.RegisteredInterTie;
                 if (null == bucket)
                    context.parsed.RegisteredInterTie = bucket = {};
@@ -3349,8 +3947,11 @@ define
                 base.export_element (obj, "RegisteredInterTie", "isDCTie", base.from_string, fields);
                 base.export_element (obj, "RegisteredInterTie", "isDynamicInterchange", base.from_string, fields);
                 base.export_element (obj, "RegisteredInterTie", "minHourlyBlockLimit", base.from_string, fields);
-                base.export_attribute (obj, "RegisteredInterTie", "Flowgate", fields);
-                base.export_attribute (obj, "RegisteredInterTie", "InterTieBid", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredInterTie", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredInterTie", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredInterTie", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredInterTie", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredInterTie", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3373,7 +3974,10 @@ define
                     {{#isDCTie}}<div><b>isDCTie</b>: {{isDCTie}}</div>{{/isDCTie}}
                     {{#isDynamicInterchange}}<div><b>isDynamicInterchange</b>: {{isDynamicInterchange}}</div>{{/isDynamicInterchange}}
                     {{#minHourlyBlockLimit}}<div><b>minHourlyBlockLimit</b>: {{minHourlyBlockLimit}}</div>{{/minHourlyBlockLimit}}
+                    {{#InterchangeSchedule}}<div><b>InterchangeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InterchangeSchedule}}
+                    {{#InterTieDispatchResponse}}<div><b>InterTieDispatchResponse</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InterTieDispatchResponse}}
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#WheelingCounterParty}}<div><b>WheelingCounterParty</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WheelingCounterParty}}
                     {{#InterTieBid}}<div><b>InterTieBid</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{InterTieBid}}&quot;);})'>{{InterTieBid}}</a></div>{{/InterTieBid}}
                     </div>
                     <fieldset>
@@ -3385,11 +3989,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.InterchangeSchedule) obj.InterchangeSchedule_string = obj.InterchangeSchedule.join ();
+                if (obj.InterTieDispatchResponse) obj.InterTieDispatchResponse_string = obj.InterTieDispatchResponse.join ();
+                if (obj.WheelingCounterParty) obj.WheelingCounterParty_string = obj.WheelingCounterParty.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.InterchangeSchedule_string;
+                delete obj.InterTieDispatchResponse_string;
+                delete obj.WheelingCounterParty_string;
             }
 
             edit_template ()
@@ -3408,12 +4018,26 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='isDynamicInterchange'>isDynamicInterchange: </label><div class='col-sm-8'><input id='isDynamicInterchange' class='form-control' type='text'{{#isDynamicInterchange}} value='{{isDynamicInterchange}}'{{/isDynamicInterchange}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='minHourlyBlockLimit'>minHourlyBlockLimit: </label><div class='col-sm-8'><input id='minHourlyBlockLimit' class='form-control' type='text'{{#minHourlyBlockLimit}} value='{{minHourlyBlockLimit}}'{{/minHourlyBlockLimit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WheelingCounterParty'>WheelingCounterParty: </label><div class='col-sm-8'><input id='WheelingCounterParty' class='form-control' type='text'{{#WheelingCounterParty}} value='{{WheelingCounterParty}}_string'{{/WheelingCounterParty}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["InterchangeSchedule", "InterchangeSchedule", "0..*", "0..1"],
+                        ["InterTieDispatchResponse", "InterTieDispatchResponse", "0..*", "1"],
+                        ["Flowgate", "Flowgate", "1", "0..*"],
+                        ["WheelingCounterParty", "WheelingCounterParty", "0..*", "0..*"],
+                        ["InterTieBid", "InterTieBid", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3463,8 +4087,12 @@ define
                 base.parse_element (/<cim:RegisteredLoad.participatingLoad>([\s\S]*?)<\/cim:RegisteredLoad.participatingLoad>/g, obj, "participatingLoad", base.to_string, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.reqNoticeTime>([\s\S]*?)<\/cim:RegisteredLoad.reqNoticeTime>/g, obj, "reqNoticeTime", base.to_float, sub, context);
                 base.parse_element (/<cim:RegisteredLoad.resourceSubType>([\s\S]*?)<\/cim:RegisteredLoad.resourceSubType>/g, obj, "resourceSubType", base.to_string, sub, context);
+                base.parse_attributes (/<cim:RegisteredLoad.AuxillaryObject\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxillaryObject", sub, context);
+                base.parse_attributes (/<cim:RegisteredLoad.MktEnergyConsumer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktEnergyConsumer", sub, context);
+                base.parse_attributes (/<cim:RegisteredLoad.LoadReductionTimeCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadReductionTimeCurve", sub, context);
+                base.parse_attributes (/<cim:RegisteredLoad.LoadBids\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadBids", sub, context);
                 base.parse_attribute (/<cim:RegisteredLoad.MktLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktLoadArea", sub, context);
-
+                base.parse_attributes (/<cim:RegisteredLoad.LoadReductionPriceCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadReductionPriceCurve", sub, context);
                 var bucket = context.parsed.RegisteredLoad;
                 if (null == bucket)
                    context.parsed.RegisteredLoad = bucket = {};
@@ -3496,7 +4124,12 @@ define
                 base.export_element (obj, "RegisteredLoad", "participatingLoad", base.from_string, fields);
                 base.export_element (obj, "RegisteredLoad", "reqNoticeTime", base.from_float, fields);
                 base.export_element (obj, "RegisteredLoad", "resourceSubType", base.from_string, fields);
-                base.export_attribute (obj, "RegisteredLoad", "MktLoadArea", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredLoad", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredLoad", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredLoad", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredLoad", fields);
+                base.export_attribute (obj, "export_attribute", "RegisteredLoad", fields);
+                base.export_attribute (obj, "export_attributes", "RegisteredLoad", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3533,7 +4166,12 @@ define
                     {{#participatingLoad}}<div><b>participatingLoad</b>: {{participatingLoad}}</div>{{/participatingLoad}}
                     {{#reqNoticeTime}}<div><b>reqNoticeTime</b>: {{reqNoticeTime}}</div>{{/reqNoticeTime}}
                     {{#resourceSubType}}<div><b>resourceSubType</b>: {{resourceSubType}}</div>{{/resourceSubType}}
+                    {{#AuxillaryObject}}<div><b>AuxillaryObject</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AuxillaryObject}}
+                    {{#MktEnergyConsumer}}<div><b>MktEnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktEnergyConsumer}}
+                    {{#LoadReductionTimeCurve}}<div><b>LoadReductionTimeCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LoadReductionTimeCurve}}
+                    {{#LoadBids}}<div><b>LoadBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LoadBids}}
                     {{#MktLoadArea}}<div><b>MktLoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktLoadArea}}&quot;);})'>{{MktLoadArea}}</a></div>{{/MktLoadArea}}
+                    {{#LoadReductionPriceCurve}}<div><b>LoadReductionPriceCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LoadReductionPriceCurve}}
                     </div>
                     <fieldset>
 
@@ -3544,11 +4182,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AuxillaryObject) obj.AuxillaryObject_string = obj.AuxillaryObject.join ();
+                if (obj.MktEnergyConsumer) obj.MktEnergyConsumer_string = obj.MktEnergyConsumer.join ();
+                if (obj.LoadReductionTimeCurve) obj.LoadReductionTimeCurve_string = obj.LoadReductionTimeCurve.join ();
+                if (obj.LoadBids) obj.LoadBids_string = obj.LoadBids.join ();
+                if (obj.LoadReductionPriceCurve) obj.LoadReductionPriceCurve_string = obj.LoadReductionPriceCurve.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AuxillaryObject_string;
+                delete obj.MktEnergyConsumer_string;
+                delete obj.LoadReductionTimeCurve_string;
+                delete obj.LoadBids_string;
+                delete obj.LoadReductionPriceCurve_string;
             }
 
             edit_template ()
@@ -3580,12 +4228,28 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='participatingLoad'>participatingLoad: </label><div class='col-sm-8'><input id='participatingLoad' class='form-control' type='text'{{#participatingLoad}} value='{{participatingLoad}}'{{/participatingLoad}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadReductionTimeCurve'>LoadReductionTimeCurve: </label><div class='col-sm-8'><input id='LoadReductionTimeCurve' class='form-control' type='text'{{#LoadReductionTimeCurve}} value='{{LoadReductionTimeCurve}}_string'{{/LoadReductionTimeCurve}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktLoadArea'>MktLoadArea: </label><div class='col-sm-8'><input id='MktLoadArea' class='form-control' type='text'{{#MktLoadArea}} value='{{MktLoadArea}}'{{/MktLoadArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadReductionPriceCurve'>LoadReductionPriceCurve: </label><div class='col-sm-8'><input id='LoadReductionPriceCurve' class='form-control' type='text'{{#LoadReductionPriceCurve}} value='{{LoadReductionPriceCurve}}_string'{{/LoadReductionPriceCurve}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AuxillaryObject", "AuxiliaryObject", "0..*", "0..1"],
+                        ["MktEnergyConsumer", "MktEnergyConsumer", "0..*", "0..1"],
+                        ["LoadReductionTimeCurve", "LoadReductionTimeCurve", "0..*", "0..*"],
+                        ["LoadBids", "LoadBid", "0..*", "0..1"],
+                        ["MktLoadArea", "MktLoadArea", "1", "0..*"],
+                        ["LoadReductionPriceCurve", "LoadReductionPriceCurve", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3622,8 +4286,12 @@ define
                 base.parse_element (/<cim:AggregateNode.endEffectiveDate>([\s\S]*?)<\/cim:AggregateNode.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:AggregateNode.qualifASOrder>([\s\S]*?)<\/cim:AggregateNode.qualifASOrder>/g, obj, "qualifASOrder", base.to_string, sub, context);
                 base.parse_element (/<cim:AggregateNode.startEffectiveDate>([\s\S]*?)<\/cim:AggregateNode.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:AggregateNode.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pnode", sub, context);
+                base.parse_attributes (/<cim:AggregateNode.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                base.parse_attributes (/<cim:AggregateNode.AreaLoadCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AreaLoadCurve", sub, context);
+                base.parse_attributes (/<cim:AggregateNode.CnodeDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CnodeDistributionFactor", sub, context);
+                base.parse_attributes (/<cim:AggregateNode.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
                 base.parse_attribute (/<cim:AggregateNode.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
-
                 var bucket = context.parsed.AggregateNode;
                 if (null == bucket)
                    context.parsed.AggregateNode = bucket = {};
@@ -3640,7 +4308,12 @@ define
                 base.export_element (obj, "AggregateNode", "endEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "AggregateNode", "qualifASOrder", base.from_string, fields);
                 base.export_element (obj, "AggregateNode", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "AggregateNode", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "AggregateNode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregateNode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregateNode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregateNode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregateNode", fields);
+                base.export_attribute (obj, "export_attribute", "AggregateNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3662,6 +4335,11 @@ define
                     {{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
                     {{#qualifASOrder}}<div><b>qualifASOrder</b>: {{qualifASOrder}}</div>{{/qualifASOrder}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Pnode}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
+                    {{#AreaLoadCurve}}<div><b>AreaLoadCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AreaLoadCurve}}
+                    {{#CnodeDistributionFactor}}<div><b>CnodeDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CnodeDistributionFactor}}
+                    {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubControlArea}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
                     </div>
                     <fieldset>
@@ -3673,11 +4351,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Pnode) obj.Pnode_string = obj.Pnode.join ();
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
+                if (obj.AreaLoadCurve) obj.AreaLoadCurve_string = obj.AreaLoadCurve.join ();
+                if (obj.CnodeDistributionFactor) obj.CnodeDistributionFactor_string = obj.CnodeDistributionFactor.join ();
+                if (obj.SubControlArea) obj.SubControlArea_string = obj.SubControlArea.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Pnode_string;
+                delete obj.RegisteredResource_string;
+                delete obj.AreaLoadCurve_string;
+                delete obj.CnodeDistributionFactor_string;
+                delete obj.SubControlArea_string;
             }
 
             edit_template ()
@@ -3694,12 +4382,29 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualifASOrder'>qualifASOrder: </label><div class='col-sm-8'><input id='qualifASOrder' class='form-control' type='text'{{#qualifASOrder}} value='{{qualifASOrder}}'{{/qualifASOrder}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pnode'>Pnode: </label><div class='col-sm-8'><input id='Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}_string'{{/Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Pnode", "Pnode", "0..*", "0..*"],
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"],
+                        ["AreaLoadCurve", "AreaLoadCurve", "0..*", "0..1"],
+                        ["CnodeDistributionFactor", "CnodeDistributionFactor", "0..*", "0..1"],
+                        ["SubControlArea", "SubControlArea", "0..*", "0..*"],
+                        ["RTO", "RTO", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3732,8 +4437,8 @@ define
 
                 obj = Production.CombinedCyclePlant.prototype.parse.call (this, context, sub);
                 obj.cls = "MktCombinedCyclePlant";
+                base.parse_attributes (/<cim:MktCombinedCyclePlant.CombinedCycleLogicalConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombinedCycleLogicalConfiguration", sub, context);
                 base.parse_attribute (/<cim:MktCombinedCyclePlant.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregatedPnode", sub, context);
-
                 var bucket = context.parsed.MktCombinedCyclePlant;
                 if (null == bucket)
                    context.parsed.MktCombinedCyclePlant = bucket = {};
@@ -3746,7 +4451,8 @@ define
             {
                 var fields = Production.CombinedCyclePlant.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "MktCombinedCyclePlant", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attributes", "MktCombinedCyclePlant", fields);
+                base.export_attribute (obj, "export_attribute", "MktCombinedCyclePlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3764,6 +4470,7 @@ define
                     `
                     + Production.CombinedCyclePlant.prototype.template.call (this) +
                     `
+                    {{#CombinedCycleLogicalConfiguration}}<div><b>CombinedCycleLogicalConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CombinedCycleLogicalConfiguration}}
                     {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AggregatedPnode}}&quot;);})'>{{AggregatedPnode}}</a></div>{{/AggregatedPnode}}
                     </div>
                     <fieldset>
@@ -3775,11 +4482,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CombinedCycleLogicalConfiguration) obj.CombinedCycleLogicalConfiguration_string = obj.CombinedCycleLogicalConfiguration.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CombinedCycleLogicalConfiguration_string;
             }
 
             edit_template ()
@@ -3797,7 +4506,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CombinedCycleLogicalConfiguration", "CombinedCycleLogicalConfiguration", "1..*", "0..1"],
+                        ["AggregatedPnode", "AggregatedPnode", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3831,7 +4550,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "CombinedCycleLogicalConfiguration";
                 base.parse_attribute (/<cim:CombinedCycleLogicalConfiguration.MktCombinedCyclePlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktCombinedCyclePlant", sub, context);
-
+                base.parse_attributes (/<cim:CombinedCycleLogicalConfiguration.CombinedCycleConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombinedCycleConfiguration", sub, context);
                 var bucket = context.parsed.CombinedCycleLogicalConfiguration;
                 if (null == bucket)
                    context.parsed.CombinedCycleLogicalConfiguration = bucket = {};
@@ -3844,7 +4563,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "CombinedCycleLogicalConfiguration", "MktCombinedCyclePlant", fields);
+                base.export_attribute (obj, "export_attribute", "CombinedCycleLogicalConfiguration", fields);
+                base.export_attribute (obj, "export_attributes", "CombinedCycleLogicalConfiguration", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3863,6 +4583,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#MktCombinedCyclePlant}}<div><b>MktCombinedCyclePlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktCombinedCyclePlant}}&quot;);})'>{{MktCombinedCyclePlant}}</a></div>{{/MktCombinedCyclePlant}}
+                    {{#CombinedCycleConfiguration}}<div><b>CombinedCycleConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CombinedCycleConfiguration}}
                     </div>
                     <fieldset>
 
@@ -3873,11 +4594,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CombinedCycleConfiguration) obj.CombinedCycleConfiguration_string = obj.CombinedCycleConfiguration.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CombinedCycleConfiguration_string;
             }
 
             edit_template ()
@@ -3895,7 +4618,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktCombinedCyclePlant", "MktCombinedCyclePlant", "0..1", "1..*"],
+                        ["CombinedCycleConfiguration", "CombinedCycleConfiguration", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3926,7 +4659,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "WheelingCounterParty";
-
+                base.parse_attributes (/<cim:WheelingCounterParty.RegisteredInterTie\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredInterTie", sub, context);
                 var bucket = context.parsed.WheelingCounterParty;
                 if (null == bucket)
                    context.parsed.WheelingCounterParty = bucket = {};
@@ -3939,6 +4672,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "WheelingCounterParty", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3956,6 +4690,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#RegisteredInterTie}}<div><b>RegisteredInterTie</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredInterTie}}
                     </div>
                     <fieldset>
 
@@ -3966,11 +4701,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredInterTie) obj.RegisteredInterTie_string = obj.RegisteredInterTie.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredInterTie_string;
             }
 
             edit_template ()
@@ -3983,11 +4720,21 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}_string'{{/RegisteredInterTie}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredInterTie", "RegisteredInterTie", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4021,7 +4768,6 @@ define
                 base.parse_element (/<cim:CombinedCycleTransitionState.upTransition>([\s\S]*?)<\/cim:CombinedCycleTransitionState.upTransition>/g, obj, "upTransition", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:CombinedCycleTransitionState.FromConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FromConfiguration", sub, context);
                 base.parse_attribute (/<cim:CombinedCycleTransitionState.ToConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ToConfiguration", sub, context);
-
                 var bucket = context.parsed.CombinedCycleTransitionState;
                 if (null == bucket)
                    context.parsed.CombinedCycleTransitionState = bucket = {};
@@ -4035,8 +4781,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "CombinedCycleTransitionState", "upTransition", base.from_boolean, fields);
-                base.export_attribute (obj, "CombinedCycleTransitionState", "FromConfiguration", fields);
-                base.export_attribute (obj, "CombinedCycleTransitionState", "ToConfiguration", fields);
+                base.export_attribute (obj, "export_attribute", "CombinedCycleTransitionState", fields);
+                base.export_attribute (obj, "export_attribute", "CombinedCycleTransitionState", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4091,7 +4837,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["FromConfiguration", "CombinedCycleConfiguration", "1", "0..*"],
+                        ["ToConfiguration", "CombinedCycleConfiguration", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4129,7 +4885,6 @@ define
                 base.parse_element (/<cim:OrgResOwnership.startEffectiveDate>([\s\S]*?)<\/cim:OrgResOwnership.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:OrgResOwnership.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:OrgResOwnership.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrganisation", sub, context);
-
                 var bucket = context.parsed.OrgResOwnership;
                 if (null == bucket)
                    context.parsed.OrgResOwnership = bucket = {};
@@ -4147,8 +4902,8 @@ define
                 base.export_element (obj, "OrgResOwnership", "masterSchedulingCoordinatorFlag", base.from_string, fields);
                 base.export_element (obj, "OrgResOwnership", "ownershipPercent", base.from_string, fields);
                 base.export_element (obj, "OrgResOwnership", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "OrgResOwnership", "RegisteredResource", fields);
-                base.export_attribute (obj, "OrgResOwnership", "MktOrganisation", fields);
+                base.export_attribute (obj, "export_attribute", "OrgResOwnership", fields);
+                base.export_attribute (obj, "export_attribute", "OrgResOwnership", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4211,7 +4966,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "1", "0..*"],
+                        ["MktOrganisation", "MktOrganisation", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4269,10 +5034,14 @@ define
                 base.parse_element (/<cim:ContractRight.startupLeadTime>([\s\S]*?)<\/cim:ContractRight.startupLeadTime>/g, obj, "startupLeadTime", base.to_string, sub, context);
                 base.parse_element (/<cim:ContractRight.TRType>([\s\S]*?)<\/cim:ContractRight.TRType>/g, obj, "TRType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ContractRight.SchedulingCoordinator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SchedulingCoordinator", sub, context);
+                base.parse_attributes (/<cim:ContractRight.BidSelfSched\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
+                base.parse_attributes (/<cim:ContractRight.SubstitutionResourceList\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubstitutionResourceList", sub, context);
+                base.parse_attributes (/<cim:ContractRight.TransmissionInterfaceEntitlement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionInterfaceEntitlement", sub, context);
                 base.parse_attribute (/<cim:ContractRight.Ind_TransmissionRightChain\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Ind_TransmissionRightChain", sub, context);
+                base.parse_attributes (/<cim:ContractRight.TREntitlement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TREntitlement", sub, context);
                 base.parse_attribute (/<cim:ContractRight.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
+                base.parse_attributes (/<cim:ContractRight.ContractDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContractDistributionFactor", sub, context);
                 base.parse_attribute (/<cim:ContractRight.Chain_TransmissionRightChain\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Chain_TransmissionRightChain", sub, context);
-
                 var bucket = context.parsed.ContractRight;
                 if (null == bucket)
                    context.parsed.ContractRight = bucket = {};
@@ -4309,10 +5078,15 @@ define
                 base.export_element (obj, "ContractRight", "startEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "ContractRight", "startupLeadTime", base.from_string, fields);
                 base.export_element (obj, "ContractRight", "TRType", base.from_string, fields);
-                base.export_attribute (obj, "ContractRight", "SchedulingCoordinator", fields);
-                base.export_attribute (obj, "ContractRight", "Ind_TransmissionRightChain", fields);
-                base.export_attribute (obj, "ContractRight", "RTO", fields);
-                base.export_attribute (obj, "ContractRight", "Chain_TransmissionRightChain", fields);
+                base.export_attribute (obj, "export_attribute", "ContractRight", fields);
+                base.export_attribute (obj, "export_attributes", "ContractRight", fields);
+                base.export_attribute (obj, "export_attributes", "ContractRight", fields);
+                base.export_attribute (obj, "export_attributes", "ContractRight", fields);
+                base.export_attribute (obj, "export_attribute", "ContractRight", fields);
+                base.export_attribute (obj, "export_attributes", "ContractRight", fields);
+                base.export_attribute (obj, "export_attribute", "ContractRight", fields);
+                base.export_attribute (obj, "export_attributes", "ContractRight", fields);
+                base.export_attribute (obj, "export_attribute", "ContractRight", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4355,8 +5129,13 @@ define
                     {{#startupLeadTime}}<div><b>startupLeadTime</b>: {{startupLeadTime}}</div>{{/startupLeadTime}}
                     {{#TRType}}<div><b>TRType</b>: {{TRType}}</div>{{/TRType}}
                     {{#SchedulingCoordinator}}<div><b>SchedulingCoordinator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SchedulingCoordinator}}&quot;);})'>{{SchedulingCoordinator}}</a></div>{{/SchedulingCoordinator}}
+                    {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidSelfSched}}
+                    {{#SubstitutionResourceList}}<div><b>SubstitutionResourceList</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubstitutionResourceList}}
+                    {{#TransmissionInterfaceEntitlement}}<div><b>TransmissionInterfaceEntitlement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransmissionInterfaceEntitlement}}
                     {{#Ind_TransmissionRightChain}}<div><b>Ind_TransmissionRightChain</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Ind_TransmissionRightChain}}&quot;);})'>{{Ind_TransmissionRightChain}}</a></div>{{/Ind_TransmissionRightChain}}
+                    {{#TREntitlement}}<div><b>TREntitlement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TREntitlement}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    {{#ContractDistributionFactor}}<div><b>ContractDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ContractDistributionFactor}}
                     {{#Chain_TransmissionRightChain}}<div><b>Chain_TransmissionRightChain</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Chain_TransmissionRightChain}}&quot;);})'>{{Chain_TransmissionRightChain}}</a></div>{{/Chain_TransmissionRightChain}}
                     </div>
                     <fieldset>
@@ -4368,11 +5147,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
+                if (obj.SubstitutionResourceList) obj.SubstitutionResourceList_string = obj.SubstitutionResourceList.join ();
+                if (obj.TransmissionInterfaceEntitlement) obj.TransmissionInterfaceEntitlement_string = obj.TransmissionInterfaceEntitlement.join ();
+                if (obj.TREntitlement) obj.TREntitlement_string = obj.TREntitlement.join ();
+                if (obj.ContractDistributionFactor) obj.ContractDistributionFactor_string = obj.ContractDistributionFactor.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.BidSelfSched_string;
+                delete obj.SubstitutionResourceList_string;
+                delete obj.TransmissionInterfaceEntitlement_string;
+                delete obj.TREntitlement_string;
+                delete obj.ContractDistributionFactor_string;
             }
 
             edit_template ()
@@ -4417,7 +5206,24 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SchedulingCoordinator", "SchedulingCoordinator", "1", "0..*"],
+                        ["BidSelfSched", "BidSelfSched", "0..*", "0..1"],
+                        ["SubstitutionResourceList", "SubstitutionResourceList", "0..*", "0..1"],
+                        ["TransmissionInterfaceEntitlement", "TransmissionInterfaceRightEntitlement", "0..*", "1"],
+                        ["Ind_TransmissionRightChain", "TransmissionRightChain", "0..1", "1..*"],
+                        ["TREntitlement", "TREntitlement", "0..*", "1"],
+                        ["RTO", "RTO", "1", "0..*"],
+                        ["ContractDistributionFactor", "ContractDistributionFactor", "0..*", "0..1"],
+                        ["Chain_TransmissionRightChain", "TransmissionRightChain", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4451,9 +5257,11 @@ define
                 base.parse_element (/<cim:AdjacentCASet.endEffectiveDate>([\s\S]*?)<\/cim:AdjacentCASet.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:AdjacentCASet.lossPercentage >([\s\S]*?)<\/cim:AdjacentCASet.lossPercentage >/g, obj, "lossPercentage ", base.to_float, sub, context);
                 base.parse_element (/<cim:AdjacentCASet.startEffectiveDate>([\s\S]*?)<\/cim:AdjacentCASet.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:AdjacentCASet.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                base.parse_attributes (/<cim:AdjacentCASet.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
                 base.parse_attribute (/<cim:AdjacentCASet.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HostControlArea", sub, context);
+                base.parse_attributes (/<cim:AdjacentCASet.BidSelfSched\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
                 base.parse_attribute (/<cim:AdjacentCASet.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
-
                 var bucket = context.parsed.AdjacentCASet;
                 if (null == bucket)
                    context.parsed.AdjacentCASet = bucket = {};
@@ -4469,8 +5277,11 @@ define
                 base.export_element (obj, "AdjacentCASet", "endEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "AdjacentCASet", "lossPercentage ", base.from_float, fields);
                 base.export_element (obj, "AdjacentCASet", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "AdjacentCASet", "HostControlArea", fields);
-                base.export_attribute (obj, "AdjacentCASet", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "AdjacentCASet", fields);
+                base.export_attribute (obj, "export_attributes", "AdjacentCASet", fields);
+                base.export_attribute (obj, "export_attribute", "AdjacentCASet", fields);
+                base.export_attribute (obj, "export_attributes", "AdjacentCASet", fields);
+                base.export_attribute (obj, "export_attribute", "AdjacentCASet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4491,7 +5302,10 @@ define
                     {{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
                     {{#lossPercentage }}<div><b>lossPercentage </b>: {{lossPercentage }}</div>{{/lossPercentage }}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
+                    {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubControlArea}}
                     {{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
+                    {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidSelfSched}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
                     </div>
                     <fieldset>
@@ -4503,11 +5317,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
+                if (obj.SubControlArea) obj.SubControlArea_string = obj.SubControlArea.join ();
+                if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredResource_string;
+                delete obj.SubControlArea_string;
+                delete obj.BidSelfSched_string;
             }
 
             edit_template ()
@@ -4529,7 +5349,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..1"],
+                        ["SubControlArea", "SubControlArea", "0..*", "0..1"],
+                        ["HostControlArea", "HostControlArea", "0..1", "0..1"],
+                        ["BidSelfSched", "BidSelfSched", "0..*", "0..1"],
+                        ["RTO", "RTO", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4562,8 +5395,9 @@ define
                 obj.cls = "SchedulingPoint";
                 base.parse_element (/<cim:SchedulingPoint.endEffectiveDate>([\s\S]*?)<\/cim:SchedulingPoint.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:SchedulingPoint.startEffectiveDate>([\s\S]*?)<\/cim:SchedulingPoint.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:SchedulingPoint.InterchangeSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterchangeSchedule", sub, context);
+                base.parse_attributes (/<cim:SchedulingPoint.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:SchedulingPoint.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
-
                 var bucket = context.parsed.SchedulingPoint;
                 if (null == bucket)
                    context.parsed.SchedulingPoint = bucket = {};
@@ -4578,7 +5412,9 @@ define
 
                 base.export_element (obj, "SchedulingPoint", "endEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "SchedulingPoint", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "SchedulingPoint", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingPoint", fields);
+                base.export_attribute (obj, "export_attributes", "SchedulingPoint", fields);
+                base.export_attribute (obj, "export_attribute", "SchedulingPoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4598,6 +5434,8 @@ define
                     `
                     {{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#InterchangeSchedule}}<div><b>InterchangeSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InterchangeSchedule}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
                     </div>
                     <fieldset>
@@ -4609,11 +5447,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.InterchangeSchedule) obj.InterchangeSchedule_string = obj.InterchangeSchedule.join ();
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.InterchangeSchedule_string;
+                delete obj.RegisteredResource_string;
             }
 
             edit_template ()
@@ -4628,12 +5470,24 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["InterchangeSchedule", "InterchangeSchedule", "0..*", "0..1"],
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"],
+                        ["Flowgate", "Flowgate", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4669,7 +5523,6 @@ define
                 base.parse_element (/<cim:OrgPnodeAllocation.startEffectiveDate>([\s\S]*?)<\/cim:OrgPnodeAllocation.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:OrgPnodeAllocation.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pnode", sub, context);
                 base.parse_attribute (/<cim:OrgPnodeAllocation.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrganisation", sub, context);
-
                 var bucket = context.parsed.OrgPnodeAllocation;
                 if (null == bucket)
                    context.parsed.OrgPnodeAllocation = bucket = {};
@@ -4685,8 +5538,8 @@ define
                 base.export_element (obj, "OrgPnodeAllocation", "endEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "OrgPnodeAllocation", "maxMWAllocation", base.from_string, fields);
                 base.export_element (obj, "OrgPnodeAllocation", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "OrgPnodeAllocation", "Pnode", fields);
-                base.export_attribute (obj, "OrgPnodeAllocation", "MktOrganisation", fields);
+                base.export_attribute (obj, "export_attribute", "OrgPnodeAllocation", fields);
+                base.export_attribute (obj, "export_attribute", "OrgPnodeAllocation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4745,7 +5598,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Pnode", "Pnode", "1", "0..*"],
+                        ["MktOrganisation", "MktOrganisation", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4784,7 +5647,6 @@ define
                 base.parse_element (/<cim:ResourceOperationMaintenanceCost.omCostLowSustainedLimit>([\s\S]*?)<\/cim:ResourceOperationMaintenanceCost.omCostLowSustainedLimit>/g, obj, "omCostLowSustainedLimit", base.to_float, sub, context);
                 base.parse_element (/<cim:ResourceOperationMaintenanceCost.solidfuelPercentAboveLowSustainedLimit>([\s\S]*?)<\/cim:ResourceOperationMaintenanceCost.solidfuelPercentAboveLowSustainedLimit>/g, obj, "solidfuelPercentAboveLowSustainedLimit", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ResourceOperationMaintenanceCost.ResourceVerifiableCosts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceVerifiableCosts", sub, context);
-
                 var bucket = context.parsed.ResourceOperationMaintenanceCost;
                 if (null == bucket)
                    context.parsed.ResourceOperationMaintenanceCost = bucket = {};
@@ -4804,7 +5666,7 @@ define
                 base.export_element (obj, "ResourceOperationMaintenanceCost", "omCostIntermediateStartup", base.from_float, fields);
                 base.export_element (obj, "ResourceOperationMaintenanceCost", "omCostLowSustainedLimit", base.from_float, fields);
                 base.export_element (obj, "ResourceOperationMaintenanceCost", "solidfuelPercentAboveLowSustainedLimit", base.from_string, fields);
-                base.export_attribute (obj, "ResourceOperationMaintenanceCost", "ResourceVerifiableCosts", fields);
+                base.export_attribute (obj, "export_attribute", "ResourceOperationMaintenanceCost", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4869,7 +5731,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceVerifiableCosts", "ResourceVerifiableCosts", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4907,9 +5778,20 @@ define
                 base.parse_element (/<cim:Pnode.startEffectiveDate>([\s\S]*?)<\/cim:Pnode.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:Pnode.type>([\s\S]*?)<\/cim:Pnode.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:Pnode.usage>([\s\S]*?)<\/cim:Pnode.usage>/g, obj, "usage", base.to_string, sub, context);
+                base.parse_attributes (/<cim:Pnode.OrgPnodeAllocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OrgPnodeAllocation", sub, context);
+                base.parse_attributes (/<cim:Pnode.RegisteredResources\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResources", sub, context);
+                base.parse_attributes (/<cim:Pnode.SinkCRRSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SinkCRRSegment", sub, context);
+                base.parse_attributes (/<cim:Pnode.PnodeResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PnodeResults", sub, context);
+                base.parse_attributes (/<cim:Pnode.Trade\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Trade", sub, context);
                 base.parse_attribute (/<cim:Pnode.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
+                base.parse_attributes (/<cim:Pnode.MktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktMeasurement", sub, context);
+                base.parse_attributes (/<cim:Pnode.FTRs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FTRs", sub, context);
+                base.parse_attributes (/<cim:Pnode.AggregateNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregateNode", sub, context);
+                base.parse_attributes (/<cim:Pnode.SourceCRRSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SourceCRRSegment", sub, context);
+                base.parse_attributes (/<cim:Pnode.ExPostResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostResults", sub, context);
                 base.parse_attribute (/<cim:Pnode.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
-
+                base.parse_attributes (/<cim:Pnode.ReceiptTransactionBids\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReceiptTransactionBids", sub, context);
+                base.parse_attributes (/<cim:Pnode.DeliveryTransactionBids\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DeliveryTransactionBids", sub, context);
                 var bucket = context.parsed.Pnode;
                 if (null == bucket)
                    context.parsed.Pnode = bucket = {};
@@ -4927,8 +5809,20 @@ define
                 base.export_element (obj, "Pnode", "startEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "Pnode", "type", base.from_string, fields);
                 base.export_element (obj, "Pnode", "usage", base.from_string, fields);
-                base.export_attribute (obj, "Pnode", "SubControlArea", fields);
-                base.export_attribute (obj, "Pnode", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attribute", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attribute", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
+                base.export_attribute (obj, "export_attributes", "Pnode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4951,8 +5845,20 @@ define
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#usage}}<div><b>usage</b>: {{usage}}</div>{{/usage}}
-                    {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    {{#OrgPnodeAllocation}}<div><b>OrgPnodeAllocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OrgPnodeAllocation}}
+                    {{#RegisteredResources}}<div><b>RegisteredResources</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResources}}
+                    {{#SinkCRRSegment}}<div><b>SinkCRRSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SinkCRRSegment}}
+                    {{#PnodeResults}}<div><b>PnodeResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PnodeResults}}
+                    {{#Trade}}<div><b>Trade</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Trade}}
                     {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SubControlArea}}&quot;);})'>{{SubControlArea}}</a></div>{{/SubControlArea}}
+                    {{#MktMeasurement}}<div><b>MktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktMeasurement}}
+                    {{#FTRs}}<div><b>FTRs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FTRs}}
+                    {{#AggregateNode}}<div><b>AggregateNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AggregateNode}}
+                    {{#SourceCRRSegment}}<div><b>SourceCRRSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SourceCRRSegment}}
+                    {{#ExPostResults}}<div><b>ExPostResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ExPostResults}}
+                    {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    {{#ReceiptTransactionBids}}<div><b>ReceiptTransactionBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReceiptTransactionBids}}
+                    {{#DeliveryTransactionBids}}<div><b>DeliveryTransactionBids</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DeliveryTransactionBids}}
                     </div>
                     <fieldset>
 
@@ -4963,11 +5869,35 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.OrgPnodeAllocation) obj.OrgPnodeAllocation_string = obj.OrgPnodeAllocation.join ();
+                if (obj.RegisteredResources) obj.RegisteredResources_string = obj.RegisteredResources.join ();
+                if (obj.SinkCRRSegment) obj.SinkCRRSegment_string = obj.SinkCRRSegment.join ();
+                if (obj.PnodeResults) obj.PnodeResults_string = obj.PnodeResults.join ();
+                if (obj.Trade) obj.Trade_string = obj.Trade.join ();
+                if (obj.MktMeasurement) obj.MktMeasurement_string = obj.MktMeasurement.join ();
+                if (obj.FTRs) obj.FTRs_string = obj.FTRs.join ();
+                if (obj.AggregateNode) obj.AggregateNode_string = obj.AggregateNode.join ();
+                if (obj.SourceCRRSegment) obj.SourceCRRSegment_string = obj.SourceCRRSegment.join ();
+                if (obj.ExPostResults) obj.ExPostResults_string = obj.ExPostResults.join ();
+                if (obj.ReceiptTransactionBids) obj.ReceiptTransactionBids_string = obj.ReceiptTransactionBids.join ();
+                if (obj.DeliveryTransactionBids) obj.DeliveryTransactionBids_string = obj.DeliveryTransactionBids.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.OrgPnodeAllocation_string;
+                delete obj.RegisteredResources_string;
+                delete obj.SinkCRRSegment_string;
+                delete obj.PnodeResults_string;
+                delete obj.Trade_string;
+                delete obj.MktMeasurement_string;
+                delete obj.FTRs_string;
+                delete obj.AggregateNode_string;
+                delete obj.SourceCRRSegment_string;
+                delete obj.ExPostResults_string;
+                delete obj.ReceiptTransactionBids_string;
+                delete obj.DeliveryTransactionBids_string;
             }
 
             edit_template ()
@@ -4985,13 +5915,39 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><input id='usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SinkCRRSegment'>SinkCRRSegment: </label><div class='col-sm-8'><input id='SinkCRRSegment' class='form-control' type='text'{{#SinkCRRSegment}} value='{{SinkCRRSegment}}_string'{{/SinkCRRSegment}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FTRs'>FTRs: </label><div class='col-sm-8'><input id='FTRs' class='form-control' type='text'{{#FTRs}} value='{{FTRs}}_string'{{/FTRs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SourceCRRSegment'>SourceCRRSegment: </label><div class='col-sm-8'><input id='SourceCRRSegment' class='form-control' type='text'{{#SourceCRRSegment}} value='{{SourceCRRSegment}}_string'{{/SourceCRRSegment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["OrgPnodeAllocation", "OrgPnodeAllocation", "0..*", "1"],
+                        ["RegisteredResources", "RegisteredResource", "0..*", "0..1"],
+                        ["SinkCRRSegment", "CRRSegment", "0..*", "0..*"],
+                        ["PnodeResults", "PnodeResults", "1..*", "0..1"],
+                        ["Trade", "Trade", "0..*", "0..1"],
+                        ["SubControlArea", "SubControlArea", "0..1", "0..*"],
+                        ["MktMeasurement", "MktMeasurement", "0..*", "0..1"],
+                        ["FTRs", "FTR", "0..*", "0..*"],
+                        ["AggregateNode", "AggregateNode", "0..*", "0..*"],
+                        ["SourceCRRSegment", "CRRSegment", "0..*", "0..*"],
+                        ["ExPostResults", "ExPostPricingResults", "0..*", "1"],
+                        ["RTO", "RTO", "0..1", "0..*"],
+                        ["ReceiptTransactionBids", "TransactionBid", "0..*", "0..1"],
+                        ["DeliveryTransactionBids", "TransactionBid", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5025,7 +5981,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "StartUpEnergyCurve";
                 base.parse_attribute (/<cim:StartUpEnergyCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.StartUpEnergyCurve;
                 if (null == bucket)
                    context.parsed.StartUpEnergyCurve = bucket = {};
@@ -5038,7 +5993,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "StartUpEnergyCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "StartUpEnergyCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5089,7 +6044,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5123,7 +6087,7 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadReductionTimeCurve";
                 base.parse_element (/<cim:LoadReductionTimeCurve.loadReductionTimeCurveType>([\s\S]*?)<\/cim:LoadReductionTimeCurve.loadReductionTimeCurveType>/g, obj, "loadReductionTimeCurveType", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:LoadReductionTimeCurve.RegisteredLoad\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredLoad", sub, context);
                 var bucket = context.parsed.LoadReductionTimeCurve;
                 if (null == bucket)
                    context.parsed.LoadReductionTimeCurve = bucket = {};
@@ -5137,6 +6101,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadReductionTimeCurve", "loadReductionTimeCurveType", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "LoadReductionTimeCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5155,6 +6120,7 @@ define
                     + Core.Curve.prototype.template.call (this) +
                     `
                     {{#loadReductionTimeCurveType}}<div><b>loadReductionTimeCurveType</b>: {{loadReductionTimeCurveType}}</div>{{/loadReductionTimeCurveType}}
+                    {{#RegisteredLoad}}<div><b>RegisteredLoad</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredLoad}}
                     </div>
                     <fieldset>
 
@@ -5165,11 +6131,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredLoad) obj.RegisteredLoad_string = obj.RegisteredLoad.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredLoad_string;
             }
 
             edit_template ()
@@ -5183,11 +6151,21 @@ define
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadReductionTimeCurveType'>loadReductionTimeCurveType: </label><div class='col-sm-8'><input id='loadReductionTimeCurveType' class='form-control' type='text'{{#loadReductionTimeCurveType}} value='{{loadReductionTimeCurveType}}'{{/loadReductionTimeCurveType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}_string'{{/RegisteredLoad}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredLoad", "RegisteredLoad", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5220,7 +6198,6 @@ define
                 obj.cls = "MktHeatRateCurve";
                 base.parse_attribute (/<cim:MktHeatRateCurve.ResourceVerifiableCosts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResourceVerifiableCosts", sub, context);
                 base.parse_attribute (/<cim:MktHeatRateCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.MktHeatRateCurve;
                 if (null == bucket)
                    context.parsed.MktHeatRateCurve = bucket = {};
@@ -5233,8 +6210,8 @@ define
             {
                 var fields = Production.HeatRateCurve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "MktHeatRateCurve", "ResourceVerifiableCosts", fields);
-                base.export_attribute (obj, "MktHeatRateCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "MktHeatRateCurve", fields);
+                base.export_attribute (obj, "export_attribute", "MktHeatRateCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5287,7 +6264,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ResourceVerifiableCosts", "ResourceVerifiableCosts", "0..1", "1"],
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5325,10 +6312,17 @@ define
                 base.parse_element (/<cim:HostControlArea.freqSetPoint>([\s\S]*?)<\/cim:HostControlArea.freqSetPoint>/g, obj, "freqSetPoint", base.to_string, sub, context);
                 base.parse_element (/<cim:HostControlArea.frequencyBiasFactor>([\s\S]*?)<\/cim:HostControlArea.frequencyBiasFactor>/g, obj, "frequencyBiasFactor", base.to_float, sub, context);
                 base.parse_element (/<cim:HostControlArea.startEffectiveDate>([\s\S]*?)<\/cim:HostControlArea.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:HostControlArea.SubControlAreas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlAreas", sub, context);
+                base.parse_attributes (/<cim:HostControlArea.BidSelfSched\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
+                base.parse_attributes (/<cim:HostControlArea.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                base.parse_attributes (/<cim:HostControlArea.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
                 base.parse_attribute (/<cim:HostControlArea.Controls\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Controls", sub, context);
                 base.parse_attribute (/<cim:HostControlArea.AdjacentCASet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AdjacentCASet", sub, context);
+                base.parse_attributes (/<cim:HostControlArea.CnodeDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CnodeDistributionFactor", sub, context);
+                base.parse_attributes (/<cim:HostControlArea.SysLoadDistribuFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SysLoadDistribuFactor", sub, context);
+                base.parse_attributes (/<cim:HostControlArea.TransferInterface\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransferInterface", sub, context);
+                base.parse_attributes (/<cim:HostControlArea.LossClearingResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LossClearingResults", sub, context);
                 base.parse_attribute (/<cim:HostControlArea.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
-
                 var bucket = context.parsed.HostControlArea;
                 if (null == bucket)
                    context.parsed.HostControlArea = bucket = {};
@@ -5346,9 +6340,17 @@ define
                 base.export_element (obj, "HostControlArea", "freqSetPoint", base.from_string, fields);
                 base.export_element (obj, "HostControlArea", "frequencyBiasFactor", base.from_float, fields);
                 base.export_element (obj, "HostControlArea", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "HostControlArea", "Controls", fields);
-                base.export_attribute (obj, "HostControlArea", "AdjacentCASet", fields);
-                base.export_attribute (obj, "HostControlArea", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "HostControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "HostControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5371,8 +6373,16 @@ define
                     {{#freqSetPoint}}<div><b>freqSetPoint</b>: {{freqSetPoint}}</div>{{/freqSetPoint}}
                     {{#frequencyBiasFactor}}<div><b>frequencyBiasFactor</b>: {{frequencyBiasFactor}}</div>{{/frequencyBiasFactor}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#SubControlAreas}}<div><b>SubControlAreas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubControlAreas}}
+                    {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidSelfSched}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
+                    {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Flowgate}}
                     {{#Controls}}<div><b>Controls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Controls}}&quot;);})'>{{Controls}}</a></div>{{/Controls}}
                     {{#AdjacentCASet}}<div><b>AdjacentCASet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AdjacentCASet}}&quot;);})'>{{AdjacentCASet}}</a></div>{{/AdjacentCASet}}
+                    {{#CnodeDistributionFactor}}<div><b>CnodeDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CnodeDistributionFactor}}
+                    {{#SysLoadDistribuFactor}}<div><b>SysLoadDistribuFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SysLoadDistribuFactor}}
+                    {{#TransferInterface}}<div><b>TransferInterface</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransferInterface}}
+                    {{#LossClearingResults}}<div><b>LossClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LossClearingResults}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
                     </div>
                     <fieldset>
@@ -5384,11 +6394,27 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SubControlAreas) obj.SubControlAreas_string = obj.SubControlAreas.join ();
+                if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
+                if (obj.Flowgate) obj.Flowgate_string = obj.Flowgate.join ();
+                if (obj.CnodeDistributionFactor) obj.CnodeDistributionFactor_string = obj.CnodeDistributionFactor.join ();
+                if (obj.SysLoadDistribuFactor) obj.SysLoadDistribuFactor_string = obj.SysLoadDistribuFactor.join ();
+                if (obj.TransferInterface) obj.TransferInterface_string = obj.TransferInterface.join ();
+                if (obj.LossClearingResults) obj.LossClearingResults_string = obj.LossClearingResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SubControlAreas_string;
+                delete obj.BidSelfSched_string;
+                delete obj.RegisteredResource_string;
+                delete obj.Flowgate_string;
+                delete obj.CnodeDistributionFactor_string;
+                delete obj.SysLoadDistribuFactor_string;
+                delete obj.TransferInterface_string;
+                delete obj.LossClearingResults_string;
             }
 
             edit_template ()
@@ -5413,7 +6439,26 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SubControlAreas", "SubControlArea", "0..*", "1"],
+                        ["BidSelfSched", "BidSelfSched", "0..*", "0..1"],
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..1"],
+                        ["Flowgate", "Flowgate", "0..*", "0..1"],
+                        ["Controls", "ControlAreaOperator", "1", "1"],
+                        ["AdjacentCASet", "AdjacentCASet", "0..1", "0..1"],
+                        ["CnodeDistributionFactor", "CnodeDistributionFactor", "0..*", "0..1"],
+                        ["SysLoadDistribuFactor", "SysLoadDistributionFactor", "0..*", "1"],
+                        ["TransferInterface", "TransferInterface", "0..*", "0..1"],
+                        ["LossClearingResults", "LossClearingResults", "0..*", "0..1"],
+                        ["RTO", "RTO", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5445,7 +6490,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "RMRStartUpEnergyCurve";
                 base.parse_attribute (/<cim:RMRStartUpEnergyCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.RMRStartUpEnergyCurve;
                 if (null == bucket)
                    context.parsed.RMRStartUpEnergyCurve = bucket = {};
@@ -5458,7 +6502,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "RMRStartUpEnergyCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RMRStartUpEnergyCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5509,7 +6553,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5544,7 +6597,8 @@ define
                 obj.cls = "TACArea";
                 base.parse_element (/<cim:TACArea.endEffectiveDate>([\s\S]*?)<\/cim:TACArea.endEffectiveDate>/g, obj, "endEffectiveDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:TACArea.startEffectiveDate>([\s\S]*?)<\/cim:TACArea.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
-
+                base.parse_attributes (/<cim:TACArea.AggregatedPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregatedPnode", sub, context);
+                base.parse_attributes (/<cim:TACArea.AreaLoadCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AreaLoadCurve", sub, context);
                 var bucket = context.parsed.TACArea;
                 if (null == bucket)
                    context.parsed.TACArea = bucket = {};
@@ -5559,6 +6613,8 @@ define
 
                 base.export_element (obj, "TACArea", "endEffectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "TACArea", "startEffectiveDate", base.from_datetime, fields);
+                base.export_attribute (obj, "export_attributes", "TACArea", fields);
+                base.export_attribute (obj, "export_attributes", "TACArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5578,6 +6634,8 @@ define
                     `
                     {{#endEffectiveDate}}<div><b>endEffectiveDate</b>: {{endEffectiveDate}}</div>{{/endEffectiveDate}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#AggregatedPnode}}<div><b>AggregatedPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AggregatedPnode}}
+                    {{#AreaLoadCurve}}<div><b>AreaLoadCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AreaLoadCurve}}
                     </div>
                     <fieldset>
 
@@ -5588,11 +6646,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AggregatedPnode) obj.AggregatedPnode_string = obj.AggregatedPnode.join ();
+                if (obj.AreaLoadCurve) obj.AreaLoadCurve_string = obj.AreaLoadCurve.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AggregatedPnode_string;
+                delete obj.AreaLoadCurve_string;
             }
 
             edit_template ()
@@ -5607,11 +6669,22 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}_string'{{/AggregatedPnode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AggregatedPnode", "AggregatedPnode", "0..*", "0..*"],
+                        ["AreaLoadCurve", "AreaLoadCurve", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5642,8 +6715,8 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "LocalReliabilityArea";
+                base.parse_attributes (/<cim:LocalReliabilityArea.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
                 base.parse_attribute (/<cim:LocalReliabilityArea.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
-
                 var bucket = context.parsed.LocalReliabilityArea;
                 if (null == bucket)
                    context.parsed.LocalReliabilityArea = bucket = {};
@@ -5656,7 +6729,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "LocalReliabilityArea", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "LocalReliabilityArea", fields);
+                base.export_attribute (obj, "export_attribute", "LocalReliabilityArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5674,6 +6748,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#RegisteredGenerator}}<div><b>RegisteredGenerator</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredGenerator}}
                     {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
                     </div>
                     <fieldset>
@@ -5685,11 +6760,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredGenerator) obj.RegisteredGenerator_string = obj.RegisteredGenerator.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredGenerator_string;
             }
 
             edit_template ()
@@ -5707,7 +6784,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..*", "0..1"],
+                        ["RTO", "RTO", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5739,7 +6826,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "RMRStartUpTimeCurve";
                 base.parse_attribute (/<cim:RMRStartUpTimeCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.RMRStartUpTimeCurve;
                 if (null == bucket)
                    context.parsed.RMRStartUpTimeCurve = bucket = {};
@@ -5752,7 +6838,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "RMRStartUpTimeCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RMRStartUpTimeCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5803,7 +6889,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5837,7 +6932,6 @@ define
                 base.parse_element (/<cim:RegulatingLimit.highLimit>([\s\S]*?)<\/cim:RegulatingLimit.highLimit>/g, obj, "highLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:RegulatingLimit.lowLimit>([\s\S]*?)<\/cim:RegulatingLimit.lowLimit>/g, obj, "lowLimit", base.to_string, sub, context);
                 base.parse_attribute (/<cim:RegulatingLimit.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.RegulatingLimit;
                 if (null == bucket)
                    context.parsed.RegulatingLimit = bucket = {};
@@ -5852,7 +6946,7 @@ define
 
                 base.export_element (obj, "RegulatingLimit", "highLimit", base.from_string, fields);
                 base.export_element (obj, "RegulatingLimit", "lowLimit", base.from_string, fields);
-                base.export_attribute (obj, "RegulatingLimit", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RegulatingLimit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5907,7 +7001,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -5940,7 +7043,8 @@ define
                 obj.cls = "ControlAreaDesignation";
                 base.parse_element (/<cim:ControlAreaDesignation.attained>([\s\S]*?)<\/cim:ControlAreaDesignation.attained>/g, obj, "attained", base.to_string, sub, context);
                 base.parse_element (/<cim:ControlAreaDesignation.native>([\s\S]*?)<\/cim:ControlAreaDesignation.native>/g, obj, "native", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ControlAreaDesignation.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                base.parse_attributes (/<cim:ControlAreaDesignation.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
                 var bucket = context.parsed.ControlAreaDesignation;
                 if (null == bucket)
                    context.parsed.ControlAreaDesignation = bucket = {};
@@ -5955,6 +7059,8 @@ define
 
                 base.export_element (obj, "ControlAreaDesignation", "attained", base.from_string, fields);
                 base.export_element (obj, "ControlAreaDesignation", "native", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ControlAreaDesignation", fields);
+                base.export_attribute (obj, "export_attributes", "ControlAreaDesignation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5974,6 +7080,8 @@ define
                     `
                     {{#attained}}<div><b>attained</b>: {{attained}}</div>{{/attained}}
                     {{#native}}<div><b>native</b>: {{native}}</div>{{/native}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
+                    {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubControlArea}}
                     </div>
                     <fieldset>
 
@@ -5984,11 +7092,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
+                if (obj.SubControlArea) obj.SubControlArea_string = obj.SubControlArea.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredResource_string;
+                delete obj.SubControlArea_string;
             }
 
             edit_template ()
@@ -6003,11 +7115,23 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='attained'>attained: </label><div class='col-sm-8'><input id='attained' class='form-control' type='text'{{#attained}} value='{{attained}}'{{/attained}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='native'>native: </label><div class='col-sm-8'><input id='native' class='form-control' type='text'{{#native}} value='{{native}}'{{/native}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"],
+                        ["SubControlArea", "SubControlArea", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6040,7 +7164,6 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "MaxStartUpCostCurve";
-
                 var bucket = context.parsed.MaxStartUpCostCurve;
                 if (null == bucket)
                    context.parsed.MaxStartUpCostCurve = bucket = {};
@@ -6101,7 +7224,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -6140,7 +7263,6 @@ define
                 base.parse_attribute (/<cim:CnodeDistributionFactor.MktConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktConnectivityNode", sub, context);
                 base.parse_attribute (/<cim:CnodeDistributionFactor.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HostControlArea", sub, context);
                 base.parse_attribute (/<cim:CnodeDistributionFactor.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
-
                 var bucket = context.parsed.CnodeDistributionFactor;
                 if (null == bucket)
                    context.parsed.CnodeDistributionFactor = bucket = {};
@@ -6155,10 +7277,10 @@ define
 
                 base.export_element (obj, "CnodeDistributionFactor", "factor", base.from_float, fields);
                 base.export_element (obj, "CnodeDistributionFactor", "podLossFactor", base.from_float, fields);
-                base.export_attribute (obj, "CnodeDistributionFactor", "AggregateNode", fields);
-                base.export_attribute (obj, "CnodeDistributionFactor", "MktConnectivityNode", fields);
-                base.export_attribute (obj, "CnodeDistributionFactor", "HostControlArea", fields);
-                base.export_attribute (obj, "CnodeDistributionFactor", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "CnodeDistributionFactor", fields);
+                base.export_attribute (obj, "export_attribute", "CnodeDistributionFactor", fields);
+                base.export_attribute (obj, "export_attribute", "CnodeDistributionFactor", fields);
+                base.export_attribute (obj, "export_attribute", "CnodeDistributionFactor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6219,7 +7341,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AggregateNode", "AggregateNode", "0..1", "0..*"],
+                        ["MktConnectivityNode", "MktConnectivityNode", "1", "0..*"],
+                        ["HostControlArea", "HostControlArea", "0..1", "0..*"],
+                        ["SubControlArea", "SubControlArea", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6255,7 +7389,9 @@ define
                 base.parse_element (/<cim:MPMTestCategory.testIdentifier>([\s\S]*?)<\/cim:MPMTestCategory.testIdentifier>/g, obj, "testIdentifier", base.to_string, sub, context);
                 base.parse_element (/<cim:MPMTestCategory.testMethod>([\s\S]*?)<\/cim:MPMTestCategory.testMethod>/g, obj, "testMethod", base.to_string, sub, context);
                 base.parse_element (/<cim:MPMTestCategory.purposeFlag>([\s\S]*?)<\/cim:MPMTestCategory.purposeFlag>/g, obj, "purposeFlag", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:MPMTestCategory.MPMTestThreshold\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestThreshold", sub, context);
+                base.parse_attributes (/<cim:MPMTestCategory.MPMResourceStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMResourceStatus", sub, context);
+                base.parse_attributes (/<cim:MPMTestCategory.MPMTestResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestResults", sub, context);
                 var bucket = context.parsed.MPMTestCategory;
                 if (null == bucket)
                    context.parsed.MPMTestCategory = bucket = {};
@@ -6271,6 +7407,9 @@ define
                 base.export_element (obj, "MPMTestCategory", "testIdentifier", base.from_string, fields);
                 base.export_element (obj, "MPMTestCategory", "testMethod", base.from_string, fields);
                 base.export_element (obj, "MPMTestCategory", "purposeFlag", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MPMTestCategory", fields);
+                base.export_attribute (obj, "export_attributes", "MPMTestCategory", fields);
+                base.export_attribute (obj, "export_attributes", "MPMTestCategory", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6291,6 +7430,9 @@ define
                     {{#testIdentifier}}<div><b>testIdentifier</b>: {{testIdentifier}}</div>{{/testIdentifier}}
                     {{#testMethod}}<div><b>testMethod</b>: {{testMethod}}</div>{{/testMethod}}
                     {{#purposeFlag}}<div><b>purposeFlag</b>: {{purposeFlag}}</div>{{/purposeFlag}}
+                    {{#MPMTestThreshold}}<div><b>MPMTestThreshold</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MPMTestThreshold}}
+                    {{#MPMResourceStatus}}<div><b>MPMResourceStatus</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MPMResourceStatus}}
+                    {{#MPMTestResults}}<div><b>MPMTestResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MPMTestResults}}
                     </div>
                     <fieldset>
 
@@ -6301,11 +7443,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MPMTestThreshold) obj.MPMTestThreshold_string = obj.MPMTestThreshold.join ();
+                if (obj.MPMResourceStatus) obj.MPMResourceStatus_string = obj.MPMResourceStatus.join ();
+                if (obj.MPMTestResults) obj.MPMTestResults_string = obj.MPMTestResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MPMTestThreshold_string;
+                delete obj.MPMResourceStatus_string;
+                delete obj.MPMTestResults_string;
             }
 
             edit_template ()
@@ -6325,7 +7473,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MPMTestThreshold", "MPMTestThreshold", "0..*", "1"],
+                        ["MPMResourceStatus", "MPMResourceStatus", "0..*", "1"],
+                        ["MPMTestResults", "MPMTestResults", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6358,7 +7517,6 @@ define
                 obj.cls = "OilPrice";
                 base.parse_element (/<cim:OilPrice.oilPriceIndex>([\s\S]*?)<\/cim:OilPrice.oilPriceIndex>/g, obj, "oilPriceIndex", base.to_float, sub, context);
                 base.parse_attribute (/<cim:OilPrice.FuelRegion\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FuelRegion", sub, context);
-
                 var bucket = context.parsed.OilPrice;
                 if (null == bucket)
                    context.parsed.OilPrice = bucket = {};
@@ -6372,7 +7530,7 @@ define
                 var fields = [];
 
                 base.export_element (obj, "OilPrice", "oilPriceIndex", base.from_float, fields);
-                base.export_attribute (obj, "OilPrice", "FuelRegion", fields);
+                base.export_attribute (obj, "export_attribute", "OilPrice", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6425,7 +7583,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["FuelRegion", "FuelRegion", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6460,7 +7627,6 @@ define
                 base.parse_element (/<cim:CombinedCycleConfigurationMember.steam>([\s\S]*?)<\/cim:CombinedCycleConfigurationMember.steam>/g, obj, "steam", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:CombinedCycleConfigurationMember.MktThermalGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktThermalGeneratingUnit", sub, context);
                 base.parse_attribute (/<cim:CombinedCycleConfigurationMember.CombinedCycleConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombinedCycleConfiguration", sub, context);
-
                 var bucket = context.parsed.CombinedCycleConfigurationMember;
                 if (null == bucket)
                    context.parsed.CombinedCycleConfigurationMember = bucket = {};
@@ -6475,8 +7641,8 @@ define
 
                 base.export_element (obj, "CombinedCycleConfigurationMember", "primary", base.from_boolean, fields);
                 base.export_element (obj, "CombinedCycleConfigurationMember", "steam", base.from_boolean, fields);
-                base.export_attribute (obj, "CombinedCycleConfigurationMember", "MktThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "CombinedCycleConfigurationMember", "CombinedCycleConfiguration", fields);
+                base.export_attribute (obj, "export_attribute", "CombinedCycleConfigurationMember", fields);
+                base.export_attribute (obj, "export_attribute", "CombinedCycleConfigurationMember", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6533,7 +7699,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktThermalGeneratingUnit", "MktThermalGeneratingUnit", "1", "0..*"],
+                        ["CombinedCycleConfiguration", "CombinedCycleConfiguration", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6571,7 +7747,6 @@ define
                 base.parse_element (/<cim:BidPriceCap.bidFloorAS>([\s\S]*?)<\/cim:BidPriceCap.bidFloorAS>/g, obj, "bidFloorAS", base.to_string, sub, context);
                 base.parse_element (/<cim:BidPriceCap.bidCeilingAS>([\s\S]*?)<\/cim:BidPriceCap.bidCeilingAS>/g, obj, "bidCeilingAS", base.to_string, sub, context);
                 base.parse_attribute (/<cim:BidPriceCap.MarketProduct\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProduct", sub, context);
-
                 var bucket = context.parsed.BidPriceCap;
                 if (null == bucket)
                    context.parsed.BidPriceCap = bucket = {};
@@ -6590,7 +7765,7 @@ define
                 base.export_element (obj, "BidPriceCap", "defaultPrice", base.from_string, fields);
                 base.export_element (obj, "BidPriceCap", "bidFloorAS", base.from_string, fields);
                 base.export_element (obj, "BidPriceCap", "bidCeilingAS", base.from_string, fields);
-                base.export_attribute (obj, "BidPriceCap", "MarketProduct", fields);
+                base.export_attribute (obj, "export_attribute", "BidPriceCap", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6653,7 +7828,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketProduct", "MarketProduct", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6688,7 +7872,6 @@ define
                 base.parse_element (/<cim:FlowgateRelief.terminateDate>([\s\S]*?)<\/cim:FlowgateRelief.terminateDate>/g, obj, "terminateDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:FlowgateRelief.idcTargetMktFlow>([\s\S]*?)<\/cim:FlowgateRelief.idcTargetMktFlow>/g, obj, "idcTargetMktFlow", base.to_string, sub, context);
                 base.parse_attribute (/<cim:FlowgateRelief.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
-
                 var bucket = context.parsed.FlowgateRelief;
                 if (null == bucket)
                    context.parsed.FlowgateRelief = bucket = {};
@@ -6704,7 +7887,7 @@ define
                 base.export_element (obj, "FlowgateRelief", "effectiveDate", base.from_datetime, fields);
                 base.export_element (obj, "FlowgateRelief", "terminateDate", base.from_datetime, fields);
                 base.export_element (obj, "FlowgateRelief", "idcTargetMktFlow", base.from_string, fields);
-                base.export_attribute (obj, "FlowgateRelief", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "FlowgateRelief", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6761,7 +7944,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Flowgate", "Flowgate", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6798,7 +7990,7 @@ define
                 base.parse_element (/<cim:ForbiddenRegion.crossTime>([\s\S]*?)<\/cim:ForbiddenRegion.crossTime>/g, obj, "crossTime", base.to_string, sub, context);
                 base.parse_element (/<cim:ForbiddenRegion.highMW>([\s\S]*?)<\/cim:ForbiddenRegion.highMW>/g, obj, "highMW", base.to_float, sub, context);
                 base.parse_element (/<cim:ForbiddenRegion.lowMW>([\s\S]*?)<\/cim:ForbiddenRegion.lowMW>/g, obj, "lowMW", base.to_float, sub, context);
-
+                base.parse_attributes (/<cim:ForbiddenRegion.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 var bucket = context.parsed.ForbiddenRegion;
                 if (null == bucket)
                    context.parsed.ForbiddenRegion = bucket = {};
@@ -6815,6 +8007,7 @@ define
                 base.export_element (obj, "ForbiddenRegion", "crossTime", base.from_string, fields);
                 base.export_element (obj, "ForbiddenRegion", "highMW", base.from_float, fields);
                 base.export_element (obj, "ForbiddenRegion", "lowMW", base.from_float, fields);
+                base.export_attribute (obj, "export_attributes", "ForbiddenRegion", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6836,6 +8029,7 @@ define
                     {{#crossTime}}<div><b>crossTime</b>: {{crossTime}}</div>{{/crossTime}}
                     {{#highMW}}<div><b>highMW</b>: {{highMW}}</div>{{/highMW}}
                     {{#lowMW}}<div><b>lowMW</b>: {{lowMW}}</div>{{/lowMW}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
                     </div>
                     <fieldset>
 
@@ -6846,11 +8040,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RegisteredResource_string;
             }
 
             edit_template ()
@@ -6867,11 +8063,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='crossTime'>crossTime: </label><div class='col-sm-8'><input id='crossTime' class='form-control' type='text'{{#crossTime}} value='{{crossTime}}'{{/crossTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='highMW'>highMW: </label><div class='col-sm-8'><input id='highMW' class='form-control' type='text'{{#highMW}} value='{{highMW}}'{{/highMW}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowMW'>lowMW: </label><div class='col-sm-8'><input id='lowMW' class='form-control' type='text'{{#lowMW}} value='{{lowMW}}'{{/lowMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -6907,7 +8113,7 @@ define
                 base.parse_element (/<cim:MarketQualificationRequirement.qualificationID>([\s\S]*?)<\/cim:MarketQualificationRequirement.qualificationID>/g, obj, "qualificationID", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketQualificationRequirement.status>([\s\S]*?)<\/cim:MarketQualificationRequirement.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketQualificationRequirement.statusType>([\s\S]*?)<\/cim:MarketQualificationRequirement.statusType>/g, obj, "statusType", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:MarketQualificationRequirement.MarketSkills\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketSkills", sub, context);
                 var bucket = context.parsed.MarketQualificationRequirement;
                 if (null == bucket)
                    context.parsed.MarketQualificationRequirement = bucket = {};
@@ -6925,6 +8131,7 @@ define
                 base.export_element (obj, "MarketQualificationRequirement", "qualificationID", base.from_string, fields);
                 base.export_element (obj, "MarketQualificationRequirement", "status", base.from_string, fields);
                 base.export_element (obj, "MarketQualificationRequirement", "statusType", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MarketQualificationRequirement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -6947,6 +8154,7 @@ define
                     {{#qualificationID}}<div><b>qualificationID</b>: {{qualificationID}}</div>{{/qualificationID}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#statusType}}<div><b>statusType</b>: {{statusType}}</div>{{/statusType}}
+                    {{#MarketSkills}}<div><b>MarketSkills</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketSkills}}
                     </div>
                     <fieldset>
 
@@ -6957,11 +8165,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MarketSkills) obj.MarketSkills_string = obj.MarketSkills.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketSkills_string;
             }
 
             edit_template ()
@@ -6979,11 +8189,21 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='statusType'>statusType: </label><div class='col-sm-8'><input id='statusType' class='form-control' type='text'{{#statusType}} value='{{statusType}}'{{/statusType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketSkills'>MarketSkills: </label><div class='col-sm-8'><input id='MarketSkills' class='form-control' type='text'{{#MarketSkills}} value='{{MarketSkills}}_string'{{/MarketSkills}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketSkills", "MarketSkill", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -7019,7 +8239,6 @@ define
                 base.parse_element (/<cim:SubstitutionResourceList.precedence>([\s\S]*?)<\/cim:SubstitutionResourceList.precedence>/g, obj, "precedence", base.to_string, sub, context);
                 base.parse_attribute (/<cim:SubstitutionResourceList.TransmissionContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionContractRight", sub, context);
                 base.parse_attribute (/<cim:SubstitutionResourceList.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
-
                 var bucket = context.parsed.SubstitutionResourceList;
                 if (null == bucket)
                    context.parsed.SubstitutionResourceList = bucket = {};
@@ -7033,8 +8252,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "SubstitutionResourceList", "precedence", base.from_string, fields);
-                base.export_attribute (obj, "SubstitutionResourceList", "TransmissionContractRight", fields);
-                base.export_attribute (obj, "SubstitutionResourceList", "RegisteredResource", fields);
+                base.export_attribute (obj, "export_attribute", "SubstitutionResourceList", fields);
+                base.export_attribute (obj, "export_attribute", "SubstitutionResourceList", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -7089,7 +8308,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TransmissionContractRight", "ContractRight", "0..1", "0..*"],
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -7126,7 +8355,6 @@ define
                 base.parse_attribute (/<cim:ContractDistributionFactor.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
                 base.parse_attribute (/<cim:ContractDistributionFactor.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
                 base.parse_attribute (/<cim:ContractDistributionFactor.TransmissionContractRight\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionContractRight", sub, context);
-
                 var bucket = context.parsed.ContractDistributionFactor;
                 if (null == bucket)
                    context.parsed.ContractDistributionFactor = bucket = {};
@@ -7142,9 +8370,9 @@ define
                 base.export_element (obj, "ContractDistributionFactor", "factor", base.from_float, fields);
                 base.export_element (obj, "ContractDistributionFactor", "sourceFlag", base.from_string, fields);
                 base.export_element (obj, "ContractDistributionFactor", "sinkFlag", base.from_string, fields);
-                base.export_attribute (obj, "ContractDistributionFactor", "RegisteredResource", fields);
-                base.export_attribute (obj, "ContractDistributionFactor", "Flowgate", fields);
-                base.export_attribute (obj, "ContractDistributionFactor", "TransmissionContractRight", fields);
+                base.export_attribute (obj, "export_attribute", "ContractDistributionFactor", fields);
+                base.export_attribute (obj, "export_attribute", "ContractDistributionFactor", fields);
+                base.export_attribute (obj, "export_attribute", "ContractDistributionFactor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -7205,7 +8433,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
+                        ["Flowgate", "Flowgate", "0..1", "0..*"],
+                        ["TransmissionContractRight", "ContractRight", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -7237,7 +8476,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "RMRStartUpFuelCurve";
                 base.parse_attribute (/<cim:RMRStartUpFuelCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.RMRStartUpFuelCurve;
                 if (null == bucket)
                    context.parsed.RMRStartUpFuelCurve = bucket = {};
@@ -7250,7 +8488,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "RMRStartUpFuelCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "RMRStartUpFuelCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -7301,7 +8539,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -7333,7 +8580,6 @@ define
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "FuelCostCurve";
                 base.parse_attribute (/<cim:FuelCostCurve.RegisteredGenerator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredGenerator", sub, context);
-
                 var bucket = context.parsed.FuelCostCurve;
                 if (null == bucket)
                    context.parsed.FuelCostCurve = bucket = {};
@@ -7346,7 +8592,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "FuelCostCurve", "RegisteredGenerator", fields);
+                base.export_attribute (obj, "export_attribute", "FuelCostCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -7397,7 +8643,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -7439,11 +8694,28 @@ define
                 base.parse_element (/<cim:SubControlArea.minSelfSchedMW>([\s\S]*?)<\/cim:SubControlArea.minSelfSchedMW>/g, obj, "minSelfSchedMW", base.to_float, sub, context);
                 base.parse_element (/<cim:SubControlArea.quadraticCoefficient>([\s\S]*?)<\/cim:SubControlArea.quadraticCoefficient>/g, obj, "quadraticCoefficient", base.to_float, sub, context);
                 base.parse_element (/<cim:SubControlArea.startEffectiveDate>([\s\S]*?)<\/cim:SubControlArea.startEffectiveDate>/g, obj, "startEffectiveDate", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:SubControlArea.To_Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "To_Flowgate", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.InadvertentAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InadvertentAccount", sub, context);
                 base.parse_attribute (/<cim:SubControlArea.HostControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HostControlArea", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.AggregateNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AggregateNode", sub, context);
                 base.parse_attribute (/<cim:SubControlArea.AdjacentCASet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AdjacentCASet", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.Export_EnergyTransactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Export_EnergyTransactions", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.Pnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Pnode", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.GeneralClearingResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneralClearingResults", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.Import_EnergyTransactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Import_EnergyTransactions", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.SideB_TieLines\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SideB_TieLines", sub, context);
                 base.parse_attribute (/<cim:SubControlArea.AreaReserveSpecification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AreaReserveSpecification", sub, context);
                 base.parse_attribute (/<cim:SubControlArea.RTO\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RTO", sub, context);
-
+                base.parse_attributes (/<cim:SubControlArea.Receive_DynamicSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receive_DynamicSchedules", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.ExPostLossResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostLossResults", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.SideA_TieLines\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SideA_TieLines", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.Send_DynamicSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Send_DynamicSchedules", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.RegisteredResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegisteredResource", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.ControlAreaDesignation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlAreaDesignation", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.From_Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "From_Flowgate", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.CnodeDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CnodeDistributionFactor", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.BidSelfSched\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BidSelfSched", sub, context);
+                base.parse_attributes (/<cim:SubControlArea.LossClearingResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LossClearingResults", sub, context);
                 var bucket = context.parsed.SubControlArea;
                 if (null == bucket)
                    context.parsed.SubControlArea = bucket = {};
@@ -7467,10 +8739,28 @@ define
                 base.export_element (obj, "SubControlArea", "minSelfSchedMW", base.from_float, fields);
                 base.export_element (obj, "SubControlArea", "quadraticCoefficient", base.from_float, fields);
                 base.export_element (obj, "SubControlArea", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "SubControlArea", "HostControlArea", fields);
-                base.export_attribute (obj, "SubControlArea", "AdjacentCASet", fields);
-                base.export_attribute (obj, "SubControlArea", "AreaReserveSpecification", fields);
-                base.export_attribute (obj, "SubControlArea", "RTO", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -7499,10 +8789,28 @@ define
                     {{#minSelfSchedMW}}<div><b>minSelfSchedMW</b>: {{minSelfSchedMW}}</div>{{/minSelfSchedMW}}
                     {{#quadraticCoefficient}}<div><b>quadraticCoefficient</b>: {{quadraticCoefficient}}</div>{{/quadraticCoefficient}}
                     {{#startEffectiveDate}}<div><b>startEffectiveDate</b>: {{startEffectiveDate}}</div>{{/startEffectiveDate}}
+                    {{#To_Flowgate}}<div><b>To_Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/To_Flowgate}}
+                    {{#InadvertentAccount}}<div><b>InadvertentAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InadvertentAccount}}
                     {{#HostControlArea}}<div><b>HostControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{HostControlArea}}&quot;);})'>{{HostControlArea}}</a></div>{{/HostControlArea}}
-                    {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    {{#AggregateNode}}<div><b>AggregateNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AggregateNode}}
                     {{#AdjacentCASet}}<div><b>AdjacentCASet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AdjacentCASet}}&quot;);})'>{{AdjacentCASet}}</a></div>{{/AdjacentCASet}}
+                    {{#Export_EnergyTransactions}}<div><b>Export_EnergyTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Export_EnergyTransactions}}
+                    {{#Pnode}}<div><b>Pnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Pnode}}
+                    {{#GeneralClearingResults}}<div><b>GeneralClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GeneralClearingResults}}
+                    {{#Import_EnergyTransactions}}<div><b>Import_EnergyTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Import_EnergyTransactions}}
+                    {{#SideB_TieLines}}<div><b>SideB_TieLines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SideB_TieLines}}
                     {{#AreaReserveSpecification}}<div><b>AreaReserveSpecification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AreaReserveSpecification}}&quot;);})'>{{AreaReserveSpecification}}</a></div>{{/AreaReserveSpecification}}
+                    {{#RTO}}<div><b>RTO</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RTO}}&quot;);})'>{{RTO}}</a></div>{{/RTO}}
+                    {{#Receive_DynamicSchedules}}<div><b>Receive_DynamicSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Receive_DynamicSchedules}}
+                    {{#ExPostLossResults}}<div><b>ExPostLossResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ExPostLossResults}}
+                    {{#SideA_TieLines}}<div><b>SideA_TieLines</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SideA_TieLines}}
+                    {{#Send_DynamicSchedules}}<div><b>Send_DynamicSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Send_DynamicSchedules}}
+                    {{#RegisteredResource}}<div><b>RegisteredResource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RegisteredResource}}
+                    {{#ControlAreaDesignation}}<div><b>ControlAreaDesignation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ControlAreaDesignation}}
+                    {{#From_Flowgate}}<div><b>From_Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/From_Flowgate}}
+                    {{#CnodeDistributionFactor}}<div><b>CnodeDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CnodeDistributionFactor}}
+                    {{#BidSelfSched}}<div><b>BidSelfSched</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/BidSelfSched}}
+                    {{#LossClearingResults}}<div><b>LossClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LossClearingResults}}
                     </div>
                     <fieldset>
 
@@ -7513,11 +8821,47 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.To_Flowgate) obj.To_Flowgate_string = obj.To_Flowgate.join ();
+                if (obj.InadvertentAccount) obj.InadvertentAccount_string = obj.InadvertentAccount.join ();
+                if (obj.AggregateNode) obj.AggregateNode_string = obj.AggregateNode.join ();
+                if (obj.Export_EnergyTransactions) obj.Export_EnergyTransactions_string = obj.Export_EnergyTransactions.join ();
+                if (obj.Pnode) obj.Pnode_string = obj.Pnode.join ();
+                if (obj.GeneralClearingResults) obj.GeneralClearingResults_string = obj.GeneralClearingResults.join ();
+                if (obj.Import_EnergyTransactions) obj.Import_EnergyTransactions_string = obj.Import_EnergyTransactions.join ();
+                if (obj.SideB_TieLines) obj.SideB_TieLines_string = obj.SideB_TieLines.join ();
+                if (obj.Receive_DynamicSchedules) obj.Receive_DynamicSchedules_string = obj.Receive_DynamicSchedules.join ();
+                if (obj.ExPostLossResults) obj.ExPostLossResults_string = obj.ExPostLossResults.join ();
+                if (obj.SideA_TieLines) obj.SideA_TieLines_string = obj.SideA_TieLines.join ();
+                if (obj.Send_DynamicSchedules) obj.Send_DynamicSchedules_string = obj.Send_DynamicSchedules.join ();
+                if (obj.RegisteredResource) obj.RegisteredResource_string = obj.RegisteredResource.join ();
+                if (obj.ControlAreaDesignation) obj.ControlAreaDesignation_string = obj.ControlAreaDesignation.join ();
+                if (obj.From_Flowgate) obj.From_Flowgate_string = obj.From_Flowgate.join ();
+                if (obj.CnodeDistributionFactor) obj.CnodeDistributionFactor_string = obj.CnodeDistributionFactor.join ();
+                if (obj.BidSelfSched) obj.BidSelfSched_string = obj.BidSelfSched.join ();
+                if (obj.LossClearingResults) obj.LossClearingResults_string = obj.LossClearingResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.To_Flowgate_string;
+                delete obj.InadvertentAccount_string;
+                delete obj.AggregateNode_string;
+                delete obj.Export_EnergyTransactions_string;
+                delete obj.Pnode_string;
+                delete obj.GeneralClearingResults_string;
+                delete obj.Import_EnergyTransactions_string;
+                delete obj.SideB_TieLines_string;
+                delete obj.Receive_DynamicSchedules_string;
+                delete obj.ExPostLossResults_string;
+                delete obj.SideA_TieLines_string;
+                delete obj.Send_DynamicSchedules_string;
+                delete obj.RegisteredResource_string;
+                delete obj.ControlAreaDesignation_string;
+                delete obj.From_Flowgate_string;
+                delete obj.CnodeDistributionFactor_string;
+                delete obj.BidSelfSched_string;
+                delete obj.LossClearingResults_string;
             }
 
             edit_template ()
@@ -7542,14 +8886,47 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='quadraticCoefficient'>quadraticCoefficient: </label><div class='col-sm-8'><input id='quadraticCoefficient' class='form-control' type='text'{{#quadraticCoefficient}} value='{{quadraticCoefficient}}'{{/quadraticCoefficient}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='AreaReserveSpecification'>AreaReserveSpecification: </label><div class='col-sm-8'><input id='AreaReserveSpecification' class='form-control' type='text'{{#AreaReserveSpecification}} value='{{AreaReserveSpecification}}'{{/AreaReserveSpecification}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlAreaDesignation'>ControlAreaDesignation: </label><div class='col-sm-8'><input id='ControlAreaDesignation' class='form-control' type='text'{{#ControlAreaDesignation}} value='{{ControlAreaDesignation}}_string'{{/ControlAreaDesignation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["To_Flowgate", "Flowgate", "0..*", "0..1"],
+                        ["InadvertentAccount", "InadvertentAccount", "0..*", "1"],
+                        ["HostControlArea", "HostControlArea", "1", "0..*"],
+                        ["AggregateNode", "AggregateNode", "0..*", "0..*"],
+                        ["AdjacentCASet", "AdjacentCASet", "0..1", "0..*"],
+                        ["Export_EnergyTransactions", "EnergyTransaction", "0..*", "1"],
+                        ["Pnode", "Pnode", "0..*", "0..1"],
+                        ["GeneralClearingResults", "GeneralClearingResults", "0..*", "0..1"],
+                        ["Import_EnergyTransactions", "EnergyTransaction", "0..*", "1"],
+                        ["SideB_TieLines", "TieLine", "0..*", "1"],
+                        ["AreaReserveSpecification", "AreaReserveSpec", "1", "0..*"],
+                        ["RTO", "RTO", "1", "0..*"],
+                        ["Receive_DynamicSchedules", "DynamicSchedule", "0..*", "1"],
+                        ["ExPostLossResults", "ExPostLossResults", "0..*", "0..1"],
+                        ["SideA_TieLines", "TieLine", "0..*", "1"],
+                        ["Send_DynamicSchedules", "DynamicSchedule", "0..*", "1"],
+                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"],
+                        ["ControlAreaDesignation", "ControlAreaDesignation", "0..*", "0..*"],
+                        ["From_Flowgate", "Flowgate", "0..*", "0..1"],
+                        ["CnodeDistributionFactor", "CnodeDistributionFactor", "0..*", "0..1"],
+                        ["BidSelfSched", "BidSelfSched", "0..*", "0..1"],
+                        ["LossClearingResults", "LossClearingResults", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -7580,7 +8957,6 @@ define
 
                 obj = Core.ConductingEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "MktConductingEquipment";
-
                 var bucket = context.parsed.MktConductingEquipment;
                 if (null == bucket)
                    context.parsed.MktConductingEquipment = bucket = {};
@@ -7641,7 +9017,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -7677,8 +9053,10 @@ define
                 base.parse_element (/<cim:CombinedCycleConfiguration.primaryConfiguration>([\s\S]*?)<\/cim:CombinedCycleConfiguration.primaryConfiguration>/g, obj, "primaryConfiguration", base.to_boolean, sub, context);
                 base.parse_element (/<cim:CombinedCycleConfiguration.ShutdownFlag>([\s\S]*?)<\/cim:CombinedCycleConfiguration.ShutdownFlag>/g, obj, "ShutdownFlag", base.to_boolean, sub, context);
                 base.parse_element (/<cim:CombinedCycleConfiguration.StartupFlag>([\s\S]*?)<\/cim:CombinedCycleConfiguration.StartupFlag>/g, obj, "StartupFlag", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:CombinedCycleConfiguration.FromTransitionState\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FromTransitionState", sub, context);
+                base.parse_attributes (/<cim:CombinedCycleConfiguration.ToTransitionState\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ToTransitionState", sub, context);
+                base.parse_attributes (/<cim:CombinedCycleConfiguration.CombinedCycleConfigurationMember\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombinedCycleConfigurationMember", sub, context);
                 base.parse_attribute (/<cim:CombinedCycleConfiguration.CombinedCycleLogicalConfiguration\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CombinedCycleLogicalConfiguration", sub, context);
-
                 var bucket = context.parsed.CombinedCycleConfiguration;
                 if (null == bucket)
                    context.parsed.CombinedCycleConfiguration = bucket = {};
@@ -7694,7 +9072,10 @@ define
                 base.export_element (obj, "CombinedCycleConfiguration", "primaryConfiguration", base.from_boolean, fields);
                 base.export_element (obj, "CombinedCycleConfiguration", "ShutdownFlag", base.from_boolean, fields);
                 base.export_element (obj, "CombinedCycleConfiguration", "StartupFlag", base.from_boolean, fields);
-                base.export_attribute (obj, "CombinedCycleConfiguration", "CombinedCycleLogicalConfiguration", fields);
+                base.export_attribute (obj, "export_attributes", "CombinedCycleConfiguration", fields);
+                base.export_attribute (obj, "export_attributes", "CombinedCycleConfiguration", fields);
+                base.export_attribute (obj, "export_attributes", "CombinedCycleConfiguration", fields);
+                base.export_attribute (obj, "export_attribute", "CombinedCycleConfiguration", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -7715,6 +9096,9 @@ define
                     {{#primaryConfiguration}}<div><b>primaryConfiguration</b>: {{primaryConfiguration}}</div>{{/primaryConfiguration}}
                     {{#ShutdownFlag}}<div><b>ShutdownFlag</b>: {{ShutdownFlag}}</div>{{/ShutdownFlag}}
                     {{#StartupFlag}}<div><b>StartupFlag</b>: {{StartupFlag}}</div>{{/StartupFlag}}
+                    {{#FromTransitionState}}<div><b>FromTransitionState</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FromTransitionState}}
+                    {{#ToTransitionState}}<div><b>ToTransitionState</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ToTransitionState}}
+                    {{#CombinedCycleConfigurationMember}}<div><b>CombinedCycleConfigurationMember</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CombinedCycleConfigurationMember}}
                     {{#CombinedCycleLogicalConfiguration}}<div><b>CombinedCycleLogicalConfiguration</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CombinedCycleLogicalConfiguration}}&quot;);})'>{{CombinedCycleLogicalConfiguration}}</a></div>{{/CombinedCycleLogicalConfiguration}}
                     </div>
                     <fieldset>
@@ -7726,11 +9110,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.FromTransitionState) obj.FromTransitionState_string = obj.FromTransitionState.join ();
+                if (obj.ToTransitionState) obj.ToTransitionState_string = obj.ToTransitionState.join ();
+                if (obj.CombinedCycleConfigurationMember) obj.CombinedCycleConfigurationMember_string = obj.CombinedCycleConfigurationMember.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.FromTransitionState_string;
+                delete obj.ToTransitionState_string;
+                delete obj.CombinedCycleConfigurationMember_string;
             }
 
             edit_template ()
@@ -7751,7 +9141,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["FromTransitionState", "CombinedCycleTransitionState", "0..*", "1"],
+                        ["ToTransitionState", "CombinedCycleTransitionState", "0..*", "1"],
+                        ["CombinedCycleConfigurationMember", "CombinedCycleConfigurationMember", "0..*", "1"],
+                        ["CombinedCycleLogicalConfiguration", "CombinedCycleLogicalConfiguration", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -7784,7 +9186,6 @@ define
 
                 obj = AggregateNode.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadAggregationPoint";
-
                 var bucket = context.parsed.LoadAggregationPoint;
                 if (null == bucket)
                    context.parsed.LoadAggregationPoint = bucket = {};
@@ -7845,7 +9246,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -7878,7 +9279,9 @@ define
 
                 obj = AggregateNode.prototype.parse.call (this, context, sub);
                 obj.cls = "MarketRegion";
-
+                base.parse_attributes (/<cim:MarketRegion.ExPostMarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExPostMarketRegionResults", sub, context);
+                base.parse_attributes (/<cim:MarketRegion.MarketRegionResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketRegionResults", sub, context);
+                base.parse_attributes (/<cim:MarketRegion.ReserveDemandCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReserveDemandCurve", sub, context);
                 var bucket = context.parsed.MarketRegion;
                 if (null == bucket)
                    context.parsed.MarketRegion = bucket = {};
@@ -7891,6 +9294,9 @@ define
             {
                 var fields = AggregateNode.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "MarketRegion", fields);
+                base.export_attribute (obj, "export_attributes", "MarketRegion", fields);
+                base.export_attribute (obj, "export_attributes", "MarketRegion", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -7908,6 +9314,9 @@ define
                     `
                     + AggregateNode.prototype.template.call (this) +
                     `
+                    {{#ExPostMarketRegionResults}}<div><b>ExPostMarketRegionResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ExPostMarketRegionResults}}
+                    {{#MarketRegionResults}}<div><b>MarketRegionResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketRegionResults}}
+                    {{#ReserveDemandCurve}}<div><b>ReserveDemandCurve</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReserveDemandCurve}}
                     </div>
                     <fieldset>
 
@@ -7918,11 +9327,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ExPostMarketRegionResults) obj.ExPostMarketRegionResults_string = obj.ExPostMarketRegionResults.join ();
+                if (obj.MarketRegionResults) obj.MarketRegionResults_string = obj.MarketRegionResults.join ();
+                if (obj.ReserveDemandCurve) obj.ReserveDemandCurve_string = obj.ReserveDemandCurve.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ExPostMarketRegionResults_string;
+                delete obj.MarketRegionResults_string;
+                delete obj.ReserveDemandCurve_string;
             }
 
             edit_template ()
@@ -7939,7 +9354,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExPostMarketRegionResults", "ExPostMarketRegionResults", "0..*", "1"],
+                        ["MarketRegionResults", "MarketRegionResults", "1..*", "1"],
+                        ["ReserveDemandCurve", "ReserveDemandCurve", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -7974,7 +9400,6 @@ define
                 base.parse_element (/<cim:MSSZone.lossFactor>([\s\S]*?)<\/cim:MSSZone.lossFactor>/g, obj, "lossFactor", base.to_float, sub, context);
                 base.parse_element (/<cim:MSSZone.rucGrossSettlement>([\s\S]*?)<\/cim:MSSZone.rucGrossSettlement>/g, obj, "rucGrossSettlement", base.to_string, sub, context);
                 base.parse_attribute (/<cim:MSSZone.MeteredSubSystem\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeteredSubSystem", sub, context);
-
                 var bucket = context.parsed.MSSZone;
                 if (null == bucket)
                    context.parsed.MSSZone = bucket = {};
@@ -7990,7 +9415,7 @@ define
                 base.export_element (obj, "MSSZone", "ignoreLosses", base.from_string, fields);
                 base.export_element (obj, "MSSZone", "lossFactor", base.from_float, fields);
                 base.export_element (obj, "MSSZone", "rucGrossSettlement", base.from_string, fields);
-                base.export_attribute (obj, "MSSZone", "MeteredSubSystem", fields);
+                base.export_attribute (obj, "export_attribute", "MSSZone", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -8047,7 +9472,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MeteredSubSystem", "MeteredSubSystem", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -8080,7 +9514,7 @@ define
 
                 obj = AggregateNode.prototype.parse.call (this, context, sub);
                 obj.cls = "RUCZone";
-
+                base.parse_attributes (/<cim:RUCZone.LossClearingResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LossClearingResults", sub, context);
                 var bucket = context.parsed.RUCZone;
                 if (null == bucket)
                    context.parsed.RUCZone = bucket = {};
@@ -8093,6 +9527,7 @@ define
             {
                 var fields = AggregateNode.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "RUCZone", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -8110,6 +9545,7 @@ define
                     `
                     + AggregateNode.prototype.template.call (this) +
                     `
+                    {{#LossClearingResults}}<div><b>LossClearingResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LossClearingResults}}
                     </div>
                     <fieldset>
 
@@ -8120,11 +9556,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.LossClearingResults) obj.LossClearingResults_string = obj.LossClearingResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.LossClearingResults_string;
             }
 
             edit_template ()
@@ -8141,7 +9579,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LossClearingResults", "LossClearingResults", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -8172,10 +9619,11 @@ define
 
                 obj = Pnode.prototype.parse.call (this, context, sub);
                 obj.cls = "IndividualPnode";
+                base.parse_attributes (/<cim:IndividualPnode.CongestionArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CongestionArea", sub, context);
+                base.parse_attributes (/<cim:IndividualPnode.PnodeDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PnodeDistributionFactor", sub, context);
                 base.parse_attribute (/<cim:IndividualPnode.MktConnectivityNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktConnectivityNode", sub, context);
                 base.parse_attribute (/<cim:IndividualPnode.GenDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenDistributionFactor", sub, context);
                 base.parse_attribute (/<cim:IndividualPnode.LoadDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadDistributionFactor", sub, context);
-
                 var bucket = context.parsed.IndividualPnode;
                 if (null == bucket)
                    context.parsed.IndividualPnode = bucket = {};
@@ -8188,9 +9636,11 @@ define
             {
                 var fields = Pnode.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "IndividualPnode", "MktConnectivityNode", fields);
-                base.export_attribute (obj, "IndividualPnode", "GenDistributionFactor", fields);
-                base.export_attribute (obj, "IndividualPnode", "LoadDistributionFactor", fields);
+                base.export_attribute (obj, "export_attributes", "IndividualPnode", fields);
+                base.export_attribute (obj, "export_attributes", "IndividualPnode", fields);
+                base.export_attribute (obj, "export_attribute", "IndividualPnode", fields);
+                base.export_attribute (obj, "export_attribute", "IndividualPnode", fields);
+                base.export_attribute (obj, "export_attribute", "IndividualPnode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -8208,6 +9658,8 @@ define
                     `
                     + Pnode.prototype.template.call (this) +
                     `
+                    {{#CongestionArea}}<div><b>CongestionArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CongestionArea}}
+                    {{#PnodeDistributionFactor}}<div><b>PnodeDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PnodeDistributionFactor}}
                     {{#MktConnectivityNode}}<div><b>MktConnectivityNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MktConnectivityNode}}&quot;);})'>{{MktConnectivityNode}}</a></div>{{/MktConnectivityNode}}
                     {{#GenDistributionFactor}}<div><b>GenDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenDistributionFactor}}&quot;);})'>{{GenDistributionFactor}}</a></div>{{/GenDistributionFactor}}
                     {{#LoadDistributionFactor}}<div><b>LoadDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadDistributionFactor}}&quot;);})'>{{LoadDistributionFactor}}</a></div>{{/LoadDistributionFactor}}
@@ -8221,11 +9673,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CongestionArea) obj.CongestionArea_string = obj.CongestionArea.join ();
+                if (obj.PnodeDistributionFactor) obj.PnodeDistributionFactor_string = obj.PnodeDistributionFactor.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CongestionArea_string;
+                delete obj.PnodeDistributionFactor_string;
             }
 
             edit_template ()
@@ -8238,6 +9694,7 @@ define
                     `
                     + Pnode.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CongestionArea'>CongestionArea: </label><div class='col-sm-8'><input id='CongestionArea' class='form-control' type='text'{{#CongestionArea}} value='{{CongestionArea}}_string'{{/CongestionArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenDistributionFactor'>GenDistributionFactor: </label><div class='col-sm-8'><input id='GenDistributionFactor' class='form-control' type='text'{{#GenDistributionFactor}} value='{{GenDistributionFactor}}'{{/GenDistributionFactor}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadDistributionFactor'>LoadDistributionFactor: </label><div class='col-sm-8'><input id='LoadDistributionFactor' class='form-control' type='text'{{#LoadDistributionFactor}} value='{{LoadDistributionFactor}}'{{/LoadDistributionFactor}}></div></div>
@@ -8245,7 +9702,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CongestionArea", "CongestionArea", "0..*", "0..*"],
+                        ["PnodeDistributionFactor", "PnodeDistributionFactor", "0..*", "1"],
+                        ["MktConnectivityNode", "MktConnectivityNode", "1", "0..1"],
+                        ["GenDistributionFactor", "GenDistributionFactor", "0..1", "0..1"],
+                        ["LoadDistributionFactor", "LoadDistributionFactor", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -8278,8 +9748,14 @@ define
                 obj.cls = "AggregatedPnode";
                 base.parse_element (/<cim:AggregatedPnode.apnodeType>([\s\S]*?)<\/cim:AggregatedPnode.apnodeType>/g, obj, "apnodeType", base.to_string, sub, context);
                 base.parse_element (/<cim:AggregatedPnode.participationCategory>([\s\S]*?)<\/cim:AggregatedPnode.participationCategory>/g, obj, "participationCategory", base.to_string, sub, context);
+                base.parse_attributes (/<cim:AggregatedPnode.GenDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenDistributionFactor", sub, context);
+                base.parse_attributes (/<cim:AggregatedPnode.MPMTestResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestResults", sub, context);
+                base.parse_attributes (/<cim:AggregatedPnode.MPMTestThreshold\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MPMTestThreshold", sub, context);
+                base.parse_attributes (/<cim:AggregatedPnode.TACArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TACArea", sub, context);
                 base.parse_attribute (/<cim:AggregatedPnode.PnodeDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PnodeDistributionFactor", sub, context);
-
+                base.parse_attributes (/<cim:AggregatedPnode.TradingHubValues\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TradingHubValues", sub, context);
+                base.parse_attributes (/<cim:AggregatedPnode.MktCombinedCyclePlant\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktCombinedCyclePlant", sub, context);
+                base.parse_attributes (/<cim:AggregatedPnode.LoadDistributionFactor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadDistributionFactor", sub, context);
                 var bucket = context.parsed.AggregatedPnode;
                 if (null == bucket)
                    context.parsed.AggregatedPnode = bucket = {};
@@ -8294,7 +9770,14 @@ define
 
                 base.export_element (obj, "AggregatedPnode", "apnodeType", base.from_string, fields);
                 base.export_element (obj, "AggregatedPnode", "participationCategory", base.from_string, fields);
-                base.export_attribute (obj, "AggregatedPnode", "PnodeDistributionFactor", fields);
+                base.export_attribute (obj, "export_attributes", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attribute", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregatedPnode", fields);
+                base.export_attribute (obj, "export_attributes", "AggregatedPnode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -8314,7 +9797,14 @@ define
                     `
                     {{#apnodeType}}<div><b>apnodeType</b>: {{apnodeType}}</div>{{/apnodeType}}
                     {{#participationCategory}}<div><b>participationCategory</b>: {{participationCategory}}</div>{{/participationCategory}}
+                    {{#GenDistributionFactor}}<div><b>GenDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GenDistributionFactor}}
+                    {{#MPMTestResults}}<div><b>MPMTestResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MPMTestResults}}
+                    {{#MPMTestThreshold}}<div><b>MPMTestThreshold</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MPMTestThreshold}}
+                    {{#TACArea}}<div><b>TACArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TACArea}}
                     {{#PnodeDistributionFactor}}<div><b>PnodeDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PnodeDistributionFactor}}&quot;);})'>{{PnodeDistributionFactor}}</a></div>{{/PnodeDistributionFactor}}
+                    {{#TradingHubValues}}<div><b>TradingHubValues</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TradingHubValues}}
+                    {{#MktCombinedCyclePlant}}<div><b>MktCombinedCyclePlant</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktCombinedCyclePlant}}
+                    {{#LoadDistributionFactor}}<div><b>LoadDistributionFactor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LoadDistributionFactor}}
                     </div>
                     <fieldset>
 
@@ -8325,11 +9815,25 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GenDistributionFactor) obj.GenDistributionFactor_string = obj.GenDistributionFactor.join ();
+                if (obj.MPMTestResults) obj.MPMTestResults_string = obj.MPMTestResults.join ();
+                if (obj.MPMTestThreshold) obj.MPMTestThreshold_string = obj.MPMTestThreshold.join ();
+                if (obj.TACArea) obj.TACArea_string = obj.TACArea.join ();
+                if (obj.TradingHubValues) obj.TradingHubValues_string = obj.TradingHubValues.join ();
+                if (obj.MktCombinedCyclePlant) obj.MktCombinedCyclePlant_string = obj.MktCombinedCyclePlant.join ();
+                if (obj.LoadDistributionFactor) obj.LoadDistributionFactor_string = obj.LoadDistributionFactor.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GenDistributionFactor_string;
+                delete obj.MPMTestResults_string;
+                delete obj.MPMTestThreshold_string;
+                delete obj.TACArea_string;
+                delete obj.TradingHubValues_string;
+                delete obj.MktCombinedCyclePlant_string;
+                delete obj.LoadDistributionFactor_string;
             }
 
             edit_template ()
@@ -8344,12 +9848,30 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='apnodeType'>apnodeType: </label><div class='col-sm-8'><input id='apnodeType' class='form-control' type='text'{{#apnodeType}} value='{{apnodeType}}'{{/apnodeType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='participationCategory'>participationCategory: </label><div class='col-sm-8'><input id='participationCategory' class='form-control' type='text'{{#participationCategory}} value='{{participationCategory}}'{{/participationCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold}}_string'{{/MPMTestThreshold}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TACArea'>TACArea: </label><div class='col-sm-8'><input id='TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea}}_string'{{/TACArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='PnodeDistributionFactor'>PnodeDistributionFactor: </label><div class='col-sm-8'><input id='PnodeDistributionFactor' class='form-control' type='text'{{#PnodeDistributionFactor}} value='{{PnodeDistributionFactor}}'{{/PnodeDistributionFactor}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GenDistributionFactor", "GenDistributionFactor", "1..*", "0..1"],
+                        ["MPMTestResults", "MPMTestResults", "1..*", "1"],
+                        ["MPMTestThreshold", "MPMTestThreshold", "1..*", "0..*"],
+                        ["TACArea", "TACArea", "0..*", "0..*"],
+                        ["PnodeDistributionFactor", "PnodeDistributionFactor", "1", "0..*"],
+                        ["TradingHubValues", "TradingHubValues", "0..*", "1"],
+                        ["MktCombinedCyclePlant", "MktCombinedCyclePlant", "0..*", "0..1"],
+                        ["LoadDistributionFactor", "LoadDistributionFactor", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -8380,7 +9902,7 @@ define
 
                 obj = AggregatedPnode.prototype.parse.call (this, context, sub);
                 obj.cls = "CongestionArea";
-
+                base.parse_attributes (/<cim:CongestionArea.IndividualPnode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IndividualPnode", sub, context);
                 var bucket = context.parsed.CongestionArea;
                 if (null == bucket)
                    context.parsed.CongestionArea = bucket = {};
@@ -8393,6 +9915,7 @@ define
             {
                 var fields = AggregatedPnode.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "CongestionArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -8410,6 +9933,7 @@ define
                     `
                     + AggregatedPnode.prototype.template.call (this) +
                     `
+                    {{#IndividualPnode}}<div><b>IndividualPnode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/IndividualPnode}}
                     </div>
                     <fieldset>
 
@@ -8420,11 +9944,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.IndividualPnode) obj.IndividualPnode_string = obj.IndividualPnode.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.IndividualPnode_string;
             }
 
             edit_template ()
@@ -8437,11 +9963,21 @@ define
                     `
                     + AggregatedPnode.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}_string'{{/IndividualPnode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["IndividualPnode", "IndividualPnode", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

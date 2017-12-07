@@ -115,7 +115,6 @@ define
                 base.parse_element (/<cim:WindContPitchAngleIEC.thetamin>([\s\S]*?)<\/cim:WindContPitchAngleIEC.thetamin>/g, obj, "thetamin", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContPitchAngleIEC.ttheta>([\s\S]*?)<\/cim:WindContPitchAngleIEC.ttheta>/g, obj, "ttheta", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContPitchAngleIEC.WindTurbineType3IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3IEC", sub, context);
-
                 var bucket = context.parsed.WindContPitchAngleIEC;
                 if (null == bucket)
                    context.parsed.WindContPitchAngleIEC = bucket = {};
@@ -138,7 +137,7 @@ define
                 base.export_element (obj, "WindContPitchAngleIEC", "thetamax", base.from_string, fields);
                 base.export_element (obj, "WindContPitchAngleIEC", "thetamin", base.from_string, fields);
                 base.export_element (obj, "WindContPitchAngleIEC", "ttheta", base.from_string, fields);
-                base.export_attribute (obj, "WindContPitchAngleIEC", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContPitchAngleIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -209,7 +208,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -249,9 +257,9 @@ define
                 base.parse_element (/<cim:WindPitchContPowerIEC.t1>([\s\S]*?)<\/cim:WindPitchContPowerIEC.t1>/g, obj, "t1", base.to_string, sub, context);
                 base.parse_element (/<cim:WindPitchContPowerIEC.tr>([\s\S]*?)<\/cim:WindPitchContPowerIEC.tr>/g, obj, "tr", base.to_string, sub, context);
                 base.parse_element (/<cim:WindPitchContPowerIEC.uuvrt>([\s\S]*?)<\/cim:WindPitchContPowerIEC.uuvrt>/g, obj, "uuvrt", base.to_string, sub, context);
+                base.parse_attributes (/<cim:WindPitchContPowerIEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 base.parse_attribute (/<cim:WindPitchContPowerIEC.WindGenTurbineType1bIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindGenTurbineType1bIEC", sub, context);
                 base.parse_attribute (/<cim:WindPitchContPowerIEC.WindGenTurbineType2IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindGenTurbineType2IEC", sub, context);
-
                 var bucket = context.parsed.WindPitchContPowerIEC;
                 if (null == bucket)
                    context.parsed.WindPitchContPowerIEC = bucket = {};
@@ -271,8 +279,9 @@ define
                 base.export_element (obj, "WindPitchContPowerIEC", "t1", base.from_string, fields);
                 base.export_element (obj, "WindPitchContPowerIEC", "tr", base.from_string, fields);
                 base.export_element (obj, "WindPitchContPowerIEC", "uuvrt", base.from_string, fields);
-                base.export_attribute (obj, "WindPitchContPowerIEC", "WindGenTurbineType1bIEC", fields);
-                base.export_attribute (obj, "WindPitchContPowerIEC", "WindGenTurbineType2IEC", fields);
+                base.export_attribute (obj, "export_attributes", "WindPitchContPowerIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindPitchContPowerIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindPitchContPowerIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -297,6 +306,7 @@ define
                     {{#t1}}<div><b>t1</b>: {{t1}}</div>{{/t1}}
                     {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
                     {{#uuvrt}}<div><b>uuvrt</b>: {{uuvrt}}</div>{{/uuvrt}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     {{#WindGenTurbineType1bIEC}}<div><b>WindGenTurbineType1bIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType1bIEC}}&quot;);})'>{{WindGenTurbineType1bIEC}}</a></div>{{/WindGenTurbineType1bIEC}}
                     {{#WindGenTurbineType2IEC}}<div><b>WindGenTurbineType2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType2IEC}}&quot;);})'>{{WindGenTurbineType2IEC}}</a></div>{{/WindGenTurbineType2IEC}}
                     </div>
@@ -309,11 +319,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -339,7 +351,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"],
+                        ["WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", "0..1", "1"],
+                        ["WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -378,7 +401,6 @@ define
                 base.parse_element (/<cim:WindGenType4IEC.tg>([\s\S]*?)<\/cim:WindGenType4IEC.tg>/g, obj, "tg", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindGenType4IEC.WindTurbineType4aIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType4aIEC", sub, context);
                 base.parse_attribute (/<cim:WindGenType4IEC.WindTurbineType4bIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType4bIEC", sub, context);
-
                 var bucket = context.parsed.WindGenType4IEC;
                 if (null == bucket)
                    context.parsed.WindGenType4IEC = bucket = {};
@@ -395,8 +417,8 @@ define
                 base.export_element (obj, "WindGenType4IEC", "diqmax", base.from_string, fields);
                 base.export_element (obj, "WindGenType4IEC", "diqmin", base.from_string, fields);
                 base.export_element (obj, "WindGenType4IEC", "tg", base.from_string, fields);
-                base.export_attribute (obj, "WindGenType4IEC", "WindTurbineType4aIEC", fields);
-                base.export_attribute (obj, "WindGenType4IEC", "WindTurbineType4bIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindGenType4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindGenType4IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -457,7 +479,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType4aIEC", "WindTurbineType4aIEC", "0..1", "0..1"],
+                        ["WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -508,8 +540,8 @@ define
                 base.parse_attribute (/<cim:WindPlantReactiveControlIEC.windPlantQcontrolModesType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windPlantQcontrolModesType", sub, context);
                 base.parse_element (/<cim:WindPlantReactiveControlIEC.xrefmax>([\s\S]*?)<\/cim:WindPlantReactiveControlIEC.xrefmax>/g, obj, "xrefmax", base.to_string, sub, context);
                 base.parse_element (/<cim:WindPlantReactiveControlIEC.xrefmin>([\s\S]*?)<\/cim:WindPlantReactiveControlIEC.xrefmin>/g, obj, "xrefmin", base.to_string, sub, context);
+                base.parse_attributes (/<cim:WindPlantReactiveControlIEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 base.parse_attribute (/<cim:WindPlantReactiveControlIEC.WindPlantIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantIEC", sub, context);
-
                 var bucket = context.parsed.WindPlantReactiveControlIEC;
                 if (null == bucket)
                    context.parsed.WindPlantReactiveControlIEC = bucket = {};
@@ -540,7 +572,8 @@ define
                 base.export_element (obj, "WindPlantReactiveControlIEC", "windPlantQcontrolModesType", base.from_string, fields);
                 base.export_element (obj, "WindPlantReactiveControlIEC", "xrefmax", base.from_string, fields);
                 base.export_element (obj, "WindPlantReactiveControlIEC", "xrefmin", base.from_string, fields);
-                base.export_attribute (obj, "WindPlantReactiveControlIEC", "WindPlantIEC", fields);
+                base.export_attribute (obj, "export_attributes", "WindPlantReactiveControlIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindPlantReactiveControlIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -576,6 +609,7 @@ define
                     {{#windPlantQcontrolModesType}}<div><b>windPlantQcontrolModesType</b>: {{windPlantQcontrolModesType}}</div>{{/windPlantQcontrolModesType}}
                     {{#xrefmax}}<div><b>xrefmax</b>: {{xrefmax}}</div>{{/xrefmax}}
                     {{#xrefmin}}<div><b>xrefmin</b>: {{xrefmin}}</div>{{/xrefmin}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     {{#WindPlantIEC}}<div><b>WindPlantIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantIEC}}&quot;);})'>{{WindPlantIEC}}</a></div>{{/WindPlantIEC}}
                     </div>
                     <fieldset>
@@ -588,12 +622,14 @@ define
             {
                 super.condition (obj);
                 obj.WindPlantQcontrolModeKind = []; if (!obj.windPlantQcontrolModesType) obj.WindPlantQcontrolModeKind.push ({ id: '', selected: true}); for (var property in WindPlantQcontrolModeKind) obj.WindPlantQcontrolModeKind.push ({ id: property, selected: obj.windPlantQcontrolModesType && obj.windPlantQcontrolModesType.endsWith ('.' + property)});
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.WindPlantQcontrolModeKind;
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -629,7 +665,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"],
+                        ["WindPlantIEC", "WindPlantIEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -686,7 +732,7 @@ define
                 base.parse_element (/<cim:WindContPType3IEC.wdtd>([\s\S]*?)<\/cim:WindContPType3IEC.wdtd>/g, obj, "wdtd", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContPType3IEC.zeta>([\s\S]*?)<\/cim:WindContPType3IEC.zeta>/g, obj, "zeta", base.to_float, sub, context);
                 base.parse_attribute (/<cim:WindContPType3IEC.WindTurbineType3IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3IEC", sub, context);
-
+                base.parse_attributes (/<cim:WindContPType3IEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 var bucket = context.parsed.WindContPType3IEC;
                 if (null == bucket)
                    context.parsed.WindContPType3IEC = bucket = {};
@@ -722,7 +768,8 @@ define
                 base.export_element (obj, "WindContPType3IEC", "updip", base.from_string, fields);
                 base.export_element (obj, "WindContPType3IEC", "wdtd", base.from_string, fields);
                 base.export_element (obj, "WindContPType3IEC", "zeta", base.from_float, fields);
-                base.export_attribute (obj, "WindContPType3IEC", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContPType3IEC", fields);
+                base.export_attribute (obj, "export_attributes", "WindContPType3IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -764,6 +811,7 @@ define
                     {{#wdtd}}<div><b>wdtd</b>: {{wdtd}}</div>{{/wdtd}}
                     {{#zeta}}<div><b>zeta</b>: {{zeta}}</div>{{/zeta}}
                     {{#WindTurbineType3IEC}}<div><b>WindTurbineType3IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3IEC}}&quot;);})'>{{WindTurbineType3IEC}}</a></div>{{/WindTurbineType3IEC}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
                     <fieldset>
 
@@ -774,11 +822,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -819,7 +869,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1"],
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -876,7 +936,6 @@ define
                 base.parse_attribute (/<cim:WindContQIEC.windUVRTQcontrolModesType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windUVRTQcontrolModesType", sub, context);
                 base.parse_element (/<cim:WindContQIEC.xdroop>([\s\S]*?)<\/cim:WindContQIEC.xdroop>/g, obj, "xdroop", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContQIEC.WindTurbineType3or4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4IEC", sub, context);
-
                 var bucket = context.parsed.WindContQIEC;
                 if (null == bucket)
                    context.parsed.WindContQIEC = bucket = {};
@@ -912,7 +971,7 @@ define
                 base.export_element (obj, "WindContQIEC", "windQcontrolModesType", base.from_string, fields);
                 base.export_element (obj, "WindContQIEC", "windUVRTQcontrolModesType", base.from_string, fields);
                 base.export_element (obj, "WindContQIEC", "xdroop", base.from_string, fields);
-                base.export_attribute (obj, "WindContQIEC", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContQIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1013,7 +1072,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1047,7 +1115,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "WindAeroConstIEC";
                 base.parse_attribute (/<cim:WindAeroConstIEC.WindGenTurbineType1aIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindGenTurbineType1aIEC", sub, context);
-
                 var bucket = context.parsed.WindAeroConstIEC;
                 if (null == bucket)
                    context.parsed.WindAeroConstIEC = bucket = {};
@@ -1060,7 +1127,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindAeroConstIEC", "WindGenTurbineType1aIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindAeroConstIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1111,7 +1178,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1145,7 +1221,6 @@ define
                 base.parse_attribute (/<cim:WindTurbineType3or4Dynamics.EnergySource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergySource", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType3or4Dynamics.WindPlantDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantDynamics", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType3or4Dynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-
                 var bucket = context.parsed.WindTurbineType3or4Dynamics;
                 if (null == bucket)
                    context.parsed.WindTurbineType3or4Dynamics = bucket = {};
@@ -1158,9 +1233,9 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindTurbineType3or4Dynamics", "EnergySource", fields);
-                base.export_attribute (obj, "WindTurbineType3or4Dynamics", "WindPlantDynamics", fields);
-                base.export_attribute (obj, "WindTurbineType3or4Dynamics", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4Dynamics", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4Dynamics", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4Dynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1215,7 +1290,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergySource", "EnergySource", "1", "0..1"],
+                        ["WindPlantDynamics", "WindPlantDynamics", "0..1", "1..*"],
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1251,7 +1337,7 @@ define
                 base.parse_element (/<cim:WindContQPQULimIEC.tpfiltql>([\s\S]*?)<\/cim:WindContQPQULimIEC.tpfiltql>/g, obj, "tpfiltql", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContQPQULimIEC.tufiltql>([\s\S]*?)<\/cim:WindContQPQULimIEC.tufiltql>/g, obj, "tufiltql", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContQPQULimIEC.WindTurbineType3or4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4IEC", sub, context);
-
+                base.parse_attributes (/<cim:WindContQPQULimIEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 var bucket = context.parsed.WindContQPQULimIEC;
                 if (null == bucket)
                    context.parsed.WindContQPQULimIEC = bucket = {};
@@ -1266,7 +1352,8 @@ define
 
                 base.export_element (obj, "WindContQPQULimIEC", "tpfiltql", base.from_string, fields);
                 base.export_element (obj, "WindContQPQULimIEC", "tufiltql", base.from_string, fields);
-                base.export_attribute (obj, "WindContQPQULimIEC", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContQPQULimIEC", fields);
+                base.export_attribute (obj, "export_attributes", "WindContQPQULimIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1287,6 +1374,7 @@ define
                     {{#tpfiltql}}<div><b>tpfiltql</b>: {{tpfiltql}}</div>{{/tpfiltql}}
                     {{#tufiltql}}<div><b>tufiltql</b>: {{tufiltql}}</div>{{/tufiltql}}
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
                     <fieldset>
 
@@ -1297,11 +1385,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -1321,7 +1411,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1"],
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1361,7 +1461,6 @@ define
                 base.parse_attribute (/<cim:WindMechIEC.WindTurbineType1or2IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2IEC", sub, context);
                 base.parse_attribute (/<cim:WindMechIEC.WindTurbineType3IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3IEC", sub, context);
                 base.parse_attribute (/<cim:WindMechIEC.WindTurbineType4bIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType4bIEC", sub, context);
-
                 var bucket = context.parsed.WindMechIEC;
                 if (null == bucket)
                    context.parsed.WindMechIEC = bucket = {};
@@ -1378,9 +1477,9 @@ define
                 base.export_element (obj, "WindMechIEC", "hgen", base.from_string, fields);
                 base.export_element (obj, "WindMechIEC", "hwtr", base.from_string, fields);
                 base.export_element (obj, "WindMechIEC", "kdrt", base.from_string, fields);
-                base.export_attribute (obj, "WindMechIEC", "WindTurbineType1or2IEC", fields);
-                base.export_attribute (obj, "WindMechIEC", "WindTurbineType3IEC", fields);
-                base.export_attribute (obj, "WindMechIEC", "WindTurbineType4bIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindMechIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindMechIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindMechIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1443,7 +1542,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"],
+                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "1"],
+                        ["WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1484,7 +1594,6 @@ define
                 base.parse_element (/<cim:WindAeroTwoDimIEC.thetav2>([\s\S]*?)<\/cim:WindAeroTwoDimIEC.thetav2>/g, obj, "thetav2", base.to_string, sub, context);
                 base.parse_element (/<cim:WindAeroTwoDimIEC.thetazero>([\s\S]*?)<\/cim:WindAeroTwoDimIEC.thetazero>/g, obj, "thetazero", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindAeroTwoDimIEC.WindTurbineType3IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3IEC", sub, context);
-
                 var bucket = context.parsed.WindAeroTwoDimIEC;
                 if (null == bucket)
                    context.parsed.WindAeroTwoDimIEC = bucket = {};
@@ -1504,7 +1613,7 @@ define
                 base.export_element (obj, "WindAeroTwoDimIEC", "pavail", base.from_string, fields);
                 base.export_element (obj, "WindAeroTwoDimIEC", "thetav2", base.from_string, fields);
                 base.export_element (obj, "WindAeroTwoDimIEC", "thetazero", base.from_string, fields);
-                base.export_attribute (obj, "WindAeroTwoDimIEC", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindAeroTwoDimIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1569,7 +1678,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1605,7 +1723,6 @@ define
                 base.parse_element (/<cim:WindContQLimIEC.qmax>([\s\S]*?)<\/cim:WindContQLimIEC.qmax>/g, obj, "qmax", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContQLimIEC.qmin>([\s\S]*?)<\/cim:WindContQLimIEC.qmin>/g, obj, "qmin", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContQLimIEC.WindTurbineType3or4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4IEC", sub, context);
-
                 var bucket = context.parsed.WindContQLimIEC;
                 if (null == bucket)
                    context.parsed.WindContQLimIEC = bucket = {};
@@ -1620,7 +1737,7 @@ define
 
                 base.export_element (obj, "WindContQLimIEC", "qmax", base.from_string, fields);
                 base.export_element (obj, "WindContQLimIEC", "qmin", base.from_string, fields);
-                base.export_attribute (obj, "WindContQLimIEC", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContQLimIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1675,7 +1792,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1710,7 +1836,6 @@ define
                 base.parse_element (/<cim:WindGenType3IEC.diqmax>([\s\S]*?)<\/cim:WindGenType3IEC.diqmax>/g, obj, "diqmax", base.to_string, sub, context);
                 base.parse_element (/<cim:WindGenType3IEC.xs>([\s\S]*?)<\/cim:WindGenType3IEC.xs>/g, obj, "xs", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindGenType3IEC.WindTurbineType3IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3IEC", sub, context);
-
                 var bucket = context.parsed.WindGenType3IEC;
                 if (null == bucket)
                    context.parsed.WindGenType3IEC = bucket = {};
@@ -1726,7 +1851,7 @@ define
                 base.export_element (obj, "WindGenType3IEC", "dipmax", base.from_string, fields);
                 base.export_element (obj, "WindGenType3IEC", "diqmax", base.from_string, fields);
                 base.export_element (obj, "WindGenType3IEC", "xs", base.from_string, fields);
-                base.export_attribute (obj, "WindGenType3IEC", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindGenType3IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1783,7 +1908,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1824,8 +1958,8 @@ define
                 base.parse_element (/<cim:WindProtectionIEC.uover>([\s\S]*?)<\/cim:WindProtectionIEC.uover>/g, obj, "uover", base.to_string, sub, context);
                 base.parse_element (/<cim:WindProtectionIEC.uunder>([\s\S]*?)<\/cim:WindProtectionIEC.uunder>/g, obj, "uunder", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindProtectionIEC.WindTurbineType1or2IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2IEC", sub, context);
+                base.parse_attributes (/<cim:WindProtectionIEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 base.parse_attribute (/<cim:WindProtectionIEC.WindTurbineType3or4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4IEC", sub, context);
-
                 var bucket = context.parsed.WindProtectionIEC;
                 if (null == bucket)
                    context.parsed.WindProtectionIEC = bucket = {};
@@ -1845,8 +1979,9 @@ define
                 base.export_element (obj, "WindProtectionIEC", "tfma", base.from_string, fields);
                 base.export_element (obj, "WindProtectionIEC", "uover", base.from_string, fields);
                 base.export_element (obj, "WindProtectionIEC", "uunder", base.from_string, fields);
-                base.export_attribute (obj, "WindProtectionIEC", "WindTurbineType1or2IEC", fields);
-                base.export_attribute (obj, "WindProtectionIEC", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindProtectionIEC", fields);
+                base.export_attribute (obj, "export_attributes", "WindProtectionIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindProtectionIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1872,6 +2007,7 @@ define
                     {{#uover}}<div><b>uover</b>: {{uover}}</div>{{/uover}}
                     {{#uunder}}<div><b>uunder</b>: {{uunder}}</div>{{/uunder}}
                     {{#WindTurbineType1or2IEC}}<div><b>WindTurbineType1or2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType1or2IEC}}&quot;);})'>{{WindTurbineType1or2IEC}}</a></div>{{/WindTurbineType1or2IEC}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
                     </div>
                     <fieldset>
@@ -1883,11 +2019,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -1913,7 +2051,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"],
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"],
+                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1955,7 +2104,7 @@ define
                 base.parse_element (/<cim:WindContRotorRIEC.tomegafiltrr>([\s\S]*?)<\/cim:WindContRotorRIEC.tomegafiltrr>/g, obj, "tomegafiltrr", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContRotorRIEC.tpfiltrr>([\s\S]*?)<\/cim:WindContRotorRIEC.tpfiltrr>/g, obj, "tpfiltrr", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContRotorRIEC.WindGenTurbineType2IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindGenTurbineType2IEC", sub, context);
-
+                base.parse_attributes (/<cim:WindContRotorRIEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 var bucket = context.parsed.WindContRotorRIEC;
                 if (null == bucket)
                    context.parsed.WindContRotorRIEC = bucket = {};
@@ -1976,7 +2125,8 @@ define
                 base.export_element (obj, "WindContRotorRIEC", "rmin", base.from_string, fields);
                 base.export_element (obj, "WindContRotorRIEC", "tomegafiltrr", base.from_string, fields);
                 base.export_element (obj, "WindContRotorRIEC", "tpfiltrr", base.from_string, fields);
-                base.export_attribute (obj, "WindContRotorRIEC", "WindGenTurbineType2IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContRotorRIEC", fields);
+                base.export_attribute (obj, "export_attributes", "WindContRotorRIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2003,6 +2153,7 @@ define
                     {{#tomegafiltrr}}<div><b>tomegafiltrr</b>: {{tomegafiltrr}}</div>{{/tomegafiltrr}}
                     {{#tpfiltrr}}<div><b>tpfiltrr</b>: {{tpfiltrr}}</div>{{/tpfiltrr}}
                     {{#WindGenTurbineType2IEC}}<div><b>WindGenTurbineType2IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindGenTurbineType2IEC}}&quot;);})'>{{WindGenTurbineType2IEC}}</a></div>{{/WindGenTurbineType2IEC}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
                     <fieldset>
 
@@ -2013,11 +2164,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -2043,7 +2196,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "1", "1"],
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2081,7 +2244,6 @@ define
                 base.parse_element (/<cim:WindContPType4bIEC.tpordp4b>([\s\S]*?)<\/cim:WindContPType4bIEC.tpordp4b>/g, obj, "tpordp4b", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContPType4bIEC.tufiltp4b>([\s\S]*?)<\/cim:WindContPType4bIEC.tufiltp4b>/g, obj, "tufiltp4b", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContPType4bIEC.WindTurbineType4bIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType4bIEC", sub, context);
-
                 var bucket = context.parsed.WindContPType4bIEC;
                 if (null == bucket)
                    context.parsed.WindContPType4bIEC = bucket = {};
@@ -2098,7 +2260,7 @@ define
                 base.export_element (obj, "WindContPType4bIEC", "tpaero", base.from_string, fields);
                 base.export_element (obj, "WindContPType4bIEC", "tpordp4b", base.from_string, fields);
                 base.export_element (obj, "WindContPType4bIEC", "tufiltp4b", base.from_string, fields);
-                base.export_attribute (obj, "WindContPType4bIEC", "WindTurbineType4bIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContPType4bIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2157,7 +2319,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType4bIEC", "WindTurbineType4bIEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2194,7 +2365,6 @@ define
                 base.parse_element (/<cim:WindRefFrameRotIEC.upll1>([\s\S]*?)<\/cim:WindRefFrameRotIEC.upll1>/g, obj, "upll1", base.to_string, sub, context);
                 base.parse_element (/<cim:WindRefFrameRotIEC.upll2>([\s\S]*?)<\/cim:WindRefFrameRotIEC.upll2>/g, obj, "upll2", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindRefFrameRotIEC.WindTurbineType3or4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4IEC", sub, context);
-
                 var bucket = context.parsed.WindRefFrameRotIEC;
                 if (null == bucket)
                    context.parsed.WindRefFrameRotIEC = bucket = {};
@@ -2210,7 +2380,7 @@ define
                 base.export_element (obj, "WindRefFrameRotIEC", "tpll", base.from_string, fields);
                 base.export_element (obj, "WindRefFrameRotIEC", "upll1", base.from_string, fields);
                 base.export_element (obj, "WindRefFrameRotIEC", "upll2", base.from_string, fields);
-                base.export_attribute (obj, "WindRefFrameRotIEC", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindRefFrameRotIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2267,7 +2437,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2311,7 +2490,6 @@ define
                 base.parse_attribute (/<cim:WindDynamicsLookupTable.WindProtectionIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindProtectionIEC", sub, context);
                 base.parse_attribute (/<cim:WindDynamicsLookupTable.WindContCurrLimIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindContCurrLimIEC", sub, context);
                 base.parse_attribute (/<cim:WindDynamicsLookupTable.WindContRotorRIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindContRotorRIEC", sub, context);
-
                 var bucket = context.parsed.WindDynamicsLookupTable;
                 if (null == bucket)
                    context.parsed.WindDynamicsLookupTable = bucket = {};
@@ -2328,15 +2506,15 @@ define
                 base.export_element (obj, "WindDynamicsLookupTable", "lookupTableFunctionType", base.from_string, fields);
                 base.export_element (obj, "WindDynamicsLookupTable", "output", base.from_float, fields);
                 base.export_element (obj, "WindDynamicsLookupTable", "sequence", base.from_string, fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindPitchContPowerIEC", fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindPlantFreqPcontrolIEC", fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindContQPQULimIEC", fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindGenType3bIEC", fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindContPType3IEC", fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindPlantReactiveControlIEC", fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindProtectionIEC", fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindContCurrLimIEC", fields);
-                base.export_attribute (obj, "WindDynamicsLookupTable", "WindContRotorRIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2413,7 +2591,24 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindPitchContPowerIEC", "WindPitchContPowerIEC", "0..1", "1..*"],
+                        ["WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "0..1", "1..*"],
+                        ["WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "1..*"],
+                        ["WindGenType3bIEC", "WindGenType3bIEC", "0..1", "1..*"],
+                        ["WindContPType3IEC", "WindContPType3IEC", "0..1", "1..*"],
+                        ["WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "0..1", "1..*"],
+                        ["WindProtectionIEC", "WindProtectionIEC", "0..1", "1..*"],
+                        ["WindContCurrLimIEC", "WindContCurrLimIEC", "0..1", "1..*"],
+                        ["WindContRotorRIEC", "WindContRotorRIEC", "0..1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2446,7 +2641,6 @@ define
                 obj.cls = "WindTurbineType1or2Dynamics";
                 base.parse_attribute (/<cim:WindTurbineType1or2Dynamics.AsynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachineDynamics", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType1or2Dynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-
                 var bucket = context.parsed.WindTurbineType1or2Dynamics;
                 if (null == bucket)
                    context.parsed.WindTurbineType1or2Dynamics = bucket = {};
@@ -2459,8 +2653,8 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindTurbineType1or2Dynamics", "AsynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "WindTurbineType1or2Dynamics", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType1or2Dynamics", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType1or2Dynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2513,7 +2707,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "1", "0..1"],
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2561,8 +2765,8 @@ define
                 base.parse_element (/<cim:WindPlantFreqPcontrolIEC.tpfv>([\s\S]*?)<\/cim:WindPlantFreqPcontrolIEC.tpfv>/g, obj, "tpfv", base.to_string, sub, context);
                 base.parse_element (/<cim:WindPlantFreqPcontrolIEC.twpffiltp>([\s\S]*?)<\/cim:WindPlantFreqPcontrolIEC.twpffiltp>/g, obj, "twpffiltp", base.to_string, sub, context);
                 base.parse_element (/<cim:WindPlantFreqPcontrolIEC.twppfiltp>([\s\S]*?)<\/cim:WindPlantFreqPcontrolIEC.twppfiltp>/g, obj, "twppfiltp", base.to_string, sub, context);
+                base.parse_attributes (/<cim:WindPlantFreqPcontrolIEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 base.parse_attribute (/<cim:WindPlantFreqPcontrolIEC.WindPlantIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantIEC", sub, context);
-
                 var bucket = context.parsed.WindPlantFreqPcontrolIEC;
                 if (null == bucket)
                    context.parsed.WindPlantFreqPcontrolIEC = bucket = {};
@@ -2590,7 +2794,8 @@ define
                 base.export_element (obj, "WindPlantFreqPcontrolIEC", "tpfv", base.from_string, fields);
                 base.export_element (obj, "WindPlantFreqPcontrolIEC", "twpffiltp", base.from_string, fields);
                 base.export_element (obj, "WindPlantFreqPcontrolIEC", "twppfiltp", base.from_string, fields);
-                base.export_attribute (obj, "WindPlantFreqPcontrolIEC", "WindPlantIEC", fields);
+                base.export_attribute (obj, "export_attributes", "WindPlantFreqPcontrolIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindPlantFreqPcontrolIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2623,6 +2828,7 @@ define
                     {{#tpfv}}<div><b>tpfv</b>: {{tpfv}}</div>{{/tpfv}}
                     {{#twpffiltp}}<div><b>twpffiltp</b>: {{twpffiltp}}</div>{{/twpffiltp}}
                     {{#twppfiltp}}<div><b>twppfiltp</b>: {{twppfiltp}}</div>{{/twppfiltp}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     {{#WindPlantIEC}}<div><b>WindPlantIEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindPlantIEC}}&quot;);})'>{{WindPlantIEC}}</a></div>{{/WindPlantIEC}}
                     </div>
                     <fieldset>
@@ -2634,11 +2840,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -2671,7 +2879,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"],
+                        ["WindPlantIEC", "WindPlantIEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2708,7 +2926,6 @@ define
                 base.parse_element (/<cim:WindContPType4aIEC.tpordp4a>([\s\S]*?)<\/cim:WindContPType4aIEC.tpordp4a>/g, obj, "tpordp4a", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContPType4aIEC.tufiltp4a>([\s\S]*?)<\/cim:WindContPType4aIEC.tufiltp4a>/g, obj, "tufiltp4a", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContPType4aIEC.WindTurbineType4aIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType4aIEC", sub, context);
-
                 var bucket = context.parsed.WindContPType4aIEC;
                 if (null == bucket)
                    context.parsed.WindContPType4aIEC = bucket = {};
@@ -2724,7 +2941,7 @@ define
                 base.export_element (obj, "WindContPType4aIEC", "dpmaxp4a", base.from_string, fields);
                 base.export_element (obj, "WindContPType4aIEC", "tpordp4a", base.from_string, fields);
                 base.export_element (obj, "WindContPType4aIEC", "tufiltp4a", base.from_string, fields);
-                base.export_attribute (obj, "WindContPType4aIEC", "WindTurbineType4aIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContPType4aIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2781,7 +2998,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType4aIEC", "WindTurbineType4aIEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2822,7 +3048,7 @@ define
                 base.parse_element (/<cim:WindContCurrLimIEC.tufiltcl>([\s\S]*?)<\/cim:WindContCurrLimIEC.tufiltcl>/g, obj, "tufiltcl", base.to_string, sub, context);
                 base.parse_element (/<cim:WindContCurrLimIEC.upqumax>([\s\S]*?)<\/cim:WindContCurrLimIEC.upqumax>/g, obj, "upqumax", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindContCurrLimIEC.WindTurbineType3or4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4IEC", sub, context);
-
+                base.parse_attributes (/<cim:WindContCurrLimIEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 var bucket = context.parsed.WindContCurrLimIEC;
                 if (null == bucket)
                    context.parsed.WindContCurrLimIEC = bucket = {};
@@ -2842,7 +3068,8 @@ define
                 base.export_element (obj, "WindContCurrLimIEC", "mqpri", base.from_boolean, fields);
                 base.export_element (obj, "WindContCurrLimIEC", "tufiltcl", base.from_string, fields);
                 base.export_element (obj, "WindContCurrLimIEC", "upqumax", base.from_string, fields);
-                base.export_attribute (obj, "WindContCurrLimIEC", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindContCurrLimIEC", fields);
+                base.export_attribute (obj, "export_attributes", "WindContCurrLimIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2868,6 +3095,7 @@ define
                     {{#tufiltcl}}<div><b>tufiltcl</b>: {{tufiltcl}}</div>{{/tufiltcl}}
                     {{#upqumax}}<div><b>upqumax</b>: {{upqumax}}</div>{{/upqumax}}
                     {{#WindTurbineType3or4IEC}}<div><b>WindTurbineType3or4IEC</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{WindTurbineType3or4IEC}}&quot;);})'>{{WindTurbineType3or4IEC}}</a></div>{{/WindTurbineType3or4IEC}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
                     <fieldset>
 
@@ -2878,11 +3106,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -2907,7 +3137,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1"],
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2943,7 +3183,6 @@ define
                 base.parse_element (/<cim:WindAeroOneDimIEC.ka>([\s\S]*?)<\/cim:WindAeroOneDimIEC.ka>/g, obj, "ka", base.to_float, sub, context);
                 base.parse_element (/<cim:WindAeroOneDimIEC.thetaomega>([\s\S]*?)<\/cim:WindAeroOneDimIEC.thetaomega>/g, obj, "thetaomega", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindAeroOneDimIEC.WindTurbineType3IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3IEC", sub, context);
-
                 var bucket = context.parsed.WindAeroOneDimIEC;
                 if (null == bucket)
                    context.parsed.WindAeroOneDimIEC = bucket = {};
@@ -2958,7 +3197,7 @@ define
 
                 base.export_element (obj, "WindAeroOneDimIEC", "ka", base.from_float, fields);
                 base.export_element (obj, "WindAeroOneDimIEC", "thetaomega", base.from_string, fields);
-                base.export_attribute (obj, "WindAeroOneDimIEC", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindAeroOneDimIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3013,7 +3252,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3045,7 +3293,7 @@ define
                 obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "WindPlantDynamics";
                 base.parse_attribute (/<cim:WindPlantDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
-
+                base.parse_attributes (/<cim:WindPlantDynamics.WindTurbineType3or4Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType3or4Dynamics", sub, context);
                 var bucket = context.parsed.WindPlantDynamics;
                 if (null == bucket)
                    context.parsed.WindPlantDynamics = bucket = {};
@@ -3058,7 +3306,8 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindPlantDynamics", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "WindPlantDynamics", fields);
+                base.export_attribute (obj, "export_attributes", "WindPlantDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3077,6 +3326,7 @@ define
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
                     {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemoteInputSignal}}&quot;);})'>{{RemoteInputSignal}}</a></div>{{/RemoteInputSignal}}
+                    {{#WindTurbineType3or4Dynamics}}<div><b>WindTurbineType3or4Dynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindTurbineType3or4Dynamics}}
                     </div>
                     <fieldset>
 
@@ -3087,11 +3337,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindTurbineType3or4Dynamics) obj.WindTurbineType3or4Dynamics_string = obj.WindTurbineType3or4Dynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindTurbineType3or4Dynamics_string;
             }
 
             edit_template ()
@@ -3109,7 +3361,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"],
+                        ["WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3146,7 +3408,6 @@ define
                 base.parse_attribute (/<cim:WindTurbineType3or4IEC.WIndContQIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WIndContQIEC", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType3or4IEC.WindContQLimIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindContQLimIEC", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType3or4IEC.WindProtectionIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindProtectionIEC", sub, context);
-
                 var bucket = context.parsed.WindTurbineType3or4IEC;
                 if (null == bucket)
                    context.parsed.WindTurbineType3or4IEC = bucket = {};
@@ -3159,12 +3420,12 @@ define
             {
                 var fields = WindTurbineType3or4Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindRefFrameRotIEC", fields);
-                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindContQPQULimIEC", fields);
-                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindContCurrLimIEC", fields);
-                base.export_attribute (obj, "WindTurbineType3or4IEC", "WIndContQIEC", fields);
-                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindContQLimIEC", fields);
-                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindProtectionIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3225,7 +3486,21 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindRefFrameRotIEC", "WindRefFrameRotIEC", "1", "1"],
+                        ["WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "0..1"],
+                        ["WindContCurrLimIEC", "WindContCurrLimIEC", "1", "1"],
+                        ["WIndContQIEC", "WindContQIEC", "1", "1"],
+                        ["WindContQLimIEC", "WindContQLimIEC", "0..1", "0..1"],
+                        ["WindProtectionIEC", "WindProtectionIEC", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3257,7 +3532,6 @@ define
                 obj = WindTurbineType3or4IEC.prototype.parse.call (this, context, sub);
                 obj.cls = "WindTurbineType4IEC";
                 base.parse_attribute (/<cim:WindTurbineType4IEC.WindGenType3aIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindGenType3aIEC", sub, context);
-
                 var bucket = context.parsed.WindTurbineType4IEC;
                 if (null == bucket)
                    context.parsed.WindTurbineType4IEC = bucket = {};
@@ -3270,7 +3544,7 @@ define
             {
                 var fields = WindTurbineType3or4IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindTurbineType4IEC", "WindGenType3aIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType4IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3321,7 +3595,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindGenType3aIEC", "WindGenType3aIEC", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3358,7 +3641,6 @@ define
                 base.parse_attribute (/<cim:WindTurbineType3IEC.WindAeroTwoDimIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindAeroTwoDimIEC", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType3IEC.WindMechIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindMechIEC", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType3IEC.WindAeroOneDimIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindAeroOneDimIEC", sub, context);
-
                 var bucket = context.parsed.WindTurbineType3IEC;
                 if (null == bucket)
                    context.parsed.WindTurbineType3IEC = bucket = {};
@@ -3371,12 +3653,12 @@ define
             {
                 var fields = WindTurbineType3or4IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindTurbineType3IEC", "WindGenType3IEC", fields);
-                base.export_attribute (obj, "WindTurbineType3IEC", "WindContPitchAngleIEC", fields);
-                base.export_attribute (obj, "WindTurbineType3IEC", "WindContPType3IEC", fields);
-                base.export_attribute (obj, "WindTurbineType3IEC", "WindAeroTwoDimIEC", fields);
-                base.export_attribute (obj, "WindTurbineType3IEC", "WindMechIEC", fields);
-                base.export_attribute (obj, "WindTurbineType3IEC", "WindAeroOneDimIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3437,7 +3719,21 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindGenType3IEC", "WindGenType3IEC", "0..1", "0..1"],
+                        ["WindContPitchAngleIEC", "WindContPitchAngleIEC", "1", "1"],
+                        ["WindContPType3IEC", "WindContPType3IEC", "1", "1"],
+                        ["WindAeroTwoDimIEC", "WindAeroTwoDimIEC", "0..1", "1"],
+                        ["WindMechIEC", "WindMechIEC", "1", "0..1"],
+                        ["WindAeroOneDimIEC", "WindAeroOneDimIEC", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3472,7 +3768,6 @@ define
                 obj.cls = "WindTurbineType4aIEC";
                 base.parse_attribute (/<cim:WindTurbineType4aIEC.WindGenType4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindGenType4IEC", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType4aIEC.WindContPType4aIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindContPType4aIEC", sub, context);
-
                 var bucket = context.parsed.WindTurbineType4aIEC;
                 if (null == bucket)
                    context.parsed.WindTurbineType4aIEC = bucket = {};
@@ -3485,8 +3780,8 @@ define
             {
                 var fields = WindTurbineType4IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindTurbineType4aIEC", "WindGenType4IEC", fields);
-                base.export_attribute (obj, "WindTurbineType4aIEC", "WindContPType4aIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType4aIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType4aIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3539,7 +3834,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1"],
+                        ["WindContPType4aIEC", "WindContPType4aIEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3575,7 +3880,6 @@ define
                 base.parse_attribute (/<cim:WindTurbineType4bIEC.WindContPType4bIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindContPType4bIEC", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType4bIEC.WindGenType4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindGenType4IEC", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType4bIEC.WindMechIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindMechIEC", sub, context);
-
                 var bucket = context.parsed.WindTurbineType4bIEC;
                 if (null == bucket)
                    context.parsed.WindTurbineType4bIEC = bucket = {};
@@ -3588,9 +3892,9 @@ define
             {
                 var fields = WindTurbineType4IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindTurbineType4bIEC", "WindContPType4bIEC", fields);
-                base.export_attribute (obj, "WindTurbineType4bIEC", "WindGenType4IEC", fields);
-                base.export_attribute (obj, "WindTurbineType4bIEC", "WindMechIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType4bIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType4bIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType4bIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3645,7 +3949,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindContPType4bIEC", "WindContPType4bIEC", "1", "1"],
+                        ["WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1"],
+                        ["WindMechIEC", "WindMechIEC", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3681,7 +3996,6 @@ define
                 base.parse_element (/<cim:WindGenType3aIEC.kpc>([\s\S]*?)<\/cim:WindGenType3aIEC.kpc>/g, obj, "kpc", base.to_float, sub, context);
                 base.parse_element (/<cim:WindGenType3aIEC.tic>([\s\S]*?)<\/cim:WindGenType3aIEC.tic>/g, obj, "tic", base.to_string, sub, context);
                 base.parse_attribute (/<cim:WindGenType3aIEC.WindTurbineType4IEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType4IEC", sub, context);
-
                 var bucket = context.parsed.WindGenType3aIEC;
                 if (null == bucket)
                    context.parsed.WindGenType3aIEC = bucket = {};
@@ -3696,7 +4010,7 @@ define
 
                 base.export_element (obj, "WindGenType3aIEC", "kpc", base.from_float, fields);
                 base.export_element (obj, "WindGenType3aIEC", "tic", base.from_string, fields);
-                base.export_attribute (obj, "WindGenType3aIEC", "WindTurbineType4IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindGenType3aIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3751,7 +4065,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindTurbineType4IEC", "WindTurbineType4IEC", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3787,7 +4110,7 @@ define
                 base.parse_element (/<cim:WindGenType3bIEC.mwtcwp>([\s\S]*?)<\/cim:WindGenType3bIEC.mwtcwp>/g, obj, "mwtcwp", base.to_boolean, sub, context);
                 base.parse_element (/<cim:WindGenType3bIEC.tg>([\s\S]*?)<\/cim:WindGenType3bIEC.tg>/g, obj, "tg", base.to_string, sub, context);
                 base.parse_element (/<cim:WindGenType3bIEC.two>([\s\S]*?)<\/cim:WindGenType3bIEC.two>/g, obj, "two", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:WindGenType3bIEC.WindDynamicsLookupTable\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindDynamicsLookupTable", sub, context);
                 var bucket = context.parsed.WindGenType3bIEC;
                 if (null == bucket)
                    context.parsed.WindGenType3bIEC = bucket = {};
@@ -3803,6 +4126,7 @@ define
                 base.export_element (obj, "WindGenType3bIEC", "mwtcwp", base.from_boolean, fields);
                 base.export_element (obj, "WindGenType3bIEC", "tg", base.from_string, fields);
                 base.export_element (obj, "WindGenType3bIEC", "two", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "WindGenType3bIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3823,6 +4147,7 @@ define
                     {{#mwtcwp}}<div><b>mwtcwp</b>: {{mwtcwp}}</div>{{/mwtcwp}}
                     {{#tg}}<div><b>tg</b>: {{tg}}</div>{{/tg}}
                     {{#two}}<div><b>two</b>: {{two}}</div>{{/two}}
+                    {{#WindDynamicsLookupTable}}<div><b>WindDynamicsLookupTable</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WindDynamicsLookupTable}}
                     </div>
                     <fieldset>
 
@@ -3833,11 +4158,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.WindDynamicsLookupTable) obj.WindDynamicsLookupTable_string = obj.WindDynamicsLookupTable.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.WindDynamicsLookupTable_string;
             }
 
             edit_template ()
@@ -3857,7 +4184,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3892,7 +4228,6 @@ define
                 obj.cls = "WindTurbineType1or2IEC";
                 base.parse_attribute (/<cim:WindTurbineType1or2IEC.WindProtectionIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindProtectionIEC", sub, context);
                 base.parse_attribute (/<cim:WindTurbineType1or2IEC.WindMechIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindMechIEC", sub, context);
-
                 var bucket = context.parsed.WindTurbineType1or2IEC;
                 if (null == bucket)
                    context.parsed.WindTurbineType1or2IEC = bucket = {};
@@ -3905,8 +4240,8 @@ define
             {
                 var fields = WindTurbineType1or2Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindTurbineType1or2IEC", "WindProtectionIEC", fields);
-                base.export_attribute (obj, "WindTurbineType1or2IEC", "WindMechIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType1or2IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindTurbineType1or2IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3959,7 +4294,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindProtectionIEC", "WindProtectionIEC", "1", "0..1"],
+                        ["WindMechIEC", "WindMechIEC", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3993,7 +4338,6 @@ define
                 obj = WindTurbineType1or2IEC.prototype.parse.call (this, context, sub);
                 obj.cls = "WindGenTurbineType1bIEC";
                 base.parse_attribute (/<cim:WindGenTurbineType1bIEC.WindPitchContPowerIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPitchContPowerIEC", sub, context);
-
                 var bucket = context.parsed.WindGenTurbineType1bIEC;
                 if (null == bucket)
                    context.parsed.WindGenTurbineType1bIEC = bucket = {};
@@ -4006,7 +4350,7 @@ define
             {
                 var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindGenTurbineType1bIEC", "WindPitchContPowerIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindGenTurbineType1bIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4057,7 +4401,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4091,7 +4444,6 @@ define
                 obj = WindTurbineType1or2IEC.prototype.parse.call (this, context, sub);
                 obj.cls = "WindGenTurbineType1aIEC";
                 base.parse_attribute (/<cim:WindGenTurbineType1aIEC.WindAeroConstIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindAeroConstIEC", sub, context);
-
                 var bucket = context.parsed.WindGenTurbineType1aIEC;
                 if (null == bucket)
                    context.parsed.WindGenTurbineType1aIEC = bucket = {};
@@ -4104,7 +4456,7 @@ define
             {
                 var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindGenTurbineType1aIEC", "WindAeroConstIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindGenTurbineType1aIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4155,7 +4507,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindAeroConstIEC", "WindAeroConstIEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4190,7 +4551,6 @@ define
                 obj.cls = "WindGenTurbineType2IEC";
                 base.parse_attribute (/<cim:WindGenTurbineType2IEC.WindContRotorRIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindContRotorRIEC", sub, context);
                 base.parse_attribute (/<cim:WindGenTurbineType2IEC.WindPitchContPowerIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPitchContPowerIEC", sub, context);
-
                 var bucket = context.parsed.WindGenTurbineType2IEC;
                 if (null == bucket)
                    context.parsed.WindGenTurbineType2IEC = bucket = {};
@@ -4203,8 +4563,8 @@ define
             {
                 var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindGenTurbineType2IEC", "WindContRotorRIEC", fields);
-                base.export_attribute (obj, "WindGenTurbineType2IEC", "WindPitchContPowerIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindGenTurbineType2IEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindGenTurbineType2IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4257,7 +4617,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindContRotorRIEC", "WindContRotorRIEC", "1", "1"],
+                        ["WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4292,7 +4662,6 @@ define
                 obj.cls = "WindPlantIEC";
                 base.parse_attribute (/<cim:WindPlantIEC.WindPlantReactiveControlIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantReactiveControlIEC", sub, context);
                 base.parse_attribute (/<cim:WindPlantIEC.WindPlantFreqPcontrolIEC\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantFreqPcontrolIEC", sub, context);
-
                 var bucket = context.parsed.WindPlantIEC;
                 if (null == bucket)
                    context.parsed.WindPlantIEC = bucket = {};
@@ -4305,8 +4674,8 @@ define
             {
                 var fields = WindPlantDynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "WindPlantIEC", "WindPlantReactiveControlIEC", fields);
-                base.export_attribute (obj, "WindPlantIEC", "WindPlantFreqPcontrolIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindPlantIEC", fields);
+                base.export_attribute (obj, "export_attribute", "WindPlantIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4359,7 +4728,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "1", "1"],
+                        ["WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "1", "1"]
+                    ]
+                );
+            }
         }
 
         return (

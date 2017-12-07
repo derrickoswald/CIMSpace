@@ -60,7 +60,7 @@ define
                 obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "PowerSystemStabilizerDynamics";
                 base.parse_attribute (/<cim:PowerSystemStabilizerDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
-
+                base.parse_attributes (/<cim:PowerSystemStabilizerDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
                 var bucket = context.parsed.PowerSystemStabilizerDynamics;
                 if (null == bucket)
                    context.parsed.PowerSystemStabilizerDynamics = bucket = {};
@@ -73,7 +73,8 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PowerSystemStabilizerDynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "PowerSystemStabilizerDynamics", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemStabilizerDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -92,6 +93,7 @@ define
                     + StandardModels.DynamicsFunctionBlock.prototype.template.call (this) +
                     `
                     {{#ExcitationSystemDynamics}}<div><b>ExcitationSystemDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ExcitationSystemDynamics}}&quot;);})'>{{ExcitationSystemDynamics}}</a></div>{{/ExcitationSystemDynamics}}
+                    {{#RemoteInputSignal}}<div><b>RemoteInputSignal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RemoteInputSignal}}
                     </div>
                     <fieldset>
 
@@ -102,11 +104,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RemoteInputSignal) obj.RemoteInputSignal_string = obj.RemoteInputSignal.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RemoteInputSignal_string;
             }
 
             edit_template ()
@@ -124,7 +128,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"],
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -166,7 +180,6 @@ define
                 base.parse_element (/<cim:PssPTIST1.t4>([\s\S]*?)<\/cim:PssPTIST1.t4>/g, obj, "t4", base.to_string, sub, context);
                 base.parse_element (/<cim:PssPTIST1.tf>([\s\S]*?)<\/cim:PssPTIST1.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:PssPTIST1.tp>([\s\S]*?)<\/cim:PssPTIST1.tp>/g, obj, "tp", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssPTIST1;
                 if (null == bucket)
                    context.parsed.PssPTIST1 = bucket = {};
@@ -260,7 +273,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -320,7 +333,6 @@ define
                 base.parse_element (/<cim:PssIEEE2B.vsi2min>([\s\S]*?)<\/cim:PssIEEE2B.vsi2min>/g, obj, "vsi2min", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE2B.vstmax>([\s\S]*?)<\/cim:PssIEEE2B.vstmax>/g, obj, "vstmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE2B.vstmin>([\s\S]*?)<\/cim:PssIEEE2B.vstmin>/g, obj, "vstmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssIEEE2B;
                 if (null == bucket)
                    context.parsed.PssIEEE2B = bucket = {};
@@ -466,7 +478,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -515,7 +527,6 @@ define
                 base.parse_element (/<cim:Pss2ST.t9>([\s\S]*?)<\/cim:Pss2ST.t9>/g, obj, "t9", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss2ST.vcl>([\s\S]*?)<\/cim:Pss2ST.vcl>/g, obj, "vcl", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss2ST.vcu>([\s\S]*?)<\/cim:Pss2ST.vcu>/g, obj, "vcu", base.to_string, sub, context);
-
                 var bucket = context.parsed.Pss2ST;
                 if (null == bucket)
                    context.parsed.Pss2ST = bucket = {};
@@ -634,7 +645,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -680,7 +691,6 @@ define
                 base.parse_element (/<cim:Pss1.vadat>([\s\S]*?)<\/cim:Pss1.vadat>/g, obj, "vadat", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Pss1.vsmn>([\s\S]*?)<\/cim:Pss1.vsmn>/g, obj, "vsmn", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss1.vsmx>([\s\S]*?)<\/cim:Pss1.vsmx>/g, obj, "vsmx", base.to_string, sub, context);
-
                 var bucket = context.parsed.Pss1;
                 if (null == bucket)
                    context.parsed.Pss1 = bucket = {};
@@ -786,7 +796,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -830,7 +840,6 @@ define
                 base.parse_element (/<cim:PssSH.td>([\s\S]*?)<\/cim:PssSH.td>/g, obj, "td", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSH.vsmax>([\s\S]*?)<\/cim:PssSH.vsmax>/g, obj, "vsmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSH.vsmin>([\s\S]*?)<\/cim:PssSH.vsmin>/g, obj, "vsmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssSH;
                 if (null == bucket)
                    context.parsed.PssSH = bucket = {};
@@ -930,7 +939,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -985,7 +994,6 @@ define
                 base.parse_element (/<cim:Pss1A.vcu>([\s\S]*?)<\/cim:Pss1A.vcu>/g, obj, "vcu", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss1A.vrmax>([\s\S]*?)<\/cim:Pss1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss1A.vrmin>([\s\S]*?)<\/cim:Pss1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.Pss1A;
                 if (null == bucket)
                    context.parsed.Pss1A = bucket = {};
@@ -1114,7 +1122,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1156,7 +1164,6 @@ define
                 base.parse_element (/<cim:PssSK.t6>([\s\S]*?)<\/cim:PssSK.t6>/g, obj, "t6", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSK.vsmax>([\s\S]*?)<\/cim:PssSK.vsmax>/g, obj, "vsmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSK.vsmin>([\s\S]*?)<\/cim:PssSK.vsmin>/g, obj, "vsmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssSK;
                 if (null == bucket)
                    context.parsed.PssSK = bucket = {};
@@ -1250,7 +1257,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1295,7 +1302,6 @@ define
                 base.parse_element (/<cim:PssIEEE1A.t6>([\s\S]*?)<\/cim:PssIEEE1A.t6>/g, obj, "t6", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE1A.vrmax>([\s\S]*?)<\/cim:PssIEEE1A.vrmax>/g, obj, "vrmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE1A.vrmin>([\s\S]*?)<\/cim:PssIEEE1A.vrmin>/g, obj, "vrmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssIEEE1A;
                 if (null == bucket)
                    context.parsed.PssIEEE1A = bucket = {};
@@ -1394,7 +1400,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1459,7 +1465,6 @@ define
                 base.parse_element (/<cim:PssPTIST3.t6>([\s\S]*?)<\/cim:PssPTIST3.t6>/g, obj, "t6", base.to_string, sub, context);
                 base.parse_element (/<cim:PssPTIST3.tf>([\s\S]*?)<\/cim:PssPTIST3.tf>/g, obj, "tf", base.to_string, sub, context);
                 base.parse_element (/<cim:PssPTIST3.tp>([\s\S]*?)<\/cim:PssPTIST3.tp>/g, obj, "tp", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssPTIST3;
                 if (null == bucket)
                    context.parsed.PssPTIST3 = bucket = {};
@@ -1622,7 +1627,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1722,7 +1727,6 @@ define
                 base.parse_element (/<cim:PssIEEE4B.vlmin>([\s\S]*?)<\/cim:PssIEEE4B.vlmin>/g, obj, "vlmin", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE4B.vstmax>([\s\S]*?)<\/cim:PssIEEE4B.vstmax>/g, obj, "vstmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE4B.vstmin>([\s\S]*?)<\/cim:PssIEEE4B.vstmin>/g, obj, "vstmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssIEEE4B;
                 if (null == bucket)
                    context.parsed.PssIEEE4B = bucket = {};
@@ -1984,7 +1988,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2032,7 +2036,6 @@ define
                 base.parse_element (/<cim:Pss5.vadat>([\s\S]*?)<\/cim:Pss5.vadat>/g, obj, "vadat", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Pss5.vsmn>([\s\S]*?)<\/cim:Pss5.vsmn>/g, obj, "vsmn", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss5.vsmx>([\s\S]*?)<\/cim:Pss5.vsmx>/g, obj, "vsmx", base.to_string, sub, context);
-
                 var bucket = context.parsed.Pss5;
                 if (null == bucket)
                    context.parsed.Pss5 = bucket = {};
@@ -2144,7 +2147,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2186,7 +2189,6 @@ define
                 base.parse_element (/<cim:PssSB4.tx2>([\s\S]*?)<\/cim:PssSB4.tx2>/g, obj, "tx2", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSB4.vsmax>([\s\S]*?)<\/cim:PssSB4.vsmax>/g, obj, "vsmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssSB4.vsmin>([\s\S]*?)<\/cim:PssSB4.vsmin>/g, obj, "vsmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssSB4;
                 if (null == bucket)
                    context.parsed.PssSB4 = bucket = {};
@@ -2280,7 +2282,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2332,7 +2334,6 @@ define
                 base.parse_element (/<cim:PssIEEE3B.tw3>([\s\S]*?)<\/cim:PssIEEE3B.tw3>/g, obj, "tw3", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.vstmax>([\s\S]*?)<\/cim:PssIEEE3B.vstmax>/g, obj, "vstmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssIEEE3B.vstmin>([\s\S]*?)<\/cim:PssIEEE3B.vstmin>/g, obj, "vstmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssIEEE3B;
                 if (null == bucket)
                    context.parsed.PssIEEE3B = bucket = {};
@@ -2454,7 +2455,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2496,7 +2497,6 @@ define
                 base.parse_element (/<cim:PssELIN2.ts4>([\s\S]*?)<\/cim:PssELIN2.ts4>/g, obj, "ts4", base.to_string, sub, context);
                 base.parse_element (/<cim:PssELIN2.ts5>([\s\S]*?)<\/cim:PssELIN2.ts5>/g, obj, "ts5", base.to_string, sub, context);
                 base.parse_element (/<cim:PssELIN2.ts6>([\s\S]*?)<\/cim:PssELIN2.ts6>/g, obj, "ts6", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssELIN2;
                 if (null == bucket)
                    context.parsed.PssELIN2 = bucket = {};
@@ -2590,7 +2590,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2654,7 +2654,6 @@ define
                 base.parse_element (/<cim:Pss2B.vsi2min>([\s\S]*?)<\/cim:Pss2B.vsi2min>/g, obj, "vsi2min", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss2B.vstmax>([\s\S]*?)<\/cim:Pss2B.vstmax>/g, obj, "vstmax", base.to_string, sub, context);
                 base.parse_element (/<cim:Pss2B.vstmin>([\s\S]*?)<\/cim:Pss2B.vstmin>/g, obj, "vstmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.Pss2B;
                 if (null == bucket)
                    context.parsed.Pss2B = bucket = {};
@@ -2812,7 +2811,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2861,7 +2860,6 @@ define
                 base.parse_element (/<cim:PssWECC.vcu>([\s\S]*?)<\/cim:PssWECC.vcu>/g, obj, "vcu", base.to_string, sub, context);
                 base.parse_element (/<cim:PssWECC.vsmax>([\s\S]*?)<\/cim:PssWECC.vsmax>/g, obj, "vsmax", base.to_string, sub, context);
                 base.parse_element (/<cim:PssWECC.vsmin>([\s\S]*?)<\/cim:PssWECC.vsmin>/g, obj, "vsmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.PssWECC;
                 if (null == bucket)
                    context.parsed.PssWECC = bucket = {};
@@ -2980,7 +2978,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

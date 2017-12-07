@@ -45,8 +45,9 @@ define
                 base.parse_element (/<cim:CRRSegment.endDateTime>([\s\S]*?)<\/cim:CRRSegment.endDateTime>/g, obj, "endDateTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:CRRSegment.quantity>([\s\S]*?)<\/cim:CRRSegment.quantity>/g, obj, "quantity", base.to_float, sub, context);
                 base.parse_element (/<cim:CRRSegment.startDateTime>([\s\S]*?)<\/cim:CRRSegment.startDateTime>/g, obj, "startDateTime", base.to_datetime, sub, context);
+                base.parse_attributes (/<cim:CRRSegment.Source\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Source", sub, context);
+                base.parse_attributes (/<cim:CRRSegment.Sink\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Sink", sub, context);
                 base.parse_attribute (/<cim:CRRSegment.CRR\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRR", sub, context);
-
                 var bucket = context.parsed.CRRSegment;
                 if (null == bucket)
                    context.parsed.CRRSegment = bucket = {};
@@ -64,7 +65,9 @@ define
                 base.export_element (obj, "CRRSegment", "endDateTime", base.from_datetime, fields);
                 base.export_element (obj, "CRRSegment", "quantity", base.from_float, fields);
                 base.export_element (obj, "CRRSegment", "startDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "CRRSegment", "CRR", fields);
+                base.export_attribute (obj, "export_attributes", "CRRSegment", fields);
+                base.export_attribute (obj, "export_attributes", "CRRSegment", fields);
+                base.export_attribute (obj, "export_attribute", "CRRSegment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -87,6 +90,8 @@ define
                     {{#endDateTime}}<div><b>endDateTime</b>: {{endDateTime}}</div>{{/endDateTime}}
                     {{#quantity}}<div><b>quantity</b>: {{quantity}}</div>{{/quantity}}
                     {{#startDateTime}}<div><b>startDateTime</b>: {{startDateTime}}</div>{{/startDateTime}}
+                    {{#Source}}<div><b>Source</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Source}}
+                    {{#Sink}}<div><b>Sink</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Sink}}
                     {{#CRR}}<div><b>CRR</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRR}}&quot;);})'>{{CRR}}</a></div>{{/CRR}}
                     </div>
                     <fieldset>
@@ -98,11 +103,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Source) obj.Source_string = obj.Source.join ();
+                if (obj.Sink) obj.Sink_string = obj.Sink.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Source_string;
+                delete obj.Sink_string;
             }
 
             edit_template ()
@@ -120,12 +129,25 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='endDateTime'>endDateTime: </label><div class='col-sm-8'><input id='endDateTime' class='form-control' type='text'{{#endDateTime}} value='{{endDateTime}}'{{/endDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDateTime'>startDateTime: </label><div class='col-sm-8'><input id='startDateTime' class='form-control' type='text'{{#startDateTime}} value='{{startDateTime}}'{{/startDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Source'>Source: </label><div class='col-sm-8'><input id='Source' class='form-control' type='text'{{#Source}} value='{{Source}}_string'{{/Source}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Sink'>Sink: </label><div class='col-sm-8'><input id='Sink' class='form-control' type='text'{{#Sink}} value='{{Sink}}_string'{{/Sink}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRR'>CRR: </label><div class='col-sm-8'><input id='CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Source", "Pnode", "0..*", "0..*"],
+                        ["Sink", "Pnode", "0..*", "0..*"],
+                        ["CRR", "CRR", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -163,9 +185,10 @@ define
                 base.parse_element (/<cim:CRR.hedgeType>([\s\S]*?)<\/cim:CRR.hedgeType>/g, obj, "hedgeType", base.to_string, sub, context);
                 base.parse_element (/<cim:CRR.timeOfUse>([\s\S]*?)<\/cim:CRR.timeOfUse>/g, obj, "timeOfUse", base.to_string, sub, context);
                 base.parse_element (/<cim:CRR.tradeSliceID>([\s\S]*?)<\/cim:CRR.tradeSliceID>/g, obj, "tradeSliceID", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CRR.CRROrgRole\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRROrgRole", sub, context);
                 base.parse_attribute (/<cim:CRR.CRRMarket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRRMarket", sub, context);
                 base.parse_attribute (/<cim:CRR.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
-
+                base.parse_attributes (/<cim:CRR.CRRSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRRSegment", sub, context);
                 var bucket = context.parsed.CRR;
                 if (null == bucket)
                    context.parsed.CRR = bucket = {};
@@ -183,8 +206,10 @@ define
                 base.export_element (obj, "CRR", "hedgeType", base.from_string, fields);
                 base.export_element (obj, "CRR", "timeOfUse", base.from_string, fields);
                 base.export_element (obj, "CRR", "tradeSliceID", base.from_string, fields);
-                base.export_attribute (obj, "CRR", "CRRMarket", fields);
-                base.export_attribute (obj, "CRR", "Flowgate", fields);
+                base.export_attribute (obj, "export_attributes", "CRR", fields);
+                base.export_attribute (obj, "export_attribute", "CRR", fields);
+                base.export_attribute (obj, "export_attribute", "CRR", fields);
+                base.export_attribute (obj, "export_attributes", "CRR", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -207,8 +232,10 @@ define
                     {{#hedgeType}}<div><b>hedgeType</b>: {{hedgeType}}</div>{{/hedgeType}}
                     {{#timeOfUse}}<div><b>timeOfUse</b>: {{timeOfUse}}</div>{{/timeOfUse}}
                     {{#tradeSliceID}}<div><b>tradeSliceID</b>: {{tradeSliceID}}</div>{{/tradeSliceID}}
+                    {{#CRROrgRole}}<div><b>CRROrgRole</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CRROrgRole}}
                     {{#CRRMarket}}<div><b>CRRMarket</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CRRMarket}}&quot;);})'>{{CRRMarket}}</a></div>{{/CRRMarket}}
                     {{#Flowgate}}<div><b>Flowgate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Flowgate}}&quot;);})'>{{Flowgate}}</a></div>{{/Flowgate}}
+                    {{#CRRSegment}}<div><b>CRRSegment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CRRSegment}}
                     </div>
                     <fieldset>
 
@@ -219,11 +246,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CRROrgRole) obj.CRROrgRole_string = obj.CRROrgRole.join ();
+                if (obj.CRRSegment) obj.CRRSegment_string = obj.CRRSegment.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CRROrgRole_string;
+                delete obj.CRRSegment_string;
             }
 
             edit_template ()
@@ -247,7 +278,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CRROrgRole", "CRROrgRole", "1..*", "1"],
+                        ["CRRMarket", "CRRMarket", "1", "1..*"],
+                        ["Flowgate", "Flowgate", "0..1", "0..1"],
+                        ["CRRSegment", "CRRSegment", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -282,7 +325,6 @@ define
                 base.parse_element (/<cim:CRROrgRole.status>([\s\S]*?)<\/cim:CRROrgRole.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_attribute (/<cim:CRROrgRole.CRR\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CRR", sub, context);
                 base.parse_attribute (/<cim:CRROrgRole.MktOrganisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktOrganisation", sub, context);
-
                 var bucket = context.parsed.CRROrgRole;
                 if (null == bucket)
                    context.parsed.CRROrgRole = bucket = {};
@@ -297,8 +339,8 @@ define
 
                 base.export_element (obj, "CRROrgRole", "kind", base.from_string, fields);
                 base.export_element (obj, "CRROrgRole", "status", base.from_string, fields);
-                base.export_attribute (obj, "CRROrgRole", "CRR", fields);
-                base.export_attribute (obj, "CRROrgRole", "MktOrganisation", fields);
+                base.export_attribute (obj, "export_attribute", "CRROrgRole", fields);
+                base.export_attribute (obj, "export_attribute", "CRROrgRole", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -355,7 +397,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CRR", "CRR", "1", "1..*"],
+                        ["MktOrganisation", "MktOrganisation", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

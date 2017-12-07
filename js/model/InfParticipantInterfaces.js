@@ -35,7 +35,6 @@ define
                 obj = ParticipantInterfaces.BidHourlySchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "WheelingReferenceSchedule";
                 base.parse_element (/<cim:WheelingReferenceSchedule.value>([\s\S]*?)<\/cim:WheelingReferenceSchedule.value>/g, obj, "value", base.to_string, sub, context);
-
                 var bucket = context.parsed.WheelingReferenceSchedule;
                 if (null == bucket)
                    context.parsed.WheelingReferenceSchedule = bucket = {};
@@ -99,7 +98,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

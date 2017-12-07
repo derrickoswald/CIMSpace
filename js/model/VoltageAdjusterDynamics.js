@@ -39,7 +39,6 @@ define
                 obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "VoltageAdjusterDynamics";
                 base.parse_attribute (/<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
-
                 var bucket = context.parsed.VoltageAdjusterDynamics;
                 if (null == bucket)
                    context.parsed.VoltageAdjusterDynamics = bucket = {};
@@ -52,7 +51,7 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics", fields);
+                base.export_attribute (obj, "export_attribute", "VoltageAdjusterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -103,7 +102,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -142,7 +150,6 @@ define
                 base.parse_element (/<cim:VAdjIEEE.vadjf>([\s\S]*?)<\/cim:VAdjIEEE.vadjf>/g, obj, "vadjf", base.to_float, sub, context);
                 base.parse_element (/<cim:VAdjIEEE.vadjmax>([\s\S]*?)<\/cim:VAdjIEEE.vadjmax>/g, obj, "vadjmax", base.to_string, sub, context);
                 base.parse_element (/<cim:VAdjIEEE.vadjmin>([\s\S]*?)<\/cim:VAdjIEEE.vadjmin>/g, obj, "vadjmin", base.to_string, sub, context);
-
                 var bucket = context.parsed.VAdjIEEE;
                 if (null == bucket)
                    context.parsed.VAdjIEEE = bucket = {};
@@ -221,7 +228,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

@@ -155,7 +155,6 @@ define
                 base.parse_element (/<cim:GateInputPin.thresholdPercentage>([\s\S]*?)<\/cim:GateInputPin.thresholdPercentage>/g, obj, "thresholdPercentage", base.to_string, sub, context);
                 base.parse_element (/<cim:GateInputPin.thresholdValue>([\s\S]*?)<\/cim:GateInputPin.thresholdValue>/g, obj, "thresholdValue", base.to_float, sub, context);
                 base.parse_attribute (/<cim:GateInputPin.Gate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Gate", sub, context);
-
                 var bucket = context.parsed.GateInputPin;
                 if (null == bucket)
                    context.parsed.GateInputPin = bucket = {};
@@ -174,7 +173,7 @@ define
                 base.export_element (obj, "GateInputPin", "negate", base.from_boolean, fields);
                 base.export_element (obj, "GateInputPin", "thresholdPercentage", base.from_string, fields);
                 base.export_element (obj, "GateInputPin", "thresholdValue", base.from_float, fields);
-                base.export_attribute (obj, "GateInputPin", "Gate", fields);
+                base.export_attribute (obj, "export_attribute", "GateInputPin", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -239,7 +238,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Gate", "Gate", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -273,8 +281,9 @@ define
                 base.parse_element (/<cim:RemedialActionScheme.armed>([\s\S]*?)<\/cim:RemedialActionScheme.armed>/g, obj, "armed", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:RemedialActionScheme.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:RemedialActionScheme.normalArmed>([\s\S]*?)<\/cim:RemedialActionScheme.normalArmed>/g, obj, "normalArmed", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:RemedialActionScheme.TriggerCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TriggerCondition", sub, context);
+                base.parse_attributes (/<cim:RemedialActionScheme.Stage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Stage", sub, context);
                 base.parse_attribute (/<cim:RemedialActionScheme.GateArmed\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateArmed", sub, context);
-
                 var bucket = context.parsed.RemedialActionScheme;
                 if (null == bucket)
                    context.parsed.RemedialActionScheme = bucket = {};
@@ -290,7 +299,9 @@ define
                 base.export_element (obj, "RemedialActionScheme", "armed", base.from_boolean, fields);
                 base.export_element (obj, "RemedialActionScheme", "kind", base.from_string, fields);
                 base.export_element (obj, "RemedialActionScheme", "normalArmed", base.from_boolean, fields);
-                base.export_attribute (obj, "RemedialActionScheme", "GateArmed", fields);
+                base.export_attribute (obj, "export_attributes", "RemedialActionScheme", fields);
+                base.export_attribute (obj, "export_attributes", "RemedialActionScheme", fields);
+                base.export_attribute (obj, "export_attribute", "RemedialActionScheme", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -311,6 +322,8 @@ define
                     {{#armed}}<div><b>armed</b>: {{armed}}</div>{{/armed}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#normalArmed}}<div><b>normalArmed</b>: {{normalArmed}}</div>{{/normalArmed}}
+                    {{#TriggerCondition}}<div><b>TriggerCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TriggerCondition}}
+                    {{#Stage}}<div><b>Stage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Stage}}
                     {{#GateArmed}}<div><b>GateArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GateArmed}}&quot;);})'>{{GateArmed}}</a></div>{{/GateArmed}}
                     </div>
                     <fieldset>
@@ -323,12 +336,16 @@ define
             {
                 super.condition (obj);
                 obj.RemedialActionSchemeKind = []; if (!obj.kind) obj.RemedialActionSchemeKind.push ({ id: '', selected: true}); for (var property in RemedialActionSchemeKind) obj.RemedialActionSchemeKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.TriggerCondition) obj.TriggerCondition_string = obj.TriggerCondition.join ();
+                if (obj.Stage) obj.Stage_string = obj.Stage.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.RemedialActionSchemeKind;
+                delete obj.TriggerCondition_string;
+                delete obj.Stage_string;
             }
 
             edit_template ()
@@ -349,7 +366,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TriggerCondition", "TriggerCondition", "0..*", "1"],
+                        ["Stage", "Stage", "1..*", "1"],
+                        ["GateArmed", "Gate", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -388,7 +416,6 @@ define
                 base.parse_attribute (/<cim:StageTrigger.GateArmed\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateArmed", sub, context);
                 base.parse_attribute (/<cim:StageTrigger.ProtectiveActionCollection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCollection", sub, context);
                 base.parse_attribute (/<cim:StageTrigger.GateComCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateComCondition", sub, context);
-
                 var bucket = context.parsed.StageTrigger;
                 if (null == bucket)
                    context.parsed.StageTrigger = bucket = {};
@@ -404,11 +431,11 @@ define
                 base.export_element (obj, "StageTrigger", "armed", base.from_boolean, fields);
                 base.export_element (obj, "StageTrigger", "normalArmed", base.from_boolean, fields);
                 base.export_element (obj, "StageTrigger", "priority", base.from_string, fields);
-                base.export_attribute (obj, "StageTrigger", "Stage", fields);
-                base.export_attribute (obj, "StageTrigger", "GateTrigger", fields);
-                base.export_attribute (obj, "StageTrigger", "GateArmed", fields);
-                base.export_attribute (obj, "StageTrigger", "ProtectiveActionCollection", fields);
-                base.export_attribute (obj, "StageTrigger", "GateComCondition", fields);
+                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
+                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
+                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
+                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
+                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -473,7 +500,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Stage", "Stage", "1", "1..*"],
+                        ["GateTrigger", "Gate", "0..1", "0..*"],
+                        ["GateArmed", "Gate", "0..1", "0..*"],
+                        ["ProtectiveActionCollection", "ProtectiveActionCollection", "1", "0..*"],
+                        ["GateComCondition", "Gate", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -510,7 +550,6 @@ define
                 base.parse_attribute (/<cim:ProtectiveAction.GateComCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateComCondition", sub, context);
                 base.parse_attribute (/<cim:ProtectiveAction.ProtectiveActionCollection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCollection", sub, context);
                 base.parse_attribute (/<cim:ProtectiveAction.GateEnabledCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateEnabledCondition", sub, context);
-
                 var bucket = context.parsed.ProtectiveAction;
                 if (null == bucket)
                    context.parsed.ProtectiveAction = bucket = {};
@@ -525,10 +564,10 @@ define
 
                 base.export_element (obj, "ProtectiveAction", "enabled", base.from_boolean, fields);
                 base.export_element (obj, "ProtectiveAction", "normalEnabled", base.from_boolean, fields);
-                base.export_attribute (obj, "ProtectiveAction", "ProtectionEquipment", fields);
-                base.export_attribute (obj, "ProtectiveAction", "GateComCondition", fields);
-                base.export_attribute (obj, "ProtectiveAction", "ProtectiveActionCollection", fields);
-                base.export_attribute (obj, "ProtectiveAction", "GateEnabledCondition", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveAction", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveAction", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveAction", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -589,7 +628,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProtectionEquipment", "ProtectionEquipment", "0..1", "0..*"],
+                        ["GateComCondition", "Gate", "0..1", "0..*"],
+                        ["ProtectiveActionCollection", "ProtectiveActionCollection", "1", "1..*"],
+                        ["GateEnabledCondition", "Gate", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -626,7 +677,6 @@ define
                 base.parse_element (/<cim:MeasurementCalculatorInput.order>([\s\S]*?)<\/cim:MeasurementCalculatorInput.order>/g, obj, "order", base.to_string, sub, context);
                 base.parse_attribute (/<cim:MeasurementCalculatorInput.MeasurementCalculator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculator", sub, context);
                 base.parse_attribute (/<cim:MeasurementCalculatorInput.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
-
                 var bucket = context.parsed.MeasurementCalculatorInput;
                 if (null == bucket)
                    context.parsed.MeasurementCalculatorInput = bucket = {};
@@ -641,8 +691,8 @@ define
 
                 base.export_element (obj, "MeasurementCalculatorInput", "absoluteValue", base.from_boolean, fields);
                 base.export_element (obj, "MeasurementCalculatorInput", "order", base.from_string, fields);
-                base.export_attribute (obj, "MeasurementCalculatorInput", "MeasurementCalculator", fields);
-                base.export_attribute (obj, "MeasurementCalculatorInput", "Measurement", fields);
+                base.export_attribute (obj, "export_attribute", "MeasurementCalculatorInput", fields);
+                base.export_attribute (obj, "export_attribute", "MeasurementCalculatorInput", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -699,7 +749,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MeasurementCalculator", "MeasurementCalculator", "1", "1..*"],
+                        ["Measurement", "Measurement", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -731,7 +791,15 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Gate";
                 base.parse_attribute (/<cim:Gate.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-
+                base.parse_attributes (/<cim:Gate.GateInputPin\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateInputPin", sub, context);
+                base.parse_attributes (/<cim:Gate.RemedialActionScheme\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
+                base.parse_attributes (/<cim:Gate.ProtectiveActionCom\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionCom", sub, context);
+                base.parse_attributes (/<cim:Gate.PinGate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PinGate", sub, context);
+                base.parse_attributes (/<cim:Gate.StageTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
+                base.parse_attributes (/<cim:Gate.StageTriggerArmed\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTriggerArmed", sub, context);
+                base.parse_attributes (/<cim:Gate.ProtectiveActionEnabled\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionEnabled", sub, context);
+                base.parse_attributes (/<cim:Gate.TriggerCondition\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TriggerCondition", sub, context);
+                base.parse_attributes (/<cim:Gate.StageTriggerCom\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTriggerCom", sub, context);
                 var bucket = context.parsed.Gate;
                 if (null == bucket)
                    context.parsed.Gate = bucket = {};
@@ -745,6 +813,15 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Gate", "kind", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_attribute (obj, "export_attributes", "Gate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -763,6 +840,15 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#GateInputPin}}<div><b>GateInputPin</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GateInputPin}}
+                    {{#RemedialActionScheme}}<div><b>RemedialActionScheme</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RemedialActionScheme}}
+                    {{#ProtectiveActionCom}}<div><b>ProtectiveActionCom</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectiveActionCom}}
+                    {{#PinGate}}<div><b>PinGate</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PinGate}}
+                    {{#StageTrigger}}<div><b>StageTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/StageTrigger}}
+                    {{#StageTriggerArmed}}<div><b>StageTriggerArmed</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/StageTriggerArmed}}
+                    {{#ProtectiveActionEnabled}}<div><b>ProtectiveActionEnabled</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectiveActionEnabled}}
+                    {{#TriggerCondition}}<div><b>TriggerCondition</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TriggerCondition}}
+                    {{#StageTriggerCom}}<div><b>StageTriggerCom</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/StageTriggerCom}}
                     </div>
                     <fieldset>
 
@@ -774,12 +860,30 @@ define
             {
                 super.condition (obj);
                 obj.GateLogicKind = []; if (!obj.kind) obj.GateLogicKind.push ({ id: '', selected: true}); for (var property in GateLogicKind) obj.GateLogicKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.GateInputPin) obj.GateInputPin_string = obj.GateInputPin.join ();
+                if (obj.RemedialActionScheme) obj.RemedialActionScheme_string = obj.RemedialActionScheme.join ();
+                if (obj.ProtectiveActionCom) obj.ProtectiveActionCom_string = obj.ProtectiveActionCom.join ();
+                if (obj.PinGate) obj.PinGate_string = obj.PinGate.join ();
+                if (obj.StageTrigger) obj.StageTrigger_string = obj.StageTrigger.join ();
+                if (obj.StageTriggerArmed) obj.StageTriggerArmed_string = obj.StageTriggerArmed.join ();
+                if (obj.ProtectiveActionEnabled) obj.ProtectiveActionEnabled_string = obj.ProtectiveActionEnabled.join ();
+                if (obj.TriggerCondition) obj.TriggerCondition_string = obj.TriggerCondition.join ();
+                if (obj.StageTriggerCom) obj.StageTriggerCom_string = obj.StageTriggerCom.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.GateLogicKind;
+                delete obj.GateInputPin_string;
+                delete obj.RemedialActionScheme_string;
+                delete obj.ProtectiveActionCom_string;
+                delete obj.PinGate_string;
+                delete obj.StageTrigger_string;
+                delete obj.StageTriggerArmed_string;
+                delete obj.ProtectiveActionEnabled_string;
+                delete obj.TriggerCondition_string;
+                delete obj.StageTriggerCom_string;
             }
 
             edit_template ()
@@ -797,7 +901,24 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GateInputPin", "GateInputPin", "1..*", "1"],
+                        ["RemedialActionScheme", "RemedialActionScheme", "0..*", "0..1"],
+                        ["ProtectiveActionCom", "ProtectiveAction", "0..*", "0..1"],
+                        ["PinGate", "PinGate", "0..*", "1"],
+                        ["StageTrigger", "StageTrigger", "0..*", "0..1"],
+                        ["StageTriggerArmed", "StageTrigger", "0..*", "0..1"],
+                        ["ProtectiveActionEnabled", "ProtectiveAction", "0..*", "0..1"],
+                        ["TriggerCondition", "TriggerCondition", "0..*", "1"],
+                        ["StageTriggerCom", "StageTrigger", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -829,8 +950,8 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Stage";
                 base.parse_element (/<cim:Stage.priority>([\s\S]*?)<\/cim:Stage.priority>/g, obj, "priority", base.to_string, sub, context);
+                base.parse_attributes (/<cim:Stage.StageTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
                 base.parse_attribute (/<cim:Stage.RemedialActionScheme\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
-
                 var bucket = context.parsed.Stage;
                 if (null == bucket)
                    context.parsed.Stage = bucket = {};
@@ -844,7 +965,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Stage", "priority", base.from_string, fields);
-                base.export_attribute (obj, "Stage", "RemedialActionScheme", fields);
+                base.export_attribute (obj, "export_attributes", "Stage", fields);
+                base.export_attribute (obj, "export_attribute", "Stage", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -863,6 +985,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
+                    {{#StageTrigger}}<div><b>StageTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/StageTrigger}}
                     {{#RemedialActionScheme}}<div><b>RemedialActionScheme</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{RemedialActionScheme}}&quot;);})'>{{RemedialActionScheme}}</a></div>{{/RemedialActionScheme}}
                     </div>
                     <fieldset>
@@ -874,11 +997,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.StageTrigger) obj.StageTrigger_string = obj.StageTrigger.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.StageTrigger_string;
             }
 
             edit_template ()
@@ -897,7 +1022,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["StageTrigger", "StageTrigger", "1..*", "1"],
+                        ["RemedialActionScheme", "RemedialActionScheme", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -929,7 +1064,8 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MeasurementCalculator";
                 base.parse_attribute (/<cim:MeasurementCalculator.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-
+                base.parse_attributes (/<cim:MeasurementCalculator.MeasurementCalculatorInput\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculatorInput", sub, context);
+                base.parse_attributes (/<cim:MeasurementCalculator.PinMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PinMeasurement", sub, context);
                 var bucket = context.parsed.MeasurementCalculator;
                 if (null == bucket)
                    context.parsed.MeasurementCalculator = bucket = {};
@@ -943,6 +1079,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MeasurementCalculator", "kind", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MeasurementCalculator", fields);
+                base.export_attribute (obj, "export_attributes", "MeasurementCalculator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -961,6 +1099,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#MeasurementCalculatorInput}}<div><b>MeasurementCalculatorInput</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeasurementCalculatorInput}}
+                    {{#PinMeasurement}}<div><b>PinMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PinMeasurement}}
                     </div>
                     <fieldset>
 
@@ -972,12 +1112,16 @@ define
             {
                 super.condition (obj);
                 obj.CalculationKind = []; if (!obj.kind) obj.CalculationKind.push ({ id: '', selected: true}); for (var property in CalculationKind) obj.CalculationKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.MeasurementCalculatorInput) obj.MeasurementCalculatorInput_string = obj.MeasurementCalculatorInput.join ();
+                if (obj.PinMeasurement) obj.PinMeasurement_string = obj.PinMeasurement.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.CalculationKind;
+                delete obj.MeasurementCalculatorInput_string;
+                delete obj.PinMeasurement_string;
             }
 
             edit_template ()
@@ -995,7 +1139,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MeasurementCalculatorInput", "MeasurementCalculatorInput", "1..*", "1"],
+                        ["PinMeasurement", "PinMeasurement", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1028,7 +1182,6 @@ define
                 obj.cls = "TriggerCondition";
                 base.parse_attribute (/<cim:TriggerCondition.RemedialActionScheme\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemedialActionScheme", sub, context);
                 base.parse_attribute (/<cim:TriggerCondition.GateTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateTrigger", sub, context);
-
                 var bucket = context.parsed.TriggerCondition;
                 if (null == bucket)
                    context.parsed.TriggerCondition = bucket = {};
@@ -1041,8 +1194,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "TriggerCondition", "RemedialActionScheme", fields);
-                base.export_attribute (obj, "TriggerCondition", "GateTrigger", fields);
+                base.export_attribute (obj, "export_attribute", "TriggerCondition", fields);
+                base.export_attribute (obj, "export_attribute", "TriggerCondition", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1095,7 +1248,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RemedialActionScheme", "RemedialActionScheme", "1", "0..*"],
+                        ["GateTrigger", "Gate", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1126,7 +1289,8 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ProtectiveActionCollection";
-
+                base.parse_attributes (/<cim:ProtectiveActionCollection.ProtectiveAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveAction", sub, context);
+                base.parse_attributes (/<cim:ProtectiveActionCollection.StageTrigger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StageTrigger", sub, context);
                 var bucket = context.parsed.ProtectiveActionCollection;
                 if (null == bucket)
                    context.parsed.ProtectiveActionCollection = bucket = {};
@@ -1139,6 +1303,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ProtectiveActionCollection", fields);
+                base.export_attribute (obj, "export_attributes", "ProtectiveActionCollection", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1156,6 +1322,8 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#ProtectiveAction}}<div><b>ProtectiveAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectiveAction}}
+                    {{#StageTrigger}}<div><b>StageTrigger</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/StageTrigger}}
                     </div>
                     <fieldset>
 
@@ -1166,11 +1334,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProtectiveAction) obj.ProtectiveAction_string = obj.ProtectiveAction.join ();
+                if (obj.StageTrigger) obj.StageTrigger_string = obj.StageTrigger.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProtectiveAction_string;
+                delete obj.StageTrigger_string;
             }
 
             edit_template ()
@@ -1187,7 +1359,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProtectiveAction", "ProtectiveAction", "1..*", "1"],
+                        ["StageTrigger", "StageTrigger", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1220,7 +1402,6 @@ define
                 obj.cls = "PinEquipment";
                 base.parse_attribute (/<cim:PinEquipment.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:PinEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
-
                 var bucket = context.parsed.PinEquipment;
                 if (null == bucket)
                    context.parsed.PinEquipment = bucket = {};
@@ -1234,7 +1415,7 @@ define
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PinEquipment", "kind", base.from_string, fields);
-                base.export_attribute (obj, "PinEquipment", "Equipment", fields);
+                base.export_attribute (obj, "export_attribute", "PinEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1289,7 +1470,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Equipment", "Equipment", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1321,7 +1511,6 @@ define
                 obj = GateInputPin.prototype.parse.call (this, context, sub);
                 obj.cls = "PinGate";
                 base.parse_attribute (/<cim:PinGate.GateOutput\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GateOutput", sub, context);
-
                 var bucket = context.parsed.PinGate;
                 if (null == bucket)
                    context.parsed.PinGate = bucket = {};
@@ -1334,7 +1523,7 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PinGate", "GateOutput", fields);
+                base.export_attribute (obj, "export_attribute", "PinGate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1385,7 +1574,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GateOutput", "Gate", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1418,7 +1616,6 @@ define
                 obj.cls = "PinTerminal";
                 base.parse_attribute (/<cim:PinTerminal.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:PinTerminal.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
-
                 var bucket = context.parsed.PinTerminal;
                 if (null == bucket)
                    context.parsed.PinTerminal = bucket = {};
@@ -1432,7 +1629,7 @@ define
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PinTerminal", "kind", base.from_string, fields);
-                base.export_attribute (obj, "PinTerminal", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "PinTerminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1487,7 +1684,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Terminal", "Terminal", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1520,7 +1726,6 @@ define
                 obj.cls = "PinBranchGroup";
                 base.parse_attribute (/<cim:PinBranchGroup.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:PinBranchGroup.BranchGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "BranchGroup", sub, context);
-
                 var bucket = context.parsed.PinBranchGroup;
                 if (null == bucket)
                    context.parsed.PinBranchGroup = bucket = {};
@@ -1534,7 +1739,7 @@ define
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PinBranchGroup", "kind", base.from_string, fields);
-                base.export_attribute (obj, "PinBranchGroup", "BranchGroup", fields);
+                base.export_attribute (obj, "export_attribute", "PinBranchGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1589,7 +1794,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["BranchGroup", "BranchGroup", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1622,7 +1836,6 @@ define
                 obj.cls = "PinMeasurement";
                 base.parse_attribute (/<cim:PinMeasurement.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
                 base.parse_attribute (/<cim:PinMeasurement.MeasurementCalculator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementCalculator", sub, context);
-
                 var bucket = context.parsed.PinMeasurement;
                 if (null == bucket)
                    context.parsed.PinMeasurement = bucket = {};
@@ -1635,8 +1848,8 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PinMeasurement", "Measurement", fields);
-                base.export_attribute (obj, "PinMeasurement", "MeasurementCalculator", fields);
+                base.export_attribute (obj, "export_attribute", "PinMeasurement", fields);
+                base.export_attribute (obj, "export_attribute", "PinMeasurement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1689,7 +1902,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Measurement", "Measurement", "0..1", "0..*"],
+                        ["MeasurementCalculator", "MeasurementCalculator", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1723,7 +1946,6 @@ define
                 base.parse_element (/<cim:ProtectiveActionRegulation.isRegulating>([\s\S]*?)<\/cim:ProtectiveActionRegulation.isRegulating>/g, obj, "isRegulating", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ProtectiveActionRegulation.targetValue>([\s\S]*?)<\/cim:ProtectiveActionRegulation.targetValue>/g, obj, "targetValue", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ProtectiveActionRegulation.RegulatingControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RegulatingControl", sub, context);
-
                 var bucket = context.parsed.ProtectiveActionRegulation;
                 if (null == bucket)
                    context.parsed.ProtectiveActionRegulation = bucket = {};
@@ -1738,7 +1960,7 @@ define
 
                 base.export_element (obj, "ProtectiveActionRegulation", "isRegulating", base.from_boolean, fields);
                 base.export_element (obj, "ProtectiveActionRegulation", "targetValue", base.from_float, fields);
-                base.export_attribute (obj, "ProtectiveActionRegulation", "RegulatingControl", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveActionRegulation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1793,7 +2015,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RegulatingControl", "RegulatingControl", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1834,7 +2065,6 @@ define
                 base.parse_attribute (/<cim:ProtectiveActionAdjustment.Measurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Measurement", sub, context);
                 base.parse_attribute (/<cim:ProtectiveActionAdjustment.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipment", sub, context);
                 base.parse_attribute (/<cim:ProtectiveActionAdjustment.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCConductingEquipment", sub, context);
-
                 var bucket = context.parsed.ProtectiveActionAdjustment;
                 if (null == bucket)
                    context.parsed.ProtectiveActionAdjustment = bucket = {};
@@ -1852,9 +2082,9 @@ define
                 base.export_element (obj, "ProtectiveActionAdjustment", "kind", base.from_string, fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "reduce", base.from_boolean, fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "setValue", base.from_float, fields);
-                base.export_attribute (obj, "ProtectiveActionAdjustment", "Measurement", fields);
-                base.export_attribute (obj, "ProtectiveActionAdjustment", "ConductingEquipment", fields);
-                base.export_attribute (obj, "ProtectiveActionAdjustment", "DCConductingEquipment", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveActionAdjustment", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveActionAdjustment", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveActionAdjustment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1921,7 +2151,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Measurement", "Measurement", "0..1", "0..*"],
+                        ["ConductingEquipment", "ConductingEquipment", "1", "0..*"],
+                        ["DCConductingEquipment", "DCConductingEquipment", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1954,7 +2195,6 @@ define
                 obj.cls = "ProtectiveActionEquipment";
                 base.parse_element (/<cim:ProtectiveActionEquipment.inService>([\s\S]*?)<\/cim:ProtectiveActionEquipment.inService>/g, obj, "inService", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:ProtectiveActionEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
-
                 var bucket = context.parsed.ProtectiveActionEquipment;
                 if (null == bucket)
                    context.parsed.ProtectiveActionEquipment = bucket = {};
@@ -1968,7 +2208,7 @@ define
                 var fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ProtectiveActionEquipment", "inService", base.from_boolean, fields);
-                base.export_attribute (obj, "ProtectiveActionEquipment", "Equipment", fields);
+                base.export_attribute (obj, "export_attribute", "ProtectiveActionEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2021,7 +2261,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Equipment", "Equipment", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

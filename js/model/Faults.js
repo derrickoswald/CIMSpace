@@ -48,7 +48,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "FaultCauseType";
-
+                base.parse_attributes (/<cim:FaultCauseType.Faults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Faults", sub, context);
                 var bucket = context.parsed.FaultCauseType;
                 if (null == bucket)
                    context.parsed.FaultCauseType = bucket = {};
@@ -61,6 +61,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "FaultCauseType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -78,6 +79,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#Faults}}<div><b>Faults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Faults}}
                     </div>
                     <fieldset>
 
@@ -88,11 +90,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Faults) obj.Faults_string = obj.Faults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Faults_string;
             }
 
             edit_template ()
@@ -105,11 +109,21 @@ define
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Faults'>Faults: </label><div class='col-sm-8'><input id='Faults' class='form-control' type='text'{{#Faults}} value='{{Faults}}_string'{{/Faults}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Faults", "Fault", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -144,7 +158,6 @@ define
                 base.parse_element (/<cim:FaultImpedance.rLineToLine>([\s\S]*?)<\/cim:FaultImpedance.rLineToLine>/g, obj, "rLineToLine", base.to_string, sub, context);
                 base.parse_element (/<cim:FaultImpedance.xGround>([\s\S]*?)<\/cim:FaultImpedance.xGround>/g, obj, "xGround", base.to_string, sub, context);
                 base.parse_element (/<cim:FaultImpedance.xLineToLine>([\s\S]*?)<\/cim:FaultImpedance.xLineToLine>/g, obj, "xLineToLine", base.to_string, sub, context);
-
                 var bucket = context.parsed.FaultImpedance;
                 if (null == bucket)
                    context.parsed.FaultImpedance = bucket = {};
@@ -217,7 +230,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -252,8 +265,8 @@ define
                 base.parse_element (/<cim:Fault.phases>([\s\S]*?)<\/cim:Fault.phases>/g, obj, "phases", base.to_string, sub, context);
                 base.parse_element (/<cim:Fault.impedance>([\s\S]*?)<\/cim:Fault.impedance>/g, obj, "impedance", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Fault.FaultyEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FaultyEquipment", sub, context);
+                base.parse_attributes (/<cim:Fault.FaultCauseTypes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "FaultCauseTypes", sub, context);
                 base.parse_attribute (/<cim:Fault.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context);
-
                 var bucket = context.parsed.Fault;
                 if (null == bucket)
                    context.parsed.Fault = bucket = {};
@@ -269,8 +282,9 @@ define
                 base.export_element (obj, "Fault", "kind", base.from_string, fields);
                 base.export_element (obj, "Fault", "phases", base.from_string, fields);
                 base.export_element (obj, "Fault", "impedance", base.from_string, fields);
-                base.export_attribute (obj, "Fault", "FaultyEquipment", fields);
-                base.export_attribute (obj, "Fault", "Outage", fields);
+                base.export_attribute (obj, "export_attribute", "Fault", fields);
+                base.export_attribute (obj, "export_attributes", "Fault", fields);
+                base.export_attribute (obj, "export_attribute", "Fault", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -292,6 +306,7 @@ define
                     {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
                     {{#impedance}}<div><b>impedance</b>: {{impedance}}</div>{{/impedance}}
                     {{#FaultyEquipment}}<div><b>FaultyEquipment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{FaultyEquipment}}&quot;);})'>{{FaultyEquipment}}</a></div>{{/FaultyEquipment}}
+                    {{#FaultCauseTypes}}<div><b>FaultCauseTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/FaultCauseTypes}}
                     {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
                     </div>
                     <fieldset>
@@ -304,12 +319,14 @@ define
             {
                 super.condition (obj);
                 obj.PhaseConnectedFaultKind = []; if (!obj.kind) obj.PhaseConnectedFaultKind.push ({ id: '', selected: true}); for (var property in PhaseConnectedFaultKind) obj.PhaseConnectedFaultKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.FaultCauseTypes) obj.FaultCauseTypes_string = obj.FaultCauseTypes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.PhaseConnectedFaultKind;
+                delete obj.FaultCauseTypes_string;
             }
 
             edit_template ()
@@ -326,12 +343,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='phases'>phases: </label><div class='col-sm-8'><input id='phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='impedance'>impedance: </label><div class='col-sm-8'><input id='impedance' class='form-control' type='text'{{#impedance}} value='{{impedance}}'{{/impedance}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='FaultyEquipment'>FaultyEquipment: </label><div class='col-sm-8'><input id='FaultyEquipment' class='form-control' type='text'{{#FaultyEquipment}} value='{{FaultyEquipment}}'{{/FaultyEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FaultCauseTypes'>FaultCauseTypes: </label><div class='col-sm-8'><input id='FaultCauseTypes' class='form-control' type='text'{{#FaultCauseTypes}} value='{{FaultCauseTypes}}_string'{{/FaultCauseTypes}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Outage'>Outage: </label><div class='col-sm-8'><input id='Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["FaultyEquipment", "Equipment", "0..1", "0..*"],
+                        ["FaultCauseTypes", "FaultCauseType", "0..*", "0..*"],
+                        ["Outage", "Outage", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -364,7 +393,6 @@ define
                 obj.cls = "LineFault";
                 base.parse_element (/<cim:LineFault.lengthFromTerminal1>([\s\S]*?)<\/cim:LineFault.lengthFromTerminal1>/g, obj, "lengthFromTerminal1", base.to_string, sub, context);
                 base.parse_attribute (/<cim:LineFault.ACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ACLineSegment", sub, context);
-
                 var bucket = context.parsed.LineFault;
                 if (null == bucket)
                    context.parsed.LineFault = bucket = {};
@@ -378,7 +406,7 @@ define
                 var fields = Fault.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LineFault", "lengthFromTerminal1", base.from_string, fields);
-                base.export_attribute (obj, "LineFault", "ACLineSegment", fields);
+                base.export_attribute (obj, "export_attribute", "LineFault", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -431,7 +459,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ACLineSegment", "ACLineSegment", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -465,7 +502,6 @@ define
                 obj = Fault.prototype.parse.call (this, context, sub);
                 obj.cls = "EquipmentFault";
                 base.parse_attribute (/<cim:EquipmentFault.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
-
                 var bucket = context.parsed.EquipmentFault;
                 if (null == bucket)
                    context.parsed.EquipmentFault = bucket = {};
@@ -478,7 +514,7 @@ define
             {
                 var fields = Fault.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "EquipmentFault", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "EquipmentFault", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -529,7 +565,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Terminal", "Terminal", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

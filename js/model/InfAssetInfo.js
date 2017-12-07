@@ -184,7 +184,6 @@ define
                 obj = Assets.AssetInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "FaultIndicatorInfo";
                 base.parse_attribute (/<cim:FaultIndicatorInfo.resetKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "resetKind", sub, context);
-
                 var bucket = context.parsed.FaultIndicatorInfo;
                 if (null == bucket)
                    context.parsed.FaultIndicatorInfo = bucket = {};
@@ -250,7 +249,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -285,8 +284,9 @@ define
                 obj.cls = "AssetModelCatalogueItem";
                 base.parse_element (/<cim:AssetModelCatalogueItem.unitCost>([\s\S]*?)<\/cim:AssetModelCatalogueItem.unitCost>/g, obj, "unitCost", base.to_string, sub, context);
                 base.parse_attribute (/<cim:AssetModelCatalogueItem.AssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModel", sub, context);
+                base.parse_attributes (/<cim:AssetModelCatalogueItem.ErpPOLineItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPOLineItems", sub, context);
+                base.parse_attributes (/<cim:AssetModelCatalogueItem.ErpQuoteLineItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpQuoteLineItems", sub, context);
                 base.parse_attribute (/<cim:AssetModelCatalogueItem.AssetModelCatalogue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogue", sub, context);
-
                 var bucket = context.parsed.AssetModelCatalogueItem;
                 if (null == bucket)
                    context.parsed.AssetModelCatalogueItem = bucket = {};
@@ -300,8 +300,10 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AssetModelCatalogueItem", "unitCost", base.from_string, fields);
-                base.export_attribute (obj, "AssetModelCatalogueItem", "AssetModel", fields);
-                base.export_attribute (obj, "AssetModelCatalogueItem", "AssetModelCatalogue", fields);
+                base.export_attribute (obj, "export_attribute", "AssetModelCatalogueItem", fields);
+                base.export_attribute (obj, "export_attributes", "AssetModelCatalogueItem", fields);
+                base.export_attribute (obj, "export_attributes", "AssetModelCatalogueItem", fields);
+                base.export_attribute (obj, "export_attribute", "AssetModelCatalogueItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -321,6 +323,8 @@ define
                     `
                     {{#unitCost}}<div><b>unitCost</b>: {{unitCost}}</div>{{/unitCost}}
                     {{#AssetModel}}<div><b>AssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModel}}&quot;);})'>{{AssetModel}}</a></div>{{/AssetModel}}
+                    {{#ErpPOLineItems}}<div><b>ErpPOLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpPOLineItems}}
+                    {{#ErpQuoteLineItems}}<div><b>ErpQuoteLineItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpQuoteLineItems}}
                     {{#AssetModelCatalogue}}<div><b>AssetModelCatalogue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AssetModelCatalogue}}&quot;);})'>{{AssetModelCatalogue}}</a></div>{{/AssetModelCatalogue}}
                     </div>
                     <fieldset>
@@ -332,11 +336,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ErpPOLineItems) obj.ErpPOLineItems_string = obj.ErpPOLineItems.join ();
+                if (obj.ErpQuoteLineItems) obj.ErpQuoteLineItems_string = obj.ErpQuoteLineItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ErpPOLineItems_string;
+                delete obj.ErpQuoteLineItems_string;
             }
 
             edit_template ()
@@ -356,7 +364,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AssetModel", "ProductAssetModel", "0..1", "0..*"],
+                        ["ErpPOLineItems", "ErpPOLineItem", "0..*", "0..1"],
+                        ["ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "0..1"],
+                        ["AssetModelCatalogue", "AssetModelCatalogue", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -394,7 +414,6 @@ define
                 base.parse_element (/<cim:OldSwitchInfo.poleCount>([\s\S]*?)<\/cim:OldSwitchInfo.poleCount>/g, obj, "poleCount", base.to_string, sub, context);
                 base.parse_element (/<cim:OldSwitchInfo.remote>([\s\S]*?)<\/cim:OldSwitchInfo.remote>/g, obj, "remote", base.to_boolean, sub, context);
                 base.parse_element (/<cim:OldSwitchInfo.withstandCurrent>([\s\S]*?)<\/cim:OldSwitchInfo.withstandCurrent>/g, obj, "withstandCurrent", base.to_string, sub, context);
-
                 var bucket = context.parsed.OldSwitchInfo;
                 if (null == bucket)
                    context.parsed.OldSwitchInfo = bucket = {};
@@ -476,7 +495,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -523,7 +542,6 @@ define
                 base.parse_element (/<cim:CurrentTransformerInfo.tertiaryFlsRating>([\s\S]*?)<\/cim:CurrentTransformerInfo.tertiaryFlsRating>/g, obj, "tertiaryFlsRating", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.tertiaryRatio>([\s\S]*?)<\/cim:CurrentTransformerInfo.tertiaryRatio>/g, obj, "tertiaryRatio", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformerInfo.usage>([\s\S]*?)<\/cim:CurrentTransformerInfo.usage>/g, obj, "usage", base.to_string, sub, context);
-
                 var bucket = context.parsed.CurrentTransformerInfo;
                 if (null == bucket)
                    context.parsed.CurrentTransformerInfo = bucket = {};
@@ -632,7 +650,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -672,7 +690,6 @@ define
                 base.parse_element (/<cim:SurgeArresterInfo.ratedVoltage>([\s\S]*?)<\/cim:SurgeArresterInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:SurgeArresterInfo.steepFrontDischargeVoltage>([\s\S]*?)<\/cim:SurgeArresterInfo.steepFrontDischargeVoltage>/g, obj, "steepFrontDischargeVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:SurgeArresterInfo.switchingImpulseDischargeVoltage>([\s\S]*?)<\/cim:SurgeArresterInfo.switchingImpulseDischargeVoltage>/g, obj, "switchingImpulseDischargeVoltage", base.to_string, sub, context);
-
                 var bucket = context.parsed.SurgeArresterInfo;
                 if (null == bucket)
                    context.parsed.SurgeArresterInfo = bucket = {};
@@ -760,7 +777,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -794,7 +811,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "AssetModelCatalogue";
                 base.parse_element (/<cim:AssetModelCatalogue.status>([\s\S]*?)<\/cim:AssetModelCatalogue.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:AssetModelCatalogue.AssetModelCatalogueItems\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetModelCatalogueItems", sub, context);
                 var bucket = context.parsed.AssetModelCatalogue;
                 if (null == bucket)
                    context.parsed.AssetModelCatalogue = bucket = {};
@@ -808,6 +825,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AssetModelCatalogue", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "AssetModelCatalogue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -826,6 +844,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#AssetModelCatalogueItems}}<div><b>AssetModelCatalogueItems</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AssetModelCatalogueItems}}
                     </div>
                     <fieldset>
 
@@ -836,11 +855,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AssetModelCatalogueItems) obj.AssetModelCatalogueItems_string = obj.AssetModelCatalogueItems.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AssetModelCatalogueItems_string;
             }
 
             edit_template ()
@@ -858,7 +879,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AssetModelCatalogueItems", "AssetModelCatalogueItem", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -891,7 +921,6 @@ define
                 obj.cls = "ProtectionEquipmentInfo";
                 base.parse_element (/<cim:ProtectionEquipmentInfo.groundTrip>([\s\S]*?)<\/cim:ProtectionEquipmentInfo.groundTrip>/g, obj, "groundTrip", base.to_string, sub, context);
                 base.parse_element (/<cim:ProtectionEquipmentInfo.phaseTrip>([\s\S]*?)<\/cim:ProtectionEquipmentInfo.phaseTrip>/g, obj, "phaseTrip", base.to_string, sub, context);
-
                 var bucket = context.parsed.ProtectionEquipmentInfo;
                 if (null == bucket)
                    context.parsed.ProtectionEquipmentInfo = bucket = {};
@@ -958,7 +987,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class OldTransformerTankInfo extends AssetInfo.TransformerTankInfo
@@ -991,7 +1020,6 @@ define
                 base.parse_attribute (/<cim:OldTransformerTankInfo.function\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "function", sub, context);
                 base.parse_element (/<cim:OldTransformerTankInfo.neutralBIL>([\s\S]*?)<\/cim:OldTransformerTankInfo.neutralBIL>/g, obj, "neutralBIL", base.to_string, sub, context);
                 base.parse_attribute (/<cim:OldTransformerTankInfo.oilPreservationKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "oilPreservationKind", sub, context);
-
                 var bucket = context.parsed.OldTransformerTankInfo;
                 if (null == bucket)
                    context.parsed.OldTransformerTankInfo = bucket = {};
@@ -1078,7 +1106,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1118,7 +1146,6 @@ define
                 base.parse_element (/<cim:CompositeSwitchInfo.ratedVoltage>([\s\S]*?)<\/cim:CompositeSwitchInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.remote>([\s\S]*?)<\/cim:CompositeSwitchInfo.remote>/g, obj, "remote", base.to_boolean, sub, context);
                 base.parse_element (/<cim:CompositeSwitchInfo.switchStateCount>([\s\S]*?)<\/cim:CompositeSwitchInfo.switchStateCount>/g, obj, "switchStateCount", base.to_string, sub, context);
-
                 var bucket = context.parsed.CompositeSwitchInfo;
                 if (null == bucket)
                    context.parsed.CompositeSwitchInfo = bucket = {};
@@ -1208,7 +1235,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1246,7 +1273,6 @@ define
                 base.parse_element (/<cim:PotentialTransformerInfo.ratedVoltage>([\s\S]*?)<\/cim:PotentialTransformerInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
                 base.parse_element (/<cim:PotentialTransformerInfo.secondaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.secondaryRatio>/g, obj, "secondaryRatio", base.to_string, sub, context);
                 base.parse_element (/<cim:PotentialTransformerInfo.tertiaryRatio>([\s\S]*?)<\/cim:PotentialTransformerInfo.tertiaryRatio>/g, obj, "tertiaryRatio", base.to_string, sub, context);
-
                 var bucket = context.parsed.PotentialTransformerInfo;
                 if (null == bucket)
                    context.parsed.PotentialTransformerInfo = bucket = {};
@@ -1328,7 +1354,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         class OldTransformerEndInfo extends AssetInfo.TransformerEndInfo
@@ -1359,7 +1385,6 @@ define
                 base.parse_element (/<cim:OldTransformerEndInfo.hourOverLoadRating>([\s\S]*?)<\/cim:OldTransformerEndInfo.hourOverLoadRating>/g, obj, "hourOverLoadRating", base.to_string, sub, context);
                 base.parse_element (/<cim:OldTransformerEndInfo.solidInsulationWeight>([\s\S]*?)<\/cim:OldTransformerEndInfo.solidInsulationWeight>/g, obj, "solidInsulationWeight", base.to_string, sub, context);
                 base.parse_attribute (/<cim:OldTransformerEndInfo.windingInsulationKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "windingInsulationKind", sub, context);
-
                 var bucket = context.parsed.OldTransformerEndInfo;
                 if (null == bucket)
                    context.parsed.OldTransformerEndInfo = bucket = {};
@@ -1434,7 +1459,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1470,7 +1495,6 @@ define
                 base.parse_element (/<cim:RecloserInfo.groundTripRating>([\s\S]*?)<\/cim:RecloserInfo.groundTripRating>/g, obj, "groundTripRating", base.to_string, sub, context);
                 base.parse_element (/<cim:RecloserInfo.phaseTripRating>([\s\S]*?)<\/cim:RecloserInfo.phaseTripRating>/g, obj, "phaseTripRating", base.to_string, sub, context);
                 base.parse_element (/<cim:RecloserInfo.recloseLockoutCount>([\s\S]*?)<\/cim:RecloserInfo.recloseLockoutCount>/g, obj, "recloseLockoutCount", base.to_string, sub, context);
-
                 var bucket = context.parsed.RecloserInfo;
                 if (null == bucket)
                    context.parsed.RecloserInfo = bucket = {};
@@ -1546,7 +1570,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1578,7 +1602,6 @@ define
                 obj = OldSwitchInfo.prototype.parse.call (this, context, sub);
                 obj.cls = "BreakerInfo";
                 base.parse_element (/<cim:BreakerInfo.phaseTrip>([\s\S]*?)<\/cim:BreakerInfo.phaseTrip>/g, obj, "phaseTrip", base.to_string, sub, context);
-
                 var bucket = context.parsed.BreakerInfo;
                 if (null == bucket)
                    context.parsed.BreakerInfo = bucket = {};
@@ -1642,7 +1665,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

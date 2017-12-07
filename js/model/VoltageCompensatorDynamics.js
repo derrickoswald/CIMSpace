@@ -42,7 +42,6 @@ define
                 base.parse_element (/<cim:GenICompensationForGenJ.xcij>([\s\S]*?)<\/cim:GenICompensationForGenJ.xcij>/g, obj, "xcij", base.to_string, sub, context);
                 base.parse_attribute (/<cim:GenICompensationForGenJ.VcompIEEEType2\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VcompIEEEType2", sub, context);
                 base.parse_attribute (/<cim:GenICompensationForGenJ.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context);
-
                 var bucket = context.parsed.GenICompensationForGenJ;
                 if (null == bucket)
                    context.parsed.GenICompensationForGenJ = bucket = {};
@@ -57,8 +56,8 @@ define
 
                 base.export_element (obj, "GenICompensationForGenJ", "rcij", base.from_string, fields);
                 base.export_element (obj, "GenICompensationForGenJ", "xcij", base.from_string, fields);
-                base.export_attribute (obj, "GenICompensationForGenJ", "VcompIEEEType2", fields);
-                base.export_attribute (obj, "GenICompensationForGenJ", "SynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "GenICompensationForGenJ", fields);
+                base.export_attribute (obj, "export_attribute", "GenICompensationForGenJ", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -115,7 +114,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["VcompIEEEType2", "VCompIEEEType2", "1", "2..*"],
+                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -148,7 +157,6 @@ define
                 obj.cls = "VoltageCompensatorDynamics";
                 base.parse_attribute (/<cim:VoltageCompensatorDynamics.RemoteInputSignal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteInputSignal", sub, context);
                 base.parse_attribute (/<cim:VoltageCompensatorDynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
-
                 var bucket = context.parsed.VoltageCompensatorDynamics;
                 if (null == bucket)
                    context.parsed.VoltageCompensatorDynamics = bucket = {};
@@ -161,8 +169,8 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "VoltageCompensatorDynamics", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "VoltageCompensatorDynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "VoltageCompensatorDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "VoltageCompensatorDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -215,7 +223,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"],
+                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -249,7 +267,7 @@ define
                 obj = VoltageCompensatorDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "VCompIEEEType2";
                 base.parse_element (/<cim:VCompIEEEType2.tr>([\s\S]*?)<\/cim:VCompIEEEType2.tr>/g, obj, "tr", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:VCompIEEEType2.GenICompensationForGenJ\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenICompensationForGenJ", sub, context);
                 var bucket = context.parsed.VCompIEEEType2;
                 if (null == bucket)
                    context.parsed.VCompIEEEType2 = bucket = {};
@@ -263,6 +281,7 @@ define
                 var fields = VoltageCompensatorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VCompIEEEType2", "tr", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "VCompIEEEType2", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -281,6 +300,7 @@ define
                     + VoltageCompensatorDynamics.prototype.template.call (this) +
                     `
                     {{#tr}}<div><b>tr</b>: {{tr}}</div>{{/tr}}
+                    {{#GenICompensationForGenJ}}<div><b>GenICompensationForGenJ</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GenICompensationForGenJ}}
                     </div>
                     <fieldset>
 
@@ -291,11 +311,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.GenICompensationForGenJ) obj.GenICompensationForGenJ_string = obj.GenICompensationForGenJ.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.GenICompensationForGenJ_string;
             }
 
             edit_template ()
@@ -313,7 +335,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["GenICompensationForGenJ", "GenICompensationForGenJ", "2..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -349,7 +380,6 @@ define
                 base.parse_element (/<cim:VCompIEEEType1.rc>([\s\S]*?)<\/cim:VCompIEEEType1.rc>/g, obj, "rc", base.to_string, sub, context);
                 base.parse_element (/<cim:VCompIEEEType1.tr>([\s\S]*?)<\/cim:VCompIEEEType1.tr>/g, obj, "tr", base.to_string, sub, context);
                 base.parse_element (/<cim:VCompIEEEType1.xc>([\s\S]*?)<\/cim:VCompIEEEType1.xc>/g, obj, "xc", base.to_string, sub, context);
-
                 var bucket = context.parsed.VCompIEEEType1;
                 if (null == bucket)
                    context.parsed.VCompIEEEType1 = bucket = {};
@@ -419,7 +449,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

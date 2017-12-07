@@ -126,9 +126,9 @@ define
                 base.parse_element (/<cim:CustomerNotification.latestDateTimeToCall>([\s\S]*?)<\/cim:CustomerNotification.latestDateTimeToCall>/g, obj, "latestDateTimeToCall", base.to_datetime, sub, context);
                 base.parse_element (/<cim:CustomerNotification.contactType>([\s\S]*?)<\/cim:CustomerNotification.contactType>/g, obj, "contactType", base.to_string, sub, context);
                 base.parse_element (/<cim:CustomerNotification.contactValue>([\s\S]*?)<\/cim:CustomerNotification.contactValue>/g, obj, "contactValue", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CustomerNotification.TroubleTickets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TroubleTickets", sub, context);
                 base.parse_attribute (/<cim:CustomerNotification.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Customer", sub, context);
                 base.parse_attribute (/<cim:CustomerNotification.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Incident", sub, context);
-
                 var bucket = context.parsed.CustomerNotification;
                 if (null == bucket)
                    context.parsed.CustomerNotification = bucket = {};
@@ -146,8 +146,9 @@ define
                 base.export_element (obj, "CustomerNotification", "latestDateTimeToCall", base.from_datetime, fields);
                 base.export_element (obj, "CustomerNotification", "contactType", base.from_string, fields);
                 base.export_element (obj, "CustomerNotification", "contactValue", base.from_string, fields);
-                base.export_attribute (obj, "CustomerNotification", "Customer", fields);
-                base.export_attribute (obj, "CustomerNotification", "Incident", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerNotification", fields);
+                base.export_attribute (obj, "export_attribute", "CustomerNotification", fields);
+                base.export_attribute (obj, "export_attribute", "CustomerNotification", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -170,6 +171,7 @@ define
                     {{#latestDateTimeToCall}}<div><b>latestDateTimeToCall</b>: {{latestDateTimeToCall}}</div>{{/latestDateTimeToCall}}
                     {{#contactType}}<div><b>contactType</b>: {{contactType}}</div>{{/contactType}}
                     {{#contactValue}}<div><b>contactValue</b>: {{contactValue}}</div>{{/contactValue}}
+                    {{#TroubleTickets}}<div><b>TroubleTickets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TroubleTickets}}
                     {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
                     {{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
                     </div>
@@ -183,12 +185,14 @@ define
             {
                 super.condition (obj);
                 obj.NotificationTriggerKind = []; if (!obj.trigger) obj.NotificationTriggerKind.push ({ id: '', selected: true}); for (var property in NotificationTriggerKind) obj.NotificationTriggerKind.push ({ id: property, selected: obj.trigger && obj.trigger.endsWith ('.' + property)});
+                if (obj.TroubleTickets) obj.TroubleTickets_string = obj.TroubleTickets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.NotificationTriggerKind;
+                delete obj.TroubleTickets_string;
             }
 
             edit_template ()
@@ -212,7 +216,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TroubleTickets", "TroubleTicket", "0..*", "0..1"],
+                        ["Customer", "Customer", "0..1", "0..*"],
+                        ["Incident", "Incident", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -251,8 +266,11 @@ define
                 base.parse_element (/<cim:PricingStructure.dailyFloorUsage>([\s\S]*?)<\/cim:PricingStructure.dailyFloorUsage>/g, obj, "dailyFloorUsage", base.to_string, sub, context);
                 base.parse_attribute (/<cim:PricingStructure.revenueKind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "revenueKind", sub, context);
                 base.parse_element (/<cim:PricingStructure.taxExemption>([\s\S]*?)<\/cim:PricingStructure.taxExemption>/g, obj, "taxExemption", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:PricingStructure.Tariffs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Tariffs", sub, context);
+                base.parse_attributes (/<cim:PricingStructure.Transactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Transactions", sub, context);
                 base.parse_attribute (/<cim:PricingStructure.ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceCategory", sub, context);
-
+                base.parse_attributes (/<cim:PricingStructure.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
+                base.parse_attributes (/<cim:PricingStructure.CustomerAgreements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreements", sub, context);
                 var bucket = context.parsed.PricingStructure;
                 if (null == bucket)
                    context.parsed.PricingStructure = bucket = {};
@@ -271,7 +289,11 @@ define
                 base.export_element (obj, "PricingStructure", "dailyFloorUsage", base.from_string, fields);
                 base.export_element (obj, "PricingStructure", "revenueKind", base.from_string, fields);
                 base.export_element (obj, "PricingStructure", "taxExemption", base.from_boolean, fields);
-                base.export_attribute (obj, "PricingStructure", "ServiceCategory", fields);
+                base.export_attribute (obj, "export_attributes", "PricingStructure", fields);
+                base.export_attribute (obj, "export_attributes", "PricingStructure", fields);
+                base.export_attribute (obj, "export_attribute", "PricingStructure", fields);
+                base.export_attribute (obj, "export_attributes", "PricingStructure", fields);
+                base.export_attribute (obj, "export_attributes", "PricingStructure", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -295,7 +317,11 @@ define
                     {{#dailyFloorUsage}}<div><b>dailyFloorUsage</b>: {{dailyFloorUsage}}</div>{{/dailyFloorUsage}}
                     {{#revenueKind}}<div><b>revenueKind</b>: {{revenueKind}}</div>{{/revenueKind}}
                     {{#taxExemption}}<div><b>taxExemption</b>: {{taxExemption}}</div>{{/taxExemption}}
+                    {{#Tariffs}}<div><b>Tariffs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Tariffs}}
+                    {{#Transactions}}<div><b>Transactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Transactions}}
                     {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerAgreements}}
                     </div>
                     <fieldset>
 
@@ -307,12 +333,20 @@ define
             {
                 super.condition (obj);
                 obj.RevenueKind = []; if (!obj.revenueKind) obj.RevenueKind.push ({ id: '', selected: true}); for (var property in RevenueKind) obj.RevenueKind.push ({ id: property, selected: obj.revenueKind && obj.revenueKind.endsWith ('.' + property)});
+                if (obj.Tariffs) obj.Tariffs_string = obj.Tariffs.join ();
+                if (obj.Transactions) obj.Transactions_string = obj.Transactions.join ();
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
+                if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.RevenueKind;
+                delete obj.Tariffs_string;
+                delete obj.Transactions_string;
+                delete obj.UsagePoints_string;
+                delete obj.CustomerAgreements_string;
             }
 
             edit_template ()
@@ -331,12 +365,28 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='dailyFloorUsage'>dailyFloorUsage: </label><div class='col-sm-8'><input id='dailyFloorUsage' class='form-control' type='text'{{#dailyFloorUsage}} value='{{dailyFloorUsage}}'{{/dailyFloorUsage}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='revenueKind'>revenueKind: </label><div class='col-sm-8'><select id='revenueKind' class='form-control'>{{#RevenueKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RevenueKind}}</select></div></div>
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='taxExemption'>taxExemption: </label><div class='col-sm-8'><input id='taxExemption' class='form-check-input' type='checkbox'{{#taxExemption}} checked{{/taxExemption}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs}}_string'{{/Tariffs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements}}_string'{{/CustomerAgreements}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Tariffs", "Tariff", "0..*", "0..*"],
+                        ["Transactions", "Transaction", "0..*", "0..1"],
+                        ["ServiceCategory", "ServiceCategory", "1", "0..*"],
+                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
+                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -371,7 +421,8 @@ define
                 obj.cls = "Tariff";
                 base.parse_element (/<cim:Tariff.endDate>([\s\S]*?)<\/cim:Tariff.endDate>/g, obj, "endDate", base.to_string, sub, context);
                 base.parse_element (/<cim:Tariff.startDate>([\s\S]*?)<\/cim:Tariff.startDate>/g, obj, "startDate", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Tariff.PricingStructures\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PricingStructures", sub, context);
+                base.parse_attributes (/<cim:Tariff.TariffProfiles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TariffProfiles", sub, context);
                 var bucket = context.parsed.Tariff;
                 if (null == bucket)
                    context.parsed.Tariff = bucket = {};
@@ -386,6 +437,8 @@ define
 
                 base.export_element (obj, "Tariff", "endDate", base.from_string, fields);
                 base.export_element (obj, "Tariff", "startDate", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Tariff", fields);
+                base.export_attribute (obj, "export_attributes", "Tariff", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -405,6 +458,8 @@ define
                     `
                     {{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
                     {{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
+                    {{#PricingStructures}}<div><b>PricingStructures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PricingStructures}}
+                    {{#TariffProfiles}}<div><b>TariffProfiles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TariffProfiles}}
                     </div>
                     <fieldset>
 
@@ -415,11 +470,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PricingStructures) obj.PricingStructures_string = obj.PricingStructures.join ();
+                if (obj.TariffProfiles) obj.TariffProfiles_string = obj.TariffProfiles.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PricingStructures_string;
+                delete obj.TariffProfiles_string;
             }
 
             edit_template ()
@@ -434,11 +493,23 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='endDate'>endDate: </label><div class='col-sm-8'><input id='endDate' class='form-control' type='text'{{#endDate}} value='{{endDate}}'{{/endDate}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDate'>startDate: </label><div class='col-sm-8'><input id='startDate' class='form-control' type='text'{{#startDate}} value='{{startDate}}'{{/startDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures}}_string'{{/PricingStructures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles}}_string'{{/TariffProfiles}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PricingStructures", "PricingStructure", "0..*", "0..*"],
+                        ["TariffProfiles", "TariffProfile", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -476,7 +547,13 @@ define
                 base.parse_element (/<cim:Customer.vip>([\s\S]*?)<\/cim:Customer.vip>/g, obj, "vip", base.to_boolean, sub, context);
                 base.parse_element (/<cim:Customer.priority>([\s\S]*?)<\/cim:Customer.priority>/g, obj, "priority", base.to_string, sub, context);
                 base.parse_element (/<cim:Customer.locale>([\s\S]*?)<\/cim:Customer.locale>/g, obj, "locale", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Customer.Works\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Works", sub, context);
+                base.parse_attributes (/<cim:Customer.ErpPersons\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersons", sub, context);
+                base.parse_attributes (/<cim:Customer.Notifications\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Notifications", sub, context);
+                base.parse_attributes (/<cim:Customer.EndDevices\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDevices", sub, context);
+                base.parse_attributes (/<cim:Customer.CustomerAgreements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreements", sub, context);
+                base.parse_attributes (/<cim:Customer.CustomerAccounts\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccounts", sub, context);
+                base.parse_attributes (/<cim:Customer.TroubleTickets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TroubleTickets", sub, context);
                 var bucket = context.parsed.Customer;
                 if (null == bucket)
                    context.parsed.Customer = bucket = {};
@@ -496,6 +573,13 @@ define
                 base.export_element (obj, "Customer", "vip", base.from_boolean, fields);
                 base.export_element (obj, "Customer", "priority", base.from_string, fields);
                 base.export_element (obj, "Customer", "locale", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Customer", fields);
+                base.export_attribute (obj, "export_attributes", "Customer", fields);
+                base.export_attribute (obj, "export_attributes", "Customer", fields);
+                base.export_attribute (obj, "export_attributes", "Customer", fields);
+                base.export_attribute (obj, "export_attributes", "Customer", fields);
+                base.export_attribute (obj, "export_attributes", "Customer", fields);
+                base.export_attribute (obj, "export_attributes", "Customer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -520,6 +604,13 @@ define
                     {{#vip}}<div><b>vip</b>: {{vip}}</div>{{/vip}}
                     {{#priority}}<div><b>priority</b>: {{priority}}</div>{{/priority}}
                     {{#locale}}<div><b>locale</b>: {{locale}}</div>{{/locale}}
+                    {{#Works}}<div><b>Works</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Works}}
+                    {{#ErpPersons}}<div><b>ErpPersons</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpPersons}}
+                    {{#Notifications}}<div><b>Notifications</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Notifications}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDevices}}
+                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerAgreements}}
+                    {{#CustomerAccounts}}<div><b>CustomerAccounts</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerAccounts}}
+                    {{#TroubleTickets}}<div><b>TroubleTickets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TroubleTickets}}
                     </div>
                     <fieldset>
 
@@ -531,12 +622,26 @@ define
             {
                 super.condition (obj);
                 obj.CustomerKind = []; if (!obj.kind) obj.CustomerKind.push ({ id: '', selected: true}); for (var property in CustomerKind) obj.CustomerKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.Works) obj.Works_string = obj.Works.join ();
+                if (obj.ErpPersons) obj.ErpPersons_string = obj.ErpPersons.join ();
+                if (obj.Notifications) obj.Notifications_string = obj.Notifications.join ();
+                if (obj.EndDevices) obj.EndDevices_string = obj.EndDevices.join ();
+                if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
+                if (obj.CustomerAccounts) obj.CustomerAccounts_string = obj.CustomerAccounts.join ();
+                if (obj.TroubleTickets) obj.TroubleTickets_string = obj.TroubleTickets.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.CustomerKind;
+                delete obj.Works_string;
+                delete obj.ErpPersons_string;
+                delete obj.Notifications_string;
+                delete obj.EndDevices_string;
+                delete obj.CustomerAgreements_string;
+                delete obj.CustomerAccounts_string;
+                delete obj.TroubleTickets_string;
             }
 
             edit_template ()
@@ -556,11 +661,27 @@ define
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vip'>vip: </label><div class='col-sm-8'><input id='vip' class='form-check-input' type='checkbox'{{#vip}} checked{{/vip}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='locale'>locale: </label><div class='col-sm-8'><input id='locale' class='form-control' type='text'{{#locale}} value='{{locale}}'{{/locale}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Works'>Works: </label><div class='col-sm-8'><input id='Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Works", "Work", "0..*", "0..*"],
+                        ["ErpPersons", "OldPerson", "0..*", "0..1"],
+                        ["Notifications", "CustomerNotification", "0..*", "0..1"],
+                        ["EndDevices", "EndDevice", "0..*", "0..1"],
+                        ["CustomerAgreements", "CustomerAgreement", "0..*", "1"],
+                        ["CustomerAccounts", "CustomerAccount", "0..*", "1"],
+                        ["TroubleTickets", "TroubleTicket", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -595,7 +716,6 @@ define
                 obj.cls = "IncidentHazard";
                 base.parse_attribute (/<cim:IncidentHazard.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Incident", sub, context);
                 base.parse_attribute (/<cim:IncidentHazard.TroubleTicket\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TroubleTicket", sub, context);
-
                 var bucket = context.parsed.IncidentHazard;
                 if (null == bucket)
                    context.parsed.IncidentHazard = bucket = {};
@@ -608,8 +728,8 @@ define
             {
                 var fields = Common.Hazard.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "IncidentHazard", "Incident", fields);
-                base.export_attribute (obj, "IncidentHazard", "TroubleTicket", fields);
+                base.export_attribute (obj, "export_attribute", "IncidentHazard", fields);
+                base.export_attribute (obj, "export_attribute", "IncidentHazard", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -662,7 +782,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Incident", "Incident", "0..1", "0..*"],
+                        ["TroubleTicket", "TroubleTicket", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -698,10 +828,15 @@ define
                 base.parse_element (/<cim:CustomerAgreement.loadMgmt>([\s\S]*?)<\/cim:CustomerAgreement.loadMgmt>/g, obj, "loadMgmt", base.to_string, sub, context);
                 base.parse_attribute (/<cim:CustomerAgreement.ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceCategory", sub, context);
                 base.parse_attribute (/<cim:CustomerAgreement.ServiceSupplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceSupplier", sub, context);
+                base.parse_attributes (/<cim:CustomerAgreement.AuxiliaryAgreements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AuxiliaryAgreements", sub, context);
+                base.parse_attributes (/<cim:CustomerAgreement.DemandResponsePrograms\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DemandResponsePrograms", sub, context);
+                base.parse_attributes (/<cim:CustomerAgreement.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
                 base.parse_attribute (/<cim:CustomerAgreement.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Customer", sub, context);
                 base.parse_attribute (/<cim:CustomerAgreement.CustomerAccount\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAccount", sub, context);
                 base.parse_attribute (/<cim:CustomerAgreement.StandardIndustryCode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "StandardIndustryCode", sub, context);
-
+                base.parse_attributes (/<cim:CustomerAgreement.PricingStructures\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PricingStructures", sub, context);
+                base.parse_attributes (/<cim:CustomerAgreement.MeterReadings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterReadings", sub, context);
+                base.parse_attributes (/<cim:CustomerAgreement.ServiceLocations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceLocations", sub, context);
                 var bucket = context.parsed.CustomerAgreement;
                 if (null == bucket)
                    context.parsed.CustomerAgreement = bucket = {};
@@ -715,11 +850,17 @@ define
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CustomerAgreement", "loadMgmt", base.from_string, fields);
-                base.export_attribute (obj, "CustomerAgreement", "ServiceCategory", fields);
-                base.export_attribute (obj, "CustomerAgreement", "ServiceSupplier", fields);
-                base.export_attribute (obj, "CustomerAgreement", "Customer", fields);
-                base.export_attribute (obj, "CustomerAgreement", "CustomerAccount", fields);
-                base.export_attribute (obj, "CustomerAgreement", "StandardIndustryCode", fields);
+                base.export_attribute (obj, "export_attribute", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attribute", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attribute", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attribute", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attribute", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAgreement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -740,9 +881,15 @@ define
                     {{#loadMgmt}}<div><b>loadMgmt</b>: {{loadMgmt}}</div>{{/loadMgmt}}
                     {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
                     {{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+                    {{#AuxiliaryAgreements}}<div><b>AuxiliaryAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AuxiliaryAgreements}}
+                    {{#DemandResponsePrograms}}<div><b>DemandResponsePrograms</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DemandResponsePrograms}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
                     {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
                     {{#CustomerAccount}}<div><b>CustomerAccount</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAccount}}&quot;);})'>{{CustomerAccount}}</a></div>{{/CustomerAccount}}
                     {{#StandardIndustryCode}}<div><b>StandardIndustryCode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{StandardIndustryCode}}&quot;);})'>{{StandardIndustryCode}}</a></div>{{/StandardIndustryCode}}
+                    {{#PricingStructures}}<div><b>PricingStructures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PricingStructures}}
+                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeterReadings}}
+                    {{#ServiceLocations}}<div><b>ServiceLocations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ServiceLocations}}
                     </div>
                     <fieldset>
 
@@ -753,11 +900,23 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AuxiliaryAgreements) obj.AuxiliaryAgreements_string = obj.AuxiliaryAgreements.join ();
+                if (obj.DemandResponsePrograms) obj.DemandResponsePrograms_string = obj.DemandResponsePrograms.join ();
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
+                if (obj.PricingStructures) obj.PricingStructures_string = obj.PricingStructures.join ();
+                if (obj.MeterReadings) obj.MeterReadings_string = obj.MeterReadings.join ();
+                if (obj.ServiceLocations) obj.ServiceLocations_string = obj.ServiceLocations.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AuxiliaryAgreements_string;
+                delete obj.DemandResponsePrograms_string;
+                delete obj.UsagePoints_string;
+                delete obj.PricingStructures_string;
+                delete obj.MeterReadings_string;
+                delete obj.ServiceLocations_string;
             }
 
             edit_template ()
@@ -773,14 +932,36 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadMgmt'>loadMgmt: </label><div class='col-sm-8'><input id='loadMgmt' class='form-control' type='text'{{#loadMgmt}} value='{{loadMgmt}}'{{/loadMgmt}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms}}_string'{{/DemandResponsePrograms}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Customer'>Customer: </label><div class='col-sm-8'><input id='Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='StandardIndustryCode'>StandardIndustryCode: </label><div class='col-sm-8'><input id='StandardIndustryCode' class='form-control' type='text'{{#StandardIndustryCode}} value='{{StandardIndustryCode}}'{{/StandardIndustryCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures}}_string'{{/PricingStructures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceLocations'>ServiceLocations: </label><div class='col-sm-8'><input id='ServiceLocations' class='form-control' type='text'{{#ServiceLocations}} value='{{ServiceLocations}}_string'{{/ServiceLocations}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ServiceCategory", "ServiceCategory", "0..1", "0..*"],
+                        ["ServiceSupplier", "ServiceSupplier", "1", "0..*"],
+                        ["AuxiliaryAgreements", "AuxiliaryAgreement", "0..*", "0..1"],
+                        ["DemandResponsePrograms", "DemandResponseProgram", "0..*", "0..*"],
+                        ["UsagePoints", "UsagePoint", "0..*", "0..1"],
+                        ["Customer", "Customer", "1", "0..*"],
+                        ["CustomerAccount", "CustomerAccount", "1", "0..*"],
+                        ["StandardIndustryCode", "StandardIndustryCode", "0..1", "0..*"],
+                        ["PricingStructures", "PricingStructure", "0..*", "0..*"],
+                        ["MeterReadings", "MeterReading", "0..*", "0..1"],
+                        ["ServiceLocations", "ServiceLocation", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -814,7 +995,9 @@ define
                 base.parse_element (/<cim:ServiceLocation.accessMethod>([\s\S]*?)<\/cim:ServiceLocation.accessMethod>/g, obj, "accessMethod", base.to_string, sub, context);
                 base.parse_element (/<cim:ServiceLocation.needsInspection>([\s\S]*?)<\/cim:ServiceLocation.needsInspection>/g, obj, "needsInspection", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ServiceLocation.siteAccessProblem>([\s\S]*?)<\/cim:ServiceLocation.siteAccessProblem>/g, obj, "siteAccessProblem", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ServiceLocation.EndDevices\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDevices", sub, context);
+                base.parse_attributes (/<cim:ServiceLocation.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
+                base.parse_attributes (/<cim:ServiceLocation.CustomerAgreements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreements", sub, context);
                 var bucket = context.parsed.ServiceLocation;
                 if (null == bucket)
                    context.parsed.ServiceLocation = bucket = {};
@@ -830,6 +1013,9 @@ define
                 base.export_element (obj, "ServiceLocation", "accessMethod", base.from_string, fields);
                 base.export_element (obj, "ServiceLocation", "needsInspection", base.from_boolean, fields);
                 base.export_element (obj, "ServiceLocation", "siteAccessProblem", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ServiceLocation", fields);
+                base.export_attribute (obj, "export_attributes", "ServiceLocation", fields);
+                base.export_attribute (obj, "export_attributes", "ServiceLocation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -850,6 +1036,9 @@ define
                     {{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
                     {{#needsInspection}}<div><b>needsInspection</b>: {{needsInspection}}</div>{{/needsInspection}}
                     {{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDevices}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerAgreements}}
                     </div>
                     <fieldset>
 
@@ -860,11 +1049,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EndDevices) obj.EndDevices_string = obj.EndDevices.join ();
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
+                if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDevices_string;
+                delete obj.UsagePoints_string;
+                delete obj.CustomerAgreements_string;
             }
 
             edit_template ()
@@ -880,11 +1075,23 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='accessMethod'>accessMethod: </label><div class='col-sm-8'><input id='accessMethod' class='form-control' type='text'{{#accessMethod}} value='{{accessMethod}}'{{/accessMethod}}></div></div>
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='needsInspection'>needsInspection: </label><div class='col-sm-8'><input id='needsInspection' class='form-check-input' type='checkbox'{{#needsInspection}} checked{{/needsInspection}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='siteAccessProblem'>siteAccessProblem: </label><div class='col-sm-8'><input id='siteAccessProblem' class='form-control' type='text'{{#siteAccessProblem}} value='{{siteAccessProblem}}'{{/siteAccessProblem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements}}_string'{{/CustomerAgreements}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDevices", "EndDevice", "0..*", "0..1"],
+                        ["UsagePoints", "UsagePoint", "0..*", "0..1"],
+                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -916,7 +1123,10 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ServiceCategory";
                 base.parse_attribute (/<cim:ServiceCategory.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-
+                base.parse_attributes (/<cim:ServiceCategory.CustomerAgreements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreements", sub, context);
+                base.parse_attributes (/<cim:ServiceCategory.PricingStructures\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PricingStructures", sub, context);
+                base.parse_attributes (/<cim:ServiceCategory.ConfigurationEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConfigurationEvents", sub, context);
+                base.parse_attributes (/<cim:ServiceCategory.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
                 var bucket = context.parsed.ServiceCategory;
                 if (null == bucket)
                    context.parsed.ServiceCategory = bucket = {};
@@ -930,6 +1140,10 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ServiceCategory", "kind", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ServiceCategory", fields);
+                base.export_attribute (obj, "export_attributes", "ServiceCategory", fields);
+                base.export_attribute (obj, "export_attributes", "ServiceCategory", fields);
+                base.export_attribute (obj, "export_attributes", "ServiceCategory", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -948,6 +1162,10 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerAgreements}}
+                    {{#PricingStructures}}<div><b>PricingStructures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PricingStructures}}
+                    {{#ConfigurationEvents}}<div><b>ConfigurationEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConfigurationEvents}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
                     </div>
                     <fieldset>
 
@@ -959,12 +1177,20 @@ define
             {
                 super.condition (obj);
                 obj.ServiceKind = []; if (!obj.kind) obj.ServiceKind.push ({ id: '', selected: true}); for (var property in ServiceKind) obj.ServiceKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
+                if (obj.PricingStructures) obj.PricingStructures_string = obj.PricingStructures.join ();
+                if (obj.ConfigurationEvents) obj.ConfigurationEvents_string = obj.ConfigurationEvents.join ();
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.ServiceKind;
+                delete obj.CustomerAgreements_string;
+                delete obj.PricingStructures_string;
+                delete obj.ConfigurationEvents_string;
+                delete obj.UsagePoints_string;
             }
 
             edit_template ()
@@ -982,7 +1208,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..1"],
+                        ["PricingStructures", "PricingStructure", "0..*", "1"],
+                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
+                        ["UsagePoints", "UsagePoint", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         class TroubleTicket extends Common.Document
@@ -1017,7 +1255,7 @@ define
                 base.parse_attribute (/<cim:TroubleTicket.Notification\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Notification", sub, context);
                 base.parse_attribute (/<cim:TroubleTicket.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Incident", sub, context);
                 base.parse_attribute (/<cim:TroubleTicket.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Customer", sub, context);
-
+                base.parse_attributes (/<cim:TroubleTicket.Hazards\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Hazards", sub, context);
                 var bucket = context.parsed.TroubleTicket;
                 if (null == bucket)
                    context.parsed.TroubleTicket = bucket = {};
@@ -1035,9 +1273,10 @@ define
                 base.export_element (obj, "TroubleTicket", "reportingKind", base.from_string, fields);
                 base.export_element (obj, "TroubleTicket", "resolvedDateTime", base.from_datetime, fields);
                 base.export_element (obj, "TroubleTicket", "firstResponder", base.from_string, fields);
-                base.export_attribute (obj, "TroubleTicket", "Notification", fields);
-                base.export_attribute (obj, "TroubleTicket", "Incident", fields);
-                base.export_attribute (obj, "TroubleTicket", "Customer", fields);
+                base.export_attribute (obj, "export_attribute", "TroubleTicket", fields);
+                base.export_attribute (obj, "export_attribute", "TroubleTicket", fields);
+                base.export_attribute (obj, "export_attribute", "TroubleTicket", fields);
+                base.export_attribute (obj, "export_attributes", "TroubleTicket", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1063,6 +1302,7 @@ define
                     {{#Notification}}<div><b>Notification</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Notification}}&quot;);})'>{{Notification}}</a></div>{{/Notification}}
                     {{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
                     {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+                    {{#Hazards}}<div><b>Hazards</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Hazards}}
                     </div>
                     <fieldset>
 
@@ -1074,12 +1314,14 @@ define
             {
                 super.condition (obj);
                 obj.TroubleReportingKind = []; if (!obj.reportingKind) obj.TroubleReportingKind.push ({ id: '', selected: true}); for (var property in TroubleReportingKind) obj.TroubleReportingKind.push ({ id: property, selected: obj.reportingKind && obj.reportingKind.endsWith ('.' + property)});
+                if (obj.Hazards) obj.Hazards_string = obj.Hazards.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.TroubleReportingKind;
+                delete obj.Hazards_string;
             }
 
             edit_template ()
@@ -1104,7 +1346,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Notification", "CustomerNotification", "0..1", "0..*"],
+                        ["Incident", "Incident", "0..1", "0..*"],
+                        ["Customer", "Customer", "0..1", "0..*"],
+                        ["Hazards", "IncidentHazard", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1139,8 +1393,12 @@ define
                 obj.cls = "CustomerAccount";
                 base.parse_element (/<cim:CustomerAccount.billingCycle>([\s\S]*?)<\/cim:CustomerAccount.billingCycle>/g, obj, "billingCycle", base.to_string, sub, context);
                 base.parse_element (/<cim:CustomerAccount.budgetBill>([\s\S]*?)<\/cim:CustomerAccount.budgetBill>/g, obj, "budgetBill", base.to_string, sub, context);
+                base.parse_attributes (/<cim:CustomerAccount.CustomerAgreements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreements", sub, context);
                 base.parse_attribute (/<cim:CustomerAccount.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Customer", sub, context);
-
+                base.parse_attributes (/<cim:CustomerAccount.WorkBillingInfos\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkBillingInfos", sub, context);
+                base.parse_attributes (/<cim:CustomerAccount.ErpInvoicees\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpInvoicees", sub, context);
+                base.parse_attributes (/<cim:CustomerAccount.CustomerBillingInfos\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerBillingInfos", sub, context);
+                base.parse_attributes (/<cim:CustomerAccount.PaymentTransactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PaymentTransactions", sub, context);
                 var bucket = context.parsed.CustomerAccount;
                 if (null == bucket)
                    context.parsed.CustomerAccount = bucket = {};
@@ -1155,7 +1413,12 @@ define
 
                 base.export_element (obj, "CustomerAccount", "billingCycle", base.from_string, fields);
                 base.export_element (obj, "CustomerAccount", "budgetBill", base.from_string, fields);
-                base.export_attribute (obj, "CustomerAccount", "Customer", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAccount", fields);
+                base.export_attribute (obj, "export_attribute", "CustomerAccount", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAccount", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAccount", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAccount", fields);
+                base.export_attribute (obj, "export_attributes", "CustomerAccount", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1175,7 +1438,12 @@ define
                     `
                     {{#billingCycle}}<div><b>billingCycle</b>: {{billingCycle}}</div>{{/billingCycle}}
                     {{#budgetBill}}<div><b>budgetBill</b>: {{budgetBill}}</div>{{/budgetBill}}
+                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerAgreements}}
                     {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
+                    {{#WorkBillingInfos}}<div><b>WorkBillingInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkBillingInfos}}
+                    {{#ErpInvoicees}}<div><b>ErpInvoicees</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpInvoicees}}
+                    {{#CustomerBillingInfos}}<div><b>CustomerBillingInfos</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerBillingInfos}}
+                    {{#PaymentTransactions}}<div><b>PaymentTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PaymentTransactions}}
                     </div>
                     <fieldset>
 
@@ -1186,11 +1454,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
+                if (obj.WorkBillingInfos) obj.WorkBillingInfos_string = obj.WorkBillingInfos.join ();
+                if (obj.ErpInvoicees) obj.ErpInvoicees_string = obj.ErpInvoicees.join ();
+                if (obj.CustomerBillingInfos) obj.CustomerBillingInfos_string = obj.CustomerBillingInfos.join ();
+                if (obj.PaymentTransactions) obj.PaymentTransactions_string = obj.PaymentTransactions.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CustomerAgreements_string;
+                delete obj.WorkBillingInfos_string;
+                delete obj.ErpInvoicees_string;
+                delete obj.CustomerBillingInfos_string;
+                delete obj.PaymentTransactions_string;
             }
 
             edit_template ()
@@ -1210,7 +1488,21 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CustomerAgreements", "CustomerAgreement", "0..*", "1"],
+                        ["Customer", "Customer", "1", "0..*"],
+                        ["WorkBillingInfos", "WorkBillingInfo", "0..*", "0..1"],
+                        ["ErpInvoicees", "ErpInvoice", "0..*", "0..1"],
+                        ["CustomerBillingInfos", "CustomerBillingInfo", "0..*", "0..1"],
+                        ["PaymentTransactions", "Transaction", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

@@ -76,7 +76,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "RedLine";
                 base.parse_element (/<cim:RedLine.status>([\s\S]*?)<\/cim:RedLine.status>/g, obj, "status", base.to_string, sub, context);
-
                 var bucket = context.parsed.RedLine;
                 if (null == bucket)
                    context.parsed.RedLine = bucket = {};
@@ -140,7 +139,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -174,7 +173,6 @@ define
                 obj = Common.Location.prototype.parse.call (this, context, sub);
                 obj.cls = "Zone";
                 base.parse_attribute (/<cim:Zone.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-
                 var bucket = context.parsed.Zone;
                 if (null == bucket)
                    context.parsed.Zone = bucket = {};
@@ -240,7 +238,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -275,7 +273,6 @@ define
                 obj.cls = "LocationGrant";
                 base.parse_element (/<cim:LocationGrant.propertyData>([\s\S]*?)<\/cim:LocationGrant.propertyData>/g, obj, "propertyData", base.to_string, sub, context);
                 base.parse_attribute (/<cim:LocationGrant.LandProperty\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LandProperty", sub, context);
-
                 var bucket = context.parsed.LocationGrant;
                 if (null == bucket)
                    context.parsed.LocationGrant = bucket = {};
@@ -289,7 +286,7 @@ define
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LocationGrant", "propertyData", base.from_string, fields);
-                base.export_attribute (obj, "LocationGrant", "LandProperty", fields);
+                base.export_attribute (obj, "export_attribute", "LocationGrant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -342,7 +339,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LandProperty", "LandProperty", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -375,7 +381,8 @@ define
                 obj.cls = "Route";
                 base.parse_element (/<cim:Route.status>([\s\S]*?)<\/cim:Route.status>/g, obj, "status", base.to_string, sub, context);
                 base.parse_element (/<cim:Route.type>([\s\S]*?)<\/cim:Route.type>/g, obj, "type", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Route.Locations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Locations", sub, context);
+                base.parse_attributes (/<cim:Route.Crews\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Crews", sub, context);
                 var bucket = context.parsed.Route;
                 if (null == bucket)
                    context.parsed.Route = bucket = {};
@@ -390,6 +397,8 @@ define
 
                 base.export_element (obj, "Route", "status", base.from_string, fields);
                 base.export_element (obj, "Route", "type", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Route", fields);
+                base.export_attribute (obj, "export_attributes", "Route", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -409,6 +418,8 @@ define
                     `
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#Locations}}<div><b>Locations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Locations}}
+                    {{#Crews}}<div><b>Crews</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Crews}}
                     </div>
                     <fieldset>
 
@@ -419,11 +430,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Locations) obj.Locations_string = obj.Locations.join ();
+                if (obj.Crews) obj.Crews_string = obj.Crews.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Locations_string;
+                delete obj.Crews_string;
             }
 
             edit_template ()
@@ -438,11 +453,22 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Locations'>Locations: </label><div class='col-sm-8'><input id='Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Locations", "Location", "0..*", "0..*"],
+                        ["Crews", "OldCrew", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -479,7 +505,13 @@ define
                 base.parse_element (/<cim:LandProperty.externalRecordReference>([\s\S]*?)<\/cim:LandProperty.externalRecordReference>/g, obj, "externalRecordReference", base.to_string, sub, context);
                 base.parse_attribute (/<cim:LandProperty.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:LandProperty.status>([\s\S]*?)<\/cim:LandProperty.status>/g, obj, "status", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:LandProperty.ErpOrganisationRoles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpOrganisationRoles", sub, context);
+                base.parse_attributes (/<cim:LandProperty.LocationGrants\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LocationGrants", sub, context);
+                base.parse_attributes (/<cim:LandProperty.RightOfWays\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RightOfWays", sub, context);
+                base.parse_attributes (/<cim:LandProperty.Locations\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Locations", sub, context);
+                base.parse_attributes (/<cim:LandProperty.AssetContainers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AssetContainers", sub, context);
+                base.parse_attributes (/<cim:LandProperty.ErpSiteLevelDatas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpSiteLevelDatas", sub, context);
+                base.parse_attributes (/<cim:LandProperty.ErpPersonRoles\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPersonRoles", sub, context);
                 var bucket = context.parsed.LandProperty;
                 if (null == bucket)
                    context.parsed.LandProperty = bucket = {};
@@ -496,6 +528,13 @@ define
                 base.export_element (obj, "LandProperty", "externalRecordReference", base.from_string, fields);
                 base.export_element (obj, "LandProperty", "kind", base.from_string, fields);
                 base.export_element (obj, "LandProperty", "status", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
+                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
+                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
+                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
+                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
+                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
+                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -517,6 +556,13 @@ define
                     {{#externalRecordReference}}<div><b>externalRecordReference</b>: {{externalRecordReference}}</div>{{/externalRecordReference}}
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
+                    {{#ErpOrganisationRoles}}<div><b>ErpOrganisationRoles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpOrganisationRoles}}
+                    {{#LocationGrants}}<div><b>LocationGrants</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LocationGrants}}
+                    {{#RightOfWays}}<div><b>RightOfWays</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RightOfWays}}
+                    {{#Locations}}<div><b>Locations</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Locations}}
+                    {{#AssetContainers}}<div><b>AssetContainers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AssetContainers}}
+                    {{#ErpSiteLevelDatas}}<div><b>ErpSiteLevelDatas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpSiteLevelDatas}}
+                    {{#ErpPersonRoles}}<div><b>ErpPersonRoles</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ErpPersonRoles}}
                     </div>
                     <fieldset>
 
@@ -529,6 +575,13 @@ define
                 super.condition (obj);
                 obj.DemographicKind = []; if (!obj.demographicKind) obj.DemographicKind.push ({ id: '', selected: true}); for (var property in DemographicKind) obj.DemographicKind.push ({ id: property, selected: obj.demographicKind && obj.demographicKind.endsWith ('.' + property)});
                 obj.LandPropertyKind = []; if (!obj.kind) obj.LandPropertyKind.push ({ id: '', selected: true}); for (var property in LandPropertyKind) obj.LandPropertyKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.ErpOrganisationRoles) obj.ErpOrganisationRoles_string = obj.ErpOrganisationRoles.join ();
+                if (obj.LocationGrants) obj.LocationGrants_string = obj.LocationGrants.join ();
+                if (obj.RightOfWays) obj.RightOfWays_string = obj.RightOfWays.join ();
+                if (obj.Locations) obj.Locations_string = obj.Locations.join ();
+                if (obj.AssetContainers) obj.AssetContainers_string = obj.AssetContainers.join ();
+                if (obj.ErpSiteLevelDatas) obj.ErpSiteLevelDatas_string = obj.ErpSiteLevelDatas.join ();
+                if (obj.ErpPersonRoles) obj.ErpPersonRoles_string = obj.ErpPersonRoles.join ();
             }
 
             uncondition (obj)
@@ -536,6 +589,13 @@ define
                 super.uncondition (obj);
                 delete obj.DemographicKind;
                 delete obj.LandPropertyKind;
+                delete obj.ErpOrganisationRoles_string;
+                delete obj.LocationGrants_string;
+                delete obj.RightOfWays_string;
+                delete obj.Locations_string;
+                delete obj.AssetContainers_string;
+                delete obj.ErpSiteLevelDatas_string;
+                delete obj.ErpPersonRoles_string;
             }
 
             edit_template ()
@@ -552,11 +612,29 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='externalRecordReference'>externalRecordReference: </label><div class='col-sm-8'><input id='externalRecordReference' class='form-control' type='text'{{#externalRecordReference}} value='{{externalRecordReference}}'{{/externalRecordReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#LandPropertyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LandPropertyKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RightOfWays'>RightOfWays: </label><div class='col-sm-8'><input id='RightOfWays' class='form-control' type='text'{{#RightOfWays}} value='{{RightOfWays}}_string'{{/RightOfWays}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Locations'>Locations: </label><div class='col-sm-8'><input id='Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetContainers'>AssetContainers: </label><div class='col-sm-8'><input id='AssetContainers' class='form-control' type='text'{{#AssetContainers}} value='{{AssetContainers}}_string'{{/AssetContainers}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ErpOrganisationRoles", "PropertyOrganisationRole", "0..*", "1.."],
+                        ["LocationGrants", "LocationGrant", "0..*", "0..1"],
+                        ["RightOfWays", "RightOfWay", "0..*", "0..*"],
+                        ["Locations", "Location", "0..*", "0..*"],
+                        ["AssetContainers", "AssetContainer", "0..*", "0..*"],
+                        ["ErpSiteLevelDatas", "ErpSiteLevelData", "0..*", "0..1"],
+                        ["ErpPersonRoles", "PersonPropertyRole", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -590,7 +668,7 @@ define
                 obj = Common.Agreement.prototype.parse.call (this, context, sub);
                 obj.cls = "RightOfWay";
                 base.parse_element (/<cim:RightOfWay.propertyData>([\s\S]*?)<\/cim:RightOfWay.propertyData>/g, obj, "propertyData", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:RightOfWay.LandProperties\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LandProperties", sub, context);
                 var bucket = context.parsed.RightOfWay;
                 if (null == bucket)
                    context.parsed.RightOfWay = bucket = {};
@@ -604,6 +682,7 @@ define
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RightOfWay", "propertyData", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "RightOfWay", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -622,6 +701,7 @@ define
                     + Common.Agreement.prototype.template.call (this) +
                     `
                     {{#propertyData}}<div><b>propertyData</b>: {{propertyData}}</div>{{/propertyData}}
+                    {{#LandProperties}}<div><b>LandProperties</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LandProperties}}
                     </div>
                     <fieldset>
 
@@ -632,11 +712,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.LandProperties) obj.LandProperties_string = obj.LandProperties.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.LandProperties_string;
             }
 
             edit_template ()
@@ -650,11 +732,21 @@ define
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='propertyData'>propertyData: </label><div class='col-sm-8'><input id='propertyData' class='form-control' type='text'{{#propertyData}} value='{{propertyData}}'{{/propertyData}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties}}_string'{{/LandProperties}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LandProperties", "LandProperty", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

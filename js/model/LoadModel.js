@@ -40,7 +40,8 @@ define
                 obj.cls = "Season";
                 base.parse_element (/<cim:Season.endDate>([\s\S]*?)<\/cim:Season.endDate>/g, obj, "endDate", base.to_string, sub, context);
                 base.parse_element (/<cim:Season.startDate>([\s\S]*?)<\/cim:Season.startDate>/g, obj, "startDate", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Season.ScheduledLimits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ScheduledLimits", sub, context);
+                base.parse_attributes (/<cim:Season.SeasonDayTypeSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SeasonDayTypeSchedules", sub, context);
                 var bucket = context.parsed.Season;
                 if (null == bucket)
                    context.parsed.Season = bucket = {};
@@ -55,6 +56,8 @@ define
 
                 base.export_element (obj, "Season", "endDate", base.from_string, fields);
                 base.export_element (obj, "Season", "startDate", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Season", fields);
+                base.export_attribute (obj, "export_attributes", "Season", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -74,6 +77,8 @@ define
                     `
                     {{#endDate}}<div><b>endDate</b>: {{endDate}}</div>{{/endDate}}
                     {{#startDate}}<div><b>startDate</b>: {{startDate}}</div>{{/startDate}}
+                    {{#ScheduledLimits}}<div><b>ScheduledLimits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ScheduledLimits}}
+                    {{#SeasonDayTypeSchedules}}<div><b>SeasonDayTypeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SeasonDayTypeSchedules}}
                     </div>
                     <fieldset>
 
@@ -84,11 +89,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ScheduledLimits) obj.ScheduledLimits_string = obj.ScheduledLimits.join ();
+                if (obj.SeasonDayTypeSchedules) obj.SeasonDayTypeSchedules_string = obj.SeasonDayTypeSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ScheduledLimits_string;
+                delete obj.SeasonDayTypeSchedules_string;
             }
 
             edit_template ()
@@ -107,7 +116,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ScheduledLimits", "ScheduledLimitValue", "0..*", "0..1"],
+                        ["SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -140,7 +159,6 @@ define
                 obj.cls = "SeasonDayTypeSchedule";
                 base.parse_attribute (/<cim:SeasonDayTypeSchedule.Season\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Season", sub, context);
                 base.parse_attribute (/<cim:SeasonDayTypeSchedule.DayType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DayType", sub, context);
-
                 var bucket = context.parsed.SeasonDayTypeSchedule;
                 if (null == bucket)
                    context.parsed.SeasonDayTypeSchedule = bucket = {};
@@ -153,8 +171,8 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "SeasonDayTypeSchedule", "Season", fields);
-                base.export_attribute (obj, "SeasonDayTypeSchedule", "DayType", fields);
+                base.export_attribute (obj, "export_attribute", "SeasonDayTypeSchedule", fields);
+                base.export_attribute (obj, "export_attribute", "SeasonDayTypeSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -207,7 +225,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Season", "Season", "0..1", "0..*"],
+                        ["DayType", "DayType", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -239,7 +267,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadGroup";
                 base.parse_attribute (/<cim:LoadGroup.SubLoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubLoadArea", sub, context);
-
                 var bucket = context.parsed.LoadGroup;
                 if (null == bucket)
                    context.parsed.LoadGroup = bucket = {};
@@ -252,7 +279,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "LoadGroup", "SubLoadArea", fields);
+                base.export_attribute (obj, "export_attribute", "LoadGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -303,7 +330,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SubLoadArea", "SubLoadArea", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -337,7 +373,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "EnergyArea";
                 base.parse_attribute (/<cim:EnergyArea.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context);
-
                 var bucket = context.parsed.EnergyArea;
                 if (null == bucket)
                    context.parsed.EnergyArea = bucket = {};
@@ -350,7 +385,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "EnergyArea", "ControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "EnergyArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -401,7 +436,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ControlArea", "ControlArea", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -434,7 +478,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "DayType";
-
+                base.parse_attributes (/<cim:DayType.SeasonDayTypeSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SeasonDayTypeSchedules", sub, context);
                 var bucket = context.parsed.DayType;
                 if (null == bucket)
                    context.parsed.DayType = bucket = {};
@@ -447,6 +491,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "DayType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -464,6 +509,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#SeasonDayTypeSchedules}}<div><b>SeasonDayTypeSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SeasonDayTypeSchedules}}
                     </div>
                     <fieldset>
 
@@ -474,11 +520,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SeasonDayTypeSchedules) obj.SeasonDayTypeSchedules_string = obj.SeasonDayTypeSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SeasonDayTypeSchedules_string;
             }
 
             edit_template ()
@@ -495,7 +543,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -539,7 +596,7 @@ define
                 base.parse_element (/<cim:LoadResponseCharacteristic.qConstantPower>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qConstantPower>/g, obj, "qConstantPower", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadResponseCharacteristic.qFrequencyExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qFrequencyExponent>/g, obj, "qFrequencyExponent", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadResponseCharacteristic.qVoltageExponent>([\s\S]*?)<\/cim:LoadResponseCharacteristic.qVoltageExponent>/g, obj, "qVoltageExponent", base.to_float, sub, context);
-
+                base.parse_attributes (/<cim:LoadResponseCharacteristic.EnergyConsumer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumer", sub, context);
                 var bucket = context.parsed.LoadResponseCharacteristic;
                 if (null == bucket)
                    context.parsed.LoadResponseCharacteristic = bucket = {};
@@ -563,6 +620,7 @@ define
                 base.export_element (obj, "LoadResponseCharacteristic", "qConstantPower", base.from_float, fields);
                 base.export_element (obj, "LoadResponseCharacteristic", "qFrequencyExponent", base.from_float, fields);
                 base.export_element (obj, "LoadResponseCharacteristic", "qVoltageExponent", base.from_float, fields);
+                base.export_attribute (obj, "export_attributes", "LoadResponseCharacteristic", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -591,6 +649,7 @@ define
                     {{#qConstantPower}}<div><b>qConstantPower</b>: {{qConstantPower}}</div>{{/qConstantPower}}
                     {{#qFrequencyExponent}}<div><b>qFrequencyExponent</b>: {{qFrequencyExponent}}</div>{{/qFrequencyExponent}}
                     {{#qVoltageExponent}}<div><b>qVoltageExponent</b>: {{qVoltageExponent}}</div>{{/qVoltageExponent}}
+                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyConsumer}}
                     </div>
                     <fieldset>
 
@@ -601,11 +660,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergyConsumer) obj.EnergyConsumer_string = obj.EnergyConsumer.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyConsumer_string;
             }
 
             edit_template ()
@@ -633,7 +694,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyConsumer", "EnergyConsumer", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -666,7 +736,7 @@ define
                 obj.cls = "PowerCutZone";
                 base.parse_element (/<cim:PowerCutZone.cutLevel1>([\s\S]*?)<\/cim:PowerCutZone.cutLevel1>/g, obj, "cutLevel1", base.to_string, sub, context);
                 base.parse_element (/<cim:PowerCutZone.cutLevel2>([\s\S]*?)<\/cim:PowerCutZone.cutLevel2>/g, obj, "cutLevel2", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:PowerCutZone.EnergyConsumers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumers", sub, context);
                 var bucket = context.parsed.PowerCutZone;
                 if (null == bucket)
                    context.parsed.PowerCutZone = bucket = {};
@@ -681,6 +751,7 @@ define
 
                 base.export_element (obj, "PowerCutZone", "cutLevel1", base.from_string, fields);
                 base.export_element (obj, "PowerCutZone", "cutLevel2", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "PowerCutZone", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -700,6 +771,7 @@ define
                     `
                     {{#cutLevel1}}<div><b>cutLevel1</b>: {{cutLevel1}}</div>{{/cutLevel1}}
                     {{#cutLevel2}}<div><b>cutLevel2</b>: {{cutLevel2}}</div>{{/cutLevel2}}
+                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyConsumers}}
                     </div>
                     <fieldset>
 
@@ -710,11 +782,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergyConsumers) obj.EnergyConsumers_string = obj.EnergyConsumers.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyConsumers_string;
             }
 
             edit_template ()
@@ -733,7 +807,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyConsumers", "EnergyConsumer", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -765,7 +848,6 @@ define
                 obj = SeasonDayTypeSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "NonConformLoadSchedule";
                 base.parse_attribute (/<cim:NonConformLoadSchedule.NonConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NonConformLoadGroup", sub, context);
-
                 var bucket = context.parsed.NonConformLoadSchedule;
                 if (null == bucket)
                    context.parsed.NonConformLoadSchedule = bucket = {};
@@ -778,7 +860,7 @@ define
             {
                 var fields = SeasonDayTypeSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "NonConformLoadSchedule", "NonConformLoadGroup", fields);
+                base.export_attribute (obj, "export_attribute", "NonConformLoadSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -829,7 +911,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["NonConformLoadGroup", "NonConformLoadGroup", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -863,7 +954,6 @@ define
                 obj = SeasonDayTypeSchedule.prototype.parse.call (this, context, sub);
                 obj.cls = "ConformLoadSchedule";
                 base.parse_attribute (/<cim:ConformLoadSchedule.ConformLoadGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConformLoadGroup", sub, context);
-
                 var bucket = context.parsed.ConformLoadSchedule;
                 if (null == bucket)
                    context.parsed.ConformLoadSchedule = bucket = {};
@@ -876,7 +966,7 @@ define
             {
                 var fields = SeasonDayTypeSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ConformLoadSchedule", "ConformLoadGroup", fields);
+                base.export_attribute (obj, "export_attribute", "ConformLoadSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -927,7 +1017,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ConformLoadGroup", "ConformLoadGroup", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -958,7 +1057,8 @@ define
 
                 obj = LoadGroup.prototype.parse.call (this, context, sub);
                 obj.cls = "NonConformLoadGroup";
-
+                base.parse_attributes (/<cim:NonConformLoadGroup.EnergyConsumers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumers", sub, context);
+                base.parse_attributes (/<cim:NonConformLoadGroup.NonConformLoadSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "NonConformLoadSchedules", sub, context);
                 var bucket = context.parsed.NonConformLoadGroup;
                 if (null == bucket)
                    context.parsed.NonConformLoadGroup = bucket = {};
@@ -971,6 +1071,8 @@ define
             {
                 var fields = LoadGroup.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "NonConformLoadGroup", fields);
+                base.export_attribute (obj, "export_attributes", "NonConformLoadGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -988,6 +1090,8 @@ define
                     `
                     + LoadGroup.prototype.template.call (this) +
                     `
+                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyConsumers}}
+                    {{#NonConformLoadSchedules}}<div><b>NonConformLoadSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/NonConformLoadSchedules}}
                     </div>
                     <fieldset>
 
@@ -998,11 +1102,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergyConsumers) obj.EnergyConsumers_string = obj.EnergyConsumers.join ();
+                if (obj.NonConformLoadSchedules) obj.NonConformLoadSchedules_string = obj.NonConformLoadSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyConsumers_string;
+                delete obj.NonConformLoadSchedules_string;
             }
 
             edit_template ()
@@ -1019,7 +1127,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyConsumers", "NonConformLoad", "0..*", "0..1"],
+                        ["NonConformLoadSchedules", "NonConformLoadSchedule", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1050,7 +1168,8 @@ define
 
                 obj = LoadGroup.prototype.parse.call (this, context, sub);
                 obj.cls = "ConformLoadGroup";
-
+                base.parse_attributes (/<cim:ConformLoadGroup.EnergyConsumers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumers", sub, context);
+                base.parse_attributes (/<cim:ConformLoadGroup.ConformLoadSchedules\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConformLoadSchedules", sub, context);
                 var bucket = context.parsed.ConformLoadGroup;
                 if (null == bucket)
                    context.parsed.ConformLoadGroup = bucket = {};
@@ -1063,6 +1182,8 @@ define
             {
                 var fields = LoadGroup.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "ConformLoadGroup", fields);
+                base.export_attribute (obj, "export_attributes", "ConformLoadGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1080,6 +1201,8 @@ define
                     `
                     + LoadGroup.prototype.template.call (this) +
                     `
+                    {{#EnergyConsumers}}<div><b>EnergyConsumers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyConsumers}}
+                    {{#ConformLoadSchedules}}<div><b>ConformLoadSchedules</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConformLoadSchedules}}
                     </div>
                     <fieldset>
 
@@ -1090,11 +1213,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergyConsumers) obj.EnergyConsumers_string = obj.EnergyConsumers.join ();
+                if (obj.ConformLoadSchedules) obj.ConformLoadSchedules_string = obj.ConformLoadSchedules.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyConsumers_string;
+                delete obj.ConformLoadSchedules_string;
             }
 
             edit_template ()
@@ -1111,7 +1238,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyConsumers", "ConformLoad", "0..*", "0..1"],
+                        ["ConformLoadSchedules", "ConformLoadSchedule", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1143,7 +1280,7 @@ define
                 obj = EnergyArea.prototype.parse.call (this, context, sub);
                 obj.cls = "SubLoadArea";
                 base.parse_attribute (/<cim:SubLoadArea.LoadArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadArea", sub, context);
-
+                base.parse_attributes (/<cim:SubLoadArea.LoadGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadGroups", sub, context);
                 var bucket = context.parsed.SubLoadArea;
                 if (null == bucket)
                    context.parsed.SubLoadArea = bucket = {};
@@ -1156,7 +1293,8 @@ define
             {
                 var fields = EnergyArea.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "SubLoadArea", "LoadArea", fields);
+                base.export_attribute (obj, "export_attribute", "SubLoadArea", fields);
+                base.export_attribute (obj, "export_attributes", "SubLoadArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1175,6 +1313,7 @@ define
                     + EnergyArea.prototype.template.call (this) +
                     `
                     {{#LoadArea}}<div><b>LoadArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{LoadArea}}&quot;);})'>{{LoadArea}}</a></div>{{/LoadArea}}
+                    {{#LoadGroups}}<div><b>LoadGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/LoadGroups}}
                     </div>
                     <fieldset>
 
@@ -1185,11 +1324,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.LoadGroups) obj.LoadGroups_string = obj.LoadGroups.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.LoadGroups_string;
             }
 
             edit_template ()
@@ -1207,7 +1348,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadArea", "LoadArea", "1", "1..*"],
+                        ["LoadGroups", "LoadGroup", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1238,7 +1389,7 @@ define
 
                 obj = EnergyArea.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadArea";
-
+                base.parse_attributes (/<cim:LoadArea.SubLoadAreas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubLoadAreas", sub, context);
                 var bucket = context.parsed.LoadArea;
                 if (null == bucket)
                    context.parsed.LoadArea = bucket = {};
@@ -1251,6 +1402,7 @@ define
             {
                 var fields = EnergyArea.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "LoadArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1268,6 +1420,7 @@ define
                     `
                     + EnergyArea.prototype.template.call (this) +
                     `
+                    {{#SubLoadAreas}}<div><b>SubLoadAreas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubLoadAreas}}
                     </div>
                     <fieldset>
 
@@ -1278,11 +1431,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SubLoadAreas) obj.SubLoadAreas_string = obj.SubLoadAreas.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SubLoadAreas_string;
             }
 
             edit_template ()
@@ -1299,7 +1454,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SubLoadAreas", "SubLoadArea", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         return (

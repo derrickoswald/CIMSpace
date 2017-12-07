@@ -102,8 +102,15 @@ define
                 obj.cls = "SwitchingStepGroup";
                 base.parse_element (/<cim:SwitchingStepGroup.isFreeSequence>([\s\S]*?)<\/cim:SwitchingStepGroup.isFreeSequence>/g, obj, "isFreeSequence", base.to_boolean, sub, context);
                 base.parse_element (/<cim:SwitchingStepGroup.sequenceNumber>([\s\S]*?)<\/cim:SwitchingStepGroup.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
+                base.parse_attributes (/<cim:SwitchingStepGroup.CutActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CutActions", sub, context);
+                base.parse_attributes (/<cim:SwitchingStepGroup.ClearanceActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ClearanceActions", sub, context);
+                base.parse_attributes (/<cim:SwitchingStepGroup.GenericActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenericActions", sub, context);
+                base.parse_attributes (/<cim:SwitchingStepGroup.EnergySourceActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergySourceActions", sub, context);
+                base.parse_attributes (/<cim:SwitchingStepGroup.TagActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TagActions", sub, context);
+                base.parse_attributes (/<cim:SwitchingStepGroup.JumperActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "JumperActions", sub, context);
                 base.parse_attribute (/<cim:SwitchingStepGroup.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingPlan", sub, context);
-
+                base.parse_attributes (/<cim:SwitchingStepGroup.SwitchActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchActions", sub, context);
+                base.parse_attributes (/<cim:SwitchingStepGroup.GroundActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GroundActions", sub, context);
                 var bucket = context.parsed.SwitchingStepGroup;
                 if (null == bucket)
                    context.parsed.SwitchingStepGroup = bucket = {};
@@ -118,7 +125,15 @@ define
 
                 base.export_element (obj, "SwitchingStepGroup", "isFreeSequence", base.from_boolean, fields);
                 base.export_element (obj, "SwitchingStepGroup", "sequenceNumber", base.from_string, fields);
-                base.export_attribute (obj, "SwitchingStepGroup", "SwitchingPlan", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attribute", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingStepGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -138,7 +153,15 @@ define
                     `
                     {{#isFreeSequence}}<div><b>isFreeSequence</b>: {{isFreeSequence}}</div>{{/isFreeSequence}}
                     {{#sequenceNumber}}<div><b>sequenceNumber</b>: {{sequenceNumber}}</div>{{/sequenceNumber}}
+                    {{#CutActions}}<div><b>CutActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CutActions}}
+                    {{#ClearanceActions}}<div><b>ClearanceActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ClearanceActions}}
+                    {{#GenericActions}}<div><b>GenericActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GenericActions}}
+                    {{#EnergySourceActions}}<div><b>EnergySourceActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergySourceActions}}
+                    {{#TagActions}}<div><b>TagActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TagActions}}
+                    {{#JumperActions}}<div><b>JumperActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/JumperActions}}
                     {{#SwitchingPlan}}<div><b>SwitchingPlan</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingPlan}}&quot;);})'>{{SwitchingPlan}}</a></div>{{/SwitchingPlan}}
+                    {{#SwitchActions}}<div><b>SwitchActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SwitchActions}}
+                    {{#GroundActions}}<div><b>GroundActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/GroundActions}}
                     </div>
                     <fieldset>
 
@@ -149,11 +172,27 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CutActions) obj.CutActions_string = obj.CutActions.join ();
+                if (obj.ClearanceActions) obj.ClearanceActions_string = obj.ClearanceActions.join ();
+                if (obj.GenericActions) obj.GenericActions_string = obj.GenericActions.join ();
+                if (obj.EnergySourceActions) obj.EnergySourceActions_string = obj.EnergySourceActions.join ();
+                if (obj.TagActions) obj.TagActions_string = obj.TagActions.join ();
+                if (obj.JumperActions) obj.JumperActions_string = obj.JumperActions.join ();
+                if (obj.SwitchActions) obj.SwitchActions_string = obj.SwitchActions.join ();
+                if (obj.GroundActions) obj.GroundActions_string = obj.GroundActions.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CutActions_string;
+                delete obj.ClearanceActions_string;
+                delete obj.GenericActions_string;
+                delete obj.EnergySourceActions_string;
+                delete obj.TagActions_string;
+                delete obj.JumperActions_string;
+                delete obj.SwitchActions_string;
+                delete obj.GroundActions_string;
             }
 
             edit_template ()
@@ -173,7 +212,24 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CutActions", "CutAction", "0..*", "0..1"],
+                        ["ClearanceActions", "ClearanceAction", "0..*", "0..1"],
+                        ["GenericActions", "GenericAction", "0..*", "0..1"],
+                        ["EnergySourceActions", "EnergySourceAction", "0..*", "0..1"],
+                        ["TagActions", "TagAction", "0..*", "0..1"],
+                        ["JumperActions", "JumperAction", "0..*", "0..1"],
+                        ["SwitchingPlan", "SwitchingPlan", "0..1", "0..*"],
+                        ["SwitchActions", "SwitchAction", "0..*", "0..1"],
+                        ["GroundActions", "GroundAction", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         class OperationTag extends Common.Document
@@ -203,7 +259,6 @@ define
                 base.parse_attribute (/<cim:OperationTag.Asset\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Asset", sub, context);
                 base.parse_attribute (/<cim:OperationTag.TagAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TagAction", sub, context);
                 base.parse_attribute (/<cim:OperationTag.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context);
-
                 var bucket = context.parsed.OperationTag;
                 if (null == bucket)
                    context.parsed.OperationTag = bucket = {};
@@ -216,9 +271,9 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "OperationTag", "Asset", fields);
-                base.export_attribute (obj, "OperationTag", "TagAction", fields);
-                base.export_attribute (obj, "OperationTag", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attribute", "OperationTag", fields);
+                base.export_attribute (obj, "export_attribute", "OperationTag", fields);
+                base.export_attribute (obj, "export_attribute", "OperationTag", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -273,7 +328,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Asset", "Asset", "0..1", "0..*"],
+                        ["TagAction", "TagAction", "0..1", "0..1"],
+                        ["PowerSystemResource", "PowerSystemResource", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -306,7 +372,6 @@ define
                 obj.cls = "PSREvent";
                 base.parse_attribute (/<cim:PSREvent.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:PSREvent.PowerSystemResource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PowerSystemResource", sub, context);
-
                 var bucket = context.parsed.PSREvent;
                 if (null == bucket)
                    context.parsed.PSREvent = bucket = {};
@@ -320,7 +385,7 @@ define
                 var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PSREvent", "kind", base.from_string, fields);
-                base.export_attribute (obj, "PSREvent", "PowerSystemResource", fields);
+                base.export_attribute (obj, "export_attribute", "PSREvent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -375,7 +440,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PowerSystemResource", "PowerSystemResource", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -415,8 +489,14 @@ define
                 base.parse_element (/<cim:Outage.summary>([\s\S]*?)<\/cim:Outage.summary>/g, obj, "summary", base.to_string, sub, context);
                 base.parse_element (/<cim:Outage.cancelledDateTime>([\s\S]*?)<\/cim:Outage.cancelledDateTime>/g, obj, "cancelledDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:Outage.OutageSchedule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OutageSchedule", sub, context);
+                base.parse_attributes (/<cim:Outage.PlannedSwitchActions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedSwitchActions", sub, context);
+                base.parse_attributes (/<cim:Outage.Equipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipments", sub, context);
+                base.parse_attributes (/<cim:Outage.OpenedSwitches\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OpenedSwitches", sub, context);
+                base.parse_attributes (/<cim:Outage.Faults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Faults", sub, context);
+                base.parse_attributes (/<cim:Outage.SwitchingPlans\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingPlans", sub, context);
+                base.parse_attributes (/<cim:Outage.UpdatedRatings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UpdatedRatings", sub, context);
+                base.parse_attributes (/<cim:Outage.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
                 base.parse_attribute (/<cim:Outage.Incident\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Incident", sub, context);
-
                 var bucket = context.parsed.Outage;
                 if (null == bucket)
                    context.parsed.Outage = bucket = {};
@@ -435,8 +515,15 @@ define
                 base.export_element (obj, "Outage", "actualPeriod", base.from_string, fields);
                 base.export_element (obj, "Outage", "summary", base.from_string, fields);
                 base.export_element (obj, "Outage", "cancelledDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "Outage", "OutageSchedule", fields);
-                base.export_attribute (obj, "Outage", "Incident", fields);
+                base.export_attribute (obj, "export_attribute", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "Outage", fields);
+                base.export_attribute (obj, "export_attribute", "Outage", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -461,6 +548,13 @@ define
                     {{#summary}}<div><b>summary</b>: {{summary}}</div>{{/summary}}
                     {{#cancelledDateTime}}<div><b>cancelledDateTime</b>: {{cancelledDateTime}}</div>{{/cancelledDateTime}}
                     {{#OutageSchedule}}<div><b>OutageSchedule</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{OutageSchedule}}&quot;);})'>{{OutageSchedule}}</a></div>{{/OutageSchedule}}
+                    {{#PlannedSwitchActions}}<div><b>PlannedSwitchActions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PlannedSwitchActions}}
+                    {{#Equipments}}<div><b>Equipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Equipments}}
+                    {{#OpenedSwitches}}<div><b>OpenedSwitches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/OpenedSwitches}}
+                    {{#Faults}}<div><b>Faults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Faults}}
+                    {{#SwitchingPlans}}<div><b>SwitchingPlans</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SwitchingPlans}}
+                    {{#UpdatedRatings}}<div><b>UpdatedRatings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UpdatedRatings}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
                     {{#Incident}}<div><b>Incident</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Incident}}&quot;);})'>{{Incident}}</a></div>{{/Incident}}
                     </div>
                     <fieldset>
@@ -472,11 +566,25 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PlannedSwitchActions) obj.PlannedSwitchActions_string = obj.PlannedSwitchActions.join ();
+                if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
+                if (obj.OpenedSwitches) obj.OpenedSwitches_string = obj.OpenedSwitches.join ();
+                if (obj.Faults) obj.Faults_string = obj.Faults.join ();
+                if (obj.SwitchingPlans) obj.SwitchingPlans_string = obj.SwitchingPlans.join ();
+                if (obj.UpdatedRatings) obj.UpdatedRatings_string = obj.UpdatedRatings.join ();
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PlannedSwitchActions_string;
+                delete obj.Equipments_string;
+                delete obj.OpenedSwitches_string;
+                delete obj.Faults_string;
+                delete obj.SwitchingPlans_string;
+                delete obj.UpdatedRatings_string;
+                delete obj.UsagePoints_string;
             }
 
             edit_template ()
@@ -496,12 +604,31 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='summary'>summary: </label><div class='col-sm-8'><input id='summary' class='form-control' type='text'{{#summary}} value='{{summary}}'{{/summary}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='cancelledDateTime'>cancelledDateTime: </label><div class='col-sm-8'><input id='cancelledDateTime' class='form-control' type='text'{{#cancelledDateTime}} value='{{cancelledDateTime}}'{{/cancelledDateTime}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='OutageSchedule'>OutageSchedule: </label><div class='col-sm-8'><input id='OutageSchedule' class='form-control' type='text'{{#OutageSchedule}} value='{{OutageSchedule}}'{{/OutageSchedule}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipments'>Equipments: </label><div class='col-sm-8'><input id='Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Incident'>Incident: </label><div class='col-sm-8'><input id='Incident' class='form-control' type='text'{{#Incident}} value='{{Incident}}'{{/Incident}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["OutageSchedule", "OutageSchedule", "0..1", "0..*"],
+                        ["PlannedSwitchActions", "SwitchAction", "0..*", "0..1"],
+                        ["Equipments", "Equipment", "0..*", "0..*"],
+                        ["OpenedSwitches", "Switch", "0..*", "0..1"],
+                        ["Faults", "Fault", "0..*", "0..1"],
+                        ["SwitchingPlans", "SwitchingPlan", "0..*", "0..1"],
+                        ["UpdatedRatings", "OperationalUpdatedRating", "0..*", "1"],
+                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
+                        ["Incident", "Incident", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -535,9 +662,12 @@ define
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "Incident";
                 base.parse_element (/<cim:Incident.cause>([\s\S]*?)<\/cim:Incident.cause>/g, obj, "cause", base.to_string, sub, context);
+                base.parse_attributes (/<cim:Incident.Hazards\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Hazards", sub, context);
                 base.parse_attribute (/<cim:Incident.Owner\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Owner", sub, context);
+                base.parse_attributes (/<cim:Incident.TroubleTickets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TroubleTickets", sub, context);
+                base.parse_attributes (/<cim:Incident.Works\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Works", sub, context);
+                base.parse_attributes (/<cim:Incident.CustomerNotifications\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerNotifications", sub, context);
                 base.parse_attribute (/<cim:Incident.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context);
-
                 var bucket = context.parsed.Incident;
                 if (null == bucket)
                    context.parsed.Incident = bucket = {};
@@ -551,8 +681,12 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Incident", "cause", base.from_string, fields);
-                base.export_attribute (obj, "Incident", "Owner", fields);
-                base.export_attribute (obj, "Incident", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "Incident", fields);
+                base.export_attribute (obj, "export_attribute", "Incident", fields);
+                base.export_attribute (obj, "export_attributes", "Incident", fields);
+                base.export_attribute (obj, "export_attributes", "Incident", fields);
+                base.export_attribute (obj, "export_attributes", "Incident", fields);
+                base.export_attribute (obj, "export_attribute", "Incident", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -571,7 +705,11 @@ define
                     + Common.Document.prototype.template.call (this) +
                     `
                     {{#cause}}<div><b>cause</b>: {{cause}}</div>{{/cause}}
+                    {{#Hazards}}<div><b>Hazards</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Hazards}}
                     {{#Owner}}<div><b>Owner</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Owner}}&quot;);})'>{{Owner}}</a></div>{{/Owner}}
+                    {{#TroubleTickets}}<div><b>TroubleTickets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TroubleTickets}}
+                    {{#Works}}<div><b>Works</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Works}}
+                    {{#CustomerNotifications}}<div><b>CustomerNotifications</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerNotifications}}
                     {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
                     </div>
                     <fieldset>
@@ -583,11 +721,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Hazards) obj.Hazards_string = obj.Hazards.join ();
+                if (obj.TroubleTickets) obj.TroubleTickets_string = obj.TroubleTickets.join ();
+                if (obj.Works) obj.Works_string = obj.Works.join ();
+                if (obj.CustomerNotifications) obj.CustomerNotifications_string = obj.CustomerNotifications.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Hazards_string;
+                delete obj.TroubleTickets_string;
+                delete obj.Works_string;
+                delete obj.CustomerNotifications_string;
             }
 
             edit_template ()
@@ -602,12 +748,27 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='cause'>cause: </label><div class='col-sm-8'><input id='cause' class='form-control' type='text'{{#cause}} value='{{cause}}'{{/cause}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Owner'>Owner: </label><div class='col-sm-8'><input id='Owner' class='form-control' type='text'{{#Owner}} value='{{Owner}}'{{/Owner}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Works'>Works: </label><div class='col-sm-8'><input id='Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Outage'>Outage: </label><div class='col-sm-8'><input id='Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Hazards", "IncidentHazard", "0..*", "0..1"],
+                        ["Owner", "Operator", "0..1", "0..*"],
+                        ["TroubleTickets", "TroubleTicket", "0..*", "0..1"],
+                        ["Works", "Work", "0..*", "0..*"],
+                        ["CustomerNotifications", "CustomerNotification", "0..*", "0..1"],
+                        ["Outage", "Outage", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -642,8 +803,8 @@ define
                 obj.cls = "OperationalRestriction";
                 base.parse_element (/<cim:OperationalRestriction.activePeriod>([\s\S]*?)<\/cim:OperationalRestriction.activePeriod>/g, obj, "activePeriod", base.to_string, sub, context);
                 base.parse_element (/<cim:OperationalRestriction.restrictedValue>([\s\S]*?)<\/cim:OperationalRestriction.restrictedValue>/g, obj, "restrictedValue", base.to_string, sub, context);
+                base.parse_attributes (/<cim:OperationalRestriction.Equipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipments", sub, context);
                 base.parse_attribute (/<cim:OperationalRestriction.ProductAssetModel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProductAssetModel", sub, context);
-
                 var bucket = context.parsed.OperationalRestriction;
                 if (null == bucket)
                    context.parsed.OperationalRestriction = bucket = {};
@@ -658,7 +819,8 @@ define
 
                 base.export_element (obj, "OperationalRestriction", "activePeriod", base.from_string, fields);
                 base.export_element (obj, "OperationalRestriction", "restrictedValue", base.from_string, fields);
-                base.export_attribute (obj, "OperationalRestriction", "ProductAssetModel", fields);
+                base.export_attribute (obj, "export_attributes", "OperationalRestriction", fields);
+                base.export_attribute (obj, "export_attribute", "OperationalRestriction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -678,6 +840,7 @@ define
                     `
                     {{#activePeriod}}<div><b>activePeriod</b>: {{activePeriod}}</div>{{/activePeriod}}
                     {{#restrictedValue}}<div><b>restrictedValue</b>: {{restrictedValue}}</div>{{/restrictedValue}}
+                    {{#Equipments}}<div><b>Equipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Equipments}}
                     {{#ProductAssetModel}}<div><b>ProductAssetModel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ProductAssetModel}}&quot;);})'>{{ProductAssetModel}}</a></div>{{/ProductAssetModel}}
                     </div>
                     <fieldset>
@@ -689,11 +852,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Equipments_string;
             }
 
             edit_template ()
@@ -708,12 +873,23 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='activePeriod'>activePeriod: </label><div class='col-sm-8'><input id='activePeriod' class='form-control' type='text'{{#activePeriod}} value='{{activePeriod}}'{{/activePeriod}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='restrictedValue'>restrictedValue: </label><div class='col-sm-8'><input id='restrictedValue' class='form-control' type='text'{{#restrictedValue}} value='{{restrictedValue}}'{{/restrictedValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipments'>Equipments: </label><div class='col-sm-8'><input id='Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProductAssetModel'>ProductAssetModel: </label><div class='col-sm-8'><input id='ProductAssetModel' class='form-control' type='text'{{#ProductAssetModel}} value='{{ProductAssetModel}}'{{/ProductAssetModel}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Equipments", "Equipment", "0..*", "0..*"],
+                        ["ProductAssetModel", "ProductAssetModel", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -745,7 +921,6 @@ define
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "SafetyDocument";
                 base.parse_attribute (/<cim:SafetyDocument.SwitchingPlan\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingPlan", sub, context);
-
                 var bucket = context.parsed.SafetyDocument;
                 if (null == bucket)
                    context.parsed.SafetyDocument = bucket = {};
@@ -758,7 +933,7 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "SafetyDocument", "SwitchingPlan", fields);
+                base.export_attribute (obj, "export_attribute", "SafetyDocument", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -809,7 +984,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SwitchingPlan", "SwitchingPlan", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -844,7 +1028,6 @@ define
                 obj.cls = "ServicePointOutageSummary";
                 base.parse_element (/<cim:ServicePointOutageSummary.criticalCount>([\s\S]*?)<\/cim:ServicePointOutageSummary.criticalCount>/g, obj, "criticalCount", base.to_string, sub, context);
                 base.parse_element (/<cim:ServicePointOutageSummary.totalCount>([\s\S]*?)<\/cim:ServicePointOutageSummary.totalCount>/g, obj, "totalCount", base.to_string, sub, context);
-
                 var bucket = context.parsed.ServicePointOutageSummary;
                 if (null == bucket)
                    context.parsed.ServicePointOutageSummary = bucket = {};
@@ -911,7 +1094,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -944,7 +1127,7 @@ define
 
                 obj = Common.Document.prototype.parse.call (this, context, sub);
                 obj.cls = "OutageSchedule";
-
+                base.parse_attributes (/<cim:OutageSchedule.PlannedOutages\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedOutages", sub, context);
                 var bucket = context.parsed.OutageSchedule;
                 if (null == bucket)
                    context.parsed.OutageSchedule = bucket = {};
@@ -957,6 +1140,7 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "OutageSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -974,6 +1158,7 @@ define
                     `
                     + Common.Document.prototype.template.call (this) +
                     `
+                    {{#PlannedOutages}}<div><b>PlannedOutages</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PlannedOutages}}
                     </div>
                     <fieldset>
 
@@ -984,11 +1169,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PlannedOutages) obj.PlannedOutages_string = obj.PlannedOutages.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PlannedOutages_string;
             }
 
             edit_template ()
@@ -1005,7 +1192,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PlannedOutages", "Outage", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1043,7 +1239,6 @@ define
                 base.parse_element (/<cim:SwitchingStep.sequenceNumber>([\s\S]*?)<\/cim:SwitchingStep.sequenceNumber>/g, obj, "sequenceNumber", base.to_string, sub, context);
                 base.parse_attribute (/<cim:SwitchingStep.CrewMember\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CrewMember", sub, context);
                 base.parse_attribute (/<cim:SwitchingStep.Operator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Operator", sub, context);
-
                 var bucket = context.parsed.SwitchingStep;
                 if (null == bucket)
                    context.parsed.SwitchingStep = bucket = {};
@@ -1061,8 +1256,8 @@ define
                 base.export_element (obj, "SwitchingStep", "description", base.from_string, fields);
                 base.export_element (obj, "SwitchingStep", "isFreeSequence", base.from_boolean, fields);
                 base.export_element (obj, "SwitchingStep", "sequenceNumber", base.from_string, fields);
-                base.export_attribute (obj, "SwitchingStep", "CrewMember", fields);
-                base.export_attribute (obj, "SwitchingStep", "Operator", fields);
+                base.export_attribute (obj, "export_attribute", "SwitchingStep", fields);
+                base.export_attribute (obj, "export_attribute", "SwitchingStep", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1125,7 +1320,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CrewMember", "CrewMember", "0..1", "0..*"],
+                        ["Operator", "Operator", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1161,8 +1366,10 @@ define
                 obj.cls = "SwitchingPlan";
                 base.parse_element (/<cim:SwitchingPlan.rank>([\s\S]*?)<\/cim:SwitchingPlan.rank>/g, obj, "rank", base.to_string, sub, context);
                 base.parse_element (/<cim:SwitchingPlan.purpose>([\s\S]*?)<\/cim:SwitchingPlan.purpose>/g, obj, "purpose", base.to_string, sub, context);
+                base.parse_attributes (/<cim:SwitchingPlan.SafetyDocuments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SafetyDocuments", sub, context);
                 base.parse_attribute (/<cim:SwitchingPlan.Outage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outage", sub, context);
-
+                base.parse_attributes (/<cim:SwitchingPlan.SwitchingStepGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroups", sub, context);
+                base.parse_attributes (/<cim:SwitchingPlan.WorkTasks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WorkTasks", sub, context);
                 var bucket = context.parsed.SwitchingPlan;
                 if (null == bucket)
                    context.parsed.SwitchingPlan = bucket = {};
@@ -1177,7 +1384,10 @@ define
 
                 base.export_element (obj, "SwitchingPlan", "rank", base.from_string, fields);
                 base.export_element (obj, "SwitchingPlan", "purpose", base.from_string, fields);
-                base.export_attribute (obj, "SwitchingPlan", "Outage", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingPlan", fields);
+                base.export_attribute (obj, "export_attribute", "SwitchingPlan", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingPlan", fields);
+                base.export_attribute (obj, "export_attributes", "SwitchingPlan", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1197,7 +1407,10 @@ define
                     `
                     {{#rank}}<div><b>rank</b>: {{rank}}</div>{{/rank}}
                     {{#purpose}}<div><b>purpose</b>: {{purpose}}</div>{{/purpose}}
+                    {{#SafetyDocuments}}<div><b>SafetyDocuments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SafetyDocuments}}
                     {{#Outage}}<div><b>Outage</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Outage}}&quot;);})'>{{Outage}}</a></div>{{/Outage}}
+                    {{#SwitchingStepGroups}}<div><b>SwitchingStepGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SwitchingStepGroups}}
+                    {{#WorkTasks}}<div><b>WorkTasks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/WorkTasks}}
                     </div>
                     <fieldset>
 
@@ -1208,11 +1421,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SafetyDocuments) obj.SafetyDocuments_string = obj.SafetyDocuments.join ();
+                if (obj.SwitchingStepGroups) obj.SwitchingStepGroups_string = obj.SwitchingStepGroups.join ();
+                if (obj.WorkTasks) obj.WorkTasks_string = obj.WorkTasks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SafetyDocuments_string;
+                delete obj.SwitchingStepGroups_string;
+                delete obj.WorkTasks_string;
             }
 
             edit_template ()
@@ -1232,7 +1451,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SafetyDocuments", "SafetyDocument", "0..*", "0..1"],
+                        ["Outage", "Outage", "0..1", "0..*"],
+                        ["SwitchingStepGroups", "SwitchingStepGroup", "0..*", "0..1"],
+                        ["WorkTasks", "WorkTask", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1265,7 +1496,6 @@ define
                 obj.cls = "OperationalUpdatedRating";
                 base.parse_element (/<cim:OperationalUpdatedRating.changeType>([\s\S]*?)<\/cim:OperationalUpdatedRating.changeType>/g, obj, "changeType", base.to_string, sub, context);
                 base.parse_attribute (/<cim:OperationalUpdatedRating.PlannedOutage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedOutage", sub, context);
-
                 var bucket = context.parsed.OperationalUpdatedRating;
                 if (null == bucket)
                    context.parsed.OperationalUpdatedRating = bucket = {};
@@ -1279,7 +1509,7 @@ define
                 var fields = OperationalRestriction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OperationalUpdatedRating", "changeType", base.from_string, fields);
-                base.export_attribute (obj, "OperationalUpdatedRating", "PlannedOutage", fields);
+                base.export_attribute (obj, "export_attribute", "OperationalUpdatedRating", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1332,7 +1562,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PlannedOutage", "Outage", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1367,8 +1606,8 @@ define
                 obj.cls = "ClearanceDocument";
                 base.parse_element (/<cim:ClearanceDocument.mustBeDeenergised>([\s\S]*?)<\/cim:ClearanceDocument.mustBeDeenergised>/g, obj, "mustBeDeenergised", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ClearanceDocument.mustBeGrounded>([\s\S]*?)<\/cim:ClearanceDocument.mustBeGrounded>/g, obj, "mustBeGrounded", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:ClearanceDocument.TaggedPSRs\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TaggedPSRs", sub, context);
                 base.parse_attribute (/<cim:ClearanceDocument.ClearanceAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ClearanceAction", sub, context);
-
                 var bucket = context.parsed.ClearanceDocument;
                 if (null == bucket)
                    context.parsed.ClearanceDocument = bucket = {};
@@ -1383,7 +1622,8 @@ define
 
                 base.export_element (obj, "ClearanceDocument", "mustBeDeenergised", base.from_boolean, fields);
                 base.export_element (obj, "ClearanceDocument", "mustBeGrounded", base.from_boolean, fields);
-                base.export_attribute (obj, "ClearanceDocument", "ClearanceAction", fields);
+                base.export_attribute (obj, "export_attributes", "ClearanceDocument", fields);
+                base.export_attribute (obj, "export_attribute", "ClearanceDocument", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1403,6 +1643,7 @@ define
                     `
                     {{#mustBeDeenergised}}<div><b>mustBeDeenergised</b>: {{mustBeDeenergised}}</div>{{/mustBeDeenergised}}
                     {{#mustBeGrounded}}<div><b>mustBeGrounded</b>: {{mustBeGrounded}}</div>{{/mustBeGrounded}}
+                    {{#TaggedPSRs}}<div><b>TaggedPSRs</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TaggedPSRs}}
                     {{#ClearanceAction}}<div><b>ClearanceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ClearanceAction}}&quot;);})'>{{ClearanceAction}}</a></div>{{/ClearanceAction}}
                     </div>
                     <fieldset>
@@ -1414,11 +1655,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TaggedPSRs) obj.TaggedPSRs_string = obj.TaggedPSRs.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TaggedPSRs_string;
             }
 
             edit_template ()
@@ -1433,12 +1676,23 @@ define
                     `
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mustBeDeenergised'>mustBeDeenergised: </label><div class='col-sm-8'><input id='mustBeDeenergised' class='form-check-input' type='checkbox'{{#mustBeDeenergised}} checked{{/mustBeDeenergised}}></div></div>
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mustBeGrounded'>mustBeGrounded: </label><div class='col-sm-8'><input id='mustBeGrounded' class='form-check-input' type='checkbox'{{#mustBeGrounded}} checked{{/mustBeGrounded}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TaggedPSRs'>TaggedPSRs: </label><div class='col-sm-8'><input id='TaggedPSRs' class='form-control' type='text'{{#TaggedPSRs}} value='{{TaggedPSRs}}_string'{{/TaggedPSRs}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ClearanceAction'>ClearanceAction: </label><div class='col-sm-8'><input id='ClearanceAction' class='form-control' type='text'{{#ClearanceAction}} value='{{ClearanceAction}}'{{/ClearanceAction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TaggedPSRs", "PowerSystemResource", "0..*", "0..*"],
+                        ["ClearanceAction", "ClearanceAction", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1470,7 +1724,6 @@ define
                 obj = SwitchingStep.prototype.parse.call (this, context, sub);
                 obj.cls = "GenericAction";
                 base.parse_attribute (/<cim:GenericAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context);
-
                 var bucket = context.parsed.GenericAction;
                 if (null == bucket)
                    context.parsed.GenericAction = bucket = {};
@@ -1483,7 +1736,7 @@ define
             {
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "GenericAction", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attribute", "GenericAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1534,7 +1787,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1568,7 +1830,6 @@ define
                 base.parse_attribute (/<cim:ClearanceAction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:ClearanceAction.Clearance\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Clearance", sub, context);
                 base.parse_attribute (/<cim:ClearanceAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context);
-
                 var bucket = context.parsed.ClearanceAction;
                 if (null == bucket)
                    context.parsed.ClearanceAction = bucket = {};
@@ -1582,8 +1843,8 @@ define
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ClearanceAction", "kind", base.from_string, fields);
-                base.export_attribute (obj, "ClearanceAction", "Clearance", fields);
-                base.export_attribute (obj, "ClearanceAction", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attribute", "ClearanceAction", fields);
+                base.export_attribute (obj, "export_attribute", "ClearanceAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1640,7 +1901,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Clearance", "ClearanceDocument", "0..1", "0..1"],
+                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1676,7 +1947,6 @@ define
                 base.parse_attribute (/<cim:GroundAction.AlongACLineSegment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AlongACLineSegment", sub, context);
                 base.parse_attribute (/<cim:GroundAction.GroundedEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GroundedEquipment", sub, context);
                 base.parse_attribute (/<cim:GroundAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context);
-
                 var bucket = context.parsed.GroundAction;
                 if (null == bucket)
                    context.parsed.GroundAction = bucket = {};
@@ -1690,10 +1960,10 @@ define
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GroundAction", "kind", base.from_string, fields);
-                base.export_attribute (obj, "GroundAction", "Ground", fields);
-                base.export_attribute (obj, "GroundAction", "AlongACLineSegment", fields);
-                base.export_attribute (obj, "GroundAction", "GroundedEquipment", fields);
-                base.export_attribute (obj, "GroundAction", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attribute", "GroundAction", fields);
+                base.export_attribute (obj, "export_attribute", "GroundAction", fields);
+                base.export_attribute (obj, "export_attribute", "GroundAction", fields);
+                base.export_attribute (obj, "export_attribute", "GroundAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1754,7 +2024,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Ground", "Ground", "0..1", "0..1"],
+                        ["AlongACLineSegment", "ACLineSegment", "0..1", "0..1"],
+                        ["GroundedEquipment", "ConductingEquipment", "0..1", "0..1"],
+                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1788,7 +2070,6 @@ define
                 base.parse_attribute (/<cim:CutAction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:CutAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context);
                 base.parse_attribute (/<cim:CutAction.Cut\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Cut", sub, context);
-
                 var bucket = context.parsed.CutAction;
                 if (null == bucket)
                    context.parsed.CutAction = bucket = {};
@@ -1802,8 +2083,8 @@ define
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "CutAction", "kind", base.from_string, fields);
-                base.export_attribute (obj, "CutAction", "SwitchingStepGroup", fields);
-                base.export_attribute (obj, "CutAction", "Cut", fields);
+                base.export_attribute (obj, "export_attribute", "CutAction", fields);
+                base.export_attribute (obj, "export_attribute", "CutAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1860,7 +2141,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"],
+                        ["Cut", "Cut", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1895,7 +2186,6 @@ define
                 base.parse_attribute (/<cim:SwitchAction.PlannedOutage\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PlannedOutage", sub, context);
                 base.parse_attribute (/<cim:SwitchAction.OperatedSwitch\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperatedSwitch", sub, context);
                 base.parse_attribute (/<cim:SwitchAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context);
-
                 var bucket = context.parsed.SwitchAction;
                 if (null == bucket)
                    context.parsed.SwitchAction = bucket = {};
@@ -1909,9 +2199,9 @@ define
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SwitchAction", "kind", base.from_string, fields);
-                base.export_attribute (obj, "SwitchAction", "PlannedOutage", fields);
-                base.export_attribute (obj, "SwitchAction", "OperatedSwitch", fields);
-                base.export_attribute (obj, "SwitchAction", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attribute", "SwitchAction", fields);
+                base.export_attribute (obj, "export_attribute", "SwitchAction", fields);
+                base.export_attribute (obj, "export_attribute", "SwitchAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1970,7 +2260,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PlannedOutage", "Outage", "0..1", "0..*"],
+                        ["OperatedSwitch", "Switch", "0..1", "0..1"],
+                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2002,9 +2303,10 @@ define
                 obj = SwitchingStep.prototype.parse.call (this, context, sub);
                 obj.cls = "JumperAction";
                 base.parse_attribute (/<cim:JumperAction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
+                base.parse_attributes (/<cim:JumperAction.AlongACLineSegments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AlongACLineSegments", sub, context);
                 base.parse_attribute (/<cim:JumperAction.Jumper\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Jumper", sub, context);
                 base.parse_attribute (/<cim:JumperAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context);
-
+                base.parse_attributes (/<cim:JumperAction.JumpedEquipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "JumpedEquipments", sub, context);
                 var bucket = context.parsed.JumperAction;
                 if (null == bucket)
                    context.parsed.JumperAction = bucket = {};
@@ -2018,8 +2320,10 @@ define
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "JumperAction", "kind", base.from_string, fields);
-                base.export_attribute (obj, "JumperAction", "Jumper", fields);
-                base.export_attribute (obj, "JumperAction", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attributes", "JumperAction", fields);
+                base.export_attribute (obj, "export_attribute", "JumperAction", fields);
+                base.export_attribute (obj, "export_attribute", "JumperAction", fields);
+                base.export_attribute (obj, "export_attributes", "JumperAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2038,8 +2342,10 @@ define
                     + SwitchingStep.prototype.template.call (this) +
                     `
                     {{#kind}}<div><b>kind</b>: {{kind}}</div>{{/kind}}
+                    {{#AlongACLineSegments}}<div><b>AlongACLineSegments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AlongACLineSegments}}
                     {{#Jumper}}<div><b>Jumper</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Jumper}}&quot;);})'>{{Jumper}}</a></div>{{/Jumper}}
                     {{#SwitchingStepGroup}}<div><b>SwitchingStepGroup</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SwitchingStepGroup}}&quot;);})'>{{SwitchingStepGroup}}</a></div>{{/SwitchingStepGroup}}
+                    {{#JumpedEquipments}}<div><b>JumpedEquipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/JumpedEquipments}}
                     </div>
                     <fieldset>
 
@@ -2051,12 +2357,16 @@ define
             {
                 super.condition (obj);
                 obj.TempEquipActionKind = []; if (!obj.kind) obj.TempEquipActionKind.push ({ id: '', selected: true}); for (var property in TempEquipActionKind) obj.TempEquipActionKind.push ({ id: property, selected: obj.kind && obj.kind.endsWith ('.' + property)});
+                if (obj.AlongACLineSegments) obj.AlongACLineSegments_string = obj.AlongACLineSegments.join ();
+                if (obj.JumpedEquipments) obj.JumpedEquipments_string = obj.JumpedEquipments.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.TempEquipActionKind;
+                delete obj.AlongACLineSegments_string;
+                delete obj.JumpedEquipments_string;
             }
 
             edit_template ()
@@ -2076,7 +2386,19 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AlongACLineSegments", "ACLineSegment", "0..*", "0..1"],
+                        ["Jumper", "Jumper", "0..1", "0..1"],
+                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"],
+                        ["JumpedEquipments", "ConductingEquipment", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2110,7 +2432,6 @@ define
                 base.parse_attribute (/<cim:TagAction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:TagAction.OperationTag\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OperationTag", sub, context);
                 base.parse_attribute (/<cim:TagAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context);
-
                 var bucket = context.parsed.TagAction;
                 if (null == bucket)
                    context.parsed.TagAction = bucket = {};
@@ -2124,8 +2445,8 @@ define
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TagAction", "kind", base.from_string, fields);
-                base.export_attribute (obj, "TagAction", "OperationTag", fields);
-                base.export_attribute (obj, "TagAction", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attribute", "TagAction", fields);
+                base.export_attribute (obj, "export_attribute", "TagAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2182,7 +2503,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["OperationTag", "OperationTag", "0..1", "0..1"],
+                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2216,7 +2547,6 @@ define
                 base.parse_attribute (/<cim:EnergySourceAction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_attribute (/<cim:EnergySourceAction.EnergySource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergySource", sub, context);
                 base.parse_attribute (/<cim:EnergySourceAction.SwitchingStepGroup\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SwitchingStepGroup", sub, context);
-
                 var bucket = context.parsed.EnergySourceAction;
                 if (null == bucket)
                    context.parsed.EnergySourceAction = bucket = {};
@@ -2230,8 +2560,8 @@ define
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EnergySourceAction", "kind", base.from_string, fields);
-                base.export_attribute (obj, "EnergySourceAction", "EnergySource", fields);
-                base.export_attribute (obj, "EnergySourceAction", "SwitchingStepGroup", fields);
+                base.export_attribute (obj, "export_attribute", "EnergySourceAction", fields);
+                base.export_attribute (obj, "export_attribute", "EnergySourceAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2288,7 +2618,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergySource", "EnergySource", "0..1", "0..1"],
+                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

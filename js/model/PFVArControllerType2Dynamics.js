@@ -42,7 +42,6 @@ define
                 obj = StandardModels.DynamicsFunctionBlock.prototype.parse.call (this, context, sub);
                 obj.cls = "PFVArControllerType2Dynamics";
                 base.parse_attribute (/<cim:PFVArControllerType2Dynamics.ExcitationSystemDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ExcitationSystemDynamics", sub, context);
-
                 var bucket = context.parsed.PFVArControllerType2Dynamics;
                 if (null == bucket)
                    context.parsed.PFVArControllerType2Dynamics = bucket = {};
@@ -55,7 +54,7 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PFVArControllerType2Dynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "PFVArControllerType2Dynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -106,7 +105,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -144,7 +152,6 @@ define
                 base.parse_element (/<cim:PFVArType2Common1.kp>([\s\S]*?)<\/cim:PFVArType2Common1.kp>/g, obj, "kp", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType2Common1.max>([\s\S]*?)<\/cim:PFVArType2Common1.max>/g, obj, "max", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType2Common1.ref>([\s\S]*?)<\/cim:PFVArType2Common1.ref>/g, obj, "ref", base.to_string, sub, context);
-
                 var bucket = context.parsed.PFVArType2Common1;
                 if (null == bucket)
                    context.parsed.PFVArType2Common1 = bucket = {};
@@ -220,7 +227,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -260,7 +267,6 @@ define
                 base.parse_element (/<cim:PFVArType2IEEEVArController.vclmt>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vclmt>/g, obj, "vclmt", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType2IEEEVArController.vref>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vref>/g, obj, "vref", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType2IEEEVArController.vs>([\s\S]*?)<\/cim:PFVArType2IEEEVArController.vs>/g, obj, "vs", base.to_float, sub, context);
-
                 var bucket = context.parsed.PFVArType2IEEEVArController;
                 if (null == bucket)
                    context.parsed.PFVArType2IEEEVArController = bucket = {};
@@ -342,7 +348,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -382,7 +388,6 @@ define
                 base.parse_element (/<cim:PFVArType2IEEEPFController.vclmt>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vclmt>/g, obj, "vclmt", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType2IEEEPFController.vref>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vref>/g, obj, "vref", base.to_string, sub, context);
                 base.parse_element (/<cim:PFVArType2IEEEPFController.vs>([\s\S]*?)<\/cim:PFVArType2IEEEPFController.vs>/g, obj, "vs", base.to_float, sub, context);
-
                 var bucket = context.parsed.PFVArType2IEEEPFController;
                 if (null == bucket)
                    context.parsed.PFVArType2IEEEPFController = bucket = {};
@@ -464,7 +469,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

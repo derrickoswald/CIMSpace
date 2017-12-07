@@ -39,7 +39,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "DynamicsFunctionBlock";
                 base.parse_element (/<cim:DynamicsFunctionBlock.enabled>([\s\S]*?)<\/cim:DynamicsFunctionBlock.enabled>/g, obj, "enabled", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.DynamicsFunctionBlock;
                 if (null == bucket)
                    context.parsed.DynamicsFunctionBlock = bucket = {};
@@ -103,7 +102,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -140,7 +139,6 @@ define
                 base.parse_element (/<cim:RotatingMachineDynamics.saturationFactor120>([\s\S]*?)<\/cim:RotatingMachineDynamics.saturationFactor120>/g, obj, "saturationFactor120", base.to_float, sub, context);
                 base.parse_element (/<cim:RotatingMachineDynamics.statorLeakageReactance>([\s\S]*?)<\/cim:RotatingMachineDynamics.statorLeakageReactance>/g, obj, "statorLeakageReactance", base.to_string, sub, context);
                 base.parse_element (/<cim:RotatingMachineDynamics.statorResistance>([\s\S]*?)<\/cim:RotatingMachineDynamics.statorResistance>/g, obj, "statorResistance", base.to_string, sub, context);
-
                 var bucket = context.parsed.RotatingMachineDynamics;
                 if (null == bucket)
                    context.parsed.RotatingMachineDynamics = bucket = {};
@@ -219,7 +217,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

@@ -51,9 +51,9 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "TieFlow";
                 base.parse_element (/<cim:TieFlow.positiveFlowIn>([\s\S]*?)<\/cim:TieFlow.positiveFlowIn>/g, obj, "positiveFlowIn", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:TieFlow.AltTieMeas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AltTieMeas", sub, context);
                 base.parse_attribute (/<cim:TieFlow.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
                 base.parse_attribute (/<cim:TieFlow.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context);
-
                 var bucket = context.parsed.TieFlow;
                 if (null == bucket)
                    context.parsed.TieFlow = bucket = {};
@@ -67,8 +67,9 @@ define
                 var fields = [];
 
                 base.export_element (obj, "TieFlow", "positiveFlowIn", base.from_boolean, fields);
-                base.export_attribute (obj, "TieFlow", "Terminal", fields);
-                base.export_attribute (obj, "TieFlow", "ControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "TieFlow", fields);
+                base.export_attribute (obj, "export_attribute", "TieFlow", fields);
+                base.export_attribute (obj, "export_attribute", "TieFlow", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -87,6 +88,7 @@ define
                     + base.Element.prototype.template.call (this) +
                     `
                     {{#positiveFlowIn}}<div><b>positiveFlowIn</b>: {{positiveFlowIn}}</div>{{/positiveFlowIn}}
+                    {{#AltTieMeas}}<div><b>AltTieMeas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AltTieMeas}}
                     {{#Terminal}}<div><b>Terminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Terminal}}&quot;);})'>{{Terminal}}</a></div>{{/Terminal}}
                     {{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);})'>{{ControlArea}}</a></div>{{/ControlArea}}
                     </div>
@@ -99,11 +101,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AltTieMeas) obj.AltTieMeas_string = obj.AltTieMeas.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AltTieMeas_string;
             }
 
             edit_template ()
@@ -123,7 +127,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AltTieMeas", "AltTieMeas", "0..*", "1"],
+                        ["Terminal", "Terminal", "1", "0..2"],
+                        ["ControlArea", "ControlArea", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -158,7 +173,7 @@ define
                 obj.cls = "ControlAreaGeneratingUnit";
                 base.parse_attribute (/<cim:ControlAreaGeneratingUnit.ControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlArea", sub, context);
                 base.parse_attribute (/<cim:ControlAreaGeneratingUnit.GeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GeneratingUnit", sub, context);
-
+                base.parse_attributes (/<cim:ControlAreaGeneratingUnit.AltGeneratingUnitMeas\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AltGeneratingUnitMeas", sub, context);
                 var bucket = context.parsed.ControlAreaGeneratingUnit;
                 if (null == bucket)
                    context.parsed.ControlAreaGeneratingUnit = bucket = {};
@@ -171,8 +186,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ControlAreaGeneratingUnit", "ControlArea", fields);
-                base.export_attribute (obj, "ControlAreaGeneratingUnit", "GeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ControlAreaGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "ControlAreaGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attributes", "ControlAreaGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -192,6 +208,7 @@ define
                     `
                     {{#ControlArea}}<div><b>ControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ControlArea}}&quot;);})'>{{ControlArea}}</a></div>{{/ControlArea}}
                     {{#GeneratingUnit}}<div><b>GeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GeneratingUnit}}&quot;);})'>{{GeneratingUnit}}</a></div>{{/GeneratingUnit}}
+                    {{#AltGeneratingUnitMeas}}<div><b>AltGeneratingUnitMeas</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/AltGeneratingUnitMeas}}
                     </div>
                     <fieldset>
 
@@ -202,11 +219,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.AltGeneratingUnitMeas) obj.AltGeneratingUnitMeas_string = obj.AltGeneratingUnitMeas.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.AltGeneratingUnitMeas_string;
             }
 
             edit_template ()
@@ -225,7 +244,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ControlArea", "ControlArea", "1", "0..*"],
+                        ["GeneratingUnit", "GeneratingUnit", "1", "0..*"],
+                        ["AltGeneratingUnitMeas", "AltGeneratingUnitMeas", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -259,7 +289,6 @@ define
                 base.parse_element (/<cim:AltTieMeas.priority>([\s\S]*?)<\/cim:AltTieMeas.priority>/g, obj, "priority", base.to_string, sub, context);
                 base.parse_attribute (/<cim:AltTieMeas.TieFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TieFlow", sub, context);
                 base.parse_attribute (/<cim:AltTieMeas.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context);
-
                 var bucket = context.parsed.AltTieMeas;
                 if (null == bucket)
                    context.parsed.AltTieMeas = bucket = {};
@@ -273,8 +302,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "AltTieMeas", "priority", base.from_string, fields);
-                base.export_attribute (obj, "AltTieMeas", "TieFlow", fields);
-                base.export_attribute (obj, "AltTieMeas", "AnalogValue", fields);
+                base.export_attribute (obj, "export_attribute", "AltTieMeas", fields);
+                base.export_attribute (obj, "export_attribute", "AltTieMeas", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -329,7 +358,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TieFlow", "TieFlow", "1", "0..*"],
+                        ["AnalogValue", "AnalogValue", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -363,7 +402,6 @@ define
                 base.parse_element (/<cim:AltGeneratingUnitMeas.priority>([\s\S]*?)<\/cim:AltGeneratingUnitMeas.priority>/g, obj, "priority", base.to_string, sub, context);
                 base.parse_attribute (/<cim:AltGeneratingUnitMeas.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context);
                 base.parse_attribute (/<cim:AltGeneratingUnitMeas.ControlAreaGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlAreaGeneratingUnit", sub, context);
-
                 var bucket = context.parsed.AltGeneratingUnitMeas;
                 if (null == bucket)
                    context.parsed.AltGeneratingUnitMeas = bucket = {};
@@ -377,8 +415,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "AltGeneratingUnitMeas", "priority", base.from_string, fields);
-                base.export_attribute (obj, "AltGeneratingUnitMeas", "AnalogValue", fields);
-                base.export_attribute (obj, "AltGeneratingUnitMeas", "ControlAreaGeneratingUnit", fields);
+                base.export_attribute (obj, "export_attribute", "AltGeneratingUnitMeas", fields);
+                base.export_attribute (obj, "export_attribute", "AltGeneratingUnitMeas", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -433,7 +471,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["AnalogValue", "AnalogValue", "1", "0..*"],
+                        ["ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -469,8 +517,9 @@ define
                 base.parse_element (/<cim:ControlArea.netInterchange>([\s\S]*?)<\/cim:ControlArea.netInterchange>/g, obj, "netInterchange", base.to_string, sub, context);
                 base.parse_element (/<cim:ControlArea.pTolerance>([\s\S]*?)<\/cim:ControlArea.pTolerance>/g, obj, "pTolerance", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ControlArea.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
+                base.parse_attributes (/<cim:ControlArea.ControlAreaGeneratingUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ControlAreaGeneratingUnit", sub, context);
+                base.parse_attributes (/<cim:ControlArea.TieFlow\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TieFlow", sub, context);
                 base.parse_attribute (/<cim:ControlArea.EnergyArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyArea", sub, context);
-
                 var bucket = context.parsed.ControlArea;
                 if (null == bucket)
                    context.parsed.ControlArea = bucket = {};
@@ -486,7 +535,9 @@ define
                 base.export_element (obj, "ControlArea", "netInterchange", base.from_string, fields);
                 base.export_element (obj, "ControlArea", "pTolerance", base.from_string, fields);
                 base.export_element (obj, "ControlArea", "type", base.from_string, fields);
-                base.export_attribute (obj, "ControlArea", "EnergyArea", fields);
+                base.export_attribute (obj, "export_attributes", "ControlArea", fields);
+                base.export_attribute (obj, "export_attributes", "ControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "ControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -507,6 +558,8 @@ define
                     {{#netInterchange}}<div><b>netInterchange</b>: {{netInterchange}}</div>{{/netInterchange}}
                     {{#pTolerance}}<div><b>pTolerance</b>: {{pTolerance}}</div>{{/pTolerance}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#ControlAreaGeneratingUnit}}<div><b>ControlAreaGeneratingUnit</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ControlAreaGeneratingUnit}}
+                    {{#TieFlow}}<div><b>TieFlow</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TieFlow}}
                     {{#EnergyArea}}<div><b>EnergyArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyArea}}&quot;);})'>{{EnergyArea}}</a></div>{{/EnergyArea}}
                     </div>
                     <fieldset>
@@ -519,12 +572,16 @@ define
             {
                 super.condition (obj);
                 obj.ControlAreaTypeKind = []; if (!obj.type) obj.ControlAreaTypeKind.push ({ id: '', selected: true}); for (var property in ControlAreaTypeKind) obj.ControlAreaTypeKind.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
+                if (obj.ControlAreaGeneratingUnit) obj.ControlAreaGeneratingUnit_string = obj.ControlAreaGeneratingUnit.join ();
+                if (obj.TieFlow) obj.TieFlow_string = obj.TieFlow.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.ControlAreaTypeKind;
+                delete obj.ControlAreaGeneratingUnit_string;
+                delete obj.TieFlow_string;
             }
 
             edit_template ()
@@ -545,7 +602,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"],
+                        ["TieFlow", "TieFlow", "0..*", "1"],
+                        ["EnergyArea", "EnergyArea", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

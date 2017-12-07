@@ -78,7 +78,6 @@ define
                 base.parse_element (/<cim:LoadMotor.tv>([\s\S]*?)<\/cim:LoadMotor.tv>/g, obj, "tv", base.to_string, sub, context);
                 base.parse_element (/<cim:LoadMotor.vt>([\s\S]*?)<\/cim:LoadMotor.vt>/g, obj, "vt", base.to_string, sub, context);
                 base.parse_attribute (/<cim:LoadMotor.LoadAggregate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadAggregate", sub, context);
-
                 var bucket = context.parsed.LoadMotor;
                 if (null == bucket)
                    context.parsed.LoadMotor = bucket = {};
@@ -104,7 +103,7 @@ define
                 base.export_element (obj, "LoadMotor", "tppo", base.from_string, fields);
                 base.export_element (obj, "LoadMotor", "tv", base.from_string, fields);
                 base.export_element (obj, "LoadMotor", "vt", base.from_string, fields);
-                base.export_attribute (obj, "LoadMotor", "LoadAggregate", fields);
+                base.export_attribute (obj, "export_attribute", "LoadMotor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -181,7 +180,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadAggregate", "LoadAggregate", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -216,7 +224,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadDynamics";
-
+                base.parse_attributes (/<cim:LoadDynamics.EnergyConsumer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyConsumer", sub, context);
                 var bucket = context.parsed.LoadDynamics;
                 if (null == bucket)
                    context.parsed.LoadDynamics = bucket = {};
@@ -229,6 +237,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "LoadDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -246,6 +255,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#EnergyConsumer}}<div><b>EnergyConsumer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyConsumer}}
                     </div>
                     <fieldset>
 
@@ -256,11 +266,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergyConsumer) obj.EnergyConsumer_string = obj.EnergyConsumer.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyConsumer_string;
             }
 
             edit_template ()
@@ -277,7 +289,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyConsumer", "EnergyConsumer", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -326,7 +347,6 @@ define
                 base.parse_element (/<cim:LoadStatic.kqf>([\s\S]*?)<\/cim:LoadStatic.kqf>/g, obj, "kqf", base.to_float, sub, context);
                 base.parse_attribute (/<cim:LoadStatic.staticLoadModelType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "staticLoadModelType", sub, context);
                 base.parse_attribute (/<cim:LoadStatic.LoadAggregate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadAggregate", sub, context);
-
                 var bucket = context.parsed.LoadStatic;
                 if (null == bucket)
                    context.parsed.LoadStatic = bucket = {};
@@ -356,7 +376,7 @@ define
                 base.export_element (obj, "LoadStatic", "kq4", base.from_float, fields);
                 base.export_element (obj, "LoadStatic", "kqf", base.from_float, fields);
                 base.export_element (obj, "LoadStatic", "staticLoadModelType", base.from_string, fields);
-                base.export_attribute (obj, "LoadStatic", "LoadAggregate", fields);
+                base.export_attribute (obj, "export_attribute", "LoadStatic", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -443,7 +463,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadAggregate", "LoadAggregate", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -487,7 +516,6 @@ define
                 base.parse_element (/<cim:LoadComposite.h>([\s\S]*?)<\/cim:LoadComposite.h>/g, obj, "h", base.to_string, sub, context);
                 base.parse_element (/<cim:LoadComposite.lfrac>([\s\S]*?)<\/cim:LoadComposite.lfrac>/g, obj, "lfrac", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadComposite.pfrac>([\s\S]*?)<\/cim:LoadComposite.pfrac>/g, obj, "pfrac", base.to_float, sub, context);
-
                 var bucket = context.parsed.LoadComposite;
                 if (null == bucket)
                    context.parsed.LoadComposite = bucket = {};
@@ -581,7 +609,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -621,7 +649,6 @@ define
                 base.parse_element (/<cim:LoadGenericNonLinear.qt>([\s\S]*?)<\/cim:LoadGenericNonLinear.qt>/g, obj, "qt", base.to_float, sub, context);
                 base.parse_element (/<cim:LoadGenericNonLinear.tp>([\s\S]*?)<\/cim:LoadGenericNonLinear.tp>/g, obj, "tp", base.to_string, sub, context);
                 base.parse_element (/<cim:LoadGenericNonLinear.tq>([\s\S]*?)<\/cim:LoadGenericNonLinear.tq>/g, obj, "tq", base.to_string, sub, context);
-
                 var bucket = context.parsed.LoadGenericNonLinear;
                 if (null == bucket)
                    context.parsed.LoadGenericNonLinear = bucket = {};
@@ -711,7 +738,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -746,7 +773,6 @@ define
                 obj.cls = "LoadAggregate";
                 base.parse_attribute (/<cim:LoadAggregate.LoadMotor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadMotor", sub, context);
                 base.parse_attribute (/<cim:LoadAggregate.LoadStatic\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "LoadStatic", sub, context);
-
                 var bucket = context.parsed.LoadAggregate;
                 if (null == bucket)
                    context.parsed.LoadAggregate = bucket = {};
@@ -759,8 +785,8 @@ define
             {
                 var fields = LoadDynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "LoadAggregate", "LoadMotor", fields);
-                base.export_attribute (obj, "LoadAggregate", "LoadStatic", fields);
+                base.export_attribute (obj, "export_attribute", "LoadAggregate", fields);
+                base.export_attribute (obj, "export_attribute", "LoadAggregate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -813,7 +839,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["LoadMotor", "LoadMotor", "0..1", "1"],
+                        ["LoadStatic", "LoadStatic", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         return (

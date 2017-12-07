@@ -61,8 +61,7 @@ define
                 base.parse_element (/<cim:PowerSystemProjectSchedule.scheduledStart>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.scheduledStart>/g, obj, "scheduledStart", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:PowerSystemProjectSchedule.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:PowerSystemProjectSchedule.stepType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "stepType", sub, context);
-                base.parse_attribute (/<cim:PowerSystemProjectSchedule.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
-
+                base.parse_attribute (/<cim:PowerSystemProjectSchedule.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.PowerSystemProjectSchedule;
                 if (null == bucket)
                    context.parsed.PowerSystemProjectSchedule = bucket = {};
@@ -81,7 +80,7 @@ define
                 base.export_element (obj, "PowerSystemProjectSchedule", "scheduledStart", base.from_datetime, fields);
                 base.export_element (obj, "PowerSystemProjectSchedule", "status", base.from_string, fields);
                 base.export_element (obj, "PowerSystemProjectSchedule", "stepType", base.from_string, fields);
-                base.export_attribute (obj, "PowerSystemProjectSchedule", "", fields);
+                base.export_attribute (obj, "export_attribute", "PowerSystemProjectSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -148,7 +147,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["unknown", "PowerSystemProject", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -185,9 +193,11 @@ define
                 base.parse_element (/<cim:PowerSystemProject.type>([\s\S]*?)<\/cim:PowerSystemProject.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:PowerSystemProject.version>([\s\S]*?)<\/cim:PowerSystemProject.version>/g, obj, "version", base.to_string, sub, context);
                 base.parse_element (/<cim:PowerSystemProject.description>([\s\S]*?)<\/cim:PowerSystemProject.description>/g, obj, "description", base.to_string, sub, context);
-                base.parse_attribute (/<cim:PowerSystemProject.\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
+                base.parse_attribute (/<cim:PowerSystemProject.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
+                base.parse_attributes (/<cim:PowerSystemProject.Collection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Collection", sub, context);
+                base.parse_attributes (/<cim:PowerSystemProject.Collection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Collection", sub, context);
                 base.parse_attribute (/<cim:PowerSystemProject.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Project", sub, context);
-
+                base.parse_attributes (/<cim:PowerSystemProject.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.PowerSystemProject;
                 if (null == bucket)
                    context.parsed.PowerSystemProject = bucket = {};
@@ -206,8 +216,11 @@ define
                 base.export_element (obj, "PowerSystemProject", "type", base.from_string, fields);
                 base.export_element (obj, "PowerSystemProject", "version", base.from_string, fields);
                 base.export_element (obj, "PowerSystemProject", "description", base.from_string, fields);
-                base.export_attribute (obj, "PowerSystemProject", "", fields);
-                base.export_attribute (obj, "PowerSystemProject", "Project", fields);
+                base.export_attribute (obj, "export_attribute", "PowerSystemProject", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemProject", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemProject", fields);
+                base.export_attribute (obj, "export_attribute", "PowerSystemProject", fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemProject", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -232,7 +245,10 @@ define
                     {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
                     {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
                     {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
+                    {{#Collection}}<div><b>Collection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Collection}}
+                    {{#Collection}}<div><b>Collection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Collection}}
                     {{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
+                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -244,12 +260,18 @@ define
             {
                 super.condition (obj);
                 obj.StepKind = []; if (!obj.state) obj.StepKind.push ({ id: '', selected: true}); for (var property in StepKind) obj.StepKind.push ({ id: property, selected: obj.state && obj.state.endsWith ('.' + property)});
+                if (obj.Collection) obj.Collection_string = obj.Collection.join ();
+                if (obj.Collection) obj.Collection_string = obj.Collection.join ();
+                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.StepKind;
+                delete obj.Collection_string;
+                delete obj.Collection_string;
+                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -274,7 +296,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["unknown", "DifferenceModel", "0..1", "0..*"],
+                        ["Collection", "PowerSystemSubProject", "0..*", "1"],
+                        ["Collection", "PowerSystemProject", "0..*", "0..1"],
+                        ["Project", "PowerSystemProject", "0..1", "0..*"],
+                        ["unknown", "PowerSystemProjectSchedule", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -311,7 +346,6 @@ define
                 base.parse_element (/<cim:ProjectStep.scheduledStart>([\s\S]*?)<\/cim:ProjectStep.scheduledStart>/g, obj, "scheduledStart", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ProjectStep.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:ProjectStep.stepType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "stepType", sub, context);
-
                 var bucket = context.parsed.ProjectStep;
                 if (null == bucket)
                    context.parsed.ProjectStep = bucket = {};
@@ -394,7 +428,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -426,7 +460,6 @@ define
                 obj = PowerSystemProject.prototype.parse.call (this, context, sub);
                 obj.cls = "PowerSystemSubProject";
                 base.parse_attribute (/<cim:PowerSystemSubProject.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Project", sub, context);
-
                 var bucket = context.parsed.PowerSystemSubProject;
                 if (null == bucket)
                    context.parsed.PowerSystemSubProject = bucket = {};
@@ -439,7 +472,7 @@ define
             {
                 var fields = PowerSystemProject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "PowerSystemSubProject", "Project", fields);
+                base.export_attribute (obj, "export_attribute", "PowerSystemSubProject", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -490,7 +523,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Project", "PowerSystemProject", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

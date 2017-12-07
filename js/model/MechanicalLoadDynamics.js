@@ -38,7 +38,6 @@ define
                 obj.cls = "MechanicalLoadDynamics";
                 base.parse_attribute (/<cim:MechanicalLoadDynamics.SynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SynchronousMachineDynamics", sub, context);
                 base.parse_attribute (/<cim:MechanicalLoadDynamics.AsynchronousMachineDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AsynchronousMachineDynamics", sub, context);
-
                 var bucket = context.parsed.MechanicalLoadDynamics;
                 if (null == bucket)
                    context.parsed.MechanicalLoadDynamics = bucket = {};
@@ -51,8 +50,8 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "MechanicalLoadDynamics", "SynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "MechanicalLoadDynamics", "AsynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "MechanicalLoadDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "MechanicalLoadDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -105,7 +104,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..1"],
+                        ["AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -140,7 +149,6 @@ define
                 base.parse_element (/<cim:MechLoad1.b>([\s\S]*?)<\/cim:MechLoad1.b>/g, obj, "b", base.to_float, sub, context);
                 base.parse_element (/<cim:MechLoad1.d>([\s\S]*?)<\/cim:MechLoad1.d>/g, obj, "d", base.to_float, sub, context);
                 base.parse_element (/<cim:MechLoad1.e>([\s\S]*?)<\/cim:MechLoad1.e>/g, obj, "e", base.to_float, sub, context);
-
                 var bucket = context.parsed.MechLoad1;
                 if (null == bucket)
                    context.parsed.MechLoad1 = bucket = {};
@@ -213,7 +221,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

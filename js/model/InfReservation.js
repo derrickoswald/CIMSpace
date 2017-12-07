@@ -35,7 +35,8 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "TiePoint";
                 base.parse_element (/<cim:TiePoint.tiePointMWRating>([\s\S]*?)<\/cim:TiePoint.tiePointMWRating>/g, obj, "tiePointMWRating", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:TiePoint.ForMktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ForMktMeasurement", sub, context);
+                base.parse_attributes (/<cim:TiePoint.ByMktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ByMktMeasurement", sub, context);
                 var bucket = context.parsed.TiePoint;
                 if (null == bucket)
                    context.parsed.TiePoint = bucket = {};
@@ -49,6 +50,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TiePoint", "tiePointMWRating", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "TiePoint", fields);
+                base.export_attribute (obj, "export_attributes", "TiePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -67,6 +70,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#tiePointMWRating}}<div><b>tiePointMWRating</b>: {{tiePointMWRating}}</div>{{/tiePointMWRating}}
+                    {{#ForMktMeasurement}}<div><b>ForMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ForMktMeasurement}}
+                    {{#ByMktMeasurement}}<div><b>ByMktMeasurement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ByMktMeasurement}}
                     </div>
                     <fieldset>
 
@@ -77,11 +82,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ForMktMeasurement) obj.ForMktMeasurement_string = obj.ForMktMeasurement.join ();
+                if (obj.ByMktMeasurement) obj.ByMktMeasurement_string = obj.ByMktMeasurement.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ForMktMeasurement_string;
+                delete obj.ByMktMeasurement_string;
             }
 
             edit_template ()
@@ -99,7 +108,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ForMktMeasurement", "MktMeasurement", "1..*", "1"],
+                        ["ByMktMeasurement", "MktMeasurement", "1..*", "1"]
+                    ]
+                );
+            }
         }
 
         return (

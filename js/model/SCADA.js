@@ -66,7 +66,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "RemotePoint";
                 base.parse_attribute (/<cim:RemotePoint.RemoteUnit\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteUnit", sub, context);
-
                 var bucket = context.parsed.RemotePoint;
                 if (null == bucket)
                    context.parsed.RemotePoint = bucket = {};
@@ -79,7 +78,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "RemotePoint", "RemoteUnit", fields);
+                base.export_attribute (obj, "export_attribute", "RemotePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -130,7 +129,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RemoteUnit", "RemoteUnit", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -164,7 +172,8 @@ define
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "RemoteUnit";
                 base.parse_attribute (/<cim:RemoteUnit.remoteUnitType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "remoteUnitType", sub, context);
-
+                base.parse_attributes (/<cim:RemoteUnit.CommunicationLinks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CommunicationLinks", sub, context);
+                base.parse_attributes (/<cim:RemoteUnit.RemotePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemotePoints", sub, context);
                 var bucket = context.parsed.RemoteUnit;
                 if (null == bucket)
                    context.parsed.RemoteUnit = bucket = {};
@@ -178,6 +187,8 @@ define
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RemoteUnit", "remoteUnitType", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "RemoteUnit", fields);
+                base.export_attribute (obj, "export_attributes", "RemoteUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -196,6 +207,8 @@ define
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
                     {{#remoteUnitType}}<div><b>remoteUnitType</b>: {{remoteUnitType}}</div>{{/remoteUnitType}}
+                    {{#CommunicationLinks}}<div><b>CommunicationLinks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CommunicationLinks}}
+                    {{#RemotePoints}}<div><b>RemotePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RemotePoints}}
                     </div>
                     <fieldset>
 
@@ -207,12 +220,16 @@ define
             {
                 super.condition (obj);
                 obj.RemoteUnitType = []; if (!obj.remoteUnitType) obj.RemoteUnitType.push ({ id: '', selected: true}); for (var property in RemoteUnitType) obj.RemoteUnitType.push ({ id: property, selected: obj.remoteUnitType && obj.remoteUnitType.endsWith ('.' + property)});
+                if (obj.CommunicationLinks) obj.CommunicationLinks_string = obj.CommunicationLinks.join ();
+                if (obj.RemotePoints) obj.RemotePoints_string = obj.RemotePoints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.RemoteUnitType;
+                delete obj.CommunicationLinks_string;
+                delete obj.RemotePoints_string;
             }
 
             edit_template ()
@@ -226,11 +243,22 @@ define
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='remoteUnitType'>remoteUnitType: </label><div class='col-sm-8'><select id='remoteUnitType' class='form-control'>{{#RemoteUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteUnitType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CommunicationLinks'>CommunicationLinks: </label><div class='col-sm-8'><input id='CommunicationLinks' class='form-control' type='text'{{#CommunicationLinks}} value='{{CommunicationLinks}}_string'{{/CommunicationLinks}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CommunicationLinks", "CommunicationLink", "1..*", "0..*"],
+                        ["RemotePoints", "RemotePoint", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -263,7 +291,7 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "CommunicationLink";
-
+                base.parse_attributes (/<cim:CommunicationLink.RemoteUnits\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "RemoteUnits", sub, context);
                 var bucket = context.parsed.CommunicationLink;
                 if (null == bucket)
                    context.parsed.CommunicationLink = bucket = {};
@@ -276,6 +304,7 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "CommunicationLink", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -293,6 +322,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
+                    {{#RemoteUnits}}<div><b>RemoteUnits</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/RemoteUnits}}
                     </div>
                     <fieldset>
 
@@ -303,11 +333,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.RemoteUnits) obj.RemoteUnits_string = obj.RemoteUnits.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.RemoteUnits_string;
             }
 
             edit_template ()
@@ -320,11 +352,21 @@ define
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteUnits'>RemoteUnits: </label><div class='col-sm-8'><input id='RemoteUnits' class='form-control' type='text'{{#RemoteUnits}} value='{{RemoteUnits}}_string'{{/RemoteUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["RemoteUnits", "RemoteUnit", "0..*", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -360,7 +402,6 @@ define
                 base.parse_element (/<cim:RemoteSource.sensorMaximum>([\s\S]*?)<\/cim:RemoteSource.sensorMaximum>/g, obj, "sensorMaximum", base.to_float, sub, context);
                 base.parse_element (/<cim:RemoteSource.sensorMinimum>([\s\S]*?)<\/cim:RemoteSource.sensorMinimum>/g, obj, "sensorMinimum", base.to_float, sub, context);
                 base.parse_attribute (/<cim:RemoteSource.MeasurementValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValue", sub, context);
-
                 var bucket = context.parsed.RemoteSource;
                 if (null == bucket)
                    context.parsed.RemoteSource = bucket = {};
@@ -377,7 +418,7 @@ define
                 base.export_element (obj, "RemoteSource", "scanInterval", base.from_string, fields);
                 base.export_element (obj, "RemoteSource", "sensorMaximum", base.from_float, fields);
                 base.export_element (obj, "RemoteSource", "sensorMinimum", base.from_float, fields);
-                base.export_attribute (obj, "RemoteSource", "MeasurementValue", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteSource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -436,7 +477,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MeasurementValue", "MeasurementValue", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -471,7 +521,6 @@ define
                 base.parse_element (/<cim:RemoteControl.actuatorMinimum>([\s\S]*?)<\/cim:RemoteControl.actuatorMinimum>/g, obj, "actuatorMinimum", base.to_float, sub, context);
                 base.parse_element (/<cim:RemoteControl.remoteControlled>([\s\S]*?)<\/cim:RemoteControl.remoteControlled>/g, obj, "remoteControlled", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:RemoteControl.Control\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Control", sub, context);
-
                 var bucket = context.parsed.RemoteControl;
                 if (null == bucket)
                    context.parsed.RemoteControl = bucket = {};
@@ -487,7 +536,7 @@ define
                 base.export_element (obj, "RemoteControl", "actuatorMaximum", base.from_float, fields);
                 base.export_element (obj, "RemoteControl", "actuatorMinimum", base.from_float, fields);
                 base.export_element (obj, "RemoteControl", "remoteControlled", base.from_boolean, fields);
-                base.export_attribute (obj, "RemoteControl", "Control", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteControl", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -544,7 +593,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Control", "Control", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

@@ -48,7 +48,7 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "Contingency";
                 base.parse_element (/<cim:Contingency.mustStudy>([\s\S]*?)<\/cim:Contingency.mustStudy>/g, obj, "mustStudy", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:Contingency.ContingencyElement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContingencyElement", sub, context);
                 var bucket = context.parsed.Contingency;
                 if (null == bucket)
                    context.parsed.Contingency = bucket = {};
@@ -62,6 +62,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Contingency", "mustStudy", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "Contingency", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -80,6 +81,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#mustStudy}}<div><b>mustStudy</b>: {{mustStudy}}</div>{{/mustStudy}}
+                    {{#ContingencyElement}}<div><b>ContingencyElement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ContingencyElement}}
                     </div>
                     <fieldset>
 
@@ -90,11 +92,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ContingencyElement) obj.ContingencyElement_string = obj.ContingencyElement.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ContingencyElement_string;
             }
 
             edit_template ()
@@ -112,7 +116,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ContingencyElement", "ContingencyElement", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -144,7 +157,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ContingencyElement";
                 base.parse_attribute (/<cim:ContingencyElement.Contingency\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Contingency", sub, context);
-
                 var bucket = context.parsed.ContingencyElement;
                 if (null == bucket)
                    context.parsed.ContingencyElement = bucket = {};
@@ -157,7 +169,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "ContingencyElement", "Contingency", fields);
+                base.export_attribute (obj, "export_attribute", "ContingencyElement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -208,7 +220,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Contingency", "Contingency", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -241,7 +262,6 @@ define
                 obj.cls = "ContingencyEquipment";
                 base.parse_attribute (/<cim:ContingencyEquipment.contingentStatus\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "contingentStatus", sub, context);
                 base.parse_attribute (/<cim:ContingencyEquipment.Equipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipment", sub, context);
-
                 var bucket = context.parsed.ContingencyEquipment;
                 if (null == bucket)
                    context.parsed.ContingencyEquipment = bucket = {};
@@ -255,7 +275,7 @@ define
                 var fields = ContingencyElement.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ContingencyEquipment", "contingentStatus", base.from_string, fields);
-                base.export_attribute (obj, "ContingencyEquipment", "Equipment", fields);
+                base.export_attribute (obj, "export_attribute", "ContingencyEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -310,7 +330,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Equipment", "Equipment", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

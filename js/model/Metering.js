@@ -193,7 +193,9 @@ define
                 obj.cls = "DemandResponseProgram";
                 base.parse_element (/<cim:DemandResponseProgram.type>([\s\S]*?)<\/cim:DemandResponseProgram.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:DemandResponseProgram.validityInterval>([\s\S]*?)<\/cim:DemandResponseProgram.validityInterval>/g, obj, "validityInterval", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:DemandResponseProgram.EndDeviceGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceGroups", sub, context);
+                base.parse_attributes (/<cim:DemandResponseProgram.CustomerAgreements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreements", sub, context);
+                base.parse_attributes (/<cim:DemandResponseProgram.UsagePointGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePointGroups", sub, context);
                 var bucket = context.parsed.DemandResponseProgram;
                 if (null == bucket)
                    context.parsed.DemandResponseProgram = bucket = {};
@@ -208,6 +210,9 @@ define
 
                 base.export_element (obj, "DemandResponseProgram", "type", base.from_string, fields);
                 base.export_element (obj, "DemandResponseProgram", "validityInterval", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "DemandResponseProgram", fields);
+                base.export_attribute (obj, "export_attributes", "DemandResponseProgram", fields);
+                base.export_attribute (obj, "export_attributes", "DemandResponseProgram", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -227,6 +232,9 @@ define
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#validityInterval}}<div><b>validityInterval</b>: {{validityInterval}}</div>{{/validityInterval}}
+                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceGroups}}
+                    {{#CustomerAgreements}}<div><b>CustomerAgreements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CustomerAgreements}}
+                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePointGroups}}
                     </div>
                     <fieldset>
 
@@ -237,11 +245,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EndDeviceGroups) obj.EndDeviceGroups_string = obj.EndDeviceGroups.join ();
+                if (obj.CustomerAgreements) obj.CustomerAgreements_string = obj.CustomerAgreements.join ();
+                if (obj.UsagePointGroups) obj.UsagePointGroups_string = obj.UsagePointGroups.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDeviceGroups_string;
+                delete obj.CustomerAgreements_string;
+                delete obj.UsagePointGroups_string;
             }
 
             edit_template ()
@@ -256,11 +270,25 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups}}_string'{{/EndDeviceGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreements'>CustomerAgreements: </label><div class='col-sm-8'><input id='CustomerAgreements' class='form-control' type='text'{{#CustomerAgreements}} value='{{CustomerAgreements}}_string'{{/CustomerAgreements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups}}_string'{{/UsagePointGroups}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceGroups", "EndDeviceGroup", "0..*", "0..*"],
+                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..*"],
+                        ["UsagePointGroups", "UsagePointGroup", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -294,7 +322,9 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "EndDeviceGroup";
                 base.parse_element (/<cim:EndDeviceGroup.type>([\s\S]*?)<\/cim:EndDeviceGroup.type>/g, obj, "type", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:EndDeviceGroup.DemandResponsePrograms\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DemandResponsePrograms", sub, context);
+                base.parse_attributes (/<cim:EndDeviceGroup.EndDeviceControls\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceControls", sub, context);
+                base.parse_attributes (/<cim:EndDeviceGroup.EndDevices\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDevices", sub, context);
                 var bucket = context.parsed.EndDeviceGroup;
                 if (null == bucket)
                    context.parsed.EndDeviceGroup = bucket = {};
@@ -308,6 +338,9 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceGroup", "type", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceGroup", fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceGroup", fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -326,6 +359,9 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#DemandResponsePrograms}}<div><b>DemandResponsePrograms</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DemandResponsePrograms}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceControls}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDevices}}
                     </div>
                     <fieldset>
 
@@ -336,11 +372,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DemandResponsePrograms) obj.DemandResponsePrograms_string = obj.DemandResponsePrograms.join ();
+                if (obj.EndDeviceControls) obj.EndDeviceControls_string = obj.EndDeviceControls.join ();
+                if (obj.EndDevices) obj.EndDevices_string = obj.EndDevices.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DemandResponsePrograms_string;
+                delete obj.EndDeviceControls_string;
+                delete obj.EndDevices_string;
             }
 
             edit_template ()
@@ -354,11 +396,25 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms}}_string'{{/DemandResponsePrograms}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls}}_string'{{/EndDeviceControls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDevices'>EndDevices: </label><div class='col-sm-8'><input id='EndDevices' class='form-control' type='text'{{#EndDevices}} value='{{EndDevices}}_string'{{/EndDevices}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DemandResponsePrograms", "DemandResponseProgram", "0..*", "0..*"],
+                        ["EndDeviceControls", "EndDeviceControl", "0..*", "0..*"],
+                        ["EndDevices", "EndDevice", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -401,7 +457,6 @@ define
                 base.parse_element (/<cim:ControlledAppliance.isSmartAppliance>([\s\S]*?)<\/cim:ControlledAppliance.isSmartAppliance>/g, obj, "isSmartAppliance", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ControlledAppliance.isStripAndBaseboardHeater>([\s\S]*?)<\/cim:ControlledAppliance.isStripAndBaseboardHeater>/g, obj, "isStripAndBaseboardHeater", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ControlledAppliance.isWaterHeater>([\s\S]*?)<\/cim:ControlledAppliance.isWaterHeater>/g, obj, "isWaterHeater", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.ControlledAppliance;
                 if (null == bucket)
                    context.parsed.ControlledAppliance = bucket = {};
@@ -498,7 +553,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -535,7 +590,7 @@ define
                 base.parse_element (/<cim:Register.touTier>([\s\S]*?)<\/cim:Register.touTier>/g, obj, "touTier", base.to_string, sub, context);
                 base.parse_element (/<cim:Register.touTierName>([\s\S]*?)<\/cim:Register.touTierName>/g, obj, "touTierName", base.to_string, sub, context);
                 base.parse_attribute (/<cim:Register.EndDeviceFunction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceFunction", sub, context);
-
+                base.parse_attributes (/<cim:Register.Channels\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Channels", sub, context);
                 var bucket = context.parsed.Register;
                 if (null == bucket)
                    context.parsed.Register = bucket = {};
@@ -553,7 +608,8 @@ define
                 base.export_element (obj, "Register", "rightDigitCount", base.from_string, fields);
                 base.export_element (obj, "Register", "touTier", base.from_string, fields);
                 base.export_element (obj, "Register", "touTierName", base.from_string, fields);
-                base.export_attribute (obj, "Register", "EndDeviceFunction", fields);
+                base.export_attribute (obj, "export_attribute", "Register", fields);
+                base.export_attribute (obj, "export_attributes", "Register", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -577,6 +633,7 @@ define
                     {{#touTier}}<div><b>touTier</b>: {{touTier}}</div>{{/touTier}}
                     {{#touTierName}}<div><b>touTierName</b>: {{touTierName}}</div>{{/touTierName}}
                     {{#EndDeviceFunction}}<div><b>EndDeviceFunction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceFunction}}&quot;);})'>{{EndDeviceFunction}}</a></div>{{/EndDeviceFunction}}
+                    {{#Channels}}<div><b>Channels</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Channels}}
                     </div>
                     <fieldset>
 
@@ -587,11 +644,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Channels) obj.Channels_string = obj.Channels.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Channels_string;
             }
 
             edit_template ()
@@ -614,7 +673,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceFunction", "EndDeviceFunction", "0..1", "0..*"],
+                        ["Channels", "Channel", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -654,9 +723,12 @@ define
                 base.parse_element (/<cim:EndDeviceControl.reason>([\s\S]*?)<\/cim:EndDeviceControl.reason>/g, obj, "reason", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceControl.scheduledInterval>([\s\S]*?)<\/cim:EndDeviceControl.scheduledInterval>/g, obj, "scheduledInterval", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceControl.secondaryDeviceTiming>([\s\S]*?)<\/cim:EndDeviceControl.secondaryDeviceTiming>/g, obj, "secondaryDeviceTiming", base.to_string, sub, context);
+                base.parse_attributes (/<cim:EndDeviceControl.EndDeviceGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceGroups", sub, context);
                 base.parse_attribute (/<cim:EndDeviceControl.EndDeviceControlType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceControlType", sub, context);
                 base.parse_attribute (/<cim:EndDeviceControl.EndDeviceAction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceAction", sub, context);
-
+                base.parse_attributes (/<cim:EndDeviceControl.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
+                base.parse_attributes (/<cim:EndDeviceControl.UsagePointGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePointGroups", sub, context);
+                base.parse_attributes (/<cim:EndDeviceControl.EndDevices\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDevices", sub, context);
                 var bucket = context.parsed.EndDeviceControl;
                 if (null == bucket)
                    context.parsed.EndDeviceControl = bucket = {};
@@ -678,8 +750,12 @@ define
                 base.export_element (obj, "EndDeviceControl", "reason", base.from_string, fields);
                 base.export_element (obj, "EndDeviceControl", "scheduledInterval", base.from_string, fields);
                 base.export_element (obj, "EndDeviceControl", "secondaryDeviceTiming", base.from_string, fields);
-                base.export_attribute (obj, "EndDeviceControl", "EndDeviceControlType", fields);
-                base.export_attribute (obj, "EndDeviceControl", "EndDeviceAction", fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceControl", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceControl", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceControl", fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceControl", fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceControl", fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceControl", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -706,8 +782,12 @@ define
                     {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
                     {{#scheduledInterval}}<div><b>scheduledInterval</b>: {{scheduledInterval}}</div>{{/scheduledInterval}}
                     {{#secondaryDeviceTiming}}<div><b>secondaryDeviceTiming</b>: {{secondaryDeviceTiming}}</div>{{/secondaryDeviceTiming}}
+                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceGroups}}
                     {{#EndDeviceControlType}}<div><b>EndDeviceControlType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceControlType}}&quot;);})'>{{EndDeviceControlType}}</a></div>{{/EndDeviceControlType}}
                     {{#EndDeviceAction}}<div><b>EndDeviceAction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceAction}}&quot;);})'>{{EndDeviceAction}}</a></div>{{/EndDeviceAction}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePointGroups}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDevices}}
                     </div>
                     <fieldset>
 
@@ -718,11 +798,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EndDeviceGroups) obj.EndDeviceGroups_string = obj.EndDeviceGroups.join ();
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
+                if (obj.UsagePointGroups) obj.UsagePointGroups_string = obj.UsagePointGroups.join ();
+                if (obj.EndDevices) obj.EndDevices_string = obj.EndDevices.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDeviceGroups_string;
+                delete obj.UsagePoints_string;
+                delete obj.UsagePointGroups_string;
+                delete obj.EndDevices_string;
             }
 
             edit_template ()
@@ -744,13 +832,31 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><input id='reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledInterval'>scheduledInterval: </label><div class='col-sm-8'><input id='scheduledInterval' class='form-control' type='text'{{#scheduledInterval}} value='{{scheduledInterval}}'{{/scheduledInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryDeviceTiming'>secondaryDeviceTiming: </label><div class='col-sm-8'><input id='secondaryDeviceTiming' class='form-control' type='text'{{#secondaryDeviceTiming}} value='{{secondaryDeviceTiming}}'{{/secondaryDeviceTiming}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups}}_string'{{/EndDeviceGroups}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceControlType'>EndDeviceControlType: </label><div class='col-sm-8'><input id='EndDeviceControlType' class='form-control' type='text'{{#EndDeviceControlType}} value='{{EndDeviceControlType}}'{{/EndDeviceControlType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceAction'>EndDeviceAction: </label><div class='col-sm-8'><input id='EndDeviceAction' class='form-control' type='text'{{#EndDeviceAction}} value='{{EndDeviceAction}}'{{/EndDeviceAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups}}_string'{{/UsagePointGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDevices'>EndDevices: </label><div class='col-sm-8'><input id='EndDevices' class='form-control' type='text'{{#EndDevices}} value='{{EndDevices}}_string'{{/EndDevices}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceGroups", "EndDeviceGroup", "0..*", "0..*"],
+                        ["EndDeviceControlType", "EndDeviceControlType", "1", "0..*"],
+                        ["EndDeviceAction", "EndDeviceAction", "0..1", "0..1"],
+                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
+                        ["UsagePointGroups", "UsagePointGroup", "0..*", "0..*"],
+                        ["EndDevices", "EndDevice", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -795,7 +901,6 @@ define
                 base.parse_element (/<cim:PanPricingDetail.registerTier>([\s\S]*?)<\/cim:PanPricingDetail.registerTier>/g, obj, "registerTier", base.to_string, sub, context);
                 base.parse_element (/<cim:PanPricingDetail.unitOfMeasure>([\s\S]*?)<\/cim:PanPricingDetail.unitOfMeasure>/g, obj, "unitOfMeasure", base.to_string, sub, context);
                 base.parse_attribute (/<cim:PanPricingDetail.PanPricing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PanPricing", sub, context);
-
                 var bucket = context.parsed.PanPricingDetail;
                 if (null == bucket)
                    context.parsed.PanPricingDetail = bucket = {};
@@ -821,7 +926,7 @@ define
                 base.export_element (obj, "PanPricingDetail", "rateLabel", base.from_string, fields);
                 base.export_element (obj, "PanPricingDetail", "registerTier", base.from_string, fields);
                 base.export_element (obj, "PanPricingDetail", "unitOfMeasure", base.from_string, fields);
-                base.export_attribute (obj, "PanPricingDetail", "PanPricing", fields);
+                base.export_attribute (obj, "export_attribute", "PanPricingDetail", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -898,7 +1003,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PanPricing", "PanPricing", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -948,12 +1062,23 @@ define
                 base.parse_element (/<cim:UsagePoint.readRoute>([\s\S]*?)<\/cim:UsagePoint.readRoute>/g, obj, "readRoute", base.to_string, sub, context);
                 base.parse_element (/<cim:UsagePoint.serviceDeliveryRemark>([\s\S]*?)<\/cim:UsagePoint.serviceDeliveryRemark>/g, obj, "serviceDeliveryRemark", base.to_string, sub, context);
                 base.parse_element (/<cim:UsagePoint.servicePriority>([\s\S]*?)<\/cim:UsagePoint.servicePriority>/g, obj, "servicePriority", base.to_string, sub, context);
+                base.parse_attributes (/<cim:UsagePoint.Equipments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Equipments", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.MeterReadings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterReadings", sub, context);
                 base.parse_attribute (/<cim:UsagePoint.CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreement", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.PricingStructures\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PricingStructures", sub, context);
                 base.parse_attribute (/<cim:UsagePoint.ServiceSupplier\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceSupplier", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.ConfigurationEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConfigurationEvents", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.EndDevices\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDevices", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.Outages\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Outages", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.MeterServiceWorks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterServiceWorks", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.MetrologyRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MetrologyRequirements", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.ServiceMultipliers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceMultipliers", sub, context);
                 base.parse_attribute (/<cim:UsagePoint.UsagePointLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePointLocation", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.EndDeviceEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceEvents", sub, context);
                 base.parse_attribute (/<cim:UsagePoint.ServiceCategory\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceCategory", sub, context);
                 base.parse_attribute (/<cim:UsagePoint.ServiceLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceLocation", sub, context);
-
+                base.parse_attributes (/<cim:UsagePoint.UsagePointGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePointGroups", sub, context);
+                base.parse_attributes (/<cim:UsagePoint.EndDeviceControls\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceControls", sub, context);
                 var bucket = context.parsed.UsagePoint;
                 if (null == bucket)
                    context.parsed.UsagePoint = bucket = {};
@@ -983,11 +1108,23 @@ define
                 base.export_element (obj, "UsagePoint", "readRoute", base.from_string, fields);
                 base.export_element (obj, "UsagePoint", "serviceDeliveryRemark", base.from_string, fields);
                 base.export_element (obj, "UsagePoint", "servicePriority", base.from_string, fields);
-                base.export_attribute (obj, "UsagePoint", "CustomerAgreement", fields);
-                base.export_attribute (obj, "UsagePoint", "ServiceSupplier", fields);
-                base.export_attribute (obj, "UsagePoint", "UsagePointLocation", fields);
-                base.export_attribute (obj, "UsagePoint", "ServiceCategory", fields);
-                base.export_attribute (obj, "UsagePoint", "ServiceLocation", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1022,11 +1159,23 @@ define
                     {{#readRoute}}<div><b>readRoute</b>: {{readRoute}}</div>{{/readRoute}}
                     {{#serviceDeliveryRemark}}<div><b>serviceDeliveryRemark</b>: {{serviceDeliveryRemark}}</div>{{/serviceDeliveryRemark}}
                     {{#servicePriority}}<div><b>servicePriority</b>: {{servicePriority}}</div>{{/servicePriority}}
-                    {{#UsagePointLocation}}<div><b>UsagePointLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePointLocation}}&quot;);})'>{{UsagePointLocation}}</a></div>{{/UsagePointLocation}}
-                    {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+                    {{#Equipments}}<div><b>Equipments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Equipments}}
+                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeterReadings}}
                     {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
-                    {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
+                    {{#PricingStructures}}<div><b>PricingStructures</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PricingStructures}}
                     {{#ServiceSupplier}}<div><b>ServiceSupplier</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceSupplier}}&quot;);})'>{{ServiceSupplier}}</a></div>{{/ServiceSupplier}}
+                    {{#ConfigurationEvents}}<div><b>ConfigurationEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ConfigurationEvents}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDevices}}
+                    {{#Outages}}<div><b>Outages</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Outages}}
+                    {{#MeterServiceWorks}}<div><b>MeterServiceWorks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeterServiceWorks}}
+                    {{#MetrologyRequirements}}<div><b>MetrologyRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MetrologyRequirements}}
+                    {{#ServiceMultipliers}}<div><b>ServiceMultipliers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ServiceMultipliers}}
+                    {{#UsagePointLocation}}<div><b>UsagePointLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePointLocation}}&quot;);})'>{{UsagePointLocation}}</a></div>{{/UsagePointLocation}}
+                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceEvents}}
+                    {{#ServiceCategory}}<div><b>ServiceCategory</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceCategory}}&quot;);})'>{{ServiceCategory}}</a></div>{{/ServiceCategory}}
+                    {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
+                    {{#UsagePointGroups}}<div><b>UsagePointGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePointGroups}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceControls}}
                     </div>
                     <fieldset>
 
@@ -1039,6 +1188,18 @@ define
                 super.condition (obj);
                 obj.AmiBillingReadyKind = []; if (!obj.amiBillingReady) obj.AmiBillingReadyKind.push ({ id: '', selected: true}); for (var property in AmiBillingReadyKind) obj.AmiBillingReadyKind.push ({ id: property, selected: obj.amiBillingReady && obj.amiBillingReady.endsWith ('.' + property)});
                 obj.UsagePointConnectedKind = []; if (!obj.connectionState) obj.UsagePointConnectedKind.push ({ id: '', selected: true}); for (var property in UsagePointConnectedKind) obj.UsagePointConnectedKind.push ({ id: property, selected: obj.connectionState && obj.connectionState.endsWith ('.' + property)});
+                if (obj.Equipments) obj.Equipments_string = obj.Equipments.join ();
+                if (obj.MeterReadings) obj.MeterReadings_string = obj.MeterReadings.join ();
+                if (obj.PricingStructures) obj.PricingStructures_string = obj.PricingStructures.join ();
+                if (obj.ConfigurationEvents) obj.ConfigurationEvents_string = obj.ConfigurationEvents.join ();
+                if (obj.EndDevices) obj.EndDevices_string = obj.EndDevices.join ();
+                if (obj.Outages) obj.Outages_string = obj.Outages.join ();
+                if (obj.MeterServiceWorks) obj.MeterServiceWorks_string = obj.MeterServiceWorks.join ();
+                if (obj.MetrologyRequirements) obj.MetrologyRequirements_string = obj.MetrologyRequirements.join ();
+                if (obj.ServiceMultipliers) obj.ServiceMultipliers_string = obj.ServiceMultipliers.join ();
+                if (obj.EndDeviceEvents) obj.EndDeviceEvents_string = obj.EndDeviceEvents.join ();
+                if (obj.UsagePointGroups) obj.UsagePointGroups_string = obj.UsagePointGroups.join ();
+                if (obj.EndDeviceControls) obj.EndDeviceControls_string = obj.EndDeviceControls.join ();
             }
 
             uncondition (obj)
@@ -1046,6 +1207,18 @@ define
                 super.uncondition (obj);
                 delete obj.AmiBillingReadyKind;
                 delete obj.UsagePointConnectedKind;
+                delete obj.Equipments_string;
+                delete obj.MeterReadings_string;
+                delete obj.PricingStructures_string;
+                delete obj.ConfigurationEvents_string;
+                delete obj.EndDevices_string;
+                delete obj.Outages_string;
+                delete obj.MeterServiceWorks_string;
+                delete obj.MetrologyRequirements_string;
+                delete obj.ServiceMultipliers_string;
+                delete obj.EndDeviceEvents_string;
+                delete obj.UsagePointGroups_string;
+                delete obj.EndDeviceControls_string;
             }
 
             edit_template ()
@@ -1075,16 +1248,47 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='readRoute'>readRoute: </label><div class='col-sm-8'><input id='readRoute' class='form-control' type='text'{{#readRoute}} value='{{readRoute}}'{{/readRoute}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='serviceDeliveryRemark'>serviceDeliveryRemark: </label><div class='col-sm-8'><input id='serviceDeliveryRemark' class='form-control' type='text'{{#serviceDeliveryRemark}} value='{{serviceDeliveryRemark}}'{{/serviceDeliveryRemark}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='servicePriority'>servicePriority: </label><div class='col-sm-8'><input id='servicePriority' class='form-control' type='text'{{#servicePriority}} value='{{servicePriority}}'{{/servicePriority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipments'>Equipments: </label><div class='col-sm-8'><input id='Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PricingStructures'>PricingStructures: </label><div class='col-sm-8'><input id='PricingStructures' class='form-control' type='text'{{#PricingStructures}} value='{{PricingStructures}}_string'{{/PricingStructures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Outages'>Outages: </label><div class='col-sm-8'><input id='Outages' class='form-control' type='text'{{#Outages}} value='{{Outages}}_string'{{/Outages}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MetrologyRequirements'>MetrologyRequirements: </label><div class='col-sm-8'><input id='MetrologyRequirements' class='form-control' type='text'{{#MetrologyRequirements}} value='{{MetrologyRequirements}}_string'{{/MetrologyRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePointLocation'>UsagePointLocation: </label><div class='col-sm-8'><input id='UsagePointLocation' class='form-control' type='text'{{#UsagePointLocation}} value='{{UsagePointLocation}}'{{/UsagePointLocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceCategory'>ServiceCategory: </label><div class='col-sm-8'><input id='ServiceCategory' class='form-control' type='text'{{#ServiceCategory}} value='{{ServiceCategory}}'{{/ServiceCategory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceLocation'>ServiceLocation: </label><div class='col-sm-8'><input id='ServiceLocation' class='form-control' type='text'{{#ServiceLocation}} value='{{ServiceLocation}}'{{/ServiceLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceSupplier'>ServiceSupplier: </label><div class='col-sm-8'><input id='ServiceSupplier' class='form-control' type='text'{{#ServiceSupplier}} value='{{ServiceSupplier}}'{{/ServiceSupplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePointGroups'>UsagePointGroups: </label><div class='col-sm-8'><input id='UsagePointGroups' class='form-control' type='text'{{#UsagePointGroups}} value='{{UsagePointGroups}}_string'{{/UsagePointGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls}}_string'{{/EndDeviceControls}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Equipments", "Equipment", "0..*", "0..*"],
+                        ["MeterReadings", "MeterReading", "0..*", "0..1"],
+                        ["CustomerAgreement", "CustomerAgreement", "0..1", "0..*"],
+                        ["PricingStructures", "PricingStructure", "0..*", "0..*"],
+                        ["ServiceSupplier", "ServiceSupplier", "0..1", "0..*"],
+                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
+                        ["EndDevices", "EndDevice", "0..*", "0..1"],
+                        ["Outages", "Outage", "0..*", "0..*"],
+                        ["MeterServiceWorks", "MeterServiceWork", "0..*", "0..1"],
+                        ["MetrologyRequirements", "MetrologyRequirement", "0..*", "0..*"],
+                        ["ServiceMultipliers", "ServiceMultiplier", "0..*", "0..1"],
+                        ["UsagePointLocation", "UsagePointLocation", "0..1", "0..*"],
+                        ["EndDeviceEvents", "EndDeviceEvent", "0..*", "0..1"],
+                        ["ServiceCategory", "ServiceCategory", "0..1", "0..*"],
+                        ["ServiceLocation", "ServiceLocation", "0..1", "0..*"],
+                        ["UsagePointGroups", "UsagePointGroup", "0..*", "0..*"],
+                        ["EndDeviceControls", "EndDeviceControl", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1117,7 +1321,6 @@ define
                 obj.cls = "RationalNumber";
                 base.parse_element (/<cim:RationalNumber.denominator>([\s\S]*?)<\/cim:RationalNumber.denominator>/g, obj, "denominator", base.to_string, sub, context);
                 base.parse_element (/<cim:RationalNumber.numerator>([\s\S]*?)<\/cim:RationalNumber.numerator>/g, obj, "numerator", base.to_string, sub, context);
-
                 var bucket = context.parsed.RationalNumber;
                 if (null == bucket)
                    context.parsed.RationalNumber = bucket = {};
@@ -1184,7 +1387,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1218,7 +1421,6 @@ define
                 base.parse_element (/<cim:EndDeviceEventDetail.name>([\s\S]*?)<\/cim:EndDeviceEventDetail.name>/g, obj, "name", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceEventDetail.value>([\s\S]*?)<\/cim:EndDeviceEventDetail.value>/g, obj, "value", base.to_string, sub, context);
                 base.parse_attribute (/<cim:EndDeviceEventDetail.EndDeviceEvent\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceEvent", sub, context);
-
                 var bucket = context.parsed.EndDeviceEventDetail;
                 if (null == bucket)
                    context.parsed.EndDeviceEventDetail = bucket = {};
@@ -1233,7 +1435,7 @@ define
 
                 base.export_element (obj, "EndDeviceEventDetail", "name", base.from_string, fields);
                 base.export_element (obj, "EndDeviceEventDetail", "value", base.from_string, fields);
-                base.export_attribute (obj, "EndDeviceEventDetail", "EndDeviceEvent", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceEventDetail", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1288,7 +1490,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceEvent", "EndDeviceEvent", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1323,8 +1534,10 @@ define
                 base.parse_element (/<cim:MeterReading.valuesInterval>([\s\S]*?)<\/cim:MeterReading.valuesInterval>/g, obj, "valuesInterval", base.to_string, sub, context);
                 base.parse_attribute (/<cim:MeterReading.UsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
                 base.parse_attribute (/<cim:MeterReading.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Meter", sub, context);
+                base.parse_attributes (/<cim:MeterReading.Readings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Readings", sub, context);
+                base.parse_attributes (/<cim:MeterReading.EndDeviceEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceEvents", sub, context);
                 base.parse_attribute (/<cim:MeterReading.CustomerAgreement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CustomerAgreement", sub, context);
-
+                base.parse_attributes (/<cim:MeterReading.IntervalBlocks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IntervalBlocks", sub, context);
                 var bucket = context.parsed.MeterReading;
                 if (null == bucket)
                    context.parsed.MeterReading = bucket = {};
@@ -1339,9 +1552,12 @@ define
 
                 base.export_element (obj, "MeterReading", "isCoincidentTrigger", base.from_boolean, fields);
                 base.export_element (obj, "MeterReading", "valuesInterval", base.from_string, fields);
-                base.export_attribute (obj, "MeterReading", "UsagePoint", fields);
-                base.export_attribute (obj, "MeterReading", "Meter", fields);
-                base.export_attribute (obj, "MeterReading", "CustomerAgreement", fields);
+                base.export_attribute (obj, "export_attribute", "MeterReading", fields);
+                base.export_attribute (obj, "export_attribute", "MeterReading", fields);
+                base.export_attribute (obj, "export_attributes", "MeterReading", fields);
+                base.export_attribute (obj, "export_attributes", "MeterReading", fields);
+                base.export_attribute (obj, "export_attribute", "MeterReading", fields);
+                base.export_attribute (obj, "export_attributes", "MeterReading", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1363,7 +1579,10 @@ define
                     {{#valuesInterval}}<div><b>valuesInterval</b>: {{valuesInterval}}</div>{{/valuesInterval}}
                     {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
                     {{#Meter}}<div><b>Meter</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Meter}}&quot;);})'>{{Meter}}</a></div>{{/Meter}}
+                    {{#Readings}}<div><b>Readings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Readings}}
+                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceEvents}}
                     {{#CustomerAgreement}}<div><b>CustomerAgreement</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CustomerAgreement}}&quot;);})'>{{CustomerAgreement}}</a></div>{{/CustomerAgreement}}
+                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/IntervalBlocks}}
                     </div>
                     <fieldset>
 
@@ -1374,11 +1593,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Readings) obj.Readings_string = obj.Readings.join ();
+                if (obj.EndDeviceEvents) obj.EndDeviceEvents_string = obj.EndDeviceEvents.join ();
+                if (obj.IntervalBlocks) obj.IntervalBlocks_string = obj.IntervalBlocks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Readings_string;
+                delete obj.EndDeviceEvents_string;
+                delete obj.IntervalBlocks_string;
             }
 
             edit_template ()
@@ -1395,12 +1620,27 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='valuesInterval'>valuesInterval: </label><div class='col-sm-8'><input id='valuesInterval' class='form-control' type='text'{{#valuesInterval}} value='{{valuesInterval}}'{{/valuesInterval}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Meter'>Meter: </label><div class='col-sm-8'><input id='Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Readings'>Readings: </label><div class='col-sm-8'><input id='Readings' class='form-control' type='text'{{#Readings}} value='{{Readings}}_string'{{/Readings}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["UsagePoint", "UsagePoint", "0..1", "0..*"],
+                        ["Meter", "Meter", "0..1", "0..*"],
+                        ["Readings", "Reading", "0..*", "0..*"],
+                        ["EndDeviceEvents", "EndDeviceEvent", "0..*", "0..1"],
+                        ["CustomerAgreement", "CustomerAgreement", "0..1", "0..*"],
+                        ["IntervalBlocks", "IntervalBlock", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1436,7 +1676,6 @@ define
                 base.parse_element (/<cim:Channel.isVirtual>([\s\S]*?)<\/cim:Channel.isVirtual>/g, obj, "isVirtual", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:Channel.Register\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Register", sub, context);
                 base.parse_attribute (/<cim:Channel.ReadingType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingType", sub, context);
-
                 var bucket = context.parsed.Channel;
                 if (null == bucket)
                    context.parsed.Channel = bucket = {};
@@ -1450,8 +1689,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Channel", "isVirtual", base.from_boolean, fields);
-                base.export_attribute (obj, "Channel", "Register", fields);
-                base.export_attribute (obj, "Channel", "ReadingType", fields);
+                base.export_attribute (obj, "export_attribute", "Channel", fields);
+                base.export_attribute (obj, "export_attribute", "Channel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1506,7 +1745,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Register", "Register", "0..1", "0..*"],
+                        ["ReadingType", "ReadingType", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1544,7 +1793,6 @@ define
                 base.parse_element (/<cim:ReadingQuality.timeStamp>([\s\S]*?)<\/cim:ReadingQuality.timeStamp>/g, obj, "timeStamp", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:ReadingQuality.ReadingQualityType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingQualityType", sub, context);
                 base.parse_attribute (/<cim:ReadingQuality.Reading\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Reading", sub, context);
-
                 var bucket = context.parsed.ReadingQuality;
                 if (null == bucket)
                    context.parsed.ReadingQuality = bucket = {};
@@ -1560,8 +1808,8 @@ define
                 base.export_element (obj, "ReadingQuality", "comment", base.from_string, fields);
                 base.export_element (obj, "ReadingQuality", "source", base.from_string, fields);
                 base.export_element (obj, "ReadingQuality", "timeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "ReadingQuality", "ReadingQualityType", fields);
-                base.export_attribute (obj, "ReadingQuality", "Reading", fields);
+                base.export_attribute (obj, "export_attribute", "ReadingQuality", fields);
+                base.export_attribute (obj, "export_attribute", "ReadingQuality", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1620,7 +1868,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReadingQualityType", "ReadingQualityType", "1", "0..*"],
+                        ["Reading", "BaseReading", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1654,7 +1912,6 @@ define
                 base.parse_attribute (/<cim:MeterMultiplier.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:MeterMultiplier.value>([\s\S]*?)<\/cim:MeterMultiplier.value>/g, obj, "value", base.to_float, sub, context);
                 base.parse_attribute (/<cim:MeterMultiplier.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Meter", sub, context);
-
                 var bucket = context.parsed.MeterMultiplier;
                 if (null == bucket)
                    context.parsed.MeterMultiplier = bucket = {};
@@ -1669,7 +1926,7 @@ define
 
                 base.export_element (obj, "MeterMultiplier", "kind", base.from_string, fields);
                 base.export_element (obj, "MeterMultiplier", "value", base.from_float, fields);
-                base.export_attribute (obj, "MeterMultiplier", "Meter", fields);
+                base.export_attribute (obj, "export_attribute", "MeterMultiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1726,7 +1983,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Meter", "Meter", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1760,7 +2026,7 @@ define
                 base.parse_element (/<cim:UsagePointLocation.accessMethod>([\s\S]*?)<\/cim:UsagePointLocation.accessMethod>/g, obj, "accessMethod", base.to_string, sub, context);
                 base.parse_element (/<cim:UsagePointLocation.remark>([\s\S]*?)<\/cim:UsagePointLocation.remark>/g, obj, "remark", base.to_string, sub, context);
                 base.parse_element (/<cim:UsagePointLocation.siteAccessProblem>([\s\S]*?)<\/cim:UsagePointLocation.siteAccessProblem>/g, obj, "siteAccessProblem", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:UsagePointLocation.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
                 var bucket = context.parsed.UsagePointLocation;
                 if (null == bucket)
                    context.parsed.UsagePointLocation = bucket = {};
@@ -1776,6 +2042,7 @@ define
                 base.export_element (obj, "UsagePointLocation", "accessMethod", base.from_string, fields);
                 base.export_element (obj, "UsagePointLocation", "remark", base.from_string, fields);
                 base.export_element (obj, "UsagePointLocation", "siteAccessProblem", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "UsagePointLocation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1796,6 +2063,7 @@ define
                     {{#accessMethod}}<div><b>accessMethod</b>: {{accessMethod}}</div>{{/accessMethod}}
                     {{#remark}}<div><b>remark</b>: {{remark}}</div>{{/remark}}
                     {{#siteAccessProblem}}<div><b>siteAccessProblem</b>: {{siteAccessProblem}}</div>{{/siteAccessProblem}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
                     </div>
                     <fieldset>
 
@@ -1806,11 +2074,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UsagePoints_string;
             }
 
             edit_template ()
@@ -1830,7 +2100,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["UsagePoints", "UsagePoint", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1862,7 +2141,8 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "MetrologyRequirement";
                 base.parse_attribute (/<cim:MetrologyRequirement.reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reason", sub, context);
-
+                base.parse_attributes (/<cim:MetrologyRequirement.ReadingTypes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingTypes", sub, context);
+                base.parse_attributes (/<cim:MetrologyRequirement.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
                 var bucket = context.parsed.MetrologyRequirement;
                 if (null == bucket)
                    context.parsed.MetrologyRequirement = bucket = {};
@@ -1876,6 +2156,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MetrologyRequirement", "reason", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "MetrologyRequirement", fields);
+                base.export_attribute (obj, "export_attributes", "MetrologyRequirement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1894,6 +2176,8 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
+                    {{#ReadingTypes}}<div><b>ReadingTypes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReadingTypes}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
                     </div>
                     <fieldset>
 
@@ -1905,12 +2189,16 @@ define
             {
                 super.condition (obj);
                 obj.ReadingReasonKind = []; if (!obj.reason) obj.ReadingReasonKind.push ({ id: '', selected: true}); for (var property in ReadingReasonKind) obj.ReadingReasonKind.push ({ id: property, selected: obj.reason && obj.reason.endsWith ('.' + property)});
+                if (obj.ReadingTypes) obj.ReadingTypes_string = obj.ReadingTypes.join ();
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.ReadingReasonKind;
+                delete obj.ReadingTypes_string;
+                delete obj.UsagePoints_string;
             }
 
             edit_template ()
@@ -1924,11 +2212,23 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><select id='reason' class='form-control'>{{#ReadingReasonKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReadingReasonKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReadingTypes'>ReadingTypes: </label><div class='col-sm-8'><input id='ReadingTypes' class='form-control' type='text'{{#ReadingTypes}} value='{{ReadingTypes}}_string'{{/ReadingTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReadingTypes", "ReadingType", "1..*", "0..*"],
+                        ["UsagePoints", "UsagePoint", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1960,8 +2260,8 @@ define
                 obj = Assets.AssetFunction.prototype.parse.call (this, context, sub);
                 obj.cls = "EndDeviceFunction";
                 base.parse_element (/<cim:EndDeviceFunction.enabled>([\s\S]*?)<\/cim:EndDeviceFunction.enabled>/g, obj, "enabled", base.to_boolean, sub, context);
+                base.parse_attributes (/<cim:EndDeviceFunction.Registers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Registers", sub, context);
                 base.parse_attribute (/<cim:EndDeviceFunction.EndDevice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDevice", sub, context);
-
                 var bucket = context.parsed.EndDeviceFunction;
                 if (null == bucket)
                    context.parsed.EndDeviceFunction = bucket = {};
@@ -1975,7 +2275,8 @@ define
                 var fields = Assets.AssetFunction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EndDeviceFunction", "enabled", base.from_boolean, fields);
-                base.export_attribute (obj, "EndDeviceFunction", "EndDevice", fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceFunction", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceFunction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1994,6 +2295,7 @@ define
                     + Assets.AssetFunction.prototype.template.call (this) +
                     `
                     {{#enabled}}<div><b>enabled</b>: {{enabled}}</div>{{/enabled}}
+                    {{#Registers}}<div><b>Registers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Registers}}
                     {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);})'>{{EndDevice}}</a></div>{{/EndDevice}}
                     </div>
                     <fieldset>
@@ -2005,11 +2307,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Registers) obj.Registers_string = obj.Registers.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Registers_string;
             }
 
             edit_template ()
@@ -2028,7 +2332,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Registers", "Register", "0..*", "0..1"],
+                        ["EndDevice", "EndDevice", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2064,7 +2378,7 @@ define
                 base.parse_element (/<cim:ComModule.amrSystem>([\s\S]*?)<\/cim:ComModule.amrSystem>/g, obj, "amrSystem", base.to_string, sub, context);
                 base.parse_element (/<cim:ComModule.supportsAutonomousDst>([\s\S]*?)<\/cim:ComModule.supportsAutonomousDst>/g, obj, "supportsAutonomousDst", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ComModule.timeZoneOffset>([\s\S]*?)<\/cim:ComModule.timeZoneOffset>/g, obj, "timeZoneOffset", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ComModule.ComFunctions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ComFunctions", sub, context);
                 var bucket = context.parsed.ComModule;
                 if (null == bucket)
                    context.parsed.ComModule = bucket = {};
@@ -2080,6 +2394,7 @@ define
                 base.export_element (obj, "ComModule", "amrSystem", base.from_string, fields);
                 base.export_element (obj, "ComModule", "supportsAutonomousDst", base.from_boolean, fields);
                 base.export_element (obj, "ComModule", "timeZoneOffset", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ComModule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2100,6 +2415,7 @@ define
                     {{#amrSystem}}<div><b>amrSystem</b>: {{amrSystem}}</div>{{/amrSystem}}
                     {{#supportsAutonomousDst}}<div><b>supportsAutonomousDst</b>: {{supportsAutonomousDst}}</div>{{/supportsAutonomousDst}}
                     {{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
+                    {{#ComFunctions}}<div><b>ComFunctions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ComFunctions}}
                     </div>
                     <fieldset>
 
@@ -2110,11 +2426,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ComFunctions) obj.ComFunctions_string = obj.ComFunctions.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ComFunctions_string;
             }
 
             edit_template ()
@@ -2134,7 +2452,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ComFunctions", "ComFunction", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2183,9 +2510,11 @@ define
                 base.parse_element (/<cim:ReadingType.phases>([\s\S]*?)<\/cim:ReadingType.phases>/g, obj, "phases", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.tou>([\s\S]*?)<\/cim:ReadingType.tou>/g, obj, "tou", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingType.unit>([\s\S]*?)<\/cim:ReadingType.unit>/g, obj, "unit", base.to_string, sub, context);
+                base.parse_attributes (/<cim:ReadingType.Readings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Readings", sub, context);
                 base.parse_attribute (/<cim:ReadingType.PendingCalculation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PendingCalculation", sub, context);
+                base.parse_attributes (/<cim:ReadingType.IntervalBlocks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IntervalBlocks", sub, context);
+                base.parse_attributes (/<cim:ReadingType.MetrologyRequirements\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MetrologyRequirements", sub, context);
                 base.parse_attribute (/<cim:ReadingType.Channel\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Channel", sub, context);
-
                 var bucket = context.parsed.ReadingType;
                 if (null == bucket)
                    context.parsed.ReadingType = bucket = {};
@@ -2214,8 +2543,11 @@ define
                 base.export_element (obj, "ReadingType", "phases", base.from_string, fields);
                 base.export_element (obj, "ReadingType", "tou", base.from_string, fields);
                 base.export_element (obj, "ReadingType", "unit", base.from_string, fields);
-                base.export_attribute (obj, "ReadingType", "PendingCalculation", fields);
-                base.export_attribute (obj, "ReadingType", "Channel", fields);
+                base.export_attribute (obj, "export_attributes", "ReadingType", fields);
+                base.export_attribute (obj, "export_attribute", "ReadingType", fields);
+                base.export_attribute (obj, "export_attributes", "ReadingType", fields);
+                base.export_attribute (obj, "export_attributes", "ReadingType", fields);
+                base.export_attribute (obj, "export_attribute", "ReadingType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2249,7 +2581,10 @@ define
                     {{#phases}}<div><b>phases</b>: {{phases}}</div>{{/phases}}
                     {{#tou}}<div><b>tou</b>: {{tou}}</div>{{/tou}}
                     {{#unit}}<div><b>unit</b>: {{unit}}</div>{{/unit}}
+                    {{#Readings}}<div><b>Readings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Readings}}
                     {{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);})'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
+                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/IntervalBlocks}}
+                    {{#MetrologyRequirements}}<div><b>MetrologyRequirements</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MetrologyRequirements}}
                     {{#Channel}}<div><b>Channel</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Channel}}&quot;);})'>{{Channel}}</a></div>{{/Channel}}
                     </div>
                     <fieldset>
@@ -2261,11 +2596,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Readings) obj.Readings_string = obj.Readings.join ();
+                if (obj.IntervalBlocks) obj.IntervalBlocks_string = obj.IntervalBlocks.join ();
+                if (obj.MetrologyRequirements) obj.MetrologyRequirements_string = obj.MetrologyRequirements.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Readings_string;
+                delete obj.IntervalBlocks_string;
+                delete obj.MetrologyRequirements_string;
             }
 
             edit_template ()
@@ -2295,12 +2636,26 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='tou'>tou: </label><div class='col-sm-8'><input id='tou' class='form-control' type='text'{{#tou}} value='{{tou}}'{{/tou}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='PendingCalculation'>PendingCalculation: </label><div class='col-sm-8'><input id='PendingCalculation' class='form-control' type='text'{{#PendingCalculation}} value='{{PendingCalculation}}'{{/PendingCalculation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MetrologyRequirements'>MetrologyRequirements: </label><div class='col-sm-8'><input id='MetrologyRequirements' class='form-control' type='text'{{#MetrologyRequirements}} value='{{MetrologyRequirements}}_string'{{/MetrologyRequirements}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Channel'>Channel: </label><div class='col-sm-8'><input id='Channel' class='form-control' type='text'{{#Channel}} value='{{Channel}}'{{/Channel}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Readings", "Reading", "0..*", "1"],
+                        ["PendingCalculation", "PendingCalculation", "0..1", "1"],
+                        ["IntervalBlocks", "IntervalBlock", "0..*", "1"],
+                        ["MetrologyRequirements", "MetrologyRequirement", "0..*", "1..*"],
+                        ["Channel", "Channel", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2335,8 +2690,8 @@ define
                 obj.cls = "IntervalBlock";
                 base.parse_attribute (/<cim:IntervalBlock.PendingCalculation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PendingCalculation", sub, context);
                 base.parse_attribute (/<cim:IntervalBlock.ReadingType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingType", sub, context);
+                base.parse_attributes (/<cim:IntervalBlock.IntervalReadings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IntervalReadings", sub, context);
                 base.parse_attribute (/<cim:IntervalBlock.MeterReading\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterReading", sub, context);
-
                 var bucket = context.parsed.IntervalBlock;
                 if (null == bucket)
                    context.parsed.IntervalBlock = bucket = {};
@@ -2349,9 +2704,10 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "IntervalBlock", "PendingCalculation", fields);
-                base.export_attribute (obj, "IntervalBlock", "ReadingType", fields);
-                base.export_attribute (obj, "IntervalBlock", "MeterReading", fields);
+                base.export_attribute (obj, "export_attribute", "IntervalBlock", fields);
+                base.export_attribute (obj, "export_attribute", "IntervalBlock", fields);
+                base.export_attribute (obj, "export_attributes", "IntervalBlock", fields);
+                base.export_attribute (obj, "export_attribute", "IntervalBlock", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2371,6 +2727,7 @@ define
                     `
                     {{#PendingCalculation}}<div><b>PendingCalculation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PendingCalculation}}&quot;);})'>{{PendingCalculation}}</a></div>{{/PendingCalculation}}
                     {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#IntervalReadings}}<div><b>IntervalReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/IntervalReadings}}
                     {{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);})'>{{MeterReading}}</a></div>{{/MeterReading}}
                     </div>
                     <fieldset>
@@ -2382,11 +2739,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.IntervalReadings) obj.IntervalReadings_string = obj.IntervalReadings.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.IntervalReadings_string;
             }
 
             edit_template ()
@@ -2401,12 +2760,25 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='PendingCalculation'>PendingCalculation: </label><div class='col-sm-8'><input id='PendingCalculation' class='form-control' type='text'{{#PendingCalculation}} value='{{PendingCalculation}}'{{/PendingCalculation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IntervalReadings'>IntervalReadings: </label><div class='col-sm-8'><input id='IntervalReadings' class='form-control' type='text'{{#IntervalReadings}} value='{{IntervalReadings}}_string'{{/IntervalReadings}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeterReading'>MeterReading: </label><div class='col-sm-8'><input id='MeterReading' class='form-control' type='text'{{#MeterReading}} value='{{MeterReading}}'{{/MeterReading}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PendingCalculation", "PendingCalculation", "0..1", "0..*"],
+                        ["ReadingType", "ReadingType", "1", "0..*"],
+                        ["IntervalReadings", "IntervalReading", "0..*", "0..*"],
+                        ["MeterReading", "MeterReading", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2441,7 +2813,6 @@ define
                 base.parse_element (/<cim:EndDeviceTiming.durationIndefinite>([\s\S]*?)<\/cim:EndDeviceTiming.durationIndefinite>/g, obj, "durationIndefinite", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDeviceTiming.interval>([\s\S]*?)<\/cim:EndDeviceTiming.interval>/g, obj, "interval", base.to_string, sub, context);
                 base.parse_attribute (/<cim:EndDeviceTiming.randomisation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "randomisation", sub, context);
-
                 var bucket = context.parsed.EndDeviceTiming;
                 if (null == bucket)
                    context.parsed.EndDeviceTiming = bucket = {};
@@ -2516,7 +2887,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2552,7 +2923,6 @@ define
                 base.parse_element (/<cim:EndDeviceAction.durationIndefinite>([\s\S]*?)<\/cim:EndDeviceAction.durationIndefinite>/g, obj, "durationIndefinite", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDeviceAction.startDateTime>([\s\S]*?)<\/cim:EndDeviceAction.startDateTime>/g, obj, "startDateTime", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:EndDeviceAction.EndDeviceControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceControl", sub, context);
-
                 var bucket = context.parsed.EndDeviceAction;
                 if (null == bucket)
                    context.parsed.EndDeviceAction = bucket = {};
@@ -2569,7 +2939,7 @@ define
                 base.export_element (obj, "EndDeviceAction", "duration", base.from_string, fields);
                 base.export_element (obj, "EndDeviceAction", "durationIndefinite", base.from_boolean, fields);
                 base.export_element (obj, "EndDeviceAction", "startDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "EndDeviceAction", "EndDeviceControl", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2628,7 +2998,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceControl", "EndDeviceControl", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2665,7 +3044,7 @@ define
                 base.parse_element (/<cim:BaseReading.source>([\s\S]*?)<\/cim:BaseReading.source>/g, obj, "source", base.to_string, sub, context);
                 base.parse_element (/<cim:BaseReading.timePeriod>([\s\S]*?)<\/cim:BaseReading.timePeriod>/g, obj, "timePeriod", base.to_string, sub, context);
                 base.parse_element (/<cim:BaseReading.value>([\s\S]*?)<\/cim:BaseReading.value>/g, obj, "value", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:BaseReading.ReadingQualities\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingQualities", sub, context);
                 var bucket = context.parsed.BaseReading;
                 if (null == bucket)
                    context.parsed.BaseReading = bucket = {};
@@ -2682,6 +3061,7 @@ define
                 base.export_element (obj, "BaseReading", "source", base.from_string, fields);
                 base.export_element (obj, "BaseReading", "timePeriod", base.from_string, fields);
                 base.export_element (obj, "BaseReading", "value", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "BaseReading", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2703,6 +3083,7 @@ define
                     {{#source}}<div><b>source</b>: {{source}}</div>{{/source}}
                     {{#timePeriod}}<div><b>timePeriod</b>: {{timePeriod}}</div>{{/timePeriod}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
+                    {{#ReadingQualities}}<div><b>ReadingQualities</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReadingQualities}}
                     </div>
                     <fieldset>
 
@@ -2713,11 +3094,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ReadingQualities) obj.ReadingQualities_string = obj.ReadingQualities.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ReadingQualities_string;
             }
 
             edit_template ()
@@ -2738,7 +3121,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReadingQualities", "ReadingQuality", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2772,11 +3164,11 @@ define
                 base.parse_element (/<cim:EndDeviceEvent.issuerID>([\s\S]*?)<\/cim:EndDeviceEvent.issuerID>/g, obj, "issuerID", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceEvent.issuerTrackingID>([\s\S]*?)<\/cim:EndDeviceEvent.issuerTrackingID>/g, obj, "issuerTrackingID", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceEvent.userID>([\s\S]*?)<\/cim:EndDeviceEvent.userID>/g, obj, "userID", base.to_string, sub, context);
+                base.parse_attributes (/<cim:EndDeviceEvent.EndDeviceEventDetails\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceEventDetails", sub, context);
                 base.parse_attribute (/<cim:EndDeviceEvent.EndDevice\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDevice", sub, context);
                 base.parse_attribute (/<cim:EndDeviceEvent.UsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
                 base.parse_attribute (/<cim:EndDeviceEvent.MeterReading\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterReading", sub, context);
                 base.parse_attribute (/<cim:EndDeviceEvent.EndDeviceEventType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceEventType", sub, context);
-
                 var bucket = context.parsed.EndDeviceEvent;
                 if (null == bucket)
                    context.parsed.EndDeviceEvent = bucket = {};
@@ -2792,10 +3184,11 @@ define
                 base.export_element (obj, "EndDeviceEvent", "issuerID", base.from_string, fields);
                 base.export_element (obj, "EndDeviceEvent", "issuerTrackingID", base.from_string, fields);
                 base.export_element (obj, "EndDeviceEvent", "userID", base.from_string, fields);
-                base.export_attribute (obj, "EndDeviceEvent", "EndDevice", fields);
-                base.export_attribute (obj, "EndDeviceEvent", "UsagePoint", fields);
-                base.export_attribute (obj, "EndDeviceEvent", "MeterReading", fields);
-                base.export_attribute (obj, "EndDeviceEvent", "EndDeviceEventType", fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceEvent", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceEvent", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceEvent", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceEvent", fields);
+                base.export_attribute (obj, "export_attribute", "EndDeviceEvent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2816,6 +3209,7 @@ define
                     {{#issuerID}}<div><b>issuerID</b>: {{issuerID}}</div>{{/issuerID}}
                     {{#issuerTrackingID}}<div><b>issuerTrackingID</b>: {{issuerTrackingID}}</div>{{/issuerTrackingID}}
                     {{#userID}}<div><b>userID</b>: {{userID}}</div>{{/userID}}
+                    {{#EndDeviceEventDetails}}<div><b>EndDeviceEventDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceEventDetails}}
                     {{#EndDevice}}<div><b>EndDevice</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDevice}}&quot;);})'>{{EndDevice}}</a></div>{{/EndDevice}}
                     {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
                     {{#MeterReading}}<div><b>MeterReading</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeterReading}}&quot;);})'>{{MeterReading}}</a></div>{{/MeterReading}}
@@ -2830,11 +3224,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EndDeviceEventDetails) obj.EndDeviceEventDetails_string = obj.EndDeviceEventDetails.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDeviceEventDetails_string;
             }
 
             edit_template ()
@@ -2858,7 +3254,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceEventDetails", "EndDeviceEventDetail", "0..*", "0..1"],
+                        ["EndDevice", "EndDevice", "0..1", "0..*"],
+                        ["UsagePoint", "UsagePoint", "0..1", "0..*"],
+                        ["MeterReading", "MeterReading", "0..1", "0..*"],
+                        ["EndDeviceEventType", "EndDeviceEventType", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2892,7 +3301,6 @@ define
                 base.parse_attribute (/<cim:ServiceMultiplier.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
                 base.parse_element (/<cim:ServiceMultiplier.value>([\s\S]*?)<\/cim:ServiceMultiplier.value>/g, obj, "value", base.to_float, sub, context);
                 base.parse_attribute (/<cim:ServiceMultiplier.UsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
-
                 var bucket = context.parsed.ServiceMultiplier;
                 if (null == bucket)
                    context.parsed.ServiceMultiplier = bucket = {};
@@ -2907,7 +3315,7 @@ define
 
                 base.export_element (obj, "ServiceMultiplier", "kind", base.from_string, fields);
                 base.export_element (obj, "ServiceMultiplier", "value", base.from_float, fields);
-                base.export_attribute (obj, "ServiceMultiplier", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attribute", "ServiceMultiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2964,7 +3372,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["UsagePoint", "UsagePoint", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3003,7 +3420,7 @@ define
                 base.parse_element (/<cim:PendingCalculation.scalarFloat>([\s\S]*?)<\/cim:PendingCalculation.scalarFloat>/g, obj, "scalarFloat", base.to_float, sub, context);
                 base.parse_element (/<cim:PendingCalculation.scalarNumerator>([\s\S]*?)<\/cim:PendingCalculation.scalarNumerator>/g, obj, "scalarNumerator", base.to_string, sub, context);
                 base.parse_attribute (/<cim:PendingCalculation.ReadingType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingType", sub, context);
-
+                base.parse_attributes (/<cim:PendingCalculation.IntervalBlocks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IntervalBlocks", sub, context);
                 var bucket = context.parsed.PendingCalculation;
                 if (null == bucket)
                    context.parsed.PendingCalculation = bucket = {};
@@ -3021,7 +3438,8 @@ define
                 base.export_element (obj, "PendingCalculation", "scalarDenominator", base.from_string, fields);
                 base.export_element (obj, "PendingCalculation", "scalarFloat", base.from_float, fields);
                 base.export_element (obj, "PendingCalculation", "scalarNumerator", base.from_string, fields);
-                base.export_attribute (obj, "PendingCalculation", "ReadingType", fields);
+                base.export_attribute (obj, "export_attribute", "PendingCalculation", fields);
+                base.export_attribute (obj, "export_attributes", "PendingCalculation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3045,6 +3463,7 @@ define
                     {{#scalarFloat}}<div><b>scalarFloat</b>: {{scalarFloat}}</div>{{/scalarFloat}}
                     {{#scalarNumerator}}<div><b>scalarNumerator</b>: {{scalarNumerator}}</div>{{/scalarNumerator}}
                     {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/IntervalBlocks}}
                     </div>
                     <fieldset>
 
@@ -3055,11 +3474,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.IntervalBlocks) obj.IntervalBlocks_string = obj.IntervalBlocks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.IntervalBlocks_string;
             }
 
             edit_template ()
@@ -3082,7 +3503,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReadingType", "ReadingType", "1", "0..1"],
+                        ["IntervalBlocks", "IntervalBlock", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3115,7 +3546,6 @@ define
                 obj.cls = "ReadingInterharmonic";
                 base.parse_element (/<cim:ReadingInterharmonic.denominator>([\s\S]*?)<\/cim:ReadingInterharmonic.denominator>/g, obj, "denominator", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingInterharmonic.numerator>([\s\S]*?)<\/cim:ReadingInterharmonic.numerator>/g, obj, "numerator", base.to_string, sub, context);
-
                 var bucket = context.parsed.ReadingInterharmonic;
                 if (null == bucket)
                    context.parsed.ReadingInterharmonic = bucket = {};
@@ -3182,7 +3612,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -3219,7 +3649,7 @@ define
                 base.parse_element (/<cim:EndDeviceControlType.eventOrAction>([\s\S]*?)<\/cim:EndDeviceControlType.eventOrAction>/g, obj, "eventOrAction", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceControlType.subDomain>([\s\S]*?)<\/cim:EndDeviceControlType.subDomain>/g, obj, "subDomain", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceControlType.type>([\s\S]*?)<\/cim:EndDeviceControlType.type>/g, obj, "type", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:EndDeviceControlType.EndDeviceControls\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceControls", sub, context);
                 var bucket = context.parsed.EndDeviceControlType;
                 if (null == bucket)
                    context.parsed.EndDeviceControlType = bucket = {};
@@ -3236,6 +3666,7 @@ define
                 base.export_element (obj, "EndDeviceControlType", "eventOrAction", base.from_string, fields);
                 base.export_element (obj, "EndDeviceControlType", "subDomain", base.from_string, fields);
                 base.export_element (obj, "EndDeviceControlType", "type", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceControlType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3257,6 +3688,7 @@ define
                     {{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
                     {{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceControls}}
                     </div>
                     <fieldset>
 
@@ -3267,11 +3699,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EndDeviceControls) obj.EndDeviceControls_string = obj.EndDeviceControls.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDeviceControls_string;
             }
 
             edit_template ()
@@ -3292,7 +3726,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceControls", "EndDeviceControl", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3326,7 +3769,9 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "UsagePointGroup";
                 base.parse_element (/<cim:UsagePointGroup.type>([\s\S]*?)<\/cim:UsagePointGroup.type>/g, obj, "type", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:UsagePointGroup.UsagePoints\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoints", sub, context);
+                base.parse_attributes (/<cim:UsagePointGroup.EndDeviceControls\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceControls", sub, context);
+                base.parse_attributes (/<cim:UsagePointGroup.DemandResponsePrograms\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DemandResponsePrograms", sub, context);
                 var bucket = context.parsed.UsagePointGroup;
                 if (null == bucket)
                    context.parsed.UsagePointGroup = bucket = {};
@@ -3340,6 +3785,9 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UsagePointGroup", "type", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "UsagePointGroup", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePointGroup", fields);
+                base.export_attribute (obj, "export_attributes", "UsagePointGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3358,6 +3806,9 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#UsagePoints}}<div><b>UsagePoints</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/UsagePoints}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceControls}}
+                    {{#DemandResponsePrograms}}<div><b>DemandResponsePrograms</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DemandResponsePrograms}}
                     </div>
                     <fieldset>
 
@@ -3368,11 +3819,17 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.UsagePoints) obj.UsagePoints_string = obj.UsagePoints.join ();
+                if (obj.EndDeviceControls) obj.EndDeviceControls_string = obj.EndDeviceControls.join ();
+                if (obj.DemandResponsePrograms) obj.DemandResponsePrograms_string = obj.DemandResponsePrograms.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.UsagePoints_string;
+                delete obj.EndDeviceControls_string;
+                delete obj.DemandResponsePrograms_string;
             }
 
             edit_template ()
@@ -3386,11 +3843,25 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls}}_string'{{/EndDeviceControls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DemandResponsePrograms'>DemandResponsePrograms: </label><div class='col-sm-8'><input id='DemandResponsePrograms' class='form-control' type='text'{{#DemandResponsePrograms}} value='{{DemandResponsePrograms}}_string'{{/DemandResponsePrograms}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
+                        ["EndDeviceControls", "EndDeviceControl", "0..*", "0..*"],
+                        ["DemandResponsePrograms", "DemandResponseProgram", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3424,7 +3895,6 @@ define
                 base.parse_attribute (/<cim:MeterServiceWork.Meter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Meter", sub, context);
                 base.parse_attribute (/<cim:MeterServiceWork.OldMeter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OldMeter", sub, context);
                 base.parse_attribute (/<cim:MeterServiceWork.UsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
-
                 var bucket = context.parsed.MeterServiceWork;
                 if (null == bucket)
                    context.parsed.MeterServiceWork = bucket = {};
@@ -3437,9 +3907,9 @@ define
             {
                 var fields = Work.Work.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "MeterServiceWork", "Meter", fields);
-                base.export_attribute (obj, "MeterServiceWork", "OldMeter", fields);
-                base.export_attribute (obj, "MeterServiceWork", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attribute", "MeterServiceWork", fields);
+                base.export_attribute (obj, "export_attribute", "MeterServiceWork", fields);
+                base.export_attribute (obj, "export_attribute", "MeterServiceWork", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3494,7 +3964,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Meter", "Meter", "0..1", "0..*"],
+                        ["OldMeter", "Meter", "0..1", "0..*"],
+                        ["UsagePoint", "UsagePoint", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3530,7 +4011,7 @@ define
                 base.parse_element (/<cim:ReadingQualityType.category>([\s\S]*?)<\/cim:ReadingQualityType.category>/g, obj, "category", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingQualityType.subCategory>([\s\S]*?)<\/cim:ReadingQualityType.subCategory>/g, obj, "subCategory", base.to_string, sub, context);
                 base.parse_element (/<cim:ReadingQualityType.systemId>([\s\S]*?)<\/cim:ReadingQualityType.systemId>/g, obj, "systemId", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ReadingQualityType.ReadingQualities\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingQualities", sub, context);
                 var bucket = context.parsed.ReadingQualityType;
                 if (null == bucket)
                    context.parsed.ReadingQualityType = bucket = {};
@@ -3546,6 +4027,7 @@ define
                 base.export_element (obj, "ReadingQualityType", "category", base.from_string, fields);
                 base.export_element (obj, "ReadingQualityType", "subCategory", base.from_string, fields);
                 base.export_element (obj, "ReadingQualityType", "systemId", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ReadingQualityType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3566,6 +4048,7 @@ define
                     {{#category}}<div><b>category</b>: {{category}}</div>{{/category}}
                     {{#subCategory}}<div><b>subCategory</b>: {{subCategory}}</div>{{/subCategory}}
                     {{#systemId}}<div><b>systemId</b>: {{systemId}}</div>{{/systemId}}
+                    {{#ReadingQualities}}<div><b>ReadingQualities</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ReadingQualities}}
                     </div>
                     <fieldset>
 
@@ -3576,11 +4059,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ReadingQualities) obj.ReadingQualities_string = obj.ReadingQualities.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ReadingQualities_string;
             }
 
             edit_template ()
@@ -3600,7 +4085,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReadingQualities", "ReadingQuality", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3637,7 +4131,7 @@ define
                 base.parse_element (/<cim:EndDeviceEventType.eventOrAction>([\s\S]*?)<\/cim:EndDeviceEventType.eventOrAction>/g, obj, "eventOrAction", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceEventType.subDomain>([\s\S]*?)<\/cim:EndDeviceEventType.subDomain>/g, obj, "subDomain", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceEventType.type>([\s\S]*?)<\/cim:EndDeviceEventType.type>/g, obj, "type", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:EndDeviceEventType.EndDeviceEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceEvents", sub, context);
                 var bucket = context.parsed.EndDeviceEventType;
                 if (null == bucket)
                    context.parsed.EndDeviceEventType = bucket = {};
@@ -3654,6 +4148,7 @@ define
                 base.export_element (obj, "EndDeviceEventType", "eventOrAction", base.from_string, fields);
                 base.export_element (obj, "EndDeviceEventType", "subDomain", base.from_string, fields);
                 base.export_element (obj, "EndDeviceEventType", "type", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceEventType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3675,6 +4170,7 @@ define
                     {{#eventOrAction}}<div><b>eventOrAction</b>: {{eventOrAction}}</div>{{/eventOrAction}}
                     {{#subDomain}}<div><b>subDomain</b>: {{subDomain}}</div>{{/subDomain}}
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
+                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceEvents}}
                     </div>
                     <fieldset>
 
@@ -3685,11 +4181,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EndDeviceEvents) obj.EndDeviceEvents_string = obj.EndDeviceEvents.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDeviceEvents_string;
             }
 
             edit_template ()
@@ -3710,7 +4208,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceEvents", "EndDeviceEvent", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3748,11 +4255,14 @@ define
                 base.parse_element (/<cim:EndDevice.isPan>([\s\S]*?)<\/cim:EndDevice.isPan>/g, obj, "isPan", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDevice.isVirtual>([\s\S]*?)<\/cim:EndDevice.isVirtual>/g, obj, "isVirtual", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDevice.timeZoneOffset>([\s\S]*?)<\/cim:EndDevice.timeZoneOffset>/g, obj, "timeZoneOffset", base.to_string, sub, context);
+                base.parse_attributes (/<cim:EndDevice.EndDeviceFunctions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceFunctions", sub, context);
                 base.parse_attribute (/<cim:EndDevice.EndDeviceInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceInfo", sub, context);
+                base.parse_attributes (/<cim:EndDevice.EndDeviceEvents\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceEvents", sub, context);
                 base.parse_attribute (/<cim:EndDevice.ServiceLocation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ServiceLocation", sub, context);
                 base.parse_attribute (/<cim:EndDevice.Customer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Customer", sub, context);
                 base.parse_attribute (/<cim:EndDevice.UsagePoint\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UsagePoint", sub, context);
-
+                base.parse_attributes (/<cim:EndDevice.EndDeviceGroups\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceGroups", sub, context);
+                base.parse_attributes (/<cim:EndDevice.EndDeviceControls\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDeviceControls", sub, context);
                 var bucket = context.parsed.EndDevice;
                 if (null == bucket)
                    context.parsed.EndDevice = bucket = {};
@@ -3770,10 +4280,14 @@ define
                 base.export_element (obj, "EndDevice", "isPan", base.from_boolean, fields);
                 base.export_element (obj, "EndDevice", "isVirtual", base.from_boolean, fields);
                 base.export_element (obj, "EndDevice", "timeZoneOffset", base.from_string, fields);
-                base.export_attribute (obj, "EndDevice", "EndDeviceInfo", fields);
-                base.export_attribute (obj, "EndDevice", "ServiceLocation", fields);
-                base.export_attribute (obj, "EndDevice", "Customer", fields);
-                base.export_attribute (obj, "EndDevice", "UsagePoint", fields);
+                base.export_attribute (obj, "export_attributes", "EndDevice", fields);
+                base.export_attribute (obj, "export_attribute", "EndDevice", fields);
+                base.export_attribute (obj, "export_attributes", "EndDevice", fields);
+                base.export_attribute (obj, "export_attribute", "EndDevice", fields);
+                base.export_attribute (obj, "export_attribute", "EndDevice", fields);
+                base.export_attribute (obj, "export_attribute", "EndDevice", fields);
+                base.export_attribute (obj, "export_attributes", "EndDevice", fields);
+                base.export_attribute (obj, "export_attributes", "EndDevice", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3796,10 +4310,14 @@ define
                     {{#isPan}}<div><b>isPan</b>: {{isPan}}</div>{{/isPan}}
                     {{#isVirtual}}<div><b>isVirtual</b>: {{isVirtual}}</div>{{/isVirtual}}
                     {{#timeZoneOffset}}<div><b>timeZoneOffset</b>: {{timeZoneOffset}}</div>{{/timeZoneOffset}}
+                    {{#EndDeviceFunctions}}<div><b>EndDeviceFunctions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceFunctions}}
                     {{#EndDeviceInfo}}<div><b>EndDeviceInfo</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EndDeviceInfo}}&quot;);})'>{{EndDeviceInfo}}</a></div>{{/EndDeviceInfo}}
+                    {{#EndDeviceEvents}}<div><b>EndDeviceEvents</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceEvents}}
                     {{#ServiceLocation}}<div><b>ServiceLocation</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ServiceLocation}}&quot;);})'>{{ServiceLocation}}</a></div>{{/ServiceLocation}}
                     {{#Customer}}<div><b>Customer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Customer}}&quot;);})'>{{Customer}}</a></div>{{/Customer}}
                     {{#UsagePoint}}<div><b>UsagePoint</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{UsagePoint}}&quot;);})'>{{UsagePoint}}</a></div>{{/UsagePoint}}
+                    {{#EndDeviceGroups}}<div><b>EndDeviceGroups</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceGroups}}
+                    {{#EndDeviceControls}}<div><b>EndDeviceControls</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDeviceControls}}
                     </div>
                     <fieldset>
 
@@ -3810,11 +4328,19 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EndDeviceFunctions) obj.EndDeviceFunctions_string = obj.EndDeviceFunctions.join ();
+                if (obj.EndDeviceEvents) obj.EndDeviceEvents_string = obj.EndDeviceEvents.join ();
+                if (obj.EndDeviceGroups) obj.EndDeviceGroups_string = obj.EndDeviceGroups.join ();
+                if (obj.EndDeviceControls) obj.EndDeviceControls_string = obj.EndDeviceControls.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDeviceFunctions_string;
+                delete obj.EndDeviceEvents_string;
+                delete obj.EndDeviceGroups_string;
+                delete obj.EndDeviceControls_string;
             }
 
             edit_template ()
@@ -3836,11 +4362,29 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ServiceLocation'>ServiceLocation: </label><div class='col-sm-8'><input id='ServiceLocation' class='form-control' type='text'{{#ServiceLocation}} value='{{ServiceLocation}}'{{/ServiceLocation}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Customer'>Customer: </label><div class='col-sm-8'><input id='Customer' class='form-control' type='text'{{#Customer}} value='{{Customer}}'{{/Customer}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoint'>UsagePoint: </label><div class='col-sm-8'><input id='UsagePoint' class='form-control' type='text'{{#UsagePoint}} value='{{UsagePoint}}'{{/UsagePoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceGroups'>EndDeviceGroups: </label><div class='col-sm-8'><input id='EndDeviceGroups' class='form-control' type='text'{{#EndDeviceGroups}} value='{{EndDeviceGroups}}_string'{{/EndDeviceGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EndDeviceControls'>EndDeviceControls: </label><div class='col-sm-8'><input id='EndDeviceControls' class='form-control' type='text'{{#EndDeviceControls}} value='{{EndDeviceControls}}_string'{{/EndDeviceControls}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDeviceFunctions", "EndDeviceFunction", "0..*", "0..1"],
+                        ["EndDeviceInfo", "EndDeviceInfo", "0..1", "0..*"],
+                        ["EndDeviceEvents", "EndDeviceEvent", "0..*", "0..1"],
+                        ["ServiceLocation", "ServiceLocation", "0..1", "0..*"],
+                        ["Customer", "Customer", "0..1", "0..*"],
+                        ["UsagePoint", "UsagePoint", "0..1", "0..*"],
+                        ["EndDeviceGroups", "EndDeviceGroup", "0..*", "0..*"],
+                        ["EndDeviceControls", "EndDeviceControl", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -3889,7 +4433,6 @@ define
                 base.parse_element (/<cim:EndDeviceCapability.temperatureCompensation>([\s\S]*?)<\/cim:EndDeviceCapability.temperatureCompensation>/g, obj, "temperatureCompensation", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDeviceCapability.textMessage>([\s\S]*?)<\/cim:EndDeviceCapability.textMessage>/g, obj, "textMessage", base.to_boolean, sub, context);
                 base.parse_element (/<cim:EndDeviceCapability.waterMetering>([\s\S]*?)<\/cim:EndDeviceCapability.waterMetering>/g, obj, "waterMetering", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.EndDeviceCapability;
                 if (null == bucket)
                    context.parsed.EndDeviceCapability = bucket = {};
@@ -4004,7 +4547,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4040,7 +4583,7 @@ define
                 base.parse_element (/<cim:EndDeviceInfo.phaseCount>([\s\S]*?)<\/cim:EndDeviceInfo.phaseCount>/g, obj, "phaseCount", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceInfo.ratedCurrent>([\s\S]*?)<\/cim:EndDeviceInfo.ratedCurrent>/g, obj, "ratedCurrent", base.to_string, sub, context);
                 base.parse_element (/<cim:EndDeviceInfo.ratedVoltage>([\s\S]*?)<\/cim:EndDeviceInfo.ratedVoltage>/g, obj, "ratedVoltage", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:EndDeviceInfo.EndDevices\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EndDevices", sub, context);
                 var bucket = context.parsed.EndDeviceInfo;
                 if (null == bucket)
                    context.parsed.EndDeviceInfo = bucket = {};
@@ -4058,6 +4601,7 @@ define
                 base.export_element (obj, "EndDeviceInfo", "phaseCount", base.from_string, fields);
                 base.export_element (obj, "EndDeviceInfo", "ratedCurrent", base.from_string, fields);
                 base.export_element (obj, "EndDeviceInfo", "ratedVoltage", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "EndDeviceInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4080,6 +4624,7 @@ define
                     {{#phaseCount}}<div><b>phaseCount</b>: {{phaseCount}}</div>{{/phaseCount}}
                     {{#ratedCurrent}}<div><b>ratedCurrent</b>: {{ratedCurrent}}</div>{{/ratedCurrent}}
                     {{#ratedVoltage}}<div><b>ratedVoltage</b>: {{ratedVoltage}}</div>{{/ratedVoltage}}
+                    {{#EndDevices}}<div><b>EndDevices</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EndDevices}}
                     </div>
                     <fieldset>
 
@@ -4090,11 +4635,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EndDevices) obj.EndDevices_string = obj.EndDevices.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EndDevices_string;
             }
 
             edit_template ()
@@ -4116,7 +4663,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EndDevices", "EndDevice", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4150,7 +4706,6 @@ define
                 obj = EndDeviceFunction.prototype.parse.call (this, context, sub);
                 obj.cls = "SimpleEndDeviceFunction";
                 base.parse_attribute (/<cim:SimpleEndDeviceFunction.kind\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "kind", sub, context);
-
                 var bucket = context.parsed.SimpleEndDeviceFunction;
                 if (null == bucket)
                    context.parsed.SimpleEndDeviceFunction = bucket = {};
@@ -4216,7 +4771,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4252,7 +4807,6 @@ define
                 base.parse_attribute (/<cim:ComFunction.direction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "direction", sub, context);
                 base.parse_attribute (/<cim:ComFunction.technology\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "technology", sub, context);
                 base.parse_attribute (/<cim:ComFunction.ComModule\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ComModule", sub, context);
-
                 var bucket = context.parsed.ComFunction;
                 if (null == bucket)
                    context.parsed.ComFunction = bucket = {};
@@ -4269,7 +4823,7 @@ define
                 base.export_element (obj, "ComFunction", "amrRouter", base.from_string, fields);
                 base.export_element (obj, "ComFunction", "direction", base.from_string, fields);
                 base.export_element (obj, "ComFunction", "technology", base.from_string, fields);
-                base.export_attribute (obj, "ComFunction", "ComModule", fields);
+                base.export_attribute (obj, "export_attribute", "ComFunction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4332,7 +4886,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ComModule", "ComModule", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4367,7 +4930,6 @@ define
                 base.parse_element (/<cim:PanDisplay.priority>([\s\S]*?)<\/cim:PanDisplay.priority>/g, obj, "priority", base.to_string, sub, context);
                 base.parse_element (/<cim:PanDisplay.textMessage>([\s\S]*?)<\/cim:PanDisplay.textMessage>/g, obj, "textMessage", base.to_string, sub, context);
                 base.parse_attribute (/<cim:PanDisplay.transmissionMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "transmissionMode", sub, context);
-
                 var bucket = context.parsed.PanDisplay;
                 if (null == bucket)
                    context.parsed.PanDisplay = bucket = {};
@@ -4442,7 +5004,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4485,7 +5047,6 @@ define
                 base.parse_element (/<cim:PanDemandResponse.enrollmentGroup>([\s\S]*?)<\/cim:PanDemandResponse.enrollmentGroup>/g, obj, "enrollmentGroup", base.to_string, sub, context);
                 base.parse_element (/<cim:PanDemandResponse.heatingOffset>([\s\S]*?)<\/cim:PanDemandResponse.heatingOffset>/g, obj, "heatingOffset", base.to_string, sub, context);
                 base.parse_element (/<cim:PanDemandResponse.heatingSetpoint>([\s\S]*?)<\/cim:PanDemandResponse.heatingSetpoint>/g, obj, "heatingSetpoint", base.to_string, sub, context);
-
                 var bucket = context.parsed.PanDemandResponse;
                 if (null == bucket)
                    context.parsed.PanDemandResponse = bucket = {};
@@ -4582,7 +5143,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -4614,7 +5175,7 @@ define
                 obj = EndDeviceAction.prototype.parse.call (this, context, sub);
                 obj.cls = "PanPricing";
                 base.parse_element (/<cim:PanPricing.providerID>([\s\S]*?)<\/cim:PanPricing.providerID>/g, obj, "providerID", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:PanPricing.PanPricingDetails\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PanPricingDetails", sub, context);
                 var bucket = context.parsed.PanPricing;
                 if (null == bucket)
                    context.parsed.PanPricing = bucket = {};
@@ -4628,6 +5189,7 @@ define
                 var fields = EndDeviceAction.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PanPricing", "providerID", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "PanPricing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4646,6 +5208,7 @@ define
                     + EndDeviceAction.prototype.template.call (this) +
                     `
                     {{#providerID}}<div><b>providerID</b>: {{providerID}}</div>{{/providerID}}
+                    {{#PanPricingDetails}}<div><b>PanPricingDetails</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/PanPricingDetails}}
                     </div>
                     <fieldset>
 
@@ -4656,11 +5219,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.PanPricingDetails) obj.PanPricingDetails_string = obj.PanPricingDetails.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.PanPricingDetails_string;
             }
 
             edit_template ()
@@ -4678,7 +5243,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PanPricingDetails", "PanPricingDetail", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4711,7 +5285,7 @@ define
 
                 obj = BaseReading.prototype.parse.call (this, context, sub);
                 obj.cls = "IntervalReading";
-
+                base.parse_attributes (/<cim:IntervalReading.IntervalBlocks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "IntervalBlocks", sub, context);
                 var bucket = context.parsed.IntervalReading;
                 if (null == bucket)
                    context.parsed.IntervalReading = bucket = {};
@@ -4724,6 +5298,7 @@ define
             {
                 var fields = BaseReading.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "IntervalReading", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4741,6 +5316,7 @@ define
                     `
                     + BaseReading.prototype.template.call (this) +
                     `
+                    {{#IntervalBlocks}}<div><b>IntervalBlocks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/IntervalBlocks}}
                     </div>
                     <fieldset>
 
@@ -4751,11 +5327,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.IntervalBlocks) obj.IntervalBlocks_string = obj.IntervalBlocks.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.IntervalBlocks_string;
             }
 
             edit_template ()
@@ -4768,11 +5346,21 @@ define
                     `
                     + BaseReading.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IntervalBlocks'>IntervalBlocks: </label><div class='col-sm-8'><input id='IntervalBlocks' class='form-control' type='text'{{#IntervalBlocks}} value='{{IntervalBlocks}}_string'{{/IntervalBlocks}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["IntervalBlocks", "IntervalBlock", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4807,7 +5395,7 @@ define
                 obj.cls = "Reading";
                 base.parse_attribute (/<cim:Reading.reason\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reason", sub, context);
                 base.parse_attribute (/<cim:Reading.ReadingType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ReadingType", sub, context);
-
+                base.parse_attributes (/<cim:Reading.MeterReadings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterReadings", sub, context);
                 var bucket = context.parsed.Reading;
                 if (null == bucket)
                    context.parsed.Reading = bucket = {};
@@ -4821,7 +5409,8 @@ define
                 var fields = BaseReading.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Reading", "reason", base.from_string, fields);
-                base.export_attribute (obj, "Reading", "ReadingType", fields);
+                base.export_attribute (obj, "export_attribute", "Reading", fields);
+                base.export_attribute (obj, "export_attributes", "Reading", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4841,6 +5430,7 @@ define
                     `
                     {{#reason}}<div><b>reason</b>: {{reason}}</div>{{/reason}}
                     {{#ReadingType}}<div><b>ReadingType</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ReadingType}}&quot;);})'>{{ReadingType}}</a></div>{{/ReadingType}}
+                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeterReadings}}
                     </div>
                     <fieldset>
 
@@ -4852,12 +5442,14 @@ define
             {
                 super.condition (obj);
                 obj.ReadingReasonKind = []; if (!obj.reason) obj.ReadingReasonKind.push ({ id: '', selected: true}); for (var property in ReadingReasonKind) obj.ReadingReasonKind.push ({ id: property, selected: obj.reason && obj.reason.endsWith ('.' + property)});
+                if (obj.MeterReadings) obj.MeterReadings_string = obj.MeterReadings.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.ReadingReasonKind;
+                delete obj.MeterReadings_string;
             }
 
             edit_template ()
@@ -4872,11 +5464,22 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><select id='reason' class='form-control'>{{#ReadingReasonKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ReadingReasonKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReadingType'>ReadingType: </label><div class='col-sm-8'><input id='ReadingType' class='form-control' type='text'{{#ReadingType}} value='{{ReadingType}}'{{/ReadingType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeterReadings'>MeterReadings: </label><div class='col-sm-8'><input id='MeterReadings' class='form-control' type='text'{{#MeterReadings}} value='{{MeterReadings}}_string'{{/MeterReadings}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ReadingType", "ReadingType", "1", "0..*"],
+                        ["MeterReadings", "MeterReading", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -4910,7 +5513,11 @@ define
                 obj = EndDevice.prototype.parse.call (this, context, sub);
                 obj.cls = "Meter";
                 base.parse_element (/<cim:Meter.formNumber>([\s\S]*?)<\/cim:Meter.formNumber>/g, obj, "formNumber", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:Meter.MeterServiceWorks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterServiceWorks", sub, context);
+                base.parse_attributes (/<cim:Meter.MeterReadings\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterReadings", sub, context);
+                base.parse_attributes (/<cim:Meter.MeterMultipliers\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterMultipliers", sub, context);
+                base.parse_attributes (/<cim:Meter.MeterReplacementWorks\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeterReplacementWorks", sub, context);
+                base.parse_attributes (/<cim:Meter.VendingTransactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VendingTransactions", sub, context);
                 var bucket = context.parsed.Meter;
                 if (null == bucket)
                    context.parsed.Meter = bucket = {};
@@ -4924,6 +5531,11 @@ define
                 var fields = EndDevice.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Meter", "formNumber", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "Meter", fields);
+                base.export_attribute (obj, "export_attributes", "Meter", fields);
+                base.export_attribute (obj, "export_attributes", "Meter", fields);
+                base.export_attribute (obj, "export_attributes", "Meter", fields);
+                base.export_attribute (obj, "export_attributes", "Meter", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4942,6 +5554,11 @@ define
                     + EndDevice.prototype.template.call (this) +
                     `
                     {{#formNumber}}<div><b>formNumber</b>: {{formNumber}}</div>{{/formNumber}}
+                    {{#MeterServiceWorks}}<div><b>MeterServiceWorks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeterServiceWorks}}
+                    {{#MeterReadings}}<div><b>MeterReadings</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeterReadings}}
+                    {{#MeterMultipliers}}<div><b>MeterMultipliers</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeterMultipliers}}
+                    {{#MeterReplacementWorks}}<div><b>MeterReplacementWorks</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MeterReplacementWorks}}
+                    {{#VendingTransactions}}<div><b>VendingTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/VendingTransactions}}
                     </div>
                     <fieldset>
 
@@ -4952,11 +5569,21 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MeterServiceWorks) obj.MeterServiceWorks_string = obj.MeterServiceWorks.join ();
+                if (obj.MeterReadings) obj.MeterReadings_string = obj.MeterReadings.join ();
+                if (obj.MeterMultipliers) obj.MeterMultipliers_string = obj.MeterMultipliers.join ();
+                if (obj.MeterReplacementWorks) obj.MeterReplacementWorks_string = obj.MeterReplacementWorks.join ();
+                if (obj.VendingTransactions) obj.VendingTransactions_string = obj.VendingTransactions.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MeterServiceWorks_string;
+                delete obj.MeterReadings_string;
+                delete obj.MeterMultipliers_string;
+                delete obj.MeterReplacementWorks_string;
+                delete obj.VendingTransactions_string;
             }
 
             edit_template ()
@@ -4974,7 +5601,20 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MeterServiceWorks", "MeterServiceWork", "0..*", "0..1"],
+                        ["MeterReadings", "MeterReading", "0..*", "0..1"],
+                        ["MeterMultipliers", "MeterMultiplier", "0..*", "0..1"],
+                        ["MeterReplacementWorks", "MeterServiceWork", "0..*", "0..1"],
+                        ["VendingTransactions", "Transaction", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

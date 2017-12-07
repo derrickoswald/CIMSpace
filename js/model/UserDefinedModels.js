@@ -41,7 +41,7 @@ define
                 obj = PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PFVArControllerType2UserDefined";
                 base.parse_element (/<cim:PFVArControllerType2UserDefined.proprietary>([\s\S]*?)<\/cim:PFVArControllerType2UserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:PFVArControllerType2UserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.PFVArControllerType2UserDefined;
                 if (null == bucket)
                    context.parsed.PFVArControllerType2UserDefined = bucket = {};
@@ -55,6 +55,7 @@ define
                 var fields = PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArControllerType2UserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "PFVArControllerType2UserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -73,6 +74,7 @@ define
                     + PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -83,11 +85,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -105,7 +109,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -137,7 +150,7 @@ define
                 obj = TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "TurbineLoadControllerUserDefined";
                 base.parse_element (/<cim:TurbineLoadControllerUserDefined.proprietary>([\s\S]*?)<\/cim:TurbineLoadControllerUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:TurbineLoadControllerUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.TurbineLoadControllerUserDefined;
                 if (null == bucket)
                    context.parsed.TurbineLoadControllerUserDefined = bucket = {};
@@ -151,6 +164,7 @@ define
                 var fields = TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TurbineLoadControllerUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "TurbineLoadControllerUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -169,6 +183,7 @@ define
                     + TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -179,11 +194,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -201,7 +218,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -233,7 +259,7 @@ define
                 obj = VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "VoltageAdjusterUserDefined";
                 base.parse_element (/<cim:VoltageAdjusterUserDefined.proprietary>([\s\S]*?)<\/cim:VoltageAdjusterUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:VoltageAdjusterUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.VoltageAdjusterUserDefined;
                 if (null == bucket)
                    context.parsed.VoltageAdjusterUserDefined = bucket = {};
@@ -247,6 +273,7 @@ define
                 var fields = VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VoltageAdjusterUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "VoltageAdjusterUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -265,6 +292,7 @@ define
                     + VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -275,11 +303,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -297,7 +327,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -329,7 +368,7 @@ define
                 obj = TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "TurbineGovernorUserDefined";
                 base.parse_element (/<cim:TurbineGovernorUserDefined.proprietary>([\s\S]*?)<\/cim:TurbineGovernorUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:TurbineGovernorUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.TurbineGovernorUserDefined;
                 if (null == bucket)
                    context.parsed.TurbineGovernorUserDefined = bucket = {};
@@ -343,6 +382,7 @@ define
                 var fields = TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "TurbineGovernorUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "TurbineGovernorUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -361,6 +401,7 @@ define
                     + TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -371,11 +412,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -393,7 +436,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -425,7 +477,7 @@ define
                 obj = LoadDynamics.LoadDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "LoadUserDefined";
                 base.parse_element (/<cim:LoadUserDefined.proprietary>([\s\S]*?)<\/cim:LoadUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:LoadUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.LoadUserDefined;
                 if (null == bucket)
                    context.parsed.LoadUserDefined = bucket = {};
@@ -439,6 +491,7 @@ define
                 var fields = LoadDynamics.LoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "LoadUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "LoadUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -457,6 +510,7 @@ define
                     + LoadDynamics.LoadDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -467,11 +521,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -489,7 +545,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -521,7 +586,7 @@ define
                 obj = ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "ExcitationSystemUserDefined";
                 base.parse_element (/<cim:ExcitationSystemUserDefined.proprietary>([\s\S]*?)<\/cim:ExcitationSystemUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:ExcitationSystemUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.ExcitationSystemUserDefined;
                 if (null == bucket)
                    context.parsed.ExcitationSystemUserDefined = bucket = {};
@@ -535,6 +600,7 @@ define
                 var fields = ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ExcitationSystemUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "ExcitationSystemUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -553,6 +619,7 @@ define
                     + ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -563,11 +630,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -585,7 +654,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -617,7 +695,7 @@ define
                 obj = WindDynamics.WindPlantDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "WindPlantUserDefined";
                 base.parse_element (/<cim:WindPlantUserDefined.proprietary>([\s\S]*?)<\/cim:WindPlantUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:WindPlantUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.WindPlantUserDefined;
                 if (null == bucket)
                    context.parsed.WindPlantUserDefined = bucket = {};
@@ -631,6 +709,7 @@ define
                 var fields = WindDynamics.WindPlantDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindPlantUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "WindPlantUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -649,6 +728,7 @@ define
                     + WindDynamics.WindPlantDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -659,11 +739,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -681,7 +763,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -713,7 +804,7 @@ define
                 obj = PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PowerSystemStabilizerUserDefined";
                 base.parse_element (/<cim:PowerSystemStabilizerUserDefined.proprietary>([\s\S]*?)<\/cim:PowerSystemStabilizerUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:PowerSystemStabilizerUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.PowerSystemStabilizerUserDefined;
                 if (null == bucket)
                    context.parsed.PowerSystemStabilizerUserDefined = bucket = {};
@@ -727,6 +818,7 @@ define
                 var fields = PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PowerSystemStabilizerUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "PowerSystemStabilizerUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -745,6 +837,7 @@ define
                     + PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -755,11 +848,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -777,7 +872,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -809,7 +913,7 @@ define
                 obj = WindDynamics.WindTurbineType3or4Dynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "WindType3or4UserDefined";
                 base.parse_element (/<cim:WindType3or4UserDefined.proprietary>([\s\S]*?)<\/cim:WindType3or4UserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:WindType3or4UserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.WindType3or4UserDefined;
                 if (null == bucket)
                    context.parsed.WindType3or4UserDefined = bucket = {};
@@ -823,6 +927,7 @@ define
                 var fields = WindDynamics.WindTurbineType3or4Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindType3or4UserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "WindType3or4UserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -841,6 +946,7 @@ define
                     + WindDynamics.WindTurbineType3or4Dynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -851,11 +957,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -873,7 +981,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -905,7 +1022,7 @@ define
                 obj = AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "AsynchronousMachineUserDefined";
                 base.parse_element (/<cim:AsynchronousMachineUserDefined.proprietary>([\s\S]*?)<\/cim:AsynchronousMachineUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:AsynchronousMachineUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.AsynchronousMachineUserDefined;
                 if (null == bucket)
                    context.parsed.AsynchronousMachineUserDefined = bucket = {};
@@ -919,6 +1036,7 @@ define
                 var fields = AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "AsynchronousMachineUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "AsynchronousMachineUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -937,6 +1055,7 @@ define
                     + AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -947,11 +1066,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -969,7 +1090,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1001,7 +1131,7 @@ define
                 obj = PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "PFVArControllerType1UserDefined";
                 base.parse_element (/<cim:PFVArControllerType1UserDefined.proprietary>([\s\S]*?)<\/cim:PFVArControllerType1UserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:PFVArControllerType1UserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.PFVArControllerType1UserDefined;
                 if (null == bucket)
                    context.parsed.PFVArControllerType1UserDefined = bucket = {};
@@ -1015,6 +1145,7 @@ define
                 var fields = PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PFVArControllerType1UserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "PFVArControllerType1UserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1033,6 +1164,7 @@ define
                     + PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1043,11 +1175,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -1065,7 +1199,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1097,7 +1240,7 @@ define
                 obj = MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "MechanicalLoadUserDefined";
                 base.parse_element (/<cim:MechanicalLoadUserDefined.proprietary>([\s\S]*?)<\/cim:MechanicalLoadUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:MechanicalLoadUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.MechanicalLoadUserDefined;
                 if (null == bucket)
                    context.parsed.MechanicalLoadUserDefined = bucket = {};
@@ -1111,6 +1254,7 @@ define
                 var fields = MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "MechanicalLoadUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "MechanicalLoadUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1129,6 +1273,7 @@ define
                     + MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1139,11 +1284,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -1161,7 +1308,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1193,7 +1349,7 @@ define
                 obj = VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "VoltageCompensatorUserDefined";
                 base.parse_element (/<cim:VoltageCompensatorUserDefined.proprietary>([\s\S]*?)<\/cim:VoltageCompensatorUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:VoltageCompensatorUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.VoltageCompensatorUserDefined;
                 if (null == bucket)
                    context.parsed.VoltageCompensatorUserDefined = bucket = {};
@@ -1207,6 +1363,7 @@ define
                 var fields = VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "VoltageCompensatorUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "VoltageCompensatorUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1225,6 +1382,7 @@ define
                     + VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1235,11 +1393,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -1257,7 +1417,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1289,7 +1458,7 @@ define
                 obj = UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "UnderexcitationLimiterUserDefined";
                 base.parse_element (/<cim:UnderexcitationLimiterUserDefined.proprietary>([\s\S]*?)<\/cim:UnderexcitationLimiterUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:UnderexcitationLimiterUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.UnderexcitationLimiterUserDefined;
                 if (null == bucket)
                    context.parsed.UnderexcitationLimiterUserDefined = bucket = {};
@@ -1303,6 +1472,7 @@ define
                 var fields = UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UnderexcitationLimiterUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "UnderexcitationLimiterUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1321,6 +1491,7 @@ define
                     + UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1331,11 +1502,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -1353,7 +1526,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1385,7 +1567,7 @@ define
                 obj = WindDynamics.WindTurbineType1or2Dynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "WindType1or2UserDefined";
                 base.parse_element (/<cim:WindType1or2UserDefined.proprietary>([\s\S]*?)<\/cim:WindType1or2UserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:WindType1or2UserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.WindType1or2UserDefined;
                 if (null == bucket)
                    context.parsed.WindType1or2UserDefined = bucket = {};
@@ -1399,6 +1581,7 @@ define
                 var fields = WindDynamics.WindTurbineType1or2Dynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindType1or2UserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "WindType1or2UserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1417,6 +1600,7 @@ define
                     + WindDynamics.WindTurbineType1or2Dynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1427,11 +1611,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -1449,7 +1635,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1481,7 +1676,7 @@ define
                 obj = OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "OverexcitationLimiterUserDefined";
                 base.parse_element (/<cim:OverexcitationLimiterUserDefined.proprietary>([\s\S]*?)<\/cim:OverexcitationLimiterUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:OverexcitationLimiterUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.OverexcitationLimiterUserDefined;
                 if (null == bucket)
                    context.parsed.OverexcitationLimiterUserDefined = bucket = {};
@@ -1495,6 +1690,7 @@ define
                 var fields = OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OverexcitationLimiterUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "OverexcitationLimiterUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1513,6 +1709,7 @@ define
                     + OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1523,11 +1720,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -1545,7 +1744,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1600,7 +1808,6 @@ define
                 base.parse_attribute (/<cim:ProprietaryParameterDynamics.WindPlantUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindPlantUserDefined", sub, context);
                 base.parse_attribute (/<cim:ProprietaryParameterDynamics.UnderexcitationLimiterUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "UnderexcitationLimiterUserDefined", sub, context);
                 base.parse_attribute (/<cim:ProprietaryParameterDynamics.OverexcitationLimiterUserDefined\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "OverexcitationLimiterUserDefined", sub, context);
-
                 var bucket = context.parsed.ProprietaryParameterDynamics;
                 if (null == bucket)
                    context.parsed.ProprietaryParameterDynamics = bucket = {};
@@ -1617,24 +1824,24 @@ define
                 base.export_element (obj, "ProprietaryParameterDynamics", "floatParameterValue", base.from_float, fields);
                 base.export_element (obj, "ProprietaryParameterDynamics", "integerParameterValue", base.from_string, fields);
                 base.export_element (obj, "ProprietaryParameterDynamics", "parameterNumber", base.from_string, fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "TurbineGovernorUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "PFVArControllerType2UserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "WindType1or2UserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "VoltageAdjusterUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "TurbineLoadControllerUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "DiscontinuousExcitationControlUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "PowerSystemStabilizerUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "ExcitationSystemUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "LoadUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "AsynchronousMachineUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "VoltageCompensatorUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "SynchronousMachineUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "MechanicalLoadUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "WindType3or4UserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "PFVArControllerType1UserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "WindPlantUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "UnderexcitationLimiterUserDefined", fields);
-                base.export_attribute (obj, "ProprietaryParameterDynamics", "OverexcitationLimiterUserDefined", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1727,7 +1934,33 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TurbineGovernorUserDefined", "TurbineGovernorUserDefined", "0..1", "0..*"],
+                        ["PFVArControllerType2UserDefined", "PFVArControllerType2UserDefined", "0..1", "0..*"],
+                        ["WindType1or2UserDefined", "WindType1or2UserDefined", "0..1", "0..*"],
+                        ["VoltageAdjusterUserDefined", "VoltageAdjusterUserDefined", "0..1", "0..*"],
+                        ["TurbineLoadControllerUserDefined", "TurbineLoadControllerUserDefined", "0..1", "0..*"],
+                        ["DiscontinuousExcitationControlUserDefined", "DiscontinuousExcitationControlUserDefined", "0..1", "0..*"],
+                        ["PowerSystemStabilizerUserDefined", "PowerSystemStabilizerUserDefined", "0..1", "0..*"],
+                        ["ExcitationSystemUserDefined", "ExcitationSystemUserDefined", "0..1", "0..*"],
+                        ["LoadUserDefined", "LoadUserDefined", "0..1", "0..*"],
+                        ["AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", "0..1", "0..*"],
+                        ["VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", "0..1", "0..*"],
+                        ["SynchronousMachineUserDefined", "SynchronousMachineUserDefined", "0..1", "0..*"],
+                        ["MechanicalLoadUserDefined", "MechanicalLoadUserDefined", "0..1", "0..*"],
+                        ["WindType3or4UserDefined", "WindType3or4UserDefined", "0..1", "0..*"],
+                        ["PFVArControllerType1UserDefined", "PFVArControllerType1UserDefined", "0..1", "0..*"],
+                        ["WindPlantUserDefined", "WindPlantUserDefined", "0..1", "0..*"],
+                        ["UnderexcitationLimiterUserDefined", "UnderexcitationLimiterUserDefined", "0..1", "0..*"],
+                        ["OverexcitationLimiterUserDefined", "OverexcitationLimiterUserDefined", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1759,7 +1992,7 @@ define
                 obj = SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "SynchronousMachineUserDefined";
                 base.parse_element (/<cim:SynchronousMachineUserDefined.proprietary>([\s\S]*?)<\/cim:SynchronousMachineUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:SynchronousMachineUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.SynchronousMachineUserDefined;
                 if (null == bucket)
                    context.parsed.SynchronousMachineUserDefined = bucket = {};
@@ -1773,6 +2006,7 @@ define
                 var fields = SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SynchronousMachineUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "SynchronousMachineUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1791,6 +2025,7 @@ define
                     + SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1801,11 +2036,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -1823,7 +2060,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1855,7 +2101,7 @@ define
                 obj = DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.parse.call (this, context, sub);
                 obj.cls = "DiscontinuousExcitationControlUserDefined";
                 base.parse_element (/<cim:DiscontinuousExcitationControlUserDefined.proprietary>([\s\S]*?)<\/cim:DiscontinuousExcitationControlUserDefined.proprietary>/g, obj, "proprietary", base.to_boolean, sub, context);
-
+                base.parse_attributes (/<cim:DiscontinuousExcitationControlUserDefined.ProprietaryParameterDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProprietaryParameterDynamics", sub, context);
                 var bucket = context.parsed.DiscontinuousExcitationControlUserDefined;
                 if (null == bucket)
                    context.parsed.DiscontinuousExcitationControlUserDefined = bucket = {};
@@ -1869,6 +2115,7 @@ define
                 var fields = DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DiscontinuousExcitationControlUserDefined", "proprietary", base.from_boolean, fields);
+                base.export_attribute (obj, "export_attributes", "DiscontinuousExcitationControlUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1887,6 +2134,7 @@ define
                     + DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.template.call (this) +
                     `
                     {{#proprietary}}<div><b>proprietary</b>: {{proprietary}}</div>{{/proprietary}}
+                    {{#ProprietaryParameterDynamics}}<div><b>ProprietaryParameterDynamics</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProprietaryParameterDynamics}}
                     </div>
                     <fieldset>
 
@@ -1897,11 +2145,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ProprietaryParameterDynamics) obj.ProprietaryParameterDynamics_string = obj.ProprietaryParameterDynamics.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ProprietaryParameterDynamics_string;
             }
 
             edit_template ()
@@ -1919,7 +2169,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

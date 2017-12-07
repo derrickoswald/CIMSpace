@@ -36,7 +36,6 @@ define
 
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "StateVariable";
-
                 var bucket = context.parsed.StateVariable;
                 if (null == bucket)
                    context.parsed.StateVariable = bucket = {};
@@ -97,7 +96,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -133,7 +132,6 @@ define
                 base.parse_element (/<cim:SvInjection.pInjection>([\s\S]*?)<\/cim:SvInjection.pInjection>/g, obj, "pInjection", base.to_string, sub, context);
                 base.parse_element (/<cim:SvInjection.qInjection>([\s\S]*?)<\/cim:SvInjection.qInjection>/g, obj, "qInjection", base.to_string, sub, context);
                 base.parse_attribute (/<cim:SvInjection.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context);
-
                 var bucket = context.parsed.SvInjection;
                 if (null == bucket)
                    context.parsed.SvInjection = bucket = {};
@@ -148,7 +146,7 @@ define
 
                 base.export_element (obj, "SvInjection", "pInjection", base.from_string, fields);
                 base.export_element (obj, "SvInjection", "qInjection", base.from_string, fields);
-                base.export_attribute (obj, "SvInjection", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "SvInjection", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -203,7 +201,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TopologicalNode", "TopologicalNode", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -236,7 +243,6 @@ define
                 obj.cls = "SvStatus";
                 base.parse_element (/<cim:SvStatus.inService>([\s\S]*?)<\/cim:SvStatus.inService>/g, obj, "inService", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:SvStatus.ConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ConductingEquipment", sub, context);
-
                 var bucket = context.parsed.SvStatus;
                 if (null == bucket)
                    context.parsed.SvStatus = bucket = {};
@@ -250,7 +256,7 @@ define
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvStatus", "inService", base.from_boolean, fields);
-                base.export_attribute (obj, "SvStatus", "ConductingEquipment", fields);
+                base.export_attribute (obj, "export_attribute", "SvStatus", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -303,7 +309,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ConductingEquipment", "ConductingEquipment", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -338,7 +353,6 @@ define
                 obj.cls = "SvTapStep";
                 base.parse_element (/<cim:SvTapStep.position>([\s\S]*?)<\/cim:SvTapStep.position>/g, obj, "position", base.to_float, sub, context);
                 base.parse_attribute (/<cim:SvTapStep.TapChanger\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TapChanger", sub, context);
-
                 var bucket = context.parsed.SvTapStep;
                 if (null == bucket)
                    context.parsed.SvTapStep = bucket = {};
@@ -352,7 +366,7 @@ define
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvTapStep", "position", base.from_float, fields);
-                base.export_attribute (obj, "SvTapStep", "TapChanger", fields);
+                base.export_attribute (obj, "export_attribute", "SvTapStep", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -405,7 +419,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TapChanger", "TapChanger", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -438,7 +461,6 @@ define
                 obj.cls = "SvShuntCompensatorSections";
                 base.parse_element (/<cim:SvShuntCompensatorSections.sections>([\s\S]*?)<\/cim:SvShuntCompensatorSections.sections>/g, obj, "sections", base.to_float, sub, context);
                 base.parse_attribute (/<cim:SvShuntCompensatorSections.ShuntCompensator\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ShuntCompensator", sub, context);
-
                 var bucket = context.parsed.SvShuntCompensatorSections;
                 if (null == bucket)
                    context.parsed.SvShuntCompensatorSections = bucket = {};
@@ -452,7 +474,7 @@ define
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SvShuntCompensatorSections", "sections", base.from_float, fields);
-                base.export_attribute (obj, "SvShuntCompensatorSections", "ShuntCompensator", fields);
+                base.export_attribute (obj, "export_attribute", "SvShuntCompensatorSections", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -505,7 +527,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ShuntCompensator", "ShuntCompensator", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -541,7 +572,6 @@ define
                 base.parse_element (/<cim:SvPowerFlow.p>([\s\S]*?)<\/cim:SvPowerFlow.p>/g, obj, "p", base.to_string, sub, context);
                 base.parse_element (/<cim:SvPowerFlow.q>([\s\S]*?)<\/cim:SvPowerFlow.q>/g, obj, "q", base.to_string, sub, context);
                 base.parse_attribute (/<cim:SvPowerFlow.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
-
                 var bucket = context.parsed.SvPowerFlow;
                 if (null == bucket)
                    context.parsed.SvPowerFlow = bucket = {};
@@ -556,7 +586,7 @@ define
 
                 base.export_element (obj, "SvPowerFlow", "p", base.from_string, fields);
                 base.export_element (obj, "SvPowerFlow", "q", base.from_string, fields);
-                base.export_attribute (obj, "SvPowerFlow", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "SvPowerFlow", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -611,7 +641,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Terminal", "Terminal", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -645,7 +684,6 @@ define
                 base.parse_element (/<cim:SvVoltage.angle>([\s\S]*?)<\/cim:SvVoltage.angle>/g, obj, "angle", base.to_string, sub, context);
                 base.parse_element (/<cim:SvVoltage.v>([\s\S]*?)<\/cim:SvVoltage.v>/g, obj, "v", base.to_string, sub, context);
                 base.parse_attribute (/<cim:SvVoltage.TopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TopologicalNode", sub, context);
-
                 var bucket = context.parsed.SvVoltage;
                 if (null == bucket)
                    context.parsed.SvVoltage = bucket = {};
@@ -660,7 +698,7 @@ define
 
                 base.export_element (obj, "SvVoltage", "angle", base.from_string, fields);
                 base.export_element (obj, "SvVoltage", "v", base.from_string, fields);
-                base.export_attribute (obj, "SvVoltage", "TopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "SvVoltage", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -715,7 +753,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TopologicalNode", "TopologicalNode", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

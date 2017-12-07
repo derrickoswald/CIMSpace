@@ -36,9 +36,9 @@ define
                 obj.cls = "TieLine";
                 base.parse_attribute (/<cim:TieLine.SideA_SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SideA_SubControlArea", sub, context);
                 base.parse_attribute (/<cim:TieLine.EnergyTransaction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyTransaction", sub, context);
+                base.parse_attributes (/<cim:TieLine.ParentOfA\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentOfA", sub, context);
                 base.parse_attribute (/<cim:TieLine.ParentOfB\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ParentOfB", sub, context);
                 base.parse_attribute (/<cim:TieLine.SideB_SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SideB_SubControlArea", sub, context);
-
                 var bucket = context.parsed.TieLine;
                 if (null == bucket)
                    context.parsed.TieLine = bucket = {};
@@ -51,10 +51,11 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "TieLine", "SideA_SubControlArea", fields);
-                base.export_attribute (obj, "TieLine", "EnergyTransaction", fields);
-                base.export_attribute (obj, "TieLine", "ParentOfB", fields);
-                base.export_attribute (obj, "TieLine", "SideB_SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "TieLine", fields);
+                base.export_attribute (obj, "export_attribute", "TieLine", fields);
+                base.export_attribute (obj, "export_attributes", "TieLine", fields);
+                base.export_attribute (obj, "export_attribute", "TieLine", fields);
+                base.export_attribute (obj, "export_attribute", "TieLine", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -74,6 +75,7 @@ define
                     `
                     {{#SideA_SubControlArea}}<div><b>SideA_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SideA_SubControlArea}}&quot;);})'>{{SideA_SubControlArea}}</a></div>{{/SideA_SubControlArea}}
                     {{#EnergyTransaction}}<div><b>EnergyTransaction</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{EnergyTransaction}}&quot;);})'>{{EnergyTransaction}}</a></div>{{/EnergyTransaction}}
+                    {{#ParentOfA}}<div><b>ParentOfA</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ParentOfA}}
                     {{#ParentOfB}}<div><b>ParentOfB</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ParentOfB}}&quot;);})'>{{ParentOfB}}</a></div>{{/ParentOfB}}
                     {{#SideB_SubControlArea}}<div><b>SideB_SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{SideB_SubControlArea}}&quot;);})'>{{SideB_SubControlArea}}</a></div>{{/SideB_SubControlArea}}
                     </div>
@@ -86,11 +88,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.ParentOfA) obj.ParentOfA_string = obj.ParentOfA.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.ParentOfA_string;
             }
 
             edit_template ()
@@ -105,13 +109,27 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='SideA_SubControlArea'>SideA_SubControlArea: </label><div class='col-sm-8'><input id='SideA_SubControlArea' class='form-control' type='text'{{#SideA_SubControlArea}} value='{{SideA_SubControlArea}}'{{/SideA_SubControlArea}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentOfA'>ParentOfA: </label><div class='col-sm-8'><input id='ParentOfA' class='form-control' type='text'{{#ParentOfA}} value='{{ParentOfA}}_string'{{/ParentOfA}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentOfB'>ParentOfB: </label><div class='col-sm-8'><input id='ParentOfB' class='form-control' type='text'{{#ParentOfB}} value='{{ParentOfB}}'{{/ParentOfB}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='SideB_SubControlArea'>SideB_SubControlArea: </label><div class='col-sm-8'><input id='SideB_SubControlArea' class='form-control' type='text'{{#SideB_SubControlArea}} value='{{SideB_SubControlArea}}'{{/SideB_SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SideA_SubControlArea", "SubControlArea", "1", "0..*"],
+                        ["EnergyTransaction", "EnergyTransaction", "0..1", "0..*"],
+                        ["ParentOfA", "ControlAreaOperator", "0..*", "0..*"],
+                        ["ParentOfB", "CustomerConsumer", "0..1", "0..*"],
+                        ["SideB_SubControlArea", "SubControlArea", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -145,7 +163,6 @@ define
                 obj = ExternalInputs.Profile.prototype.parse.call (this, context, sub);
                 obj.cls = "CurtailmentProfile";
                 base.parse_attribute (/<cim:CurtailmentProfile.EnergyTransaction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyTransaction", sub, context);
-
                 var bucket = context.parsed.CurtailmentProfile;
                 if (null == bucket)
                    context.parsed.CurtailmentProfile = bucket = {};
@@ -158,7 +175,7 @@ define
             {
                 var fields = ExternalInputs.Profile.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "CurtailmentProfile", "EnergyTransaction", fields);
+                base.export_attribute (obj, "export_attribute", "CurtailmentProfile", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -209,7 +226,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyTransaction", "EnergyTransaction", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -240,7 +266,8 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "TransmissionCorridor";
-
+                base.parse_attributes (/<cim:TransmissionCorridor.TransmissionRightOfWays\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionRightOfWays", sub, context);
+                base.parse_attributes (/<cim:TransmissionCorridor.ContainedIn\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ContainedIn", sub, context);
                 var bucket = context.parsed.TransmissionCorridor;
                 if (null == bucket)
                    context.parsed.TransmissionCorridor = bucket = {};
@@ -253,6 +280,8 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "TransmissionCorridor", fields);
+                base.export_attribute (obj, "export_attributes", "TransmissionCorridor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -270,6 +299,8 @@ define
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
+                    {{#TransmissionRightOfWays}}<div><b>TransmissionRightOfWays</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/TransmissionRightOfWays}}
+                    {{#ContainedIn}}<div><b>ContainedIn</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ContainedIn}}
                     </div>
                     <fieldset>
 
@@ -280,11 +311,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.TransmissionRightOfWays) obj.TransmissionRightOfWays_string = obj.TransmissionRightOfWays.join ();
+                if (obj.ContainedIn) obj.ContainedIn_string = obj.ContainedIn.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.TransmissionRightOfWays_string;
+                delete obj.ContainedIn_string;
             }
 
             edit_template ()
@@ -301,7 +336,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["TransmissionRightOfWays", "TransmissionRightOfWay", "1..*", "1"],
+                        ["ContainedIn", "TransmissionPath", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -335,7 +380,6 @@ define
                 obj = base.Element.prototype.parse.call (this, context, sub);
                 obj.cls = "InadvertentAccount";
                 base.parse_attribute (/<cim:InadvertentAccount.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
-
                 var bucket = context.parsed.InadvertentAccount;
                 if (null == bucket)
                    context.parsed.InadvertentAccount = bucket = {};
@@ -348,7 +392,7 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "InadvertentAccount", "SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "InadvertentAccount", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -399,7 +443,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SubControlArea", "SubControlArea", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -432,7 +485,6 @@ define
                 obj.cls = "LossProfile";
                 base.parse_attribute (/<cim:LossProfile.HasLoss_\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "HasLoss_", sub, context);
                 base.parse_attribute (/<cim:LossProfile.EnergyTransaction\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyTransaction", sub, context);
-
                 var bucket = context.parsed.LossProfile;
                 if (null == bucket)
                    context.parsed.LossProfile = bucket = {};
@@ -445,8 +497,8 @@ define
             {
                 var fields = ExternalInputs.Profile.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "LossProfile", "HasLoss_", fields);
-                base.export_attribute (obj, "LossProfile", "EnergyTransaction", fields);
+                base.export_attribute (obj, "export_attribute", "LossProfile", fields);
+                base.export_attribute (obj, "export_attribute", "LossProfile", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -499,7 +551,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["HasLoss_", "TransmissionProvider", "0..1", "0..*"],
+                        ["EnergyTransaction", "EnergyTransaction", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -533,7 +595,6 @@ define
                 base.parse_element (/<cim:CurrentScheduledInterchange.currentNetTieMW>([\s\S]*?)<\/cim:CurrentScheduledInterchange.currentNetTieMW>/g, obj, "currentNetTieMW", base.to_float, sub, context);
                 base.parse_element (/<cim:CurrentScheduledInterchange.useEmergencySchedule>([\s\S]*?)<\/cim:CurrentScheduledInterchange.useEmergencySchedule>/g, obj, "useEmergencySchedule", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:CurrentScheduledInterchange.InternalControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InternalControlArea", sub, context);
-
                 var bucket = context.parsed.CurrentScheduledInterchange;
                 if (null == bucket)
                    context.parsed.CurrentScheduledInterchange = bucket = {};
@@ -548,7 +609,7 @@ define
 
                 base.export_element (obj, "CurrentScheduledInterchange", "currentNetTieMW", base.from_float, fields);
                 base.export_element (obj, "CurrentScheduledInterchange", "useEmergencySchedule", base.from_boolean, fields);
-                base.export_attribute (obj, "CurrentScheduledInterchange", "InternalControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "CurrentScheduledInterchange", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -603,7 +664,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["InternalControlArea", "InternalControlArea", "1", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -638,7 +708,6 @@ define
                 base.parse_element (/<cim:CurrentEmergencyScheduledInterchange.emergencyScheduleStartTime>([\s\S]*?)<\/cim:CurrentEmergencyScheduledInterchange.emergencyScheduleStartTime>/g, obj, "emergencyScheduleStartTime", base.to_datetime, sub, context);
                 base.parse_element (/<cim:CurrentEmergencyScheduledInterchange.emergencyScheduleRampTime>([\s\S]*?)<\/cim:CurrentEmergencyScheduledInterchange.emergencyScheduleRampTime>/g, obj, "emergencyScheduleRampTime", base.to_string, sub, context);
                 base.parse_attribute (/<cim:CurrentEmergencyScheduledInterchange.InternalControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InternalControlArea", sub, context);
-
                 var bucket = context.parsed.CurrentEmergencyScheduledInterchange;
                 if (null == bucket)
                    context.parsed.CurrentEmergencyScheduledInterchange = bucket = {};
@@ -654,7 +723,7 @@ define
                 base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleMW", base.from_float, fields);
                 base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleStartTime", base.from_datetime, fields);
                 base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleRampTime", base.from_string, fields);
-                base.export_attribute (obj, "CurrentEmergencyScheduledInterchange", "InternalControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "CurrentEmergencyScheduledInterchange", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -711,7 +780,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["InternalControlArea", "InternalControlArea", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -748,7 +826,7 @@ define
                 base.parse_element (/<cim:AreaReserveSpec.primaryReserveReqt>([\s\S]*?)<\/cim:AreaReserveSpec.primaryReserveReqt>/g, obj, "primaryReserveReqt", base.to_string, sub, context);
                 base.parse_element (/<cim:AreaReserveSpec.raiseRegMarginReqt>([\s\S]*?)<\/cim:AreaReserveSpec.raiseRegMarginReqt>/g, obj, "raiseRegMarginReqt", base.to_string, sub, context);
                 base.parse_element (/<cim:AreaReserveSpec.spinningReserveReqt>([\s\S]*?)<\/cim:AreaReserveSpec.spinningReserveReqt>/g, obj, "spinningReserveReqt", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:AreaReserveSpec.SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "SubControlArea", sub, context);
                 var bucket = context.parsed.AreaReserveSpec;
                 if (null == bucket)
                    context.parsed.AreaReserveSpec = bucket = {};
@@ -767,6 +845,7 @@ define
                 base.export_element (obj, "AreaReserveSpec", "primaryReserveReqt", base.from_string, fields);
                 base.export_element (obj, "AreaReserveSpec", "raiseRegMarginReqt", base.from_string, fields);
                 base.export_element (obj, "AreaReserveSpec", "spinningReserveReqt", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "AreaReserveSpec", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -790,6 +869,7 @@ define
                     {{#primaryReserveReqt}}<div><b>primaryReserveReqt</b>: {{primaryReserveReqt}}</div>{{/primaryReserveReqt}}
                     {{#raiseRegMarginReqt}}<div><b>raiseRegMarginReqt</b>: {{raiseRegMarginReqt}}</div>{{/raiseRegMarginReqt}}
                     {{#spinningReserveReqt}}<div><b>spinningReserveReqt</b>: {{spinningReserveReqt}}</div>{{/spinningReserveReqt}}
+                    {{#SubControlArea}}<div><b>SubControlArea</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/SubControlArea}}
                     </div>
                     <fieldset>
 
@@ -800,11 +880,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.SubControlArea) obj.SubControlArea_string = obj.SubControlArea.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.SubControlArea_string;
             }
 
             edit_template ()
@@ -827,7 +909,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["SubControlArea", "SubControlArea", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -865,7 +956,6 @@ define
                 base.parse_attribute (/<cim:DynamicSchedule.MktMeasurement\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktMeasurement", sub, context);
                 base.parse_attribute (/<cim:DynamicSchedule.Receive_SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Receive_SubControlArea", sub, context);
                 base.parse_attribute (/<cim:DynamicSchedule.Send_SubControlArea\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Send_SubControlArea", sub, context);
-
                 var bucket = context.parsed.DynamicSchedule;
                 if (null == bucket)
                    context.parsed.DynamicSchedule = bucket = {};
@@ -880,9 +970,9 @@ define
 
                 base.export_element (obj, "DynamicSchedule", "dynSchedSignRev", base.from_boolean, fields);
                 base.export_element (obj, "DynamicSchedule", "dynSchedStatus", base.from_string, fields);
-                base.export_attribute (obj, "DynamicSchedule", "MktMeasurement", fields);
-                base.export_attribute (obj, "DynamicSchedule", "Receive_SubControlArea", fields);
-                base.export_attribute (obj, "DynamicSchedule", "Send_SubControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "DynamicSchedule", fields);
+                base.export_attribute (obj, "export_attribute", "DynamicSchedule", fields);
+                base.export_attribute (obj, "export_attribute", "DynamicSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -941,7 +1031,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktMeasurement", "MktMeasurement", "1", "0..*"],
+                        ["Receive_SubControlArea", "SubControlArea", "1", "0..*"],
+                        ["Send_SubControlArea", "SubControlArea", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -972,9 +1073,10 @@ define
 
                 obj = Common.Agreement.prototype.parse.call (this, context, sub);
                 obj.cls = "EnergyProduct";
+                base.parse_attributes (/<cim:EnergyProduct.EnergyTransactions\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "EnergyTransactions", sub, context);
+                base.parse_attributes (/<cim:EnergyProduct.ResoldBy_Marketer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ResoldBy_Marketer", sub, context);
                 base.parse_attribute (/<cim:EnergyProduct.GenerationProvider\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "GenerationProvider", sub, context);
                 base.parse_attribute (/<cim:EnergyProduct.TitleHeldBy_Marketer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TitleHeldBy_Marketer", sub, context);
-
                 var bucket = context.parsed.EnergyProduct;
                 if (null == bucket)
                    context.parsed.EnergyProduct = bucket = {};
@@ -987,8 +1089,10 @@ define
             {
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "EnergyProduct", "GenerationProvider", fields);
-                base.export_attribute (obj, "EnergyProduct", "TitleHeldBy_Marketer", fields);
+                base.export_attribute (obj, "export_attributes", "EnergyProduct", fields);
+                base.export_attribute (obj, "export_attributes", "EnergyProduct", fields);
+                base.export_attribute (obj, "export_attribute", "EnergyProduct", fields);
+                base.export_attribute (obj, "export_attribute", "EnergyProduct", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1006,6 +1110,8 @@ define
                     `
                     + Common.Agreement.prototype.template.call (this) +
                     `
+                    {{#EnergyTransactions}}<div><b>EnergyTransactions</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/EnergyTransactions}}
+                    {{#ResoldBy_Marketer}}<div><b>ResoldBy_Marketer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ResoldBy_Marketer}}
                     {{#GenerationProvider}}<div><b>GenerationProvider</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{GenerationProvider}}&quot;);})'>{{GenerationProvider}}</a></div>{{/GenerationProvider}}
                     {{#TitleHeldBy_Marketer}}<div><b>TitleHeldBy_Marketer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TitleHeldBy_Marketer}}&quot;);})'>{{TitleHeldBy_Marketer}}</a></div>{{/TitleHeldBy_Marketer}}
                     </div>
@@ -1018,11 +1124,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.EnergyTransactions) obj.EnergyTransactions_string = obj.EnergyTransactions.join ();
+                if (obj.ResoldBy_Marketer) obj.ResoldBy_Marketer_string = obj.ResoldBy_Marketer.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.EnergyTransactions_string;
+                delete obj.ResoldBy_Marketer_string;
             }
 
             edit_template ()
@@ -1035,13 +1145,26 @@ define
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResoldBy_Marketer'>ResoldBy_Marketer: </label><div class='col-sm-8'><input id='ResoldBy_Marketer' class='form-control' type='text'{{#ResoldBy_Marketer}} value='{{ResoldBy_Marketer}}_string'{{/ResoldBy_Marketer}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenerationProvider'>GenerationProvider: </label><div class='col-sm-8'><input id='GenerationProvider' class='form-control' type='text'{{#GenerationProvider}} value='{{GenerationProvider}}'{{/GenerationProvider}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='TitleHeldBy_Marketer'>TitleHeldBy_Marketer: </label><div class='col-sm-8'><input id='TitleHeldBy_Marketer' class='form-control' type='text'{{#TitleHeldBy_Marketer}} value='{{TitleHeldBy_Marketer}}'{{/TitleHeldBy_Marketer}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["EnergyTransactions", "EnergyTransaction", "1..*", "1"],
+                        ["ResoldBy_Marketer", "Marketer", "0..*", "0..*"],
+                        ["GenerationProvider", "GenerationProvider", "1", "1..*"],
+                        ["TitleHeldBy_Marketer", "Marketer", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1072,8 +1195,8 @@ define
 
                 obj = Core.PowerSystemResource.prototype.parse.call (this, context, sub);
                 obj.cls = "TransmissionRightOfWay";
+                base.parse_attributes (/<cim:TransmissionRightOfWay.MktLine\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MktLine", sub, context);
                 base.parse_attribute (/<cim:TransmissionRightOfWay.TransmissionCorridor\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "TransmissionCorridor", sub, context);
-
                 var bucket = context.parsed.TransmissionRightOfWay;
                 if (null == bucket)
                    context.parsed.TransmissionRightOfWay = bucket = {};
@@ -1086,7 +1209,8 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "TransmissionRightOfWay", "TransmissionCorridor", fields);
+                base.export_attribute (obj, "export_attributes", "TransmissionRightOfWay", fields);
+                base.export_attribute (obj, "export_attribute", "TransmissionRightOfWay", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1104,6 +1228,7 @@ define
                     `
                     + Core.PowerSystemResource.prototype.template.call (this) +
                     `
+                    {{#MktLine}}<div><b>MktLine</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MktLine}}
                     {{#TransmissionCorridor}}<div><b>TransmissionCorridor</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{TransmissionCorridor}}&quot;);})'>{{TransmissionCorridor}}</a></div>{{/TransmissionCorridor}}
                     </div>
                     <fieldset>
@@ -1115,11 +1240,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MktLine) obj.MktLine_string = obj.MktLine.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MktLine_string;
             }
 
             edit_template ()
@@ -1137,7 +1264,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MktLine", "MktLine", "0..*", "0..1"],
+                        ["TransmissionCorridor", "TransmissionCorridor", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1170,8 +1307,8 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "InternalControlArea";
+                base.parse_attributes (/<cim:InternalControlArea.CurrentEmergencySI\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CurrentEmergencySI", sub, context);
                 base.parse_attribute (/<cim:InternalControlArea.CurrentScheduledInterchange\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CurrentScheduledInterchange", sub, context);
-
                 var bucket = context.parsed.InternalControlArea;
                 if (null == bucket)
                    context.parsed.InternalControlArea = bucket = {};
@@ -1184,7 +1321,8 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "InternalControlArea", "CurrentScheduledInterchange", fields);
+                base.export_attribute (obj, "export_attributes", "InternalControlArea", fields);
+                base.export_attribute (obj, "export_attribute", "InternalControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1202,6 +1340,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#CurrentEmergencySI}}<div><b>CurrentEmergencySI</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/CurrentEmergencySI}}
                     {{#CurrentScheduledInterchange}}<div><b>CurrentScheduledInterchange</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{CurrentScheduledInterchange}}&quot;);})'>{{CurrentScheduledInterchange}}</a></div>{{/CurrentScheduledInterchange}}
                     </div>
                     <fieldset>
@@ -1213,11 +1352,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.CurrentEmergencySI) obj.CurrentEmergencySI_string = obj.CurrentEmergencySI.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.CurrentEmergencySI_string;
             }
 
             edit_template ()
@@ -1235,7 +1376,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CurrentEmergencySI", "CurrentEmergencyScheduledInterchange", "0..*", "1"],
+                        ["CurrentScheduledInterchange", "CurrentScheduledInterchange", "0..1", "1"]
+                    ]
+                );
+            }
         }
 
         return (

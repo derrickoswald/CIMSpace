@@ -35,7 +35,6 @@ define
                 base.parse_element (/<cim:SecurityConstraintsClearing.mwLimit>([\s\S]*?)<\/cim:SecurityConstraintsClearing.mwLimit>/g, obj, "mwLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:SecurityConstraintsClearing.mwFlow>([\s\S]*?)<\/cim:SecurityConstraintsClearing.mwFlow>/g, obj, "mwFlow", base.to_string, sub, context);
                 base.parse_element (/<cim:SecurityConstraintsClearing.shadowPrice>([\s\S]*?)<\/cim:SecurityConstraintsClearing.shadowPrice>/g, obj, "shadowPrice", base.to_string, sub, context);
-
                 var bucket = context.parsed.SecurityConstraintsClearing;
                 if (null == bucket)
                    context.parsed.SecurityConstraintsClearing = bucket = {};
@@ -105,7 +104,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -139,7 +138,7 @@ define
                 base.parse_element (/<cim:MarketCaseClearing.caseType>([\s\S]*?)<\/cim:MarketCaseClearing.caseType>/g, obj, "caseType", base.to_string, sub, context);
                 base.parse_element (/<cim:MarketCaseClearing.postedDate>([\s\S]*?)<\/cim:MarketCaseClearing.postedDate>/g, obj, "postedDate", base.to_datetime, sub, context);
                 base.parse_element (/<cim:MarketCaseClearing.modifiedDate>([\s\S]*?)<\/cim:MarketCaseClearing.modifiedDate>/g, obj, "modifiedDate", base.to_datetime, sub, context);
-
+                base.parse_attributes (/<cim:MarketCaseClearing.MarketProductClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MarketProductClearing", sub, context);
                 var bucket = context.parsed.MarketCaseClearing;
                 if (null == bucket)
                    context.parsed.MarketCaseClearing = bucket = {};
@@ -155,6 +154,7 @@ define
                 base.export_element (obj, "MarketCaseClearing", "caseType", base.from_string, fields);
                 base.export_element (obj, "MarketCaseClearing", "postedDate", base.from_datetime, fields);
                 base.export_element (obj, "MarketCaseClearing", "modifiedDate", base.from_datetime, fields);
+                base.export_attribute (obj, "export_attributes", "MarketCaseClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -175,6 +175,7 @@ define
                     {{#caseType}}<div><b>caseType</b>: {{caseType}}</div>{{/caseType}}
                     {{#postedDate}}<div><b>postedDate</b>: {{postedDate}}</div>{{/postedDate}}
                     {{#modifiedDate}}<div><b>modifiedDate</b>: {{modifiedDate}}</div>{{/modifiedDate}}
+                    {{#MarketProductClearing}}<div><b>MarketProductClearing</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/MarketProductClearing}}
                     </div>
                     <fieldset>
 
@@ -185,11 +186,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.MarketProductClearing) obj.MarketProductClearing_string = obj.MarketProductClearing.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.MarketProductClearing_string;
             }
 
             edit_template ()
@@ -209,7 +212,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["MarketProductClearing", "AncillaryServiceClearing", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -242,7 +254,7 @@ define
 
                 obj = MarketPlan.MarketFactors.prototype.parse.call (this, context, sub);
                 obj.cls = "InterTieClearing";
-
+                base.parse_attributes (/<cim:InterTieClearing.InterTieResults\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieResults", sub, context);
                 var bucket = context.parsed.InterTieClearing;
                 if (null == bucket)
                    context.parsed.InterTieClearing = bucket = {};
@@ -255,6 +267,7 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "InterTieClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -272,6 +285,7 @@ define
                     `
                     + MarketPlan.MarketFactors.prototype.template.call (this) +
                     `
+                    {{#InterTieResults}}<div><b>InterTieResults</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/InterTieResults}}
                     </div>
                     <fieldset>
 
@@ -282,11 +296,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.InterTieResults) obj.InterTieResults_string = obj.InterTieResults.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.InterTieResults_string;
             }
 
             edit_template ()
@@ -303,7 +319,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["InterTieResults", "InterTieResults", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -340,7 +365,6 @@ define
                 base.parse_element (/<cim:InterTieResults.baseMW>([\s\S]*?)<\/cim:InterTieResults.baseMW>/g, obj, "baseMW", base.to_float, sub, context);
                 base.parse_attribute (/<cim:InterTieResults.InterTieClearing\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "InterTieClearing", sub, context);
                 base.parse_attribute (/<cim:InterTieResults.Flowgate\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Flowgate", sub, context);
-
                 var bucket = context.parsed.InterTieResults;
                 if (null == bucket)
                    context.parsed.InterTieResults = bucket = {};
@@ -355,8 +379,8 @@ define
 
                 base.export_element (obj, "InterTieResults", "clearedValue", base.from_float, fields);
                 base.export_element (obj, "InterTieResults", "baseMW", base.from_float, fields);
-                base.export_attribute (obj, "InterTieResults", "InterTieClearing", fields);
-                base.export_attribute (obj, "InterTieResults", "Flowgate", fields);
+                base.export_attribute (obj, "export_attribute", "InterTieResults", fields);
+                base.export_attribute (obj, "export_attribute", "InterTieResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -413,7 +437,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["InterTieClearing", "InterTieClearing", "0..1", "0..*"],
+                        ["Flowgate", "Flowgate", "1", "1..*"]
+                    ]
+                );
+            }
         }
 
         return (

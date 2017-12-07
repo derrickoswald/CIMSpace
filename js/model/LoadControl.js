@@ -50,7 +50,6 @@ define
                 base.parse_element (/<cim:RemoteConnectDisconnectInfo.needsVoltageLimitCheck>([\s\S]*?)<\/cim:RemoteConnectDisconnectInfo.needsVoltageLimitCheck>/g, obj, "needsVoltageLimitCheck", base.to_boolean, sub, context);
                 base.parse_element (/<cim:RemoteConnectDisconnectInfo.powerLimit>([\s\S]*?)<\/cim:RemoteConnectDisconnectInfo.powerLimit>/g, obj, "powerLimit", base.to_string, sub, context);
                 base.parse_element (/<cim:RemoteConnectDisconnectInfo.usePushbutton>([\s\S]*?)<\/cim:RemoteConnectDisconnectInfo.usePushbutton>/g, obj, "usePushbutton", base.to_boolean, sub, context);
-
                 var bucket = context.parsed.RemoteConnectDisconnectInfo;
                 if (null == bucket)
                    context.parsed.RemoteConnectDisconnectInfo = bucket = {};
@@ -147,7 +146,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -186,7 +185,7 @@ define
                 base.parse_element (/<cim:ConnectDisconnectFunction.isRemoteAutoDisconOp>([\s\S]*?)<\/cim:ConnectDisconnectFunction.isRemoteAutoDisconOp>/g, obj, "isRemoteAutoDisconOp", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ConnectDisconnectFunction.isRemoteAutoReconOp>([\s\S]*?)<\/cim:ConnectDisconnectFunction.isRemoteAutoReconOp>/g, obj, "isRemoteAutoReconOp", base.to_boolean, sub, context);
                 base.parse_element (/<cim:ConnectDisconnectFunction.rcdInfo>([\s\S]*?)<\/cim:ConnectDisconnectFunction.rcdInfo>/g, obj, "rcdInfo", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:ConnectDisconnectFunction.Switches\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Switches", sub, context);
                 var bucket = context.parsed.ConnectDisconnectFunction;
                 if (null == bucket)
                    context.parsed.ConnectDisconnectFunction = bucket = {};
@@ -207,6 +206,7 @@ define
                 base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoDisconOp", base.from_boolean, fields);
                 base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoReconOp", base.from_boolean, fields);
                 base.export_element (obj, "ConnectDisconnectFunction", "rcdInfo", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "ConnectDisconnectFunction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -232,6 +232,7 @@ define
                     {{#isRemoteAutoDisconOp}}<div><b>isRemoteAutoDisconOp</b>: {{isRemoteAutoDisconOp}}</div>{{/isRemoteAutoDisconOp}}
                     {{#isRemoteAutoReconOp}}<div><b>isRemoteAutoReconOp</b>: {{isRemoteAutoReconOp}}</div>{{/isRemoteAutoReconOp}}
                     {{#rcdInfo}}<div><b>rcdInfo</b>: {{rcdInfo}}</div>{{/rcdInfo}}
+                    {{#Switches}}<div><b>Switches</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Switches}}
                     </div>
                     <fieldset>
 
@@ -242,11 +243,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.Switches) obj.Switches_string = obj.Switches.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.Switches_string;
             }
 
             edit_template ()
@@ -267,11 +270,21 @@ define
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isRemoteAutoDisconOp'>isRemoteAutoDisconOp: </label><div class='col-sm-8'><input id='isRemoteAutoDisconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoDisconOp}} checked{{/isRemoteAutoDisconOp}}></div></div>
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isRemoteAutoReconOp'>isRemoteAutoReconOp: </label><div class='col-sm-8'><input id='isRemoteAutoReconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoReconOp}} checked{{/isRemoteAutoReconOp}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='rcdInfo'>rcdInfo: </label><div class='col-sm-8'><input id='rcdInfo' class='form-control' type='text'{{#rcdInfo}} value='{{rcdInfo}}'{{/rcdInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Switches'>Switches: </label><div class='col-sm-8'><input id='Switches' class='form-control' type='text'{{#Switches}} value='{{Switches}}_string'{{/Switches}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Switches", "Switch", "0..*", "0..*"]
+                    ]
+                );
+            }
         }
 
         return (

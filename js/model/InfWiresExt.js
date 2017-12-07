@@ -34,7 +34,6 @@ define
                 obj.cls = "SVC";
                 base.parse_element (/<cim:SVC.capacitiveRating>([\s\S]*?)<\/cim:SVC.capacitiveRating>/g, obj, "capacitiveRating", base.to_string, sub, context);
                 base.parse_element (/<cim:SVC.inductiveRating>([\s\S]*?)<\/cim:SVC.inductiveRating>/g, obj, "inductiveRating", base.to_string, sub, context);
-
                 var bucket = context.parsed.SVC;
                 if (null == bucket)
                    context.parsed.SVC = bucket = {};
@@ -101,7 +100,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -150,7 +149,6 @@ define
                 base.parse_element (/<cim:ShuntCompensatorControl.switchOperationCycle>([\s\S]*?)<\/cim:ShuntCompensatorControl.switchOperationCycle>/g, obj, "switchOperationCycle", base.to_string, sub, context);
                 base.parse_element (/<cim:ShuntCompensatorControl.vRegLineLine>([\s\S]*?)<\/cim:ShuntCompensatorControl.vRegLineLine>/g, obj, "vRegLineLine", base.to_boolean, sub, context);
                 base.parse_attribute (/<cim:ShuntCompensatorControl.ShuntCompensatorInfo\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ShuntCompensatorInfo", sub, context);
-
                 var bucket = context.parsed.ShuntCompensatorControl;
                 if (null == bucket)
                    context.parsed.ShuntCompensatorControl = bucket = {};
@@ -180,7 +178,7 @@ define
                 base.export_element (obj, "ShuntCompensatorControl", "sensingPhaseCode", base.from_string, fields);
                 base.export_element (obj, "ShuntCompensatorControl", "switchOperationCycle", base.from_string, fields);
                 base.export_element (obj, "ShuntCompensatorControl", "vRegLineLine", base.from_boolean, fields);
-                base.export_attribute (obj, "ShuntCompensatorControl", "ShuntCompensatorInfo", fields);
+                base.export_attribute (obj, "export_attribute", "ShuntCompensatorControl", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -265,7 +263,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["ShuntCompensatorInfo", "ShuntCompensatorInfo", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

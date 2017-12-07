@@ -106,8 +106,8 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "DCNode";
                 base.parse_attribute (/<cim:DCNode.DCTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTopologicalNode", sub, context);
+                base.parse_attributes (/<cim:DCNode.DCTerminals\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTerminals", sub, context);
                 base.parse_attribute (/<cim:DCNode.DCEquipmentContainer\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCEquipmentContainer", sub, context);
-
                 var bucket = context.parsed.DCNode;
                 if (null == bucket)
                    context.parsed.DCNode = bucket = {};
@@ -120,8 +120,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "DCNode", "DCTopologicalNode", fields);
-                base.export_attribute (obj, "DCNode", "DCEquipmentContainer", fields);
+                base.export_attribute (obj, "export_attribute", "DCNode", fields);
+                base.export_attribute (obj, "export_attributes", "DCNode", fields);
+                base.export_attribute (obj, "export_attribute", "DCNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -140,6 +141,7 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCTopologicalNode}}&quot;);})'>{{DCTopologicalNode}}</a></div>{{/DCTopologicalNode}}
+                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCTerminals}}
                     {{#DCEquipmentContainer}}<div><b>DCEquipmentContainer</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DCEquipmentContainer}}&quot;);})'>{{DCEquipmentContainer}}</a></div>{{/DCEquipmentContainer}}
                     </div>
                     <fieldset>
@@ -151,11 +153,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCTerminals) obj.DCTerminals_string = obj.DCTerminals.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCTerminals_string;
             }
 
             edit_template ()
@@ -174,7 +178,18 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*"],
+                        ["DCTerminals", "DCBaseTerminal", "0..*", "0..1"],
+                        ["DCEquipmentContainer", "DCEquipmentContainer", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -207,7 +222,7 @@ define
 
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "DCTopologicalIsland";
-
+                base.parse_attributes (/<cim:DCTopologicalIsland.DCTopologicalNodes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTopologicalNodes", sub, context);
                 var bucket = context.parsed.DCTopologicalIsland;
                 if (null == bucket)
                    context.parsed.DCTopologicalIsland = bucket = {};
@@ -220,6 +235,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "DCTopologicalIsland", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -237,6 +253,7 @@ define
                     `
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
+                    {{#DCTopologicalNodes}}<div><b>DCTopologicalNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCTopologicalNodes}}
                     </div>
                     <fieldset>
 
@@ -247,11 +264,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCTopologicalNodes) obj.DCTopologicalNodes_string = obj.DCTopologicalNodes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCTopologicalNodes_string;
             }
 
             edit_template ()
@@ -268,7 +287,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCTopologicalNodes", "DCTopologicalNode", "1..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -303,7 +331,6 @@ define
                 obj.cls = "DCBaseTerminal";
                 base.parse_attribute (/<cim:DCBaseTerminal.DCNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCNode", sub, context);
                 base.parse_attribute (/<cim:DCBaseTerminal.DCTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTopologicalNode", sub, context);
-
                 var bucket = context.parsed.DCBaseTerminal;
                 if (null == bucket)
                    context.parsed.DCBaseTerminal = bucket = {};
@@ -316,8 +343,8 @@ define
             {
                 var fields = Core.ACDCTerminal.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "DCBaseTerminal", "DCNode", fields);
-                base.export_attribute (obj, "DCBaseTerminal", "DCTopologicalNode", fields);
+                base.export_attribute (obj, "export_attribute", "DCBaseTerminal", fields);
+                base.export_attribute (obj, "export_attribute", "DCBaseTerminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -370,7 +397,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCNode", "DCNode", "0..1", "0..*"],
+                        ["DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -418,8 +455,8 @@ define
                 base.parse_element (/<cim:ACDCConverter.numberOfValves>([\s\S]*?)<\/cim:ACDCConverter.numberOfValves>/g, obj, "numberOfValves", base.to_string, sub, context);
                 base.parse_element (/<cim:ACDCConverter.p>([\s\S]*?)<\/cim:ACDCConverter.p>/g, obj, "p", base.to_string, sub, context);
                 base.parse_element (/<cim:ACDCConverter.q>([\s\S]*?)<\/cim:ACDCConverter.q>/g, obj, "q", base.to_string, sub, context);
+                base.parse_attributes (/<cim:ACDCConverter.DCTerminals\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTerminals", sub, context);
                 base.parse_attribute (/<cim:ACDCConverter.PccTerminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PccTerminal", sub, context);
-
                 var bucket = context.parsed.ACDCConverter;
                 if (null == bucket)
                    context.parsed.ACDCConverter = bucket = {};
@@ -449,7 +486,8 @@ define
                 base.export_element (obj, "ACDCConverter", "numberOfValves", base.from_string, fields);
                 base.export_element (obj, "ACDCConverter", "p", base.from_string, fields);
                 base.export_element (obj, "ACDCConverter", "q", base.from_string, fields);
-                base.export_attribute (obj, "ACDCConverter", "PccTerminal", fields);
+                base.export_attribute (obj, "export_attributes", "ACDCConverter", fields);
+                base.export_attribute (obj, "export_attribute", "ACDCConverter", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -484,6 +522,7 @@ define
                     {{#numberOfValves}}<div><b>numberOfValves</b>: {{numberOfValves}}</div>{{/numberOfValves}}
                     {{#p}}<div><b>p</b>: {{p}}</div>{{/p}}
                     {{#q}}<div><b>q</b>: {{q}}</div>{{/q}}
+                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCTerminals}}
                     {{#PccTerminal}}<div><b>PccTerminal</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{PccTerminal}}&quot;);})'>{{PccTerminal}}</a></div>{{/PccTerminal}}
                     </div>
                     <fieldset>
@@ -495,11 +534,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCTerminals) obj.DCTerminals_string = obj.DCTerminals.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCTerminals_string;
             }
 
             edit_template ()
@@ -534,7 +575,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCTerminals", "ACDCConverterDCTerminal", "0..*", "1"],
+                        ["PccTerminal", "Terminal", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         class PerLengthDCLineParameter extends Wires.PerLengthLineParameter
@@ -564,7 +615,7 @@ define
                 base.parse_element (/<cim:PerLengthDCLineParameter.capacitance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.capacitance>/g, obj, "capacitance", base.to_string, sub, context);
                 base.parse_element (/<cim:PerLengthDCLineParameter.inductance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.inductance>/g, obj, "inductance", base.to_string, sub, context);
                 base.parse_element (/<cim:PerLengthDCLineParameter.resistance>([\s\S]*?)<\/cim:PerLengthDCLineParameter.resistance>/g, obj, "resistance", base.to_string, sub, context);
-
+                base.parse_attributes (/<cim:PerLengthDCLineParameter.DCLineSegments\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCLineSegments", sub, context);
                 var bucket = context.parsed.PerLengthDCLineParameter;
                 if (null == bucket)
                    context.parsed.PerLengthDCLineParameter = bucket = {};
@@ -580,6 +631,7 @@ define
                 base.export_element (obj, "PerLengthDCLineParameter", "capacitance", base.from_string, fields);
                 base.export_element (obj, "PerLengthDCLineParameter", "inductance", base.from_string, fields);
                 base.export_element (obj, "PerLengthDCLineParameter", "resistance", base.from_string, fields);
+                base.export_attribute (obj, "export_attributes", "PerLengthDCLineParameter", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -600,6 +652,7 @@ define
                     {{#capacitance}}<div><b>capacitance</b>: {{capacitance}}</div>{{/capacitance}}
                     {{#inductance}}<div><b>inductance</b>: {{inductance}}</div>{{/inductance}}
                     {{#resistance}}<div><b>resistance</b>: {{resistance}}</div>{{/resistance}}
+                    {{#DCLineSegments}}<div><b>DCLineSegments</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCLineSegments}}
                     </div>
                     <fieldset>
 
@@ -610,11 +663,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCLineSegments) obj.DCLineSegments_string = obj.DCLineSegments.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCLineSegments_string;
             }
 
             edit_template ()
@@ -634,7 +689,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCLineSegments", "DCLineSegment", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -667,7 +731,8 @@ define
 
                 obj = Core.EquipmentContainer.prototype.parse.call (this, context, sub);
                 obj.cls = "DCEquipmentContainer";
-
+                base.parse_attributes (/<cim:DCEquipmentContainer.DCTopologicalNode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTopologicalNode", sub, context);
+                base.parse_attributes (/<cim:DCEquipmentContainer.DCNodes\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCNodes", sub, context);
                 var bucket = context.parsed.DCEquipmentContainer;
                 if (null == bucket)
                    context.parsed.DCEquipmentContainer = bucket = {};
@@ -680,6 +745,8 @@ define
             {
                 var fields = Core.EquipmentContainer.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "DCEquipmentContainer", fields);
+                base.export_attribute (obj, "export_attributes", "DCEquipmentContainer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -697,6 +764,8 @@ define
                     `
                     + Core.EquipmentContainer.prototype.template.call (this) +
                     `
+                    {{#DCTopologicalNode}}<div><b>DCTopologicalNode</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCTopologicalNode}}
+                    {{#DCNodes}}<div><b>DCNodes</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCNodes}}
                     </div>
                     <fieldset>
 
@@ -707,11 +776,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCTopologicalNode) obj.DCTopologicalNode_string = obj.DCTopologicalNode.join ();
+                if (obj.DCNodes) obj.DCNodes_string = obj.DCNodes.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCTopologicalNode_string;
+                delete obj.DCNodes_string;
             }
 
             edit_template ()
@@ -728,7 +801,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCTopologicalNode", "DCTopologicalNode", "0..*", "0..1"],
+                        ["DCNodes", "DCNode", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -759,7 +842,7 @@ define
 
                 obj = Core.Curve.prototype.parse.call (this, context, sub);
                 obj.cls = "VsCapabilityCurve";
-
+                base.parse_attributes (/<cim:VsCapabilityCurve.VsConverterDCSides\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "VsConverterDCSides", sub, context);
                 var bucket = context.parsed.VsCapabilityCurve;
                 if (null == bucket)
                    context.parsed.VsCapabilityCurve = bucket = {};
@@ -772,6 +855,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "VsCapabilityCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -789,6 +873,7 @@ define
                     `
                     + Core.Curve.prototype.template.call (this) +
                     `
+                    {{#VsConverterDCSides}}<div><b>VsConverterDCSides</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/VsConverterDCSides}}
                     </div>
                     <fieldset>
 
@@ -799,11 +884,13 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.VsConverterDCSides) obj.VsConverterDCSides_string = obj.VsConverterDCSides.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.VsConverterDCSides_string;
             }
 
             edit_template ()
@@ -820,7 +907,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["VsConverterDCSides", "VsConverter", "0..*", "0..1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -851,7 +947,8 @@ define
 
                 obj = Core.Equipment.prototype.parse.call (this, context, sub);
                 obj.cls = "DCConductingEquipment";
-
+                base.parse_attributes (/<cim:DCConductingEquipment.DCTerminals\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCTerminals", sub, context);
+                base.parse_attributes (/<cim:DCConductingEquipment.ProtectiveActionAdjustment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProtectiveActionAdjustment", sub, context);
                 var bucket = context.parsed.DCConductingEquipment;
                 if (null == bucket)
                    context.parsed.DCConductingEquipment = bucket = {};
@@ -864,6 +961,8 @@ define
             {
                 var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
+                base.export_attribute (obj, "export_attributes", "DCConductingEquipment", fields);
+                base.export_attribute (obj, "export_attributes", "DCConductingEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -881,6 +980,8 @@ define
                     `
                     + Core.Equipment.prototype.template.call (this) +
                     `
+                    {{#DCTerminals}}<div><b>DCTerminals</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/DCTerminals}}
+                    {{#ProtectiveActionAdjustment}}<div><b>ProtectiveActionAdjustment</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProtectiveActionAdjustment}}
                     </div>
                     <fieldset>
 
@@ -891,11 +992,15 @@ define
             condition (obj)
             {
                 super.condition (obj);
+                if (obj.DCTerminals) obj.DCTerminals_string = obj.DCTerminals.join ();
+                if (obj.ProtectiveActionAdjustment) obj.ProtectiveActionAdjustment_string = obj.ProtectiveActionAdjustment.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
+                delete obj.DCTerminals_string;
+                delete obj.ProtectiveActionAdjustment_string;
             }
 
             edit_template ()
@@ -912,7 +1017,17 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCTerminals", "DCTerminal", "0..*", "1"],
+                        ["ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -947,7 +1062,6 @@ define
                 obj.cls = "ACDCConverterDCTerminal";
                 base.parse_attribute (/<cim:ACDCConverterDCTerminal.polarity\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "polarity", sub, context);
                 base.parse_attribute (/<cim:ACDCConverterDCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCConductingEquipment", sub, context);
-
                 var bucket = context.parsed.ACDCConverterDCTerminal;
                 if (null == bucket)
                    context.parsed.ACDCConverterDCTerminal = bucket = {};
@@ -961,7 +1075,7 @@ define
                 var fields = DCBaseTerminal.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ACDCConverterDCTerminal", "polarity", base.from_string, fields);
-                base.export_attribute (obj, "ACDCConverterDCTerminal", "DCConductingEquipment", fields);
+                base.export_attribute (obj, "export_attribute", "ACDCConverterDCTerminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1016,7 +1130,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCConductingEquipment", "ACDCConverter", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1048,7 +1171,6 @@ define
                 obj = DCBaseTerminal.prototype.parse.call (this, context, sub);
                 obj.cls = "DCTerminal";
                 base.parse_attribute (/<cim:DCTerminal.DCConductingEquipment\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DCConductingEquipment", sub, context);
-
                 var bucket = context.parsed.DCTerminal;
                 if (null == bucket)
                    context.parsed.DCTerminal = bucket = {};
@@ -1061,7 +1183,7 @@ define
             {
                 var fields = DCBaseTerminal.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "DCTerminal", "DCConductingEquipment", fields);
+                base.export_attribute (obj, "export_attribute", "DCTerminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1112,7 +1234,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["DCConductingEquipment", "DCConductingEquipment", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1157,7 +1288,6 @@ define
                 base.parse_element (/<cim:CsConverter.targetIdc>([\s\S]*?)<\/cim:CsConverter.targetIdc>/g, obj, "targetIdc", base.to_string, sub, context);
                 base.parse_element (/<cim:CsConverter.minIdc>([\s\S]*?)<\/cim:CsConverter.minIdc>/g, obj, "minIdc", base.to_string, sub, context);
                 base.parse_attribute (/<cim:CsConverter.operatingMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "operatingMode", sub, context);
-
                 var bucket = context.parsed.CsConverter;
                 if (null == bucket)
                    context.parsed.CsConverter = bucket = {};
@@ -1264,7 +1394,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1307,7 +1437,6 @@ define
                 base.parse_element (/<cim:VsConverter.maxModulationIndex>([\s\S]*?)<\/cim:VsConverter.maxModulationIndex>/g, obj, "maxModulationIndex", base.to_float, sub, context);
                 base.parse_attribute (/<cim:VsConverter.qPccControl\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "qPccControl", sub, context);
                 base.parse_attribute (/<cim:VsConverter.CapabilityCurve\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "CapabilityCurve", sub, context);
-
                 var bucket = context.parsed.VsConverter;
                 if (null == bucket)
                    context.parsed.VsConverter = bucket = {};
@@ -1331,7 +1460,7 @@ define
                 base.export_element (obj, "VsConverter", "maxValveCurrent", base.from_string, fields);
                 base.export_element (obj, "VsConverter", "maxModulationIndex", base.from_float, fields);
                 base.export_element (obj, "VsConverter", "qPccControl", base.from_string, fields);
-                base.export_attribute (obj, "VsConverter", "CapabilityCurve", fields);
+                base.export_attribute (obj, "export_attribute", "VsConverter", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1408,7 +1537,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["CapabilityCurve", "VsCapabilityCurve", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1440,7 +1578,6 @@ define
                 obj = DCEquipmentContainer.prototype.parse.call (this, context, sub);
                 obj.cls = "DCLine";
                 base.parse_attribute (/<cim:DCLine.Region\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Region", sub, context);
-
                 var bucket = context.parsed.DCLine;
                 if (null == bucket)
                    context.parsed.DCLine = bucket = {};
@@ -1453,7 +1590,7 @@ define
             {
                 var fields = DCEquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "DCLine", "Region", fields);
+                base.export_attribute (obj, "export_attribute", "DCLine", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1504,7 +1641,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Region", "SubGeographicalRegion", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1537,7 +1683,6 @@ define
                 obj.cls = "DCConverterUnit";
                 base.parse_attribute (/<cim:DCConverterUnit.operationMode\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "operationMode", sub, context);
                 base.parse_attribute (/<cim:DCConverterUnit.Substation\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Substation", sub, context);
-
                 var bucket = context.parsed.DCConverterUnit;
                 if (null == bucket)
                    context.parsed.DCConverterUnit = bucket = {};
@@ -1551,7 +1696,7 @@ define
                 var fields = DCEquipmentContainer.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DCConverterUnit", "operationMode", base.from_string, fields);
-                base.export_attribute (obj, "DCConverterUnit", "Substation", fields);
+                base.export_attribute (obj, "export_attribute", "DCConverterUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1606,7 +1751,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Substation", "Substation", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -1637,7 +1791,6 @@ define
 
                 obj = DCConductingEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "DCSwitch";
-
                 var bucket = context.parsed.DCSwitch;
                 if (null == bucket)
                    context.parsed.DCSwitch = bucket = {};
@@ -1698,7 +1851,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1729,7 +1882,6 @@ define
 
                 obj = DCSwitch.prototype.parse.call (this, context, sub);
                 obj.cls = "DCDisconnector";
-
                 var bucket = context.parsed.DCDisconnector;
                 if (null == bucket)
                    context.parsed.DCDisconnector = bucket = {};
@@ -1790,7 +1942,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1826,7 +1978,6 @@ define
                 base.parse_element (/<cim:DCSeriesDevice.resistance>([\s\S]*?)<\/cim:DCSeriesDevice.resistance>/g, obj, "resistance", base.to_string, sub, context);
                 base.parse_element (/<cim:DCSeriesDevice.inductance>([\s\S]*?)<\/cim:DCSeriesDevice.inductance>/g, obj, "inductance", base.to_string, sub, context);
                 base.parse_element (/<cim:DCSeriesDevice.ratedUdc>([\s\S]*?)<\/cim:DCSeriesDevice.ratedUdc>/g, obj, "ratedUdc", base.to_string, sub, context);
-
                 var bucket = context.parsed.DCSeriesDevice;
                 if (null == bucket)
                    context.parsed.DCSeriesDevice = bucket = {};
@@ -1896,7 +2047,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -1927,7 +2078,6 @@ define
 
                 obj = DCConductingEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "DCBusbar";
-
                 var bucket = context.parsed.DCBusbar;
                 if (null == bucket)
                    context.parsed.DCBusbar = bucket = {};
@@ -1988,7 +2138,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2024,7 +2174,6 @@ define
                 base.parse_element (/<cim:DCShunt.capacitance>([\s\S]*?)<\/cim:DCShunt.capacitance>/g, obj, "capacitance", base.to_string, sub, context);
                 base.parse_element (/<cim:DCShunt.ratedUdc>([\s\S]*?)<\/cim:DCShunt.ratedUdc>/g, obj, "ratedUdc", base.to_string, sub, context);
                 base.parse_element (/<cim:DCShunt.resistance>([\s\S]*?)<\/cim:DCShunt.resistance>/g, obj, "resistance", base.to_string, sub, context);
-
                 var bucket = context.parsed.DCShunt;
                 if (null == bucket)
                    context.parsed.DCShunt = bucket = {};
@@ -2094,7 +2243,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2130,7 +2279,6 @@ define
                 base.parse_element (/<cim:DCLineSegment.inductance>([\s\S]*?)<\/cim:DCLineSegment.inductance>/g, obj, "inductance", base.to_string, sub, context);
                 base.parse_element (/<cim:DCLineSegment.length>([\s\S]*?)<\/cim:DCLineSegment.length>/g, obj, "length", base.to_string, sub, context);
                 base.parse_attribute (/<cim:DCLineSegment.PerLengthParameter\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PerLengthParameter", sub, context);
-
                 var bucket = context.parsed.DCLineSegment;
                 if (null == bucket)
                    context.parsed.DCLineSegment = bucket = {};
@@ -2147,7 +2295,7 @@ define
                 base.export_element (obj, "DCLineSegment", "capacitance", base.from_string, fields);
                 base.export_element (obj, "DCLineSegment", "inductance", base.from_string, fields);
                 base.export_element (obj, "DCLineSegment", "length", base.from_string, fields);
-                base.export_attribute (obj, "DCLineSegment", "PerLengthParameter", fields);
+                base.export_attribute (obj, "export_attribute", "DCLineSegment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -2206,7 +2354,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["PerLengthParameter", "PerLengthDCLineParameter", "0..1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -2239,7 +2396,6 @@ define
                 obj.cls = "DCGround";
                 base.parse_element (/<cim:DCGround.r>([\s\S]*?)<\/cim:DCGround.r>/g, obj, "r", base.to_string, sub, context);
                 base.parse_element (/<cim:DCGround.inductance>([\s\S]*?)<\/cim:DCGround.inductance>/g, obj, "inductance", base.to_string, sub, context);
-
                 var bucket = context.parsed.DCGround;
                 if (null == bucket)
                    context.parsed.DCGround = bucket = {};
@@ -2306,7 +2462,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2337,7 +2493,6 @@ define
 
                 obj = DCSwitch.prototype.parse.call (this, context, sub);
                 obj.cls = "DCBreaker";
-
                 var bucket = context.parsed.DCBreaker;
                 if (null == bucket)
                    context.parsed.DCBreaker = bucket = {};
@@ -2398,7 +2553,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -2431,7 +2586,6 @@ define
 
                 obj = DCConductingEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "DCChopper";
-
                 var bucket = context.parsed.DCChopper;
                 if (null == bucket)
                    context.parsed.DCChopper = bucket = {};
@@ -2492,7 +2646,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (

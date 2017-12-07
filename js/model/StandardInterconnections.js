@@ -66,7 +66,6 @@ define
                 base.parse_attribute (/<cim:RemoteInputSignal.WindTurbineType1or2Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "WindTurbineType1or2Dynamics", sub, context);
                 base.parse_attribute (/<cim:RemoteInputSignal.PFVArControllerType1Dynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "PFVArControllerType1Dynamics", sub, context);
                 base.parse_attribute (/<cim:RemoteInputSignal.DiscontinuousExcitationControlDynamics\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiscontinuousExcitationControlDynamics", sub, context);
-
                 var bucket = context.parsed.RemoteInputSignal;
                 if (null == bucket)
                    context.parsed.RemoteInputSignal = bucket = {};
@@ -80,15 +79,15 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RemoteInputSignal", "remoteSignalType", base.from_string, fields);
-                base.export_attribute (obj, "RemoteInputSignal", "Terminal", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "VoltageCompensatorDynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "WindPlantDynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "PowerSystemStabilizerDynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "WindTurbineType3or4Dynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "UnderexcitationLimiterDynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "WindTurbineType1or2Dynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "PFVArControllerType1Dynamics", fields);
-                base.export_attribute (obj, "RemoteInputSignal", "DiscontinuousExcitationControlDynamics", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -159,7 +158,24 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Terminal", "Terminal", "1", "0..*"],
+                        ["VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "0..1"],
+                        ["WindPlantDynamics", "WindPlantDynamics", "0..1", "0..1"],
+                        ["PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "0..*"],
+                        ["WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "0..1"],
+                        ["UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "0..1"],
+                        ["WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "0..1"],
+                        ["PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "0..1"],
+                        ["DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "0..1"]
+                    ]
+                );
+            }
         }
 
         return (

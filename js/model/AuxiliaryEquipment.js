@@ -52,7 +52,6 @@ define
                 obj = Core.Equipment.prototype.parse.call (this, context, sub);
                 obj.cls = "AuxiliaryEquipment";
                 base.parse_attribute (/<cim:AuxiliaryEquipment.Terminal\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Terminal", sub, context);
-
                 var bucket = context.parsed.AuxiliaryEquipment;
                 if (null == bucket)
                    context.parsed.AuxiliaryEquipment = bucket = {};
@@ -65,7 +64,7 @@ define
             {
                 var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "AuxiliaryEquipment", "Terminal", fields);
+                base.export_attribute (obj, "export_attribute", "AuxiliaryEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -116,7 +115,16 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
+
+            relations ()
+            {
+                return (
+                    [
+                        ["Terminal", "Terminal", "1", "0..*"]
+                    ]
+                );
+            }
         }
 
         /**
@@ -147,7 +155,6 @@ define
 
                 obj = AuxiliaryEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "Sensor";
-
                 var bucket = context.parsed.Sensor;
                 if (null == bucket)
                    context.parsed.Sensor = bucket = {};
@@ -208,7 +215,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -239,7 +246,6 @@ define
 
                 obj = AuxiliaryEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "WaveTrap";
-
                 var bucket = context.parsed.WaveTrap;
                 if (null == bucket)
                    context.parsed.WaveTrap = bucket = {};
@@ -300,7 +306,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -337,7 +343,6 @@ define
                 base.parse_element (/<cim:PotentialTransformer.nominalRatio>([\s\S]*?)<\/cim:PotentialTransformer.nominalRatio>/g, obj, "nominalRatio", base.to_float, sub, context);
                 base.parse_element (/<cim:PotentialTransformer.ptClass>([\s\S]*?)<\/cim:PotentialTransformer.ptClass>/g, obj, "ptClass", base.to_string, sub, context);
                 base.parse_attribute (/<cim:PotentialTransformer.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
-
                 var bucket = context.parsed.PotentialTransformer;
                 if (null == bucket)
                    context.parsed.PotentialTransformer = bucket = {};
@@ -412,7 +417,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -445,7 +450,6 @@ define
 
                 obj = AuxiliaryEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "FaultIndicator";
-
                 var bucket = context.parsed.FaultIndicator;
                 if (null == bucket)
                    context.parsed.FaultIndicator = bucket = {};
@@ -506,7 +510,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -544,7 +548,6 @@ define
                 base.parse_element (/<cim:CurrentTransformer.ctClass>([\s\S]*?)<\/cim:CurrentTransformer.ctClass>/g, obj, "ctClass", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformer.usage>([\s\S]*?)<\/cim:CurrentTransformer.usage>/g, obj, "usage", base.to_string, sub, context);
                 base.parse_element (/<cim:CurrentTransformer.coreBurden>([\s\S]*?)<\/cim:CurrentTransformer.coreBurden>/g, obj, "coreBurden", base.to_string, sub, context);
-
                 var bucket = context.parsed.CurrentTransformer;
                 if (null == bucket)
                    context.parsed.CurrentTransformer = bucket = {};
@@ -620,7 +623,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -651,7 +654,6 @@ define
 
                 obj = Sensor.prototype.parse.call (this, context, sub);
                 obj.cls = "PostLineSensor";
-
                 var bucket = context.parsed.PostLineSensor;
                 if (null == bucket)
                    context.parsed.PostLineSensor = bucket = {};
@@ -712,7 +714,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         /**
@@ -743,7 +745,6 @@ define
 
                 obj = AuxiliaryEquipment.prototype.parse.call (this, context, sub);
                 obj.cls = "SurgeArrester";
-
                 var bucket = context.parsed.SurgeArrester;
                 if (null == bucket)
                    context.parsed.SurgeArrester = bucket = {};
@@ -804,7 +805,7 @@ define
                     <fieldset>
                     `
                 );
-           }
+            }
         }
 
         return (
