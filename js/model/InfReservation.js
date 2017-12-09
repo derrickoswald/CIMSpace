@@ -49,15 +49,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TiePoint", "tiePointMWRating", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "TiePoint", fields);
-                base.export_attribute (obj, "export_attributes", "TiePoint", fields);
+                base.export_element (obj, "TiePoint", "tiePointMWRating", "tiePointMWRating",  base.from_string, fields);
+                base.export_attributes (obj, "TiePoint", "ForMktMeasurement", "ForMktMeasurement", fields);
+                base.export_attributes (obj, "TiePoint", "ByMktMeasurement", "ByMktMeasurement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -108,6 +107,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TiePoint" };
+                super.submit (obj);
+                temp = document.getElementById ("tiePointMWRating").value; if ("" != temp) obj.tiePointMWRating = temp;
+
+                return (obj);
             }
 
             relations ()

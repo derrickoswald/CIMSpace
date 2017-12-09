@@ -60,16 +60,15 @@ define
             {
                 var fields = StandardModels.RotatingMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "AsynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "AsynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "AsynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "AsynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "AsynchronousMachineDynamics", "TurbineGovernorDynamics", "TurbineGovernorDynamics", fields);
+                base.export_attribute (obj, "AsynchronousMachineDynamics", "AsynchronousMachine", "AsynchronousMachine", fields);
+                base.export_attribute (obj, "AsynchronousMachineDynamics", "WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", fields);
+                base.export_attribute (obj, "AsynchronousMachineDynamics", "MechanicalLoadDynamics", "MechanicalLoadDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -120,6 +119,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AsynchronousMachineDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("TurbineGovernorDynamics").value; if ("" != temp) obj.TurbineGovernorDynamics = temp;
+                temp = document.getElementById ("AsynchronousMachine").value; if ("" != temp) obj.AsynchronousMachine = temp;
+                temp = document.getElementById ("WindTurbineType1or2Dynamics").value; if ("" != temp) obj.WindTurbineType1or2Dynamics = temp;
+                temp = document.getElementById ("MechanicalLoadDynamics").value; if ("" != temp) obj.MechanicalLoadDynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -195,17 +208,16 @@ define
             {
                 var fields = AsynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr1", base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr2", base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr1", base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr2", base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xm", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr1", "rr1",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "rr2", "rr2",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr1", "xlr1",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xlr2", "xlr2",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineEquivalentCircuit", "xm", "xm",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -258,6 +270,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AsynchronousMachineEquivalentCircuit" };
+                super.submit (obj);
+                temp = document.getElementById ("rr1").value; if ("" != temp) obj.rr1 = temp;
+                temp = document.getElementById ("rr2").value; if ("" != temp) obj.rr2 = temp;
+                temp = document.getElementById ("xlr1").value; if ("" != temp) obj.xlr1 = temp;
+                temp = document.getElementById ("xlr2").value; if ("" != temp) obj.xlr2 = temp;
+                temp = document.getElementById ("xm").value; if ("" != temp) obj.xm = temp;
+
+                return (obj);
             }
         }
 
@@ -327,17 +354,16 @@ define
             {
                 var fields = AsynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tpo", base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tppo", base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xp", base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xpp", base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xs", base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tpo", "tpo",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "tppo", "tppo",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xp", "xp",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xpp", "xpp",  base.from_string, fields);
+                base.export_element (obj, "AsynchronousMachineTimeConstantReactance", "xs", "xs",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -390,6 +416,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AsynchronousMachineTimeConstantReactance" };
+                super.submit (obj);
+                temp = document.getElementById ("tpo").value; if ("" != temp) obj.tpo = temp;
+                temp = document.getElementById ("tppo").value; if ("" != temp) obj.tppo = temp;
+                temp = document.getElementById ("xp").value; if ("" != temp) obj.xp = temp;
+                temp = document.getElementById ("xpp").value; if ("" != temp) obj.xpp = temp;
+                temp = document.getElementById ("xs").value; if ("" != temp) obj.xs = temp;
+
+                return (obj);
             }
         }
 

@@ -57,21 +57,20 @@ define
             {
                 var fields = Core.ConnectivityNode.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MktConnectivityNode", "endEffectiveDate", base.from_datetime, fields);
-                base.export_element (obj, "MktConnectivityNode", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "MktConnectivityNode", fields);
-                base.export_attribute (obj, "export_attribute", "MktConnectivityNode", fields);
-                base.export_attribute (obj, "export_attributes", "MktConnectivityNode", fields);
-                base.export_attribute (obj, "export_attributes", "MktConnectivityNode", fields);
-                base.export_attribute (obj, "export_attribute", "MktConnectivityNode", fields);
-                base.export_attribute (obj, "export_attribute", "MktConnectivityNode", fields);
-                base.export_attribute (obj, "export_attributes", "MktConnectivityNode", fields);
+                base.export_element (obj, "MktConnectivityNode", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "MktConnectivityNode", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
+                base.export_attributes (obj, "MktConnectivityNode", "LossPenaltyFactor", "LossPenaltyFactor", fields);
+                base.export_attribute (obj, "MktConnectivityNode", "RTO", "RTO", fields);
+                base.export_attributes (obj, "MktConnectivityNode", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attributes (obj, "MktConnectivityNode", "CnodeDistributionFactor", "CnodeDistributionFactor", fields);
+                base.export_attribute (obj, "MktConnectivityNode", "IndividualPnode", "IndividualPnode", fields);
+                base.export_attribute (obj, "MktConnectivityNode", "SysLoadDistribuFactor", "SysLoadDistribuFactor", fields);
+                base.export_attributes (obj, "MktConnectivityNode", "NodeConstraintTerm", "NodeConstraintTerm", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -138,6 +137,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktConnectivityNode" };
+                super.submit (obj);
+                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
+                temp = document.getElementById ("IndividualPnode").value; if ("" != temp) obj.IndividualPnode = temp;
+                temp = document.getElementById ("SysLoadDistribuFactor").value; if ("" != temp) obj.SysLoadDistribuFactor = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -200,18 +214,17 @@ define
             {
                 var fields = Common.UserAttribute.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MktUserAttribute", fields);
-                base.export_attribute (obj, "export_attributes", "MktUserAttribute", fields);
-                base.export_attribute (obj, "export_attributes", "MktUserAttribute", fields);
-                base.export_attribute (obj, "export_attributes", "MktUserAttribute", fields);
-                base.export_attribute (obj, "export_attributes", "MktUserAttribute", fields);
-                base.export_attribute (obj, "export_attributes", "MktUserAttribute", fields);
+                base.export_attributes (obj, "MktUserAttribute", "PassThroughBill", "PassThroughBill", fields);
+                base.export_attributes (obj, "MktUserAttribute", "AttributeProperty", "AttributeProperty", fields);
+                base.export_attributes (obj, "MktUserAttribute", "ChargeGroup", "ChargeGroup", fields);
+                base.export_attributes (obj, "MktUserAttribute", "ChargeType", "ChargeType", fields);
+                base.export_attributes (obj, "MktUserAttribute", "BillDeterminant", "BillDeterminant", fields);
+                base.export_attributes (obj, "MktUserAttribute", "MarketStatementLineItem", "MarketStatementLineItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -279,6 +292,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktUserAttribute" };
+                super.submit (obj);
+                temp = document.getElementById ("PassThroughBill").value; if ("" != temp) obj.PassThroughBill = temp.split (",");
+                temp = document.getElementById ("ChargeGroup").value; if ("" != temp) obj.ChargeGroup = temp.split (",");
+                temp = document.getElementById ("ChargeType").value; if ("" != temp) obj.ChargeType = temp.split (",");
+                temp = document.getElementById ("BillDeterminant").value; if ("" != temp) obj.BillDeterminant = temp.split (",");
+                temp = document.getElementById ("MarketStatementLineItem").value; if ("" != temp) obj.MarketStatementLineItem = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -336,14 +364,13 @@ define
             {
                 var fields = Production.GeneratingUnit.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "MktGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "MktGeneratingUnit", fields);
+                base.export_attribute (obj, "MktGeneratingUnit", "RegisteredGenerator", "RegisteredGenerator", fields);
+                base.export_attributes (obj, "MktGeneratingUnit", "GeneratingUnitDynamicValues", "GeneratingUnitDynamicValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -391,6 +418,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktGeneratingUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -445,13 +483,12 @@ define
             {
                 var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MktActivityRecord", fields);
+                base.export_attributes (obj, "MktActivityRecord", "MarketFactors", "MarketFactors", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -498,6 +535,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktActivityRecord" };
+                super.submit (obj);
+                temp = document.getElementById ("MarketFactors").value; if ("" != temp) obj.MarketFactors = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -552,14 +600,13 @@ define
             {
                 var fields = LoadModel.LoadArea.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MktLoadArea", fields);
-                base.export_attribute (obj, "export_attributes", "MktLoadArea", fields);
+                base.export_attributes (obj, "MktLoadArea", "AreaLoadCurve", "AreaLoadCurve", fields);
+                base.export_attributes (obj, "MktLoadArea", "RegisteredLoad", "RegisteredLoad", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -608,6 +655,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "MktLoadArea" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -663,14 +718,13 @@ define
             {
                 var fields = Wires.Line.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "MktLine", fields);
-                base.export_attribute (obj, "export_attributes", "MktLine", fields);
+                base.export_attribute (obj, "MktLine", "TransmissionRightOfWay", "TransmissionRightOfWay", fields);
+                base.export_attributes (obj, "MktLine", "Flowgate", "Flowgate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -719,6 +773,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktLine" };
+                super.submit (obj);
+                temp = document.getElementById ("TransmissionRightOfWay").value; if ("" != temp) obj.TransmissionRightOfWay = temp;
+                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -775,13 +841,12 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "export_attributes", "MarketLedger", fields);
+                base.export_attributes (obj, "MarketLedger", "MarketLedgerEntries", "MarketLedgerEntries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -827,6 +892,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "MarketLedger" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -882,15 +955,14 @@ define
             {
                 var fields = Wires.PowerTransformer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "MktPowerTransformer", fields);
-                base.export_attribute (obj, "export_attribute", "MktPowerTransformer", fields);
-                base.export_attribute (obj, "export_attributes", "MktPowerTransformer", fields);
+                base.export_attribute (obj, "MktPowerTransformer", "EndBFlow", "EndBFlow", fields);
+                base.export_attribute (obj, "MktPowerTransformer", "EndAFlow", "EndAFlow", fields);
+                base.export_attributes (obj, "MktPowerTransformer", "Flowgate", "Flowgate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -941,6 +1013,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktPowerTransformer" };
+                super.submit (obj);
+                temp = document.getElementById ("EndBFlow").value; if ("" != temp) obj.EndBFlow = temp;
+                temp = document.getElementById ("EndAFlow").value; if ("" != temp) obj.EndAFlow = temp;
+                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1008,23 +1093,22 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MarketInvoice", "amount", base.from_string, fields);
-                base.export_element (obj, "MarketInvoice", "billMediaKind", base.from_string, fields);
-                base.export_element (obj, "MarketInvoice", "dueDate", base.from_string, fields);
-                base.export_element (obj, "MarketInvoice", "kind", base.from_string, fields);
-                base.export_element (obj, "MarketInvoice", "mailedDate", base.from_string, fields);
-                base.export_element (obj, "MarketInvoice", "proForma", base.from_boolean, fields);
-                base.export_element (obj, "MarketInvoice", "referenceNumber", base.from_string, fields);
-                base.export_element (obj, "MarketInvoice", "transactionDateTime", base.from_datetime, fields);
-                base.export_element (obj, "MarketInvoice", "transferType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "MarketInvoice", fields);
-                base.export_attribute (obj, "export_attributes", "MarketInvoice", fields);
+                base.export_element (obj, "MarketInvoice", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoice", "billMediaKind", "billMediaKind",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoice", "dueDate", "dueDate",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoice", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoice", "mailedDate", "mailedDate",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoice", "proForma", "proForma",  base.from_boolean, fields);
+                base.export_element (obj, "MarketInvoice", "referenceNumber", "referenceNumber",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoice", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "MarketInvoice", "transferType", "transferType",  base.from_string, fields);
+                base.export_attributes (obj, "MarketInvoice", "MarketInvoiceLineItems", "MarketInvoiceLineItems", fields);
+                base.export_attributes (obj, "MarketInvoice", "MajorChargeGroup", "MajorChargeGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1094,6 +1178,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketInvoice" };
+                super.submit (obj);
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("billMediaKind").value; if ("" != temp) obj.billMediaKind = temp;
+                temp = document.getElementById ("dueDate").value; if ("" != temp) obj.dueDate = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) obj.kind = temp;
+                temp = document.getElementById ("mailedDate").value; if ("" != temp) obj.mailedDate = temp;
+                temp = document.getElementById ("proForma").checked; if (temp) obj.proForma = true;
+                temp = document.getElementById ("referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
+                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById ("transferType").value; if ("" != temp) obj.transferType = temp;
+                temp = document.getElementById ("MajorChargeGroup").value; if ("" != temp) obj.MajorChargeGroup = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1153,20 +1257,19 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MarketLedgerEntry", "accountID", base.from_string, fields);
-                base.export_element (obj, "MarketLedgerEntry", "accountKind", base.from_string, fields);
-                base.export_element (obj, "MarketLedgerEntry", "amount", base.from_string, fields);
-                base.export_element (obj, "MarketLedgerEntry", "postedDateTime", base.from_datetime, fields);
-                base.export_element (obj, "MarketLedgerEntry", "status", base.from_string, fields);
-                base.export_element (obj, "MarketLedgerEntry", "transactionDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "MarketLedgerEntry", fields);
-                base.export_attribute (obj, "export_attribute", "MarketLedgerEntry", fields);
+                base.export_element (obj, "MarketLedgerEntry", "accountID", "accountID",  base.from_string, fields);
+                base.export_element (obj, "MarketLedgerEntry", "accountKind", "accountKind",  base.from_string, fields);
+                base.export_element (obj, "MarketLedgerEntry", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "MarketLedgerEntry", "postedDateTime", "postedDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "MarketLedgerEntry", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "MarketLedgerEntry", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
+                base.export_attributes (obj, "MarketLedgerEntry", "Settlement", "Settlement", fields);
+                base.export_attribute (obj, "MarketLedgerEntry", "MarketLedger", "MarketLedger", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1227,6 +1330,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketLedgerEntry" };
+                super.submit (obj);
+                temp = document.getElementById ("accountID").value; if ("" != temp) obj.accountID = temp;
+                temp = document.getElementById ("accountKind").value; if ("" != temp) obj.accountKind = temp;
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("postedDateTime").value; if ("" != temp) obj.postedDateTime = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById ("Settlement").value; if ("" != temp) obj.Settlement = temp.split (",");
+                temp = document.getElementById ("MarketLedger").value; if ("" != temp) obj.MarketLedger = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1293,25 +1414,24 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MarketInvoiceLineItem", "billPeriod", base.from_string, fields);
-                base.export_element (obj, "MarketInvoiceLineItem", "glAccount", base.from_string, fields);
-                base.export_element (obj, "MarketInvoiceLineItem", "glDateTime", base.from_datetime, fields);
-                base.export_element (obj, "MarketInvoiceLineItem", "kind", base.from_string, fields);
-                base.export_element (obj, "MarketInvoiceLineItem", "lineAmount", base.from_float, fields);
-                base.export_element (obj, "MarketInvoiceLineItem", "lineNumber", base.from_string, fields);
-                base.export_element (obj, "MarketInvoiceLineItem", "lineVersion", base.from_string, fields);
-                base.export_element (obj, "MarketInvoiceLineItem", "netAmount", base.from_float, fields);
-                base.export_element (obj, "MarketInvoiceLineItem", "previousAmount", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "MarketInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "MarketInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "MarketInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "MarketInvoiceLineItem", fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "billPeriod", "billPeriod",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "glAccount", "glAccount",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "glDateTime", "glDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "lineAmount", "lineAmount",  base.from_float, fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "lineNumber", "lineNumber",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "lineVersion", "lineVersion",  base.from_string, fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "netAmount", "netAmount",  base.from_float, fields);
+                base.export_element (obj, "MarketInvoiceLineItem", "previousAmount", "previousAmount",  base.from_float, fields);
+                base.export_attribute (obj, "MarketInvoiceLineItem", "MarketInvoice", "MarketInvoice", fields);
+                base.export_attribute (obj, "MarketInvoiceLineItem", "ContainerMarketInvoiceLineItem", "ContainerMarketInvoiceLineItem", fields);
+                base.export_attributes (obj, "MarketInvoiceLineItem", "ComponentMarketInvoiceLineItems", "ComponentMarketInvoiceLineItems", fields);
+                base.export_attributes (obj, "MarketInvoiceLineItem", "Settlement", "Settlement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1385,6 +1505,28 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketInvoiceLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("billPeriod").value; if ("" != temp) obj.billPeriod = temp;
+                temp = document.getElementById ("glAccount").value; if ("" != temp) obj.glAccount = temp;
+                temp = document.getElementById ("glDateTime").value; if ("" != temp) obj.glDateTime = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) obj.kind = temp;
+                temp = document.getElementById ("lineAmount").value; if ("" != temp) obj.lineAmount = temp;
+                temp = document.getElementById ("lineNumber").value; if ("" != temp) obj.lineNumber = temp;
+                temp = document.getElementById ("lineVersion").value; if ("" != temp) obj.lineVersion = temp;
+                temp = document.getElementById ("netAmount").value; if ("" != temp) obj.netAmount = temp;
+                temp = document.getElementById ("previousAmount").value; if ("" != temp) obj.previousAmount = temp;
+                temp = document.getElementById ("MarketInvoice").value; if ("" != temp) obj.MarketInvoice = temp;
+                temp = document.getElementById ("ContainerMarketInvoiceLineItem").value; if ("" != temp) obj.ContainerMarketInvoiceLineItem = temp;
+                temp = document.getElementById ("Settlement").value; if ("" != temp) obj.Settlement = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1442,16 +1584,15 @@ define
             {
                 var fields = Core.Terminal.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MktTerminal", "startEffectiveDate", base.from_datetime, fields);
-                base.export_element (obj, "MktTerminal", "endEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attribute", "MktTerminal", fields);
-                base.export_attribute (obj, "export_attributes", "MktTerminal", fields);
+                base.export_element (obj, "MktTerminal", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "MktTerminal", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
+                base.export_attribute (obj, "MktTerminal", "Flowgate", "Flowgate", fields);
+                base.export_attributes (obj, "MktTerminal", "TerminalConstraintTerm", "TerminalConstraintTerm", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1503,6 +1644,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktTerminal" };
+                super.submit (obj);
+                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1571,27 +1725,26 @@ define
             {
                 var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MktOrganisation", "creditFlag", base.from_string, fields);
-                base.export_element (obj, "MktOrganisation", "creditStartEffectiveDate", base.from_datetime, fields);
-                base.export_element (obj, "MktOrganisation", "endEffectiveDate", base.from_datetime, fields);
-                base.export_element (obj, "MktOrganisation", "lastModified", base.from_datetime, fields);
-                base.export_element (obj, "MktOrganisation", "organisationID", base.from_string, fields);
-                base.export_element (obj, "MktOrganisation", "qualificationStatus", base.from_string, fields);
-                base.export_element (obj, "MktOrganisation", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "MktOrganisation", fields);
-                base.export_attribute (obj, "export_attributes", "MktOrganisation", fields);
-                base.export_attribute (obj, "export_attributes", "MktOrganisation", fields);
-                base.export_attribute (obj, "export_attributes", "MktOrganisation", fields);
-                base.export_attribute (obj, "export_attributes", "MktOrganisation", fields);
-                base.export_attribute (obj, "export_attributes", "MktOrganisation", fields);
-                base.export_attribute (obj, "export_attributes", "MktOrganisation", fields);
-                base.export_attribute (obj, "export_attributes", "MktOrganisation", fields);
+                base.export_element (obj, "MktOrganisation", "creditFlag", "creditFlag",  base.from_string, fields);
+                base.export_element (obj, "MktOrganisation", "creditStartEffectiveDate", "creditStartEffectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "MktOrganisation", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "MktOrganisation", "lastModified", "lastModified",  base.from_datetime, fields);
+                base.export_element (obj, "MktOrganisation", "organisationID", "organisationID",  base.from_string, fields);
+                base.export_element (obj, "MktOrganisation", "qualificationStatus", "qualificationStatus",  base.from_string, fields);
+                base.export_element (obj, "MktOrganisation", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
+                base.export_attributes (obj, "MktOrganisation", "IntSchedAgreement", "IntSchedAgreement", fields);
+                base.export_attributes (obj, "MktOrganisation", "MarketPerson", "MarketPerson", fields);
+                base.export_attributes (obj, "MktOrganisation", "ViolationLimit", "ViolationLimit", fields);
+                base.export_attributes (obj, "MktOrganisation", "OrgPnodeAllocation", "OrgPnodeAllocation", fields);
+                base.export_attributes (obj, "MktOrganisation", "CRROrgRole", "CRROrgRole", fields);
+                base.export_attributes (obj, "MktOrganisation", "SchedulingCoordinator", "SchedulingCoordinator", fields);
+                base.export_attributes (obj, "MktOrganisation", "OrgResOwnership", "OrgResOwnership", fields);
+                base.export_attributes (obj, "MktOrganisation", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1677,6 +1830,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktOrganisation" };
+                super.submit (obj);
+                temp = document.getElementById ("creditFlag").value; if ("" != temp) obj.creditFlag = temp;
+                temp = document.getElementById ("creditStartEffectiveDate").value; if ("" != temp) obj.creditStartEffectiveDate = temp;
+                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById ("lastModified").value; if ("" != temp) obj.lastModified = temp;
+                temp = document.getElementById ("organisationID").value; if ("" != temp) obj.organisationID = temp;
+                temp = document.getElementById ("qualificationStatus").value; if ("" != temp) obj.qualificationStatus = temp;
+                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById ("IntSchedAgreement").value; if ("" != temp) obj.IntSchedAgreement = temp.split (",");
+                temp = document.getElementById ("MarketPerson").value; if ("" != temp) obj.MarketPerson = temp.split (",");
+                temp = document.getElementById ("ViolationLimit").value; if ("" != temp) obj.ViolationLimit = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1736,14 +1909,13 @@ define
             {
                 var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "MktEnergyConsumer", fields);
-                base.export_attribute (obj, "export_attributes", "MktEnergyConsumer", fields);
+                base.export_attribute (obj, "MktEnergyConsumer", "RegisteredLoad", "RegisteredLoad", fields);
+                base.export_attributes (obj, "MktEnergyConsumer", "EnergyConsumerData", "EnergyConsumerData", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1791,6 +1963,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktEnergyConsumer" };
+                super.submit (obj);
+                temp = document.getElementById ("RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1849,17 +2032,16 @@ define
             {
                 var fields = Meas.Measurement.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MktMeasurement", fields);
-                base.export_attribute (obj, "export_attributes", "MktMeasurement", fields);
-                base.export_attribute (obj, "export_attribute", "MktMeasurement", fields);
-                base.export_attribute (obj, "export_attribute", "MktMeasurement", fields);
-                base.export_attribute (obj, "export_attribute", "MktMeasurement", fields);
+                base.export_attributes (obj, "MktMeasurement", "DynamicSchedule", "DynamicSchedule", fields);
+                base.export_attributes (obj, "MktMeasurement", "ViolationLimit", "ViolationLimit", fields);
+                base.export_attribute (obj, "MktMeasurement", "Pnode", "Pnode", fields);
+                base.export_attribute (obj, "MktMeasurement", "ForTiePoint", "ForTiePoint", fields);
+                base.export_attribute (obj, "MktMeasurement", "ByTiePoint", "ByTiePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1914,6 +2096,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktMeasurement" };
+                super.submit (obj);
+                temp = document.getElementById ("Pnode").value; if ("" != temp) obj.Pnode = temp;
+                temp = document.getElementById ("ForTiePoint").value; if ("" != temp) obj.ForTiePoint = temp;
+                temp = document.getElementById ("ByTiePoint").value; if ("" != temp) obj.ByTiePoint = temp;
+
+                return (obj);
             }
 
             relations ()

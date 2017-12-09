@@ -53,15 +53,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "TemperatureDependentLimitPoint", "limitPercent", base.from_string, fields);
-                base.export_element (obj, "TemperatureDependentLimitPoint", "temperature", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "TemperatureDependentLimitPoint", fields);
+                base.export_element (obj, "TemperatureDependentLimitPoint", "limitPercent", "limitPercent",  base.from_string, fields);
+                base.export_element (obj, "TemperatureDependentLimitPoint", "temperature", "temperature",  base.from_string, fields);
+                base.export_attribute (obj, "TemperatureDependentLimitPoint", "TemperatureDependentLimitTable", "TemperatureDependentLimitTable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -110,6 +109,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TemperatureDependentLimitPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("limitPercent").value; if ("" != temp) obj.limitPercent = temp;
+                temp = document.getElementById ("temperature").value; if ("" != temp) obj.temperature = temp;
+                temp = document.getElementById ("TemperatureDependentLimitTable").value; if ("" != temp) obj.TemperatureDependentLimitTable = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -167,15 +179,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "OperatonalLimitTypeScaling", "scalingPercent", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "OperatonalLimitTypeScaling", fields);
-                base.export_attribute (obj, "export_attribute", "OperatonalLimitTypeScaling", fields);
+                base.export_element (obj, "OperatonalLimitTypeScaling", "scalingPercent", "scalingPercent",  base.from_string, fields);
+                base.export_attribute (obj, "OperatonalLimitTypeScaling", "SourceOperationalLimitType", "SourceOperationalLimitType", fields);
+                base.export_attribute (obj, "OperatonalLimitTypeScaling", "TargetOperationalLimit", "TargetOperationalLimit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -224,6 +235,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OperatonalLimitTypeScaling" };
+                super.submit (obj);
+                temp = document.getElementById ("scalingPercent").value; if ("" != temp) obj.scalingPercent = temp;
+                temp = document.getElementById ("SourceOperationalLimitType").value; if ("" != temp) obj.SourceOperationalLimitType = temp;
+                temp = document.getElementById ("TargetOperationalLimit").value; if ("" != temp) obj.TargetOperationalLimit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -279,14 +303,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ScheduledLimitValue", fields);
-                base.export_attribute (obj, "export_attribute", "ScheduledLimitValue", fields);
+                base.export_attribute (obj, "ScheduledLimitValue", "Season", "Season", fields);
+                base.export_attribute (obj, "ScheduledLimitValue", "ScheduledLimitDependency", "ScheduledLimitDependency", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -333,6 +356,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ScheduledLimitValue" };
+                super.submit (obj);
+                temp = document.getElementById ("Season").value; if ("" != temp) obj.Season = temp;
+                temp = document.getElementById ("ScheduledLimitDependency").value; if ("" != temp) obj.ScheduledLimitDependency = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -387,13 +422,12 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "WeatherStation", fields);
+                base.export_attributes (obj, "WeatherStation", "Equipment", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -440,6 +474,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WeatherStation" };
+                super.submit (obj);
+                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -496,14 +541,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "LimitDependency", fields);
-                base.export_attribute (obj, "export_attributes", "LimitDependency", fields);
+                base.export_attribute (obj, "LimitDependency", "Equipment", "Equipment", fields);
+                base.export_attributes (obj, "LimitDependency", "OperationalLimit", "OperationalLimit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -552,6 +596,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LimitDependency" };
+                super.submit (obj);
+                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+                temp = document.getElementById ("OperationalLimit").value; if ("" != temp) obj.OperationalLimit = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -607,14 +663,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "EquipmentLimitSeriesComponent", fields);
-                base.export_attribute (obj, "export_attribute", "EquipmentLimitSeriesComponent", fields);
+                base.export_attribute (obj, "EquipmentLimitSeriesComponent", "SeriesEquipmentDependentLimit", "SeriesEquipmentDependentLimit", fields);
+                base.export_attribute (obj, "EquipmentLimitSeriesComponent", "Equipment", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -661,6 +716,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EquipmentLimitSeriesComponent" };
+                super.submit (obj);
+                temp = document.getElementById ("SeriesEquipmentDependentLimit").value; if ("" != temp) obj.SeriesEquipmentDependentLimit = temp;
+                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -715,13 +782,12 @@ define
             {
                 var fields = ScheduledLimitValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ScheduledCurrentLimitValue", "value", base.from_string, fields);
+                base.export_element (obj, "ScheduledCurrentLimitValue", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -766,6 +832,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ScheduledCurrentLimitValue" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -810,13 +887,12 @@ define
             {
                 var fields = ScheduledLimitValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ScheduledVoltageLimitValue", "value", base.from_string, fields);
+                base.export_element (obj, "ScheduledVoltageLimitValue", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -861,6 +937,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ScheduledVoltageLimitValue" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -901,13 +988,12 @@ define
             {
                 var fields = ScheduledLimitValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ScheduledActivePowerLimitValue", "value", base.from_string, fields);
+                base.export_element (obj, "ScheduledActivePowerLimitValue", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -952,6 +1038,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ScheduledActivePowerLimitValue" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -996,13 +1093,12 @@ define
             {
                 var fields = ScheduledLimitValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ScheduledApparentPowerLimitValue", "value", base.from_string, fields);
+                base.export_element (obj, "ScheduledApparentPowerLimitValue", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1047,6 +1143,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ScheduledApparentPowerLimitValue" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -1092,14 +1199,13 @@ define
             {
                 var fields = LimitDependency.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LimitScalingLimit", "limitScalingPercent", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "LimitScalingLimit", fields);
+                base.export_element (obj, "LimitScalingLimit", "limitScalingPercent", "limitScalingPercent",  base.from_string, fields);
+                base.export_attribute (obj, "LimitScalingLimit", "SourceOperationalLimit", "SourceOperationalLimit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1146,6 +1252,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LimitScalingLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("limitScalingPercent").value; if ("" != temp) obj.limitScalingPercent = temp;
+                temp = document.getElementById ("SourceOperationalLimit").value; if ("" != temp) obj.SourceOperationalLimit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1204,7 +1322,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -1247,6 +1364,14 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "EnvironmentalDependentLimit" };
+                super.submit (obj);
+
+                return (obj);
+            }
         }
 
         class ScheduledLimitDependency extends LimitDependency
@@ -1286,13 +1411,12 @@ define
             {
                 var fields = LimitDependency.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ScheduledLimitDependency", fields);
+                base.export_attributes (obj, "ScheduledLimitDependency", "ScheduledLimitValues", "ScheduledLimitValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1338,6 +1462,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ScheduledLimitDependency" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1393,13 +1525,12 @@ define
             {
                 var fields = LimitDependency.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "SeriesEquipmentDependentLimit", fields);
+                base.export_attributes (obj, "SeriesEquipmentDependentLimit", "EquipmentLimitSeriesComponent", "EquipmentLimitSeriesComponent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1445,6 +1576,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "SeriesEquipmentDependentLimit" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1502,17 +1641,16 @@ define
             {
                 var fields = EnvironmentalDependentLimit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient0", base.from_float, fields);
-                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient1", base.from_float, fields);
-                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient2", base.from_float, fields);
-                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient3", base.from_float, fields);
-                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient4", base.from_float, fields);
+                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient0", "coefficient0",  base.from_float, fields);
+                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient1", "coefficient1",  base.from_float, fields);
+                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient2", "coefficient2",  base.from_float, fields);
+                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient3", "coefficient3",  base.from_float, fields);
+                base.export_element (obj, "TemperaturePolynomialLimit", "coefficient4", "coefficient4",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1566,6 +1704,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TemperaturePolynomialLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("coefficient0").value; if ("" != temp) obj.coefficient0 = temp;
+                temp = document.getElementById ("coefficient1").value; if ("" != temp) obj.coefficient1 = temp;
+                temp = document.getElementById ("coefficient2").value; if ("" != temp) obj.coefficient2 = temp;
+                temp = document.getElementById ("coefficient3").value; if ("" != temp) obj.coefficient3 = temp;
+                temp = document.getElementById ("coefficient4").value; if ("" != temp) obj.coefficient4 = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1609,13 +1762,12 @@ define
             {
                 var fields = EnvironmentalDependentLimit.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "TemperatureDependentLimitTable", fields);
+                base.export_attributes (obj, "TemperatureDependentLimitTable", "TemperatureLimitTablePoint", "TemperatureLimitTablePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1661,6 +1813,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "TemperatureDependentLimitTable" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()

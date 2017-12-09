@@ -54,7 +54,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -97,6 +96,14 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "URI" };
+                super.submit (obj);
+
+                return (obj);
+            }
         }
 
         class ModelDescriptionCIMVersion extends base.Element
@@ -137,14 +144,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ModelDescriptionCIMVersion", "date", base.from_string, fields);
-                base.export_element (obj, "ModelDescriptionCIMVersion", "version", base.from_string, fields);
+                base.export_element (obj, "ModelDescriptionCIMVersion", "date", "date",  base.from_string, fields);
+                base.export_element (obj, "ModelDescriptionCIMVersion", "version", "version",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -192,6 +198,18 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ModelDescriptionCIMVersion" };
+                super.submit (obj);
+                temp = document.getElementById ("date").value; if ("" != temp) obj.date = temp;
+                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+
+                return (obj);
+            }
         }
 
         class FullModelDocumentElement extends base.Element
@@ -236,7 +254,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -278,6 +295,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "FullModelDocumentElement" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -324,15 +349,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Description", "description", base.from_string, fields);
-                base.export_element (obj, "Description", "name", base.from_string, fields);
-                base.export_element (obj, "Description", "version", base.from_string, fields);
+                base.export_element (obj, "Description", "description", "description",  base.from_string, fields);
+                base.export_element (obj, "Description", "name", "name",  base.from_string, fields);
+                base.export_element (obj, "Description", "version", "version",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -382,6 +406,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Description" };
+                super.submit (obj);
+                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+
+                return (obj);
+            }
         }
 
         class Model extends base.Element
@@ -430,22 +467,21 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Model", "created", base.from_datetime, fields);
-                base.export_element (obj, "Model", "scenarioTime", base.from_datetime, fields);
-                base.export_element (obj, "Model", "description", base.from_string, fields);
-                base.export_element (obj, "Model", "modelingAuthoritySet", base.from_string, fields);
-                base.export_element (obj, "Model", "profile", base.from_string, fields);
-                base.export_element (obj, "Model", "version", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Model", fields);
-                base.export_attribute (obj, "export_attributes", "Model", fields);
-                base.export_attribute (obj, "export_attributes", "Model", fields);
-                base.export_attribute (obj, "export_attributes", "Model", fields);
+                base.export_element (obj, "Model", "created", "created",  base.from_datetime, fields);
+                base.export_element (obj, "Model", "scenarioTime", "scenarioTime",  base.from_datetime, fields);
+                base.export_element (obj, "Model", "description", "description",  base.from_string, fields);
+                base.export_element (obj, "Model", "modelingAuthoritySet", "modelingAuthoritySet",  base.from_string, fields);
+                base.export_element (obj, "Model", "profile", "profile",  base.from_string, fields);
+                base.export_element (obj, "Model", "version", "version",  base.from_string, fields);
+                base.export_attributes (obj, "Model", "Supersedes", "Supersedes", fields);
+                base.export_attributes (obj, "Model", "SupersededBy", "SupersededBy", fields);
+                base.export_attributes (obj, "Model", "DependentOn", "DependentOn", fields);
+                base.export_attributes (obj, "Model", "Depending", "Depending", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -518,6 +554,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Model" };
+                super.submit (obj);
+                temp = document.getElementById ("created").value; if ("" != temp) obj.created = temp;
+                temp = document.getElementById ("scenarioTime").value; if ("" != temp) obj.scenarioTime = temp;
+                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById ("modelingAuthoritySet").value; if ("" != temp) obj.modelingAuthoritySet = temp;
+                temp = document.getElementById ("profile").value; if ("" != temp) obj.profile = temp;
+                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+                temp = document.getElementById ("Supersedes").value; if ("" != temp) obj.Supersedes = temp.split (",");
+                temp = document.getElementById ("SupersededBy").value; if ("" != temp) obj.SupersededBy = temp.split (",");
+                temp = document.getElementById ("DependentOn").value; if ("" != temp) obj.DependentOn = temp.split (",");
+                temp = document.getElementById ("Depending").value; if ("" != temp) obj.Depending = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -573,7 +629,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -615,6 +670,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "FullModel" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -642,8 +705,6 @@ define
 
                 obj = FullModelDocumentElement.prototype.parse.call (this, context, sub);
                 obj.cls = "Statements";
-                base.parse_attributes (/<cim:Statements.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
-                base.parse_attributes (/<cim:Statements.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.Statements;
                 if (null == bucket)
                    context.parsed.Statements = bucket = {};
@@ -656,14 +717,11 @@ define
             {
                 var fields = FullModelDocumentElement.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "Statements", fields);
-                base.export_attribute (obj, "export_attributes", "Statements", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -675,8 +733,6 @@ define
                     `
                     + FullModelDocumentElement.prototype.template.call (this) +
                     `
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -687,15 +743,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.unknown_string;
-                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -714,14 +766,12 @@ define
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "DifferenceModel", "", "0..1"],
-                        ["unknown", "DifferenceModel", "", "0..1"]
-                    ]
-                );
+                var obj = obj || { cls: "Statements" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -762,13 +812,12 @@ define
             {
                 var fields = Description.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DescriptionID", "uri", base.from_string, fields);
+                base.export_element (obj, "DescriptionID", "uri", "uri",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -814,6 +863,17 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DescriptionID" };
+                super.submit (obj);
+                temp = document.getElementById ("uri").value; if ("" != temp) obj.uri = temp;
+
+                return (obj);
+            }
         }
 
         class DifferenceModel extends Model
@@ -841,7 +901,6 @@ define
                 obj = Model.prototype.parse.call (this, context, sub);
                 obj.cls = "DifferenceModel";
                 base.parse_attribute (/<cim:DifferenceModel.forwardDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "forwardDifferences", sub, context);
-                base.parse_attributes (/<cim:DifferenceModel.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 base.parse_attribute (/<cim:DifferenceModel.reverseDifferences\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "reverseDifferences", sub, context);
                 var bucket = context.parsed.DifferenceModel;
                 if (null == bucket)
@@ -855,15 +914,13 @@ define
             {
                 var fields = Model.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "DifferenceModel", fields);
-                base.export_attribute (obj, "export_attributes", "DifferenceModel", fields);
-                base.export_attribute (obj, "export_attribute", "DifferenceModel", fields);
+                base.export_attribute (obj, "DifferenceModel", "forwardDifferences", "forwardDifferences", fields);
+                base.export_attribute (obj, "DifferenceModel", "reverseDifferences", "reverseDifferences", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -876,7 +933,6 @@ define
                     + Model.prototype.template.call (this) +
                     `
                     {{#forwardDifferences}}<div><b>forwardDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{forwardDifferences}}&quot;);})'>{{forwardDifferences}}</a></div>{{/forwardDifferences}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     {{#reverseDifferences}}<div><b>reverseDifferences</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{reverseDifferences}}&quot;);})'>{{reverseDifferences}}</a></div>{{/reverseDifferences}}
                     </div>
                     <fieldset>
@@ -888,13 +944,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -915,12 +969,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DifferenceModel" };
+                super.submit (obj);
+                temp = document.getElementById ("forwardDifferences").value; if ("" != temp) obj.forwardDifferences = temp;
+                temp = document.getElementById ("reverseDifferences").value; if ("" != temp) obj.reverseDifferences = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
                     [
                         ["forwardDifferences", "Statements", "0..1", ""],
-                        ["unknown", "PowerSystemProject", "0..*", "0..1"],
                         ["reverseDifferences", "Statements", "0..1", ""]
                     ]
                 );

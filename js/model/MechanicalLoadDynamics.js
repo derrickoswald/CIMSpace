@@ -50,14 +50,13 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "MechanicalLoadDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "MechanicalLoadDynamics", fields);
+                base.export_attribute (obj, "MechanicalLoadDynamics", "SynchronousMachineDynamics", "SynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "MechanicalLoadDynamics", "AsynchronousMachineDynamics", "AsynchronousMachineDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -104,6 +103,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MechanicalLoadDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp;
+                temp = document.getElementById ("AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -161,16 +172,15 @@ define
             {
                 var fields = MechanicalLoadDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MechLoad1", "a", base.from_float, fields);
-                base.export_element (obj, "MechLoad1", "b", base.from_float, fields);
-                base.export_element (obj, "MechLoad1", "d", base.from_float, fields);
-                base.export_element (obj, "MechLoad1", "e", base.from_float, fields);
+                base.export_element (obj, "MechLoad1", "a", "a",  base.from_float, fields);
+                base.export_element (obj, "MechLoad1", "b", "b",  base.from_float, fields);
+                base.export_element (obj, "MechLoad1", "d", "d",  base.from_float, fields);
+                base.export_element (obj, "MechLoad1", "e", "e",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -221,6 +231,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MechLoad1" };
+                super.submit (obj);
+                temp = document.getElementById ("a").value; if ("" != temp) obj.a = temp;
+                temp = document.getElementById ("b").value; if ("" != temp) obj.b = temp;
+                temp = document.getElementById ("d").value; if ("" != temp) obj.d = temp;
+                temp = document.getElementById ("e").value; if ("" != temp) obj.e = temp;
+
+                return (obj);
             }
         }
 

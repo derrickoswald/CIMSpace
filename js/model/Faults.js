@@ -61,13 +61,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "FaultCauseType", fields);
+                base.export_attributes (obj, "FaultCauseType", "Faults", "Faults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -114,6 +113,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FaultCauseType" };
+                super.submit (obj);
+                temp = document.getElementById ("Faults").value; if ("" != temp) obj.Faults = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -170,16 +180,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "FaultImpedance", "rGround", base.from_string, fields);
-                base.export_element (obj, "FaultImpedance", "rLineToLine", base.from_string, fields);
-                base.export_element (obj, "FaultImpedance", "xGround", base.from_string, fields);
-                base.export_element (obj, "FaultImpedance", "xLineToLine", base.from_string, fields);
+                base.export_element (obj, "FaultImpedance", "rGround", "rGround",  base.from_string, fields);
+                base.export_element (obj, "FaultImpedance", "rLineToLine", "rLineToLine",  base.from_string, fields);
+                base.export_element (obj, "FaultImpedance", "xGround", "xGround",  base.from_string, fields);
+                base.export_element (obj, "FaultImpedance", "xLineToLine", "xLineToLine",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -231,6 +240,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FaultImpedance" };
+                super.submit (obj);
+                temp = document.getElementById ("rGround").value; if ("" != temp) obj.rGround = temp;
+                temp = document.getElementById ("rLineToLine").value; if ("" != temp) obj.rLineToLine = temp;
+                temp = document.getElementById ("xGround").value; if ("" != temp) obj.xGround = temp;
+                temp = document.getElementById ("xLineToLine").value; if ("" != temp) obj.xLineToLine = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -279,18 +302,17 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Fault", "kind", base.from_string, fields);
-                base.export_element (obj, "Fault", "phases", base.from_string, fields);
-                base.export_element (obj, "Fault", "impedance", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Fault", fields);
-                base.export_attribute (obj, "export_attributes", "Fault", fields);
-                base.export_attribute (obj, "export_attribute", "Fault", fields);
+                base.export_element (obj, "Fault", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "Fault", "phases", "phases",  base.from_string, fields);
+                base.export_element (obj, "Fault", "impedance", "impedance",  base.from_string, fields);
+                base.export_attribute (obj, "Fault", "FaultyEquipment", "FaultyEquipment", fields);
+                base.export_attributes (obj, "Fault", "FaultCauseTypes", "FaultCauseTypes", fields);
+                base.export_attribute (obj, "Fault", "Outage", "Outage", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -351,6 +373,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Fault" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PhaseConnectedFaultKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; }
+                temp = document.getElementById ("phases").value; if ("" != temp) obj.phases = temp;
+                temp = document.getElementById ("impedance").value; if ("" != temp) obj.impedance = temp;
+                temp = document.getElementById ("FaultyEquipment").value; if ("" != temp) obj.FaultyEquipment = temp;
+                temp = document.getElementById ("FaultCauseTypes").value; if ("" != temp) obj.FaultCauseTypes = temp.split (",");
+                temp = document.getElementById ("Outage").value; if ("" != temp) obj.Outage = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -405,14 +443,13 @@ define
             {
                 var fields = Fault.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LineFault", "lengthFromTerminal1", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "LineFault", fields);
+                base.export_element (obj, "LineFault", "lengthFromTerminal1", "lengthFromTerminal1",  base.from_string, fields);
+                base.export_attribute (obj, "LineFault", "ACLineSegment", "ACLineSegment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -459,6 +496,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LineFault" };
+                super.submit (obj);
+                temp = document.getElementById ("lengthFromTerminal1").value; if ("" != temp) obj.lengthFromTerminal1 = temp;
+                temp = document.getElementById ("ACLineSegment").value; if ("" != temp) obj.ACLineSegment = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -514,13 +563,12 @@ define
             {
                 var fields = Fault.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "EquipmentFault", fields);
+                base.export_attribute (obj, "EquipmentFault", "Terminal", "Terminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -565,6 +613,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EquipmentFault" };
+                super.submit (obj);
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+
+                return (obj);
             }
 
             relations ()

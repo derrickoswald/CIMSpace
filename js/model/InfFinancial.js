@@ -54,14 +54,13 @@ define
             {
                 var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ControlAreaOperator", fields);
-                base.export_attribute (obj, "export_attributes", "ControlAreaOperator", fields);
+                base.export_attribute (obj, "ControlAreaOperator", "ControlledBy", "ControlledBy", fields);
+                base.export_attributes (obj, "ControlAreaOperator", "CAChildOf", "CAChildOf", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -110,6 +109,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ControlAreaOperator" };
+                super.submit (obj);
+                temp = document.getElementById ("ControlledBy").value; if ("" != temp) obj.ControlledBy = temp;
+                temp = document.getElementById ("CAChildOf").value; if ("" != temp) obj.CAChildOf = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -169,7 +180,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -212,6 +222,14 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "OpenAccessProduct" };
+                super.submit (obj);
+
+                return (obj);
+            }
         }
 
         class TransmissionProduct extends Core.IdentifiedObject
@@ -253,15 +271,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TransmissionProduct", "transmissionProductType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "TransmissionProduct", fields);
-                base.export_attribute (obj, "export_attribute", "TransmissionProduct", fields);
+                base.export_element (obj, "TransmissionProduct", "transmissionProductType", "transmissionProductType",  base.from_string, fields);
+                base.export_attributes (obj, "TransmissionProduct", "LocationFor", "LocationFor", fields);
+                base.export_attribute (obj, "TransmissionProduct", "TransmissionProvider", "TransmissionProvider", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -312,6 +329,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TransmissionProduct" };
+                super.submit (obj);
+                temp = document.getElementById ("transmissionProductType").value; if ("" != temp) obj.transmissionProductType = temp;
+                temp = document.getElementById ("LocationFor").value; if ("" != temp) obj.LocationFor = temp.split (",");
+                temp = document.getElementById ("TransmissionProvider").value; if ("" != temp) obj.TransmissionProvider = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -367,14 +397,13 @@ define
             {
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "IntSchedAgreement", "defaultIntegrationMethod", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "IntSchedAgreement", fields);
+                base.export_element (obj, "IntSchedAgreement", "defaultIntegrationMethod", "defaultIntegrationMethod",  base.from_string, fields);
+                base.export_attributes (obj, "IntSchedAgreement", "MktOrganisation", "MktOrganisation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -423,6 +452,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IntSchedAgreement" };
+                super.submit (obj);
+                temp = document.getElementById ("defaultIntegrationMethod").value; if ("" != temp) obj.defaultIntegrationMethod = temp;
+                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -476,13 +517,12 @@ define
             {
                 var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "CustomerConsumer", fields);
+                base.export_attributes (obj, "CustomerConsumer", "CustChildOf", "CustChildOf", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -528,6 +568,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "CustomerConsumer" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -584,14 +632,13 @@ define
             {
                 var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "TransmissionProvider", fields);
-                base.export_attribute (obj, "export_attributes", "TransmissionProvider", fields);
+                base.export_attributes (obj, "TransmissionProvider", "For", "For", fields);
+                base.export_attributes (obj, "TransmissionProvider", "TransmissionProducts", "TransmissionProducts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -640,6 +687,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "TransmissionProvider" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -695,14 +750,13 @@ define
             {
                 var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "Marketer", fields);
-                base.export_attribute (obj, "export_attributes", "Marketer", fields);
+                base.export_attributes (obj, "Marketer", "Resells_EnergyProduct", "Resells_EnergyProduct", fields);
+                base.export_attributes (obj, "Marketer", "HoldsTitleTo_EnergyProducts", "HoldsTitleTo_EnergyProducts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -752,6 +806,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Marketer" };
+                super.submit (obj);
+                temp = document.getElementById ("Resells_EnergyProduct").value; if ("" != temp) obj.Resells_EnergyProduct = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -806,13 +871,12 @@ define
             {
                 var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "GenerationProvider", fields);
+                base.export_attributes (obj, "GenerationProvider", "ProvidedBy", "ProvidedBy", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -858,6 +922,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "GenerationProvider" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()

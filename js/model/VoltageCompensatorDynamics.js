@@ -54,16 +54,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GenICompensationForGenJ", "rcij", base.from_string, fields);
-                base.export_element (obj, "GenICompensationForGenJ", "xcij", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "GenICompensationForGenJ", fields);
-                base.export_attribute (obj, "export_attribute", "GenICompensationForGenJ", fields);
+                base.export_element (obj, "GenICompensationForGenJ", "rcij", "rcij",  base.from_string, fields);
+                base.export_element (obj, "GenICompensationForGenJ", "xcij", "xcij",  base.from_string, fields);
+                base.export_attribute (obj, "GenICompensationForGenJ", "VcompIEEEType2", "VcompIEEEType2", fields);
+                base.export_attribute (obj, "GenICompensationForGenJ", "SynchronousMachineDynamics", "SynchronousMachineDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -114,6 +113,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GenICompensationForGenJ" };
+                super.submit (obj);
+                temp = document.getElementById ("rcij").value; if ("" != temp) obj.rcij = temp;
+                temp = document.getElementById ("xcij").value; if ("" != temp) obj.xcij = temp;
+                temp = document.getElementById ("VcompIEEEType2").value; if ("" != temp) obj.VcompIEEEType2 = temp;
+                temp = document.getElementById ("SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -169,14 +182,13 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "VoltageCompensatorDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "VoltageCompensatorDynamics", fields);
+                base.export_attribute (obj, "VoltageCompensatorDynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
+                base.export_attribute (obj, "VoltageCompensatorDynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -223,6 +235,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VoltageCompensatorDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -280,14 +304,13 @@ define
             {
                 var fields = VoltageCompensatorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VCompIEEEType2", "tr", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "VCompIEEEType2", fields);
+                base.export_element (obj, "VCompIEEEType2", "tr", "tr",  base.from_string, fields);
+                base.export_attributes (obj, "VCompIEEEType2", "GenICompensationForGenJ", "GenICompensationForGenJ", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -335,6 +358,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VCompIEEEType2" };
+                super.submit (obj);
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -392,15 +426,14 @@ define
             {
                 var fields = VoltageCompensatorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VCompIEEEType1", "rc", base.from_string, fields);
-                base.export_element (obj, "VCompIEEEType1", "tr", base.from_string, fields);
-                base.export_element (obj, "VCompIEEEType1", "xc", base.from_string, fields);
+                base.export_element (obj, "VCompIEEEType1", "rc", "rc",  base.from_string, fields);
+                base.export_element (obj, "VCompIEEEType1", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "VCompIEEEType1", "xc", "xc",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -449,6 +482,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VCompIEEEType1" };
+                super.submit (obj);
+                temp = document.getElementById ("rc").value; if ("" != temp) obj.rc = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("xc").value; if ("" != temp) obj.xc = temp;
+
+                return (obj);
             }
         }
 

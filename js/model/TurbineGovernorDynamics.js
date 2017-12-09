@@ -78,15 +78,14 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "TurbineGovernorDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "TurbineGovernorDynamics", fields);
-                base.export_attribute (obj, "export_attributes", "TurbineGovernorDynamics", fields);
+                base.export_attribute (obj, "TurbineGovernorDynamics", "AsynchronousMachineDynamics", "AsynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "TurbineGovernorDynamics", "TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", fields);
+                base.export_attributes (obj, "TurbineGovernorDynamics", "SynchronousMachineDynamics", "SynchronousMachineDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -137,6 +136,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TurbineGovernorDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
+                temp = document.getElementById ("TurbineLoadControllerDynamics").value; if ("" != temp) obj.TurbineLoadControllerDynamics = temp;
+                temp = document.getElementById ("SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -208,29 +220,28 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteamCC", "dhp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "dlp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "fhp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "flp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "pmaxhp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "pmaxlp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "rhp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "rlp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "t1hp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "t1lp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "t3hp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "t3lp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "t4hp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "t4lp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "t5hp", base.from_string, fields);
-                base.export_element (obj, "GovSteamCC", "t5lp", base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "dhp", "dhp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "dlp", "dlp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "fhp", "fhp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "flp", "flp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "pmaxhp", "pmaxhp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "pmaxlp", "pmaxlp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "rhp", "rhp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "rlp", "rlp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "t1hp", "t1hp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "t1lp", "t1lp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "t3hp", "t3hp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "t3lp", "t3lp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "t4hp", "t4hp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "t4lp", "t4lp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "t5hp", "t5hp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamCC", "t5lp", "t5lp",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -308,6 +319,33 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteamCC" };
+                super.submit (obj);
+                temp = document.getElementById ("dhp").value; if ("" != temp) obj.dhp = temp;
+                temp = document.getElementById ("dlp").value; if ("" != temp) obj.dlp = temp;
+                temp = document.getElementById ("fhp").value; if ("" != temp) obj.fhp = temp;
+                temp = document.getElementById ("flp").value; if ("" != temp) obj.flp = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pmaxhp").value; if ("" != temp) obj.pmaxhp = temp;
+                temp = document.getElementById ("pmaxlp").value; if ("" != temp) obj.pmaxlp = temp;
+                temp = document.getElementById ("rhp").value; if ("" != temp) obj.rhp = temp;
+                temp = document.getElementById ("rlp").value; if ("" != temp) obj.rlp = temp;
+                temp = document.getElementById ("t1hp").value; if ("" != temp) obj.t1hp = temp;
+                temp = document.getElementById ("t1lp").value; if ("" != temp) obj.t1lp = temp;
+                temp = document.getElementById ("t3hp").value; if ("" != temp) obj.t3hp = temp;
+                temp = document.getElementById ("t3lp").value; if ("" != temp) obj.t3lp = temp;
+                temp = document.getElementById ("t4hp").value; if ("" != temp) obj.t4hp = temp;
+                temp = document.getElementById ("t4lp").value; if ("" != temp) obj.t4lp = temp;
+                temp = document.getElementById ("t5hp").value; if ("" != temp) obj.t5hp = temp;
+                temp = document.getElementById ("t5lp").value; if ("" != temp) obj.t5lp = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -383,45 +421,44 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroPID", "aturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "bturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "db1", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "db2", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "eps", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "gv6", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "inputSignal", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroPID", "kd", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "kg", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "ki", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "kp", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pgv6", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "r", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "td", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "tf", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "tp", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "tt", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "tturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID", "velcl", base.from_float, fields);
-                base.export_element (obj, "GovHydroPID", "velop", base.from_float, fields);
+                base.export_element (obj, "GovHydroPID", "aturb", "aturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "bturb", "bturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "eps", "eps",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "gv6", "gv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "inputSignal", "inputSignal",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroPID", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "tt", "tt",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "tturb", "tturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID", "velcl", "velcl",  base.from_float, fields);
+                base.export_element (obj, "GovHydroPID", "velop", "velop",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -531,6 +568,49 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroPID" };
+                super.submit (obj);
+                temp = document.getElementById ("aturb").value; if ("" != temp) obj.aturb = temp;
+                temp = document.getElementById ("bturb").value; if ("" != temp) obj.bturb = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("eps").value; if ("" != temp) obj.eps = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("gv6").value; if ("" != temp) obj.gv6 = temp;
+                temp = document.getElementById ("inputSignal").checked; if (temp) obj.inputSignal = true;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("pgv6").value; if ("" != temp) obj.pgv6 = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
+                temp = document.getElementById ("tturb").value; if ("" != temp) obj.tturb = temp;
+                temp = document.getElementById ("velcl").value; if ("" != temp) obj.velcl = temp;
+                temp = document.getElementById ("velop").value; if ("" != temp) obj.velop = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -631,68 +711,67 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovCT2", "aset", base.from_float, fields);
-                base.export_element (obj, "GovCT2", "db", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "dm", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim1", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim10", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim2", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim3", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim4", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim5", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim6", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim7", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim8", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "flim9", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "ka", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "kdgov", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "kigov", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "kiload", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "kimw", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "kpgov", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "kpload", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "kturb", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "ldref", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "maxerr", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "minerr", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim1", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim10", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim2", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim3", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim4", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim5", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim6", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim7", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim8", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "plim9", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "prate", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "r", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "rclose", base.from_float, fields);
-                base.export_element (obj, "GovCT2", "rdown", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "ropen", base.from_float, fields);
-                base.export_element (obj, "GovCT2", "rselect", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "rup", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "ta", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "tact", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "tb", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "tc", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "tdgov", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "teng", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "tfload", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "tpelec", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "tsa", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "tsb", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "vmax", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "vmin", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "wfnl", base.from_string, fields);
-                base.export_element (obj, "GovCT2", "wfspd", base.from_boolean, fields);
+                base.export_element (obj, "GovCT2", "aset", "aset",  base.from_float, fields);
+                base.export_element (obj, "GovCT2", "db", "db",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "dm", "dm",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim1", "flim1",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim10", "flim10",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim2", "flim2",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim3", "flim3",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim4", "flim4",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim5", "flim5",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim6", "flim6",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim7", "flim7",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim8", "flim8",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "flim9", "flim9",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "kdgov", "kdgov",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "kigov", "kigov",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "kiload", "kiload",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "kimw", "kimw",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "kpgov", "kpgov",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "kpload", "kpload",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "kturb", "kturb",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "ldref", "ldref",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "maxerr", "maxerr",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "minerr", "minerr",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim1", "plim1",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim10", "plim10",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim2", "plim2",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim3", "plim3",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim4", "plim4",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim5", "plim5",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim6", "plim6",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim7", "plim7",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim8", "plim8",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "plim9", "plim9",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "prate", "prate",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "rclose", "rclose",  base.from_float, fields);
+                base.export_element (obj, "GovCT2", "rdown", "rdown",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "ropen", "ropen",  base.from_float, fields);
+                base.export_element (obj, "GovCT2", "rselect", "rselect",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "rup", "rup",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "tact", "tact",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "tdgov", "tdgov",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "teng", "teng",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "tfload", "tfload",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "tpelec", "tpelec",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "tsa", "tsa",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "tsb", "tsb",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "vmax", "vmax",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "vmin", "vmin",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "wfnl", "wfnl",  base.from_string, fields);
+                base.export_element (obj, "GovCT2", "wfspd", "wfspd",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -850,6 +929,72 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovCT2" };
+                super.submit (obj);
+                temp = document.getElementById ("aset").value; if ("" != temp) obj.aset = temp;
+                temp = document.getElementById ("db").value; if ("" != temp) obj.db = temp;
+                temp = document.getElementById ("dm").value; if ("" != temp) obj.dm = temp;
+                temp = document.getElementById ("flim1").value; if ("" != temp) obj.flim1 = temp;
+                temp = document.getElementById ("flim10").value; if ("" != temp) obj.flim10 = temp;
+                temp = document.getElementById ("flim2").value; if ("" != temp) obj.flim2 = temp;
+                temp = document.getElementById ("flim3").value; if ("" != temp) obj.flim3 = temp;
+                temp = document.getElementById ("flim4").value; if ("" != temp) obj.flim4 = temp;
+                temp = document.getElementById ("flim5").value; if ("" != temp) obj.flim5 = temp;
+                temp = document.getElementById ("flim6").value; if ("" != temp) obj.flim6 = temp;
+                temp = document.getElementById ("flim7").value; if ("" != temp) obj.flim7 = temp;
+                temp = document.getElementById ("flim8").value; if ("" != temp) obj.flim8 = temp;
+                temp = document.getElementById ("flim9").value; if ("" != temp) obj.flim9 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kdgov").value; if ("" != temp) obj.kdgov = temp;
+                temp = document.getElementById ("kigov").value; if ("" != temp) obj.kigov = temp;
+                temp = document.getElementById ("kiload").value; if ("" != temp) obj.kiload = temp;
+                temp = document.getElementById ("kimw").value; if ("" != temp) obj.kimw = temp;
+                temp = document.getElementById ("kpgov").value; if ("" != temp) obj.kpgov = temp;
+                temp = document.getElementById ("kpload").value; if ("" != temp) obj.kpload = temp;
+                temp = document.getElementById ("kturb").value; if ("" != temp) obj.kturb = temp;
+                temp = document.getElementById ("ldref").value; if ("" != temp) obj.ldref = temp;
+                temp = document.getElementById ("maxerr").value; if ("" != temp) obj.maxerr = temp;
+                temp = document.getElementById ("minerr").value; if ("" != temp) obj.minerr = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("plim1").value; if ("" != temp) obj.plim1 = temp;
+                temp = document.getElementById ("plim10").value; if ("" != temp) obj.plim10 = temp;
+                temp = document.getElementById ("plim2").value; if ("" != temp) obj.plim2 = temp;
+                temp = document.getElementById ("plim3").value; if ("" != temp) obj.plim3 = temp;
+                temp = document.getElementById ("plim4").value; if ("" != temp) obj.plim4 = temp;
+                temp = document.getElementById ("plim5").value; if ("" != temp) obj.plim5 = temp;
+                temp = document.getElementById ("plim6").value; if ("" != temp) obj.plim6 = temp;
+                temp = document.getElementById ("plim7").value; if ("" != temp) obj.plim7 = temp;
+                temp = document.getElementById ("plim8").value; if ("" != temp) obj.plim8 = temp;
+                temp = document.getElementById ("plim9").value; if ("" != temp) obj.plim9 = temp;
+                temp = document.getElementById ("prate").value; if ("" != temp) obj.prate = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("rclose").value; if ("" != temp) obj.rclose = temp;
+                temp = document.getElementById ("rdown").value; if ("" != temp) obj.rdown = temp;
+                temp = document.getElementById ("ropen").value; if ("" != temp) obj.ropen = temp;
+                temp = document.getElementById ("rselect").value; if ("" != temp) { temp = DroopSignalFeedbackKind[temp]; if ("undefined" != typeof (temp)) obj.rselect = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; }
+                temp = document.getElementById ("rup").value; if ("" != temp) obj.rup = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tact").value; if ("" != temp) obj.tact = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tdgov").value; if ("" != temp) obj.tdgov = temp;
+                temp = document.getElementById ("teng").value; if ("" != temp) obj.teng = temp;
+                temp = document.getElementById ("tfload").value; if ("" != temp) obj.tfload = temp;
+                temp = document.getElementById ("tpelec").value; if ("" != temp) obj.tpelec = temp;
+                temp = document.getElementById ("tsa").value; if ("" != temp) obj.tsa = temp;
+                temp = document.getElementById ("tsb").value; if ("" != temp) obj.tsb = temp;
+                temp = document.getElementById ("vmax").value; if ("" != temp) obj.vmax = temp;
+                temp = document.getElementById ("vmin").value; if ("" != temp) obj.vmin = temp;
+                temp = document.getElementById ("wfnl").value; if ("" != temp) obj.wfnl = temp;
+                temp = document.getElementById ("wfspd").checked; if (temp) obj.wfspd = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -921,41 +1066,40 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydro2", "aturb", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "bturb", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "db1", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "db2", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "eps", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "gv6", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "kturb", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "pgv6", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "rperm", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "rtemp", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "tg", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "tp", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "tr", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "tw", base.from_string, fields);
-                base.export_element (obj, "GovHydro2", "uc", base.from_float, fields);
-                base.export_element (obj, "GovHydro2", "uo", base.from_float, fields);
+                base.export_element (obj, "GovHydro2", "aturb", "aturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "bturb", "bturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "eps", "eps",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "gv6", "gv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "kturb", "kturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "rperm", "rperm",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "rtemp", "rtemp",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovHydro2", "uc", "uc",  base.from_float, fields);
+                base.export_element (obj, "GovHydro2", "uo", "uo",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1057,6 +1201,45 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydro2" };
+                super.submit (obj);
+                temp = document.getElementById ("aturb").value; if ("" != temp) obj.aturb = temp;
+                temp = document.getElementById ("bturb").value; if ("" != temp) obj.bturb = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("eps").value; if ("" != temp) obj.eps = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("gv6").value; if ("" != temp) obj.gv6 = temp;
+                temp = document.getElementById ("kturb").value; if ("" != temp) obj.kturb = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("pgv6").value; if ("" != temp) obj.pgv6 = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("rperm").value; if ("" != temp) obj.rperm = temp;
+                temp = document.getElementById ("rtemp").value; if ("" != temp) obj.rtemp = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("uc").value; if ("" != temp) obj.uc = temp;
+                temp = document.getElementById ("uo").value; if ("" != temp) obj.uo = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1127,38 +1310,37 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroIEEE2", "aturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "bturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "gv6", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "kturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "pgv6", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "rperm", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "rtemp", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "tg", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "tp", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "tr", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "tw", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE2", "uc", base.from_float, fields);
-                base.export_element (obj, "GovHydroIEEE2", "uo", base.from_float, fields);
+                base.export_element (obj, "GovHydroIEEE2", "aturb", "aturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "bturb", "bturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "gv6", "gv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "kturb", "kturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "rperm", "rperm",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "rtemp", "rtemp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE2", "uc", "uc",  base.from_float, fields);
+                base.export_element (obj, "GovHydroIEEE2", "uo", "uo",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1254,6 +1436,42 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroIEEE2" };
+                super.submit (obj);
+                temp = document.getElementById ("aturb").value; if ("" != temp) obj.aturb = temp;
+                temp = document.getElementById ("bturb").value; if ("" != temp) obj.bturb = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("gv6").value; if ("" != temp) obj.gv6 = temp;
+                temp = document.getElementById ("kturb").value; if ("" != temp) obj.kturb = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("pgv6").value; if ("" != temp) obj.pgv6 = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("rperm").value; if ("" != temp) obj.rperm = temp;
+                temp = document.getElementById ("rtemp").value; if ("" != temp) obj.rtemp = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("uc").value; if ("" != temp) obj.uc = temp;
+                temp = document.getElementById ("uo").value; if ("" != temp) obj.uo = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1318,34 +1536,33 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroWPID", "d", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "gatmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "gatmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "kd", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "ki", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "kp", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "reg", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "ta", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "tb", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "treg", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "tw", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "velmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroWPID", "velmin", base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "d", "d",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "gatmax", "gatmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "gatmin", "gatmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "reg", "reg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "treg", "treg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "velmax", "velmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWPID", "velmin", "velmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1432,6 +1649,38 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroWPID" };
+                super.submit (obj);
+                temp = document.getElementById ("d").value; if ("" != temp) obj.d = temp;
+                temp = document.getElementById ("gatmax").value; if ("" != temp) obj.gatmax = temp;
+                temp = document.getElementById ("gatmin").value; if ("" != temp) obj.gatmin = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("reg").value; if ("" != temp) obj.reg = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("treg").value; if ("" != temp) obj.treg = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("velmax").value; if ("" != temp) obj.velmax = temp;
+                temp = document.getElementById ("velmin").value; if ("" != temp) obj.velmin = temp;
+
+                return (obj);
             }
         }
 
@@ -1526,63 +1775,62 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteamFV4", "cpsmn", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "cpsmx", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "crmn", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "crmx", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kdc", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kf1", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kf3", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "khp", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kic", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kip", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kit", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kmp1", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kmp2", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kpc", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kpp", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "kpt", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "krc", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "ksh", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "lpi", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "lps", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "mnef", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "mxef", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "pr1", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "pr2", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "psmn", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "rsmimn", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "rsmimx", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "rvgmn", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "rvgmx", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "srmn", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "srmx", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "srsmp", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "svmn", base.from_float, fields);
-                base.export_element (obj, "GovSteamFV4", "svmx", base.from_float, fields);
-                base.export_element (obj, "GovSteamFV4", "ta", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "tam", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "tc", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "tcm", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "tdc", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "tf1", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "tf2", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "thp", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "tmp", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "trh", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "tv", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "ty", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "y", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "yhpmn", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "yhpmx", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "ympmn", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV4", "ympmx", base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "cpsmn", "cpsmn",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "cpsmx", "cpsmx",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "crmn", "crmn",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "crmx", "crmx",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kdc", "kdc",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kf1", "kf1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kf3", "kf3",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "khp", "khp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kic", "kic",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kip", "kip",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kit", "kit",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kmp1", "kmp1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kmp2", "kmp2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kpc", "kpc",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kpp", "kpp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "kpt", "kpt",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "krc", "krc",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "ksh", "ksh",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "lpi", "lpi",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "lps", "lps",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "mnef", "mnef",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "mxef", "mxef",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "pr1", "pr1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "pr2", "pr2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "psmn", "psmn",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "rsmimn", "rsmimn",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "rsmimx", "rsmimx",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "rvgmn", "rvgmn",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "rvgmx", "rvgmx",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "srmn", "srmn",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "srmx", "srmx",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "srsmp", "srsmp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "svmn", "svmn",  base.from_float, fields);
+                base.export_element (obj, "GovSteamFV4", "svmx", "svmx",  base.from_float, fields);
+                base.export_element (obj, "GovSteamFV4", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "tam", "tam",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "tcm", "tcm",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "tdc", "tdc",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "tf1", "tf1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "tf2", "tf2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "thp", "thp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "tmp", "tmp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "trh", "trh",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "tv", "tv",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "ty", "ty",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "y", "y",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "yhpmn", "yhpmn",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "yhpmx", "yhpmx",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "ympmn", "ympmn",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV4", "ympmx", "ympmx",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1728,6 +1976,67 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteamFV4" };
+                super.submit (obj);
+                temp = document.getElementById ("cpsmn").value; if ("" != temp) obj.cpsmn = temp;
+                temp = document.getElementById ("cpsmx").value; if ("" != temp) obj.cpsmx = temp;
+                temp = document.getElementById ("crmn").value; if ("" != temp) obj.crmn = temp;
+                temp = document.getElementById ("crmx").value; if ("" != temp) obj.crmx = temp;
+                temp = document.getElementById ("kdc").value; if ("" != temp) obj.kdc = temp;
+                temp = document.getElementById ("kf1").value; if ("" != temp) obj.kf1 = temp;
+                temp = document.getElementById ("kf3").value; if ("" != temp) obj.kf3 = temp;
+                temp = document.getElementById ("khp").value; if ("" != temp) obj.khp = temp;
+                temp = document.getElementById ("kic").value; if ("" != temp) obj.kic = temp;
+                temp = document.getElementById ("kip").value; if ("" != temp) obj.kip = temp;
+                temp = document.getElementById ("kit").value; if ("" != temp) obj.kit = temp;
+                temp = document.getElementById ("kmp1").value; if ("" != temp) obj.kmp1 = temp;
+                temp = document.getElementById ("kmp2").value; if ("" != temp) obj.kmp2 = temp;
+                temp = document.getElementById ("kpc").value; if ("" != temp) obj.kpc = temp;
+                temp = document.getElementById ("kpp").value; if ("" != temp) obj.kpp = temp;
+                temp = document.getElementById ("kpt").value; if ("" != temp) obj.kpt = temp;
+                temp = document.getElementById ("krc").value; if ("" != temp) obj.krc = temp;
+                temp = document.getElementById ("ksh").value; if ("" != temp) obj.ksh = temp;
+                temp = document.getElementById ("lpi").value; if ("" != temp) obj.lpi = temp;
+                temp = document.getElementById ("lps").value; if ("" != temp) obj.lps = temp;
+                temp = document.getElementById ("mnef").value; if ("" != temp) obj.mnef = temp;
+                temp = document.getElementById ("mxef").value; if ("" != temp) obj.mxef = temp;
+                temp = document.getElementById ("pr1").value; if ("" != temp) obj.pr1 = temp;
+                temp = document.getElementById ("pr2").value; if ("" != temp) obj.pr2 = temp;
+                temp = document.getElementById ("psmn").value; if ("" != temp) obj.psmn = temp;
+                temp = document.getElementById ("rsmimn").value; if ("" != temp) obj.rsmimn = temp;
+                temp = document.getElementById ("rsmimx").value; if ("" != temp) obj.rsmimx = temp;
+                temp = document.getElementById ("rvgmn").value; if ("" != temp) obj.rvgmn = temp;
+                temp = document.getElementById ("rvgmx").value; if ("" != temp) obj.rvgmx = temp;
+                temp = document.getElementById ("srmn").value; if ("" != temp) obj.srmn = temp;
+                temp = document.getElementById ("srmx").value; if ("" != temp) obj.srmx = temp;
+                temp = document.getElementById ("srsmp").value; if ("" != temp) obj.srsmp = temp;
+                temp = document.getElementById ("svmn").value; if ("" != temp) obj.svmn = temp;
+                temp = document.getElementById ("svmx").value; if ("" != temp) obj.svmx = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tam").value; if ("" != temp) obj.tam = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tcm").value; if ("" != temp) obj.tcm = temp;
+                temp = document.getElementById ("tdc").value; if ("" != temp) obj.tdc = temp;
+                temp = document.getElementById ("tf1").value; if ("" != temp) obj.tf1 = temp;
+                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById ("thp").value; if ("" != temp) obj.thp = temp;
+                temp = document.getElementById ("tmp").value; if ("" != temp) obj.tmp = temp;
+                temp = document.getElementById ("trh").value; if ("" != temp) obj.trh = temp;
+                temp = document.getElementById ("tv").value; if ("" != temp) obj.tv = temp;
+                temp = document.getElementById ("ty").value; if ("" != temp) obj.ty = temp;
+                temp = document.getElementById ("y").value; if ("" != temp) obj.y = temp;
+                temp = document.getElementById ("yhpmn").value; if ("" != temp) obj.yhpmn = temp;
+                temp = document.getElementById ("yhpmx").value; if ("" != temp) obj.yhpmx = temp;
+                temp = document.getElementById ("ympmn").value; if ("" != temp) obj.ympmn = temp;
+                temp = document.getElementById ("ympmx").value; if ("" != temp) obj.ympmx = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1794,34 +2103,33 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroPID2", "atw", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "d", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "feedbackSignal", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroPID2", "g0", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "g1", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "g2", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "gmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "gmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "kd", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "ki", base.from_float, fields);
-                base.export_element (obj, "GovHydroPID2", "kp", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "p1", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "p2", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "p3", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "rperm", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "ta", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "tb", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "treg", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "tw", base.from_string, fields);
-                base.export_element (obj, "GovHydroPID2", "velmax", base.from_float, fields);
-                base.export_element (obj, "GovHydroPID2", "velmin", base.from_float, fields);
+                base.export_element (obj, "GovHydroPID2", "atw", "atw",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "d", "d",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "feedbackSignal", "feedbackSignal",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroPID2", "g0", "g0",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "g1", "g1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "g2", "g2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "gmax", "gmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "gmin", "gmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "ki", "ki",  base.from_float, fields);
+                base.export_element (obj, "GovHydroPID2", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "p1", "p1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "p2", "p2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "p3", "p3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "rperm", "rperm",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "treg", "treg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPID2", "velmax", "velmax",  base.from_float, fields);
+                base.export_element (obj, "GovHydroPID2", "velmin", "velmin",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1909,6 +2217,38 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroPID2" };
+                super.submit (obj);
+                temp = document.getElementById ("atw").value; if ("" != temp) obj.atw = temp;
+                temp = document.getElementById ("d").value; if ("" != temp) obj.d = temp;
+                temp = document.getElementById ("feedbackSignal").checked; if (temp) obj.feedbackSignal = true;
+                temp = document.getElementById ("g0").value; if ("" != temp) obj.g0 = temp;
+                temp = document.getElementById ("g1").value; if ("" != temp) obj.g1 = temp;
+                temp = document.getElementById ("g2").value; if ("" != temp) obj.g2 = temp;
+                temp = document.getElementById ("gmax").value; if ("" != temp) obj.gmax = temp;
+                temp = document.getElementById ("gmin").value; if ("" != temp) obj.gmin = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("p1").value; if ("" != temp) obj.p1 = temp;
+                temp = document.getElementById ("p2").value; if ("" != temp) obj.p2 = temp;
+                temp = document.getElementById ("p3").value; if ("" != temp) obj.p3 = temp;
+                temp = document.getElementById ("rperm").value; if ("" != temp) obj.rperm = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("treg").value; if ("" != temp) obj.treg = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("velmax").value; if ("" != temp) obj.velmax = temp;
+                temp = document.getElementById ("velmin").value; if ("" != temp) obj.velmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1961,22 +2301,21 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovGAST", "at", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "dturb", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "kt", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "r", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "t1", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "t2", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "t3", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "vmax", base.from_string, fields);
-                base.export_element (obj, "GovGAST", "vmin", base.from_string, fields);
+                base.export_element (obj, "GovGAST", "at", "at",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "dturb", "dturb",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "kt", "kt",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "vmax", "vmax",  base.from_string, fields);
+                base.export_element (obj, "GovGAST", "vmin", "vmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2039,6 +2378,26 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovGAST" };
+                super.submit (obj);
+                temp = document.getElementById ("at").value; if ("" != temp) obj.at = temp;
+                temp = document.getElementById ("dturb").value; if ("" != temp) obj.dturb = temp;
+                temp = document.getElementById ("kt").value; if ("" != temp) obj.kt = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("vmax").value; if ("" != temp) obj.vmax = temp;
+                temp = document.getElementById ("vmin").value; if ("" != temp) obj.vmin = temp;
+
+                return (obj);
             }
         }
 
@@ -2117,47 +2476,46 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteamEU", "chc", base.from_float, fields);
-                base.export_element (obj, "GovSteamEU", "cho", base.from_float, fields);
-                base.export_element (obj, "GovSteamEU", "cic", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "cio", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "db1", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "db2", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "hhpmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "ke", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "kfcor", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "khp", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "klp", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "kwcor", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "prhmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "simx", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tb", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tdp", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "ten", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tf", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tfp", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "thp", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tip", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tlp", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tp", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "trh", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tvhp", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tvip", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "tw", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "wfmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "wfmin", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "wmax1", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "wmax2", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "wwmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamEU", "wwmin", base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "chc", "chc",  base.from_float, fields);
+                base.export_element (obj, "GovSteamEU", "cho", "cho",  base.from_float, fields);
+                base.export_element (obj, "GovSteamEU", "cic", "cic",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "cio", "cio",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "hhpmax", "hhpmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "kfcor", "kfcor",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "khp", "khp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "klp", "klp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "kwcor", "kwcor",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "prhmax", "prhmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "simx", "simx",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tdp", "tdp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "ten", "ten",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tfp", "tfp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "thp", "thp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tip", "tip",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tlp", "tlp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "trh", "trh",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tvhp", "tvhp",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tvip", "tvip",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "wfmax", "wfmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "wfmin", "wfmin",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "wmax1", "wmax1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "wmax2", "wmax2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "wwmax", "wwmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamEU", "wwmin", "wwmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2271,6 +2629,51 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteamEU" };
+                super.submit (obj);
+                temp = document.getElementById ("chc").value; if ("" != temp) obj.chc = temp;
+                temp = document.getElementById ("cho").value; if ("" != temp) obj.cho = temp;
+                temp = document.getElementById ("cic").value; if ("" != temp) obj.cic = temp;
+                temp = document.getElementById ("cio").value; if ("" != temp) obj.cio = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("hhpmax").value; if ("" != temp) obj.hhpmax = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kfcor").value; if ("" != temp) obj.kfcor = temp;
+                temp = document.getElementById ("khp").value; if ("" != temp) obj.khp = temp;
+                temp = document.getElementById ("klp").value; if ("" != temp) obj.klp = temp;
+                temp = document.getElementById ("kwcor").value; if ("" != temp) obj.kwcor = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("prhmax").value; if ("" != temp) obj.prhmax = temp;
+                temp = document.getElementById ("simx").value; if ("" != temp) obj.simx = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tdp").value; if ("" != temp) obj.tdp = temp;
+                temp = document.getElementById ("ten").value; if ("" != temp) obj.ten = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tfp").value; if ("" != temp) obj.tfp = temp;
+                temp = document.getElementById ("thp").value; if ("" != temp) obj.thp = temp;
+                temp = document.getElementById ("tip").value; if ("" != temp) obj.tip = temp;
+                temp = document.getElementById ("tlp").value; if ("" != temp) obj.tlp = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("trh").value; if ("" != temp) obj.trh = temp;
+                temp = document.getElementById ("tvhp").value; if ("" != temp) obj.tvhp = temp;
+                temp = document.getElementById ("tvip").value; if ("" != temp) obj.tvip = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("wfmax").value; if ("" != temp) obj.wfmax = temp;
+                temp = document.getElementById ("wfmin").value; if ("" != temp) obj.wfmin = temp;
+                temp = document.getElementById ("wmax1").value; if ("" != temp) obj.wmax1 = temp;
+                temp = document.getElementById ("wmax2").value; if ("" != temp) obj.wmax2 = temp;
+                temp = document.getElementById ("wwmax").value; if ("" != temp) obj.wwmax = temp;
+                temp = document.getElementById ("wwmin").value; if ("" != temp) obj.wwmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2351,48 +2754,47 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydro3", "at", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "db1", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "db2", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "dturb", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "eps", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "governorControl", base.from_boolean, fields);
-                base.export_element (obj, "GovHydro3", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "gv6", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "h0", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "k1", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "k2", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "kg", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "ki", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "pgv6", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "qnl", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "relec", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "rgate", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "td", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "tf", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "tp", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "tt", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "tw", base.from_string, fields);
-                base.export_element (obj, "GovHydro3", "velcl", base.from_float, fields);
-                base.export_element (obj, "GovHydro3", "velop", base.from_float, fields);
+                base.export_element (obj, "GovHydro3", "at", "at",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "dturb", "dturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "eps", "eps",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "governorControl", "governorControl",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydro3", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "gv6", "gv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "h0", "h0",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "k1", "k1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "k2", "k2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "qnl", "qnl",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "relec", "relec",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "rgate", "rgate",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "tt", "tt",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovHydro3", "velcl", "velcl",  base.from_float, fields);
+                base.export_element (obj, "GovHydro3", "velop", "velop",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2508,6 +2910,52 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydro3" };
+                super.submit (obj);
+                temp = document.getElementById ("at").value; if ("" != temp) obj.at = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("dturb").value; if ("" != temp) obj.dturb = temp;
+                temp = document.getElementById ("eps").value; if ("" != temp) obj.eps = temp;
+                temp = document.getElementById ("governorControl").checked; if (temp) obj.governorControl = true;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("gv6").value; if ("" != temp) obj.gv6 = temp;
+                temp = document.getElementById ("h0").value; if ("" != temp) obj.h0 = temp;
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("pgv6").value; if ("" != temp) obj.pgv6 = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("qnl").value; if ("" != temp) obj.qnl = temp;
+                temp = document.getElementById ("relec").value; if ("" != temp) obj.relec = temp;
+                temp = document.getElementById ("rgate").value; if ("" != temp) obj.rgate = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("velcl").value; if ("" != temp) obj.velcl = temp;
+                temp = document.getElementById ("velop").value; if ("" != temp) obj.velop = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2573,33 +3021,32 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteamIEEE1", "k", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k1", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k2", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k3", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k4", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k5", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k6", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k7", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "k8", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "t1", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "t2", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "t3", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "t4", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "t5", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "t6", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "t7", base.from_string, fields);
-                base.export_element (obj, "GovSteamIEEE1", "uc", base.from_float, fields);
-                base.export_element (obj, "GovSteamIEEE1", "uo", base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k1", "k1",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k2", "k2",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k3", "k3",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k4", "k4",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k5", "k5",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k6", "k6",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k7", "k7",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "k8", "k8",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "t6", "t6",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "t7", "t7",  base.from_string, fields);
+                base.export_element (obj, "GovSteamIEEE1", "uc", "uc",  base.from_float, fields);
+                base.export_element (obj, "GovSteamIEEE1", "uo", "uo",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2685,6 +3132,37 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteamIEEE1" };
+                super.submit (obj);
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("k4").value; if ("" != temp) obj.k4 = temp;
+                temp = document.getElementById ("k5").value; if ("" != temp) obj.k5 = temp;
+                temp = document.getElementById ("k6").value; if ("" != temp) obj.k6 = temp;
+                temp = document.getElementById ("k7").value; if ("" != temp) obj.k7 = temp;
+                temp = document.getElementById ("k8").value; if ("" != temp) obj.k8 = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById ("t7").value; if ("" != temp) obj.t7 = temp;
+                temp = document.getElementById ("uc").value; if ("" != temp) obj.uc = temp;
+                temp = document.getElementById ("uo").value; if ("" != temp) obj.uo = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2760,45 +3238,44 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovGASTWD", "a", base.from_float, fields);
-                base.export_element (obj, "GovGASTWD", "af1", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "af2", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "b", base.from_float, fields);
-                base.export_element (obj, "GovGASTWD", "bf1", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "bf2", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "c", base.from_float, fields);
-                base.export_element (obj, "GovGASTWD", "cf2", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "ecr", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "etd", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "k3", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "k4", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "k5", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "k6", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "kd", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "kdroop", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "kf", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "ki", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "kp", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "t", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "t3", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "t4", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "t5", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tc", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tcd", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "td", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tf", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tmax", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tmin", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tr", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "trate", base.from_string, fields);
-                base.export_element (obj, "GovGASTWD", "tt", base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "a", "a",  base.from_float, fields);
+                base.export_element (obj, "GovGASTWD", "af1", "af1",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "af2", "af2",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "b", "b",  base.from_float, fields);
+                base.export_element (obj, "GovGASTWD", "bf1", "bf1",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "bf2", "bf2",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "c", "c",  base.from_float, fields);
+                base.export_element (obj, "GovGASTWD", "cf2", "cf2",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "ecr", "ecr",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "etd", "etd",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "k3", "k3",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "k4", "k4",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "k5", "k5",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "k6", "k6",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "kdroop", "kdroop",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "t", "t",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tcd", "tcd",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tmax", "tmax",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tmin", "tmin",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "trate", "trate",  base.from_string, fields);
+                base.export_element (obj, "GovGASTWD", "tt", "tt",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2908,6 +3385,49 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovGASTWD" };
+                super.submit (obj);
+                temp = document.getElementById ("a").value; if ("" != temp) obj.a = temp;
+                temp = document.getElementById ("af1").value; if ("" != temp) obj.af1 = temp;
+                temp = document.getElementById ("af2").value; if ("" != temp) obj.af2 = temp;
+                temp = document.getElementById ("b").value; if ("" != temp) obj.b = temp;
+                temp = document.getElementById ("bf1").value; if ("" != temp) obj.bf1 = temp;
+                temp = document.getElementById ("bf2").value; if ("" != temp) obj.bf2 = temp;
+                temp = document.getElementById ("c").value; if ("" != temp) obj.c = temp;
+                temp = document.getElementById ("cf2").value; if ("" != temp) obj.cf2 = temp;
+                temp = document.getElementById ("ecr").value; if ("" != temp) obj.ecr = temp;
+                temp = document.getElementById ("etd").value; if ("" != temp) obj.etd = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("k4").value; if ("" != temp) obj.k4 = temp;
+                temp = document.getElementById ("k5").value; if ("" != temp) obj.k5 = temp;
+                temp = document.getElementById ("k6").value; if ("" != temp) obj.k6 = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("kdroop").value; if ("" != temp) obj.kdroop = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("t").value; if ("" != temp) obj.t = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tcd").value; if ("" != temp) obj.tcd = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tmax").value; if ("" != temp) obj.tmax = temp;
+                temp = document.getElementById ("tmin").value; if ("" != temp) obj.tmin = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("trate").value; if ("" != temp) obj.trate = temp;
+                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2971,33 +3491,32 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovGAST3", "bca", base.from_float, fields);
-                base.export_element (obj, "GovGAST3", "bp", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "dtc", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "ka", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "kac", base.from_float, fields);
-                base.export_element (obj, "GovGAST3", "kca", base.from_float, fields);
-                base.export_element (obj, "GovGAST3", "ksi", base.from_float, fields);
-                base.export_element (obj, "GovGAST3", "ky", base.from_float, fields);
-                base.export_element (obj, "GovGAST3", "mnef", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "mxef", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "rcmn", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "rcmx", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "tac", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "tc", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "td", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "tfen", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "tg", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "tsi", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "tt", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "ttc", base.from_string, fields);
-                base.export_element (obj, "GovGAST3", "ty", base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "bca", "bca",  base.from_float, fields);
+                base.export_element (obj, "GovGAST3", "bp", "bp",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "dtc", "dtc",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "kac", "kac",  base.from_float, fields);
+                base.export_element (obj, "GovGAST3", "kca", "kca",  base.from_float, fields);
+                base.export_element (obj, "GovGAST3", "ksi", "ksi",  base.from_float, fields);
+                base.export_element (obj, "GovGAST3", "ky", "ky",  base.from_float, fields);
+                base.export_element (obj, "GovGAST3", "mnef", "mnef",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "mxef", "mxef",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "rcmn", "rcmn",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "rcmx", "rcmx",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "tac", "tac",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "tfen", "tfen",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "tsi", "tsi",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "tt", "tt",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "ttc", "ttc",  base.from_string, fields);
+                base.export_element (obj, "GovGAST3", "ty", "ty",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3083,6 +3602,37 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovGAST3" };
+                super.submit (obj);
+                temp = document.getElementById ("bca").value; if ("" != temp) obj.bca = temp;
+                temp = document.getElementById ("bp").value; if ("" != temp) obj.bp = temp;
+                temp = document.getElementById ("dtc").value; if ("" != temp) obj.dtc = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kac").value; if ("" != temp) obj.kac = temp;
+                temp = document.getElementById ("kca").value; if ("" != temp) obj.kca = temp;
+                temp = document.getElementById ("ksi").value; if ("" != temp) obj.ksi = temp;
+                temp = document.getElementById ("ky").value; if ("" != temp) obj.ky = temp;
+                temp = document.getElementById ("mnef").value; if ("" != temp) obj.mnef = temp;
+                temp = document.getElementById ("mxef").value; if ("" != temp) obj.mxef = temp;
+                temp = document.getElementById ("rcmn").value; if ("" != temp) obj.rcmn = temp;
+                temp = document.getElementById ("rcmx").value; if ("" != temp) obj.rcmx = temp;
+                temp = document.getElementById ("tac").value; if ("" != temp) obj.tac = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("tfen").value; if ("" != temp) obj.tfen = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("tsi").value; if ("" != temp) obj.tsi = temp;
+                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
+                temp = document.getElementById ("ttc").value; if ("" != temp) obj.ttc = temp;
+                temp = document.getElementById ("ty").value; if ("" != temp) obj.ty = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3138,25 +3688,24 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteamFV2", "dt", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "k", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "r", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "t1", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "t3", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "ta", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "tb", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "tc", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "ti", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "tt", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "vmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV2", "vmin", base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "dt", "dt",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "ti", "ti",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "tt", "tt",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "vmax", "vmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV2", "vmin", "vmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3225,6 +3774,29 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteamFV2" };
+                super.submit (obj);
+                temp = document.getElementById ("dt").value; if ("" != temp) obj.dt = temp;
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("ti").value; if ("" != temp) obj.ti = temp;
+                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
+                temp = document.getElementById ("vmax").value; if ("" != temp) obj.vmax = temp;
+                temp = document.getElementById ("vmin").value; if ("" != temp) obj.vmin = temp;
+
+                return (obj);
             }
         }
 
@@ -3298,40 +3870,39 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroPelton", "av0", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "av1", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "bp", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "db1", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "db2", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "h1", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "h2", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "hn", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "kc", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "kg", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "qc0", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "qn", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "simplifiedPelton", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroPelton", "staticCompensating", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroPelton", "ta", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "ts", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "tv", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "twnc", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "twng", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "tx", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "va", base.from_float, fields);
-                base.export_element (obj, "GovHydroPelton", "valvmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "valvmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "vav", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "vc", base.from_float, fields);
-                base.export_element (obj, "GovHydroPelton", "vcv", base.from_string, fields);
-                base.export_element (obj, "GovHydroPelton", "waterTunnelSurgeChamberSimulation", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroPelton", "zsfc", base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "av0", "av0",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "av1", "av1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "bp", "bp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "h1", "h1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "h2", "h2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "hn", "hn",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "qc0", "qc0",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "qn", "qn",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "simplifiedPelton", "simplifiedPelton",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroPelton", "staticCompensating", "staticCompensating",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroPelton", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "ts", "ts",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "tv", "tv",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "twnc", "twnc",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "twng", "twng",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "tx", "tx",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "va", "va",  base.from_float, fields);
+                base.export_element (obj, "GovHydroPelton", "valvmax", "valvmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "valvmin", "valvmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "vav", "vav",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "vc", "vc",  base.from_float, fields);
+                base.export_element (obj, "GovHydroPelton", "vcv", "vcv",  base.from_string, fields);
+                base.export_element (obj, "GovHydroPelton", "waterTunnelSurgeChamberSimulation", "waterTunnelSurgeChamberSimulation",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroPelton", "zsfc", "zsfc",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3431,6 +4002,44 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroPelton" };
+                super.submit (obj);
+                temp = document.getElementById ("av0").value; if ("" != temp) obj.av0 = temp;
+                temp = document.getElementById ("av1").value; if ("" != temp) obj.av1 = temp;
+                temp = document.getElementById ("bp").value; if ("" != temp) obj.bp = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("h1").value; if ("" != temp) obj.h1 = temp;
+                temp = document.getElementById ("h2").value; if ("" != temp) obj.h2 = temp;
+                temp = document.getElementById ("hn").value; if ("" != temp) obj.hn = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("qc0").value; if ("" != temp) obj.qc0 = temp;
+                temp = document.getElementById ("qn").value; if ("" != temp) obj.qn = temp;
+                temp = document.getElementById ("simplifiedPelton").checked; if (temp) obj.simplifiedPelton = true;
+                temp = document.getElementById ("staticCompensating").checked; if (temp) obj.staticCompensating = true;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("ts").value; if ("" != temp) obj.ts = temp;
+                temp = document.getElementById ("tv").value; if ("" != temp) obj.tv = temp;
+                temp = document.getElementById ("twnc").value; if ("" != temp) obj.twnc = temp;
+                temp = document.getElementById ("twng").value; if ("" != temp) obj.twng = temp;
+                temp = document.getElementById ("tx").value; if ("" != temp) obj.tx = temp;
+                temp = document.getElementById ("va").value; if ("" != temp) obj.va = temp;
+                temp = document.getElementById ("valvmax").value; if ("" != temp) obj.valvmax = temp;
+                temp = document.getElementById ("valvmin").value; if ("" != temp) obj.valvmin = temp;
+                temp = document.getElementById ("vav").value; if ("" != temp) obj.vav = temp;
+                temp = document.getElementById ("vc").value; if ("" != temp) obj.vc = temp;
+                temp = document.getElementById ("vcv").value; if ("" != temp) obj.vcv = temp;
+                temp = document.getElementById ("waterTunnelSurgeChamberSimulation").checked; if (temp) obj.waterTunnelSurgeChamberSimulation = true;
+                temp = document.getElementById ("zsfc").value; if ("" != temp) obj.zsfc = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3510,47 +4119,46 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovCT1", "aset", base.from_float, fields);
-                base.export_element (obj, "GovCT1", "db", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "dm", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "ka", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "kdgov", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "kigov", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "kiload", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "kimw", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "kpgov", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "kpload", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "kturb", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "ldref", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "maxerr", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "minerr", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "r", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "rclose", base.from_float, fields);
-                base.export_element (obj, "GovCT1", "rdown", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "ropen", base.from_float, fields);
-                base.export_element (obj, "GovCT1", "rselect", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "rup", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "ta", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "tact", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "tb", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "tc", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "tdgov", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "teng", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "tfload", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "tpelec", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "tsa", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "tsb", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "vmax", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "vmin", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "wfnl", base.from_string, fields);
-                base.export_element (obj, "GovCT1", "wfspd", base.from_boolean, fields);
+                base.export_element (obj, "GovCT1", "aset", "aset",  base.from_float, fields);
+                base.export_element (obj, "GovCT1", "db", "db",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "dm", "dm",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "kdgov", "kdgov",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "kigov", "kigov",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "kiload", "kiload",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "kimw", "kimw",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "kpgov", "kpgov",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "kpload", "kpload",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "kturb", "kturb",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "ldref", "ldref",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "maxerr", "maxerr",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "minerr", "minerr",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "rclose", "rclose",  base.from_float, fields);
+                base.export_element (obj, "GovCT1", "rdown", "rdown",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "ropen", "ropen",  base.from_float, fields);
+                base.export_element (obj, "GovCT1", "rselect", "rselect",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "rup", "rup",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "tact", "tact",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "tdgov", "tdgov",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "teng", "teng",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "tfload", "tfload",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "tpelec", "tpelec",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "tsa", "tsa",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "tsb", "tsb",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "vmax", "vmax",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "vmin", "vmin",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "wfnl", "wfnl",  base.from_string, fields);
+                base.export_element (obj, "GovCT1", "wfspd", "wfspd",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3666,6 +4274,51 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovCT1" };
+                super.submit (obj);
+                temp = document.getElementById ("aset").value; if ("" != temp) obj.aset = temp;
+                temp = document.getElementById ("db").value; if ("" != temp) obj.db = temp;
+                temp = document.getElementById ("dm").value; if ("" != temp) obj.dm = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kdgov").value; if ("" != temp) obj.kdgov = temp;
+                temp = document.getElementById ("kigov").value; if ("" != temp) obj.kigov = temp;
+                temp = document.getElementById ("kiload").value; if ("" != temp) obj.kiload = temp;
+                temp = document.getElementById ("kimw").value; if ("" != temp) obj.kimw = temp;
+                temp = document.getElementById ("kpgov").value; if ("" != temp) obj.kpgov = temp;
+                temp = document.getElementById ("kpload").value; if ("" != temp) obj.kpload = temp;
+                temp = document.getElementById ("kturb").value; if ("" != temp) obj.kturb = temp;
+                temp = document.getElementById ("ldref").value; if ("" != temp) obj.ldref = temp;
+                temp = document.getElementById ("maxerr").value; if ("" != temp) obj.maxerr = temp;
+                temp = document.getElementById ("minerr").value; if ("" != temp) obj.minerr = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("rclose").value; if ("" != temp) obj.rclose = temp;
+                temp = document.getElementById ("rdown").value; if ("" != temp) obj.rdown = temp;
+                temp = document.getElementById ("ropen").value; if ("" != temp) obj.ropen = temp;
+                temp = document.getElementById ("rselect").value; if ("" != temp) { temp = DroopSignalFeedbackKind[temp]; if ("undefined" != typeof (temp)) obj.rselect = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; }
+                temp = document.getElementById ("rup").value; if ("" != temp) obj.rup = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tact").value; if ("" != temp) obj.tact = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tdgov").value; if ("" != temp) obj.tdgov = temp;
+                temp = document.getElementById ("teng").value; if ("" != temp) obj.teng = temp;
+                temp = document.getElementById ("tfload").value; if ("" != temp) obj.tfload = temp;
+                temp = document.getElementById ("tpelec").value; if ("" != temp) obj.tpelec = temp;
+                temp = document.getElementById ("tsa").value; if ("" != temp) obj.tsa = temp;
+                temp = document.getElementById ("tsb").value; if ("" != temp) obj.tsb = temp;
+                temp = document.getElementById ("vmax").value; if ("" != temp) obj.vmax = temp;
+                temp = document.getElementById ("vmin").value; if ("" != temp) obj.vmin = temp;
+                temp = document.getElementById ("wfnl").value; if ("" != temp) obj.wfnl = temp;
+                temp = document.getElementById ("wfspd").checked; if (temp) obj.wfspd = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3722,26 +4375,25 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydro1", "at", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "dturb", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "gmax", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "gmin", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "hdam", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "qnl", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "rperm", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "rtemp", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "tf", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "tg", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "tr", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "tw", base.from_string, fields);
-                base.export_element (obj, "GovHydro1", "velm", base.from_float, fields);
+                base.export_element (obj, "GovHydro1", "at", "at",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "dturb", "dturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "gmax", "gmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "gmin", "gmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "hdam", "hdam",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "qnl", "qnl",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "rperm", "rperm",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "rtemp", "rtemp",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovHydro1", "velm", "velm",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3813,6 +4465,30 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydro1" };
+                super.submit (obj);
+                temp = document.getElementById ("at").value; if ("" != temp) obj.at = temp;
+                temp = document.getElementById ("dturb").value; if ("" != temp) obj.dturb = temp;
+                temp = document.getElementById ("gmax").value; if ("" != temp) obj.gmax = temp;
+                temp = document.getElementById ("gmin").value; if ("" != temp) obj.gmin = temp;
+                temp = document.getElementById ("hdam").value; if ("" != temp) obj.hdam = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("qnl").value; if ("" != temp) obj.qnl = temp;
+                temp = document.getElementById ("rperm").value; if ("" != temp) obj.rperm = temp;
+                temp = document.getElementById ("rtemp").value; if ("" != temp) obj.rtemp = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("velm").value; if ("" != temp) obj.velm = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3863,20 +4539,19 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteam2", "dbf", base.from_string, fields);
-                base.export_element (obj, "GovSteam2", "k", base.from_float, fields);
-                base.export_element (obj, "GovSteam2", "mnef", base.from_string, fields);
-                base.export_element (obj, "GovSteam2", "mxef", base.from_string, fields);
-                base.export_element (obj, "GovSteam2", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovSteam2", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovSteam2", "t1", base.from_string, fields);
-                base.export_element (obj, "GovSteam2", "t2", base.from_string, fields);
+                base.export_element (obj, "GovSteam2", "dbf", "dbf",  base.from_string, fields);
+                base.export_element (obj, "GovSteam2", "k", "k",  base.from_float, fields);
+                base.export_element (obj, "GovSteam2", "mnef", "mnef",  base.from_string, fields);
+                base.export_element (obj, "GovSteam2", "mxef", "mxef",  base.from_string, fields);
+                base.export_element (obj, "GovSteam2", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteam2", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovSteam2", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovSteam2", "t2", "t2",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3935,6 +4610,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteam2" };
+                super.submit (obj);
+                temp = document.getElementById ("dbf").value; if ("" != temp) obj.dbf = temp;
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("mnef").value; if ("" != temp) obj.mnef = temp;
+                temp = document.getElementById ("mxef").value; if ("" != temp) obj.mxef = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+
+                return (obj);
             }
         }
 
@@ -4013,47 +4706,46 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroDD", "aturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "bturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "db1", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "db2", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "eps", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "gmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "gmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "gv6", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "inputSignal", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroDD", "k1", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "k2", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "kg", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "ki", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "pgv6", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "r", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "td", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "tf", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "tp", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "tt", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "tturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroDD", "velcl", base.from_float, fields);
-                base.export_element (obj, "GovHydroDD", "velop", base.from_float, fields);
+                base.export_element (obj, "GovHydroDD", "aturb", "aturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "bturb", "bturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "eps", "eps",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "gmax", "gmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "gmin", "gmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "gv6", "gv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "inputSignal", "inputSignal",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroDD", "k1", "k1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "k2", "k2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "tt", "tt",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "tturb", "tturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroDD", "velcl", "velcl",  base.from_float, fields);
+                base.export_element (obj, "GovHydroDD", "velop", "velop",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4167,6 +4859,51 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroDD" };
+                super.submit (obj);
+                temp = document.getElementById ("aturb").value; if ("" != temp) obj.aturb = temp;
+                temp = document.getElementById ("bturb").value; if ("" != temp) obj.bturb = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("eps").value; if ("" != temp) obj.eps = temp;
+                temp = document.getElementById ("gmax").value; if ("" != temp) obj.gmax = temp;
+                temp = document.getElementById ("gmin").value; if ("" != temp) obj.gmin = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("gv6").value; if ("" != temp) obj.gv6 = temp;
+                temp = document.getElementById ("inputSignal").checked; if (temp) obj.inputSignal = true;
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("pgv6").value; if ("" != temp) obj.pgv6 = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
+                temp = document.getElementById ("tturb").value; if ("" != temp) obj.tturb = temp;
+                temp = document.getElementById ("velcl").value; if ("" != temp) obj.velcl = temp;
+                temp = document.getElementById ("velop").value; if ("" != temp) obj.velop = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4219,20 +4956,19 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroIEEE0", "k", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE0", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE0", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE0", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE0", "t1", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE0", "t2", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE0", "t3", base.from_string, fields);
-                base.export_element (obj, "GovHydroIEEE0", "t4", base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE0", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE0", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE0", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE0", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE0", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE0", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE0", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroIEEE0", "t4", "t4",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4292,6 +5028,24 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroIEEE0" };
+                super.submit (obj);
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4342,20 +5096,19 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteam0", "dt", base.from_string, fields);
-                base.export_element (obj, "GovSteam0", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovSteam0", "r", base.from_string, fields);
-                base.export_element (obj, "GovSteam0", "t1", base.from_string, fields);
-                base.export_element (obj, "GovSteam0", "t2", base.from_string, fields);
-                base.export_element (obj, "GovSteam0", "t3", base.from_string, fields);
-                base.export_element (obj, "GovSteam0", "vmax", base.from_string, fields);
-                base.export_element (obj, "GovSteam0", "vmin", base.from_string, fields);
+                base.export_element (obj, "GovSteam0", "dt", "dt",  base.from_string, fields);
+                base.export_element (obj, "GovSteam0", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteam0", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovSteam0", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovSteam0", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovSteam0", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovSteam0", "vmax", "vmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteam0", "vmin", "vmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4415,6 +5168,24 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteam0" };
+                super.submit (obj);
+                temp = document.getElementById ("dt").value; if ("" != temp) obj.dt = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("vmax").value; if ("" != temp) obj.vmax = temp;
+                temp = document.getElementById ("vmin").value; if ("" != temp) obj.vmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4469,24 +5240,23 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteamSGO", "k1", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "k2", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "k3", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "t1", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "t2", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "t3", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "t4", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "t5", base.from_string, fields);
-                base.export_element (obj, "GovSteamSGO", "t6", base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "k1", "k1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "k2", "k2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "k3", "k3",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovSteamSGO", "t6", "t6",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4553,6 +5323,28 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteamSGO" };
+                super.submit (obj);
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
+
+                return (obj);
             }
         }
 
@@ -4638,54 +5430,53 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroR", "at", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "db1", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "db2", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "dturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "eps", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "gmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "gmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "gv6", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "h0", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "inputSignal", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroR", "kg", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "ki", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "pgv6", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "qnl", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "r", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "t1", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "t2", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "t3", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "t4", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "t5", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "t6", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "t7", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "t8", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "td", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "tp", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "tt", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "tw", base.from_string, fields);
-                base.export_element (obj, "GovHydroR", "velcl", base.from_float, fields);
-                base.export_element (obj, "GovHydroR", "velop", base.from_float, fields);
+                base.export_element (obj, "GovHydroR", "at", "at",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "dturb", "dturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "eps", "eps",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "gmax", "gmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "gmin", "gmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "gv6", "gv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "h0", "h0",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "inputSignal", "inputSignal",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroR", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "qnl", "qnl",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "t6", "t6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "t7", "t7",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "t8", "t8",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "tt", "tt",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovHydroR", "velcl", "velcl",  base.from_float, fields);
+                base.export_element (obj, "GovHydroR", "velop", "velop",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4813,6 +5604,58 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroR" };
+                super.submit (obj);
+                temp = document.getElementById ("at").value; if ("" != temp) obj.at = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("dturb").value; if ("" != temp) obj.dturb = temp;
+                temp = document.getElementById ("eps").value; if ("" != temp) obj.eps = temp;
+                temp = document.getElementById ("gmax").value; if ("" != temp) obj.gmax = temp;
+                temp = document.getElementById ("gmin").value; if ("" != temp) obj.gmin = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("gv6").value; if ("" != temp) obj.gv6 = temp;
+                temp = document.getElementById ("h0").value; if ("" != temp) obj.h0 = temp;
+                temp = document.getElementById ("inputSignal").checked; if (temp) obj.inputSignal = true;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("pgv6").value; if ("" != temp) obj.pgv6 = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("qnl").value; if ("" != temp) obj.qnl = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById ("t7").value; if ("" != temp) obj.t7 = temp;
+                temp = document.getElementById ("t8").value; if ("" != temp) obj.t8 = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("velcl").value; if ("" != temp) obj.velcl = temp;
+                temp = document.getElementById ("velop").value; if ("" != temp) obj.velop = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4895,50 +5738,49 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydro4", "at", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "bgv0", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "bgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "bgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "bgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "bgv4", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "bgv5", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "bmax", base.from_float, fields);
-                base.export_element (obj, "GovHydro4", "db1", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "db2", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "dturb", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "eps", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "gmax", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "gmin", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "gv0", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "hdam", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "pgv0", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "qn1", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "rperm", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "rtemp", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "tblade", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "tg", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "tp", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "tr", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "tw", base.from_string, fields);
-                base.export_element (obj, "GovHydro4", "uc", base.from_float, fields);
-                base.export_element (obj, "GovHydro4", "uo", base.from_float, fields);
+                base.export_element (obj, "GovHydro4", "at", "at",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "bgv0", "bgv0",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "bgv1", "bgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "bgv2", "bgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "bgv3", "bgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "bgv4", "bgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "bgv5", "bgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "bmax", "bmax",  base.from_float, fields);
+                base.export_element (obj, "GovHydro4", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "dturb", "dturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "eps", "eps",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "gmax", "gmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "gmin", "gmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "gv0", "gv0",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "hdam", "hdam",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "pgv0", "pgv0",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "qn1", "qn1",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "rperm", "rperm",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "rtemp", "rtemp",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "tblade", "tblade",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "tw", "tw",  base.from_string, fields);
+                base.export_element (obj, "GovHydro4", "uc", "uc",  base.from_float, fields);
+                base.export_element (obj, "GovHydro4", "uo", "uo",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5058,6 +5900,54 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydro4" };
+                super.submit (obj);
+                temp = document.getElementById ("at").value; if ("" != temp) obj.at = temp;
+                temp = document.getElementById ("bgv0").value; if ("" != temp) obj.bgv0 = temp;
+                temp = document.getElementById ("bgv1").value; if ("" != temp) obj.bgv1 = temp;
+                temp = document.getElementById ("bgv2").value; if ("" != temp) obj.bgv2 = temp;
+                temp = document.getElementById ("bgv3").value; if ("" != temp) obj.bgv3 = temp;
+                temp = document.getElementById ("bgv4").value; if ("" != temp) obj.bgv4 = temp;
+                temp = document.getElementById ("bgv5").value; if ("" != temp) obj.bgv5 = temp;
+                temp = document.getElementById ("bmax").value; if ("" != temp) obj.bmax = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("dturb").value; if ("" != temp) obj.dturb = temp;
+                temp = document.getElementById ("eps").value; if ("" != temp) obj.eps = temp;
+                temp = document.getElementById ("gmax").value; if ("" != temp) obj.gmax = temp;
+                temp = document.getElementById ("gmin").value; if ("" != temp) obj.gmin = temp;
+                temp = document.getElementById ("gv0").value; if ("" != temp) obj.gv0 = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("hdam").value; if ("" != temp) obj.hdam = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv0").value; if ("" != temp) obj.pgv0 = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("qn1").value; if ("" != temp) obj.qn1 = temp;
+                temp = document.getElementById ("rperm").value; if ("" != temp) obj.rperm = temp;
+                temp = document.getElementById ("rtemp").value; if ("" != temp) obj.rtemp = temp;
+                temp = document.getElementById ("tblade").value; if ("" != temp) obj.tblade = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+                temp = document.getElementById ("uc").value; if ("" != temp) obj.uc = temp;
+                temp = document.getElementById ("uo").value; if ("" != temp) obj.uo = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5134,46 +6024,45 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovGAST1", "a", base.from_float, fields);
-                base.export_element (obj, "GovGAST1", "b", base.from_float, fields);
-                base.export_element (obj, "GovGAST1", "db1", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "db2", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "eps", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "fidle", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "gv6", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "ka", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "kt", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "lmax", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "loadinc", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "ltrate", base.from_float, fields);
-                base.export_element (obj, "GovGAST1", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "pgv6", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "r", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "rmax", base.from_float, fields);
-                base.export_element (obj, "GovGAST1", "t1", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "t2", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "t3", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "t4", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "t5", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "tltr", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "vmax", base.from_string, fields);
-                base.export_element (obj, "GovGAST1", "vmin", base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "a", "a",  base.from_float, fields);
+                base.export_element (obj, "GovGAST1", "b", "b",  base.from_float, fields);
+                base.export_element (obj, "GovGAST1", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "eps", "eps",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "fidle", "fidle",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "gv6", "gv6",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "kt", "kt",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "lmax", "lmax",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "loadinc", "loadinc",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "ltrate", "ltrate",  base.from_float, fields);
+                base.export_element (obj, "GovGAST1", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "rmax", "rmax",  base.from_float, fields);
+                base.export_element (obj, "GovGAST1", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "tltr", "tltr",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "vmax", "vmax",  base.from_string, fields);
+                base.export_element (obj, "GovGAST1", "vmin", "vmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5285,6 +6174,50 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovGAST1" };
+                super.submit (obj);
+                temp = document.getElementById ("a").value; if ("" != temp) obj.a = temp;
+                temp = document.getElementById ("b").value; if ("" != temp) obj.b = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("eps").value; if ("" != temp) obj.eps = temp;
+                temp = document.getElementById ("fidle").value; if ("" != temp) obj.fidle = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("gv6").value; if ("" != temp) obj.gv6 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kt").value; if ("" != temp) obj.kt = temp;
+                temp = document.getElementById ("lmax").value; if ("" != temp) obj.lmax = temp;
+                temp = document.getElementById ("loadinc").value; if ("" != temp) obj.loadinc = temp;
+                temp = document.getElementById ("ltrate").value; if ("" != temp) obj.ltrate = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("pgv6").value; if ("" != temp) obj.pgv6 = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("rmax").value; if ("" != temp) obj.rmax = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("tltr").value; if ("" != temp) obj.tltr = temp;
+                temp = document.getElementById ("vmax").value; if ("" != temp) obj.vmax = temp;
+                temp = document.getElementById ("vmin").value; if ("" != temp) obj.vmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5366,51 +6299,50 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteam1", "db1", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "db2", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "eps", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "gv6", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "k", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "k1", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "k2", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "k3", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "k4", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "k5", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "k6", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "k7", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "k8", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "pgv1", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "pgv2", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "pgv3", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "pgv4", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "pgv5", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "pgv6", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "sdb1", base.from_boolean, fields);
-                base.export_element (obj, "GovSteam1", "sdb2", base.from_boolean, fields);
-                base.export_element (obj, "GovSteam1", "t1", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "t2", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "t3", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "t4", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "t5", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "t6", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "t7", base.from_string, fields);
-                base.export_element (obj, "GovSteam1", "uc", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "uo", base.from_float, fields);
-                base.export_element (obj, "GovSteam1", "valve", base.from_boolean, fields);
+                base.export_element (obj, "GovSteam1", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "db2", "db2",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "eps", "eps",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "gv6", "gv6",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "k1", "k1",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "k2", "k2",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "k3", "k3",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "k4", "k4",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "k5", "k5",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "k6", "k6",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "k7", "k7",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "k8", "k8",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "pgv1", "pgv1",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "pgv2", "pgv2",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "pgv3", "pgv3",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "pgv4", "pgv4",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "pgv5", "pgv5",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "pgv6", "pgv6",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "sdb1", "sdb1",  base.from_boolean, fields);
+                base.export_element (obj, "GovSteam1", "sdb2", "sdb2",  base.from_boolean, fields);
+                base.export_element (obj, "GovSteam1", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "t6", "t6",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "t7", "t7",  base.from_string, fields);
+                base.export_element (obj, "GovSteam1", "uc", "uc",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "uo", "uo",  base.from_float, fields);
+                base.export_element (obj, "GovSteam1", "valve", "valve",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5532,6 +6464,55 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteam1" };
+                super.submit (obj);
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("db2").value; if ("" != temp) obj.db2 = temp;
+                temp = document.getElementById ("eps").value; if ("" != temp) obj.eps = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("gv6").value; if ("" != temp) obj.gv6 = temp;
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("k4").value; if ("" != temp) obj.k4 = temp;
+                temp = document.getElementById ("k5").value; if ("" != temp) obj.k5 = temp;
+                temp = document.getElementById ("k6").value; if ("" != temp) obj.k6 = temp;
+                temp = document.getElementById ("k7").value; if ("" != temp) obj.k7 = temp;
+                temp = document.getElementById ("k8").value; if ("" != temp) obj.k8 = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pgv1").value; if ("" != temp) obj.pgv1 = temp;
+                temp = document.getElementById ("pgv2").value; if ("" != temp) obj.pgv2 = temp;
+                temp = document.getElementById ("pgv3").value; if ("" != temp) obj.pgv3 = temp;
+                temp = document.getElementById ("pgv4").value; if ("" != temp) obj.pgv4 = temp;
+                temp = document.getElementById ("pgv5").value; if ("" != temp) obj.pgv5 = temp;
+                temp = document.getElementById ("pgv6").value; if ("" != temp) obj.pgv6 = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("sdb1").checked; if (temp) obj.sdb1 = true;
+                temp = document.getElementById ("sdb2").checked; if (temp) obj.sdb2 = true;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById ("t7").value; if ("" != temp) obj.t7 = temp;
+                temp = document.getElementById ("uc").value; if ("" != temp) obj.uc = temp;
+                temp = document.getElementById ("uo").value; if ("" != temp) obj.uo = temp;
+                temp = document.getElementById ("valve").checked; if (temp) obj.valve = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5603,39 +6584,38 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroFrancis", "am", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "av0", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "av1", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "bp", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "db1", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "etamax", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "governorControl", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "h1", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "h2", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "hn", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "kc", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "kg", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "kt", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "qc0", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "qn", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "ta", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "td", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "ts", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "twnc", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "twng", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "tx", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "va", base.from_float, fields);
-                base.export_element (obj, "GovHydroFrancis", "valvmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "valvmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "vc", base.from_float, fields);
-                base.export_element (obj, "GovHydroFrancis", "waterTunnelSurgeChamberSimulation", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroFrancis", "zsfc", base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "am", "am",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "av0", "av0",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "av1", "av1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "bp", "bp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "db1", "db1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "etamax", "etamax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "governorControl", "governorControl",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "h1", "h1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "h2", "h2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "hn", "hn",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "kt", "kt",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "qc0", "qc0",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "qn", "qn",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "ts", "ts",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "twnc", "twnc",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "twng", "twng",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "tx", "tx",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "va", "va",  base.from_float, fields);
+                base.export_element (obj, "GovHydroFrancis", "valvmax", "valvmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "valvmin", "valvmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroFrancis", "vc", "vc",  base.from_float, fields);
+                base.export_element (obj, "GovHydroFrancis", "waterTunnelSurgeChamberSimulation", "waterTunnelSurgeChamberSimulation",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroFrancis", "zsfc", "zsfc",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5735,6 +6715,43 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroFrancis" };
+                super.submit (obj);
+                temp = document.getElementById ("am").value; if ("" != temp) obj.am = temp;
+                temp = document.getElementById ("av0").value; if ("" != temp) obj.av0 = temp;
+                temp = document.getElementById ("av1").value; if ("" != temp) obj.av1 = temp;
+                temp = document.getElementById ("bp").value; if ("" != temp) obj.bp = temp;
+                temp = document.getElementById ("db1").value; if ("" != temp) obj.db1 = temp;
+                temp = document.getElementById ("etamax").value; if ("" != temp) obj.etamax = temp;
+                temp = document.getElementById ("governorControl").value; if ("" != temp) { temp = FrancisGovernorControlKind[temp]; if ("undefined" != typeof (temp)) obj.governorControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FrancisGovernorControlKind." + temp; }
+                temp = document.getElementById ("h1").value; if ("" != temp) obj.h1 = temp;
+                temp = document.getElementById ("h2").value; if ("" != temp) obj.h2 = temp;
+                temp = document.getElementById ("hn").value; if ("" != temp) obj.hn = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("kt").value; if ("" != temp) obj.kt = temp;
+                temp = document.getElementById ("qc0").value; if ("" != temp) obj.qc0 = temp;
+                temp = document.getElementById ("qn").value; if ("" != temp) obj.qn = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("ts").value; if ("" != temp) obj.ts = temp;
+                temp = document.getElementById ("twnc").value; if ("" != temp) obj.twnc = temp;
+                temp = document.getElementById ("twng").value; if ("" != temp) obj.twng = temp;
+                temp = document.getElementById ("tx").value; if ("" != temp) obj.tx = temp;
+                temp = document.getElementById ("va").value; if ("" != temp) obj.va = temp;
+                temp = document.getElementById ("valvmax").value; if ("" != temp) obj.valvmax = temp;
+                temp = document.getElementById ("valvmin").value; if ("" != temp) obj.valvmin = temp;
+                temp = document.getElementById ("vc").value; if ("" != temp) obj.vc = temp;
+                temp = document.getElementById ("waterTunnelSurgeChamberSimulation").checked; if (temp) obj.waterTunnelSurgeChamberSimulation = true;
+                temp = document.getElementById ("zsfc").value; if ("" != temp) obj.zsfc = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5788,23 +6805,22 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovGAST4", "bp", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "ktm", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "mnef", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "mxef", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "rymn", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "rymx", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "ta", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "tc", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "tcm", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "tm", base.from_string, fields);
-                base.export_element (obj, "GovGAST4", "tv", base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "bp", "bp",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "ktm", "ktm",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "mnef", "mnef",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "mxef", "mxef",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "rymn", "rymn",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "rymx", "rymx",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "tcm", "tcm",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "tm", "tm",  base.from_string, fields);
+                base.export_element (obj, "GovGAST4", "tv", "tv",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5870,6 +6886,27 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovGAST4" };
+                super.submit (obj);
+                temp = document.getElementById ("bp").value; if ("" != temp) obj.bp = temp;
+                temp = document.getElementById ("ktm").value; if ("" != temp) obj.ktm = temp;
+                temp = document.getElementById ("mnef").value; if ("" != temp) obj.mnef = temp;
+                temp = document.getElementById ("mxef").value; if ("" != temp) obj.mxef = temp;
+                temp = document.getElementById ("rymn").value; if ("" != temp) obj.rymn = temp;
+                temp = document.getElementById ("rymx").value; if ("" != temp) obj.rymx = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tcm").value; if ("" != temp) obj.tcm = temp;
+                temp = document.getElementById ("tm").value; if ("" != temp) obj.tm = temp;
+                temp = document.getElementById ("tv").value; if ("" != temp) obj.tv = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5931,31 +6968,30 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovSteamFV3", "k", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "k1", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "k2", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "k3", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "pmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "pmin", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "prmax", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "t1", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "t2", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "t3", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "t4", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "t5", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "t6", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "ta", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "tb", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "tc", base.from_string, fields);
-                base.export_element (obj, "GovSteamFV3", "uc", base.from_float, fields);
-                base.export_element (obj, "GovSteamFV3", "uo", base.from_float, fields);
+                base.export_element (obj, "GovSteamFV3", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "k1", "k1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "k2", "k2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "k3", "k3",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "pmax", "pmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "prmax", "prmax",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "t6", "t6",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovSteamFV3", "uc", "uc",  base.from_float, fields);
+                base.export_element (obj, "GovSteamFV3", "uo", "uo",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6036,6 +7072,35 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovSteamFV3" };
+                super.submit (obj);
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pmax").value; if ("" != temp) obj.pmax = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("prmax").value; if ("" != temp) obj.prmax = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("uc").value; if ("" != temp) obj.uc = temp;
+                temp = document.getElementById ("uo").value; if ("" != temp) obj.uo = temp;
+
+                return (obj);
             }
         }
 
@@ -6130,63 +7195,62 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovHydroWEH", "db", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "dicn", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "dpv", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "dturb", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "feedbackSignal", base.from_boolean, fields);
-                base.export_element (obj, "GovHydroWEH", "fl1", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fl2", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fl3", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fl4", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fl5", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp1", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp10", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp2", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp3", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp4", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp5", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp6", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp7", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp8", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "fp9", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gmax", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gmin", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gtmxcl", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gtmxop", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gv1", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gv2", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gv3", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gv4", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "gv5", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "kd", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "ki", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "kp", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss1", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss10", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss2", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss3", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss4", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss5", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss6", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss7", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss8", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "pmss9", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "rpg", base.from_float, fields);
-                base.export_element (obj, "GovHydroWEH", "rpp", base.from_float, fields);
-                base.export_element (obj, "GovHydroWEH", "td", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "tdv", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "tg", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "tp", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "tpe", base.from_string, fields);
-                base.export_element (obj, "GovHydroWEH", "tw", base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "db", "db",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "dicn", "dicn",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "dpv", "dpv",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "dturb", "dturb",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "feedbackSignal", "feedbackSignal",  base.from_boolean, fields);
+                base.export_element (obj, "GovHydroWEH", "fl1", "fl1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fl2", "fl2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fl3", "fl3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fl4", "fl4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fl5", "fl5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp1", "fp1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp10", "fp10",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp2", "fp2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp3", "fp3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp4", "fp4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp5", "fp5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp6", "fp6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp7", "fp7",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp8", "fp8",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "fp9", "fp9",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gmax", "gmax",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gmin", "gmin",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gtmxcl", "gtmxcl",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gtmxop", "gtmxop",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gv1", "gv1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gv2", "gv2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gv3", "gv3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gv4", "gv4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "gv5", "gv5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss1", "pmss1",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss10", "pmss10",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss2", "pmss2",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss3", "pmss3",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss4", "pmss4",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss5", "pmss5",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss6", "pmss6",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss7", "pmss7",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss8", "pmss8",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "pmss9", "pmss9",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "rpg", "rpg",  base.from_float, fields);
+                base.export_element (obj, "GovHydroWEH", "rpp", "rpp",  base.from_float, fields);
+                base.export_element (obj, "GovHydroWEH", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "tdv", "tdv",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "tpe", "tpe",  base.from_string, fields);
+                base.export_element (obj, "GovHydroWEH", "tw", "tw",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6332,6 +7396,67 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovHydroWEH" };
+                super.submit (obj);
+                temp = document.getElementById ("db").value; if ("" != temp) obj.db = temp;
+                temp = document.getElementById ("dicn").value; if ("" != temp) obj.dicn = temp;
+                temp = document.getElementById ("dpv").value; if ("" != temp) obj.dpv = temp;
+                temp = document.getElementById ("dturb").value; if ("" != temp) obj.dturb = temp;
+                temp = document.getElementById ("feedbackSignal").checked; if (temp) obj.feedbackSignal = true;
+                temp = document.getElementById ("fl1").value; if ("" != temp) obj.fl1 = temp;
+                temp = document.getElementById ("fl2").value; if ("" != temp) obj.fl2 = temp;
+                temp = document.getElementById ("fl3").value; if ("" != temp) obj.fl3 = temp;
+                temp = document.getElementById ("fl4").value; if ("" != temp) obj.fl4 = temp;
+                temp = document.getElementById ("fl5").value; if ("" != temp) obj.fl5 = temp;
+                temp = document.getElementById ("fp1").value; if ("" != temp) obj.fp1 = temp;
+                temp = document.getElementById ("fp10").value; if ("" != temp) obj.fp10 = temp;
+                temp = document.getElementById ("fp2").value; if ("" != temp) obj.fp2 = temp;
+                temp = document.getElementById ("fp3").value; if ("" != temp) obj.fp3 = temp;
+                temp = document.getElementById ("fp4").value; if ("" != temp) obj.fp4 = temp;
+                temp = document.getElementById ("fp5").value; if ("" != temp) obj.fp5 = temp;
+                temp = document.getElementById ("fp6").value; if ("" != temp) obj.fp6 = temp;
+                temp = document.getElementById ("fp7").value; if ("" != temp) obj.fp7 = temp;
+                temp = document.getElementById ("fp8").value; if ("" != temp) obj.fp8 = temp;
+                temp = document.getElementById ("fp9").value; if ("" != temp) obj.fp9 = temp;
+                temp = document.getElementById ("gmax").value; if ("" != temp) obj.gmax = temp;
+                temp = document.getElementById ("gmin").value; if ("" != temp) obj.gmin = temp;
+                temp = document.getElementById ("gtmxcl").value; if ("" != temp) obj.gtmxcl = temp;
+                temp = document.getElementById ("gtmxop").value; if ("" != temp) obj.gtmxop = temp;
+                temp = document.getElementById ("gv1").value; if ("" != temp) obj.gv1 = temp;
+                temp = document.getElementById ("gv2").value; if ("" != temp) obj.gv2 = temp;
+                temp = document.getElementById ("gv3").value; if ("" != temp) obj.gv3 = temp;
+                temp = document.getElementById ("gv4").value; if ("" != temp) obj.gv4 = temp;
+                temp = document.getElementById ("gv5").value; if ("" != temp) obj.gv5 = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pmss1").value; if ("" != temp) obj.pmss1 = temp;
+                temp = document.getElementById ("pmss10").value; if ("" != temp) obj.pmss10 = temp;
+                temp = document.getElementById ("pmss2").value; if ("" != temp) obj.pmss2 = temp;
+                temp = document.getElementById ("pmss3").value; if ("" != temp) obj.pmss3 = temp;
+                temp = document.getElementById ("pmss4").value; if ("" != temp) obj.pmss4 = temp;
+                temp = document.getElementById ("pmss5").value; if ("" != temp) obj.pmss5 = temp;
+                temp = document.getElementById ("pmss6").value; if ("" != temp) obj.pmss6 = temp;
+                temp = document.getElementById ("pmss7").value; if ("" != temp) obj.pmss7 = temp;
+                temp = document.getElementById ("pmss8").value; if ("" != temp) obj.pmss8 = temp;
+                temp = document.getElementById ("pmss9").value; if ("" != temp) obj.pmss9 = temp;
+                temp = document.getElementById ("rpg").value; if ("" != temp) obj.rpg = temp;
+                temp = document.getElementById ("rpp").value; if ("" != temp) obj.rpp = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("tdv").value; if ("" != temp) obj.tdv = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tpe").value; if ("" != temp) obj.tpe = temp;
+                temp = document.getElementById ("tw").value; if ("" != temp) obj.tw = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -6406,44 +7531,43 @@ define
             {
                 var fields = TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GovGAST2", "a", base.from_float, fields);
-                base.export_element (obj, "GovGAST2", "af1", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "af2", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "b", base.from_float, fields);
-                base.export_element (obj, "GovGAST2", "bf1", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "bf2", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "c", base.from_float, fields);
-                base.export_element (obj, "GovGAST2", "cf2", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "ecr", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "etd", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "k3", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "k4", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "k5", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "k6", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "kf", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "mwbase", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "t", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "t3", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "t4", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "t5", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "tc", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "tcd", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "tf", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "tmax", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "tmin", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "tr", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "trate", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "tt", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "w", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "x", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "y", base.from_string, fields);
-                base.export_element (obj, "GovGAST2", "z", base.from_boolean, fields);
+                base.export_element (obj, "GovGAST2", "a", "a",  base.from_float, fields);
+                base.export_element (obj, "GovGAST2", "af1", "af1",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "af2", "af2",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "b", "b",  base.from_float, fields);
+                base.export_element (obj, "GovGAST2", "bf1", "bf1",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "bf2", "bf2",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "c", "c",  base.from_float, fields);
+                base.export_element (obj, "GovGAST2", "cf2", "cf2",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "ecr", "ecr",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "etd", "etd",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "k3", "k3",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "k4", "k4",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "k5", "k5",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "k6", "k6",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "t", "t",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "tcd", "tcd",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "tmax", "tmax",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "tmin", "tmin",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "trate", "trate",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "tt", "tt",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "w", "w",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "x", "x",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "y", "y",  base.from_string, fields);
+                base.export_element (obj, "GovGAST2", "z", "z",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6550,6 +7674,48 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GovGAST2" };
+                super.submit (obj);
+                temp = document.getElementById ("a").value; if ("" != temp) obj.a = temp;
+                temp = document.getElementById ("af1").value; if ("" != temp) obj.af1 = temp;
+                temp = document.getElementById ("af2").value; if ("" != temp) obj.af2 = temp;
+                temp = document.getElementById ("b").value; if ("" != temp) obj.b = temp;
+                temp = document.getElementById ("bf1").value; if ("" != temp) obj.bf1 = temp;
+                temp = document.getElementById ("bf2").value; if ("" != temp) obj.bf2 = temp;
+                temp = document.getElementById ("c").value; if ("" != temp) obj.c = temp;
+                temp = document.getElementById ("cf2").value; if ("" != temp) obj.cf2 = temp;
+                temp = document.getElementById ("ecr").value; if ("" != temp) obj.ecr = temp;
+                temp = document.getElementById ("etd").value; if ("" != temp) obj.etd = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("k4").value; if ("" != temp) obj.k4 = temp;
+                temp = document.getElementById ("k5").value; if ("" != temp) obj.k5 = temp;
+                temp = document.getElementById ("k6").value; if ("" != temp) obj.k6 = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("t").value; if ("" != temp) obj.t = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tcd").value; if ("" != temp) obj.tcd = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tmax").value; if ("" != temp) obj.tmax = temp;
+                temp = document.getElementById ("tmin").value; if ("" != temp) obj.tmin = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("trate").value; if ("" != temp) obj.trate = temp;
+                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
+                temp = document.getElementById ("w").value; if ("" != temp) obj.w = temp;
+                temp = document.getElementById ("x").value; if ("" != temp) obj.x = temp;
+                temp = document.getElementById ("y").value; if ("" != temp) obj.y = temp;
+                temp = document.getElementById ("z").checked; if (temp) obj.z = true;
+
+                return (obj);
             }
         }
 

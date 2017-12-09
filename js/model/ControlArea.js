@@ -66,16 +66,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "TieFlow", "positiveFlowIn", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "TieFlow", fields);
-                base.export_attribute (obj, "export_attribute", "TieFlow", fields);
-                base.export_attribute (obj, "export_attribute", "TieFlow", fields);
+                base.export_element (obj, "TieFlow", "positiveFlowIn", "positiveFlowIn",  base.from_boolean, fields);
+                base.export_attributes (obj, "TieFlow", "AltTieMeas", "AltTieMeas", fields);
+                base.export_attribute (obj, "TieFlow", "Terminal", "Terminal", fields);
+                base.export_attribute (obj, "TieFlow", "ControlArea", "ControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -127,6 +126,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TieFlow" };
+                super.submit (obj);
+                temp = document.getElementById ("positiveFlowIn").checked; if (temp) obj.positiveFlowIn = true;
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                temp = document.getElementById ("ControlArea").value; if ("" != temp) obj.ControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -186,15 +198,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ControlAreaGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "ControlAreaGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "ControlAreaGeneratingUnit", fields);
+                base.export_attribute (obj, "ControlAreaGeneratingUnit", "ControlArea", "ControlArea", fields);
+                base.export_attribute (obj, "ControlAreaGeneratingUnit", "GeneratingUnit", "GeneratingUnit", fields);
+                base.export_attributes (obj, "ControlAreaGeneratingUnit", "AltGeneratingUnitMeas", "AltGeneratingUnitMeas", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -244,6 +255,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ControlAreaGeneratingUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("ControlArea").value; if ("" != temp) obj.ControlArea = temp;
+                temp = document.getElementById ("GeneratingUnit").value; if ("" != temp) obj.GeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -301,15 +324,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AltTieMeas", "priority", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "AltTieMeas", fields);
-                base.export_attribute (obj, "export_attribute", "AltTieMeas", fields);
+                base.export_element (obj, "AltTieMeas", "priority", "priority",  base.from_string, fields);
+                base.export_attribute (obj, "AltTieMeas", "TieFlow", "TieFlow", fields);
+                base.export_attribute (obj, "AltTieMeas", "AnalogValue", "AnalogValue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -358,6 +380,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AltTieMeas" };
+                super.submit (obj);
+                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById ("TieFlow").value; if ("" != temp) obj.TieFlow = temp;
+                temp = document.getElementById ("AnalogValue").value; if ("" != temp) obj.AnalogValue = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -414,15 +449,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AltGeneratingUnitMeas", "priority", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "AltGeneratingUnitMeas", fields);
-                base.export_attribute (obj, "export_attribute", "AltGeneratingUnitMeas", fields);
+                base.export_element (obj, "AltGeneratingUnitMeas", "priority", "priority",  base.from_string, fields);
+                base.export_attribute (obj, "AltGeneratingUnitMeas", "AnalogValue", "AnalogValue", fields);
+                base.export_attribute (obj, "AltGeneratingUnitMeas", "ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -471,6 +505,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AltGeneratingUnitMeas" };
+                super.submit (obj);
+                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById ("AnalogValue").value; if ("" != temp) obj.AnalogValue = temp;
+                temp = document.getElementById ("ControlAreaGeneratingUnit").value; if ("" != temp) obj.ControlAreaGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -532,18 +579,17 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ControlArea", "netInterchange", base.from_string, fields);
-                base.export_element (obj, "ControlArea", "pTolerance", base.from_string, fields);
-                base.export_element (obj, "ControlArea", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ControlArea", fields);
-                base.export_attribute (obj, "export_attributes", "ControlArea", fields);
-                base.export_attribute (obj, "export_attribute", "ControlArea", fields);
+                base.export_element (obj, "ControlArea", "netInterchange", "netInterchange",  base.from_string, fields);
+                base.export_element (obj, "ControlArea", "pTolerance", "pTolerance",  base.from_string, fields);
+                base.export_element (obj, "ControlArea", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "ControlArea", "ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", fields);
+                base.export_attributes (obj, "ControlArea", "TieFlow", "TieFlow", fields);
+                base.export_attribute (obj, "ControlArea", "EnergyArea", "EnergyArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -602,6 +648,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ControlArea" };
+                super.submit (obj);
+                temp = document.getElementById ("netInterchange").value; if ("" != temp) obj.netInterchange = temp;
+                temp = document.getElementById ("pTolerance").value; if ("" != temp) obj.pTolerance = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) { temp = ControlAreaTypeKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ControlAreaTypeKind." + temp; }
+                temp = document.getElementById ("EnergyArea").value; if ("" != temp) obj.EnergyArea = temp;
+
+                return (obj);
             }
 
             relations ()

@@ -54,7 +54,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -96,6 +95,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "StateVariable" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -144,15 +151,14 @@ define
             {
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SvInjection", "pInjection", base.from_string, fields);
-                base.export_element (obj, "SvInjection", "qInjection", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "SvInjection", fields);
+                base.export_element (obj, "SvInjection", "pInjection", "pInjection",  base.from_string, fields);
+                base.export_element (obj, "SvInjection", "qInjection", "qInjection",  base.from_string, fields);
+                base.export_attribute (obj, "SvInjection", "TopologicalNode", "TopologicalNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -201,6 +207,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SvInjection" };
+                super.submit (obj);
+                temp = document.getElementById ("pInjection").value; if ("" != temp) obj.pInjection = temp;
+                temp = document.getElementById ("qInjection").value; if ("" != temp) obj.qInjection = temp;
+                temp = document.getElementById ("TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -255,14 +274,13 @@ define
             {
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SvStatus", "inService", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "SvStatus", fields);
+                base.export_element (obj, "SvStatus", "inService", "inService",  base.from_boolean, fields);
+                base.export_attribute (obj, "SvStatus", "ConductingEquipment", "ConductingEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -309,6 +327,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SvStatus" };
+                super.submit (obj);
+                temp = document.getElementById ("inService").checked; if (temp) obj.inService = true;
+                temp = document.getElementById ("ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -365,14 +395,13 @@ define
             {
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SvTapStep", "position", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "SvTapStep", fields);
+                base.export_element (obj, "SvTapStep", "position", "position",  base.from_float, fields);
+                base.export_attribute (obj, "SvTapStep", "TapChanger", "TapChanger", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -419,6 +448,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SvTapStep" };
+                super.submit (obj);
+                temp = document.getElementById ("position").value; if ("" != temp) obj.position = temp;
+                temp = document.getElementById ("TapChanger").value; if ("" != temp) obj.TapChanger = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -473,14 +514,13 @@ define
             {
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SvShuntCompensatorSections", "sections", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "SvShuntCompensatorSections", fields);
+                base.export_element (obj, "SvShuntCompensatorSections", "sections", "sections",  base.from_float, fields);
+                base.export_attribute (obj, "SvShuntCompensatorSections", "ShuntCompensator", "ShuntCompensator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -527,6 +567,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SvShuntCompensatorSections" };
+                super.submit (obj);
+                temp = document.getElementById ("sections").value; if ("" != temp) obj.sections = temp;
+                temp = document.getElementById ("ShuntCompensator").value; if ("" != temp) obj.ShuntCompensator = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -584,15 +636,14 @@ define
             {
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SvPowerFlow", "p", base.from_string, fields);
-                base.export_element (obj, "SvPowerFlow", "q", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "SvPowerFlow", fields);
+                base.export_element (obj, "SvPowerFlow", "p", "p",  base.from_string, fields);
+                base.export_element (obj, "SvPowerFlow", "q", "q",  base.from_string, fields);
+                base.export_attribute (obj, "SvPowerFlow", "Terminal", "Terminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -641,6 +692,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SvPowerFlow" };
+                super.submit (obj);
+                temp = document.getElementById ("p").value; if ("" != temp) obj.p = temp;
+                temp = document.getElementById ("q").value; if ("" != temp) obj.q = temp;
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -696,15 +760,14 @@ define
             {
                 var fields = StateVariable.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SvVoltage", "angle", base.from_string, fields);
-                base.export_element (obj, "SvVoltage", "v", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "SvVoltage", fields);
+                base.export_element (obj, "SvVoltage", "angle", "angle",  base.from_string, fields);
+                base.export_element (obj, "SvVoltage", "v", "v",  base.from_string, fields);
+                base.export_attribute (obj, "SvVoltage", "TopologicalNode", "TopologicalNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -753,6 +816,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SvVoltage" };
+                super.submit (obj);
+                temp = document.getElementById ("angle").value; if ("" != temp) obj.angle = temp;
+                temp = document.getElementById ("v").value; if ("" != temp) obj.v = temp;
+                temp = document.getElementById ("TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
+
+                return (obj);
             }
 
             relations ()

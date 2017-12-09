@@ -154,17 +154,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Emission", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "Emission", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "Emission", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Emission", "unit", base.from_string, fields);
-                base.export_element (obj, "Emission", "value", base.from_float, fields);
+                base.export_element (obj, "Emission", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "Emission", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "Emission", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Emission", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Emission", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -218,6 +217,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Emission" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
+                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -267,19 +281,18 @@ define
             {
                 var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HydroPump", "pumpDischAtMaxHead", base.from_string, fields);
-                base.export_element (obj, "HydroPump", "pumpDischAtMinHead", base.from_string, fields);
-                base.export_element (obj, "HydroPump", "pumpPowerAtMaxHead", base.from_string, fields);
-                base.export_element (obj, "HydroPump", "pumpPowerAtMinHead", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "HydroPump", fields);
-                base.export_attribute (obj, "export_attribute", "HydroPump", fields);
-                base.export_attribute (obj, "export_attribute", "HydroPump", fields);
+                base.export_element (obj, "HydroPump", "pumpDischAtMaxHead", "pumpDischAtMaxHead",  base.from_string, fields);
+                base.export_element (obj, "HydroPump", "pumpDischAtMinHead", "pumpDischAtMinHead",  base.from_string, fields);
+                base.export_element (obj, "HydroPump", "pumpPowerAtMaxHead", "pumpPowerAtMaxHead",  base.from_string, fields);
+                base.export_element (obj, "HydroPump", "pumpPowerAtMinHead", "pumpPowerAtMinHead",  base.from_string, fields);
+                base.export_attribute (obj, "HydroPump", "RotatingMachine", "RotatingMachine", fields);
+                base.export_attribute (obj, "HydroPump", "HydroPumpOpSchedule", "HydroPumpOpSchedule", fields);
+                base.export_attribute (obj, "HydroPump", "HydroPowerPlant", "HydroPowerPlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -338,6 +351,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HydroPump" };
+                super.submit (obj);
+                temp = document.getElementById ("pumpDischAtMaxHead").value; if ("" != temp) obj.pumpDischAtMaxHead = temp;
+                temp = document.getElementById ("pumpDischAtMinHead").value; if ("" != temp) obj.pumpDischAtMinHead = temp;
+                temp = document.getElementById ("pumpPowerAtMaxHead").value; if ("" != temp) obj.pumpPowerAtMaxHead = temp;
+                temp = document.getElementById ("pumpPowerAtMinHead").value; if ("" != temp) obj.pumpPowerAtMinHead = temp;
+                temp = document.getElementById ("RotatingMachine").value; if ("" != temp) obj.RotatingMachine = temp;
+                temp = document.getElementById ("HydroPumpOpSchedule").value; if ("" != temp) obj.HydroPumpOpSchedule = temp;
+                temp = document.getElementById ("HydroPowerPlant").value; if ("" != temp) obj.HydroPowerPlant = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -393,13 +423,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PenstockLossCurve", fields);
+                base.export_attribute (obj, "PenstockLossCurve", "HydroGeneratingUnit", "HydroGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -444,6 +473,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PenstockLossCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("HydroGeneratingUnit").value; if ("" != temp) obj.HydroGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -505,19 +545,18 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CogenerationPlant", "cogenHPSendoutRating", base.from_float, fields);
-                base.export_element (obj, "CogenerationPlant", "cogenHPSteamRating", base.from_float, fields);
-                base.export_element (obj, "CogenerationPlant", "cogenLPSendoutRating", base.from_float, fields);
-                base.export_element (obj, "CogenerationPlant", "cogenLPSteamRating", base.from_float, fields);
-                base.export_element (obj, "CogenerationPlant", "ratedP", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "CogenerationPlant", fields);
-                base.export_attribute (obj, "export_attribute", "CogenerationPlant", fields);
+                base.export_element (obj, "CogenerationPlant", "cogenHPSendoutRating", "cogenHPSendoutRating",  base.from_float, fields);
+                base.export_element (obj, "CogenerationPlant", "cogenHPSteamRating", "cogenHPSteamRating",  base.from_float, fields);
+                base.export_element (obj, "CogenerationPlant", "cogenLPSendoutRating", "cogenLPSendoutRating",  base.from_float, fields);
+                base.export_element (obj, "CogenerationPlant", "cogenLPSteamRating", "cogenLPSteamRating",  base.from_float, fields);
+                base.export_element (obj, "CogenerationPlant", "ratedP", "ratedP",  base.from_string, fields);
+                base.export_attributes (obj, "CogenerationPlant", "ThermalGeneratingUnits", "ThermalGeneratingUnits", fields);
+                base.export_attribute (obj, "CogenerationPlant", "SteamSendoutSchedule", "SteamSendoutSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -577,6 +616,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CogenerationPlant" };
+                super.submit (obj);
+                temp = document.getElementById ("cogenHPSendoutRating").value; if ("" != temp) obj.cogenHPSendoutRating = temp;
+                temp = document.getElementById ("cogenHPSteamRating").value; if ("" != temp) obj.cogenHPSteamRating = temp;
+                temp = document.getElementById ("cogenLPSendoutRating").value; if ("" != temp) obj.cogenLPSendoutRating = temp;
+                temp = document.getElementById ("cogenLPSteamRating").value; if ("" != temp) obj.cogenLPSteamRating = temp;
+                temp = document.getElementById ("ratedP").value; if ("" != temp) obj.ratedP = temp;
+                temp = document.getElementById ("SteamSendoutSchedule").value; if ("" != temp) obj.SteamSendoutSchedule = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -632,14 +687,13 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "IncrementalHeatRateCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "IncrementalHeatRateCurve", fields);
+                base.export_element (obj, "IncrementalHeatRateCurve", "isNetGrossP", "isNetGrossP",  base.from_boolean, fields);
+                base.export_attribute (obj, "IncrementalHeatRateCurve", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -686,6 +740,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IncrementalHeatRateCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -758,30 +824,29 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Reservoir", "activeStorageCapacity", base.from_string, fields);
-                base.export_element (obj, "Reservoir", "energyStorageRating", base.from_float, fields);
-                base.export_element (obj, "Reservoir", "fullSupplyLevel", base.from_string, fields);
-                base.export_element (obj, "Reservoir", "grossCapacity", base.from_string, fields);
-                base.export_element (obj, "Reservoir", "normalMinOperateLevel", base.from_string, fields);
-                base.export_element (obj, "Reservoir", "riverOutletWorks", base.from_string, fields);
-                base.export_element (obj, "Reservoir", "spillTravelDelay", base.from_string, fields);
-                base.export_element (obj, "Reservoir", "spillwayCapacity", base.from_float, fields);
-                base.export_element (obj, "Reservoir", "spillwayCrestLength", base.from_string, fields);
-                base.export_element (obj, "Reservoir", "spillwayCrestLevel", base.from_string, fields);
-                base.export_element (obj, "Reservoir", "spillWayGateType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Reservoir", fields);
-                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
-                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
-                base.export_attribute (obj, "export_attribute", "Reservoir", fields);
-                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
-                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
-                base.export_attribute (obj, "export_attributes", "Reservoir", fields);
+                base.export_element (obj, "Reservoir", "activeStorageCapacity", "activeStorageCapacity",  base.from_string, fields);
+                base.export_element (obj, "Reservoir", "energyStorageRating", "energyStorageRating",  base.from_float, fields);
+                base.export_element (obj, "Reservoir", "fullSupplyLevel", "fullSupplyLevel",  base.from_string, fields);
+                base.export_element (obj, "Reservoir", "grossCapacity", "grossCapacity",  base.from_string, fields);
+                base.export_element (obj, "Reservoir", "normalMinOperateLevel", "normalMinOperateLevel",  base.from_string, fields);
+                base.export_element (obj, "Reservoir", "riverOutletWorks", "riverOutletWorks",  base.from_string, fields);
+                base.export_element (obj, "Reservoir", "spillTravelDelay", "spillTravelDelay",  base.from_string, fields);
+                base.export_element (obj, "Reservoir", "spillwayCapacity", "spillwayCapacity",  base.from_float, fields);
+                base.export_element (obj, "Reservoir", "spillwayCrestLength", "spillwayCrestLength",  base.from_string, fields);
+                base.export_element (obj, "Reservoir", "spillwayCrestLevel", "spillwayCrestLevel",  base.from_string, fields);
+                base.export_element (obj, "Reservoir", "spillWayGateType", "spillWayGateType",  base.from_string, fields);
+                base.export_attribute (obj, "Reservoir", "TargetLevelSchedule", "TargetLevelSchedule", fields);
+                base.export_attributes (obj, "Reservoir", "LevelVsVolumeCurves", "LevelVsVolumeCurves", fields);
+                base.export_attributes (obj, "Reservoir", "SpillsIntoReservoirs", "SpillsIntoReservoirs", fields);
+                base.export_attribute (obj, "Reservoir", "SpillsFromReservoir", "SpillsFromReservoir", fields);
+                base.export_attributes (obj, "Reservoir", "HydroPowerPlants", "HydroPowerPlants", fields);
+                base.export_attributes (obj, "Reservoir", "UpstreamFromHydroPowerPlants", "UpstreamFromHydroPowerPlants", fields);
+                base.export_attributes (obj, "Reservoir", "InflowForecasts", "InflowForecasts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -867,6 +932,29 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Reservoir" };
+                super.submit (obj);
+                temp = document.getElementById ("activeStorageCapacity").value; if ("" != temp) obj.activeStorageCapacity = temp;
+                temp = document.getElementById ("energyStorageRating").value; if ("" != temp) obj.energyStorageRating = temp;
+                temp = document.getElementById ("fullSupplyLevel").value; if ("" != temp) obj.fullSupplyLevel = temp;
+                temp = document.getElementById ("grossCapacity").value; if ("" != temp) obj.grossCapacity = temp;
+                temp = document.getElementById ("normalMinOperateLevel").value; if ("" != temp) obj.normalMinOperateLevel = temp;
+                temp = document.getElementById ("riverOutletWorks").value; if ("" != temp) obj.riverOutletWorks = temp;
+                temp = document.getElementById ("spillTravelDelay").value; if ("" != temp) obj.spillTravelDelay = temp;
+                temp = document.getElementById ("spillwayCapacity").value; if ("" != temp) obj.spillwayCapacity = temp;
+                temp = document.getElementById ("spillwayCrestLength").value; if ("" != temp) obj.spillwayCrestLength = temp;
+                temp = document.getElementById ("spillwayCrestLevel").value; if ("" != temp) obj.spillwayCrestLevel = temp;
+                temp = document.getElementById ("spillWayGateType").value; if ("" != temp) obj.spillWayGateType = temp;
+                temp = document.getElementById ("TargetLevelSchedule").value; if ("" != temp) obj.TargetLevelSchedule = temp;
+                temp = document.getElementById ("SpillsFromReservoir").value; if ("" != temp) obj.SpillsFromReservoir = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -928,15 +1016,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Classification", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Classification", "unit", base.from_string, fields);
-                base.export_element (obj, "Classification", "value", base.from_string, fields);
+                base.export_element (obj, "Classification", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Classification", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Classification", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -986,6 +1073,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Classification" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1030,14 +1130,13 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StartIgnFuelCurve", "ignitionFuelType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "StartIgnFuelCurve", fields);
+                base.export_element (obj, "StartIgnFuelCurve", "ignitionFuelType", "ignitionFuelType",  base.from_string, fields);
+                base.export_attribute (obj, "StartIgnFuelCurve", "StartupModel", "StartupModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1086,6 +1185,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "StartIgnFuelCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("ignitionFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.ignitionFuelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = document.getElementById ("StartupModel").value; if ("" != temp) obj.StartupModel = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1141,13 +1252,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "LevelVsVolumeCurve", fields);
+                base.export_attribute (obj, "LevelVsVolumeCurve", "Reservoir", "Reservoir", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1192,6 +1302,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LevelVsVolumeCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("Reservoir").value; if ("" != temp) obj.Reservoir = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1247,13 +1368,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "GrossToNetActivePowerCurve", fields);
+                base.export_attribute (obj, "GrossToNetActivePowerCurve", "GeneratingUnit", "GeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1298,6 +1418,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GrossToNetActivePowerCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("GeneratingUnit").value; if ("" != temp) obj.GeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1353,15 +1484,14 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AirCompressor", "airCompressorRating", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "AirCompressor", fields);
-                base.export_attribute (obj, "export_attribute", "AirCompressor", fields);
+                base.export_element (obj, "AirCompressor", "airCompressorRating", "airCompressorRating",  base.from_float, fields);
+                base.export_attribute (obj, "AirCompressor", "CombustionTurbine", "CombustionTurbine", fields);
+                base.export_attribute (obj, "AirCompressor", "CAESPlant", "CAESPlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1410,6 +1540,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AirCompressor" };
+                super.submit (obj);
+                temp = document.getElementById ("airCompressorRating").value; if ("" != temp) obj.airCompressorRating = temp;
+                temp = document.getElementById ("CombustionTurbine").value; if ("" != temp) obj.CombustionTurbine = temp;
+                temp = document.getElementById ("CAESPlant").value; if ("" != temp) obj.CAESPlant = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1468,17 +1611,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "HeatRate", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "HeatRate", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "HeatRate", "multiplier", base.from_string, fields);
-                base.export_element (obj, "HeatRate", "unit", base.from_string, fields);
-                base.export_element (obj, "HeatRate", "value", base.from_float, fields);
+                base.export_element (obj, "HeatRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "HeatRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "HeatRate", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "HeatRate", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "HeatRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1532,6 +1674,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HeatRate" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
+                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1581,19 +1738,18 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "FuelAllocationSchedule", "fuelAllocationEndDate", base.from_datetime, fields);
-                base.export_element (obj, "FuelAllocationSchedule", "fuelAllocationStartDate", base.from_datetime, fields);
-                base.export_element (obj, "FuelAllocationSchedule", "fuelType", base.from_string, fields);
-                base.export_element (obj, "FuelAllocationSchedule", "maxFuelAllocation", base.from_float, fields);
-                base.export_element (obj, "FuelAllocationSchedule", "minFuelAllocation", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "FuelAllocationSchedule", fields);
-                base.export_attribute (obj, "export_attribute", "FuelAllocationSchedule", fields);
+                base.export_element (obj, "FuelAllocationSchedule", "fuelAllocationEndDate", "fuelAllocationEndDate",  base.from_datetime, fields);
+                base.export_element (obj, "FuelAllocationSchedule", "fuelAllocationStartDate", "fuelAllocationStartDate",  base.from_datetime, fields);
+                base.export_element (obj, "FuelAllocationSchedule", "fuelType", "fuelType",  base.from_string, fields);
+                base.export_element (obj, "FuelAllocationSchedule", "maxFuelAllocation", "maxFuelAllocation",  base.from_float, fields);
+                base.export_element (obj, "FuelAllocationSchedule", "minFuelAllocation", "minFuelAllocation",  base.from_float, fields);
+                base.export_attribute (obj, "FuelAllocationSchedule", "FossilFuel", "FossilFuel", fields);
+                base.export_attribute (obj, "FuelAllocationSchedule", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1654,6 +1810,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FuelAllocationSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("fuelAllocationEndDate").value; if ("" != temp) obj.fuelAllocationEndDate = temp;
+                temp = document.getElementById ("fuelAllocationStartDate").value; if ("" != temp) obj.fuelAllocationStartDate = temp;
+                temp = document.getElementById ("fuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fuelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = document.getElementById ("maxFuelAllocation").value; if ("" != temp) obj.maxFuelAllocation = temp;
+                temp = document.getElementById ("minFuelAllocation").value; if ("" != temp) obj.minFuelAllocation = temp;
+                temp = document.getElementById ("FossilFuel").value; if ("" != temp) obj.FossilFuel = temp;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1708,13 +1881,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "HydroGeneratingEfficiencyCurve", fields);
+                base.export_attribute (obj, "HydroGeneratingEfficiencyCurve", "HydroGeneratingUnit", "HydroGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1759,6 +1931,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HydroGeneratingEfficiencyCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("HydroGeneratingUnit").value; if ("" != temp) obj.HydroGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1814,13 +1997,12 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "GenUnitOpSchedule", fields);
+                base.export_attribute (obj, "GenUnitOpSchedule", "GeneratingUnit", "GeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1865,6 +2047,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GenUnitOpSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("GeneratingUnit").value; if ("" != temp) obj.GeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1921,14 +2114,13 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HeatRateCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "HeatRateCurve", fields);
+                base.export_element (obj, "HeatRateCurve", "isNetGrossP", "isNetGrossP",  base.from_boolean, fields);
+                base.export_attribute (obj, "HeatRateCurve", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1975,6 +2167,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HeatRateCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2031,14 +2235,13 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GenUnitOpCostCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "GenUnitOpCostCurve", fields);
+                base.export_element (obj, "GenUnitOpCostCurve", "isNetGrossP", "isNetGrossP",  base.from_boolean, fields);
+                base.export_attribute (obj, "GenUnitOpCostCurve", "GeneratingUnit", "GeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2085,6 +2288,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GenUnitOpCostCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
+                temp = document.getElementById ("GeneratingUnit").value; if ("" != temp) obj.GeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2138,13 +2353,12 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "SteamSendoutSchedule", fields);
+                base.export_attribute (obj, "SteamSendoutSchedule", "CogenerationPlant", "CogenerationPlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2189,6 +2403,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SteamSendoutSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("CogenerationPlant").value; if ("" != temp) obj.CogenerationPlant = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2244,13 +2469,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "TailbayLossCurve", fields);
+                base.export_attribute (obj, "TailbayLossCurve", "HydroGeneratingUnit", "HydroGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2295,6 +2519,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TailbayLossCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("HydroGeneratingUnit").value; if ("" != temp) obj.HydroGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2351,16 +2586,15 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CAESPlant", "energyStorageCapacity", base.from_string, fields);
-                base.export_element (obj, "CAESPlant", "ratedCapacityP", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "CAESPlant", fields);
-                base.export_attribute (obj, "export_attribute", "CAESPlant", fields);
+                base.export_element (obj, "CAESPlant", "energyStorageCapacity", "energyStorageCapacity",  base.from_string, fields);
+                base.export_element (obj, "CAESPlant", "ratedCapacityP", "ratedCapacityP",  base.from_string, fields);
+                base.export_attribute (obj, "CAESPlant", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "CAESPlant", "AirCompressor", "AirCompressor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2411,6 +2645,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CAESPlant" };
+                super.submit (obj);
+                temp = document.getElementById ("energyStorageCapacity").value; if ("" != temp) obj.energyStorageCapacity = temp;
+                temp = document.getElementById ("ratedCapacityP").value; if ("" != temp) obj.ratedCapacityP = temp;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+                temp = document.getElementById ("AirCompressor").value; if ("" != temp) obj.AirCompressor = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2470,16 +2718,15 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EmissionCurve", "emissionContent", base.from_string, fields);
-                base.export_element (obj, "EmissionCurve", "emissionType", base.from_string, fields);
-                base.export_element (obj, "EmissionCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "EmissionCurve", fields);
+                base.export_element (obj, "EmissionCurve", "emissionContent", "emissionContent",  base.from_string, fields);
+                base.export_element (obj, "EmissionCurve", "emissionType", "emissionType",  base.from_string, fields);
+                base.export_element (obj, "EmissionCurve", "isNetGrossP", "isNetGrossP",  base.from_boolean, fields);
+                base.export_attribute (obj, "EmissionCurve", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2534,6 +2781,20 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EmissionCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("emissionContent").value; if ("" != temp) obj.emissionContent = temp;
+                temp = document.getElementById ("emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
+                temp = document.getElementById ("isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2586,14 +2847,13 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StartMainFuelCurve", "mainFuelType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "StartMainFuelCurve", fields);
+                base.export_element (obj, "StartMainFuelCurve", "mainFuelType", "mainFuelType",  base.from_string, fields);
+                base.export_attribute (obj, "StartMainFuelCurve", "StartupModel", "StartupModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2642,6 +2902,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "StartMainFuelCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("mainFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.mainFuelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = document.getElementById ("StartupModel").value; if ("" != temp) obj.StartupModel = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2696,14 +2968,13 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StartRampCurve", "hotStandbyRamp", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "StartRampCurve", fields);
+                base.export_element (obj, "StartRampCurve", "hotStandbyRamp", "hotStandbyRamp",  base.from_string, fields);
+                base.export_attribute (obj, "StartRampCurve", "StartupModel", "StartupModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2750,6 +3021,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "StartRampCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("hotStandbyRamp").value; if ("" != temp) obj.hotStandbyRamp = temp;
+                temp = document.getElementById ("StartupModel").value; if ("" != temp) obj.StartupModel = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2816,24 +3099,23 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "FossilFuel", "fossilFuelType", base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "fuelCost", base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "fuelDispatchCost", base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "fuelEffFactor", base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "fuelHandlingCost", base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "fuelHeatContent", base.from_float, fields);
-                base.export_element (obj, "FossilFuel", "fuelMixture", base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "fuelSulfur", base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "highBreakpointP", base.from_string, fields);
-                base.export_element (obj, "FossilFuel", "lowBreakpointP", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "FossilFuel", fields);
-                base.export_attribute (obj, "export_attribute", "FossilFuel", fields);
+                base.export_element (obj, "FossilFuel", "fossilFuelType", "fossilFuelType",  base.from_string, fields);
+                base.export_element (obj, "FossilFuel", "fuelCost", "fuelCost",  base.from_string, fields);
+                base.export_element (obj, "FossilFuel", "fuelDispatchCost", "fuelDispatchCost",  base.from_string, fields);
+                base.export_element (obj, "FossilFuel", "fuelEffFactor", "fuelEffFactor",  base.from_string, fields);
+                base.export_element (obj, "FossilFuel", "fuelHandlingCost", "fuelHandlingCost",  base.from_string, fields);
+                base.export_element (obj, "FossilFuel", "fuelHeatContent", "fuelHeatContent",  base.from_float, fields);
+                base.export_element (obj, "FossilFuel", "fuelMixture", "fuelMixture",  base.from_string, fields);
+                base.export_element (obj, "FossilFuel", "fuelSulfur", "fuelSulfur",  base.from_string, fields);
+                base.export_element (obj, "FossilFuel", "highBreakpointP", "highBreakpointP",  base.from_string, fields);
+                base.export_element (obj, "FossilFuel", "lowBreakpointP", "lowBreakpointP",  base.from_string, fields);
+                base.export_attributes (obj, "FossilFuel", "FuelAllocationSchedules", "FuelAllocationSchedules", fields);
+                base.export_attribute (obj, "FossilFuel", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2903,6 +3185,27 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FossilFuel" };
+                super.submit (obj);
+                temp = document.getElementById ("fossilFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fossilFuelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = document.getElementById ("fuelCost").value; if ("" != temp) obj.fuelCost = temp;
+                temp = document.getElementById ("fuelDispatchCost").value; if ("" != temp) obj.fuelDispatchCost = temp;
+                temp = document.getElementById ("fuelEffFactor").value; if ("" != temp) obj.fuelEffFactor = temp;
+                temp = document.getElementById ("fuelHandlingCost").value; if ("" != temp) obj.fuelHandlingCost = temp;
+                temp = document.getElementById ("fuelHeatContent").value; if ("" != temp) obj.fuelHeatContent = temp;
+                temp = document.getElementById ("fuelMixture").value; if ("" != temp) obj.fuelMixture = temp;
+                temp = document.getElementById ("fuelSulfur").value; if ("" != temp) obj.fuelSulfur = temp;
+                temp = document.getElementById ("highBreakpointP").value; if ("" != temp) obj.highBreakpointP = temp;
+                temp = document.getElementById ("lowBreakpointP").value; if ("" != temp) obj.lowBreakpointP = temp;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3000,54 +3303,53 @@ define
             {
                 var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GeneratingUnit", "allocSpinResP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "autoCntrlMarginP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "baseP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "controlDeadband", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "controlPulseHigh", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "controlPulseLow", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "controlResponseRate", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "efficiency", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "genControlMode", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "genControlSource", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "governorMPL", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "governorSCD", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "highControlLimit", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "initialP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "longPF", base.from_float, fields);
-                base.export_element (obj, "GeneratingUnit", "lowControlLimit", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "lowerRampRate", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "maxEconomicP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "maximumAllowableSpinningReserve", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "maxOperatingP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "minEconomicP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "minimumOffTime", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "minOperatingP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "modelDetail", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "nominalP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "normalPF", base.from_float, fields);
-                base.export_element (obj, "GeneratingUnit", "penaltyFactor", base.from_float, fields);
-                base.export_element (obj, "GeneratingUnit", "raiseRampRate", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "ratedGrossMaxP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "ratedGrossMinP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "ratedNetMaxP", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "shortPF", base.from_float, fields);
-                base.export_element (obj, "GeneratingUnit", "startupCost", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "startupTime", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "tieLinePF", base.from_float, fields);
-                base.export_element (obj, "GeneratingUnit", "variableCost", base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "totalEfficiency", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "GeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "GeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "GeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "GeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "GeneratingUnit", fields);
+                base.export_element (obj, "GeneratingUnit", "allocSpinResP", "allocSpinResP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "autoCntrlMarginP", "autoCntrlMarginP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "baseP", "baseP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "controlDeadband", "controlDeadband",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "controlPulseHigh", "controlPulseHigh",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "controlPulseLow", "controlPulseLow",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "controlResponseRate", "controlResponseRate",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "efficiency", "efficiency",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "genControlMode", "genControlMode",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "genControlSource", "genControlSource",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "governorMPL", "governorMPL",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "governorSCD", "governorSCD",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "highControlLimit", "highControlLimit",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "initialP", "initialP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "longPF", "longPF",  base.from_float, fields);
+                base.export_element (obj, "GeneratingUnit", "lowControlLimit", "lowControlLimit",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "lowerRampRate", "lowerRampRate",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "maxEconomicP", "maxEconomicP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "maximumAllowableSpinningReserve", "maximumAllowableSpinningReserve",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "maxOperatingP", "maxOperatingP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "minEconomicP", "minEconomicP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "minimumOffTime", "minimumOffTime",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "minOperatingP", "minOperatingP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "modelDetail", "modelDetail",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "nominalP", "nominalP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "normalPF", "normalPF",  base.from_float, fields);
+                base.export_element (obj, "GeneratingUnit", "penaltyFactor", "penaltyFactor",  base.from_float, fields);
+                base.export_element (obj, "GeneratingUnit", "raiseRampRate", "raiseRampRate",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "ratedGrossMaxP", "ratedGrossMaxP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "ratedGrossMinP", "ratedGrossMinP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "ratedNetMaxP", "ratedNetMaxP",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "shortPF", "shortPF",  base.from_float, fields);
+                base.export_element (obj, "GeneratingUnit", "startupCost", "startupCost",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "startupTime", "startupTime",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "tieLinePF", "tieLinePF",  base.from_float, fields);
+                base.export_element (obj, "GeneratingUnit", "variableCost", "variableCost",  base.from_string, fields);
+                base.export_element (obj, "GeneratingUnit", "totalEfficiency", "totalEfficiency",  base.from_string, fields);
+                base.export_attributes (obj, "GeneratingUnit", "RotatingMachine", "RotatingMachine", fields);
+                base.export_attribute (obj, "GeneratingUnit", "GenUnitOpSchedule", "GenUnitOpSchedule", fields);
+                base.export_attributes (obj, "GeneratingUnit", "GenUnitOpCostCurves", "GenUnitOpCostCurves", fields);
+                base.export_attributes (obj, "GeneratingUnit", "ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", fields);
+                base.export_attributes (obj, "GeneratingUnit", "GrossToNetActivePowerCurves", "GrossToNetActivePowerCurves", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3184,6 +3486,54 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GeneratingUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("allocSpinResP").value; if ("" != temp) obj.allocSpinResP = temp;
+                temp = document.getElementById ("autoCntrlMarginP").value; if ("" != temp) obj.autoCntrlMarginP = temp;
+                temp = document.getElementById ("baseP").value; if ("" != temp) obj.baseP = temp;
+                temp = document.getElementById ("controlDeadband").value; if ("" != temp) obj.controlDeadband = temp;
+                temp = document.getElementById ("controlPulseHigh").value; if ("" != temp) obj.controlPulseHigh = temp;
+                temp = document.getElementById ("controlPulseLow").value; if ("" != temp) obj.controlPulseLow = temp;
+                temp = document.getElementById ("controlResponseRate").value; if ("" != temp) obj.controlResponseRate = temp;
+                temp = document.getElementById ("efficiency").value; if ("" != temp) obj.efficiency = temp;
+                temp = document.getElementById ("genControlMode").value; if ("" != temp) { temp = GeneratorControlMode[temp]; if ("undefined" != typeof (temp)) obj.genControlMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlMode." + temp; }
+                temp = document.getElementById ("genControlSource").value; if ("" != temp) { temp = GeneratorControlSource[temp]; if ("undefined" != typeof (temp)) obj.genControlSource = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlSource." + temp; }
+                temp = document.getElementById ("governorMPL").value; if ("" != temp) obj.governorMPL = temp;
+                temp = document.getElementById ("governorSCD").value; if ("" != temp) obj.governorSCD = temp;
+                temp = document.getElementById ("highControlLimit").value; if ("" != temp) obj.highControlLimit = temp;
+                temp = document.getElementById ("initialP").value; if ("" != temp) obj.initialP = temp;
+                temp = document.getElementById ("longPF").value; if ("" != temp) obj.longPF = temp;
+                temp = document.getElementById ("lowControlLimit").value; if ("" != temp) obj.lowControlLimit = temp;
+                temp = document.getElementById ("lowerRampRate").value; if ("" != temp) obj.lowerRampRate = temp;
+                temp = document.getElementById ("maxEconomicP").value; if ("" != temp) obj.maxEconomicP = temp;
+                temp = document.getElementById ("maximumAllowableSpinningReserve").value; if ("" != temp) obj.maximumAllowableSpinningReserve = temp;
+                temp = document.getElementById ("maxOperatingP").value; if ("" != temp) obj.maxOperatingP = temp;
+                temp = document.getElementById ("minEconomicP").value; if ("" != temp) obj.minEconomicP = temp;
+                temp = document.getElementById ("minimumOffTime").value; if ("" != temp) obj.minimumOffTime = temp;
+                temp = document.getElementById ("minOperatingP").value; if ("" != temp) obj.minOperatingP = temp;
+                temp = document.getElementById ("modelDetail").value; if ("" != temp) obj.modelDetail = temp;
+                temp = document.getElementById ("nominalP").value; if ("" != temp) obj.nominalP = temp;
+                temp = document.getElementById ("normalPF").value; if ("" != temp) obj.normalPF = temp;
+                temp = document.getElementById ("penaltyFactor").value; if ("" != temp) obj.penaltyFactor = temp;
+                temp = document.getElementById ("raiseRampRate").value; if ("" != temp) obj.raiseRampRate = temp;
+                temp = document.getElementById ("ratedGrossMaxP").value; if ("" != temp) obj.ratedGrossMaxP = temp;
+                temp = document.getElementById ("ratedGrossMinP").value; if ("" != temp) obj.ratedGrossMinP = temp;
+                temp = document.getElementById ("ratedNetMaxP").value; if ("" != temp) obj.ratedNetMaxP = temp;
+                temp = document.getElementById ("shortPF").value; if ("" != temp) obj.shortPF = temp;
+                temp = document.getElementById ("startupCost").value; if ("" != temp) obj.startupCost = temp;
+                temp = document.getElementById ("startupTime").value; if ("" != temp) obj.startupTime = temp;
+                temp = document.getElementById ("tieLinePF").value; if ("" != temp) obj.tieLinePF = temp;
+                temp = document.getElementById ("variableCost").value; if ("" != temp) obj.variableCost = temp;
+                temp = document.getElementById ("totalEfficiency").value; if ("" != temp) obj.totalEfficiency = temp;
+                temp = document.getElementById ("GenUnitOpSchedule").value; if ("" != temp) obj.GenUnitOpSchedule = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3253,25 +3603,24 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HydroPowerPlant", "dischargeTravelDelay", base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "genRatedP", base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "hydroPlantStorageType", base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "penstockType", base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "plantDischargeCapacity", base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "plantRatedHead", base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "pumpRatedP", base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "surgeTankCode", base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "surgeTankCrestLevel", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "HydroPowerPlant", fields);
-                base.export_attribute (obj, "export_attribute", "HydroPowerPlant", fields);
-                base.export_attribute (obj, "export_attribute", "HydroPowerPlant", fields);
-                base.export_attribute (obj, "export_attributes", "HydroPowerPlant", fields);
+                base.export_element (obj, "HydroPowerPlant", "dischargeTravelDelay", "dischargeTravelDelay",  base.from_string, fields);
+                base.export_element (obj, "HydroPowerPlant", "genRatedP", "genRatedP",  base.from_string, fields);
+                base.export_element (obj, "HydroPowerPlant", "hydroPlantStorageType", "hydroPlantStorageType",  base.from_string, fields);
+                base.export_element (obj, "HydroPowerPlant", "penstockType", "penstockType",  base.from_string, fields);
+                base.export_element (obj, "HydroPowerPlant", "plantDischargeCapacity", "plantDischargeCapacity",  base.from_string, fields);
+                base.export_element (obj, "HydroPowerPlant", "plantRatedHead", "plantRatedHead",  base.from_string, fields);
+                base.export_element (obj, "HydroPowerPlant", "pumpRatedP", "pumpRatedP",  base.from_string, fields);
+                base.export_element (obj, "HydroPowerPlant", "surgeTankCode", "surgeTankCode",  base.from_string, fields);
+                base.export_element (obj, "HydroPowerPlant", "surgeTankCrestLevel", "surgeTankCrestLevel",  base.from_string, fields);
+                base.export_attributes (obj, "HydroPowerPlant", "HydroPumps", "HydroPumps", fields);
+                base.export_attribute (obj, "HydroPowerPlant", "Reservoir", "Reservoir", fields);
+                base.export_attribute (obj, "HydroPowerPlant", "GenSourcePumpDischargeReservoir", "GenSourcePumpDischargeReservoir", fields);
+                base.export_attributes (obj, "HydroPowerPlant", "HydroGeneratingUnits", "HydroGeneratingUnits", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3346,6 +3695,27 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HydroPowerPlant" };
+                super.submit (obj);
+                temp = document.getElementById ("dischargeTravelDelay").value; if ("" != temp) obj.dischargeTravelDelay = temp;
+                temp = document.getElementById ("genRatedP").value; if ("" != temp) obj.genRatedP = temp;
+                temp = document.getElementById ("hydroPlantStorageType").value; if ("" != temp) { temp = HydroPlantStorageKind[temp]; if ("undefined" != typeof (temp)) obj.hydroPlantStorageType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#HydroPlantStorageKind." + temp; }
+                temp = document.getElementById ("penstockType").value; if ("" != temp) obj.penstockType = temp;
+                temp = document.getElementById ("plantDischargeCapacity").value; if ("" != temp) obj.plantDischargeCapacity = temp;
+                temp = document.getElementById ("plantRatedHead").value; if ("" != temp) obj.plantRatedHead = temp;
+                temp = document.getElementById ("pumpRatedP").value; if ("" != temp) obj.pumpRatedP = temp;
+                temp = document.getElementById ("surgeTankCode").value; if ("" != temp) obj.surgeTankCode = temp;
+                temp = document.getElementById ("surgeTankCrestLevel").value; if ("" != temp) obj.surgeTankCrestLevel = temp;
+                temp = document.getElementById ("Reservoir").value; if ("" != temp) obj.Reservoir = temp;
+                temp = document.getElementById ("GenSourcePumpDischargeReservoir").value; if ("" != temp) obj.GenSourcePumpDischargeReservoir = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3402,13 +3772,12 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "HydroPumpOpSchedule", fields);
+                base.export_attribute (obj, "HydroPumpOpSchedule", "HydroPump", "HydroPump", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3453,6 +3822,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HydroPumpOpSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("HydroPump").value; if ("" != temp) obj.HydroPump = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3508,15 +3888,14 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ShutdownCurve", "shutdownCost", base.from_string, fields);
-                base.export_element (obj, "ShutdownCurve", "shutdownDate", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attribute", "ShutdownCurve", fields);
+                base.export_element (obj, "ShutdownCurve", "shutdownCost", "shutdownCost",  base.from_string, fields);
+                base.export_element (obj, "ShutdownCurve", "shutdownDate", "shutdownDate",  base.from_datetime, fields);
+                base.export_attribute (obj, "ShutdownCurve", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3565,6 +3944,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ShutdownCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("shutdownCost").value; if ("" != temp) obj.shutdownCost = temp;
+                temp = document.getElementById ("shutdownDate").value; if ("" != temp) obj.shutdownDate = temp;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3622,15 +4014,14 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EmissionAccount", "emissionType", base.from_string, fields);
-                base.export_element (obj, "EmissionAccount", "emissionValueSource", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "EmissionAccount", fields);
+                base.export_element (obj, "EmissionAccount", "emissionType", "emissionType",  base.from_string, fields);
+                base.export_element (obj, "EmissionAccount", "emissionValueSource", "emissionValueSource",  base.from_string, fields);
+                base.export_attribute (obj, "EmissionAccount", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3683,6 +4074,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EmissionAccount" };
+                super.submit (obj);
+                temp = document.getElementById ("emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
+                temp = document.getElementById ("emissionValueSource").value; if ("" != temp) { temp = EmissionValueSource[temp]; if ("undefined" != typeof (temp)) obj.emissionValueSource = "#http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionValueSource." + temp; }
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3743,18 +4147,17 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HeatInputCurve", "auxPowerMult", base.from_string, fields);
-                base.export_element (obj, "HeatInputCurve", "auxPowerOffset", base.from_string, fields);
-                base.export_element (obj, "HeatInputCurve", "heatInputEff", base.from_string, fields);
-                base.export_element (obj, "HeatInputCurve", "heatInputOffset", base.from_string, fields);
-                base.export_element (obj, "HeatInputCurve", "isNetGrossP", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "HeatInputCurve", fields);
+                base.export_element (obj, "HeatInputCurve", "auxPowerMult", "auxPowerMult",  base.from_string, fields);
+                base.export_element (obj, "HeatInputCurve", "auxPowerOffset", "auxPowerOffset",  base.from_string, fields);
+                base.export_element (obj, "HeatInputCurve", "heatInputEff", "heatInputEff",  base.from_string, fields);
+                base.export_element (obj, "HeatInputCurve", "heatInputOffset", "heatInputOffset",  base.from_string, fields);
+                base.export_element (obj, "HeatInputCurve", "isNetGrossP", "isNetGrossP",  base.from_boolean, fields);
+                base.export_attribute (obj, "HeatInputCurve", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3809,6 +4212,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HeatInputCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("auxPowerMult").value; if ("" != temp) obj.auxPowerMult = temp;
+                temp = document.getElementById ("auxPowerOffset").value; if ("" != temp) obj.auxPowerOffset = temp;
+                temp = document.getElementById ("heatInputEff").value; if ("" != temp) obj.heatInputEff = temp;
+                temp = document.getElementById ("heatInputOffset").value; if ("" != temp) obj.heatInputOffset = temp;
+                temp = document.getElementById ("isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3875,26 +4294,25 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StartupModel", "fixedMaintCost", base.from_string, fields);
-                base.export_element (obj, "StartupModel", "hotStandbyHeat", base.from_string, fields);
-                base.export_element (obj, "StartupModel", "incrementalMaintCost", base.from_string, fields);
-                base.export_element (obj, "StartupModel", "minimumDownTime", base.from_string, fields);
-                base.export_element (obj, "StartupModel", "minimumRunTime", base.from_string, fields);
-                base.export_element (obj, "StartupModel", "riskFactorCost", base.from_string, fields);
-                base.export_element (obj, "StartupModel", "startupCost", base.from_string, fields);
-                base.export_element (obj, "StartupModel", "startupDate", base.from_datetime, fields);
-                base.export_element (obj, "StartupModel", "startupPriority", base.from_string, fields);
-                base.export_element (obj, "StartupModel", "stbyAuxP", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "StartupModel", fields);
-                base.export_attribute (obj, "export_attribute", "StartupModel", fields);
-                base.export_attribute (obj, "export_attribute", "StartupModel", fields);
-                base.export_attribute (obj, "export_attribute", "StartupModel", fields);
+                base.export_element (obj, "StartupModel", "fixedMaintCost", "fixedMaintCost",  base.from_string, fields);
+                base.export_element (obj, "StartupModel", "hotStandbyHeat", "hotStandbyHeat",  base.from_string, fields);
+                base.export_element (obj, "StartupModel", "incrementalMaintCost", "incrementalMaintCost",  base.from_string, fields);
+                base.export_element (obj, "StartupModel", "minimumDownTime", "minimumDownTime",  base.from_string, fields);
+                base.export_element (obj, "StartupModel", "minimumRunTime", "minimumRunTime",  base.from_string, fields);
+                base.export_element (obj, "StartupModel", "riskFactorCost", "riskFactorCost",  base.from_string, fields);
+                base.export_element (obj, "StartupModel", "startupCost", "startupCost",  base.from_string, fields);
+                base.export_element (obj, "StartupModel", "startupDate", "startupDate",  base.from_datetime, fields);
+                base.export_element (obj, "StartupModel", "startupPriority", "startupPriority",  base.from_string, fields);
+                base.export_element (obj, "StartupModel", "stbyAuxP", "stbyAuxP",  base.from_string, fields);
+                base.export_attribute (obj, "StartupModel", "StartIgnFuelCurve", "StartIgnFuelCurve", fields);
+                base.export_attribute (obj, "StartupModel", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
+                base.export_attribute (obj, "StartupModel", "StartMainFuelCurve", "StartMainFuelCurve", fields);
+                base.export_attribute (obj, "StartupModel", "StartRampCurve", "StartRampCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3967,6 +4385,30 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "StartupModel" };
+                super.submit (obj);
+                temp = document.getElementById ("fixedMaintCost").value; if ("" != temp) obj.fixedMaintCost = temp;
+                temp = document.getElementById ("hotStandbyHeat").value; if ("" != temp) obj.hotStandbyHeat = temp;
+                temp = document.getElementById ("incrementalMaintCost").value; if ("" != temp) obj.incrementalMaintCost = temp;
+                temp = document.getElementById ("minimumDownTime").value; if ("" != temp) obj.minimumDownTime = temp;
+                temp = document.getElementById ("minimumRunTime").value; if ("" != temp) obj.minimumRunTime = temp;
+                temp = document.getElementById ("riskFactorCost").value; if ("" != temp) obj.riskFactorCost = temp;
+                temp = document.getElementById ("startupCost").value; if ("" != temp) obj.startupCost = temp;
+                temp = document.getElementById ("startupDate").value; if ("" != temp) obj.startupDate = temp;
+                temp = document.getElementById ("startupPriority").value; if ("" != temp) obj.startupPriority = temp;
+                temp = document.getElementById ("stbyAuxP").value; if ("" != temp) obj.stbyAuxP = temp;
+                temp = document.getElementById ("StartIgnFuelCurve").value; if ("" != temp) obj.StartIgnFuelCurve = temp;
+                temp = document.getElementById ("ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
+                temp = document.getElementById ("StartMainFuelCurve").value; if ("" != temp) obj.StartMainFuelCurve = temp;
+                temp = document.getElementById ("StartRampCurve").value; if ("" != temp) obj.StartRampCurve = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4025,17 +4467,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CostPerHeatUnit", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "multiplier", base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "unit", base.from_string, fields);
-                base.export_element (obj, "CostPerHeatUnit", "value", base.from_float, fields);
+                base.export_element (obj, "CostPerHeatUnit", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "CostPerHeatUnit", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "CostPerHeatUnit", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "CostPerHeatUnit", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "CostPerHeatUnit", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4089,6 +4530,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CostPerHeatUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) obj.denominatorMultiplier = temp;
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) obj.denominatorUnit = temp;
+                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4133,14 +4589,13 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CombinedCyclePlant", "combCyclePlantRating", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "CombinedCyclePlant", fields);
+                base.export_element (obj, "CombinedCyclePlant", "combCyclePlantRating", "combCyclePlantRating",  base.from_string, fields);
+                base.export_attributes (obj, "CombinedCyclePlant", "ThermalGeneratingUnits", "ThermalGeneratingUnits", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4188,6 +4643,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CombinedCyclePlant" };
+                super.submit (obj);
+                temp = document.getElementById ("combCyclePlantRating").value; if ("" != temp) obj.combCyclePlantRating = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4245,15 +4711,14 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TargetLevelSchedule", "highLevelLimit", base.from_string, fields);
-                base.export_element (obj, "TargetLevelSchedule", "lowLevelLimit", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "TargetLevelSchedule", fields);
+                base.export_element (obj, "TargetLevelSchedule", "highLevelLimit", "highLevelLimit",  base.from_string, fields);
+                base.export_element (obj, "TargetLevelSchedule", "lowLevelLimit", "lowLevelLimit",  base.from_string, fields);
+                base.export_attribute (obj, "TargetLevelSchedule", "Reservoir", "Reservoir", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4302,6 +4767,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TargetLevelSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("highLevelLimit").value; if ("" != temp) obj.highLevelLimit = temp;
+                temp = document.getElementById ("lowLevelLimit").value; if ("" != temp) obj.lowLevelLimit = temp;
+                temp = document.getElementById ("Reservoir").value; if ("" != temp) obj.Reservoir = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4357,13 +4835,12 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "InflowForecast", fields);
+                base.export_attribute (obj, "InflowForecast", "Reservoir", "Reservoir", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4408,6 +4885,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InflowForecast" };
+                super.submit (obj);
+                temp = document.getElementById ("Reservoir").value; if ("" != temp) obj.Reservoir = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4473,25 +4961,24 @@ define
             {
                 var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ThermalGeneratingUnit", "oMCost", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "ThermalGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "ThermalGeneratingUnit", fields);
+                base.export_element (obj, "ThermalGeneratingUnit", "oMCost", "oMCost",  base.from_string, fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "ShutdownCurve", "ShutdownCurve", fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "CogenerationPlant", "CogenerationPlant", fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "HeatRateCurve", "HeatRateCurve", fields);
+                base.export_attributes (obj, "ThermalGeneratingUnit", "EmissionCurves", "EmissionCurves", fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "CAESPlant", "CAESPlant", fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "StartupModel", "StartupModel", fields);
+                base.export_attributes (obj, "ThermalGeneratingUnit", "EmmissionAccounts", "EmmissionAccounts", fields);
+                base.export_attributes (obj, "ThermalGeneratingUnit", "FuelAllocationSchedules", "FuelAllocationSchedules", fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "CombinedCyclePlant", "CombinedCyclePlant", fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "IncrementalHeatRateCurve", "IncrementalHeatRateCurve", fields);
+                base.export_attributes (obj, "ThermalGeneratingUnit", "FossilFuels", "FossilFuels", fields);
+                base.export_attribute (obj, "ThermalGeneratingUnit", "HeatInputCurve", "HeatInputCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4566,6 +5053,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ThermalGeneratingUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("oMCost").value; if ("" != temp) obj.oMCost = temp;
+                temp = document.getElementById ("ShutdownCurve").value; if ("" != temp) obj.ShutdownCurve = temp;
+                temp = document.getElementById ("CogenerationPlant").value; if ("" != temp) obj.CogenerationPlant = temp;
+                temp = document.getElementById ("HeatRateCurve").value; if ("" != temp) obj.HeatRateCurve = temp;
+                temp = document.getElementById ("CAESPlant").value; if ("" != temp) obj.CAESPlant = temp;
+                temp = document.getElementById ("StartupModel").value; if ("" != temp) obj.StartupModel = temp;
+                temp = document.getElementById ("CombinedCyclePlant").value; if ("" != temp) obj.CombinedCyclePlant = temp;
+                temp = document.getElementById ("IncrementalHeatRateCurve").value; if ("" != temp) obj.IncrementalHeatRateCurve = temp;
+                temp = document.getElementById ("HeatInputCurve").value; if ("" != temp) obj.HeatInputCurve = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4633,18 +5139,17 @@ define
             {
                 var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HydroGeneratingUnit", "energyConversionCapability", base.from_string, fields);
-                base.export_element (obj, "HydroGeneratingUnit", "hydroUnitWaterCost", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "HydroGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attributes", "HydroGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "HydroGeneratingUnit", fields);
-                base.export_attribute (obj, "export_attribute", "HydroGeneratingUnit", fields);
+                base.export_element (obj, "HydroGeneratingUnit", "energyConversionCapability", "energyConversionCapability",  base.from_string, fields);
+                base.export_element (obj, "HydroGeneratingUnit", "hydroUnitWaterCost", "hydroUnitWaterCost",  base.from_string, fields);
+                base.export_attributes (obj, "HydroGeneratingUnit", "TailbayLossCurve", "TailbayLossCurve", fields);
+                base.export_attributes (obj, "HydroGeneratingUnit", "HydroGeneratingEfficiencyCurves", "HydroGeneratingEfficiencyCurves", fields);
+                base.export_attribute (obj, "HydroGeneratingUnit", "PenstockLossCurve", "PenstockLossCurve", fields);
+                base.export_attribute (obj, "HydroGeneratingUnit", "HydroPowerPlant", "HydroPowerPlant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4705,6 +5210,20 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HydroGeneratingUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("energyConversionCapability").value; if ("" != temp) { temp = HydroEnergyConversionKind[temp]; if ("undefined" != typeof (temp)) obj.energyConversionCapability = "#http://iec.ch/TC57/2013/CIM-schema-cim16#HydroEnergyConversionKind." + temp; }
+                temp = document.getElementById ("hydroUnitWaterCost").value; if ("" != temp) obj.hydroUnitWaterCost = temp;
+                temp = document.getElementById ("PenstockLossCurve").value; if ("" != temp) obj.PenstockLossCurve = temp;
+                temp = document.getElementById ("HydroPowerPlant").value; if ("" != temp) obj.HydroPowerPlant = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4761,13 +5280,12 @@ define
             {
                 var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindGeneratingUnit", "windGenUnitType", base.from_string, fields);
+                base.export_element (obj, "WindGeneratingUnit", "windGenUnitType", "windGenUnitType",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4814,6 +5332,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindGeneratingUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("windGenUnitType").value; if ("" != temp) { temp = WindGenUnitKind[temp]; if ("undefined" != typeof (temp)) obj.windGenUnitType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindGenUnitKind." + temp; }
+
+                return (obj);
             }
         }
 
@@ -4863,7 +5392,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -4905,6 +5433,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "NuclearGeneratingUnit" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -4954,7 +5490,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -4996,6 +5531,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "SolarGeneratingUnit" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 

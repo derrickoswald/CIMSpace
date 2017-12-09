@@ -11,8 +11,8 @@ requirejs
         document.getElementById ("file_button").onchange = cimspace.file_change;
         document.getElementById ("connect").onclick = cimspace.process_url;
         document.getElementById ("save_name").onchange = cimspace.save_name_change;
-        document.getElementById ("about").onchange = cimspace.about_change;
-        document.getElementById ("description").onchange = cimspace.description_change;
+        document.getElementById ("rdf_about").onchange = cimspace.about_change;
+        document.getElementById ("md_description").onchange = cimspace.description_change;
         document.getElementById ("difference_model").onchange = cimspace.difference_model_change;
         document.getElementById ("save_file").onclick = cimspace.generate_rdf;
         document.getElementById ("internal_features").onchange = cimmap.redraw;

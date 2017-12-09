@@ -55,17 +55,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AuxiliaryCost", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "AuxiliaryCost", "marketType", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryCost", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "AuxiliaryCost", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "AuxiliaryCost", fields);
+                base.export_element (obj, "AuxiliaryCost", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "AuxiliaryCost", "marketType", "marketType",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryCost", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "AuxiliaryCost", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_attributes (obj, "AuxiliaryCost", "AuxillaryValues", "AuxillaryValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -119,6 +118,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AuxiliaryCost" };
+                super.submit (obj);
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -175,16 +188,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ExpectedEnergyValues", "energyTypeCode", base.from_string, fields);
-                base.export_element (obj, "ExpectedEnergyValues", "expectedMwh", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ExpectedEnergyValues", fields);
-                base.export_attribute (obj, "export_attribute", "ExpectedEnergyValues", fields);
+                base.export_element (obj, "ExpectedEnergyValues", "energyTypeCode", "energyTypeCode",  base.from_string, fields);
+                base.export_element (obj, "ExpectedEnergyValues", "expectedMwh", "expectedMwh",  base.from_float, fields);
+                base.export_attribute (obj, "ExpectedEnergyValues", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attribute (obj, "ExpectedEnergyValues", "ExpectedEnergy", "ExpectedEnergy", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -235,6 +247,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExpectedEnergyValues" };
+                super.submit (obj);
+                temp = document.getElementById ("energyTypeCode").value; if ("" != temp) obj.energyTypeCode = temp;
+                temp = document.getElementById ("expectedMwh").value; if ("" != temp) obj.expectedMwh = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById ("ExpectedEnergy").value; if ("" != temp) obj.ExpectedEnergy = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -290,14 +316,13 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "export_attribute", "AuxiliaryObject", fields);
-                base.export_attribute (obj, "export_attribute", "AuxiliaryObject", fields);
+                base.export_attribute (obj, "AuxiliaryObject", "RegisteredLoad", "RegisteredLoad", fields);
+                base.export_attribute (obj, "AuxiliaryObject", "RegisteredGenerator", "RegisteredGenerator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -344,6 +369,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AuxiliaryObject" };
+                super.submit (obj);
+                temp = document.getElementById ("RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp;
+                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -400,15 +437,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "TradingHubValues", "price", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "TradingHubValues", fields);
-                base.export_attribute (obj, "export_attribute", "TradingHubValues", fields);
+                base.export_element (obj, "TradingHubValues", "price", "price",  base.from_float, fields);
+                base.export_attribute (obj, "TradingHubValues", "TradingHubPrice", "TradingHubPrice", fields);
+                base.export_attribute (obj, "TradingHubValues", "AggregatedPnode", "AggregatedPnode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -457,6 +493,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TradingHubValues" };
+                super.submit (obj);
+                temp = document.getElementById ("price").value; if ("" != temp) obj.price = temp;
+                temp = document.getElementById ("TradingHubPrice").value; if ("" != temp) obj.TradingHubPrice = temp;
+                temp = document.getElementById ("AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -515,17 +564,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "TradingHubPrice", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "TradingHubPrice", "marketType", base.from_string, fields);
-                base.export_element (obj, "TradingHubPrice", "updateUser", base.from_string, fields);
-                base.export_element (obj, "TradingHubPrice", "updateTimeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "TradingHubPrice", fields);
+                base.export_element (obj, "TradingHubPrice", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "TradingHubPrice", "marketType", "marketType",  base.from_string, fields);
+                base.export_element (obj, "TradingHubPrice", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "TradingHubPrice", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_attributes (obj, "TradingHubPrice", "TradingHubValues", "TradingHubValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -579,6 +627,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TradingHubPrice" };
+                super.submit (obj);
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -635,16 +697,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ExpectedEnergy", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "ExpectedEnergy", "updateUser", base.from_string, fields);
-                base.export_element (obj, "ExpectedEnergy", "updateTimeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "ExpectedEnergy", fields);
+                base.export_element (obj, "ExpectedEnergy", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "ExpectedEnergy", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "ExpectedEnergy", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_attributes (obj, "ExpectedEnergy", "ExpectedEnergyValues", "ExpectedEnergyValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -696,6 +757,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExpectedEnergy" };
+                super.submit (obj);
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -752,16 +826,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "TenMinAuxiliaryData", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "TenMinAuxiliaryData", "updateUser", base.from_string, fields);
-                base.export_element (obj, "TenMinAuxiliaryData", "updateTimeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "TenMinAuxiliaryData", fields);
+                base.export_element (obj, "TenMinAuxiliaryData", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "TenMinAuxiliaryData", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "TenMinAuxiliaryData", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_attributes (obj, "TenMinAuxiliaryData", "AuxillaryData", "AuxillaryData", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -813,6 +886,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TenMinAuxiliaryData" };
+                super.submit (obj);
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -871,16 +957,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AllocationResult", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "AllocationResult", "updateUser", base.from_string, fields);
-                base.export_element (obj, "AllocationResult", "updateTimeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "AllocationResult", fields);
+                base.export_element (obj, "AllocationResult", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "AllocationResult", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "AllocationResult", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_attributes (obj, "AllocationResult", "AllocationResultValues", "AllocationResultValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -932,6 +1017,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AllocationResult" };
+                super.submit (obj);
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -991,19 +1089,18 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AllocationResultValues", "aggregateType", base.from_string, fields);
-                base.export_element (obj, "AllocationResultValues", "allocationMwHour", base.from_float, fields);
-                base.export_element (obj, "AllocationResultValues", "allocationPrice", base.from_float, fields);
-                base.export_element (obj, "AllocationResultValues", "energyTypeCode", base.from_string, fields);
-                base.export_element (obj, "AllocationResultValues", "marketServiceType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "AllocationResultValues", fields);
-                base.export_attribute (obj, "export_attribute", "AllocationResultValues", fields);
+                base.export_element (obj, "AllocationResultValues", "aggregateType", "aggregateType",  base.from_string, fields);
+                base.export_element (obj, "AllocationResultValues", "allocationMwHour", "allocationMwHour",  base.from_float, fields);
+                base.export_element (obj, "AllocationResultValues", "allocationPrice", "allocationPrice",  base.from_float, fields);
+                base.export_element (obj, "AllocationResultValues", "energyTypeCode", "energyTypeCode",  base.from_string, fields);
+                base.export_element (obj, "AllocationResultValues", "marketServiceType", "marketServiceType",  base.from_string, fields);
+                base.export_attribute (obj, "AllocationResultValues", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attribute (obj, "AllocationResultValues", "AllocationResult", "AllocationResult", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1062,6 +1159,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AllocationResultValues" };
+                super.submit (obj);
+                temp = document.getElementById ("aggregateType").value; if ("" != temp) obj.aggregateType = temp;
+                temp = document.getElementById ("allocationMwHour").value; if ("" != temp) obj.allocationMwHour = temp;
+                temp = document.getElementById ("allocationPrice").value; if ("" != temp) obj.allocationPrice = temp;
+                temp = document.getElementById ("energyTypeCode").value; if ("" != temp) obj.energyTypeCode = temp;
+                temp = document.getElementById ("marketServiceType").value; if ("" != temp) obj.marketServiceType = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById ("AllocationResult").value; if ("" != temp) obj.AllocationResult = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1117,16 +1231,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "FiveMinAuxiliaryData", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "FiveMinAuxiliaryData", "updateUser", base.from_string, fields);
-                base.export_element (obj, "FiveMinAuxiliaryData", "updateTimeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "FiveMinAuxiliaryData", fields);
+                base.export_element (obj, "FiveMinAuxiliaryData", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "FiveMinAuxiliaryData", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "FiveMinAuxiliaryData", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_attributes (obj, "FiveMinAuxiliaryData", "AuxillaryValues", "AuxillaryValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1178,6 +1291,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FiveMinAuxiliaryData" };
+                super.submit (obj);
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1241,23 +1367,22 @@ define
             {
                 var fields = AuxiliaryObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AuxiliaryValues", "minExpostCapacity", base.from_float, fields);
-                base.export_element (obj, "AuxiliaryValues", "maxExpostCapacity", base.from_float, fields);
-                base.export_element (obj, "AuxiliaryValues", "availUndispatchedQ", base.from_float, fields);
-                base.export_element (obj, "AuxiliaryValues", "incrementalORAvail", base.from_float, fields);
-                base.export_element (obj, "AuxiliaryValues", "startUpCost", base.from_float, fields);
-                base.export_element (obj, "AuxiliaryValues", "startUpCostEligibilityFlag", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryValues", "noLoadCost", base.from_float, fields);
-                base.export_element (obj, "AuxiliaryValues", "noLoadCostEligibilityFlag", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "AuxiliaryValues", fields);
-                base.export_attribute (obj, "export_attribute", "AuxiliaryValues", fields);
-                base.export_attribute (obj, "export_attribute", "AuxiliaryValues", fields);
+                base.export_element (obj, "AuxiliaryValues", "minExpostCapacity", "minExpostCapacity",  base.from_float, fields);
+                base.export_element (obj, "AuxiliaryValues", "maxExpostCapacity", "maxExpostCapacity",  base.from_float, fields);
+                base.export_element (obj, "AuxiliaryValues", "availUndispatchedQ", "availUndispatchedQ",  base.from_float, fields);
+                base.export_element (obj, "AuxiliaryValues", "incrementalORAvail", "incrementalORAvail",  base.from_float, fields);
+                base.export_element (obj, "AuxiliaryValues", "startUpCost", "startUpCost",  base.from_float, fields);
+                base.export_element (obj, "AuxiliaryValues", "startUpCostEligibilityFlag", "startUpCostEligibilityFlag",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryValues", "noLoadCost", "noLoadCost",  base.from_float, fields);
+                base.export_element (obj, "AuxiliaryValues", "noLoadCostEligibilityFlag", "noLoadCostEligibilityFlag",  base.from_string, fields);
+                base.export_attribute (obj, "AuxiliaryValues", "AuxillaryCost", "AuxillaryCost", fields);
+                base.export_attribute (obj, "AuxiliaryValues", "FiveMinAuxillaryData", "FiveMinAuxillaryData", fields);
+                base.export_attribute (obj, "AuxiliaryValues", "TenMinAuxillaryData", "TenMinAuxillaryData", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1322,6 +1447,27 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AuxiliaryValues" };
+                super.submit (obj);
+                temp = document.getElementById ("minExpostCapacity").value; if ("" != temp) obj.minExpostCapacity = temp;
+                temp = document.getElementById ("maxExpostCapacity").value; if ("" != temp) obj.maxExpostCapacity = temp;
+                temp = document.getElementById ("availUndispatchedQ").value; if ("" != temp) obj.availUndispatchedQ = temp;
+                temp = document.getElementById ("incrementalORAvail").value; if ("" != temp) obj.incrementalORAvail = temp;
+                temp = document.getElementById ("startUpCost").value; if ("" != temp) obj.startUpCost = temp;
+                temp = document.getElementById ("startUpCostEligibilityFlag").value; if ("" != temp) obj.startUpCostEligibilityFlag = temp;
+                temp = document.getElementById ("noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
+                temp = document.getElementById ("noLoadCostEligibilityFlag").value; if ("" != temp) obj.noLoadCostEligibilityFlag = temp;
+                temp = document.getElementById ("AuxillaryCost").value; if ("" != temp) obj.AuxillaryCost = temp;
+                temp = document.getElementById ("FiveMinAuxillaryData").value; if ("" != temp) obj.FiveMinAuxillaryData = temp;
+                temp = document.getElementById ("TenMinAuxillaryData").value; if ("" != temp) obj.TenMinAuxillaryData = temp;
+
+                return (obj);
             }
 
             relations ()

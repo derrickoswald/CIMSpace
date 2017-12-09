@@ -52,14 +52,13 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ResourceClearing", fields);
-                base.export_attribute (obj, "export_attributes", "ResourceClearing", fields);
+                base.export_attributes (obj, "ResourceClearing", "ResourceLoadFollowingInst", "ResourceLoadFollowingInst", fields);
+                base.export_attributes (obj, "ResourceClearing", "ResourceDispatchResults", "ResourceDispatchResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -108,6 +107,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ResourceClearing" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -171,20 +178,19 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MarketResults", "startUpCost", base.from_float, fields);
-                base.export_element (obj, "MarketResults", "minimumLoadCost", base.from_float, fields);
-                base.export_element (obj, "MarketResults", "contingentOperatingResAvail", base.from_string, fields);
-                base.export_element (obj, "MarketResults", "energyCost", base.from_float, fields);
-                base.export_element (obj, "MarketResults", "totalCost", base.from_float, fields);
-                base.export_element (obj, "MarketResults", "ancillarySvcCost", base.from_float, fields);
-                base.export_element (obj, "MarketResults", "totalRucCost", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "MarketResults", fields);
+                base.export_element (obj, "MarketResults", "startUpCost", "startUpCost",  base.from_float, fields);
+                base.export_element (obj, "MarketResults", "minimumLoadCost", "minimumLoadCost",  base.from_float, fields);
+                base.export_element (obj, "MarketResults", "contingentOperatingResAvail", "contingentOperatingResAvail",  base.from_string, fields);
+                base.export_element (obj, "MarketResults", "energyCost", "energyCost",  base.from_float, fields);
+                base.export_element (obj, "MarketResults", "totalCost", "totalCost",  base.from_float, fields);
+                base.export_element (obj, "MarketResults", "ancillarySvcCost", "ancillarySvcCost",  base.from_float, fields);
+                base.export_element (obj, "MarketResults", "totalRucCost", "totalRucCost",  base.from_float, fields);
+                base.export_attribute (obj, "MarketResults", "EnergyMarket", "EnergyMarket", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -243,6 +249,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketResults" };
+                super.submit (obj);
+                temp = document.getElementById ("startUpCost").value; if ("" != temp) obj.startUpCost = temp;
+                temp = document.getElementById ("minimumLoadCost").value; if ("" != temp) obj.minimumLoadCost = temp;
+                temp = document.getElementById ("contingentOperatingResAvail").value; if ("" != temp) obj.contingentOperatingResAvail = temp;
+                temp = document.getElementById ("energyCost").value; if ("" != temp) obj.energyCost = temp;
+                temp = document.getElementById ("totalCost").value; if ("" != temp) obj.totalCost = temp;
+                temp = document.getElementById ("ancillarySvcCost").value; if ("" != temp) obj.ancillarySvcCost = temp;
+                temp = document.getElementById ("totalRucCost").value; if ("" != temp) obj.totalRucCost = temp;
+                temp = document.getElementById ("EnergyMarket").value; if ("" != temp) obj.EnergyMarket = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -307,22 +331,21 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PnodeResults", "marginalClearingPrice", base.from_float, fields);
-                base.export_element (obj, "PnodeResults", "costLMP", base.from_float, fields);
-                base.export_element (obj, "PnodeResults", "lossLMP", base.from_float, fields);
-                base.export_element (obj, "PnodeResults", "congestLMP", base.from_float, fields);
-                base.export_element (obj, "PnodeResults", "scheduledMW", base.from_float, fields);
-                base.export_element (obj, "PnodeResults", "updateUser", base.from_string, fields);
-                base.export_element (obj, "PnodeResults", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "PnodeResults", "updateType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PnodeResults", fields);
-                base.export_attribute (obj, "export_attribute", "PnodeResults", fields);
+                base.export_element (obj, "PnodeResults", "marginalClearingPrice", "marginalClearingPrice",  base.from_float, fields);
+                base.export_element (obj, "PnodeResults", "costLMP", "costLMP",  base.from_float, fields);
+                base.export_element (obj, "PnodeResults", "lossLMP", "lossLMP",  base.from_float, fields);
+                base.export_element (obj, "PnodeResults", "congestLMP", "congestLMP",  base.from_float, fields);
+                base.export_element (obj, "PnodeResults", "scheduledMW", "scheduledMW",  base.from_float, fields);
+                base.export_element (obj, "PnodeResults", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "PnodeResults", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "PnodeResults", "updateType", "updateType",  base.from_string, fields);
+                base.export_attribute (obj, "PnodeResults", "Pnode", "Pnode", fields);
+                base.export_attribute (obj, "PnodeResults", "PnodeClearing", "PnodeClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -387,6 +410,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PnodeResults" };
+                super.submit (obj);
+                temp = document.getElementById ("marginalClearingPrice").value; if ("" != temp) obj.marginalClearingPrice = temp;
+                temp = document.getElementById ("costLMP").value; if ("" != temp) obj.costLMP = temp;
+                temp = document.getElementById ("lossLMP").value; if ("" != temp) obj.lossLMP = temp;
+                temp = document.getElementById ("congestLMP").value; if ("" != temp) obj.congestLMP = temp;
+                temp = document.getElementById ("scheduledMW").value; if ("" != temp) obj.scheduledMW = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("Pnode").value; if ("" != temp) obj.Pnode = temp;
+                temp = document.getElementById ("PnodeClearing").value; if ("" != temp) obj.PnodeClearing = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -439,13 +482,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ConstraintClearing", fields);
+                base.export_attributes (obj, "ConstraintClearing", "ConstraintResults", "ConstraintResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -491,6 +533,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ConstraintClearing" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -546,13 +596,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "InstructionClearing", fields);
+                base.export_attributes (obj, "InstructionClearing", "Instructions", "Instructions", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -599,6 +648,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InstructionClearing" };
+                super.submit (obj);
+                temp = document.getElementById ("Instructions").value; if ("" != temp) obj.Instructions = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -656,15 +716,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "SelfScheduleBreakdown", "selfSchedMW", base.from_float, fields);
-                base.export_element (obj, "SelfScheduleBreakdown", "selfSchedType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "SelfScheduleBreakdown", fields);
+                base.export_element (obj, "SelfScheduleBreakdown", "selfSchedMW", "selfSchedMW",  base.from_float, fields);
+                base.export_element (obj, "SelfScheduleBreakdown", "selfSchedType", "selfSchedType",  base.from_string, fields);
+                base.export_attribute (obj, "SelfScheduleBreakdown", "ResourceAwardInstruction", "ResourceAwardInstruction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -713,6 +772,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SelfScheduleBreakdown" };
+                super.submit (obj);
+                temp = document.getElementById ("selfSchedMW").value; if ("" != temp) obj.selfSchedMW = temp;
+                temp = document.getElementById ("selfSchedType").value; if ("" != temp) obj.selfSchedType = temp;
+                temp = document.getElementById ("ResourceAwardInstruction").value; if ("" != temp) obj.ResourceAwardInstruction = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -771,16 +843,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ExPostLossResults", "totalLossMW", base.from_float, fields);
-                base.export_element (obj, "ExPostLossResults", "ehvLossMW", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ExPostLossResults", fields);
-                base.export_attribute (obj, "export_attribute", "ExPostLossResults", fields);
+                base.export_element (obj, "ExPostLossResults", "totalLossMW", "totalLossMW",  base.from_float, fields);
+                base.export_element (obj, "ExPostLossResults", "ehvLossMW", "ehvLossMW",  base.from_float, fields);
+                base.export_attribute (obj, "ExPostLossResults", "ExPostLoss", "ExPostLoss", fields);
+                base.export_attribute (obj, "ExPostLossResults", "SubControlArea", "SubControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -831,6 +902,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExPostLossResults" };
+                super.submit (obj);
+                temp = document.getElementById ("totalLossMW").value; if ("" != temp) obj.totalLossMW = temp;
+                temp = document.getElementById ("ehvLossMW").value; if ("" != temp) obj.ehvLossMW = temp;
+                temp = document.getElementById ("ExPostLoss").value; if ("" != temp) obj.ExPostLoss = temp;
+                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -905,31 +990,30 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResourceDispatchResults", "blockedDispatch", base.from_string, fields);
-                base.export_element (obj, "ResourceDispatchResults", "blockedPublishDOP", base.from_string, fields);
-                base.export_element (obj, "ResourceDispatchResults", "contingencyFlag", base.from_string, fields);
-                base.export_element (obj, "ResourceDispatchResults", "limitIndicator", base.from_string, fields);
-                base.export_element (obj, "ResourceDispatchResults", "lowerLimit", base.from_float, fields);
-                base.export_element (obj, "ResourceDispatchResults", "maxRampRate", base.from_float, fields);
-                base.export_element (obj, "ResourceDispatchResults", "operatingLimitHigh", base.from_float, fields);
-                base.export_element (obj, "ResourceDispatchResults", "operatingLimitLow", base.from_float, fields);
-                base.export_element (obj, "ResourceDispatchResults", "penaltyDispatchIndicator", base.from_string, fields);
-                base.export_element (obj, "ResourceDispatchResults", "regulatingLimitHigh", base.from_float, fields);
-                base.export_element (obj, "ResourceDispatchResults", "regulatingLimitLow", base.from_float, fields);
-                base.export_element (obj, "ResourceDispatchResults", "resourceStatus", base.from_string, fields);
-                base.export_element (obj, "ResourceDispatchResults", "totalSchedule", base.from_float, fields);
-                base.export_element (obj, "ResourceDispatchResults", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "ResourceDispatchResults", "updateType", base.from_string, fields);
-                base.export_element (obj, "ResourceDispatchResults", "updateUser", base.from_string, fields);
-                base.export_element (obj, "ResourceDispatchResults", "upperLimit", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ResourceDispatchResults", fields);
-                base.export_attribute (obj, "export_attribute", "ResourceDispatchResults", fields);
+                base.export_element (obj, "ResourceDispatchResults", "blockedDispatch", "blockedDispatch",  base.from_string, fields);
+                base.export_element (obj, "ResourceDispatchResults", "blockedPublishDOP", "blockedPublishDOP",  base.from_string, fields);
+                base.export_element (obj, "ResourceDispatchResults", "contingencyFlag", "contingencyFlag",  base.from_string, fields);
+                base.export_element (obj, "ResourceDispatchResults", "limitIndicator", "limitIndicator",  base.from_string, fields);
+                base.export_element (obj, "ResourceDispatchResults", "lowerLimit", "lowerLimit",  base.from_float, fields);
+                base.export_element (obj, "ResourceDispatchResults", "maxRampRate", "maxRampRate",  base.from_float, fields);
+                base.export_element (obj, "ResourceDispatchResults", "operatingLimitHigh", "operatingLimitHigh",  base.from_float, fields);
+                base.export_element (obj, "ResourceDispatchResults", "operatingLimitLow", "operatingLimitLow",  base.from_float, fields);
+                base.export_element (obj, "ResourceDispatchResults", "penaltyDispatchIndicator", "penaltyDispatchIndicator",  base.from_string, fields);
+                base.export_element (obj, "ResourceDispatchResults", "regulatingLimitHigh", "regulatingLimitHigh",  base.from_float, fields);
+                base.export_element (obj, "ResourceDispatchResults", "regulatingLimitLow", "regulatingLimitLow",  base.from_float, fields);
+                base.export_element (obj, "ResourceDispatchResults", "resourceStatus", "resourceStatus",  base.from_string, fields);
+                base.export_element (obj, "ResourceDispatchResults", "totalSchedule", "totalSchedule",  base.from_float, fields);
+                base.export_element (obj, "ResourceDispatchResults", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "ResourceDispatchResults", "updateType", "updateType",  base.from_string, fields);
+                base.export_element (obj, "ResourceDispatchResults", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "ResourceDispatchResults", "upperLimit", "upperLimit",  base.from_float, fields);
+                base.export_attribute (obj, "ResourceDispatchResults", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attribute (obj, "ResourceDispatchResults", "ResourceClearing", "ResourceClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1012,6 +1096,35 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ResourceDispatchResults" };
+                super.submit (obj);
+                temp = document.getElementById ("blockedDispatch").value; if ("" != temp) obj.blockedDispatch = temp;
+                temp = document.getElementById ("blockedPublishDOP").value; if ("" != temp) obj.blockedPublishDOP = temp;
+                temp = document.getElementById ("contingencyFlag").value; if ("" != temp) obj.contingencyFlag = temp;
+                temp = document.getElementById ("limitIndicator").value; if ("" != temp) obj.limitIndicator = temp;
+                temp = document.getElementById ("lowerLimit").value; if ("" != temp) obj.lowerLimit = temp;
+                temp = document.getElementById ("maxRampRate").value; if ("" != temp) obj.maxRampRate = temp;
+                temp = document.getElementById ("operatingLimitHigh").value; if ("" != temp) obj.operatingLimitHigh = temp;
+                temp = document.getElementById ("operatingLimitLow").value; if ("" != temp) obj.operatingLimitLow = temp;
+                temp = document.getElementById ("penaltyDispatchIndicator").value; if ("" != temp) obj.penaltyDispatchIndicator = temp;
+                temp = document.getElementById ("regulatingLimitHigh").value; if ("" != temp) obj.regulatingLimitHigh = temp;
+                temp = document.getElementById ("regulatingLimitLow").value; if ("" != temp) obj.regulatingLimitLow = temp;
+                temp = document.getElementById ("resourceStatus").value; if ("" != temp) obj.resourceStatus = temp;
+                temp = document.getElementById ("totalSchedule").value; if ("" != temp) obj.totalSchedule = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("upperLimit").value; if ("" != temp) obj.upperLimit = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById ("ResourceClearing").value; if ("" != temp) obj.ResourceClearing = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1087,34 +1200,33 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "DotInstruction", "actualRampRate", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "compliantIndicator", base.from_string, fields);
-                base.export_element (obj, "DotInstruction", "DOT", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "economicMaxOverride", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "expectedEnergy", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "generatorPerformanceDegree", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "hourAheadSchedEnergy", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "hourlySchedule", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "instructionTime", base.from_datetime, fields);
-                base.export_element (obj, "DotInstruction", "maximumEmergencyInd", base.from_boolean, fields);
-                base.export_element (obj, "DotInstruction", "meterLoadFollowing", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "nonRampRestrictedMW", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "nonSpinReserve", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "previousDOTTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "DotInstruction", "rampRateLimit", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "regulationStatus", base.from_string, fields);
-                base.export_element (obj, "DotInstruction", "spinReserve", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "standardRampEnergy", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "supplementalEnergy", base.from_float, fields);
-                base.export_element (obj, "DotInstruction", "unitStatus", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "DotInstruction", fields);
-                base.export_attribute (obj, "export_attributes", "DotInstruction", fields);
+                base.export_element (obj, "DotInstruction", "actualRampRate", "actualRampRate",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "compliantIndicator", "compliantIndicator",  base.from_string, fields);
+                base.export_element (obj, "DotInstruction", "DOT", "DOT",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "economicMaxOverride", "economicMaxOverride",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "expectedEnergy", "expectedEnergy",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "generatorPerformanceDegree", "generatorPerformanceDegree",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "hourAheadSchedEnergy", "hourAheadSchedEnergy",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "hourlySchedule", "hourlySchedule",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "instructionTime", "instructionTime",  base.from_datetime, fields);
+                base.export_element (obj, "DotInstruction", "maximumEmergencyInd", "maximumEmergencyInd",  base.from_boolean, fields);
+                base.export_element (obj, "DotInstruction", "meterLoadFollowing", "meterLoadFollowing",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "nonRampRestrictedMW", "nonRampRestrictedMW",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "nonSpinReserve", "nonSpinReserve",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "previousDOTTimeStamp", "previousDOTTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "DotInstruction", "rampRateLimit", "rampRateLimit",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "regulationStatus", "regulationStatus",  base.from_string, fields);
+                base.export_element (obj, "DotInstruction", "spinReserve", "spinReserve",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "standardRampEnergy", "standardRampEnergy",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "supplementalEnergy", "supplementalEnergy",  base.from_float, fields);
+                base.export_element (obj, "DotInstruction", "unitStatus", "unitStatus",  base.from_string, fields);
+                base.export_attribute (obj, "DotInstruction", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attributes (obj, "DotInstruction", "InstructionClearingDOT", "InstructionClearingDOT", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1205,6 +1317,38 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DotInstruction" };
+                super.submit (obj);
+                temp = document.getElementById ("actualRampRate").value; if ("" != temp) obj.actualRampRate = temp;
+                temp = document.getElementById ("compliantIndicator").value; if ("" != temp) obj.compliantIndicator = temp;
+                temp = document.getElementById ("DOT").value; if ("" != temp) obj.DOT = temp;
+                temp = document.getElementById ("economicMaxOverride").value; if ("" != temp) obj.economicMaxOverride = temp;
+                temp = document.getElementById ("expectedEnergy").value; if ("" != temp) obj.expectedEnergy = temp;
+                temp = document.getElementById ("generatorPerformanceDegree").value; if ("" != temp) obj.generatorPerformanceDegree = temp;
+                temp = document.getElementById ("hourAheadSchedEnergy").value; if ("" != temp) obj.hourAheadSchedEnergy = temp;
+                temp = document.getElementById ("hourlySchedule").value; if ("" != temp) obj.hourlySchedule = temp;
+                temp = document.getElementById ("instructionTime").value; if ("" != temp) obj.instructionTime = temp;
+                temp = document.getElementById ("maximumEmergencyInd").checked; if (temp) obj.maximumEmergencyInd = true;
+                temp = document.getElementById ("meterLoadFollowing").value; if ("" != temp) obj.meterLoadFollowing = temp;
+                temp = document.getElementById ("nonRampRestrictedMW").value; if ("" != temp) obj.nonRampRestrictedMW = temp;
+                temp = document.getElementById ("nonSpinReserve").value; if ("" != temp) obj.nonSpinReserve = temp;
+                temp = document.getElementById ("previousDOTTimeStamp").value; if ("" != temp) obj.previousDOTTimeStamp = temp;
+                temp = document.getElementById ("rampRateLimit").value; if ("" != temp) obj.rampRateLimit = temp;
+                temp = document.getElementById ("regulationStatus").value; if ("" != temp) obj.regulationStatus = temp;
+                temp = document.getElementById ("spinReserve").value; if ("" != temp) obj.spinReserve = temp;
+                temp = document.getElementById ("standardRampEnergy").value; if ("" != temp) obj.standardRampEnergy = temp;
+                temp = document.getElementById ("supplementalEnergy").value; if ("" != temp) obj.supplementalEnergy = temp;
+                temp = document.getElementById ("unitStatus").value; if ("" != temp) obj.unitStatus = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById ("InstructionClearingDOT").value; if ("" != temp) obj.InstructionClearingDOT = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1263,17 +1407,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MPMTestResults", "outcome", base.from_string, fields);
-                base.export_element (obj, "MPMTestResults", "marginPercent", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "MPMTestResults", fields);
-                base.export_attribute (obj, "export_attribute", "MPMTestResults", fields);
-                base.export_attribute (obj, "export_attribute", "MPMTestResults", fields);
+                base.export_element (obj, "MPMTestResults", "outcome", "outcome",  base.from_string, fields);
+                base.export_element (obj, "MPMTestResults", "marginPercent", "marginPercent",  base.from_string, fields);
+                base.export_attribute (obj, "MPMTestResults", "MPMClearing", "MPMClearing", fields);
+                base.export_attribute (obj, "MPMTestResults", "AggregatedPnode", "AggregatedPnode", fields);
+                base.export_attribute (obj, "MPMTestResults", "MPMTestCategory", "MPMTestCategory", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1326,6 +1469,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MPMTestResults" };
+                super.submit (obj);
+                temp = document.getElementById ("outcome").value; if ("" != temp) obj.outcome = temp;
+                temp = document.getElementById ("marginPercent").value; if ("" != temp) obj.marginPercent = temp;
+                temp = document.getElementById ("MPMClearing").value; if ("" != temp) obj.MPMClearing = temp;
+                temp = document.getElementById ("AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp;
+                temp = document.getElementById ("MPMTestCategory").value; if ("" != temp) obj.MPMTestCategory = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1385,17 +1543,16 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RMROperatorInput", "manuallySchedRMRMw", base.from_float, fields);
-                base.export_element (obj, "RMROperatorInput", "updateUser", base.from_string, fields);
-                base.export_element (obj, "RMROperatorInput", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "RMROperatorInput", "updateType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "RMROperatorInput", fields);
+                base.export_element (obj, "RMROperatorInput", "manuallySchedRMRMw", "manuallySchedRMRMw",  base.from_float, fields);
+                base.export_element (obj, "RMROperatorInput", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "RMROperatorInput", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "RMROperatorInput", "updateType", "updateType",  base.from_string, fields);
+                base.export_attribute (obj, "RMROperatorInput", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1448,6 +1605,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RMROperatorInput" };
+                super.submit (obj);
+                temp = document.getElementById ("manuallySchedRMRMw").value; if ("" != temp) obj.manuallySchedRMRMw = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1534,44 +1706,43 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResourceAwardInstruction", "awardMW", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "clearedMW", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "clearedPrice", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "congestLMP", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "costLMP", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "dispatcherAddedMW", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "economicMax", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "economicMin", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "effRegulationDownLimit", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "effRegulationUpLimit", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "lmp", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "lossLMP", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "manuallyBlocked", base.from_string, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "marginalResourceIndicator", base.from_string, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "mustRunInd", base.from_boolean, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "noLoadCost", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "optimalBidCost", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "optimalBidPay", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "optimalMargin", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "overrideTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "overrideValue", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "selfSchedMW", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "startUpCost", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "status", base.from_string, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "totalRevenue", base.from_float, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "updateType", base.from_string, fields);
-                base.export_element (obj, "ResourceAwardInstruction", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ResourceAwardInstruction", fields);
-                base.export_attribute (obj, "export_attribute", "ResourceAwardInstruction", fields);
-                base.export_attribute (obj, "export_attributes", "ResourceAwardInstruction", fields);
-                base.export_attribute (obj, "export_attributes", "ResourceAwardInstruction", fields);
+                base.export_element (obj, "ResourceAwardInstruction", "awardMW", "awardMW",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "clearedMW", "clearedMW",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "clearedPrice", "clearedPrice",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "congestLMP", "congestLMP",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "costLMP", "costLMP",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "dispatcherAddedMW", "dispatcherAddedMW",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "economicMax", "economicMax",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "economicMin", "economicMin",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "effRegulationDownLimit", "effRegulationDownLimit",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "effRegulationUpLimit", "effRegulationUpLimit",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "lmp", "lmp",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "lossLMP", "lossLMP",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "manuallyBlocked", "manuallyBlocked",  base.from_string, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "marginalResourceIndicator", "marginalResourceIndicator",  base.from_string, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "mustRunInd", "mustRunInd",  base.from_boolean, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "noLoadCost", "noLoadCost",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "optimalBidCost", "optimalBidCost",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "optimalBidPay", "optimalBidPay",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "optimalMargin", "optimalMargin",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "overrideTimeStamp", "overrideTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "overrideValue", "overrideValue",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "selfSchedMW", "selfSchedMW",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "startUpCost", "startUpCost",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "totalRevenue", "totalRevenue",  base.from_float, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "updateType", "updateType",  base.from_string, fields);
+                base.export_element (obj, "ResourceAwardInstruction", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_attribute (obj, "ResourceAwardInstruction", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attribute (obj, "ResourceAwardInstruction", "MarketProduct", "MarketProduct", fields);
+                base.export_attributes (obj, "ResourceAwardInstruction", "ClearingResourceAward", "ClearingResourceAward", fields);
+                base.export_attributes (obj, "ResourceAwardInstruction", "SelfScheduleBreakdown", "SelfScheduleBreakdown", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1683,6 +1854,47 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ResourceAwardInstruction" };
+                super.submit (obj);
+                temp = document.getElementById ("awardMW").value; if ("" != temp) obj.awardMW = temp;
+                temp = document.getElementById ("clearedMW").value; if ("" != temp) obj.clearedMW = temp;
+                temp = document.getElementById ("clearedPrice").value; if ("" != temp) obj.clearedPrice = temp;
+                temp = document.getElementById ("congestLMP").value; if ("" != temp) obj.congestLMP = temp;
+                temp = document.getElementById ("costLMP").value; if ("" != temp) obj.costLMP = temp;
+                temp = document.getElementById ("dispatcherAddedMW").value; if ("" != temp) obj.dispatcherAddedMW = temp;
+                temp = document.getElementById ("economicMax").value; if ("" != temp) obj.economicMax = temp;
+                temp = document.getElementById ("economicMin").value; if ("" != temp) obj.economicMin = temp;
+                temp = document.getElementById ("effRegulationDownLimit").value; if ("" != temp) obj.effRegulationDownLimit = temp;
+                temp = document.getElementById ("effRegulationUpLimit").value; if ("" != temp) obj.effRegulationUpLimit = temp;
+                temp = document.getElementById ("lmp").value; if ("" != temp) obj.lmp = temp;
+                temp = document.getElementById ("lossLMP").value; if ("" != temp) obj.lossLMP = temp;
+                temp = document.getElementById ("manuallyBlocked").value; if ("" != temp) obj.manuallyBlocked = temp;
+                temp = document.getElementById ("marginalResourceIndicator").value; if ("" != temp) obj.marginalResourceIndicator = temp;
+                temp = document.getElementById ("mustRunInd").checked; if (temp) obj.mustRunInd = true;
+                temp = document.getElementById ("noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
+                temp = document.getElementById ("optimalBidCost").value; if ("" != temp) obj.optimalBidCost = temp;
+                temp = document.getElementById ("optimalBidPay").value; if ("" != temp) obj.optimalBidPay = temp;
+                temp = document.getElementById ("optimalMargin").value; if ("" != temp) obj.optimalMargin = temp;
+                temp = document.getElementById ("overrideTimeStamp").value; if ("" != temp) obj.overrideTimeStamp = temp;
+                temp = document.getElementById ("overrideValue").value; if ("" != temp) obj.overrideValue = temp;
+                temp = document.getElementById ("selfSchedMW").value; if ("" != temp) obj.selfSchedMW = temp;
+                temp = document.getElementById ("startUpCost").value; if ("" != temp) obj.startUpCost = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("totalRevenue").value; if ("" != temp) obj.totalRevenue = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById ("MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
+                temp = document.getElementById ("ClearingResourceAward").value; if ("" != temp) obj.ClearingResourceAward = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1745,19 +1957,18 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "LoadFollowingOperatorInput", "dataEntryTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "LoadFollowingOperatorInput", "tempLoadFollowingUpManualCap", base.from_float, fields);
-                base.export_element (obj, "LoadFollowingOperatorInput", "tempLoadFollowingDownManualCap", base.from_float, fields);
-                base.export_element (obj, "LoadFollowingOperatorInput", "updateUser", base.from_string, fields);
-                base.export_element (obj, "LoadFollowingOperatorInput", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "LoadFollowingOperatorInput", "updateType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "LoadFollowingOperatorInput", fields);
+                base.export_element (obj, "LoadFollowingOperatorInput", "dataEntryTimeStamp", "dataEntryTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "LoadFollowingOperatorInput", "tempLoadFollowingUpManualCap", "tempLoadFollowingUpManualCap",  base.from_float, fields);
+                base.export_element (obj, "LoadFollowingOperatorInput", "tempLoadFollowingDownManualCap", "tempLoadFollowingDownManualCap",  base.from_float, fields);
+                base.export_element (obj, "LoadFollowingOperatorInput", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "LoadFollowingOperatorInput", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "LoadFollowingOperatorInput", "updateType", "updateType",  base.from_string, fields);
+                base.export_attribute (obj, "LoadFollowingOperatorInput", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1816,6 +2027,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadFollowingOperatorInput" };
+                super.submit (obj);
+                temp = document.getElementById ("dataEntryTimeStamp").value; if ("" != temp) obj.dataEntryTimeStamp = temp;
+                temp = document.getElementById ("tempLoadFollowingUpManualCap").value; if ("" != temp) obj.tempLoadFollowingUpManualCap = temp;
+                temp = document.getElementById ("tempLoadFollowingDownManualCap").value; if ("" != temp) obj.tempLoadFollowingDownManualCap = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1870,16 +2098,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MPMResourceStatus", "resourceStatus", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "MPMResourceStatus", fields);
-                base.export_attribute (obj, "export_attribute", "MPMResourceStatus", fields);
-                base.export_attribute (obj, "export_attributes", "MPMResourceStatus", fields);
+                base.export_element (obj, "MPMResourceStatus", "resourceStatus", "resourceStatus",  base.from_string, fields);
+                base.export_attribute (obj, "MPMResourceStatus", "MPMTestCategory", "MPMTestCategory", fields);
+                base.export_attribute (obj, "MPMResourceStatus", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attributes (obj, "MPMResourceStatus", "MitigatedBidClearing", "MitigatedBidClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1932,6 +2159,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MPMResourceStatus" };
+                super.submit (obj);
+                temp = document.getElementById ("resourceStatus").value; if ("" != temp) obj.resourceStatus = temp;
+                temp = document.getElementById ("MPMTestCategory").value; if ("" != temp) obj.MPMTestCategory = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById ("MitigatedBidClearing").value; if ("" != temp) obj.MitigatedBidClearing = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1993,17 +2234,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MitigatedBidSegment", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "MitigatedBidSegment", "thresholdType", base.from_string, fields);
-                base.export_element (obj, "MitigatedBidSegment", "segmentNumber", base.from_string, fields);
-                base.export_element (obj, "MitigatedBidSegment", "segmentMW", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "MitigatedBidSegment", fields);
+                base.export_element (obj, "MitigatedBidSegment", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "MitigatedBidSegment", "thresholdType", "thresholdType",  base.from_string, fields);
+                base.export_element (obj, "MitigatedBidSegment", "segmentNumber", "segmentNumber",  base.from_string, fields);
+                base.export_element (obj, "MitigatedBidSegment", "segmentMW", "segmentMW",  base.from_float, fields);
+                base.export_attribute (obj, "MitigatedBidSegment", "Bid", "Bid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2056,6 +2296,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MitigatedBidSegment" };
+                super.submit (obj);
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("thresholdType").value; if ("" != temp) obj.thresholdType = temp;
+                temp = document.getElementById ("segmentNumber").value; if ("" != temp) obj.segmentNumber = temp;
+                temp = document.getElementById ("segmentMW").value; if ("" != temp) obj.segmentMW = temp;
+                temp = document.getElementById ("Bid").value; if ("" != temp) obj.Bid = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2116,18 +2371,17 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MarketStatement", "tradeDate", base.from_datetime, fields);
-                base.export_element (obj, "MarketStatement", "referenceNumber", base.from_string, fields);
-                base.export_element (obj, "MarketStatement", "start", base.from_datetime, fields);
-                base.export_element (obj, "MarketStatement", "end", base.from_datetime, fields);
-                base.export_element (obj, "MarketStatement", "transactionDate", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "MarketStatement", fields);
+                base.export_element (obj, "MarketStatement", "tradeDate", "tradeDate",  base.from_datetime, fields);
+                base.export_element (obj, "MarketStatement", "referenceNumber", "referenceNumber",  base.from_string, fields);
+                base.export_element (obj, "MarketStatement", "start", "start",  base.from_datetime, fields);
+                base.export_element (obj, "MarketStatement", "end", "end",  base.from_datetime, fields);
+                base.export_element (obj, "MarketStatement", "transactionDate", "transactionDate",  base.from_datetime, fields);
+                base.export_attributes (obj, "MarketStatement", "MarketStatementLineItem", "MarketStatementLineItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2183,6 +2437,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketStatement" };
+                super.submit (obj);
+                temp = document.getElementById ("tradeDate").value; if ("" != temp) obj.tradeDate = temp;
+                temp = document.getElementById ("referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
+                temp = document.getElementById ("start").value; if ("" != temp) obj.start = temp;
+                temp = document.getElementById ("end").value; if ("" != temp) obj.end = temp;
+                temp = document.getElementById ("transactionDate").value; if ("" != temp) obj.transactionDate = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2242,19 +2511,18 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResourceLoadFollowingInst", "instructionID", base.from_string, fields);
-                base.export_element (obj, "ResourceLoadFollowingInst", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "ResourceLoadFollowingInst", "calcLoadFollowingMW", base.from_float, fields);
-                base.export_element (obj, "ResourceLoadFollowingInst", "dispWindowLowLimt", base.from_float, fields);
-                base.export_element (obj, "ResourceLoadFollowingInst", "dispWindowHighLimt", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ResourceLoadFollowingInst", fields);
-                base.export_attribute (obj, "export_attribute", "ResourceLoadFollowingInst", fields);
+                base.export_element (obj, "ResourceLoadFollowingInst", "instructionID", "instructionID",  base.from_string, fields);
+                base.export_element (obj, "ResourceLoadFollowingInst", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "ResourceLoadFollowingInst", "calcLoadFollowingMW", "calcLoadFollowingMW",  base.from_float, fields);
+                base.export_element (obj, "ResourceLoadFollowingInst", "dispWindowLowLimt", "dispWindowLowLimt",  base.from_float, fields);
+                base.export_element (obj, "ResourceLoadFollowingInst", "dispWindowHighLimt", "dispWindowHighLimt",  base.from_float, fields);
+                base.export_attribute (obj, "ResourceLoadFollowingInst", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attribute (obj, "ResourceLoadFollowingInst", "ResourceClearing", "ResourceClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2313,6 +2581,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ResourceLoadFollowingInst" };
+                super.submit (obj);
+                temp = document.getElementById ("instructionID").value; if ("" != temp) obj.instructionID = temp;
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("calcLoadFollowingMW").value; if ("" != temp) obj.calcLoadFollowingMW = temp;
+                temp = document.getElementById ("dispWindowLowLimt").value; if ("" != temp) obj.dispWindowLowLimt = temp;
+                temp = document.getElementById ("dispWindowHighLimt").value; if ("" != temp) obj.dispWindowHighLimt = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById ("ResourceClearing").value; if ("" != temp) obj.ResourceClearing = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2365,13 +2650,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "PnodeClearing", fields);
+                base.export_attributes (obj, "PnodeClearing", "PnodeResults", "PnodeResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2417,6 +2701,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "PnodeClearing" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2474,15 +2766,14 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "InstructionClearingDOT", "contingencyActive", base.from_string, fields);
-                base.export_element (obj, "InstructionClearingDOT", "dispatchMode", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "InstructionClearingDOT", fields);
+                base.export_element (obj, "InstructionClearingDOT", "contingencyActive", "contingencyActive",  base.from_string, fields);
+                base.export_element (obj, "InstructionClearingDOT", "dispatchMode", "dispatchMode",  base.from_string, fields);
+                base.export_attributes (obj, "InstructionClearingDOT", "DotInstruction", "DotInstruction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2533,6 +2824,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InstructionClearingDOT" };
+                super.submit (obj);
+                temp = document.getElementById ("contingencyActive").value; if ("" != temp) obj.contingencyActive = temp;
+                temp = document.getElementById ("dispatchMode").value; if ("" != temp) obj.dispatchMode = temp;
+                temp = document.getElementById ("DotInstruction").value; if ("" != temp) obj.DotInstruction = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -2590,17 +2894,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "LossClearingResults", "lossMW", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "LossClearingResults", fields);
-                base.export_attribute (obj, "export_attribute", "LossClearingResults", fields);
-                base.export_attribute (obj, "export_attribute", "LossClearingResults", fields);
-                base.export_attribute (obj, "export_attribute", "LossClearingResults", fields);
+                base.export_element (obj, "LossClearingResults", "lossMW", "lossMW",  base.from_float, fields);
+                base.export_attribute (obj, "LossClearingResults", "LossClearing", "LossClearing", fields);
+                base.export_attribute (obj, "LossClearingResults", "RUCZone", "RUCZone", fields);
+                base.export_attribute (obj, "LossClearingResults", "SubControlArea", "SubControlArea", fields);
+                base.export_attribute (obj, "LossClearingResults", "HostControlArea", "HostControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2653,6 +2956,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LossClearingResults" };
+                super.submit (obj);
+                temp = document.getElementById ("lossMW").value; if ("" != temp) obj.lossMW = temp;
+                temp = document.getElementById ("LossClearing").value; if ("" != temp) obj.LossClearing = temp;
+                temp = document.getElementById ("RUCZone").value; if ("" != temp) obj.RUCZone = temp;
+                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
+                temp = document.getElementById ("HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2718,22 +3036,21 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "RUCAwardInstruction", "clearedPrice", base.from_float, fields);
-                base.export_element (obj, "RUCAwardInstruction", "marketProductType", base.from_string, fields);
-                base.export_element (obj, "RUCAwardInstruction", "RUCAward", base.from_float, fields);
-                base.export_element (obj, "RUCAwardInstruction", "RUCCapacity", base.from_float, fields);
-                base.export_element (obj, "RUCAwardInstruction", "RUCSchedule", base.from_float, fields);
-                base.export_element (obj, "RUCAwardInstruction", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "RUCAwardInstruction", "updateType", base.from_string, fields);
-                base.export_element (obj, "RUCAwardInstruction", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "RUCAwardInstruction", fields);
-                base.export_attribute (obj, "export_attribute", "RUCAwardInstruction", fields);
+                base.export_element (obj, "RUCAwardInstruction", "clearedPrice", "clearedPrice",  base.from_float, fields);
+                base.export_element (obj, "RUCAwardInstruction", "marketProductType", "marketProductType",  base.from_string, fields);
+                base.export_element (obj, "RUCAwardInstruction", "RUCAward", "RUCAward",  base.from_float, fields);
+                base.export_element (obj, "RUCAwardInstruction", "RUCCapacity", "RUCCapacity",  base.from_float, fields);
+                base.export_element (obj, "RUCAwardInstruction", "RUCSchedule", "RUCSchedule",  base.from_float, fields);
+                base.export_element (obj, "RUCAwardInstruction", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "RUCAwardInstruction", "updateType", "updateType",  base.from_string, fields);
+                base.export_element (obj, "RUCAwardInstruction", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_attributes (obj, "RUCAwardInstruction", "ClearingResourceAward", "ClearingResourceAward", fields);
+                base.export_attribute (obj, "RUCAwardInstruction", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2800,6 +3117,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RUCAwardInstruction" };
+                super.submit (obj);
+                temp = document.getElementById ("clearedPrice").value; if ("" != temp) obj.clearedPrice = temp;
+                temp = document.getElementById ("marketProductType").value; if ("" != temp) obj.marketProductType = temp;
+                temp = document.getElementById ("RUCAward").value; if ("" != temp) obj.RUCAward = temp;
+                temp = document.getElementById ("RUCCapacity").value; if ("" != temp) obj.RUCCapacity = temp;
+                temp = document.getElementById ("RUCSchedule").value; if ("" != temp) obj.RUCSchedule = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("ClearingResourceAward").value; if ("" != temp) obj.ClearingResourceAward = temp.split (",");
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2857,16 +3194,15 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MPMClearing", "LMPMFinalFlag", base.from_string, fields);
-                base.export_element (obj, "MPMClearing", "SMPMFinalFlag", base.from_string, fields);
-                base.export_element (obj, "MPMClearing", "mitigationOccuredFlag", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "MPMClearing", fields);
+                base.export_element (obj, "MPMClearing", "LMPMFinalFlag", "LMPMFinalFlag",  base.from_string, fields);
+                base.export_element (obj, "MPMClearing", "SMPMFinalFlag", "SMPMFinalFlag",  base.from_string, fields);
+                base.export_element (obj, "MPMClearing", "mitigationOccuredFlag", "mitigationOccuredFlag",  base.from_string, fields);
+                base.export_attributes (obj, "MPMClearing", "MPMTestResults", "MPMTestResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2918,6 +3254,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MPMClearing" };
+                super.submit (obj);
+                temp = document.getElementById ("LMPMFinalFlag").value; if ("" != temp) obj.LMPMFinalFlag = temp;
+                temp = document.getElementById ("SMPMFinalFlag").value; if ("" != temp) obj.SMPMFinalFlag = temp;
+                temp = document.getElementById ("mitigationOccuredFlag").value; if ("" != temp) obj.mitigationOccuredFlag = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2991,33 +3340,32 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BillDeterminant", "calculationLevel", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "configVersion", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "deleteStatus", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "effectiveDate", base.from_datetime, fields);
-                base.export_element (obj, "BillDeterminant", "exception", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "factor", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "frequency", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "numberInterval", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "offset", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "precisionLevel", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "primaryYN", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "referenceFlag", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "reportable", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "roundOff", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "source", base.from_string, fields);
-                base.export_element (obj, "BillDeterminant", "terminationDate", base.from_datetime, fields);
-                base.export_element (obj, "BillDeterminant", "unitOfMeasure", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "BillDeterminant", fields);
-                base.export_attribute (obj, "export_attributes", "BillDeterminant", fields);
-                base.export_attribute (obj, "export_attributes", "BillDeterminant", fields);
-                base.export_attribute (obj, "export_attributes", "BillDeterminant", fields);
+                base.export_element (obj, "BillDeterminant", "calculationLevel", "calculationLevel",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "configVersion", "configVersion",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "deleteStatus", "deleteStatus",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "BillDeterminant", "exception", "exception",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "factor", "factor",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "frequency", "frequency",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "numberInterval", "numberInterval",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "offset", "offset",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "precisionLevel", "precisionLevel",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "primaryYN", "primaryYN",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "referenceFlag", "referenceFlag",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "reportable", "reportable",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "roundOff", "roundOff",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "source", "source",  base.from_string, fields);
+                base.export_element (obj, "BillDeterminant", "terminationDate", "terminationDate",  base.from_datetime, fields);
+                base.export_element (obj, "BillDeterminant", "unitOfMeasure", "unitOfMeasure",  base.from_string, fields);
+                base.export_attribute (obj, "BillDeterminant", "ChargeProfile", "ChargeProfile", fields);
+                base.export_attributes (obj, "BillDeterminant", "MktUserAttribute", "MktUserAttribute", fields);
+                base.export_attributes (obj, "BillDeterminant", "ChargeProfileData", "ChargeProfileData", fields);
+                base.export_attributes (obj, "BillDeterminant", "ChargeComponents", "ChargeComponents", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3109,6 +3457,36 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BillDeterminant" };
+                super.submit (obj);
+                temp = document.getElementById ("calculationLevel").value; if ("" != temp) obj.calculationLevel = temp;
+                temp = document.getElementById ("configVersion").value; if ("" != temp) obj.configVersion = temp;
+                temp = document.getElementById ("deleteStatus").value; if ("" != temp) obj.deleteStatus = temp;
+                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById ("exception").value; if ("" != temp) obj.exception = temp;
+                temp = document.getElementById ("factor").value; if ("" != temp) obj.factor = temp;
+                temp = document.getElementById ("frequency").value; if ("" != temp) obj.frequency = temp;
+                temp = document.getElementById ("numberInterval").value; if ("" != temp) obj.numberInterval = temp;
+                temp = document.getElementById ("offset").value; if ("" != temp) obj.offset = temp;
+                temp = document.getElementById ("precisionLevel").value; if ("" != temp) obj.precisionLevel = temp;
+                temp = document.getElementById ("primaryYN").value; if ("" != temp) obj.primaryYN = temp;
+                temp = document.getElementById ("referenceFlag").value; if ("" != temp) obj.referenceFlag = temp;
+                temp = document.getElementById ("reportable").value; if ("" != temp) obj.reportable = temp;
+                temp = document.getElementById ("roundOff").value; if ("" != temp) obj.roundOff = temp;
+                temp = document.getElementById ("source").value; if ("" != temp) obj.source = temp;
+                temp = document.getElementById ("terminationDate").value; if ("" != temp) obj.terminationDate = temp;
+                temp = document.getElementById ("unitOfMeasure").value; if ("" != temp) obj.unitOfMeasure = temp;
+                temp = document.getElementById ("ChargeProfile").value; if ("" != temp) obj.ChargeProfile = temp;
+                temp = document.getElementById ("MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp.split (",");
+                temp = document.getElementById ("ChargeComponents").value; if ("" != temp) obj.ChargeComponents = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3164,14 +3542,13 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExPostPricing", "energyPrice", base.from_float, fields);
-                base.export_attribute (obj, "export_attributes", "ExPostPricing", fields);
+                base.export_element (obj, "ExPostPricing", "energyPrice", "energyPrice",  base.from_float, fields);
+                base.export_attributes (obj, "ExPostPricing", "ExPostResults", "ExPostResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3219,6 +3596,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExPostPricing" };
+                super.submit (obj);
+                temp = document.getElementById ("energyPrice").value; if ("" != temp) obj.energyPrice = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3275,16 +3663,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TransactionBidResults", "clearedMW", base.from_float, fields);
-                base.export_element (obj, "TransactionBidResults", "clearedPrice", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "TransactionBidResults", fields);
-                base.export_attribute (obj, "export_attribute", "TransactionBidResults", fields);
+                base.export_element (obj, "TransactionBidResults", "clearedMW", "clearedMW",  base.from_float, fields);
+                base.export_element (obj, "TransactionBidResults", "clearedPrice", "clearedPrice",  base.from_float, fields);
+                base.export_attribute (obj, "TransactionBidResults", "TransactionBidClearing", "TransactionBidClearing", fields);
+                base.export_attribute (obj, "TransactionBidResults", "TransactionBid", "TransactionBid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3335,6 +3722,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TransactionBidResults" };
+                super.submit (obj);
+                temp = document.getElementById ("clearedMW").value; if ("" != temp) obj.clearedMW = temp;
+                temp = document.getElementById ("clearedPrice").value; if ("" != temp) obj.clearedPrice = temp;
+                temp = document.getElementById ("TransactionBidClearing").value; if ("" != temp) obj.TransactionBidClearing = temp;
+                temp = document.getElementById ("TransactionBid").value; if ("" != temp) obj.TransactionBid = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3390,14 +3791,13 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AncillaryServiceClearing", fields);
-                base.export_attribute (obj, "export_attribute", "AncillaryServiceClearing", fields);
+                base.export_attributes (obj, "AncillaryServiceClearing", "MarketRegionResults", "MarketRegionResults", fields);
+                base.export_attribute (obj, "AncillaryServiceClearing", "MarketCaseClearing", "MarketCaseClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3445,6 +3845,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AncillaryServiceClearing" };
+                super.submit (obj);
+                temp = document.getElementById ("MarketCaseClearing").value; if ("" != temp) obj.MarketCaseClearing = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3503,17 +3914,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "GeneralClearingResults", "loadForecast", base.from_string, fields);
-                base.export_element (obj, "GeneralClearingResults", "totalLoad", base.from_float, fields);
-                base.export_element (obj, "GeneralClearingResults", "totalNetInterchange", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "GeneralClearingResults", fields);
-                base.export_attribute (obj, "export_attribute", "GeneralClearingResults", fields);
+                base.export_element (obj, "GeneralClearingResults", "loadForecast", "loadForecast",  base.from_string, fields);
+                base.export_element (obj, "GeneralClearingResults", "totalLoad", "totalLoad",  base.from_float, fields);
+                base.export_element (obj, "GeneralClearingResults", "totalNetInterchange", "totalNetInterchange",  base.from_float, fields);
+                base.export_attribute (obj, "GeneralClearingResults", "GeneralClearing", "GeneralClearing", fields);
+                base.export_attribute (obj, "GeneralClearingResults", "SubControlArea", "SubControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3566,6 +3976,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GeneralClearingResults" };
+                super.submit (obj);
+                temp = document.getElementById ("loadForecast").value; if ("" != temp) obj.loadForecast = temp;
+                temp = document.getElementById ("totalLoad").value; if ("" != temp) obj.totalLoad = temp;
+                temp = document.getElementById ("totalNetInterchange").value; if ("" != temp) obj.totalNetInterchange = temp;
+                temp = document.getElementById ("GeneralClearing").value; if ("" != temp) obj.GeneralClearing = temp;
+                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3633,24 +4058,23 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Commitments", "commitmentType", base.from_string, fields);
-                base.export_element (obj, "Commitments", "instructionCost", base.from_float, fields);
-                base.export_element (obj, "Commitments", "instructionType", base.from_string, fields);
-                base.export_element (obj, "Commitments", "intervalEndTime", base.from_datetime, fields);
-                base.export_element (obj, "Commitments", "intervalStartTime", base.from_datetime, fields);
-                base.export_element (obj, "Commitments", "minStatusChangeTime", base.from_string, fields);
-                base.export_element (obj, "Commitments", "noLoadCost", base.from_float, fields);
-                base.export_element (obj, "Commitments", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "Commitments", "updateType", base.from_string, fields);
-                base.export_element (obj, "Commitments", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Commitments", fields);
-                base.export_attribute (obj, "export_attribute", "Commitments", fields);
+                base.export_element (obj, "Commitments", "commitmentType", "commitmentType",  base.from_string, fields);
+                base.export_element (obj, "Commitments", "instructionCost", "instructionCost",  base.from_float, fields);
+                base.export_element (obj, "Commitments", "instructionType", "instructionType",  base.from_string, fields);
+                base.export_element (obj, "Commitments", "intervalEndTime", "intervalEndTime",  base.from_datetime, fields);
+                base.export_element (obj, "Commitments", "intervalStartTime", "intervalStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "Commitments", "minStatusChangeTime", "minStatusChangeTime",  base.from_string, fields);
+                base.export_element (obj, "Commitments", "noLoadCost", "noLoadCost",  base.from_float, fields);
+                base.export_element (obj, "Commitments", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "Commitments", "updateType", "updateType",  base.from_string, fields);
+                base.export_element (obj, "Commitments", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_attributes (obj, "Commitments", "CommitmentClearing", "CommitmentClearing", fields);
+                base.export_attribute (obj, "Commitments", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3721,6 +4145,28 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Commitments" };
+                super.submit (obj);
+                temp = document.getElementById ("commitmentType").value; if ("" != temp) obj.commitmentType = temp;
+                temp = document.getElementById ("instructionCost").value; if ("" != temp) obj.instructionCost = temp;
+                temp = document.getElementById ("instructionType").value; if ("" != temp) obj.instructionType = temp;
+                temp = document.getElementById ("intervalEndTime").value; if ("" != temp) obj.intervalEndTime = temp;
+                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById ("minStatusChangeTime").value; if ("" != temp) obj.minStatusChangeTime = temp;
+                temp = document.getElementById ("noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("CommitmentClearing").value; if ("" != temp) obj.CommitmentClearing = temp.split (",");
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3774,14 +4220,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MitigatedBid", fields);
-                base.export_attribute (obj, "export_attribute", "MitigatedBid", fields);
+                base.export_attributes (obj, "MitigatedBid", "MitigatedBidClearing", "MitigatedBidClearing", fields);
+                base.export_attribute (obj, "MitigatedBid", "Bid", "Bid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3830,6 +4275,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MitigatedBid" };
+                super.submit (obj);
+                temp = document.getElementById ("MitigatedBidClearing").value; if ("" != temp) obj.MitigatedBidClearing = temp.split (",");
+                temp = document.getElementById ("Bid").value; if ("" != temp) obj.Bid = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3884,13 +4341,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ExPostResource", fields);
+                base.export_attributes (obj, "ExPostResource", "ExPostResourceResults", "ExPostResourceResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3936,6 +4392,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ExPostResource" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -3991,13 +4455,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "GeneralClearing", fields);
+                base.export_attributes (obj, "GeneralClearing", "GeneralClearingResults", "GeneralClearingResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4043,6 +4506,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "GeneralClearing" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -4126,39 +4597,38 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PassThroughBill", "adjustedAmount", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "amount", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "billedTo", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "billEnd", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "billRunType", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "billStart", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "effectiveDate", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "isDisputed", base.from_boolean, fields);
-                base.export_element (obj, "PassThroughBill", "isProfiled", base.from_boolean, fields);
-                base.export_element (obj, "PassThroughBill", "paidTo", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "previousEnd", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "previousStart", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "price", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "productCode", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "providedBy", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "quantity", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "serviceEnd", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "serviceStart", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "soldTo", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "taxAmount", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "timeZone", base.from_string, fields);
-                base.export_element (obj, "PassThroughBill", "tradeDate", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "transactionDate", base.from_datetime, fields);
-                base.export_element (obj, "PassThroughBill", "transactionType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "PassThroughBill", fields);
-                base.export_attribute (obj, "export_attributes", "PassThroughBill", fields);
-                base.export_attribute (obj, "export_attribute", "PassThroughBill", fields);
+                base.export_element (obj, "PassThroughBill", "adjustedAmount", "adjustedAmount",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "billedTo", "billedTo",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "billEnd", "billEnd",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "billRunType", "billRunType",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "billStart", "billStart",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "effectiveDate", "effectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "isDisputed", "isDisputed",  base.from_boolean, fields);
+                base.export_element (obj, "PassThroughBill", "isProfiled", "isProfiled",  base.from_boolean, fields);
+                base.export_element (obj, "PassThroughBill", "paidTo", "paidTo",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "previousEnd", "previousEnd",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "previousStart", "previousStart",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "price", "price",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "productCode", "productCode",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "providedBy", "providedBy",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "quantity", "quantity",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "serviceEnd", "serviceEnd",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "serviceStart", "serviceStart",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "soldTo", "soldTo",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "taxAmount", "taxAmount",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "timeZone", "timeZone",  base.from_string, fields);
+                base.export_element (obj, "PassThroughBill", "tradeDate", "tradeDate",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "transactionDate", "transactionDate",  base.from_datetime, fields);
+                base.export_element (obj, "PassThroughBill", "transactionType", "transactionType",  base.from_string, fields);
+                base.export_attributes (obj, "PassThroughBill", "MktUserAttribute", "MktUserAttribute", fields);
+                base.export_attributes (obj, "PassThroughBill", "ChargeProfiles", "ChargeProfiles", fields);
+                base.export_attribute (obj, "PassThroughBill", "MarketStatementLineItem", "MarketStatementLineItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4260,6 +4730,42 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PassThroughBill" };
+                super.submit (obj);
+                temp = document.getElementById ("adjustedAmount").value; if ("" != temp) obj.adjustedAmount = temp;
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("billedTo").value; if ("" != temp) obj.billedTo = temp;
+                temp = document.getElementById ("billEnd").value; if ("" != temp) obj.billEnd = temp;
+                temp = document.getElementById ("billRunType").value; if ("" != temp) obj.billRunType = temp;
+                temp = document.getElementById ("billStart").value; if ("" != temp) obj.billStart = temp;
+                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById ("isDisputed").checked; if (temp) obj.isDisputed = true;
+                temp = document.getElementById ("isProfiled").checked; if (temp) obj.isProfiled = true;
+                temp = document.getElementById ("paidTo").value; if ("" != temp) obj.paidTo = temp;
+                temp = document.getElementById ("previousEnd").value; if ("" != temp) obj.previousEnd = temp;
+                temp = document.getElementById ("previousStart").value; if ("" != temp) obj.previousStart = temp;
+                temp = document.getElementById ("price").value; if ("" != temp) obj.price = temp;
+                temp = document.getElementById ("productCode").value; if ("" != temp) obj.productCode = temp;
+                temp = document.getElementById ("providedBy").value; if ("" != temp) obj.providedBy = temp;
+                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById ("serviceEnd").value; if ("" != temp) obj.serviceEnd = temp;
+                temp = document.getElementById ("serviceStart").value; if ("" != temp) obj.serviceStart = temp;
+                temp = document.getElementById ("soldTo").value; if ("" != temp) obj.soldTo = temp;
+                temp = document.getElementById ("taxAmount").value; if ("" != temp) obj.taxAmount = temp;
+                temp = document.getElementById ("timeZone").value; if ("" != temp) obj.timeZone = temp;
+                temp = document.getElementById ("tradeDate").value; if ("" != temp) obj.tradeDate = temp;
+                temp = document.getElementById ("transactionDate").value; if ("" != temp) obj.transactionDate = temp;
+                temp = document.getElementById ("transactionType").value; if ("" != temp) obj.transactionType = temp;
+                temp = document.getElementById ("MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp.split (",");
+                temp = document.getElementById ("MarketStatementLineItem").value; if ("" != temp) obj.MarketStatementLineItem = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4325,23 +4831,22 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ExPostResourceResults", "congestionLMP", base.from_float, fields);
-                base.export_element (obj, "ExPostResourceResults", "desiredMW", base.from_float, fields);
-                base.export_element (obj, "ExPostResourceResults", "dispatchRate", base.from_float, fields);
-                base.export_element (obj, "ExPostResourceResults", "lmp", base.from_float, fields);
-                base.export_element (obj, "ExPostResourceResults", "lossLMP", base.from_float, fields);
-                base.export_element (obj, "ExPostResourceResults", "maxEconomicMW", base.from_float, fields);
-                base.export_element (obj, "ExPostResourceResults", "minEconomicMW", base.from_float, fields);
-                base.export_element (obj, "ExPostResourceResults", "resourceMW", base.from_float, fields);
-                base.export_element (obj, "ExPostResourceResults", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ExPostResourceResults", fields);
-                base.export_attribute (obj, "export_attribute", "ExPostResourceResults", fields);
+                base.export_element (obj, "ExPostResourceResults", "congestionLMP", "congestionLMP",  base.from_float, fields);
+                base.export_element (obj, "ExPostResourceResults", "desiredMW", "desiredMW",  base.from_float, fields);
+                base.export_element (obj, "ExPostResourceResults", "dispatchRate", "dispatchRate",  base.from_float, fields);
+                base.export_element (obj, "ExPostResourceResults", "lmp", "lmp",  base.from_float, fields);
+                base.export_element (obj, "ExPostResourceResults", "lossLMP", "lossLMP",  base.from_float, fields);
+                base.export_element (obj, "ExPostResourceResults", "maxEconomicMW", "maxEconomicMW",  base.from_float, fields);
+                base.export_element (obj, "ExPostResourceResults", "minEconomicMW", "minEconomicMW",  base.from_float, fields);
+                base.export_element (obj, "ExPostResourceResults", "resourceMW", "resourceMW",  base.from_float, fields);
+                base.export_element (obj, "ExPostResourceResults", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ExPostResourceResults", "ExPostResource", "ExPostResource", fields);
+                base.export_attribute (obj, "ExPostResourceResults", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4408,6 +4913,27 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExPostResourceResults" };
+                super.submit (obj);
+                temp = document.getElementById ("congestionLMP").value; if ("" != temp) obj.congestionLMP = temp;
+                temp = document.getElementById ("desiredMW").value; if ("" != temp) obj.desiredMW = temp;
+                temp = document.getElementById ("dispatchRate").value; if ("" != temp) obj.dispatchRate = temp;
+                temp = document.getElementById ("lmp").value; if ("" != temp) obj.lmp = temp;
+                temp = document.getElementById ("lossLMP").value; if ("" != temp) obj.lossLMP = temp;
+                temp = document.getElementById ("maxEconomicMW").value; if ("" != temp) obj.maxEconomicMW = temp;
+                temp = document.getElementById ("minEconomicMW").value; if ("" != temp) obj.minEconomicMW = temp;
+                temp = document.getElementById ("resourceMW").value; if ("" != temp) obj.resourceMW = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("ExPostResource").value; if ("" != temp) obj.ExPostResource = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4462,13 +4988,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "TransactionBidClearing", fields);
+                base.export_attributes (obj, "TransactionBidClearing", "TransactionBidResults", "TransactionBidResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4514,6 +5039,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "TransactionBidClearing" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -4571,17 +5104,16 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Settlement", "tradeDate", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "Settlement", fields);
-                base.export_attribute (obj, "export_attributes", "Settlement", fields);
-                base.export_attribute (obj, "export_attributes", "Settlement", fields);
-                base.export_attribute (obj, "export_attribute", "Settlement", fields);
+                base.export_element (obj, "Settlement", "tradeDate", "tradeDate",  base.from_datetime, fields);
+                base.export_attributes (obj, "Settlement", "MajorChargeGroup", "MajorChargeGroup", fields);
+                base.export_attributes (obj, "Settlement", "MarketInvoiceLineItem", "MarketInvoiceLineItem", fields);
+                base.export_attributes (obj, "Settlement", "MarketLedgerEntry", "MarketLedgerEntry", fields);
+                base.export_attribute (obj, "Settlement", "EnergyMarket", "EnergyMarket", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4640,6 +5172,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Settlement" };
+                super.submit (obj);
+                temp = document.getElementById ("tradeDate").value; if ("" != temp) obj.tradeDate = temp;
+                temp = document.getElementById ("MajorChargeGroup").value; if ("" != temp) obj.MajorChargeGroup = temp.split (",");
+                temp = document.getElementById ("MarketInvoiceLineItem").value; if ("" != temp) obj.MarketInvoiceLineItem = temp.split (",");
+                temp = document.getElementById ("MarketLedgerEntry").value; if ("" != temp) obj.MarketLedgerEntry = temp.split (",");
+                temp = document.getElementById ("EnergyMarket").value; if ("" != temp) obj.EnergyMarket = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4702,17 +5249,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ExPostPricingResults", "congestLMP", base.from_float, fields);
-                base.export_element (obj, "ExPostPricingResults", "lmp", base.from_float, fields);
-                base.export_element (obj, "ExPostPricingResults", "lossLMP", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ExPostPricingResults", fields);
-                base.export_attribute (obj, "export_attribute", "ExPostPricingResults", fields);
+                base.export_element (obj, "ExPostPricingResults", "congestLMP", "congestLMP",  base.from_float, fields);
+                base.export_element (obj, "ExPostPricingResults", "lmp", "lmp",  base.from_float, fields);
+                base.export_element (obj, "ExPostPricingResults", "lossLMP", "lossLMP",  base.from_float, fields);
+                base.export_attribute (obj, "ExPostPricingResults", "ExPostPricing", "ExPostPricing", fields);
+                base.export_attribute (obj, "ExPostPricingResults", "Pnode", "Pnode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4765,6 +5311,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExPostPricingResults" };
+                super.submit (obj);
+                temp = document.getElementById ("congestLMP").value; if ("" != temp) obj.congestLMP = temp;
+                temp = document.getElementById ("lmp").value; if ("" != temp) obj.lmp = temp;
+                temp = document.getElementById ("lossLMP").value; if ("" != temp) obj.lossLMP = temp;
+                temp = document.getElementById ("ExPostPricing").value; if ("" != temp) obj.ExPostPricing = temp;
+                temp = document.getElementById ("Pnode").value; if ("" != temp) obj.Pnode = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4833,25 +5394,24 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Instructions", "bindingDOT", base.from_float, fields);
-                base.export_element (obj, "Instructions", "bindingInstruction", base.from_string, fields);
-                base.export_element (obj, "Instructions", "instructionCost", base.from_float, fields);
-                base.export_element (obj, "Instructions", "instructionSource", base.from_string, fields);
-                base.export_element (obj, "Instructions", "instructionStartTime", base.from_datetime, fields);
-                base.export_element (obj, "Instructions", "instructionType", base.from_string, fields);
-                base.export_element (obj, "Instructions", "manuallyBlocked", base.from_string, fields);
-                base.export_element (obj, "Instructions", "minStatusChangeTime", base.from_string, fields);
-                base.export_element (obj, "Instructions", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "Instructions", "updateType", base.from_string, fields);
-                base.export_element (obj, "Instructions", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Instructions", fields);
-                base.export_attribute (obj, "export_attributes", "Instructions", fields);
+                base.export_element (obj, "Instructions", "bindingDOT", "bindingDOT",  base.from_float, fields);
+                base.export_element (obj, "Instructions", "bindingInstruction", "bindingInstruction",  base.from_string, fields);
+                base.export_element (obj, "Instructions", "instructionCost", "instructionCost",  base.from_float, fields);
+                base.export_element (obj, "Instructions", "instructionSource", "instructionSource",  base.from_string, fields);
+                base.export_element (obj, "Instructions", "instructionStartTime", "instructionStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "Instructions", "instructionType", "instructionType",  base.from_string, fields);
+                base.export_element (obj, "Instructions", "manuallyBlocked", "manuallyBlocked",  base.from_string, fields);
+                base.export_element (obj, "Instructions", "minStatusChangeTime", "minStatusChangeTime",  base.from_string, fields);
+                base.export_element (obj, "Instructions", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "Instructions", "updateType", "updateType",  base.from_string, fields);
+                base.export_element (obj, "Instructions", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_attribute (obj, "Instructions", "RegisteredResource", "RegisteredResource", fields);
+                base.export_attributes (obj, "Instructions", "InstructionClearing", "InstructionClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4924,6 +5484,29 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Instructions" };
+                super.submit (obj);
+                temp = document.getElementById ("bindingDOT").value; if ("" != temp) obj.bindingDOT = temp;
+                temp = document.getElementById ("bindingInstruction").value; if ("" != temp) obj.bindingInstruction = temp;
+                temp = document.getElementById ("instructionCost").value; if ("" != temp) obj.instructionCost = temp;
+                temp = document.getElementById ("instructionSource").value; if ("" != temp) obj.instructionSource = temp;
+                temp = document.getElementById ("instructionStartTime").value; if ("" != temp) obj.instructionStartTime = temp;
+                temp = document.getElementById ("instructionType").value; if ("" != temp) obj.instructionType = temp;
+                temp = document.getElementById ("manuallyBlocked").value; if ("" != temp) obj.manuallyBlocked = temp;
+                temp = document.getElementById ("minStatusChangeTime").value; if ("" != temp) obj.minStatusChangeTime = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById ("InstructionClearing").value; if ("" != temp) obj.InstructionClearing = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4981,16 +5564,15 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ResourceAwardClearing", "dispatchMode", base.from_string, fields);
-                base.export_element (obj, "ResourceAwardClearing", "contingencyActive", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ResourceAwardClearing", fields);
-                base.export_attribute (obj, "export_attributes", "ResourceAwardClearing", fields);
+                base.export_element (obj, "ResourceAwardClearing", "dispatchMode", "dispatchMode",  base.from_string, fields);
+                base.export_element (obj, "ResourceAwardClearing", "contingencyActive", "contingencyActive",  base.from_string, fields);
+                base.export_attributes (obj, "ResourceAwardClearing", "RUCAwardInstruction", "RUCAwardInstruction", fields);
+                base.export_attributes (obj, "ResourceAwardClearing", "ResourceAwardInstruction", "ResourceAwardInstruction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5045,6 +5627,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ResourceAwardClearing" };
+                super.submit (obj);
+                temp = document.getElementById ("dispatchMode").value; if ("" != temp) obj.dispatchMode = temp;
+                temp = document.getElementById ("contingencyActive").value; if ("" != temp) obj.contingencyActive = temp;
+                temp = document.getElementById ("RUCAwardInstruction").value; if ("" != temp) obj.RUCAwardInstruction = temp.split (",");
+                temp = document.getElementById ("ResourceAwardInstruction").value; if ("" != temp) obj.ResourceAwardInstruction = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -5103,15 +5699,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ExPostMarketRegionResults", "exPostClearedPrice", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ExPostMarketRegionResults", fields);
-                base.export_attribute (obj, "export_attribute", "ExPostMarketRegionResults", fields);
+                base.export_element (obj, "ExPostMarketRegionResults", "exPostClearedPrice", "exPostClearedPrice",  base.from_float, fields);
+                base.export_attribute (obj, "ExPostMarketRegionResults", "MarketRegion", "MarketRegion", fields);
+                base.export_attribute (obj, "ExPostMarketRegionResults", "ExPostMarketRegion", "ExPostMarketRegion", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5160,6 +5755,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExPostMarketRegionResults" };
+                super.submit (obj);
+                temp = document.getElementById ("exPostClearedPrice").value; if ("" != temp) obj.exPostClearedPrice = temp;
+                temp = document.getElementById ("MarketRegion").value; if ("" != temp) obj.MarketRegion = temp;
+                temp = document.getElementById ("ExPostMarketRegion").value; if ("" != temp) obj.ExPostMarketRegion = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -5214,13 +5822,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ExPostMarketRegion", fields);
+                base.export_attribute (obj, "ExPostMarketRegion", "ExPostMarketRegionResults", "ExPostMarketRegionResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5265,6 +5872,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExPostMarketRegion" };
+                super.submit (obj);
+                temp = document.getElementById ("ExPostMarketRegionResults").value; if ("" != temp) obj.ExPostMarketRegionResults = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -5325,20 +5943,19 @@ define
             {
                 var fields = ExternalInputs.Profile.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ChargeProfile", "type", base.from_string, fields);
-                base.export_element (obj, "ChargeProfile", "frequency", base.from_string, fields);
-                base.export_element (obj, "ChargeProfile", "numberInterval", base.from_string, fields);
-                base.export_element (obj, "ChargeProfile", "unitOfMeasure", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ChargeProfile", fields);
-                base.export_attribute (obj, "export_attributes", "ChargeProfile", fields);
-                base.export_attribute (obj, "export_attribute", "ChargeProfile", fields);
-                base.export_attribute (obj, "export_attribute", "ChargeProfile", fields);
+                base.export_element (obj, "ChargeProfile", "type", "type",  base.from_string, fields);
+                base.export_element (obj, "ChargeProfile", "frequency", "frequency",  base.from_string, fields);
+                base.export_element (obj, "ChargeProfile", "numberInterval", "numberInterval",  base.from_string, fields);
+                base.export_element (obj, "ChargeProfile", "unitOfMeasure", "unitOfMeasure",  base.from_string, fields);
+                base.export_attribute (obj, "ChargeProfile", "BillDeterminant", "BillDeterminant", fields);
+                base.export_attributes (obj, "ChargeProfile", "ChargeProfileData", "ChargeProfileData", fields);
+                base.export_attribute (obj, "ChargeProfile", "PassTroughBill", "PassTroughBill", fields);
+                base.export_attribute (obj, "ChargeProfile", "Bid", "Bid", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5400,6 +6017,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ChargeProfile" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("frequency").value; if ("" != temp) obj.frequency = temp;
+                temp = document.getElementById ("numberInterval").value; if ("" != temp) obj.numberInterval = temp;
+                temp = document.getElementById ("unitOfMeasure").value; if ("" != temp) obj.unitOfMeasure = temp;
+                temp = document.getElementById ("BillDeterminant").value; if ("" != temp) obj.BillDeterminant = temp;
+                temp = document.getElementById ("PassTroughBill").value; if ("" != temp) obj.PassTroughBill = temp;
+                temp = document.getElementById ("Bid").value; if ("" != temp) obj.Bid = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -5454,13 +6088,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "LossClearing", fields);
+                base.export_attributes (obj, "LossClearing", "LossClearingResults", "LossClearingResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5506,6 +6139,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "LossClearing" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -5560,14 +6201,13 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "export_attribute", "RMRDetermination", fields);
-                base.export_attribute (obj, "export_attributes", "RMRDetermination", fields);
+                base.export_attribute (obj, "RMRDetermination", "Bid", "Bid", fields);
+                base.export_attributes (obj, "RMRDetermination", "MitigatedBidClearing", "MitigatedBidClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5616,6 +6256,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RMRDetermination" };
+                super.submit (obj);
+                temp = document.getElementById ("Bid").value; if ("" != temp) obj.Bid = temp;
+                temp = document.getElementById ("MitigatedBidClearing").value; if ("" != temp) obj.MitigatedBidClearing = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -5672,13 +6324,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "InstructionClearingDOP", fields);
+                base.export_attributes (obj, "InstructionClearingDOP", "DopInstruction", "DopInstruction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5725,6 +6376,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InstructionClearingDOP" };
+                super.submit (obj);
+                temp = document.getElementById ("DopInstruction").value; if ("" != temp) obj.DopInstruction = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -5797,30 +6459,29 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ConstraintResults", "baseFlow", base.from_float, fields);
-                base.export_element (obj, "ConstraintResults", "BGLimit", base.from_float, fields);
-                base.export_element (obj, "ConstraintResults", "BGTRResCap", base.from_float, fields);
-                base.export_element (obj, "ConstraintResults", "bindingLimit", base.from_float, fields);
-                base.export_element (obj, "ConstraintResults", "clearedValue", base.from_float, fields);
-                base.export_element (obj, "ConstraintResults", "competitivePathConstraint", base.from_string, fields);
-                base.export_element (obj, "ConstraintResults", "constraintType", base.from_string, fields);
-                base.export_element (obj, "ConstraintResults", "limitFlag", base.from_string, fields);
-                base.export_element (obj, "ConstraintResults", "optimizationFlag", base.from_string, fields);
-                base.export_element (obj, "ConstraintResults", "overloadMW", base.from_float, fields);
-                base.export_element (obj, "ConstraintResults", "percentMW", base.from_float, fields);
-                base.export_element (obj, "ConstraintResults", "shadowPrice", base.from_float, fields);
-                base.export_element (obj, "ConstraintResults", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "ConstraintResults", "updateType", base.from_string, fields);
-                base.export_element (obj, "ConstraintResults", "updateUser", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ConstraintResults", fields);
-                base.export_attribute (obj, "export_attribute", "ConstraintResults", fields);
-                base.export_attribute (obj, "export_attribute", "ConstraintResults", fields);
+                base.export_element (obj, "ConstraintResults", "baseFlow", "baseFlow",  base.from_float, fields);
+                base.export_element (obj, "ConstraintResults", "BGLimit", "BGLimit",  base.from_float, fields);
+                base.export_element (obj, "ConstraintResults", "BGTRResCap", "BGTRResCap",  base.from_float, fields);
+                base.export_element (obj, "ConstraintResults", "bindingLimit", "bindingLimit",  base.from_float, fields);
+                base.export_element (obj, "ConstraintResults", "clearedValue", "clearedValue",  base.from_float, fields);
+                base.export_element (obj, "ConstraintResults", "competitivePathConstraint", "competitivePathConstraint",  base.from_string, fields);
+                base.export_element (obj, "ConstraintResults", "constraintType", "constraintType",  base.from_string, fields);
+                base.export_element (obj, "ConstraintResults", "limitFlag", "limitFlag",  base.from_string, fields);
+                base.export_element (obj, "ConstraintResults", "optimizationFlag", "optimizationFlag",  base.from_string, fields);
+                base.export_element (obj, "ConstraintResults", "overloadMW", "overloadMW",  base.from_float, fields);
+                base.export_element (obj, "ConstraintResults", "percentMW", "percentMW",  base.from_float, fields);
+                base.export_element (obj, "ConstraintResults", "shadowPrice", "shadowPrice",  base.from_float, fields);
+                base.export_element (obj, "ConstraintResults", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "ConstraintResults", "updateType", "updateType",  base.from_string, fields);
+                base.export_element (obj, "ConstraintResults", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_attribute (obj, "ConstraintResults", "MktContingency", "MktContingency", fields);
+                base.export_attribute (obj, "ConstraintResults", "ConstraintClearing", "ConstraintClearing", fields);
+                base.export_attribute (obj, "ConstraintResults", "Flowgate", "Flowgate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5901,6 +6562,34 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConstraintResults" };
+                super.submit (obj);
+                temp = document.getElementById ("baseFlow").value; if ("" != temp) obj.baseFlow = temp;
+                temp = document.getElementById ("BGLimit").value; if ("" != temp) obj.BGLimit = temp;
+                temp = document.getElementById ("BGTRResCap").value; if ("" != temp) obj.BGTRResCap = temp;
+                temp = document.getElementById ("bindingLimit").value; if ("" != temp) obj.bindingLimit = temp;
+                temp = document.getElementById ("clearedValue").value; if ("" != temp) obj.clearedValue = temp;
+                temp = document.getElementById ("competitivePathConstraint").value; if ("" != temp) obj.competitivePathConstraint = temp;
+                temp = document.getElementById ("constraintType").value; if ("" != temp) obj.constraintType = temp;
+                temp = document.getElementById ("limitFlag").value; if ("" != temp) obj.limitFlag = temp;
+                temp = document.getElementById ("optimizationFlag").value; if ("" != temp) obj.optimizationFlag = temp;
+                temp = document.getElementById ("overloadMW").value; if ("" != temp) obj.overloadMW = temp;
+                temp = document.getElementById ("percentMW").value; if ("" != temp) obj.percentMW = temp;
+                temp = document.getElementById ("shadowPrice").value; if ("" != temp) obj.shadowPrice = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("MktContingency").value; if ("" != temp) obj.MktContingency = temp;
+                temp = document.getElementById ("ConstraintClearing").value; if ("" != temp) obj.ConstraintClearing = temp;
+                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -5972,29 +6661,28 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MarketRegionResults", "clearedMW", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "clearedPrice", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "dispatchCtMW", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "dispatchHydroMW", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "dispatchRate", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "dispatchSteamMW", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "imbalanceEnergyBias", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "limitFlag", base.from_string, fields);
-                base.export_element (obj, "MarketRegionResults", "lumpyIndicator", base.from_string, fields);
-                base.export_element (obj, "MarketRegionResults", "maxSufficiencyIndex", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "minSufficiencyIndex", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "reqMaxMW", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "reqMinMW", base.from_float, fields);
-                base.export_element (obj, "MarketRegionResults", "selfScheduleMW", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "MarketRegionResults", fields);
-                base.export_attribute (obj, "export_attribute", "MarketRegionResults", fields);
-                base.export_attribute (obj, "export_attribute", "MarketRegionResults", fields);
+                base.export_element (obj, "MarketRegionResults", "clearedMW", "clearedMW",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "clearedPrice", "clearedPrice",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "dispatchCtMW", "dispatchCtMW",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "dispatchHydroMW", "dispatchHydroMW",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "dispatchRate", "dispatchRate",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "dispatchSteamMW", "dispatchSteamMW",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "imbalanceEnergyBias", "imbalanceEnergyBias",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "limitFlag", "limitFlag",  base.from_string, fields);
+                base.export_element (obj, "MarketRegionResults", "lumpyIndicator", "lumpyIndicator",  base.from_string, fields);
+                base.export_element (obj, "MarketRegionResults", "maxSufficiencyIndex", "maxSufficiencyIndex",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "minSufficiencyIndex", "minSufficiencyIndex",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "reqMaxMW", "reqMaxMW",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "reqMinMW", "reqMinMW",  base.from_float, fields);
+                base.export_element (obj, "MarketRegionResults", "selfScheduleMW", "selfScheduleMW",  base.from_float, fields);
+                base.export_attribute (obj, "MarketRegionResults", "MarketProduct", "MarketProduct", fields);
+                base.export_attribute (obj, "MarketRegionResults", "MarketRegion", "MarketRegion", fields);
+                base.export_attribute (obj, "MarketRegionResults", "AncillaryServiceClearing", "AncillaryServiceClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6073,6 +6761,33 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketRegionResults" };
+                super.submit (obj);
+                temp = document.getElementById ("clearedMW").value; if ("" != temp) obj.clearedMW = temp;
+                temp = document.getElementById ("clearedPrice").value; if ("" != temp) obj.clearedPrice = temp;
+                temp = document.getElementById ("dispatchCtMW").value; if ("" != temp) obj.dispatchCtMW = temp;
+                temp = document.getElementById ("dispatchHydroMW").value; if ("" != temp) obj.dispatchHydroMW = temp;
+                temp = document.getElementById ("dispatchRate").value; if ("" != temp) obj.dispatchRate = temp;
+                temp = document.getElementById ("dispatchSteamMW").value; if ("" != temp) obj.dispatchSteamMW = temp;
+                temp = document.getElementById ("imbalanceEnergyBias").value; if ("" != temp) obj.imbalanceEnergyBias = temp;
+                temp = document.getElementById ("limitFlag").value; if ("" != temp) obj.limitFlag = temp;
+                temp = document.getElementById ("lumpyIndicator").value; if ("" != temp) obj.lumpyIndicator = temp;
+                temp = document.getElementById ("maxSufficiencyIndex").value; if ("" != temp) obj.maxSufficiencyIndex = temp;
+                temp = document.getElementById ("minSufficiencyIndex").value; if ("" != temp) obj.minSufficiencyIndex = temp;
+                temp = document.getElementById ("reqMaxMW").value; if ("" != temp) obj.reqMaxMW = temp;
+                temp = document.getElementById ("reqMinMW").value; if ("" != temp) obj.reqMinMW = temp;
+                temp = document.getElementById ("selfScheduleMW").value; if ("" != temp) obj.selfScheduleMW = temp;
+                temp = document.getElementById ("MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
+                temp = document.getElementById ("MarketRegion").value; if ("" != temp) obj.MarketRegion = temp;
+                temp = document.getElementById ("AncillaryServiceClearing").value; if ("" != temp) obj.AncillaryServiceClearing = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -6136,21 +6851,20 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "DopInstruction", "mwDOP", base.from_string, fields);
-                base.export_element (obj, "DopInstruction", "timestampDOP", base.from_datetime, fields);
-                base.export_element (obj, "DopInstruction", "plotPriority", base.from_string, fields);
-                base.export_element (obj, "DopInstruction", "runIndicatorDOP", base.from_string, fields);
-                base.export_element (obj, "DopInstruction", "updateUser", base.from_string, fields);
-                base.export_element (obj, "DopInstruction", "updateTimeStamp", base.from_datetime, fields);
-                base.export_element (obj, "DopInstruction", "updateType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "DopInstruction", fields);
-                base.export_attribute (obj, "export_attribute", "DopInstruction", fields);
+                base.export_element (obj, "DopInstruction", "mwDOP", "mwDOP",  base.from_string, fields);
+                base.export_element (obj, "DopInstruction", "timestampDOP", "timestampDOP",  base.from_datetime, fields);
+                base.export_element (obj, "DopInstruction", "plotPriority", "plotPriority",  base.from_string, fields);
+                base.export_element (obj, "DopInstruction", "runIndicatorDOP", "runIndicatorDOP",  base.from_string, fields);
+                base.export_element (obj, "DopInstruction", "updateUser", "updateUser",  base.from_string, fields);
+                base.export_element (obj, "DopInstruction", "updateTimeStamp", "updateTimeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "DopInstruction", "updateType", "updateType",  base.from_string, fields);
+                base.export_attributes (obj, "DopInstruction", "InstructionClearingDOP", "InstructionClearingDOP", fields);
+                base.export_attribute (obj, "DopInstruction", "RegisteredResouce", "RegisteredResouce", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6215,6 +6929,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DopInstruction" };
+                super.submit (obj);
+                temp = document.getElementById ("mwDOP").value; if ("" != temp) obj.mwDOP = temp;
+                temp = document.getElementById ("timestampDOP").value; if ("" != temp) obj.timestampDOP = temp;
+                temp = document.getElementById ("plotPriority").value; if ("" != temp) obj.plotPriority = temp;
+                temp = document.getElementById ("runIndicatorDOP").value; if ("" != temp) obj.runIndicatorDOP = temp;
+                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById ("InstructionClearingDOP").value; if ("" != temp) obj.InstructionClearingDOP = temp.split (",");
+                temp = document.getElementById ("RegisteredResouce").value; if ("" != temp) obj.RegisteredResouce = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -6267,13 +7000,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ExPostLoss", fields);
+                base.export_attributes (obj, "ExPostLoss", "ExPostLossResults", "ExPostLossResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6319,6 +7051,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ExPostLoss" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -6394,35 +7134,34 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MarketStatementLineItem", "intervalNumber", base.from_string, fields);
-                base.export_element (obj, "MarketStatementLineItem", "intervalDate", base.from_datetime, fields);
-                base.export_element (obj, "MarketStatementLineItem", "quantityUOM", base.from_string, fields);
-                base.export_element (obj, "MarketStatementLineItem", "previousAmount", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "currentAmount", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "netAmount", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "previousQuantity", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "currentQuantity", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "netQuantity", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "previsouPrice", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "currentPrice", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "netPrice", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "previousISOAmount", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "currentISOAmount", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "netISOAmount", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "previousISOQuantity", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "currentISOQuantity", base.from_float, fields);
-                base.export_element (obj, "MarketStatementLineItem", "netISOQuantity", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "MarketStatementLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "MarketStatementLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "MarketStatementLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "MarketStatementLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "MarketStatementLineItem", fields);
+                base.export_element (obj, "MarketStatementLineItem", "intervalNumber", "intervalNumber",  base.from_string, fields);
+                base.export_element (obj, "MarketStatementLineItem", "intervalDate", "intervalDate",  base.from_datetime, fields);
+                base.export_element (obj, "MarketStatementLineItem", "quantityUOM", "quantityUOM",  base.from_string, fields);
+                base.export_element (obj, "MarketStatementLineItem", "previousAmount", "previousAmount",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "currentAmount", "currentAmount",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "netAmount", "netAmount",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "previousQuantity", "previousQuantity",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "currentQuantity", "currentQuantity",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "netQuantity", "netQuantity",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "previsouPrice", "previsouPrice",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "currentPrice", "currentPrice",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "netPrice", "netPrice",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "previousISOAmount", "previousISOAmount",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "currentISOAmount", "currentISOAmount",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "netISOAmount", "netISOAmount",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "previousISOQuantity", "previousISOQuantity",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "currentISOQuantity", "currentISOQuantity",  base.from_float, fields);
+                base.export_element (obj, "MarketStatementLineItem", "netISOQuantity", "netISOQuantity",  base.from_float, fields);
+                base.export_attribute (obj, "MarketStatementLineItem", "MarketStatement", "MarketStatement", fields);
+                base.export_attributes (obj, "MarketStatementLineItem", "MktUserAttribute", "MktUserAttribute", fields);
+                base.export_attribute (obj, "MarketStatementLineItem", "ContainerMarketStatementLineItem", "ContainerMarketStatementLineItem", fields);
+                base.export_attributes (obj, "MarketStatementLineItem", "ComponentMarketStatementLineItem", "ComponentMarketStatementLineItem", fields);
+                base.export_attribute (obj, "MarketStatementLineItem", "PassThroughBill", "PassThroughBill", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6516,6 +7255,38 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketStatementLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("intervalNumber").value; if ("" != temp) obj.intervalNumber = temp;
+                temp = document.getElementById ("intervalDate").value; if ("" != temp) obj.intervalDate = temp;
+                temp = document.getElementById ("quantityUOM").value; if ("" != temp) obj.quantityUOM = temp;
+                temp = document.getElementById ("previousAmount").value; if ("" != temp) obj.previousAmount = temp;
+                temp = document.getElementById ("currentAmount").value; if ("" != temp) obj.currentAmount = temp;
+                temp = document.getElementById ("netAmount").value; if ("" != temp) obj.netAmount = temp;
+                temp = document.getElementById ("previousQuantity").value; if ("" != temp) obj.previousQuantity = temp;
+                temp = document.getElementById ("currentQuantity").value; if ("" != temp) obj.currentQuantity = temp;
+                temp = document.getElementById ("netQuantity").value; if ("" != temp) obj.netQuantity = temp;
+                temp = document.getElementById ("previsouPrice").value; if ("" != temp) obj.previsouPrice = temp;
+                temp = document.getElementById ("currentPrice").value; if ("" != temp) obj.currentPrice = temp;
+                temp = document.getElementById ("netPrice").value; if ("" != temp) obj.netPrice = temp;
+                temp = document.getElementById ("previousISOAmount").value; if ("" != temp) obj.previousISOAmount = temp;
+                temp = document.getElementById ("currentISOAmount").value; if ("" != temp) obj.currentISOAmount = temp;
+                temp = document.getElementById ("netISOAmount").value; if ("" != temp) obj.netISOAmount = temp;
+                temp = document.getElementById ("previousISOQuantity").value; if ("" != temp) obj.previousISOQuantity = temp;
+                temp = document.getElementById ("currentISOQuantity").value; if ("" != temp) obj.currentISOQuantity = temp;
+                temp = document.getElementById ("netISOQuantity").value; if ("" != temp) obj.netISOQuantity = temp;
+                temp = document.getElementById ("MarketStatement").value; if ("" != temp) obj.MarketStatement = temp;
+                temp = document.getElementById ("MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp.split (",");
+                temp = document.getElementById ("ContainerMarketStatementLineItem").value; if ("" != temp) obj.ContainerMarketStatementLineItem = temp;
+                temp = document.getElementById ("PassThroughBill").value; if ("" != temp) obj.PassThroughBill = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -6575,15 +7346,14 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MitigatedBidClearing", fields);
-                base.export_attribute (obj, "export_attributes", "MitigatedBidClearing", fields);
-                base.export_attribute (obj, "export_attributes", "MitigatedBidClearing", fields);
+                base.export_attributes (obj, "MitigatedBidClearing", "MitigatedBid", "MitigatedBid", fields);
+                base.export_attributes (obj, "MitigatedBidClearing", "RMRDetermination", "RMRDetermination", fields);
+                base.export_attributes (obj, "MitigatedBidClearing", "MPMResourceStatus", "MPMResourceStatus", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6638,6 +7408,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MitigatedBidClearing" };
+                super.submit (obj);
+                temp = document.getElementById ("MitigatedBid").value; if ("" != temp) obj.MitigatedBid = temp.split (",");
+                temp = document.getElementById ("RMRDetermination").value; if ("" != temp) obj.RMRDetermination = temp.split (",");
+                temp = document.getElementById ("MPMResourceStatus").value; if ("" != temp) obj.MPMResourceStatus = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -6697,17 +7480,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ChargeProfileData", "sequence", base.from_string, fields);
-                base.export_element (obj, "ChargeProfileData", "timeStamp", base.from_datetime, fields);
-                base.export_element (obj, "ChargeProfileData", "value", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ChargeProfileData", fields);
-                base.export_attribute (obj, "export_attribute", "ChargeProfileData", fields);
+                base.export_element (obj, "ChargeProfileData", "sequence", "sequence",  base.from_string, fields);
+                base.export_element (obj, "ChargeProfileData", "timeStamp", "timeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "ChargeProfileData", "value", "value",  base.from_float, fields);
+                base.export_attribute (obj, "ChargeProfileData", "BillDeterminant", "BillDeterminant", fields);
+                base.export_attribute (obj, "ChargeProfileData", "ChargeProfile", "ChargeProfile", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6762,6 +7544,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ChargeProfileData" };
+                super.submit (obj);
+                temp = document.getElementById ("sequence").value; if ("" != temp) obj.sequence = temp;
+                temp = document.getElementById ("timeStamp").value; if ("" != temp) obj.timeStamp = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("BillDeterminant").value; if ("" != temp) obj.BillDeterminant = temp;
+                temp = document.getElementById ("ChargeProfile").value; if ("" != temp) obj.ChargeProfile = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -6814,13 +7611,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "CommitmentClearing", fields);
+                base.export_attributes (obj, "CommitmentClearing", "Commitments", "Commitments", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6867,6 +7663,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CommitmentClearing" };
+                super.submit (obj);
+                temp = document.getElementById ("Commitments").value; if ("" != temp) obj.Commitments = temp.split (",");
+
+                return (obj);
             }
 
             relations ()

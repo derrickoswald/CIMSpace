@@ -53,15 +53,14 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PFVArControllerType1Dynamics", fields);
-                base.export_attribute (obj, "export_attribute", "PFVArControllerType1Dynamics", fields);
-                base.export_attribute (obj, "export_attribute", "PFVArControllerType1Dynamics", fields);
+                base.export_attribute (obj, "PFVArControllerType1Dynamics", "VoltageAdjusterDynamics", "VoltageAdjusterDynamics", fields);
+                base.export_attribute (obj, "PFVArControllerType1Dynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "PFVArControllerType1Dynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -110,6 +109,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArControllerType1Dynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("VoltageAdjusterDynamics").value; if ("" != temp) obj.VoltageAdjusterDynamics = temp;
+                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -172,18 +184,17 @@ define
             {
                 var fields = PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PFVArType1IEEEVArController", "tvarc", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEVArController", "vvar", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEVArController", "vvarcbw", base.from_float, fields);
-                base.export_element (obj, "PFVArType1IEEEVArController", "vvarref", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEVArController", "vvtmax", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEVArController", "vvtmin", base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEVArController", "tvarc", "tvarc",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEVArController", "vvar", "vvar",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEVArController", "vvarcbw", "vvarcbw",  base.from_float, fields);
+                base.export_element (obj, "PFVArType1IEEEVArController", "vvarref", "vvarref",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEVArController", "vvtmax", "vvtmax",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEVArController", "vvtmin", "vvtmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -239,6 +250,22 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArType1IEEEVArController" };
+                super.submit (obj);
+                temp = document.getElementById ("tvarc").value; if ("" != temp) obj.tvarc = temp;
+                temp = document.getElementById ("vvar").value; if ("" != temp) obj.vvar = temp;
+                temp = document.getElementById ("vvarcbw").value; if ("" != temp) obj.vvarcbw = temp;
+                temp = document.getElementById ("vvarref").value; if ("" != temp) obj.vvarref = temp;
+                temp = document.getElementById ("vvtmax").value; if ("" != temp) obj.vvtmax = temp;
+                temp = document.getElementById ("vvtmin").value; if ("" != temp) obj.vvtmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -291,20 +318,19 @@ define
             {
                 var fields = PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PFVArType1IEEEPFController", "ovex", base.from_boolean, fields);
-                base.export_element (obj, "PFVArType1IEEEPFController", "tpfc", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEPFController", "vitmin", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEPFController", "vpf", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEPFController", "vpfcbw", base.from_float, fields);
-                base.export_element (obj, "PFVArType1IEEEPFController", "vpfref", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEPFController", "vvtmax", base.from_string, fields);
-                base.export_element (obj, "PFVArType1IEEEPFController", "vvtmin", base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEPFController", "ovex", "ovex",  base.from_boolean, fields);
+                base.export_element (obj, "PFVArType1IEEEPFController", "tpfc", "tpfc",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEPFController", "vitmin", "vitmin",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEPFController", "vpf", "vpf",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEPFController", "vpfcbw", "vpfcbw",  base.from_float, fields);
+                base.export_element (obj, "PFVArType1IEEEPFController", "vpfref", "vpfref",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEPFController", "vvtmax", "vvtmax",  base.from_string, fields);
+                base.export_element (obj, "PFVArType1IEEEPFController", "vvtmin", "vvtmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -363,6 +389,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArType1IEEEPFController" };
+                super.submit (obj);
+                temp = document.getElementById ("ovex").checked; if (temp) obj.ovex = true;
+                temp = document.getElementById ("tpfc").value; if ("" != temp) obj.tpfc = temp;
+                temp = document.getElementById ("vitmin").value; if ("" != temp) obj.vitmin = temp;
+                temp = document.getElementById ("vpf").value; if ("" != temp) obj.vpf = temp;
+                temp = document.getElementById ("vpfcbw").value; if ("" != temp) obj.vpfcbw = temp;
+                temp = document.getElementById ("vpfref").value; if ("" != temp) obj.vpfref = temp;
+                temp = document.getElementById ("vvtmax").value; if ("" != temp) obj.vvtmax = temp;
+                temp = document.getElementById ("vvtmin").value; if ("" != temp) obj.vvtmin = temp;
+
+                return (obj);
             }
         }
 

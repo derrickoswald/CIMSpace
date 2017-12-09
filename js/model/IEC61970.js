@@ -50,14 +50,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "IEC61970CIMVersion", "date", base.from_string, fields);
-                base.export_element (obj, "IEC61970CIMVersion", "version", base.from_string, fields);
+                base.export_element (obj, "IEC61970CIMVersion", "date", "date",  base.from_string, fields);
+                base.export_element (obj, "IEC61970CIMVersion", "version", "version",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -104,6 +103,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IEC61970CIMVersion" };
+                super.submit (obj);
+                temp = document.getElementById ("date").value; if ("" != temp) obj.date = temp;
+                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+
+                return (obj);
             }
         }
 

@@ -308,7 +308,7 @@ define
          */
         function about_change (event)
         {
-            TheCurrentAbout = document.getElementById ("about").value;
+            TheCurrentAbout = document.getElementById ("rdf_about").value;
             Pending.then (generate_rdf, generate_rdf);
         }
 
@@ -321,7 +321,7 @@ define
          */
         function description_change (event)
         {
-            TheCurrentDescription = document.getElementById ("description").value;
+            TheCurrentDescription = document.getElementById ("md_description").value;
             Pending.then (generate_rdf, generate_rdf);
         }
 

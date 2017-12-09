@@ -61,7 +61,6 @@ define
                 base.parse_element (/<cim:IPAccessPoint.addressType>([\s\S]*?)<\/cim:IPAccessPoint.addressType>/g, obj, "addressType", base.to_string, sub, context);
                 base.parse_element (/<cim:IPAccessPoint.gateway>([\s\S]*?)<\/cim:IPAccessPoint.gateway>/g, obj, "gateway", base.to_string, sub, context);
                 base.parse_element (/<cim:IPAccessPoint.subnet>([\s\S]*?)<\/cim:IPAccessPoint.subnet>/g, obj, "subnet", base.to_string, sub, context);
-                base.parse_attribute (/<cim:IPAccessPoint.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.IPAccessPoint;
                 if (null == bucket)
                    context.parsed.IPAccessPoint = bucket = {};
@@ -74,17 +73,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "IPAccessPoint", "address", base.from_string, fields);
-                base.export_element (obj, "IPAccessPoint", "addressType", base.from_string, fields);
-                base.export_element (obj, "IPAccessPoint", "gateway", base.from_string, fields);
-                base.export_element (obj, "IPAccessPoint", "subnet", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "IPAccessPoint", fields);
+                base.export_element (obj, "IPAccessPoint", "address", "address",  base.from_string, fields);
+                base.export_element (obj, "IPAccessPoint", "addressType", "addressType",  base.from_string, fields);
+                base.export_element (obj, "IPAccessPoint", "gateway", "gateway",  base.from_string, fields);
+                base.export_element (obj, "IPAccessPoint", "subnet", "subnet",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -100,7 +97,6 @@ define
                     {{#addressType}}<div><b>addressType</b>: {{addressType}}</div>{{/addressType}}
                     {{#gateway}}<div><b>gateway</b>: {{gateway}}</div>{{/gateway}}
                     {{#subnet}}<div><b>subnet</b>: {{subnet}}</div>{{/subnet}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -132,20 +128,24 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='addressType'>addressType: </label><div class='col-sm-8'><input id='addressType' class='form-control' type='text'{{#addressType}} value='{{addressType}}'{{/addressType}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='gateway'>gateway: </label><div class='col-sm-8'><input id='gateway' class='form-control' type='text'{{#gateway}} value='{{gateway}}'{{/gateway}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='subnet'>subnet: </label><div class='col-sm-8'><input id='subnet' class='form-control' type='text'{{#subnet}} value='{{subnet}}'{{/subnet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "TASE2BilateralTable", "1", "0..*"]
-                    ]
-                );
+                var temp;
+
+                var obj = obj || { cls: "IPAccessPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("address").value; if ("" != temp) obj.address = temp;
+                temp = document.getElementById ("addressType").value; if ("" != temp) obj.addressType = temp;
+                temp = document.getElementById ("gateway").value; if ("" != temp) obj.gateway = temp;
+                temp = document.getElementById ("subnet").value; if ("" != temp) obj.subnet = temp;
+
+                return (obj);
             }
         }
 
@@ -188,15 +188,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "IPAddressType", "value", base.from_string, fields);
-                base.export_element (obj, "IPAddressType", "multiplier", base.from_string, fields);
-                base.export_element (obj, "IPAddressType", "unit", base.from_string, fields);
+                base.export_element (obj, "IPAddressType", "value", "value",  base.from_string, fields);
+                base.export_element (obj, "IPAddressType", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "IPAddressType", "unit", "unit",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -246,6 +245,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IPAddressType" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -280,7 +292,6 @@ define
                 obj.cls = "ICCPInformationMessage";
                 base.parse_element (/<cim:ICCPInformationMessage.localReference>([\s\S]*?)<\/cim:ICCPInformationMessage.localReference>/g, obj, "localReference", base.to_string, sub, context);
                 base.parse_attribute (/<cim:ICCPInformationMessage.scope\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "scope", sub, context);
-                base.parse_attributes (/<cim:ICCPInformationMessage.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.ICCPInformationMessage;
                 if (null == bucket)
                    context.parsed.ICCPInformationMessage = bucket = {};
@@ -293,15 +304,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPInformationMessage", "localReference", base.from_string, fields);
-                base.export_element (obj, "ICCPInformationMessage", "scope", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ICCPInformationMessage", fields);
+                base.export_element (obj, "ICCPInformationMessage", "localReference", "localReference",  base.from_string, fields);
+                base.export_element (obj, "ICCPInformationMessage", "scope", "scope",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -315,7 +324,6 @@ define
                     `
                     {{#localReference}}<div><b>localReference</b>: {{localReference}}</div>{{/localReference}}
                     {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -327,14 +335,12 @@ define
             {
                 super.condition (obj);
                 obj.ICCPPScope = []; if (!obj.scope) obj.ICCPPScope.push ({ id: '', selected: true}); for (var property in ICCPPScope) obj.ICCPPScope.push ({ id: property, selected: obj.scope && obj.scope.endsWith ('.' + property)});
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.ICCPPScope;
-                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -349,20 +355,22 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='localReference'>localReference: </label><div class='col-sm-8'><input id='localReference' class='form-control' type='text'{{#localReference}} value='{{localReference}}'{{/localReference}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='scope'>scope: </label><div class='col-sm-8'><select id='scope' class='form-control'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}_string'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "TASE2BilateralTable", "0..*", "0..*"]
-                    ]
-                );
+                var temp;
+
+                var obj = obj || { cls: "ICCPInformationMessage" };
+                super.submit (obj);
+                temp = document.getElementById ("localReference").value; if ("" != temp) obj.localReference = temp;
+                temp = document.getElementById ("scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+
+                return (obj);
             }
         }
 
@@ -397,7 +405,6 @@ define
                 obj = Core.IdentifiedObject.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPPoint";
                 base.parse_attribute (/<cim:ICCPPoint.scope\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "scope", sub, context);
-                base.parse_attribute (/<cim:ICCPPoint.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.ICCPPoint;
                 if (null == bucket)
                    context.parsed.ICCPPoint = bucket = {};
@@ -410,14 +417,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPPoint", "scope", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ICCPPoint", fields);
+                base.export_element (obj, "ICCPPoint", "scope", "scope",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -430,7 +435,6 @@ define
                     + Core.IdentifiedObject.prototype.template.call (this) +
                     `
                     {{#scope}}<div><b>scope</b>: {{scope}}</div>{{/scope}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -461,20 +465,21 @@ define
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='scope'>scope: </label><div class='col-sm-8'><select id='scope' class='form-control'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "TASE2BilateralTable", "1", "0..*"]
-                    ]
-                );
+                var temp;
+
+                var obj = obj || { cls: "ICCPPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+
+                return (obj);
             }
         }
 
@@ -512,9 +517,6 @@ define
                 base.parse_element (/<cim:TASE2BilateralTable.calling>([\s\S]*?)<\/cim:TASE2BilateralTable.calling>/g, obj, "calling", base.to_boolean, sub, context);
                 base.parse_element (/<cim:TASE2BilateralTable.nameOfICC>([\s\S]*?)<\/cim:TASE2BilateralTable.nameOfICC>/g, obj, "nameOfICC", base.to_string, sub, context);
                 base.parse_element (/<cim:TASE2BilateralTable.tase2version>([\s\S]*?)<\/cim:TASE2BilateralTable.tase2version>/g, obj, "tase2version", base.to_string, sub, context);
-                base.parse_attributes (/<cim:TASE2BilateralTable.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
-                base.parse_attributes (/<cim:TASE2BilateralTable.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
-                base.parse_attributes (/<cim:TASE2BilateralTable.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.TASE2BilateralTable;
                 if (null == bucket)
                    context.parsed.TASE2BilateralTable = bucket = {};
@@ -527,19 +529,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TASE2BilateralTable", "bilateralTableID", base.from_string, fields);
-                base.export_element (obj, "TASE2BilateralTable", "calling", base.from_boolean, fields);
-                base.export_element (obj, "TASE2BilateralTable", "nameOfICC", base.from_string, fields);
-                base.export_element (obj, "TASE2BilateralTable", "tase2version", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "TASE2BilateralTable", fields);
-                base.export_attribute (obj, "export_attributes", "TASE2BilateralTable", fields);
-                base.export_attribute (obj, "export_attributes", "TASE2BilateralTable", fields);
+                base.export_element (obj, "TASE2BilateralTable", "bilateralTableID", "bilateralTableID",  base.from_string, fields);
+                base.export_element (obj, "TASE2BilateralTable", "calling", "calling",  base.from_boolean, fields);
+                base.export_element (obj, "TASE2BilateralTable", "nameOfICC", "nameOfICC",  base.from_string, fields);
+                base.export_element (obj, "TASE2BilateralTable", "tase2version", "tase2version",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -555,9 +553,6 @@ define
                     {{#calling}}<div><b>calling</b>: {{calling}}</div>{{/calling}}
                     {{#nameOfICC}}<div><b>nameOfICC</b>: {{nameOfICC}}</div>{{/nameOfICC}}
                     {{#tase2version}}<div><b>tase2version</b>: {{tase2version}}</div>{{/tase2version}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -568,17 +563,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.unknown_string;
-                delete obj.unknown_string;
-                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -595,22 +584,24 @@ define
                     <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='calling'>calling: </label><div class='col-sm-8'><input id='calling' class='form-check-input' type='checkbox'{{#calling}} checked{{/calling}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='nameOfICC'>nameOfICC: </label><div class='col-sm-8'><input id='nameOfICC' class='form-control' type='text'{{#nameOfICC}} value='{{nameOfICC}}'{{/nameOfICC}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='tase2version'>tase2version: </label><div class='col-sm-8'><input id='tase2version' class='form-control' type='text'{{#tase2version}} value='{{tase2version}}'{{/tase2version}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}_string'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "IPAccessPoint", "0..*", "1"],
-                        ["unknown", "ICCPInformationMessage", "0..*", "0..*"],
-                        ["unknown", "ICCPPoint", "0..*", "1"]
-                    ]
-                );
+                var temp;
+
+                var obj = obj || { cls: "TASE2BilateralTable" };
+                super.submit (obj);
+                temp = document.getElementById ("bilateralTableID").value; if ("" != temp) obj.bilateralTableID = temp;
+                temp = document.getElementById ("calling").checked; if (temp) obj.calling = true;
+                temp = document.getElementById ("nameOfICC").value; if ("" != temp) obj.nameOfICC = temp;
+                temp = document.getElementById ("tase2version").value; if ("" != temp) obj.tase2version = temp;
+
+                return (obj);
             }
         }
 
@@ -653,15 +644,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ISOAPAddressing", "value", base.from_string, fields);
-                base.export_element (obj, "ISOAPAddressing", "unit", base.from_string, fields);
-                base.export_element (obj, "ISOAPAddressing", "multiplier", base.from_string, fields);
+                base.export_element (obj, "ISOAPAddressing", "value", "value",  base.from_string, fields);
+                base.export_element (obj, "ISOAPAddressing", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ISOAPAddressing", "multiplier", "multiplier",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -711,6 +701,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ISOAPAddressing" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+
+                return (obj);
+            }
         }
 
         class TCPAcessPoint extends IPAccessPoint
@@ -751,14 +754,13 @@ define
             {
                 var fields = IPAccessPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TCPAcessPoint", "keepAliveTime", base.from_string, fields);
-                base.export_element (obj, "TCPAcessPoint", "port", base.from_string, fields);
+                base.export_element (obj, "TCPAcessPoint", "keepAliveTime", "keepAliveTime",  base.from_string, fields);
+                base.export_element (obj, "TCPAcessPoint", "port", "port",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -806,6 +808,18 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TCPAcessPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("keepAliveTime").value; if ("" != temp) obj.keepAliveTime = temp;
+                temp = document.getElementById ("port").value; if ("" != temp) obj.port = temp;
+
+                return (obj);
+            }
         }
 
         class ISOUpperLayer extends TCPAcessPoint
@@ -848,16 +862,15 @@ define
             {
                 var fields = TCPAcessPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ISOUpperLayer", "ap", base.from_string, fields);
-                base.export_element (obj, "ISOUpperLayer", "osiPsel", base.from_string, fields);
-                base.export_element (obj, "ISOUpperLayer", "osiSsel", base.from_string, fields);
-                base.export_element (obj, "ISOUpperLayer", "osiTsel", base.from_string, fields);
+                base.export_element (obj, "ISOUpperLayer", "ap", "ap",  base.from_string, fields);
+                base.export_element (obj, "ISOUpperLayer", "osiPsel", "osiPsel",  base.from_string, fields);
+                base.export_element (obj, "ISOUpperLayer", "osiSsel", "osiSsel",  base.from_string, fields);
+                base.export_element (obj, "ISOUpperLayer", "osiTsel", "osiTsel",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -909,6 +922,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ISOUpperLayer" };
+                super.submit (obj);
+                temp = document.getElementById ("ap").value; if ("" != temp) obj.ap = temp;
+                temp = document.getElementById ("osiPsel").value; if ("" != temp) obj.osiPsel = temp;
+                temp = document.getElementById ("osiSsel").value; if ("" != temp) obj.osiSsel = temp;
+                temp = document.getElementById ("osiTsel").value; if ("" != temp) obj.osiTsel = temp;
+
+                return (obj);
+            }
         }
 
         class ICCPIndicationPoint extends ICCPPoint
@@ -936,8 +963,6 @@ define
                 obj = ICCPPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPIndicationPoint";
                 base.parse_attribute (/<cim:ICCPIndicationPoint.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
-                base.parse_attributes (/<cim:ICCPIndicationPoint.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
-                base.parse_attribute (/<cim:ICCPIndicationPoint.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.ICCPIndicationPoint;
                 if (null == bucket)
                    context.parsed.ICCPIndicationPoint = bucket = {};
@@ -950,15 +975,12 @@ define
             {
                 var fields = ICCPPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPIndicationPoint", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ICCPIndicationPoint", fields);
-                base.export_attribute (obj, "export_attribute", "ICCPIndicationPoint", fields);
+                base.export_element (obj, "ICCPIndicationPoint", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -971,8 +993,6 @@ define
                     + ICCPPoint.prototype.template.call (this) +
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -984,14 +1004,12 @@ define
             {
                 super.condition (obj);
                 obj.ICCPIndicationPointType = []; if (!obj.type) obj.ICCPIndicationPointType.push ({ id: '', selected: true}); for (var property in ICCPIndicationPointType) obj.ICCPIndicationPointType.push ({ id: property, selected: obj.type && obj.type.endsWith ('.' + property)});
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
                 delete obj.ICCPIndicationPointType;
-                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -1005,21 +1023,21 @@ define
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#ICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPIndicationPointType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "MeasurementValue", "0..*", "0..1"],
-                        ["unknown", "ICCPControlPoint", "0..1", "0..1"]
-                    ]
-                );
+                var temp;
+
+                var obj = obj || { cls: "ICCPIndicationPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) { temp = ICCPIndicationPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; }
+
+                return (obj);
             }
         }
 
@@ -1048,7 +1066,6 @@ define
                 obj = ICCPPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPControlPoint";
                 base.parse_attribute (/<cim:ICCPControlPoint.deviceClass\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "deviceClass", sub, context);
-                base.parse_attribute (/<cim:ICCPControlPoint.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.ICCPControlPoint;
                 if (null == bucket)
                    context.parsed.ICCPControlPoint = bucket = {};
@@ -1061,14 +1078,12 @@ define
             {
                 var fields = ICCPPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPControlPoint", "deviceClass", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ICCPControlPoint", fields);
+                base.export_element (obj, "ICCPControlPoint", "deviceClass", "deviceClass",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1081,7 +1096,6 @@ define
                     + ICCPPoint.prototype.template.call (this) +
                     `
                     {{#deviceClass}}<div><b>deviceClass</b>: {{deviceClass}}</div>{{/deviceClass}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -1112,20 +1126,21 @@ define
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='deviceClass' class='form-control'>{{#ICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPControlPointDeviceClass}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "ICCPIndicationPoint", "0..1", "0..1"]
-                    ]
-                );
+                var temp;
+
+                var obj = obj || { cls: "ICCPControlPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("deviceClass").value; if ("" != temp) { temp = ICCPControlPointDeviceClass[temp]; if ("undefined" != typeof (temp)) obj.deviceClass = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; }
+
+                return (obj);
             }
         }
 
@@ -1153,7 +1168,6 @@ define
 
                 obj = ICCPControlPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPCommandPoint";
-                base.parse_attribute (/<cim:ICCPCommandPoint.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.ICCPCommandPoint;
                 if (null == bucket)
                    context.parsed.ICCPCommandPoint = bucket = {};
@@ -1166,13 +1180,11 @@ define
             {
                 var fields = ICCPControlPoint.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ICCPCommandPoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1184,7 +1196,6 @@ define
                     `
                     + ICCPControlPoint.prototype.template.call (this) +
                     `
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -1212,20 +1223,18 @@ define
                     `
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "Command", "1", "0..*"]
-                    ]
-                );
+                var obj = obj || { cls: "ICCPCommandPoint" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1254,7 +1263,6 @@ define
                 obj = ICCPControlPoint.prototype.parse.call (this, context, sub);
                 obj.cls = "ICCPSetPoint";
                 base.parse_attribute (/<cim:ICCPSetPoint.type\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "type", sub, context);
-                base.parse_attribute (/<cim:ICCPSetPoint.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.ICCPSetPoint;
                 if (null == bucket)
                    context.parsed.ICCPSetPoint = bucket = {};
@@ -1267,14 +1275,12 @@ define
             {
                 var fields = ICCPControlPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPSetPoint", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ICCPSetPoint", fields);
+                base.export_element (obj, "ICCPSetPoint", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1287,7 +1293,6 @@ define
                     + ICCPControlPoint.prototype.template.call (this) +
                     `
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -1318,20 +1323,21 @@ define
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#ICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPSetPointType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "AnalogControl", "1", "0..*"]
-                    ]
-                );
+                var temp;
+
+                var obj = obj || { cls: "ICCPSetPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) { temp = ICCPSetPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; }
+
+                return (obj);
             }
         }
 

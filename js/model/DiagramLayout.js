@@ -69,18 +69,17 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "DiagramObjectPoint", "sequenceNumber", base.from_string, fields);
-                base.export_element (obj, "DiagramObjectPoint", "xPosition", base.from_float, fields);
-                base.export_element (obj, "DiagramObjectPoint", "yPosition", base.from_float, fields);
-                base.export_element (obj, "DiagramObjectPoint", "zPosition", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "DiagramObjectPoint", fields);
-                base.export_attribute (obj, "export_attribute", "DiagramObjectPoint", fields);
+                base.export_element (obj, "DiagramObjectPoint", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
+                base.export_element (obj, "DiagramObjectPoint", "xPosition", "xPosition",  base.from_float, fields);
+                base.export_element (obj, "DiagramObjectPoint", "yPosition", "yPosition",  base.from_float, fields);
+                base.export_element (obj, "DiagramObjectPoint", "zPosition", "zPosition",  base.from_float, fields);
+                base.export_attribute (obj, "DiagramObjectPoint", "DiagramObject", "DiagramObject", fields);
+                base.export_attribute (obj, "DiagramObjectPoint", "DiagramObjectGluePoint", "DiagramObjectGluePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -137,6 +136,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiagramObjectPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById ("xPosition").value; if ("" != temp) obj.xPosition = temp;
+                temp = document.getElementById ("yPosition").value; if ("" != temp) obj.yPosition = temp;
+                temp = document.getElementById ("zPosition").value; if ("" != temp) obj.zPosition = temp;
+                temp = document.getElementById ("DiagramObject").value; if ("" != temp) obj.DiagramObject = temp;
+                temp = document.getElementById ("DiagramObjectGluePoint").value; if ("" != temp) obj.DiagramObjectGluePoint = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -191,13 +206,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "DiagramObjectStyle", fields);
+                base.export_attributes (obj, "DiagramObjectStyle", "StyledObjects", "StyledObjects", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -243,6 +257,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DiagramObjectStyle" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -296,13 +318,12 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "export_attributes", "DiagramObjectGluePoint", fields);
+                base.export_attributes (obj, "DiagramObjectGluePoint", "DiagramObjectPoints", "DiagramObjectPoints", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -348,6 +369,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DiagramObjectGluePoint" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -409,19 +438,18 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Diagram", "orientation", base.from_string, fields);
-                base.export_element (obj, "Diagram", "x1InitialView", base.from_float, fields);
-                base.export_element (obj, "Diagram", "x2InitialView", base.from_float, fields);
-                base.export_element (obj, "Diagram", "y1InitialView", base.from_float, fields);
-                base.export_element (obj, "Diagram", "y2InitialView", base.from_float, fields);
-                base.export_attribute (obj, "export_attributes", "Diagram", fields);
-                base.export_attribute (obj, "export_attribute", "Diagram", fields);
+                base.export_element (obj, "Diagram", "orientation", "orientation",  base.from_string, fields);
+                base.export_element (obj, "Diagram", "x1InitialView", "x1InitialView",  base.from_float, fields);
+                base.export_element (obj, "Diagram", "x2InitialView", "x2InitialView",  base.from_float, fields);
+                base.export_element (obj, "Diagram", "y1InitialView", "y1InitialView",  base.from_float, fields);
+                base.export_element (obj, "Diagram", "y2InitialView", "y2InitialView",  base.from_float, fields);
+                base.export_attributes (obj, "Diagram", "DiagramElements", "DiagramElements", fields);
+                base.export_attribute (obj, "Diagram", "DiagramStyle", "DiagramStyle", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -483,6 +511,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Diagram" };
+                super.submit (obj);
+                temp = document.getElementById ("orientation").value; if ("" != temp) { temp = OrientationKind[temp]; if ("undefined" != typeof (temp)) obj.orientation = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind." + temp; }
+                temp = document.getElementById ("x1InitialView").value; if ("" != temp) obj.x1InitialView = temp;
+                temp = document.getElementById ("x2InitialView").value; if ("" != temp) obj.x2InitialView = temp;
+                temp = document.getElementById ("y1InitialView").value; if ("" != temp) obj.y1InitialView = temp;
+                temp = document.getElementById ("y2InitialView").value; if ("" != temp) obj.y2InitialView = temp;
+                temp = document.getElementById ("DiagramStyle").value; if ("" != temp) obj.DiagramStyle = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -538,14 +582,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VisibilityLayer", "drawingOrder", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "VisibilityLayer", fields);
+                base.export_element (obj, "VisibilityLayer", "drawingOrder", "drawingOrder",  base.from_string, fields);
+                base.export_attributes (obj, "VisibilityLayer", "VisibleObjects", "VisibleObjects", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -594,6 +637,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VisibilityLayer" };
+                super.submit (obj);
+                temp = document.getElementById ("drawingOrder").value; if ("" != temp) obj.drawingOrder = temp;
+                temp = document.getElementById ("VisibleObjects").value; if ("" != temp) obj.VisibleObjects = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -658,22 +713,21 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DiagramObject", "drawingOrder", base.from_string, fields);
-                base.export_element (obj, "DiagramObject", "isPolygon", base.from_boolean, fields);
-                base.export_element (obj, "DiagramObject", "offsetX", base.from_float, fields);
-                base.export_element (obj, "DiagramObject", "offsetY", base.from_float, fields);
-                base.export_element (obj, "DiagramObject", "rotation", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "DiagramObject", fields);
-                base.export_attribute (obj, "export_attribute", "DiagramObject", fields);
-                base.export_attribute (obj, "export_attributes", "DiagramObject", fields);
-                base.export_attribute (obj, "export_attribute", "DiagramObject", fields);
-                base.export_attribute (obj, "export_attributes", "DiagramObject", fields);
+                base.export_element (obj, "DiagramObject", "drawingOrder", "drawingOrder",  base.from_string, fields);
+                base.export_element (obj, "DiagramObject", "isPolygon", "isPolygon",  base.from_boolean, fields);
+                base.export_element (obj, "DiagramObject", "offsetX", "offsetX",  base.from_float, fields);
+                base.export_element (obj, "DiagramObject", "offsetY", "offsetY",  base.from_float, fields);
+                base.export_element (obj, "DiagramObject", "rotation", "rotation",  base.from_string, fields);
+                base.export_attribute (obj, "DiagramObject", "Diagram", "Diagram", fields);
+                base.export_attribute (obj, "DiagramObject", "DiagramObjectStyle", "DiagramObjectStyle", fields);
+                base.export_attributes (obj, "DiagramObject", "DiagramObjectPoints", "DiagramObjectPoints", fields);
+                base.export_attribute (obj, "DiagramObject", "IdentifiedObject", "IdentifiedObject", fields);
+                base.export_attributes (obj, "DiagramObject", "VisibilityLayers", "VisibilityLayers", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -741,6 +795,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiagramObject" };
+                super.submit (obj);
+                temp = document.getElementById ("drawingOrder").value; if ("" != temp) obj.drawingOrder = temp;
+                temp = document.getElementById ("isPolygon").checked; if (temp) obj.isPolygon = true;
+                temp = document.getElementById ("offsetX").value; if ("" != temp) obj.offsetX = temp;
+                temp = document.getElementById ("offsetY").value; if ("" != temp) obj.offsetY = temp;
+                temp = document.getElementById ("rotation").value; if ("" != temp) obj.rotation = temp;
+                temp = document.getElementById ("Diagram").value; if ("" != temp) obj.Diagram = temp;
+                temp = document.getElementById ("DiagramObjectStyle").value; if ("" != temp) obj.DiagramObjectStyle = temp;
+                temp = document.getElementById ("IdentifiedObject").value; if ("" != temp) obj.IdentifiedObject = temp;
+                temp = document.getElementById ("VisibilityLayers").value; if ("" != temp) obj.VisibilityLayers = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -798,13 +871,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "DiagramStyle", fields);
+                base.export_attributes (obj, "DiagramStyle", "Diagram", "Diagram", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -850,6 +922,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DiagramStyle" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -903,13 +983,12 @@ define
             {
                 var fields = DiagramObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TextDiagramObject", "text", base.from_string, fields);
+                base.export_element (obj, "TextDiagramObject", "text", "text",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -954,6 +1033,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TextDiagramObject" };
+                super.submit (obj);
+                temp = document.getElementById ("text").value; if ("" != temp) obj.text = temp;
+
+                return (obj);
             }
         }
 

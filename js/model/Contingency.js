@@ -61,14 +61,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Contingency", "mustStudy", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "Contingency", fields);
+                base.export_element (obj, "Contingency", "mustStudy", "mustStudy",  base.from_boolean, fields);
+                base.export_attributes (obj, "Contingency", "ContingencyElement", "ContingencyElement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -116,6 +115,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Contingency" };
+                super.submit (obj);
+                temp = document.getElementById ("mustStudy").checked; if (temp) obj.mustStudy = true;
+
+                return (obj);
             }
 
             relations ()
@@ -169,13 +179,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ContingencyElement", fields);
+                base.export_attribute (obj, "ContingencyElement", "Contingency", "Contingency", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -220,6 +229,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ContingencyElement" };
+                super.submit (obj);
+                temp = document.getElementById ("Contingency").value; if ("" != temp) obj.Contingency = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -274,14 +294,13 @@ define
             {
                 var fields = ContingencyElement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ContingencyEquipment", "contingentStatus", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ContingencyEquipment", fields);
+                base.export_element (obj, "ContingencyEquipment", "contingentStatus", "contingentStatus",  base.from_string, fields);
+                base.export_attribute (obj, "ContingencyEquipment", "Equipment", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -330,6 +349,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ContingencyEquipment" };
+                super.submit (obj);
+                temp = document.getElementById ("contingentStatus").value; if ("" != temp) { temp = ContingencyEquipmentStatusKind[temp]; if ("undefined" != typeof (temp)) obj.contingentStatus = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; }
+                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+
+                return (obj);
             }
 
             relations ()

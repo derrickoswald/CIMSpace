@@ -51,13 +51,12 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "OverexcitationLimiterDynamics", fields);
+                base.export_attribute (obj, "OverexcitationLimiterDynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -102,6 +101,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OverexcitationLimiterDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -160,16 +170,15 @@ define
             {
                 var fields = OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OverexcLim2", "ifdlim", base.from_string, fields);
-                base.export_element (obj, "OverexcLim2", "koi", base.from_string, fields);
-                base.export_element (obj, "OverexcLim2", "voimax", base.from_string, fields);
-                base.export_element (obj, "OverexcLim2", "voimin", base.from_string, fields);
+                base.export_element (obj, "OverexcLim2", "ifdlim", "ifdlim",  base.from_string, fields);
+                base.export_element (obj, "OverexcLim2", "koi", "koi",  base.from_string, fields);
+                base.export_element (obj, "OverexcLim2", "voimax", "voimax",  base.from_string, fields);
+                base.export_element (obj, "OverexcLim2", "voimin", "voimin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -221,6 +230,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OverexcLim2" };
+                super.submit (obj);
+                temp = document.getElementById ("ifdlim").value; if ("" != temp) obj.ifdlim = temp;
+                temp = document.getElementById ("koi").value; if ("" != temp) obj.koi = temp;
+                temp = document.getElementById ("voimax").value; if ("" != temp) obj.voimax = temp;
+                temp = document.getElementById ("voimin").value; if ("" != temp) obj.voimin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -271,18 +294,17 @@ define
             {
                 var fields = OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OverexcLimIEEE", "hyst", base.from_string, fields);
-                base.export_element (obj, "OverexcLimIEEE", "ifdlim", base.from_string, fields);
-                base.export_element (obj, "OverexcLimIEEE", "ifdmax", base.from_string, fields);
-                base.export_element (obj, "OverexcLimIEEE", "itfpu", base.from_string, fields);
-                base.export_element (obj, "OverexcLimIEEE", "kcd", base.from_string, fields);
-                base.export_element (obj, "OverexcLimIEEE", "kramp", base.from_float, fields);
+                base.export_element (obj, "OverexcLimIEEE", "hyst", "hyst",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimIEEE", "ifdlim", "ifdlim",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimIEEE", "ifdmax", "ifdmax",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimIEEE", "itfpu", "itfpu",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimIEEE", "kcd", "kcd",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimIEEE", "kramp", "kramp",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -338,6 +360,22 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OverexcLimIEEE" };
+                super.submit (obj);
+                temp = document.getElementById ("hyst").value; if ("" != temp) obj.hyst = temp;
+                temp = document.getElementById ("ifdlim").value; if ("" != temp) obj.ifdlim = temp;
+                temp = document.getElementById ("ifdmax").value; if ("" != temp) obj.ifdmax = temp;
+                temp = document.getElementById ("itfpu").value; if ("" != temp) obj.itfpu = temp;
+                temp = document.getElementById ("kcd").value; if ("" != temp) obj.kcd = temp;
+                temp = document.getElementById ("kramp").value; if ("" != temp) obj.kramp = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -390,22 +428,21 @@ define
             {
                 var fields = OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OverexcLimX1", "efd1", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "efd2", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "efd3", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "efddes", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "efdrated", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "kmx", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "t1", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "t2", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "t3", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX1", "vlow", base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "efd3", "efd3",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "efddes", "efddes",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "efdrated", "efdrated",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "kmx", "kmx",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX1", "vlow", "vlow",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -469,6 +506,26 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OverexcLimX1" };
+                super.submit (obj);
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("efd3").value; if ("" != temp) obj.efd3 = temp;
+                temp = document.getElementById ("efddes").value; if ("" != temp) obj.efddes = temp;
+                temp = document.getElementById ("efdrated").value; if ("" != temp) obj.efdrated = temp;
+                temp = document.getElementById ("kmx").value; if ("" != temp) obj.kmx = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("vlow").value; if ("" != temp) obj.vlow = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -522,23 +579,22 @@ define
             {
                 var fields = OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OverexcLimX2", "efd1", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "efd2", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "efd3", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "efddes", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "efdrated", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "kmx", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "m", base.from_boolean, fields);
-                base.export_element (obj, "OverexcLimX2", "t1", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "t2", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "t3", base.from_string, fields);
-                base.export_element (obj, "OverexcLimX2", "vlow", base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "efd3", "efd3",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "efddes", "efddes",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "efdrated", "efdrated",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "kmx", "kmx",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "m", "m",  base.from_boolean, fields);
+                base.export_element (obj, "OverexcLimX2", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "OverexcLimX2", "vlow", "vlow",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -603,6 +659,27 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OverexcLimX2" };
+                super.submit (obj);
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("efd3").value; if ("" != temp) obj.efd3 = temp;
+                temp = document.getElementById ("efddes").value; if ("" != temp) obj.efddes = temp;
+                temp = document.getElementById ("efdrated").value; if ("" != temp) obj.efdrated = temp;
+                temp = document.getElementById ("kmx").value; if ("" != temp) obj.kmx = temp;
+                temp = document.getElementById ("m").checked; if (temp) obj.m = true;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("vlow").value; if ("" != temp) obj.vlow = temp;
+
+                return (obj);
             }
         }
 

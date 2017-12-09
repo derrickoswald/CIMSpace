@@ -140,6 +140,17 @@ define
         }
 
         /**
+         * Get the editor object for access to editing.
+         * @return {Object} The object handling editing.
+         * @function get_editor
+         * @memberOf module:cimmap
+         */
+        function get_editor ()
+        {
+            return (TheEditor);
+        }
+
+        /**
          * Get the user's choice for showing internal features.
          * @returns {boolean} <code>true</code> if internal features should be shown, <code>false</code> otherwise
          * @function show_internal_features
@@ -318,21 +329,9 @@ define
 
         function detail_text (feature)
         {
-            var text
             var cls = cim.class_map (feature);
-            if (TheEditor.visible ())
-            {
-                cls.prototype.condition (feature);
-                var template = cls.prototype.edit_template ();
-                text = mustache.render (template, feature);
-                cls.prototype.uncondition (feature);
-            }
-            else
-            {
-                var template = cls.prototype.template ();
-                text = mustache.render (template, feature);
-            }
-
+            var template = cls.prototype.template ();
+            var text = mustache.render (template, feature);
             var conducting = CIM_Data.ConductingEquipment[CURRENT_FEATURE];
             if ("undefined" != typeof (conducting))
             {
@@ -407,8 +406,17 @@ define
             if ((null != CIM_Data) && (null != CURRENT_FEATURE))
                 if (null != (feature = CIM_Data.Element[CURRENT_FEATURE]))
                 {
-                    var text = detail_text (feature);
-                    showDetails (text);
+                    if (TheEditor.visible ())
+                    {
+                        document.getElementById ("feature_detail_contents").innerHTML = "";
+                        hide_details ();
+                        TheEditor.edit (feature);
+                    }
+                    else
+                    {
+                        var text = detail_text (feature);
+                        showDetails (text);
+                    }
                     glow (["in", "mRID", CURRENT_FEATURE]);
                 }
         }
@@ -1093,16 +1101,19 @@ define
                      set_extents: set_extents,
                      get_extents: get_extents,
                      get_themer: get_themer,
-                     zoom_extents: zoom_extents,
-                     redraw: redraw,
+                     get_editor: get_editor,
                      show_internal_features: show_internal_features,
                      show_3d_buildings: show_3d_buildings,
+                     show_scale_bar: show_scale_bar,
+                     zoom_extents: zoom_extents,
+                     select: select,
                      buildings_3d: buildings_3d,
                      scale_bar: scale_bar,
-                     trace: trace,
+                     highlight: highlight,
                      unhighlight: unhighlight,
-                     select: select,
+                     trace: trace,
                      search: search,
+                     redraw: redraw,
                      add_listeners: add_listeners,
                      remove_listeners: remove_listeners,
                      initialize: initialize,

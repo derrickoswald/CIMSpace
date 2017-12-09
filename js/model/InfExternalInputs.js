@@ -46,14 +46,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ResourceGroupReq", fields);
-                base.export_attribute (obj, "export_attributes", "ResourceGroupReq", fields);
+                base.export_attribute (obj, "ResourceGroupReq", "ResourceGroup", "ResourceGroup", fields);
+                base.export_attributes (obj, "ResourceGroupReq", "RTOs", "RTOs", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -102,6 +101,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ResourceGroupReq" };
+                super.submit (obj);
+                temp = document.getElementById ("ResourceGroup").value; if ("" != temp) obj.ResourceGroup = temp;
+                temp = document.getElementById ("RTOs").value; if ("" != temp) obj.RTOs = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -158,13 +169,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ReserveReqCurve", fields);
+                base.export_attribute (obj, "ReserveReqCurve", "ReserveReq", "ReserveReq", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -209,6 +219,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReserveReqCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("ReserveReq").value; if ("" != temp) obj.ReserveReq = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -265,16 +286,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ResourceGroup", "type", base.from_string, fields);
-                base.export_element (obj, "ResourceGroup", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ResourceGroup", fields);
-                base.export_attribute (obj, "export_attributes", "ResourceGroup", fields);
+                base.export_element (obj, "ResourceGroup", "type", "type",  base.from_string, fields);
+                base.export_element (obj, "ResourceGroup", "status", "status",  base.from_string, fields);
+                base.export_attributes (obj, "ResourceGroup", "ResourceGroupReqs", "ResourceGroupReqs", fields);
+                base.export_attributes (obj, "ResourceGroup", "RegisteredResources", "RegisteredResources", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -328,6 +348,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ResourceGroup" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("RegisteredResources").value; if ("" != temp) obj.RegisteredResources = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -384,13 +417,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "SensitivityPriceCurve", fields);
+                base.export_attribute (obj, "SensitivityPriceCurve", "ReserveReq", "ReserveReq", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -435,6 +467,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SensitivityPriceCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("ReserveReq").value; if ("" != temp) obj.ReserveReq = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -490,15 +533,14 @@ define
             {
                 var fields = ResourceGroupReq.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ReserveReq", fields);
-                base.export_attribute (obj, "export_attribute", "ReserveReq", fields);
-                base.export_attribute (obj, "export_attribute", "ReserveReq", fields);
+                base.export_attribute (obj, "ReserveReq", "MarketProduct", "MarketProduct", fields);
+                base.export_attribute (obj, "ReserveReq", "SensitivityPriceCurve", "SensitivityPriceCurve", fields);
+                base.export_attribute (obj, "ReserveReq", "ReserveReqCurve", "ReserveReqCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -547,6 +589,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReserveReq" };
+                super.submit (obj);
+                temp = document.getElementById ("MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
+                temp = document.getElementById ("SensitivityPriceCurve").value; if ("" != temp) obj.SensitivityPriceCurve = temp;
+                temp = document.getElementById ("ReserveReqCurve").value; if ("" != temp) obj.ReserveReqCurve = temp;
+
+                return (obj);
             }
 
             relations ()

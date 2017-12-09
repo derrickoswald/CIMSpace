@@ -264,11 +264,12 @@ define
          * @param {String} cls - the CIM class being written e.g. Location in the example above
          * Note that this is not necessarily the same as obj.cls due to hierarchy
          * @param {String} attribute - the attribute being written, e.g. type in the example above
+         * @param {String} name - the JavaScript property name
          * @param {Function} fn - the conversion function to be applied to the attribute, e.g. from_datetime
          * @param {String[]} fields - the forming element array of strings to add to
          * @memberOf module:model/base
          */
-        function export_element (obj, cls, attribute, fn, fields)
+        function export_element (obj, cls, attribute, name, fn, fields)
         {
             var value = obj[attribute];
             if ("undefined" != typeof (value))
@@ -285,10 +286,11 @@ define
          * @param {String} cls - the CIM class being written e.g. Location in the example above
          * Note that this is not necessarily the same as obj.cls due to hierarchy
          * @param {String} attribute - the attribute being written, e.g. CoordinateSystem in the example above
+         * @param {String} name - the JavaScript property name
          * @param {String[]} fields - the forming element array of strings to add to
          * @memberOf module:model/base
          */
-        function export_attribute (obj, cls, attribute, fields)
+        function export_attribute (obj, cls, attribute, name, fields)
         {
             var value = obj[attribute];
             if ("undefined" != typeof (value))
@@ -303,10 +305,11 @@ define
          * @param {String} cls - the CIM class being written e.g. Location in the example above
          * Note that this is not necessarily the same as obj.cls due to hierarchy
          * @param {String} attribute - the attribute being written, e.g. PowerSystemResources in the example above
+         * @param {String} name - the JavaScript property name
          * @param {String[]} fields - the forming element array of strings to add to
          * @memberOf module:model/base
          */
-        function export_attributes (obj, cls, attribute, fields)
+        function export_attributes (obj, cls, attribute, name, fields)
         {
             var value = obj[attribute];
             if ("undefined" != typeof (value))
@@ -399,6 +402,14 @@ define
             edit_template ()
             {
                 return ("");
+            }
+
+            /**
+             * Form scraping function for Element.
+             */
+            submit (obj)
+            {
+                return (obj || {});
             }
          }
 

@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "model/Common", "model/Wires", "themes/layers"],
+    ["mustache", "cim", "model/Common", "model/Wires", "themes/layers"],
     /**
      * @summary Edit control.
      * @description UI element for editing
@@ -13,7 +13,7 @@ define
      * @exports cimedit
      * @version 1.0
      */
-    function (mustache, Common, Wires, layers)
+    function (mustache, cim, Common, Wires, layers)
     {
         class CIMEdit
         {
@@ -43,26 +43,7 @@ define
                 this._map = map;
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
-                if (null != this._cimmap.get_data ())
-                {
-                    var infos = this._cimmap.get_data ().WireInfo;
-                    var cabletypes = [];
-                    for (var property in infos)
-                        if (infos.hasOwnProperty (property))
-                        {
-                            var info = infos[property];
-                            cabletypes.push ({ mRID: info.mRID, name: info.name });
-                        }
-                    this._container.innerHTML = mustache.render (this._template, { cabletypes: cabletypes });
-                    this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.add_cable.bind (this);
-                    this._container.getElementsByClassName ("btn btn-success")[0].onclick = this.remove_cable.bind (this);
-                }
-                else
-                {
-                    this._container.innerHTML = mustache.render (this._template, { cabletypes: [] });
-                    this._container.getElementsByClassName ("btn btn-primary")[0].disabled=true;
-                    this._container.getElementsByClassName ("btn btn-success")[0].disabled=true;
-                }
+                this.render ();
                 if (null == this._map.getSource ("edit lines"))
                     this.add_layers ();
                 this._onMap = true;
@@ -84,6 +65,30 @@ define
             visible ()
             {
                 return (this._onMap);
+            }
+
+            render ()
+            {
+                if (null != this._cimmap.get_data ())
+                {
+                    var infos = this._cimmap.get_data ().WireInfo;
+                    var cabletypes = [];
+                    for (var property in infos)
+                        if (infos.hasOwnProperty (property))
+                        {
+                            var info = infos[property];
+                            cabletypes.push ({ mRID: info.mRID, name: info.name });
+                        }
+                    this._container.innerHTML = mustache.render (this._template, { cabletypes: cabletypes });
+                    this._container.getElementsByClassName ("btn btn-primary")[0].onclick = this.add_cable.bind (this);
+                    this._container.getElementsByClassName ("btn btn-success")[0].onclick = this.remove_cable.bind (this);
+                }
+                else
+                {
+                    this._container.innerHTML = mustache.render (this._template, { cabletypes: [] });
+                    this._container.getElementsByClassName ("btn btn-primary")[0].disabled=true;
+                    this._container.getElementsByClassName ("btn btn-success")[0].disabled=true;
+                }
             }
 
             refresh ()
@@ -335,6 +340,71 @@ define
                 // symbol icon from 17 and deeper
                 this._map.addLayer (layers.symbol_layer ("edit_symbol", "edit points", "rgb(255, 0, 0)"));
                 this._map.addLayer (layers.symbol_layer ("edit_symbol_highlight", "edit points", "rgb(255, 255, 0)", ["==", "mRID", ""]));
+            }
+
+            on_map_resize (event)
+            {
+                var map_height = document.getElementById ("map").clientHeight;
+                var top_margin = 10;
+                var well_padding = 20;
+                var logo_height = 18;
+                var max_height = map_height - top_margin - well_padding - logo_height;
+                this._container.style.maxHeight = max_height.toString () + "px";
+                var guts = document.getElementById ("edit_contents");
+                if (guts)
+                    guts.style.maxHeight = (max_height - this._frame_height).toString () + "px";
+            }
+
+            edit (feature)
+            {
+                var buttons =
+                text = text + buttons;
+
+                var frame =
+                    "<div id='edit_frame' class='well'>\n" +
+                    "  <h3>Edit</h3>\n" +
+                    "  <div id='edit_contents'></div>\n" +
+                    "  <div>\n" +
+                    "    <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
+                    "    <button id='cancel' type='button' class='btn btn-danger' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().cancel ();})'>Cancel</button>\n" +
+                    "  </div>\n" +
+                    "</div>\n";
+                this._container.innerHTML = frame;
+                this._frame_height = document.getElementById ("edit_frame").clientHeight; // frame height with no editing contents
+
+                this._current_feature = feature;
+                var cls = cim.class_map (feature);
+                cls.prototype.condition (feature);
+                var template = cls.prototype.edit_template ();
+                var text = mustache.render (template, feature);
+                cls.prototype.uncondition (feature);
+                document.getElementById ("edit_contents").innerHTML = text;
+                this.on_map_resize ();
+                this._resizer = this.on_map_resize.bind (this);
+                this._map.on ("resize", this.on_map_resize.bind (this));
+            }
+
+            save ()
+            {
+                if (null != this._current_feature)
+                {
+                    var cls = cim.class_map (this._current_feature);
+                    var obj = cls.prototype.submit ();
+                    obj.id = obj.mRID;
+                    obj.EditDisposition = "edit";
+                    // console.log (JSON.stringify (obj, null, 4));
+                    var element = new cls (obj, this._cimmap.get_data ());
+                    this._cimmap.unhighlight ();
+                    this._map.off ("resize", this._resizer);
+                    this.render ();
+                }
+            }
+
+            cancel ()
+            {
+                this._map.off ("resize", this._resizer);
+                this._cimmap.unhighlight ();
+                this.render ();
             }
         }
 

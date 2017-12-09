@@ -52,14 +52,13 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "UnderexcitationLimiterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "UnderexcitationLimiterDynamics", fields);
+                base.export_attribute (obj, "UnderexcitationLimiterDynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "UnderexcitationLimiterDynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -106,6 +105,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UnderexcitationLimiterDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -201,52 +212,51 @@ define
             {
                 var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UnderexcLimIEEE2", "k1", base.from_float, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "k2", base.from_float, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "kfb", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "kuf", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "kui", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "kul", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p0", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p1", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p10", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p2", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p3", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p4", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p5", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p6", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p7", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p8", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "p9", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q0", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q1", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q10", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q2", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q3", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q4", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q5", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q6", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q7", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q8", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "q9", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "tu1", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "tu2", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "tu3", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "tu4", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "tul", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "tup", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "tuq", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "tuv", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "vuimax", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "vuimin", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "vulmax", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE2", "vulmin", base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "k1", "k1",  base.from_float, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "k2", "k2",  base.from_float, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "kfb", "kfb",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "kuf", "kuf",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "kui", "kui",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "kul", "kul",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p0", "p0",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p1", "p1",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p10", "p10",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p2", "p2",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p3", "p3",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p4", "p4",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p5", "p5",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p6", "p6",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p7", "p7",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p8", "p8",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "p9", "p9",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q0", "q0",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q1", "q1",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q10", "q10",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q2", "q2",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q3", "q3",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q4", "q4",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q5", "q5",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q6", "q6",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q7", "q7",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q8", "q8",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "q9", "q9",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "tu1", "tu1",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "tu2", "tu2",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "tu3", "tu3",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "tu4", "tu4",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "tul", "tul",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "tup", "tup",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "tuq", "tuq",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "tuv", "tuv",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "vuimax", "vuimax",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "vuimin", "vuimin",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "vulmax", "vulmax",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE2", "vulmin", "vulmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -370,6 +380,56 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UnderexcLimIEEE2" };
+                super.submit (obj);
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("kfb").value; if ("" != temp) obj.kfb = temp;
+                temp = document.getElementById ("kuf").value; if ("" != temp) obj.kuf = temp;
+                temp = document.getElementById ("kui").value; if ("" != temp) obj.kui = temp;
+                temp = document.getElementById ("kul").value; if ("" != temp) obj.kul = temp;
+                temp = document.getElementById ("p0").value; if ("" != temp) obj.p0 = temp;
+                temp = document.getElementById ("p1").value; if ("" != temp) obj.p1 = temp;
+                temp = document.getElementById ("p10").value; if ("" != temp) obj.p10 = temp;
+                temp = document.getElementById ("p2").value; if ("" != temp) obj.p2 = temp;
+                temp = document.getElementById ("p3").value; if ("" != temp) obj.p3 = temp;
+                temp = document.getElementById ("p4").value; if ("" != temp) obj.p4 = temp;
+                temp = document.getElementById ("p5").value; if ("" != temp) obj.p5 = temp;
+                temp = document.getElementById ("p6").value; if ("" != temp) obj.p6 = temp;
+                temp = document.getElementById ("p7").value; if ("" != temp) obj.p7 = temp;
+                temp = document.getElementById ("p8").value; if ("" != temp) obj.p8 = temp;
+                temp = document.getElementById ("p9").value; if ("" != temp) obj.p9 = temp;
+                temp = document.getElementById ("q0").value; if ("" != temp) obj.q0 = temp;
+                temp = document.getElementById ("q1").value; if ("" != temp) obj.q1 = temp;
+                temp = document.getElementById ("q10").value; if ("" != temp) obj.q10 = temp;
+                temp = document.getElementById ("q2").value; if ("" != temp) obj.q2 = temp;
+                temp = document.getElementById ("q3").value; if ("" != temp) obj.q3 = temp;
+                temp = document.getElementById ("q4").value; if ("" != temp) obj.q4 = temp;
+                temp = document.getElementById ("q5").value; if ("" != temp) obj.q5 = temp;
+                temp = document.getElementById ("q6").value; if ("" != temp) obj.q6 = temp;
+                temp = document.getElementById ("q7").value; if ("" != temp) obj.q7 = temp;
+                temp = document.getElementById ("q8").value; if ("" != temp) obj.q8 = temp;
+                temp = document.getElementById ("q9").value; if ("" != temp) obj.q9 = temp;
+                temp = document.getElementById ("tu1").value; if ("" != temp) obj.tu1 = temp;
+                temp = document.getElementById ("tu2").value; if ("" != temp) obj.tu2 = temp;
+                temp = document.getElementById ("tu3").value; if ("" != temp) obj.tu3 = temp;
+                temp = document.getElementById ("tu4").value; if ("" != temp) obj.tu4 = temp;
+                temp = document.getElementById ("tul").value; if ("" != temp) obj.tul = temp;
+                temp = document.getElementById ("tup").value; if ("" != temp) obj.tup = temp;
+                temp = document.getElementById ("tuq").value; if ("" != temp) obj.tuq = temp;
+                temp = document.getElementById ("tuv").value; if ("" != temp) obj.tuv = temp;
+                temp = document.getElementById ("vuimax").value; if ("" != temp) obj.vuimax = temp;
+                temp = document.getElementById ("vuimin").value; if ("" != temp) obj.vuimin = temp;
+                temp = document.getElementById ("vulmax").value; if ("" != temp) obj.vulmax = temp;
+                temp = document.getElementById ("vulmin").value; if ("" != temp) obj.vulmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -418,18 +478,17 @@ define
             {
                 var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UnderexcLimX1", "k", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX1", "kf2", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX1", "km", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX1", "melmax", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX1", "tf2", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX1", "tm", base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX1", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX1", "kf2", "kf2",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX1", "km", "km",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX1", "melmax", "melmax",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX1", "tf2", "tf2",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX1", "tm", "tm",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -485,6 +544,22 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UnderexcLimX1" };
+                super.submit (obj);
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("kf2").value; if ("" != temp) obj.kf2 = temp;
+                temp = document.getElementById ("km").value; if ("" != temp) obj.km = temp;
+                temp = document.getElementById ("melmax").value; if ("" != temp) obj.melmax = temp;
+                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById ("tm").value; if ("" != temp) obj.tm = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -534,19 +609,18 @@ define
             {
                 var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UnderexcLimX2", "kf2", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX2", "km", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX2", "melmax", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX2", "qo", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX2", "r", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX2", "tf2", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimX2", "tm", base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX2", "kf2", "kf2",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX2", "km", "km",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX2", "melmax", "melmax",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX2", "qo", "qo",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX2", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX2", "tf2", "tf2",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimX2", "tm", "tm",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -603,6 +677,23 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UnderexcLimX2" };
+                super.submit (obj);
+                temp = document.getElementById ("kf2").value; if ("" != temp) obj.kf2 = temp;
+                temp = document.getElementById ("km").value; if ("" != temp) obj.km = temp;
+                temp = document.getElementById ("melmax").value; if ("" != temp) obj.melmax = temp;
+                temp = document.getElementById ("qo").value; if ("" != temp) obj.qo = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById ("tm").value; if ("" != temp) obj.tm = temp;
+
+                return (obj);
             }
         }
 
@@ -663,27 +754,26 @@ define
             {
                 var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UnderexcLimIEEE1", "kuc", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "kuf", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "kui", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "kul", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "kur", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "tu1", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "tu2", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "tu3", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "tu4", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "vucmax", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "vuimax", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "vuimin", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "vulmax", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "vulmin", base.from_string, fields);
-                base.export_element (obj, "UnderexcLimIEEE1", "vurmax", base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "kuc", "kuc",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "kuf", "kuf",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "kui", "kui",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "kul", "kul",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "kur", "kur",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "tu1", "tu1",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "tu2", "tu2",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "tu3", "tu3",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "tu4", "tu4",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "vucmax", "vucmax",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "vuimax", "vuimax",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "vuimin", "vuimin",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "vulmax", "vulmax",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "vulmin", "vulmin",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLimIEEE1", "vurmax", "vurmax",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -757,6 +847,31 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UnderexcLimIEEE1" };
+                super.submit (obj);
+                temp = document.getElementById ("kuc").value; if ("" != temp) obj.kuc = temp;
+                temp = document.getElementById ("kuf").value; if ("" != temp) obj.kuf = temp;
+                temp = document.getElementById ("kui").value; if ("" != temp) obj.kui = temp;
+                temp = document.getElementById ("kul").value; if ("" != temp) obj.kul = temp;
+                temp = document.getElementById ("kur").value; if ("" != temp) obj.kur = temp;
+                temp = document.getElementById ("tu1").value; if ("" != temp) obj.tu1 = temp;
+                temp = document.getElementById ("tu2").value; if ("" != temp) obj.tu2 = temp;
+                temp = document.getElementById ("tu3").value; if ("" != temp) obj.tu3 = temp;
+                temp = document.getElementById ("tu4").value; if ("" != temp) obj.tu4 = temp;
+                temp = document.getElementById ("vucmax").value; if ("" != temp) obj.vucmax = temp;
+                temp = document.getElementById ("vuimax").value; if ("" != temp) obj.vuimax = temp;
+                temp = document.getElementById ("vuimin").value; if ("" != temp) obj.vuimin = temp;
+                temp = document.getElementById ("vulmax").value; if ("" != temp) obj.vulmax = temp;
+                temp = document.getElementById ("vulmin").value; if ("" != temp) obj.vulmin = temp;
+                temp = document.getElementById ("vurmax").value; if ("" != temp) obj.vurmax = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -808,19 +923,18 @@ define
             {
                 var fields = UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UnderexcLim2Simplified", "kui", base.from_string, fields);
-                base.export_element (obj, "UnderexcLim2Simplified", "p0", base.from_string, fields);
-                base.export_element (obj, "UnderexcLim2Simplified", "p1", base.from_string, fields);
-                base.export_element (obj, "UnderexcLim2Simplified", "q0", base.from_string, fields);
-                base.export_element (obj, "UnderexcLim2Simplified", "q1", base.from_string, fields);
-                base.export_element (obj, "UnderexcLim2Simplified", "vuimax", base.from_string, fields);
-                base.export_element (obj, "UnderexcLim2Simplified", "vuimin", base.from_string, fields);
+                base.export_element (obj, "UnderexcLim2Simplified", "kui", "kui",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLim2Simplified", "p0", "p0",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLim2Simplified", "p1", "p1",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLim2Simplified", "q0", "q0",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLim2Simplified", "q1", "q1",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLim2Simplified", "vuimax", "vuimax",  base.from_string, fields);
+                base.export_element (obj, "UnderexcLim2Simplified", "vuimin", "vuimin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -877,6 +991,23 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UnderexcLim2Simplified" };
+                super.submit (obj);
+                temp = document.getElementById ("kui").value; if ("" != temp) obj.kui = temp;
+                temp = document.getElementById ("p0").value; if ("" != temp) obj.p0 = temp;
+                temp = document.getElementById ("p1").value; if ("" != temp) obj.p1 = temp;
+                temp = document.getElementById ("q0").value; if ("" != temp) obj.q0 = temp;
+                temp = document.getElementById ("q1").value; if ("" != temp) obj.q1 = temp;
+                temp = document.getElementById ("vuimax").value; if ("" != temp) obj.vuimax = temp;
+                temp = document.getElementById ("vuimin").value; if ("" != temp) obj.vuimin = temp;
+
+                return (obj);
             }
         }
 

@@ -126,14 +126,13 @@ define
             {
                 var fields = Common.TimeSchedule.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WorkTimeSchedule", "kind", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WorkTimeSchedule", fields);
+                base.export_element (obj, "WorkTimeSchedule", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "WorkTimeSchedule", "BaseWork", "BaseWork", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -182,6 +181,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WorkTimeSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = WorkTimeScheduleKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTimeScheduleKind." + temp; }
+                temp = document.getElementById ("BaseWork").value; if ("" != temp) obj.BaseWork = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -239,17 +250,16 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BaseWork", "kind", base.from_string, fields);
-                base.export_element (obj, "BaseWork", "priority", base.from_string, fields);
-                base.export_element (obj, "BaseWork", "statusKind", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "BaseWork", fields);
-                base.export_attribute (obj, "export_attributes", "BaseWork", fields);
+                base.export_element (obj, "BaseWork", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "BaseWork", "priority", "priority",  base.from_string, fields);
+                base.export_element (obj, "BaseWork", "statusKind", "statusKind",  base.from_string, fields);
+                base.export_attribute (obj, "BaseWork", "WorkLocation", "WorkLocation", fields);
+                base.export_attributes (obj, "BaseWork", "TimeSchedules", "TimeSchedules", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -309,6 +319,20 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BaseWork" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = WorkKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkKind." + temp; }
+                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById ("statusKind").value; if ("" != temp) { temp = WorkStatusKind[temp]; if ("undefined" != typeof (temp)) obj.statusKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkStatusKind." + temp; }
+                temp = document.getElementById ("WorkLocation").value; if ("" != temp) obj.WorkLocation = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -363,15 +387,14 @@ define
             {
                 var fields = Common.Location.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WorkLocation", fields);
-                base.export_attribute (obj, "export_attributes", "WorkLocation", fields);
-                base.export_attribute (obj, "export_attributes", "WorkLocation", fields);
+                base.export_attribute (obj, "WorkLocation", "OneCallRequest", "OneCallRequest", fields);
+                base.export_attributes (obj, "WorkLocation", "BaseWorks", "BaseWorks", fields);
+                base.export_attributes (obj, "WorkLocation", "DesignLocations", "DesignLocations", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -423,6 +446,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WorkLocation" };
+                super.submit (obj);
+                temp = document.getElementById ("OneCallRequest").value; if ("" != temp) obj.OneCallRequest = temp;
+                temp = document.getElementById ("DesignLocations").value; if ("" != temp) obj.DesignLocations = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -482,15 +517,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MaterialItem", "quantity", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "MaterialItem", fields);
-                base.export_attribute (obj, "export_attribute", "MaterialItem", fields);
+                base.export_element (obj, "MaterialItem", "quantity", "quantity",  base.from_string, fields);
+                base.export_attribute (obj, "MaterialItem", "TypeMaterial", "TypeMaterial", fields);
+                base.export_attribute (obj, "MaterialItem", "WorkTask", "WorkTask", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -539,6 +573,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MaterialItem" };
+                super.submit (obj);
+                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById ("TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
+                temp = document.getElementById ("WorkTask").value; if ("" != temp) obj.WorkTask = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -593,13 +640,12 @@ define
             {
                 var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WorkAsset", fields);
+                base.export_attribute (obj, "WorkAsset", "Crew", "Crew", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -644,6 +690,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WorkAsset" };
+                super.submit (obj);
+                temp = document.getElementById ("Crew").value; if ("" != temp) obj.Crew = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -702,22 +759,21 @@ define
             {
                 var fields = BaseWork.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WorkTask", "instruction", base.from_string, fields);
-                base.export_element (obj, "WorkTask", "schedOverride", base.from_string, fields);
-                base.export_element (obj, "WorkTask", "taskKind", base.from_string, fields);
-                base.export_element (obj, "WorkTask", "crewETA", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "WorkTask", fields);
-                base.export_attribute (obj, "export_attributes", "WorkTask", fields);
-                base.export_attribute (obj, "export_attribute", "WorkTask", fields);
-                base.export_attribute (obj, "export_attributes", "WorkTask", fields);
-                base.export_attribute (obj, "export_attribute", "WorkTask", fields);
-                base.export_attribute (obj, "export_attribute", "WorkTask", fields);
+                base.export_element (obj, "WorkTask", "instruction", "instruction",  base.from_string, fields);
+                base.export_element (obj, "WorkTask", "schedOverride", "schedOverride",  base.from_string, fields);
+                base.export_element (obj, "WorkTask", "taskKind", "taskKind",  base.from_string, fields);
+                base.export_element (obj, "WorkTask", "crewETA", "crewETA",  base.from_datetime, fields);
+                base.export_attributes (obj, "WorkTask", "Crews", "Crews", fields);
+                base.export_attributes (obj, "WorkTask", "Assets", "Assets", fields);
+                base.export_attribute (obj, "WorkTask", "Work", "Work", fields);
+                base.export_attributes (obj, "WorkTask", "MaterialItems", "MaterialItems", fields);
+                base.export_attribute (obj, "WorkTask", "OldAsset", "OldAsset", fields);
+                base.export_attribute (obj, "WorkTask", "SwitchingPlan", "SwitchingPlan", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -789,6 +845,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WorkTask" };
+                super.submit (obj);
+                temp = document.getElementById ("instruction").value; if ("" != temp) obj.instruction = temp;
+                temp = document.getElementById ("schedOverride").value; if ("" != temp) obj.schedOverride = temp;
+                temp = document.getElementById ("taskKind").value; if ("" != temp) { temp = WorkTaskKind[temp]; if ("undefined" != typeof (temp)) obj.taskKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTaskKind." + temp; }
+                temp = document.getElementById ("crewETA").value; if ("" != temp) obj.crewETA = temp;
+                temp = document.getElementById ("Crews").value; if ("" != temp) obj.Crews = temp.split (",");
+                temp = document.getElementById ("Assets").value; if ("" != temp) obj.Assets = temp.split (",");
+                temp = document.getElementById ("Work").value; if ("" != temp) obj.Work = temp;
+                temp = document.getElementById ("OldAsset").value; if ("" != temp) obj.OldAsset = temp;
+                temp = document.getElementById ("SwitchingPlan").value; if ("" != temp) obj.SwitchingPlan = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -856,24 +931,23 @@ define
             {
                 var fields = BaseWork.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Work", "requestDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "Work", fields);
-                base.export_attribute (obj, "export_attributes", "Work", fields);
-                base.export_attribute (obj, "export_attributes", "Work", fields);
-                base.export_attribute (obj, "export_attributes", "Work", fields);
-                base.export_attribute (obj, "export_attribute", "Work", fields);
-                base.export_attribute (obj, "export_attribute", "Work", fields);
-                base.export_attribute (obj, "export_attributes", "Work", fields);
-                base.export_attribute (obj, "export_attributes", "Work", fields);
-                base.export_attribute (obj, "export_attribute", "Work", fields);
-                base.export_attribute (obj, "export_attributes", "Work", fields);
-                base.export_attribute (obj, "export_attribute", "Work", fields);
+                base.export_element (obj, "Work", "requestDateTime", "requestDateTime",  base.from_datetime, fields);
+                base.export_attributes (obj, "Work", "Appointments", "Appointments", fields);
+                base.export_attributes (obj, "Work", "Designs", "Designs", fields);
+                base.export_attributes (obj, "Work", "Customers", "Customers", fields);
+                base.export_attributes (obj, "Work", "WorkFlowSteps", "WorkFlowSteps", fields);
+                base.export_attribute (obj, "Work", "WorkBillingInfo", "WorkBillingInfo", fields);
+                base.export_attribute (obj, "Work", "Project", "Project", fields);
+                base.export_attributes (obj, "Work", "WorkTasks", "WorkTasks", fields);
+                base.export_attributes (obj, "Work", "Incidents", "Incidents", fields);
+                base.export_attribute (obj, "Work", "BusinessCase", "BusinessCase", fields);
+                base.export_attributes (obj, "Work", "WorkCostDetails", "WorkCostDetails", fields);
+                base.export_attribute (obj, "Work", "ErpProjectAccounting", "ErpProjectAccounting", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -953,6 +1027,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Work" };
+                super.submit (obj);
+                temp = document.getElementById ("requestDateTime").value; if ("" != temp) obj.requestDateTime = temp;
+                temp = document.getElementById ("Appointments").value; if ("" != temp) obj.Appointments = temp.split (",");
+                temp = document.getElementById ("Customers").value; if ("" != temp) obj.Customers = temp.split (",");
+                temp = document.getElementById ("WorkBillingInfo").value; if ("" != temp) obj.WorkBillingInfo = temp;
+                temp = document.getElementById ("Project").value; if ("" != temp) obj.Project = temp;
+                temp = document.getElementById ("Incidents").value; if ("" != temp) obj.Incidents = temp.split (",");
+                temp = document.getElementById ("BusinessCase").value; if ("" != temp) obj.BusinessCase = temp;
+                temp = document.getElementById ("WorkCostDetails").value; if ("" != temp) obj.WorkCostDetails = temp.split (",");
+                temp = document.getElementById ("ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1017,16 +1110,15 @@ define
             {
                 var fields = WorkLocation.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MaintenanceLocation", "block", base.from_string, fields);
-                base.export_element (obj, "MaintenanceLocation", "lot", base.from_string, fields);
-                base.export_element (obj, "MaintenanceLocation", "nearestIntersection", base.from_string, fields);
-                base.export_element (obj, "MaintenanceLocation", "subdivision", base.from_string, fields);
+                base.export_element (obj, "MaintenanceLocation", "block", "block",  base.from_string, fields);
+                base.export_element (obj, "MaintenanceLocation", "lot", "lot",  base.from_string, fields);
+                base.export_element (obj, "MaintenanceLocation", "nearestIntersection", "nearestIntersection",  base.from_string, fields);
+                base.export_element (obj, "MaintenanceLocation", "subdivision", "subdivision",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1078,6 +1170,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MaintenanceLocation" };
+                super.submit (obj);
+                temp = document.getElementById ("block").value; if ("" != temp) obj.block = temp;
+                temp = document.getElementById ("lot").value; if ("" != temp) obj.lot = temp;
+                temp = document.getElementById ("nearestIntersection").value; if ("" != temp) obj.nearestIntersection = temp;
+                temp = document.getElementById ("subdivision").value; if ("" != temp) obj.subdivision = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1123,15 +1229,14 @@ define
             {
                 var fields = WorkAsset.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Vehicle", "odometerReadDateTime", base.from_datetime, fields);
-                base.export_element (obj, "Vehicle", "odometerReading", base.from_string, fields);
-                base.export_element (obj, "Vehicle", "usageKind", base.from_string, fields);
+                base.export_element (obj, "Vehicle", "odometerReadDateTime", "odometerReadDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "Vehicle", "odometerReading", "odometerReading",  base.from_string, fields);
+                base.export_element (obj, "Vehicle", "usageKind", "usageKind",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1183,6 +1288,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Vehicle" };
+                super.submit (obj);
+                temp = document.getElementById ("odometerReadDateTime").value; if ("" != temp) obj.odometerReadDateTime = temp;
+                temp = document.getElementById ("odometerReading").value; if ("" != temp) obj.odometerReading = temp;
+                temp = document.getElementById ("usageKind").value; if ("" != temp) { temp = VehicleUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VehicleUsageKind." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -1226,13 +1344,12 @@ define
             {
                 var fields = WorkAsset.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Tool", "lastCalibrationDate", base.from_string, fields);
+                base.export_element (obj, "Tool", "lastCalibrationDate", "lastCalibrationDate",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1277,6 +1394,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Tool" };
+                super.submit (obj);
+                temp = document.getElementById ("lastCalibrationDate").value; if ("" != temp) obj.lastCalibrationDate = temp;
+
+                return (obj);
             }
         }
 

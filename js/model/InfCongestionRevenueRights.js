@@ -48,16 +48,15 @@ define
             {
                 var fields = Meas.Limit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ViolationLimit", "enforced", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "ViolationLimit", fields);
-                base.export_attribute (obj, "export_attributes", "ViolationLimit", fields);
-                base.export_attribute (obj, "export_attribute", "ViolationLimit", fields);
+                base.export_element (obj, "ViolationLimit", "enforced", "enforced",  base.from_boolean, fields);
+                base.export_attribute (obj, "ViolationLimit", "MktMeasurement", "MktMeasurement", fields);
+                base.export_attributes (obj, "ViolationLimit", "MktOrganisation", "MktOrganisation", fields);
+                base.export_attribute (obj, "ViolationLimit", "Flowgate", "Flowgate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -110,6 +109,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ViolationLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("enforced").checked; if (temp) obj.enforced = true;
+                temp = document.getElementById ("MktMeasurement").value; if ("" != temp) obj.MktMeasurement = temp;
+                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
+                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -172,20 +185,19 @@ define
             {
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "FTR", "optimized", base.from_string, fields);
-                base.export_element (obj, "FTR", "action", base.from_string, fields);
-                base.export_element (obj, "FTR", "baseEnergy", base.from_string, fields);
-                base.export_element (obj, "FTR", "ftrType", base.from_string, fields);
-                base.export_element (obj, "FTR", "class", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "FTR", fields);
-                base.export_attribute (obj, "export_attribute", "FTR", fields);
-                base.export_attribute (obj, "export_attributes", "FTR", fields);
+                base.export_element (obj, "FTR", "optimized", "optimized",  base.from_string, fields);
+                base.export_element (obj, "FTR", "action", "action",  base.from_string, fields);
+                base.export_element (obj, "FTR", "baseEnergy", "baseEnergy",  base.from_string, fields);
+                base.export_element (obj, "FTR", "ftrType", "ftrType",  base.from_string, fields);
+                base.export_element (obj, "FTR", "class", "class",  base.from_string, fields);
+                base.export_attribute (obj, "FTR", "EnergyPriceCurve", "EnergyPriceCurve", fields);
+                base.export_attribute (obj, "FTR", "Flowgate", "Flowgate", fields);
+                base.export_attributes (obj, "FTR", "Pnodes", "Pnodes", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -246,6 +258,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FTR" };
+                super.submit (obj);
+                temp = document.getElementById ("optimized").value; if ("" != temp) obj.optimized = temp;
+                temp = document.getElementById ("action").value; if ("" != temp) obj.action = temp;
+                temp = document.getElementById ("baseEnergy").value; if ("" != temp) obj.baseEnergy = temp;
+                temp = document.getElementById ("ftrType").value; if ("" != temp) obj.ftrType = temp;
+                temp = document.getElementById ("class").value; if ("" != temp) obj.class = temp;
+                temp = document.getElementById ("EnergyPriceCurve").value; if ("" != temp) obj.EnergyPriceCurve = temp;
+                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                temp = document.getElementById ("Pnodes").value; if ("" != temp) obj.Pnodes = temp.split (",");
+
+                return (obj);
             }
 
             relations ()

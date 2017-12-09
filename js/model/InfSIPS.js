@@ -167,19 +167,18 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GateInputPin", "absoluteValue", base.from_boolean, fields);
-                base.export_element (obj, "GateInputPin", "aDLogicKind", base.from_string, fields);
-                base.export_element (obj, "GateInputPin", "duration", base.from_string, fields);
-                base.export_element (obj, "GateInputPin", "negate", base.from_boolean, fields);
-                base.export_element (obj, "GateInputPin", "thresholdPercentage", base.from_string, fields);
-                base.export_element (obj, "GateInputPin", "thresholdValue", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "GateInputPin", fields);
+                base.export_element (obj, "GateInputPin", "absoluteValue", "absoluteValue",  base.from_boolean, fields);
+                base.export_element (obj, "GateInputPin", "aDLogicKind", "aDLogicKind",  base.from_string, fields);
+                base.export_element (obj, "GateInputPin", "duration", "duration",  base.from_string, fields);
+                base.export_element (obj, "GateInputPin", "negate", "negate",  base.from_boolean, fields);
+                base.export_element (obj, "GateInputPin", "thresholdPercentage", "thresholdPercentage",  base.from_string, fields);
+                base.export_element (obj, "GateInputPin", "thresholdValue", "thresholdValue",  base.from_float, fields);
+                base.export_attribute (obj, "GateInputPin", "Gate", "Gate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -240,6 +239,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GateInputPin" };
+                super.submit (obj);
+                temp = document.getElementById ("absoluteValue").checked; if (temp) obj.absoluteValue = true;
+                temp = document.getElementById ("aDLogicKind").value; if ("" != temp) { temp = AnalogToDigitalLogicKind[temp]; if ("undefined" != typeof (temp)) obj.aDLogicKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; }
+                temp = document.getElementById ("duration").value; if ("" != temp) obj.duration = temp;
+                temp = document.getElementById ("negate").checked; if (temp) obj.negate = true;
+                temp = document.getElementById ("thresholdPercentage").value; if ("" != temp) obj.thresholdPercentage = temp;
+                temp = document.getElementById ("thresholdValue").value; if ("" != temp) obj.thresholdValue = temp;
+                temp = document.getElementById ("Gate").value; if ("" != temp) obj.Gate = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -296,18 +312,17 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RemedialActionScheme", "armed", base.from_boolean, fields);
-                base.export_element (obj, "RemedialActionScheme", "kind", base.from_string, fields);
-                base.export_element (obj, "RemedialActionScheme", "normalArmed", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "RemedialActionScheme", fields);
-                base.export_attribute (obj, "export_attributes", "RemedialActionScheme", fields);
-                base.export_attribute (obj, "export_attribute", "RemedialActionScheme", fields);
+                base.export_element (obj, "RemedialActionScheme", "armed", "armed",  base.from_boolean, fields);
+                base.export_element (obj, "RemedialActionScheme", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "RemedialActionScheme", "normalArmed", "normalArmed",  base.from_boolean, fields);
+                base.export_attributes (obj, "RemedialActionScheme", "TriggerCondition", "TriggerCondition", fields);
+                base.export_attributes (obj, "RemedialActionScheme", "Stage", "Stage", fields);
+                base.export_attribute (obj, "RemedialActionScheme", "GateArmed", "GateArmed", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -366,6 +381,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RemedialActionScheme" };
+                super.submit (obj);
+                temp = document.getElementById ("armed").checked; if (temp) obj.armed = true;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = RemedialActionSchemeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; }
+                temp = document.getElementById ("normalArmed").checked; if (temp) obj.normalArmed = true;
+                temp = document.getElementById ("GateArmed").value; if ("" != temp) obj.GateArmed = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -428,20 +457,19 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StageTrigger", "armed", base.from_boolean, fields);
-                base.export_element (obj, "StageTrigger", "normalArmed", base.from_boolean, fields);
-                base.export_element (obj, "StageTrigger", "priority", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
-                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
-                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
-                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
-                base.export_attribute (obj, "export_attribute", "StageTrigger", fields);
+                base.export_element (obj, "StageTrigger", "armed", "armed",  base.from_boolean, fields);
+                base.export_element (obj, "StageTrigger", "normalArmed", "normalArmed",  base.from_boolean, fields);
+                base.export_element (obj, "StageTrigger", "priority", "priority",  base.from_string, fields);
+                base.export_attribute (obj, "StageTrigger", "Stage", "Stage", fields);
+                base.export_attribute (obj, "StageTrigger", "GateTrigger", "GateTrigger", fields);
+                base.export_attribute (obj, "StageTrigger", "GateArmed", "GateArmed", fields);
+                base.export_attribute (obj, "StageTrigger", "ProtectiveActionCollection", "ProtectiveActionCollection", fields);
+                base.export_attribute (obj, "StageTrigger", "GateComCondition", "GateComCondition", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -500,6 +528,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "StageTrigger" };
+                super.submit (obj);
+                temp = document.getElementById ("armed").checked; if (temp) obj.armed = true;
+                temp = document.getElementById ("normalArmed").checked; if (temp) obj.normalArmed = true;
+                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById ("Stage").value; if ("" != temp) obj.Stage = temp;
+                temp = document.getElementById ("GateTrigger").value; if ("" != temp) obj.GateTrigger = temp;
+                temp = document.getElementById ("GateArmed").value; if ("" != temp) obj.GateArmed = temp;
+                temp = document.getElementById ("ProtectiveActionCollection").value; if ("" != temp) obj.ProtectiveActionCollection = temp;
+                temp = document.getElementById ("GateComCondition").value; if ("" != temp) obj.GateComCondition = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -562,18 +608,17 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ProtectiveAction", "enabled", base.from_boolean, fields);
-                base.export_element (obj, "ProtectiveAction", "normalEnabled", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveAction", fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveAction", fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveAction", fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveAction", fields);
+                base.export_element (obj, "ProtectiveAction", "enabled", "enabled",  base.from_boolean, fields);
+                base.export_element (obj, "ProtectiveAction", "normalEnabled", "normalEnabled",  base.from_boolean, fields);
+                base.export_attribute (obj, "ProtectiveAction", "ProtectionEquipment", "ProtectionEquipment", fields);
+                base.export_attribute (obj, "ProtectiveAction", "GateComCondition", "GateComCondition", fields);
+                base.export_attribute (obj, "ProtectiveAction", "ProtectiveActionCollection", "ProtectiveActionCollection", fields);
+                base.export_attribute (obj, "ProtectiveAction", "GateEnabledCondition", "GateEnabledCondition", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -628,6 +673,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProtectiveAction" };
+                super.submit (obj);
+                temp = document.getElementById ("enabled").checked; if (temp) obj.enabled = true;
+                temp = document.getElementById ("normalEnabled").checked; if (temp) obj.normalEnabled = true;
+                temp = document.getElementById ("ProtectionEquipment").value; if ("" != temp) obj.ProtectionEquipment = temp;
+                temp = document.getElementById ("GateComCondition").value; if ("" != temp) obj.GateComCondition = temp;
+                temp = document.getElementById ("ProtectiveActionCollection").value; if ("" != temp) obj.ProtectiveActionCollection = temp;
+                temp = document.getElementById ("GateEnabledCondition").value; if ("" != temp) obj.GateEnabledCondition = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -689,16 +750,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MeasurementCalculatorInput", "absoluteValue", base.from_boolean, fields);
-                base.export_element (obj, "MeasurementCalculatorInput", "order", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "MeasurementCalculatorInput", fields);
-                base.export_attribute (obj, "export_attribute", "MeasurementCalculatorInput", fields);
+                base.export_element (obj, "MeasurementCalculatorInput", "absoluteValue", "absoluteValue",  base.from_boolean, fields);
+                base.export_element (obj, "MeasurementCalculatorInput", "order", "order",  base.from_string, fields);
+                base.export_attribute (obj, "MeasurementCalculatorInput", "MeasurementCalculator", "MeasurementCalculator", fields);
+                base.export_attribute (obj, "MeasurementCalculatorInput", "Measurement", "Measurement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -749,6 +809,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MeasurementCalculatorInput" };
+                super.submit (obj);
+                temp = document.getElementById ("absoluteValue").checked; if (temp) obj.absoluteValue = true;
+                temp = document.getElementById ("order").value; if ("" != temp) obj.order = temp;
+                temp = document.getElementById ("MeasurementCalculator").value; if ("" != temp) obj.MeasurementCalculator = temp;
+                temp = document.getElementById ("Measurement").value; if ("" != temp) obj.Measurement = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -812,22 +886,21 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Gate", "kind", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
-                base.export_attribute (obj, "export_attributes", "Gate", fields);
+                base.export_element (obj, "Gate", "kind", "kind",  base.from_string, fields);
+                base.export_attributes (obj, "Gate", "GateInputPin", "GateInputPin", fields);
+                base.export_attributes (obj, "Gate", "RemedialActionScheme", "RemedialActionScheme", fields);
+                base.export_attributes (obj, "Gate", "ProtectiveActionCom", "ProtectiveActionCom", fields);
+                base.export_attributes (obj, "Gate", "PinGate", "PinGate", fields);
+                base.export_attributes (obj, "Gate", "StageTrigger", "StageTrigger", fields);
+                base.export_attributes (obj, "Gate", "StageTriggerArmed", "StageTriggerArmed", fields);
+                base.export_attributes (obj, "Gate", "ProtectiveActionEnabled", "ProtectiveActionEnabled", fields);
+                base.export_attributes (obj, "Gate", "TriggerCondition", "TriggerCondition", fields);
+                base.export_attributes (obj, "Gate", "StageTriggerCom", "StageTriggerCom", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -903,6 +976,17 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Gate" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = GateLogicKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; }
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -964,15 +1048,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Stage", "priority", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Stage", fields);
-                base.export_attribute (obj, "export_attribute", "Stage", fields);
+                base.export_element (obj, "Stage", "priority", "priority",  base.from_string, fields);
+                base.export_attributes (obj, "Stage", "StageTrigger", "StageTrigger", fields);
+                base.export_attribute (obj, "Stage", "RemedialActionScheme", "RemedialActionScheme", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1022,6 +1105,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Stage" };
+                super.submit (obj);
+                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById ("RemedialActionScheme").value; if ("" != temp) obj.RemedialActionScheme = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1078,15 +1173,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MeasurementCalculator", "kind", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "MeasurementCalculator", fields);
-                base.export_attribute (obj, "export_attributes", "MeasurementCalculator", fields);
+                base.export_element (obj, "MeasurementCalculator", "kind", "kind",  base.from_string, fields);
+                base.export_attributes (obj, "MeasurementCalculator", "MeasurementCalculatorInput", "MeasurementCalculatorInput", fields);
+                base.export_attributes (obj, "MeasurementCalculator", "PinMeasurement", "PinMeasurement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1139,6 +1233,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MeasurementCalculator" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = CalculationKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; }
+
+                return (obj);
             }
 
             relations ()
@@ -1194,14 +1299,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "TriggerCondition", fields);
-                base.export_attribute (obj, "export_attribute", "TriggerCondition", fields);
+                base.export_attribute (obj, "TriggerCondition", "RemedialActionScheme", "RemedialActionScheme", fields);
+                base.export_attribute (obj, "TriggerCondition", "GateTrigger", "GateTrigger", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1248,6 +1352,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TriggerCondition" };
+                super.submit (obj);
+                temp = document.getElementById ("RemedialActionScheme").value; if ("" != temp) obj.RemedialActionScheme = temp;
+                temp = document.getElementById ("GateTrigger").value; if ("" != temp) obj.GateTrigger = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1303,14 +1419,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ProtectiveActionCollection", fields);
-                base.export_attribute (obj, "export_attributes", "ProtectiveActionCollection", fields);
+                base.export_attributes (obj, "ProtectiveActionCollection", "ProtectiveAction", "ProtectiveAction", fields);
+                base.export_attributes (obj, "ProtectiveActionCollection", "StageTrigger", "StageTrigger", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1359,6 +1474,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ProtectiveActionCollection" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1414,14 +1537,13 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PinEquipment", "kind", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PinEquipment", fields);
+                base.export_element (obj, "PinEquipment", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "PinEquipment", "Equipment", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1470,6 +1592,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PinEquipment" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PinEquipmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; }
+                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1523,13 +1657,12 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PinGate", fields);
+                base.export_attribute (obj, "PinGate", "GateOutput", "GateOutput", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1574,6 +1707,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PinGate" };
+                super.submit (obj);
+                temp = document.getElementById ("GateOutput").value; if ("" != temp) obj.GateOutput = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1628,14 +1772,13 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PinTerminal", "kind", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PinTerminal", fields);
+                base.export_element (obj, "PinTerminal", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "PinTerminal", "Terminal", "Terminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1684,6 +1827,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PinTerminal" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PinTerminalKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; }
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1738,14 +1893,13 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PinBranchGroup", "kind", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PinBranchGroup", fields);
+                base.export_element (obj, "PinBranchGroup", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "PinBranchGroup", "BranchGroup", "BranchGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1794,6 +1948,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PinBranchGroup" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PinBranchGroupKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; }
+                temp = document.getElementById ("BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1848,14 +2014,13 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PinMeasurement", fields);
-                base.export_attribute (obj, "export_attribute", "PinMeasurement", fields);
+                base.export_attribute (obj, "PinMeasurement", "Measurement", "Measurement", fields);
+                base.export_attribute (obj, "PinMeasurement", "MeasurementCalculator", "MeasurementCalculator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1902,6 +2067,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PinMeasurement" };
+                super.submit (obj);
+                temp = document.getElementById ("Measurement").value; if ("" != temp) obj.Measurement = temp;
+                temp = document.getElementById ("MeasurementCalculator").value; if ("" != temp) obj.MeasurementCalculator = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1958,15 +2135,14 @@ define
             {
                 var fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ProtectiveActionRegulation", "isRegulating", base.from_boolean, fields);
-                base.export_element (obj, "ProtectiveActionRegulation", "targetValue", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveActionRegulation", fields);
+                base.export_element (obj, "ProtectiveActionRegulation", "isRegulating", "isRegulating",  base.from_boolean, fields);
+                base.export_element (obj, "ProtectiveActionRegulation", "targetValue", "targetValue",  base.from_float, fields);
+                base.export_attribute (obj, "ProtectiveActionRegulation", "RegulatingControl", "RegulatingControl", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2015,6 +2191,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProtectiveActionRegulation" };
+                super.submit (obj);
+                temp = document.getElementById ("isRegulating").checked; if (temp) obj.isRegulating = true;
+                temp = document.getElementById ("targetValue").value; if ("" != temp) obj.targetValue = temp;
+                temp = document.getElementById ("RegulatingControl").value; if ("" != temp) obj.RegulatingControl = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2077,20 +2266,19 @@ define
             {
                 var fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ProtectiveActionAdjustment", "byPercentage", base.from_string, fields);
-                base.export_element (obj, "ProtectiveActionAdjustment", "byValue", base.from_float, fields);
-                base.export_element (obj, "ProtectiveActionAdjustment", "kind", base.from_string, fields);
-                base.export_element (obj, "ProtectiveActionAdjustment", "reduce", base.from_boolean, fields);
-                base.export_element (obj, "ProtectiveActionAdjustment", "setValue", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveActionAdjustment", fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveActionAdjustment", fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveActionAdjustment", fields);
+                base.export_element (obj, "ProtectiveActionAdjustment", "byPercentage", "byPercentage",  base.from_string, fields);
+                base.export_element (obj, "ProtectiveActionAdjustment", "byValue", "byValue",  base.from_float, fields);
+                base.export_element (obj, "ProtectiveActionAdjustment", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "ProtectiveActionAdjustment", "reduce", "reduce",  base.from_boolean, fields);
+                base.export_element (obj, "ProtectiveActionAdjustment", "setValue", "setValue",  base.from_float, fields);
+                base.export_attribute (obj, "ProtectiveActionAdjustment", "Measurement", "Measurement", fields);
+                base.export_attribute (obj, "ProtectiveActionAdjustment", "ConductingEquipment", "ConductingEquipment", fields);
+                base.export_attribute (obj, "ProtectiveActionAdjustment", "DCConductingEquipment", "DCConductingEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2153,6 +2341,24 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProtectiveActionAdjustment" };
+                super.submit (obj);
+                temp = document.getElementById ("byPercentage").value; if ("" != temp) obj.byPercentage = temp;
+                temp = document.getElementById ("byValue").value; if ("" != temp) obj.byValue = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ProtectiveActionAdjustmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; }
+                temp = document.getElementById ("reduce").checked; if (temp) obj.reduce = true;
+                temp = document.getElementById ("setValue").value; if ("" != temp) obj.setValue = temp;
+                temp = document.getElementById ("Measurement").value; if ("" != temp) obj.Measurement = temp;
+                temp = document.getElementById ("ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
+                temp = document.getElementById ("DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2207,14 +2413,13 @@ define
             {
                 var fields = ProtectiveAction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ProtectiveActionEquipment", "inService", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "ProtectiveActionEquipment", fields);
+                base.export_element (obj, "ProtectiveActionEquipment", "inService", "inService",  base.from_boolean, fields);
+                base.export_attribute (obj, "ProtectiveActionEquipment", "Equipment", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2261,6 +2466,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProtectiveActionEquipment" };
+                super.submit (obj);
+                temp = document.getElementById ("inService").checked; if (temp) obj.inService = true;
+                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+
+                return (obj);
             }
 
             relations ()

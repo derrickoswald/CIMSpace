@@ -61,7 +61,6 @@ define
                 base.parse_element (/<cim:PowerSystemProjectSchedule.scheduledStart>([\s\S]*?)<\/cim:PowerSystemProjectSchedule.scheduledStart>/g, obj, "scheduledStart", base.to_datetime, sub, context);
                 base.parse_attribute (/<cim:PowerSystemProjectSchedule.status\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "status", sub, context);
                 base.parse_attribute (/<cim:PowerSystemProjectSchedule.stepType\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "stepType", sub, context);
-                base.parse_attribute (/<cim:PowerSystemProjectSchedule.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.PowerSystemProjectSchedule;
                 if (null == bucket)
                    context.parsed.PowerSystemProjectSchedule = bucket = {};
@@ -74,19 +73,17 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PowerSystemProjectSchedule", "actualEnd", base.from_datetime, fields);
-                base.export_element (obj, "PowerSystemProjectSchedule", "actualStart", base.from_datetime, fields);
-                base.export_element (obj, "PowerSystemProjectSchedule", "scheduledEnd", base.from_datetime, fields);
-                base.export_element (obj, "PowerSystemProjectSchedule", "scheduledStart", base.from_datetime, fields);
-                base.export_element (obj, "PowerSystemProjectSchedule", "status", base.from_string, fields);
-                base.export_element (obj, "PowerSystemProjectSchedule", "stepType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PowerSystemProjectSchedule", fields);
+                base.export_element (obj, "PowerSystemProjectSchedule", "actualEnd", "actualEnd",  base.from_datetime, fields);
+                base.export_element (obj, "PowerSystemProjectSchedule", "actualStart", "actualStart",  base.from_datetime, fields);
+                base.export_element (obj, "PowerSystemProjectSchedule", "scheduledEnd", "scheduledEnd",  base.from_datetime, fields);
+                base.export_element (obj, "PowerSystemProjectSchedule", "scheduledStart", "scheduledStart",  base.from_datetime, fields);
+                base.export_element (obj, "PowerSystemProjectSchedule", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "PowerSystemProjectSchedule", "stepType", "stepType",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -104,7 +101,6 @@ define
                     {{#scheduledStart}}<div><b>scheduledStart</b>: {{scheduledStart}}</div>{{/scheduledStart}}
                     {{#status}}<div><b>status</b>: {{status}}</div>{{/status}}
                     {{#stepType}}<div><b>stepType</b>: {{stepType}}</div>{{/stepType}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -142,20 +138,26 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><select id='status' class='form-control'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepType'>stepType: </label><div class='col-sm-8'><select id='stepType' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            relations ()
+            submit (obj)
             {
-                return (
-                    [
-                        ["unknown", "PowerSystemProject", "1", "1..*"]
-                    ]
-                );
+                var temp;
+
+                var obj = obj || { cls: "PowerSystemProjectSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("actualEnd").value; if ("" != temp) obj.actualEnd = temp;
+                temp = document.getElementById ("actualStart").value; if ("" != temp) obj.actualStart = temp;
+                temp = document.getElementById ("scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
+                temp = document.getElementById ("scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
+                temp = document.getElementById ("stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+
+                return (obj);
             }
         }
 
@@ -193,11 +195,9 @@ define
                 base.parse_element (/<cim:PowerSystemProject.type>([\s\S]*?)<\/cim:PowerSystemProject.type>/g, obj, "type", base.to_string, sub, context);
                 base.parse_element (/<cim:PowerSystemProject.version>([\s\S]*?)<\/cim:PowerSystemProject.version>/g, obj, "version", base.to_string, sub, context);
                 base.parse_element (/<cim:PowerSystemProject.description>([\s\S]*?)<\/cim:PowerSystemProject.description>/g, obj, "description", base.to_string, sub, context);
-                base.parse_attribute (/<cim:PowerSystemProject.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 base.parse_attributes (/<cim:PowerSystemProject.Collection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Collection", sub, context);
                 base.parse_attributes (/<cim:PowerSystemProject.Collection\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Collection", sub, context);
                 base.parse_attribute (/<cim:PowerSystemProject.Project\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "Project", sub, context);
-                base.parse_attributes (/<cim:PowerSystemProject.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 var bucket = context.parsed.PowerSystemProject;
                 if (null == bucket)
                    context.parsed.PowerSystemProject = bucket = {};
@@ -210,23 +210,20 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PowerSystemProject", "name", base.from_string, fields);
-                base.export_element (obj, "PowerSystemProject", "priority", base.from_string, fields);
-                base.export_element (obj, "PowerSystemProject", "state", base.from_string, fields);
-                base.export_element (obj, "PowerSystemProject", "type", base.from_string, fields);
-                base.export_element (obj, "PowerSystemProject", "version", base.from_string, fields);
-                base.export_element (obj, "PowerSystemProject", "description", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PowerSystemProject", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemProject", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemProject", fields);
-                base.export_attribute (obj, "export_attribute", "PowerSystemProject", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemProject", fields);
+                base.export_element (obj, "PowerSystemProject", "name", "name",  base.from_string, fields);
+                base.export_element (obj, "PowerSystemProject", "priority", "priority",  base.from_string, fields);
+                base.export_element (obj, "PowerSystemProject", "state", "state",  base.from_string, fields);
+                base.export_element (obj, "PowerSystemProject", "type", "type",  base.from_string, fields);
+                base.export_element (obj, "PowerSystemProject", "version", "version",  base.from_string, fields);
+                base.export_element (obj, "PowerSystemProject", "description", "description",  base.from_string, fields);
+                base.export_attributes (obj, "PowerSystemProject", "Collection", "Collection", fields);
+                base.export_attributes (obj, "PowerSystemProject", "Collection", "Collection", fields);
+                base.export_attribute (obj, "PowerSystemProject", "Project", "Project", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -244,11 +241,9 @@ define
                     {{#type}}<div><b>type</b>: {{type}}</div>{{/type}}
                     {{#version}}<div><b>version</b>: {{version}}</div>{{/version}}
                     {{#description}}<div><b>description</b>: {{description}}</div>{{/description}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     {{#Collection}}<div><b>Collection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Collection}}
                     {{#Collection}}<div><b>Collection</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/Collection}}
                     {{#Project}}<div><b>Project</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{Project}}&quot;);})'>{{Project}}</a></div>{{/Project}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     </div>
                     <fieldset>
 
@@ -262,7 +257,6 @@ define
                 obj.StepKind = []; if (!obj.state) obj.StepKind.push ({ id: '', selected: true}); for (var property in StepKind) obj.StepKind.push ({ id: property, selected: obj.state && obj.state.endsWith ('.' + property)});
                 if (obj.Collection) obj.Collection_string = obj.Collection.join ();
                 if (obj.Collection) obj.Collection_string = obj.Collection.join ();
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
@@ -271,7 +265,6 @@ define
                 delete obj.StepKind;
                 delete obj.Collection_string;
                 delete obj.Collection_string;
-                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -290,7 +283,6 @@ define
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='Project'>Project: </label><div class='col-sm-8'><input id='Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
                     </div>
                     <fieldset>
@@ -298,15 +290,30 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PowerSystemProject" };
+                super.submit (obj);
+                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById ("state").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.state = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById ("Project").value; if ("" != temp) obj.Project = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
                     [
-                        ["unknown", "DifferenceModel", "0..1", "0..*"],
                         ["Collection", "PowerSystemSubProject", "0..*", "1"],
                         ["Collection", "PowerSystemProject", "0..*", "0..1"],
-                        ["Project", "PowerSystemProject", "0..1", "0..*"],
-                        ["unknown", "PowerSystemProjectSchedule", "1..*", "1"]
+                        ["Project", "PowerSystemProject", "0..1", "0..*"]
                     ]
                 );
             }
@@ -358,18 +365,17 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ProjectStep", "actualEnd", base.from_datetime, fields);
-                base.export_element (obj, "ProjectStep", "actualStart", base.from_datetime, fields);
-                base.export_element (obj, "ProjectStep", "scheduledEnd", base.from_datetime, fields);
-                base.export_element (obj, "ProjectStep", "scheduledStart", base.from_datetime, fields);
-                base.export_element (obj, "ProjectStep", "status", base.from_string, fields);
-                base.export_element (obj, "ProjectStep", "stepType", base.from_string, fields);
+                base.export_element (obj, "ProjectStep", "actualEnd", "actualEnd",  base.from_datetime, fields);
+                base.export_element (obj, "ProjectStep", "actualStart", "actualStart",  base.from_datetime, fields);
+                base.export_element (obj, "ProjectStep", "scheduledEnd", "scheduledEnd",  base.from_datetime, fields);
+                base.export_element (obj, "ProjectStep", "scheduledStart", "scheduledStart",  base.from_datetime, fields);
+                base.export_element (obj, "ProjectStep", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "ProjectStep", "stepType", "stepType",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -429,6 +435,22 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProjectStep" };
+                super.submit (obj);
+                temp = document.getElementById ("actualEnd").value; if ("" != temp) obj.actualEnd = temp;
+                temp = document.getElementById ("actualStart").value; if ("" != temp) obj.actualStart = temp;
+                temp = document.getElementById ("scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
+                temp = document.getElementById ("scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
+                temp = document.getElementById ("stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -472,13 +494,12 @@ define
             {
                 var fields = PowerSystemProject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PowerSystemSubProject", fields);
+                base.export_attribute (obj, "PowerSystemSubProject", "Project", "Project", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -523,6 +544,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PowerSystemSubProject" };
+                super.submit (obj);
+                temp = document.getElementById ("Project").value; if ("" != temp) obj.Project = temp;
+
+                return (obj);
             }
 
             relations ()

@@ -65,14 +65,13 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StandardIndustryCode", "code", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "StandardIndustryCode", fields);
+                base.export_element (obj, "StandardIndustryCode", "code", "code",  base.from_string, fields);
+                base.export_attributes (obj, "StandardIndustryCode", "CustomerAgreements", "CustomerAgreements", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -120,6 +119,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "StandardIndustryCode" };
+                super.submit (obj);
+                temp = document.getElementById ("code").value; if ("" != temp) obj.code = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -178,16 +188,15 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ServiceGuarantee", "applicationPeriod", base.from_string, fields);
-                base.export_element (obj, "ServiceGuarantee", "automaticPay", base.from_boolean, fields);
-                base.export_element (obj, "ServiceGuarantee", "payAmount", base.from_string, fields);
-                base.export_element (obj, "ServiceGuarantee", "serviceRequirement", base.from_string, fields);
+                base.export_element (obj, "ServiceGuarantee", "applicationPeriod", "applicationPeriod",  base.from_string, fields);
+                base.export_element (obj, "ServiceGuarantee", "automaticPay", "automaticPay",  base.from_boolean, fields);
+                base.export_element (obj, "ServiceGuarantee", "payAmount", "payAmount",  base.from_string, fields);
+                base.export_element (obj, "ServiceGuarantee", "serviceRequirement", "serviceRequirement",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -239,6 +248,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ServiceGuarantee" };
+                super.submit (obj);
+                temp = document.getElementById ("applicationPeriod").value; if ("" != temp) obj.applicationPeriod = temp;
+                temp = document.getElementById ("automaticPay").checked; if (temp) obj.automaticPay = true;
+                temp = document.getElementById ("payAmount").value; if ("" != temp) obj.payAmount = temp;
+                temp = document.getElementById ("serviceRequirement").value; if ("" != temp) obj.serviceRequirement = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -284,13 +307,12 @@ define
             {
                 var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ComplianceEvent", "deadline", base.from_datetime, fields);
+                base.export_element (obj, "ComplianceEvent", "deadline", "deadline",  base.from_datetime, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -335,6 +357,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ComplianceEvent" };
+                super.submit (obj);
+                temp = document.getElementById ("deadline").value; if ("" != temp) obj.deadline = temp;
+
+                return (obj);
             }
         }
 
@@ -390,22 +423,21 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WorkBillingInfo", "costEstimate", base.from_string, fields);
-                base.export_element (obj, "WorkBillingInfo", "deposit", base.from_string, fields);
-                base.export_element (obj, "WorkBillingInfo", "discount", base.from_float, fields);
-                base.export_element (obj, "WorkBillingInfo", "dueDateTime", base.from_datetime, fields);
-                base.export_element (obj, "WorkBillingInfo", "issueDateTime", base.from_datetime, fields);
-                base.export_element (obj, "WorkBillingInfo", "receivedDateTime", base.from_datetime, fields);
-                base.export_element (obj, "WorkBillingInfo", "workPrice", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "WorkBillingInfo", fields);
-                base.export_attribute (obj, "export_attributes", "WorkBillingInfo", fields);
-                base.export_attribute (obj, "export_attribute", "WorkBillingInfo", fields);
+                base.export_element (obj, "WorkBillingInfo", "costEstimate", "costEstimate",  base.from_string, fields);
+                base.export_element (obj, "WorkBillingInfo", "deposit", "deposit",  base.from_string, fields);
+                base.export_element (obj, "WorkBillingInfo", "discount", "discount",  base.from_float, fields);
+                base.export_element (obj, "WorkBillingInfo", "dueDateTime", "dueDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "WorkBillingInfo", "issueDateTime", "issueDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "WorkBillingInfo", "receivedDateTime", "receivedDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "WorkBillingInfo", "workPrice", "workPrice",  base.from_string, fields);
+                base.export_attributes (obj, "WorkBillingInfo", "Works", "Works", fields);
+                base.export_attributes (obj, "WorkBillingInfo", "ErpLineItems", "ErpLineItems", fields);
+                base.export_attribute (obj, "WorkBillingInfo", "CustomerAccount", "CustomerAccount", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -473,6 +505,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WorkBillingInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("costEstimate").value; if ("" != temp) obj.costEstimate = temp;
+                temp = document.getElementById ("deposit").value; if ("" != temp) obj.deposit = temp;
+                temp = document.getElementById ("discount").value; if ("" != temp) obj.discount = temp;
+                temp = document.getElementById ("dueDateTime").value; if ("" != temp) obj.dueDateTime = temp;
+                temp = document.getElementById ("issueDateTime").value; if ("" != temp) obj.issueDateTime = temp;
+                temp = document.getElementById ("receivedDateTime").value; if ("" != temp) obj.receivedDateTime = temp;
+                temp = document.getElementById ("workPrice").value; if ("" != temp) obj.workPrice = temp;
+                temp = document.getElementById ("ErpLineItems").value; if ("" != temp) obj.ErpLineItems = temp.split (",");
+                temp = document.getElementById ("CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -533,7 +584,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -575,6 +625,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ExternalCustomerAgreement" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -627,21 +685,20 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PowerQualityPricing", "emergencyHighVoltLimit", base.from_string, fields);
-                base.export_element (obj, "PowerQualityPricing", "emergencyLowVoltLimit", base.from_string, fields);
-                base.export_element (obj, "PowerQualityPricing", "normalHighVoltLimit", base.from_string, fields);
-                base.export_element (obj, "PowerQualityPricing", "normalLowVoltLimit", base.from_string, fields);
-                base.export_element (obj, "PowerQualityPricing", "powerFactorMin", base.from_float, fields);
-                base.export_element (obj, "PowerQualityPricing", "valueUninterruptedServiceEnergy", base.from_string, fields);
-                base.export_element (obj, "PowerQualityPricing", "valueUninterruptedServiceP", base.from_float, fields);
-                base.export_element (obj, "PowerQualityPricing", "voltImbalanceViolCost", base.from_float, fields);
-                base.export_element (obj, "PowerQualityPricing", "voltLimitViolCost", base.from_float, fields);
+                base.export_element (obj, "PowerQualityPricing", "emergencyHighVoltLimit", "emergencyHighVoltLimit",  base.from_string, fields);
+                base.export_element (obj, "PowerQualityPricing", "emergencyLowVoltLimit", "emergencyLowVoltLimit",  base.from_string, fields);
+                base.export_element (obj, "PowerQualityPricing", "normalHighVoltLimit", "normalHighVoltLimit",  base.from_string, fields);
+                base.export_element (obj, "PowerQualityPricing", "normalLowVoltLimit", "normalLowVoltLimit",  base.from_string, fields);
+                base.export_element (obj, "PowerQualityPricing", "powerFactorMin", "powerFactorMin",  base.from_float, fields);
+                base.export_element (obj, "PowerQualityPricing", "valueUninterruptedServiceEnergy", "valueUninterruptedServiceEnergy",  base.from_string, fields);
+                base.export_element (obj, "PowerQualityPricing", "valueUninterruptedServiceP", "valueUninterruptedServiceP",  base.from_float, fields);
+                base.export_element (obj, "PowerQualityPricing", "voltImbalanceViolCost", "voltImbalanceViolCost",  base.from_float, fields);
+                base.export_element (obj, "PowerQualityPricing", "voltLimitViolCost", "voltLimitViolCost",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -703,6 +760,25 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PowerQualityPricing" };
+                super.submit (obj);
+                temp = document.getElementById ("emergencyHighVoltLimit").value; if ("" != temp) obj.emergencyHighVoltLimit = temp;
+                temp = document.getElementById ("emergencyLowVoltLimit").value; if ("" != temp) obj.emergencyLowVoltLimit = temp;
+                temp = document.getElementById ("normalHighVoltLimit").value; if ("" != temp) obj.normalHighVoltLimit = temp;
+                temp = document.getElementById ("normalLowVoltLimit").value; if ("" != temp) obj.normalLowVoltLimit = temp;
+                temp = document.getElementById ("powerFactorMin").value; if ("" != temp) obj.powerFactorMin = temp;
+                temp = document.getElementById ("valueUninterruptedServiceEnergy").value; if ("" != temp) obj.valueUninterruptedServiceEnergy = temp;
+                temp = document.getElementById ("valueUninterruptedServiceP").value; if ("" != temp) obj.valueUninterruptedServiceP = temp;
+                temp = document.getElementById ("voltImbalanceViolCost").value; if ("" != temp) obj.voltImbalanceViolCost = temp;
+                temp = document.getElementById ("voltLimitViolCost").value; if ("" != temp) obj.voltLimitViolCost = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -751,7 +827,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -793,6 +868,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "SubscribePowerCurve" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -848,22 +931,21 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CustomerBillingInfo", "billingDate", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingInfo", "dueDate", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingInfo", "kind", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingInfo", "lastPaymentAmt", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingInfo", "lastPaymentDate", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingInfo", "outBalance", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingInfo", "pymtPlanAmt", base.from_string, fields);
-                base.export_element (obj, "CustomerBillingInfo", "pymtPlanType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "CustomerBillingInfo", fields);
-                base.export_attribute (obj, "export_attribute", "CustomerBillingInfo", fields);
+                base.export_element (obj, "CustomerBillingInfo", "billingDate", "billingDate",  base.from_string, fields);
+                base.export_element (obj, "CustomerBillingInfo", "dueDate", "dueDate",  base.from_string, fields);
+                base.export_element (obj, "CustomerBillingInfo", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "CustomerBillingInfo", "lastPaymentAmt", "lastPaymentAmt",  base.from_string, fields);
+                base.export_element (obj, "CustomerBillingInfo", "lastPaymentDate", "lastPaymentDate",  base.from_string, fields);
+                base.export_element (obj, "CustomerBillingInfo", "outBalance", "outBalance",  base.from_string, fields);
+                base.export_element (obj, "CustomerBillingInfo", "pymtPlanAmt", "pymtPlanAmt",  base.from_string, fields);
+                base.export_element (obj, "CustomerBillingInfo", "pymtPlanType", "pymtPlanType",  base.from_string, fields);
+                base.export_attributes (obj, "CustomerBillingInfo", "ErpInvoiceLineItems", "ErpInvoiceLineItems", fields);
+                base.export_attribute (obj, "CustomerBillingInfo", "CustomerAccount", "CustomerAccount", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -930,6 +1012,26 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CustomerBillingInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("billingDate").value; if ("" != temp) obj.billingDate = temp;
+                temp = document.getElementById ("dueDate").value; if ("" != temp) obj.dueDate = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = CustomerBillingKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; }
+                temp = document.getElementById ("lastPaymentAmt").value; if ("" != temp) obj.lastPaymentAmt = temp;
+                temp = document.getElementById ("lastPaymentDate").value; if ("" != temp) obj.lastPaymentDate = temp;
+                temp = document.getElementById ("outBalance").value; if ("" != temp) obj.outBalance = temp;
+                temp = document.getElementById ("pymtPlanAmt").value; if ("" != temp) obj.pymtPlanAmt = temp;
+                temp = document.getElementById ("pymtPlanType").value; if ("" != temp) obj.pymtPlanType = temp;
+                temp = document.getElementById ("ErpInvoiceLineItems").value; if ("" != temp) obj.ErpInvoiceLineItems = temp.split (",");
+                temp = document.getElementById ("CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
+
+                return (obj);
             }
 
             relations ()

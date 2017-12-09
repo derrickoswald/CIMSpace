@@ -115,16 +115,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MarketRole", "roleType", base.from_string, fields);
-                base.export_element (obj, "MarketRole", "status", base.from_string, fields);
-                base.export_element (obj, "MarketRole", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "MarketRole", fields);
+                base.export_element (obj, "MarketRole", "roleType", "roleType",  base.from_string, fields);
+                base.export_element (obj, "MarketRole", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "MarketRole", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "MarketRole", "MarketParticipant", "MarketParticipant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -179,6 +178,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketRole" };
+                super.submit (obj);
+                temp = document.getElementById ("roleType").value; if ("" != temp) { temp = MarketRoleKind[temp]; if ("undefined" != typeof (temp)) obj.roleType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#MarketRoleKind." + temp; }
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -301,80 +314,79 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RegisteredResource", "ACAFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "ASSPOptimizationFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "commercialOpDate", base.from_datetime, fields);
-                base.export_element (obj, "RegisteredResource", "contingencyAvailFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "dispatchFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "ECAFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "endEffectiveDate", base.from_datetime, fields);
-                base.export_element (obj, "RegisteredResource", "flexibleOfferFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "hourlyPredispatch", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "isAggregatedRes", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "lastModified", base.from_datetime, fields);
-                base.export_element (obj, "RegisteredResource", "LMPMFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "marketParticipationFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "maxBaseSelfSchedQty ", base.from_float, fields);
-                base.export_element (obj, "RegisteredResource", "maxOnTime", base.from_float, fields);
-                base.export_element (obj, "RegisteredResource", "minDispatchTime", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "minOffTime", base.from_float, fields);
-                base.export_element (obj, "RegisteredResource", "minOnTime", base.from_float, fields);
-                base.export_element (obj, "RegisteredResource", "mustOfferFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "nonMarket", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "pointOfDeliveryFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "priceSetFlagDA", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "priceSetFlagRT", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "registrationStatus", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "resourceAdequacyFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "SMPMFlag", base.from_string, fields);
-                base.export_element (obj, "RegisteredResource", "startEffectiveDate", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attribute", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attribute", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attribute", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attribute", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attribute", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attribute", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attributes", "RegisteredResource", fields);
-                base.export_attribute (obj, "export_attribute", "RegisteredResource", fields);
+                base.export_element (obj, "RegisteredResource", "ACAFlag", "ACAFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "ASSPOptimizationFlag", "ASSPOptimizationFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "commercialOpDate", "commercialOpDate",  base.from_datetime, fields);
+                base.export_element (obj, "RegisteredResource", "contingencyAvailFlag", "contingencyAvailFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "dispatchFlag", "dispatchFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "ECAFlag", "ECAFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "endEffectiveDate", "endEffectiveDate",  base.from_datetime, fields);
+                base.export_element (obj, "RegisteredResource", "flexibleOfferFlag", "flexibleOfferFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "hourlyPredispatch", "hourlyPredispatch",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "isAggregatedRes", "isAggregatedRes",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "lastModified", "lastModified",  base.from_datetime, fields);
+                base.export_element (obj, "RegisteredResource", "LMPMFlag", "LMPMFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "marketParticipationFlag", "marketParticipationFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "maxBaseSelfSchedQty ", "maxBaseSelfSchedQty ",  base.from_float, fields);
+                base.export_element (obj, "RegisteredResource", "maxOnTime", "maxOnTime",  base.from_float, fields);
+                base.export_element (obj, "RegisteredResource", "minDispatchTime", "minDispatchTime",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "minOffTime", "minOffTime",  base.from_float, fields);
+                base.export_element (obj, "RegisteredResource", "minOnTime", "minOnTime",  base.from_float, fields);
+                base.export_element (obj, "RegisteredResource", "mustOfferFlag", "mustOfferFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "nonMarket", "nonMarket",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "pointOfDeliveryFlag", "pointOfDeliveryFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "priceSetFlagDA", "priceSetFlagDA",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "priceSetFlagRT", "priceSetFlagRT",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "registrationStatus", "registrationStatus",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "resourceAdequacyFlag", "resourceAdequacyFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "SMPMFlag", "SMPMFlag",  base.from_string, fields);
+                base.export_element (obj, "RegisteredResource", "startEffectiveDate", "startEffectiveDate",  base.from_datetime, fields);
+                base.export_attributes (obj, "RegisteredResource", "ResourceDispatchResults", "ResourceDispatchResults", fields);
+                base.export_attribute (obj, "RegisteredResource", "HostControlArea", "HostControlArea", fields);
+                base.export_attribute (obj, "RegisteredResource", "DefaultBid", "DefaultBid", fields);
+                base.export_attributes (obj, "RegisteredResource", "AllocationResultValues", "AllocationResultValues", fields);
+                base.export_attributes (obj, "RegisteredResource", "ResourceAncillaryServiceQualification", "ResourceAncillaryServiceQualification", fields);
+                base.export_attributes (obj, "RegisteredResource", "InterTie", "InterTie", fields);
+                base.export_attributes (obj, "RegisteredResource", "Commitments", "Commitments", fields);
+                base.export_attributes (obj, "RegisteredResource", "AggregateNode", "AggregateNode", fields);
+                base.export_attributes (obj, "RegisteredResource", "ResourceAwardInstruction", "ResourceAwardInstruction", fields);
+                base.export_attributes (obj, "RegisteredResource", "LoadFollowingOperatorInput", "LoadFollowingOperatorInput", fields);
+                base.export_attributes (obj, "RegisteredResource", "ControlAreaDesignation", "ControlAreaDesignation", fields);
+                base.export_attributes (obj, "RegisteredResource", "ResourceLoadFollowingInst", "ResourceLoadFollowingInst", fields);
+                base.export_attributes (obj, "RegisteredResource", "DotInstruction", "DotInstruction", fields);
+                base.export_attributes (obj, "RegisteredResource", "OrgResOwnership", "OrgResOwnership", fields);
+                base.export_attributes (obj, "RegisteredResource", "Instructions", "Instructions", fields);
+                base.export_attributes (obj, "RegisteredResource", "DopInstruction", "DopInstruction", fields);
+                base.export_attributes (obj, "RegisteredResource", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "RegisteredResource", "ResourceGroups", "ResourceGroups", fields);
+                base.export_attribute (obj, "RegisteredResource", "MktOrganisation", "MktOrganisation", fields);
+                base.export_attributes (obj, "RegisteredResource", "ExpectedEnergyValues", "ExpectedEnergyValues", fields);
+                base.export_attributes (obj, "RegisteredResource", "ResourceCertification", "ResourceCertification", fields);
+                base.export_attribute (obj, "RegisteredResource", "MktConnectivityNode", "MktConnectivityNode", fields);
+                base.export_attribute (obj, "RegisteredResource", "Pnode", "Pnode", fields);
+                base.export_attributes (obj, "RegisteredResource", "FormerReference", "FormerReference", fields);
+                base.export_attributes (obj, "RegisteredResource", "SubstitutionResourceList", "SubstitutionResourceList", fields);
+                base.export_attributes (obj, "RegisteredResource", "RUCAwardInstruction", "RUCAwardInstruction", fields);
+                base.export_attributes (obj, "RegisteredResource", "RMROperatorInput", "RMROperatorInput", fields);
+                base.export_attributes (obj, "RegisteredResource", "MPMTestThreshold", "MPMTestThreshold", fields);
+                base.export_attributes (obj, "RegisteredResource", "DispatchInstReply", "DispatchInstReply", fields);
+                base.export_attributes (obj, "RegisteredResource", "IntermittentResourceEligibility", "IntermittentResourceEligibility", fields);
+                base.export_attributes (obj, "RegisteredResource", "EnergyMarkets", "EnergyMarkets", fields);
+                base.export_attributes (obj, "RegisteredResource", "ResourceCapacity", "ResourceCapacity", fields);
+                base.export_attributes (obj, "RegisteredResource", "ExPostResourceResults", "ExPostResourceResults", fields);
+                base.export_attributes (obj, "RegisteredResource", "LoadFollowingInst", "LoadFollowingInst", fields);
+                base.export_attribute (obj, "RegisteredResource", "AdjacentCASet", "AdjacentCASet", fields);
+                base.export_attributes (obj, "RegisteredResource", "ForbiddenRegion", "ForbiddenRegion", fields);
+                base.export_attributes (obj, "RegisteredResource", "ContractDistributionFactor", "ContractDistributionFactor", fields);
+                base.export_attributes (obj, "RegisteredResource", "MPMResourceStatus", "MPMResourceStatus", fields);
+                base.export_attributes (obj, "RegisteredResource", "SubControlArea", "SubControlArea", fields);
+                base.export_attributes (obj, "RegisteredResource", "RampRateCurve", "RampRateCurve", fields);
+                base.export_attribute (obj, "RegisteredResource", "ResourceVerifiableCosts", "ResourceVerifiableCosts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -601,6 +613,62 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RegisteredResource" };
+                super.submit (obj);
+                temp = document.getElementById ("ACAFlag").value; if ("" != temp) obj.ACAFlag = temp;
+                temp = document.getElementById ("ASSPOptimizationFlag").value; if ("" != temp) obj.ASSPOptimizationFlag = temp;
+                temp = document.getElementById ("commercialOpDate").value; if ("" != temp) obj.commercialOpDate = temp;
+                temp = document.getElementById ("contingencyAvailFlag").value; if ("" != temp) obj.contingencyAvailFlag = temp;
+                temp = document.getElementById ("dispatchFlag").value; if ("" != temp) obj.dispatchFlag = temp;
+                temp = document.getElementById ("ECAFlag").value; if ("" != temp) obj.ECAFlag = temp;
+                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById ("flexibleOfferFlag").value; if ("" != temp) obj.flexibleOfferFlag = temp;
+                temp = document.getElementById ("hourlyPredispatch").value; if ("" != temp) obj.hourlyPredispatch = temp;
+                temp = document.getElementById ("isAggregatedRes").value; if ("" != temp) obj.isAggregatedRes = temp;
+                temp = document.getElementById ("lastModified").value; if ("" != temp) obj.lastModified = temp;
+                temp = document.getElementById ("LMPMFlag").value; if ("" != temp) obj.LMPMFlag = temp;
+                temp = document.getElementById ("marketParticipationFlag").value; if ("" != temp) obj.marketParticipationFlag = temp;
+                temp = document.getElementById ("maxBaseSelfSchedQty ").value; if ("" != temp) obj.maxBaseSelfSchedQty  = temp;
+                temp = document.getElementById ("maxOnTime").value; if ("" != temp) obj.maxOnTime = temp;
+                temp = document.getElementById ("minDispatchTime").value; if ("" != temp) obj.minDispatchTime = temp;
+                temp = document.getElementById ("minOffTime").value; if ("" != temp) obj.minOffTime = temp;
+                temp = document.getElementById ("minOnTime").value; if ("" != temp) obj.minOnTime = temp;
+                temp = document.getElementById ("mustOfferFlag").value; if ("" != temp) obj.mustOfferFlag = temp;
+                temp = document.getElementById ("nonMarket").value; if ("" != temp) obj.nonMarket = temp;
+                temp = document.getElementById ("pointOfDeliveryFlag").value; if ("" != temp) obj.pointOfDeliveryFlag = temp;
+                temp = document.getElementById ("priceSetFlagDA").value; if ("" != temp) obj.priceSetFlagDA = temp;
+                temp = document.getElementById ("priceSetFlagRT").value; if ("" != temp) obj.priceSetFlagRT = temp;
+                temp = document.getElementById ("registrationStatus").value; if ("" != temp) obj.registrationStatus = temp;
+                temp = document.getElementById ("resourceAdequacyFlag").value; if ("" != temp) obj.resourceAdequacyFlag = temp;
+                temp = document.getElementById ("SMPMFlag").value; if ("" != temp) obj.SMPMFlag = temp;
+                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById ("HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
+                temp = document.getElementById ("DefaultBid").value; if ("" != temp) obj.DefaultBid = temp;
+                temp = document.getElementById ("InterTie").value; if ("" != temp) obj.InterTie = temp.split (",");
+                temp = document.getElementById ("AggregateNode").value; if ("" != temp) obj.AggregateNode = temp.split (",");
+                temp = document.getElementById ("ControlAreaDesignation").value; if ("" != temp) obj.ControlAreaDesignation = temp.split (",");
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById ("ResourceGroups").value; if ("" != temp) obj.ResourceGroups = temp.split (",");
+                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
+                temp = document.getElementById ("ResourceCertification").value; if ("" != temp) obj.ResourceCertification = temp.split (",");
+                temp = document.getElementById ("MktConnectivityNode").value; if ("" != temp) obj.MktConnectivityNode = temp;
+                temp = document.getElementById ("Pnode").value; if ("" != temp) obj.Pnode = temp;
+                temp = document.getElementById ("MPMTestThreshold").value; if ("" != temp) obj.MPMTestThreshold = temp.split (",");
+                temp = document.getElementById ("EnergyMarkets").value; if ("" != temp) obj.EnergyMarkets = temp.split (",");
+                temp = document.getElementById ("ResourceCapacity").value; if ("" != temp) obj.ResourceCapacity = temp.split (",");
+                temp = document.getElementById ("AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
+                temp = document.getElementById ("ForbiddenRegion").value; if ("" != temp) obj.ForbiddenRegion = temp.split (",");
+                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
+                temp = document.getElementById ("RampRateCurve").value; if ("" != temp) obj.RampRateCurve = temp.split (",");
+                temp = document.getElementById ("ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -697,16 +765,15 @@ define
             {
                 var fields = Common.Organisation.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MarketParticipant", fields);
-                base.export_attribute (obj, "export_attributes", "MarketParticipant", fields);
-                base.export_attribute (obj, "export_attributes", "MarketParticipant", fields);
-                base.export_attribute (obj, "export_attributes", "MarketParticipant", fields);
+                base.export_attributes (obj, "MarketParticipant", "MarketRole", "MarketRole", fields);
+                base.export_attributes (obj, "MarketParticipant", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "MarketParticipant", "Bid", "Bid", fields);
+                base.export_attributes (obj, "MarketParticipant", "MarketDocument", "MarketDocument", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -764,6 +831,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketParticipant" };
+                super.submit (obj);
+                temp = document.getElementById ("MarketRole").value; if ("" != temp) obj.MarketRole = temp.split (",");
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+
+                return (obj);
             }
 
             relations ()

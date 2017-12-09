@@ -49,13 +49,12 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "TurbineLoadControllerDynamics", fields);
+                base.export_attribute (obj, "TurbineLoadControllerDynamics", "TurbineGovernorDynamics", "TurbineGovernorDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -100,6 +99,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TurbineLoadControllerDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("TurbineGovernorDynamics").value; if ("" != temp) obj.TurbineGovernorDynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -166,24 +176,23 @@ define
             {
                 var fields = TurbineLoadControllerDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TurbLCFB1", "db", base.from_string, fields);
-                base.export_element (obj, "TurbLCFB1", "emax", base.from_string, fields);
-                base.export_element (obj, "TurbLCFB1", "fb", base.from_string, fields);
-                base.export_element (obj, "TurbLCFB1", "fbf", base.from_boolean, fields);
-                base.export_element (obj, "TurbLCFB1", "irmax", base.from_string, fields);
-                base.export_element (obj, "TurbLCFB1", "ki", base.from_string, fields);
-                base.export_element (obj, "TurbLCFB1", "kp", base.from_string, fields);
-                base.export_element (obj, "TurbLCFB1", "mwbase", base.from_string, fields);
-                base.export_element (obj, "TurbLCFB1", "pbf", base.from_boolean, fields);
-                base.export_element (obj, "TurbLCFB1", "pmwset", base.from_string, fields);
-                base.export_element (obj, "TurbLCFB1", "speedReferenceGovernor", base.from_boolean, fields);
-                base.export_element (obj, "TurbLCFB1", "tpelec", base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "db", "db",  base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "emax", "emax",  base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "fb", "fb",  base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "fbf", "fbf",  base.from_boolean, fields);
+                base.export_element (obj, "TurbLCFB1", "irmax", "irmax",  base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "mwbase", "mwbase",  base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "pbf", "pbf",  base.from_boolean, fields);
+                base.export_element (obj, "TurbLCFB1", "pmwset", "pmwset",  base.from_string, fields);
+                base.export_element (obj, "TurbLCFB1", "speedReferenceGovernor", "speedReferenceGovernor",  base.from_boolean, fields);
+                base.export_element (obj, "TurbLCFB1", "tpelec", "tpelec",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -250,6 +259,28 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TurbLCFB1" };
+                super.submit (obj);
+                temp = document.getElementById ("db").value; if ("" != temp) obj.db = temp;
+                temp = document.getElementById ("emax").value; if ("" != temp) obj.emax = temp;
+                temp = document.getElementById ("fb").value; if ("" != temp) obj.fb = temp;
+                temp = document.getElementById ("fbf").checked; if (temp) obj.fbf = true;
+                temp = document.getElementById ("irmax").value; if ("" != temp) obj.irmax = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("mwbase").value; if ("" != temp) obj.mwbase = temp;
+                temp = document.getElementById ("pbf").checked; if (temp) obj.pbf = true;
+                temp = document.getElementById ("pmwset").value; if ("" != temp) obj.pmwset = temp;
+                temp = document.getElementById ("speedReferenceGovernor").checked; if (temp) obj.speedReferenceGovernor = true;
+                temp = document.getElementById ("tpelec").value; if ("" != temp) obj.tpelec = temp;
+
+                return (obj);
             }
         }
 

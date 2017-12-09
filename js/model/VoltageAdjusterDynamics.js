@@ -51,13 +51,12 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "VoltageAdjusterDynamics", fields);
+                base.export_attribute (obj, "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -102,6 +101,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VoltageAdjusterDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -162,18 +172,17 @@ define
             {
                 var fields = VoltageAdjusterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VAdjIEEE", "adjslew", base.from_float, fields);
-                base.export_element (obj, "VAdjIEEE", "taoff", base.from_string, fields);
-                base.export_element (obj, "VAdjIEEE", "taon", base.from_string, fields);
-                base.export_element (obj, "VAdjIEEE", "vadjf", base.from_float, fields);
-                base.export_element (obj, "VAdjIEEE", "vadjmax", base.from_string, fields);
-                base.export_element (obj, "VAdjIEEE", "vadjmin", base.from_string, fields);
+                base.export_element (obj, "VAdjIEEE", "adjslew", "adjslew",  base.from_float, fields);
+                base.export_element (obj, "VAdjIEEE", "taoff", "taoff",  base.from_string, fields);
+                base.export_element (obj, "VAdjIEEE", "taon", "taon",  base.from_string, fields);
+                base.export_element (obj, "VAdjIEEE", "vadjf", "vadjf",  base.from_float, fields);
+                base.export_element (obj, "VAdjIEEE", "vadjmax", "vadjmax",  base.from_string, fields);
+                base.export_element (obj, "VAdjIEEE", "vadjmin", "vadjmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -228,6 +237,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VAdjIEEE" };
+                super.submit (obj);
+                temp = document.getElementById ("adjslew").value; if ("" != temp) obj.adjslew = temp;
+                temp = document.getElementById ("taoff").value; if ("" != temp) obj.taoff = temp;
+                temp = document.getElementById ("taon").value; if ("" != temp) obj.taon = temp;
+                temp = document.getElementById ("vadjf").value; if ("" != temp) obj.vadjf = temp;
+                temp = document.getElementById ("vadjmax").value; if ("" != temp) obj.vadjmax = temp;
+                temp = document.getElementById ("vadjmin").value; if ("" != temp) obj.vadjmin = temp;
+
+                return (obj);
             }
         }
 

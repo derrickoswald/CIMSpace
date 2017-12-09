@@ -51,17 +51,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "TieLine", fields);
-                base.export_attribute (obj, "export_attribute", "TieLine", fields);
-                base.export_attribute (obj, "export_attributes", "TieLine", fields);
-                base.export_attribute (obj, "export_attribute", "TieLine", fields);
-                base.export_attribute (obj, "export_attribute", "TieLine", fields);
+                base.export_attribute (obj, "TieLine", "SideA_SubControlArea", "SideA_SubControlArea", fields);
+                base.export_attribute (obj, "TieLine", "EnergyTransaction", "EnergyTransaction", fields);
+                base.export_attributes (obj, "TieLine", "ParentOfA", "ParentOfA", fields);
+                base.export_attribute (obj, "TieLine", "ParentOfB", "ParentOfB", fields);
+                base.export_attribute (obj, "TieLine", "SideB_SubControlArea", "SideB_SubControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -116,6 +115,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TieLine" };
+                super.submit (obj);
+                temp = document.getElementById ("SideA_SubControlArea").value; if ("" != temp) obj.SideA_SubControlArea = temp;
+                temp = document.getElementById ("EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
+                temp = document.getElementById ("ParentOfA").value; if ("" != temp) obj.ParentOfA = temp.split (",");
+                temp = document.getElementById ("ParentOfB").value; if ("" != temp) obj.ParentOfB = temp;
+                temp = document.getElementById ("SideB_SubControlArea").value; if ("" != temp) obj.SideB_SubControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -175,13 +189,12 @@ define
             {
                 var fields = ExternalInputs.Profile.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "CurtailmentProfile", fields);
+                base.export_attribute (obj, "CurtailmentProfile", "EnergyTransaction", "EnergyTransaction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -226,6 +239,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CurtailmentProfile" };
+                super.submit (obj);
+                temp = document.getElementById ("EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -280,14 +304,13 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "TransmissionCorridor", fields);
-                base.export_attribute (obj, "export_attributes", "TransmissionCorridor", fields);
+                base.export_attributes (obj, "TransmissionCorridor", "TransmissionRightOfWays", "TransmissionRightOfWays", fields);
+                base.export_attributes (obj, "TransmissionCorridor", "ContainedIn", "ContainedIn", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -336,6 +359,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "TransmissionCorridor" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -392,13 +423,12 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "export_attribute", "InadvertentAccount", fields);
+                base.export_attribute (obj, "InadvertentAccount", "SubControlArea", "SubControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -443,6 +473,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InadvertentAccount" };
+                super.submit (obj);
+                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -497,14 +538,13 @@ define
             {
                 var fields = ExternalInputs.Profile.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "LossProfile", fields);
-                base.export_attribute (obj, "export_attribute", "LossProfile", fields);
+                base.export_attribute (obj, "LossProfile", "HasLoss_", "HasLoss_", fields);
+                base.export_attribute (obj, "LossProfile", "EnergyTransaction", "EnergyTransaction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -551,6 +591,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LossProfile" };
+                super.submit (obj);
+                temp = document.getElementById ("HasLoss_").value; if ("" != temp) obj.HasLoss_ = temp;
+                temp = document.getElementById ("EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -607,15 +659,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CurrentScheduledInterchange", "currentNetTieMW", base.from_float, fields);
-                base.export_element (obj, "CurrentScheduledInterchange", "useEmergencySchedule", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "CurrentScheduledInterchange", fields);
+                base.export_element (obj, "CurrentScheduledInterchange", "currentNetTieMW", "currentNetTieMW",  base.from_float, fields);
+                base.export_element (obj, "CurrentScheduledInterchange", "useEmergencySchedule", "useEmergencySchedule",  base.from_boolean, fields);
+                base.export_attribute (obj, "CurrentScheduledInterchange", "InternalControlArea", "InternalControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -664,6 +715,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CurrentScheduledInterchange" };
+                super.submit (obj);
+                temp = document.getElementById ("currentNetTieMW").value; if ("" != temp) obj.currentNetTieMW = temp;
+                temp = document.getElementById ("useEmergencySchedule").checked; if (temp) obj.useEmergencySchedule = true;
+                temp = document.getElementById ("InternalControlArea").value; if ("" != temp) obj.InternalControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -720,16 +784,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleMW", base.from_float, fields);
-                base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleStartTime", base.from_datetime, fields);
-                base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleRampTime", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "CurrentEmergencyScheduledInterchange", fields);
+                base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleMW", "emergencyScheduleMW",  base.from_float, fields);
+                base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleStartTime", "emergencyScheduleStartTime",  base.from_datetime, fields);
+                base.export_element (obj, "CurrentEmergencyScheduledInterchange", "emergencyScheduleRampTime", "emergencyScheduleRampTime",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentEmergencyScheduledInterchange", "InternalControlArea", "InternalControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -780,6 +843,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CurrentEmergencyScheduledInterchange" };
+                super.submit (obj);
+                temp = document.getElementById ("emergencyScheduleMW").value; if ("" != temp) obj.emergencyScheduleMW = temp;
+                temp = document.getElementById ("emergencyScheduleStartTime").value; if ("" != temp) obj.emergencyScheduleStartTime = temp;
+                temp = document.getElementById ("emergencyScheduleRampTime").value; if ("" != temp) obj.emergencyScheduleRampTime = temp;
+                temp = document.getElementById ("InternalControlArea").value; if ("" != temp) obj.InternalControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -839,19 +916,18 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AreaReserveSpec", "Description", base.from_string, fields);
-                base.export_element (obj, "AreaReserveSpec", "lowerRegMarginReqt", base.from_string, fields);
-                base.export_element (obj, "AreaReserveSpec", "opReserveReqt", base.from_string, fields);
-                base.export_element (obj, "AreaReserveSpec", "primaryReserveReqt", base.from_string, fields);
-                base.export_element (obj, "AreaReserveSpec", "raiseRegMarginReqt", base.from_string, fields);
-                base.export_element (obj, "AreaReserveSpec", "spinningReserveReqt", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "AreaReserveSpec", fields);
+                base.export_element (obj, "AreaReserveSpec", "Description", "Description",  base.from_string, fields);
+                base.export_element (obj, "AreaReserveSpec", "lowerRegMarginReqt", "lowerRegMarginReqt",  base.from_string, fields);
+                base.export_element (obj, "AreaReserveSpec", "opReserveReqt", "opReserveReqt",  base.from_string, fields);
+                base.export_element (obj, "AreaReserveSpec", "primaryReserveReqt", "primaryReserveReqt",  base.from_string, fields);
+                base.export_element (obj, "AreaReserveSpec", "raiseRegMarginReqt", "raiseRegMarginReqt",  base.from_string, fields);
+                base.export_element (obj, "AreaReserveSpec", "spinningReserveReqt", "spinningReserveReqt",  base.from_string, fields);
+                base.export_attributes (obj, "AreaReserveSpec", "SubControlArea", "SubControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -911,6 +987,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AreaReserveSpec" };
+                super.submit (obj);
+                temp = document.getElementById ("Description").value; if ("" != temp) obj.Description = temp;
+                temp = document.getElementById ("lowerRegMarginReqt").value; if ("" != temp) obj.lowerRegMarginReqt = temp;
+                temp = document.getElementById ("opReserveReqt").value; if ("" != temp) obj.opReserveReqt = temp;
+                temp = document.getElementById ("primaryReserveReqt").value; if ("" != temp) obj.primaryReserveReqt = temp;
+                temp = document.getElementById ("raiseRegMarginReqt").value; if ("" != temp) obj.raiseRegMarginReqt = temp;
+                temp = document.getElementById ("spinningReserveReqt").value; if ("" != temp) obj.spinningReserveReqt = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -968,17 +1060,16 @@ define
             {
                 var fields = Core.BasicIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DynamicSchedule", "dynSchedSignRev", base.from_boolean, fields);
-                base.export_element (obj, "DynamicSchedule", "dynSchedStatus", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "DynamicSchedule", fields);
-                base.export_attribute (obj, "export_attribute", "DynamicSchedule", fields);
-                base.export_attribute (obj, "export_attribute", "DynamicSchedule", fields);
+                base.export_element (obj, "DynamicSchedule", "dynSchedSignRev", "dynSchedSignRev",  base.from_boolean, fields);
+                base.export_element (obj, "DynamicSchedule", "dynSchedStatus", "dynSchedStatus",  base.from_string, fields);
+                base.export_attribute (obj, "DynamicSchedule", "MktMeasurement", "MktMeasurement", fields);
+                base.export_attribute (obj, "DynamicSchedule", "Receive_SubControlArea", "Receive_SubControlArea", fields);
+                base.export_attribute (obj, "DynamicSchedule", "Send_SubControlArea", "Send_SubControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1031,6 +1122,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DynamicSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("dynSchedSignRev").checked; if (temp) obj.dynSchedSignRev = true;
+                temp = document.getElementById ("dynSchedStatus").value; if ("" != temp) obj.dynSchedStatus = temp;
+                temp = document.getElementById ("MktMeasurement").value; if ("" != temp) obj.MktMeasurement = temp;
+                temp = document.getElementById ("Receive_SubControlArea").value; if ("" != temp) obj.Receive_SubControlArea = temp;
+                temp = document.getElementById ("Send_SubControlArea").value; if ("" != temp) obj.Send_SubControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1089,16 +1195,15 @@ define
             {
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "EnergyProduct", fields);
-                base.export_attribute (obj, "export_attributes", "EnergyProduct", fields);
-                base.export_attribute (obj, "export_attribute", "EnergyProduct", fields);
-                base.export_attribute (obj, "export_attribute", "EnergyProduct", fields);
+                base.export_attributes (obj, "EnergyProduct", "EnergyTransactions", "EnergyTransactions", fields);
+                base.export_attributes (obj, "EnergyProduct", "ResoldBy_Marketer", "ResoldBy_Marketer", fields);
+                base.export_attribute (obj, "EnergyProduct", "GenerationProvider", "GenerationProvider", fields);
+                base.export_attribute (obj, "EnergyProduct", "TitleHeldBy_Marketer", "TitleHeldBy_Marketer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1152,6 +1257,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EnergyProduct" };
+                super.submit (obj);
+                temp = document.getElementById ("ResoldBy_Marketer").value; if ("" != temp) obj.ResoldBy_Marketer = temp.split (",");
+                temp = document.getElementById ("GenerationProvider").value; if ("" != temp) obj.GenerationProvider = temp;
+                temp = document.getElementById ("TitleHeldBy_Marketer").value; if ("" != temp) obj.TitleHeldBy_Marketer = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1209,14 +1327,13 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "TransmissionRightOfWay", fields);
-                base.export_attribute (obj, "export_attribute", "TransmissionRightOfWay", fields);
+                base.export_attributes (obj, "TransmissionRightOfWay", "MktLine", "MktLine", fields);
+                base.export_attribute (obj, "TransmissionRightOfWay", "TransmissionCorridor", "TransmissionCorridor", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1264,6 +1381,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TransmissionRightOfWay" };
+                super.submit (obj);
+                temp = document.getElementById ("TransmissionCorridor").value; if ("" != temp) obj.TransmissionCorridor = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1321,14 +1449,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "InternalControlArea", fields);
-                base.export_attribute (obj, "export_attribute", "InternalControlArea", fields);
+                base.export_attributes (obj, "InternalControlArea", "CurrentEmergencySI", "CurrentEmergencySI", fields);
+                base.export_attribute (obj, "InternalControlArea", "CurrentScheduledInterchange", "CurrentScheduledInterchange", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1376,6 +1503,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InternalControlArea" };
+                super.submit (obj);
+                temp = document.getElementById ("CurrentScheduledInterchange").value; if ("" != temp) obj.CurrentScheduledInterchange = temp;
+
+                return (obj);
             }
 
             relations ()

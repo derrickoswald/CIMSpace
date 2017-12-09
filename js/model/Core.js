@@ -125,16 +125,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "NameType", "description", base.from_string, fields);
-                base.export_element (obj, "NameType", "name", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "NameType", fields);
-                base.export_attribute (obj, "export_attribute", "NameType", fields);
+                base.export_element (obj, "NameType", "description", "description",  base.from_string, fields);
+                base.export_element (obj, "NameType", "name", "name",  base.from_string, fields);
+                base.export_attributes (obj, "NameType", "Names", "Names", fields);
+                base.export_attribute (obj, "NameType", "NameTypeAuthority", "NameTypeAuthority", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -186,6 +185,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "NameType" };
+                super.submit (obj);
+                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById ("NameTypeAuthority").value; if ("" != temp) obj.NameTypeAuthority = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -243,16 +255,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "IrregularTimePoint", "time", base.from_string, fields);
-                base.export_element (obj, "IrregularTimePoint", "value1", base.from_float, fields);
-                base.export_element (obj, "IrregularTimePoint", "value2", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "IrregularTimePoint", fields);
+                base.export_element (obj, "IrregularTimePoint", "time", "time",  base.from_string, fields);
+                base.export_element (obj, "IrregularTimePoint", "value1", "value1",  base.from_float, fields);
+                base.export_element (obj, "IrregularTimePoint", "value2", "value2",  base.from_float, fields);
+                base.export_attribute (obj, "IrregularTimePoint", "IntervalSchedule", "IntervalSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -303,6 +314,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IrregularTimePoint" };
+                super.submit (obj);
+                temp = document.getElementById ("time").value; if ("" != temp) obj.time = temp;
+                temp = document.getElementById ("value1").value; if ("" != temp) obj.value1 = temp;
+                temp = document.getElementById ("value2").value; if ("" != temp) obj.value2 = temp;
+                temp = document.getElementById ("IntervalSchedule").value; if ("" != temp) obj.IntervalSchedule = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -359,16 +384,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "RegularTimePoint", "sequenceNumber", base.from_string, fields);
-                base.export_element (obj, "RegularTimePoint", "value1", base.from_float, fields);
-                base.export_element (obj, "RegularTimePoint", "value2", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "RegularTimePoint", fields);
+                base.export_element (obj, "RegularTimePoint", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
+                base.export_element (obj, "RegularTimePoint", "value1", "value1",  base.from_float, fields);
+                base.export_element (obj, "RegularTimePoint", "value2", "value2",  base.from_float, fields);
+                base.export_attribute (obj, "RegularTimePoint", "IntervalSchedule", "IntervalSchedule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -419,6 +443,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RegularTimePoint" };
+                super.submit (obj);
+                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById ("value1").value; if ("" != temp) obj.value1 = temp;
+                temp = document.getElementById ("value2").value; if ("" != temp) obj.value2 = temp;
+                temp = document.getElementById ("IntervalSchedule").value; if ("" != temp) obj.IntervalSchedule = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -476,15 +514,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Name", "name", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Name", fields);
-                base.export_attribute (obj, "export_attribute", "Name", fields);
+                base.export_element (obj, "Name", "name", "name",  base.from_string, fields);
+                base.export_attribute (obj, "Name", "NameType", "NameType", fields);
+                base.export_attribute (obj, "Name", "IdentifiedObject", "IdentifiedObject", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -533,6 +570,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Name" };
+                super.submit (obj);
+                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById ("NameType").value; if ("" != temp) obj.NameType = temp;
+                temp = document.getElementById ("IdentifiedObject").value; if ("" != temp) obj.IdentifiedObject = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -604,17 +654,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "IdentifiedObject", "aliasName", base.from_string, fields);
-                base.export_element (obj, "IdentifiedObject", "name", base.from_string, fields);
-                base.export_element (obj, "IdentifiedObject", "description", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "IdentifiedObject", fields);
-                base.export_attribute (obj, "export_attributes", "IdentifiedObject", fields);
+                base.export_element (obj, "IdentifiedObject", "aliasName", "aliasName",  base.from_string, fields);
+                base.export_element (obj, "IdentifiedObject", "name", "name",  base.from_string, fields);
+                base.export_element (obj, "IdentifiedObject", "description", "description",  base.from_string, fields);
+                base.export_attributes (obj, "IdentifiedObject", "Names", "Names", fields);
+                base.export_attributes (obj, "IdentifiedObject", "DiagramObjects", "DiagramObjects", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -671,6 +720,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IdentifiedObject" };
+                super.submit (obj);
+                temp = document.getElementById ("aliasName").value; if ("" != temp) obj.aliasName = temp;
+                temp = document.getElementById ("mRID").value; if ("" != temp) obj.mRID = temp;
+                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -731,17 +794,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CurveData", "xvalue", base.from_float, fields);
-                base.export_element (obj, "CurveData", "y1value", base.from_float, fields);
-                base.export_element (obj, "CurveData", "y2value", base.from_float, fields);
-                base.export_element (obj, "CurveData", "y3value", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "CurveData", fields);
+                base.export_element (obj, "CurveData", "xvalue", "xvalue",  base.from_float, fields);
+                base.export_element (obj, "CurveData", "y1value", "y1value",  base.from_float, fields);
+                base.export_element (obj, "CurveData", "y2value", "y2value",  base.from_float, fields);
+                base.export_element (obj, "CurveData", "y3value", "y3value",  base.from_float, fields);
+                base.export_attribute (obj, "CurveData", "Curve", "Curve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -794,6 +856,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CurveData" };
+                super.submit (obj);
+                temp = document.getElementById ("xvalue").value; if ("" != temp) obj.xvalue = temp;
+                temp = document.getElementById ("y1value").value; if ("" != temp) obj.y1value = temp;
+                temp = document.getElementById ("y2value").value; if ("" != temp) obj.y2value = temp;
+                temp = document.getElementById ("y3value").value; if ("" != temp) obj.y3value = temp;
+                temp = document.getElementById ("Curve").value; if ("" != temp) obj.Curve = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -849,15 +926,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "NameTypeAuthority", "description", base.from_string, fields);
-                base.export_element (obj, "NameTypeAuthority", "name", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "NameTypeAuthority", fields);
+                base.export_element (obj, "NameTypeAuthority", "description", "description",  base.from_string, fields);
+                base.export_element (obj, "NameTypeAuthority", "name", "name",  base.from_string, fields);
+                base.export_attributes (obj, "NameTypeAuthority", "NameTypes", "NameTypes", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -907,6 +983,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "NameTypeAuthority" };
+                super.submit (obj);
+                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -962,15 +1050,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "OperatingShare", "percentage", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "OperatingShare", fields);
-                base.export_attribute (obj, "export_attribute", "OperatingShare", fields);
+                base.export_element (obj, "OperatingShare", "percentage", "percentage",  base.from_string, fields);
+                base.export_attribute (obj, "OperatingShare", "OperatingParticipant", "OperatingParticipant", fields);
+                base.export_attribute (obj, "OperatingShare", "PowerSystemResource", "PowerSystemResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1019,6 +1106,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OperatingShare" };
+                super.submit (obj);
+                temp = document.getElementById ("percentage").value; if ("" != temp) obj.percentage = temp;
+                temp = document.getElementById ("OperatingParticipant").value; if ("" != temp) obj.OperatingParticipant = temp;
+                temp = document.getElementById ("PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1082,22 +1182,21 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Curve", "curveStyle", base.from_string, fields);
-                base.export_element (obj, "Curve", "xMultiplier", base.from_string, fields);
-                base.export_element (obj, "Curve", "xUnit", base.from_string, fields);
-                base.export_element (obj, "Curve", "y1Multiplier", base.from_string, fields);
-                base.export_element (obj, "Curve", "y1Unit", base.from_string, fields);
-                base.export_element (obj, "Curve", "y2Multiplier", base.from_string, fields);
-                base.export_element (obj, "Curve", "y2Unit", base.from_string, fields);
-                base.export_element (obj, "Curve", "y3Multiplier", base.from_string, fields);
-                base.export_element (obj, "Curve", "y3Unit", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Curve", fields);
+                base.export_element (obj, "Curve", "curveStyle", "curveStyle",  base.from_string, fields);
+                base.export_element (obj, "Curve", "xMultiplier", "xMultiplier",  base.from_string, fields);
+                base.export_element (obj, "Curve", "xUnit", "xUnit",  base.from_string, fields);
+                base.export_element (obj, "Curve", "y1Multiplier", "y1Multiplier",  base.from_string, fields);
+                base.export_element (obj, "Curve", "y1Unit", "y1Unit",  base.from_string, fields);
+                base.export_element (obj, "Curve", "y2Multiplier", "y2Multiplier",  base.from_string, fields);
+                base.export_element (obj, "Curve", "y2Unit", "y2Unit",  base.from_string, fields);
+                base.export_element (obj, "Curve", "y3Multiplier", "y3Multiplier",  base.from_string, fields);
+                base.export_element (obj, "Curve", "y3Unit", "y3Unit",  base.from_string, fields);
+                base.export_attributes (obj, "Curve", "CurveDatas", "CurveDatas", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1165,6 +1264,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Curve" };
+                super.submit (obj);
+                temp = document.getElementById ("curveStyle").value; if ("" != temp) { temp = CurveStyle[temp]; if ("undefined" != typeof (temp)) obj.curveStyle = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CurveStyle." + temp; }
+                temp = document.getElementById ("xMultiplier").value; if ("" != temp) obj.xMultiplier = temp;
+                temp = document.getElementById ("xUnit").value; if ("" != temp) obj.xUnit = temp;
+                temp = document.getElementById ("y1Multiplier").value; if ("" != temp) obj.y1Multiplier = temp;
+                temp = document.getElementById ("y1Unit").value; if ("" != temp) obj.y1Unit = temp;
+                temp = document.getElementById ("y2Multiplier").value; if ("" != temp) obj.y2Multiplier = temp;
+                temp = document.getElementById ("y2Unit").value; if ("" != temp) obj.y2Unit = temp;
+                temp = document.getElementById ("y3Multiplier").value; if ("" != temp) obj.y3Multiplier = temp;
+                temp = document.getElementById ("y3Unit").value; if ("" != temp) obj.y3Unit = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1218,13 +1336,12 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "PSRType", fields);
+                base.export_attributes (obj, "PSRType", "PowerSystemResources", "PowerSystemResources", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1270,6 +1387,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "PSRType" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1327,17 +1452,16 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BaseVoltage", "nominalVoltage", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "BaseVoltage", fields);
-                base.export_attribute (obj, "export_attributes", "BaseVoltage", fields);
-                base.export_attribute (obj, "export_attributes", "BaseVoltage", fields);
-                base.export_attribute (obj, "export_attributes", "BaseVoltage", fields);
+                base.export_element (obj, "BaseVoltage", "nominalVoltage", "nominalVoltage",  base.from_string, fields);
+                base.export_attributes (obj, "BaseVoltage", "VoltageLevel", "VoltageLevel", fields);
+                base.export_attributes (obj, "BaseVoltage", "TransformerEnds", "TransformerEnds", fields);
+                base.export_attributes (obj, "BaseVoltage", "TopologicalNode", "TopologicalNode", fields);
+                base.export_attributes (obj, "BaseVoltage", "ConductingEquipment", "ConductingEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1396,6 +1520,17 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BaseVoltage" };
+                super.submit (obj);
+                temp = document.getElementById ("nominalVoltage").value; if ("" != temp) obj.nominalVoltage = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1452,15 +1587,14 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ConnectivityNode", fields);
-                base.export_attribute (obj, "export_attribute", "ConnectivityNode", fields);
-                base.export_attribute (obj, "export_attributes", "ConnectivityNode", fields);
+                base.export_attribute (obj, "ConnectivityNode", "ConnectivityNodeContainer", "ConnectivityNodeContainer", fields);
+                base.export_attribute (obj, "ConnectivityNode", "TopologicalNode", "TopologicalNode", fields);
+                base.export_attributes (obj, "ConnectivityNode", "Terminals", "Terminals", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1510,6 +1644,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConnectivityNode" };
+                super.submit (obj);
+                temp = document.getElementById ("ConnectivityNodeContainer").value; if ("" != temp) obj.ConnectivityNodeContainer = temp;
+                temp = document.getElementById ("TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1565,13 +1711,12 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "GeographicalRegion", fields);
+                base.export_attributes (obj, "GeographicalRegion", "Regions", "Regions", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1617,6 +1762,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "GeographicalRegion" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1674,17 +1827,16 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BasicIntervalSchedule", "startTime", base.from_datetime, fields);
-                base.export_element (obj, "BasicIntervalSchedule", "value1Multiplier", base.from_string, fields);
-                base.export_element (obj, "BasicIntervalSchedule", "value1Unit", base.from_string, fields);
-                base.export_element (obj, "BasicIntervalSchedule", "value2Multiplier", base.from_string, fields);
-                base.export_element (obj, "BasicIntervalSchedule", "value2Unit", base.from_string, fields);
+                base.export_element (obj, "BasicIntervalSchedule", "startTime", "startTime",  base.from_datetime, fields);
+                base.export_element (obj, "BasicIntervalSchedule", "value1Multiplier", "value1Multiplier",  base.from_string, fields);
+                base.export_element (obj, "BasicIntervalSchedule", "value1Unit", "value1Unit",  base.from_string, fields);
+                base.export_element (obj, "BasicIntervalSchedule", "value2Multiplier", "value2Multiplier",  base.from_string, fields);
+                base.export_element (obj, "BasicIntervalSchedule", "value2Unit", "value2Unit",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1738,6 +1890,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BasicIntervalSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById ("value1Multiplier").value; if ("" != temp) obj.value1Multiplier = temp;
+                temp = document.getElementById ("value1Unit").value; if ("" != temp) obj.value1Unit = temp;
+                temp = document.getElementById ("value2Multiplier").value; if ("" != temp) obj.value2Multiplier = temp;
+                temp = document.getElementById ("value2Unit").value; if ("" != temp) obj.value2Unit = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1787,17 +1954,16 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ACDCTerminal", "connected", base.from_boolean, fields);
-                base.export_element (obj, "ACDCTerminal", "sequenceNumber", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ACDCTerminal", fields);
-                base.export_attribute (obj, "export_attribute", "ACDCTerminal", fields);
-                base.export_attribute (obj, "export_attributes", "ACDCTerminal", fields);
+                base.export_element (obj, "ACDCTerminal", "connected", "connected",  base.from_boolean, fields);
+                base.export_element (obj, "ACDCTerminal", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
+                base.export_attributes (obj, "ACDCTerminal", "Measurements", "Measurements", fields);
+                base.export_attribute (obj, "ACDCTerminal", "BusNameMarker", "BusNameMarker", fields);
+                base.export_attributes (obj, "ACDCTerminal", "OperationalLimitSet", "OperationalLimitSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1852,6 +2018,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ACDCTerminal" };
+                super.submit (obj);
+                temp = document.getElementById ("connected").checked; if (temp) obj.connected = true;
+                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById ("BusNameMarker").value; if ("" != temp) obj.BusNameMarker = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1909,13 +2088,12 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "OperatingParticipant", fields);
+                base.export_attributes (obj, "OperatingParticipant", "OperatingShare", "OperatingShare", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1961,6 +2139,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "OperatingParticipant" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2014,13 +2200,12 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BasePower", "basePower", base.from_string, fields);
+                base.export_element (obj, "BasePower", "basePower", "basePower",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2066,6 +2251,17 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BasePower" };
+                super.submit (obj);
+                temp = document.getElementById ("basePower").value; if ("" != temp) obj.basePower = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2109,13 +2305,12 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ReportingSuperGroup", fields);
+                base.export_attributes (obj, "ReportingSuperGroup", "ReportingGroup", "ReportingGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2161,6 +2356,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ReportingSuperGroup" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2232,29 +2435,28 @@ define
             {
                 var fields = ACDCTerminal.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Terminal", "phases", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attribute", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attribute", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attribute", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attribute", "Terminal", fields);
-                base.export_attribute (obj, "export_attribute", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
-                base.export_attribute (obj, "export_attributes", "Terminal", fields);
+                base.export_element (obj, "Terminal", "phases", "phases",  base.from_string, fields);
+                base.export_attributes (obj, "Terminal", "RemoteInputSignal", "RemoteInputSignal", fields);
+                base.export_attributes (obj, "Terminal", "TieFlow", "TieFlow", fields);
+                base.export_attribute (obj, "Terminal", "TopologicalNode", "TopologicalNode", fields);
+                base.export_attributes (obj, "Terminal", "HasSecondMutualCoupling", "HasSecondMutualCoupling", fields);
+                base.export_attributes (obj, "Terminal", "HasFirstMutualCoupling", "HasFirstMutualCoupling", fields);
+                base.export_attributes (obj, "Terminal", "TransformerEnd", "TransformerEnd", fields);
+                base.export_attributes (obj, "Terminal", "RegulatingControl", "RegulatingControl", fields);
+                base.export_attribute (obj, "Terminal", "ConductingEquipment", "ConductingEquipment", fields);
+                base.export_attributes (obj, "Terminal", "EquipmentFaults", "EquipmentFaults", fields);
+                base.export_attributes (obj, "Terminal", "ConverterDCSides", "ConverterDCSides", fields);
+                base.export_attribute (obj, "Terminal", "SvPowerFlow", "SvPowerFlow", fields);
+                base.export_attributes (obj, "Terminal", "PinTerminal", "PinTerminal", fields);
+                base.export_attribute (obj, "Terminal", "Bushing", "Bushing", fields);
+                base.export_attribute (obj, "Terminal", "ConnectivityNode", "ConnectivityNode", fields);
+                base.export_attributes (obj, "Terminal", "AuxiliaryEquipment", "AuxiliaryEquipment", fields);
+                base.export_attributes (obj, "Terminal", "BranchGroupTerminal", "BranchGroupTerminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2346,6 +2548,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Terminal" };
+                super.submit (obj);
+                temp = document.getElementById ("phases").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phases = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = document.getElementById ("TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
+                temp = document.getElementById ("ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
+                temp = document.getElementById ("SvPowerFlow").value; if ("" != temp) obj.SvPowerFlow = temp;
+                temp = document.getElementById ("Bushing").value; if ("" != temp) obj.Bushing = temp;
+                temp = document.getElementById ("ConnectivityNode").value; if ("" != temp) obj.ConnectivityNode = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2415,16 +2633,15 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "SubGeographicalRegion", fields);
-                base.export_attribute (obj, "export_attributes", "SubGeographicalRegion", fields);
-                base.export_attribute (obj, "export_attribute", "SubGeographicalRegion", fields);
-                base.export_attribute (obj, "export_attributes", "SubGeographicalRegion", fields);
+                base.export_attributes (obj, "SubGeographicalRegion", "DCLines", "DCLines", fields);
+                base.export_attributes (obj, "SubGeographicalRegion", "Lines", "Lines", fields);
+                base.export_attribute (obj, "SubGeographicalRegion", "Region", "Region", fields);
+                base.export_attributes (obj, "SubGeographicalRegion", "Substations", "Substations", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2478,6 +2695,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SubGeographicalRegion" };
+                super.submit (obj);
+                temp = document.getElementById ("Region").value; if ("" != temp) obj.Region = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2546,23 +2774,22 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attribute", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attribute", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemResource", fields);
+                base.export_attribute (obj, "PowerSystemResource", "AssetDatasheet", "AssetDatasheet", fields);
+                base.export_attributes (obj, "PowerSystemResource", "Clearances", "Clearances", fields);
+                base.export_attribute (obj, "PowerSystemResource", "Location", "Location", fields);
+                base.export_attributes (obj, "PowerSystemResource", "ReportingGroup", "ReportingGroup", fields);
+                base.export_attributes (obj, "PowerSystemResource", "PSREvents", "PSREvents", fields);
+                base.export_attribute (obj, "PowerSystemResource", "PSRType", "PSRType", fields);
+                base.export_attributes (obj, "PowerSystemResource", "OperatingShare", "OperatingShare", fields);
+                base.export_attributes (obj, "PowerSystemResource", "OperationTags", "OperationTags", fields);
+                base.export_attributes (obj, "PowerSystemResource", "Controls", "Controls", fields);
+                base.export_attributes (obj, "PowerSystemResource", "Assets", "Assets", fields);
+                base.export_attributes (obj, "PowerSystemResource", "Measurements", "Measurements", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2640,6 +2867,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PowerSystemResource" };
+                super.submit (obj);
+                temp = document.getElementById ("AssetDatasheet").value; if ("" != temp) obj.AssetDatasheet = temp;
+                temp = document.getElementById ("Clearances").value; if ("" != temp) obj.Clearances = temp.split (",");
+                temp = document.getElementById ("Location").value; if ("" != temp) obj.Location = temp;
+                temp = document.getElementById ("ReportingGroup").value; if ("" != temp) obj.ReportingGroup = temp.split (",");
+                temp = document.getElementById ("PSRType").value; if ("" != temp) obj.PSRType = temp;
+                temp = document.getElementById ("Assets").value; if ("" != temp) obj.Assets = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2701,13 +2944,12 @@ define
             {
                 var fields = BasicIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "IrregularIntervalSchedule", fields);
+                base.export_attributes (obj, "IrregularIntervalSchedule", "TimePoints", "TimePoints", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2753,6 +2995,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "IrregularIntervalSchedule" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2808,13 +3058,12 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BaseFrequency", "frequency", base.from_string, fields);
+                base.export_element (obj, "BaseFrequency", "frequency", "frequency",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2859,6 +3108,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BaseFrequency" };
+                super.submit (obj);
+                temp = document.getElementById ("frequency").value; if ("" != temp) obj.frequency = temp;
+
+                return (obj);
             }
         }
 
@@ -2906,16 +3166,15 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ReportingGroup", fields);
-                base.export_attribute (obj, "export_attributes", "ReportingGroup", fields);
-                base.export_attribute (obj, "export_attribute", "ReportingGroup", fields);
-                base.export_attribute (obj, "export_attributes", "ReportingGroup", fields);
+                base.export_attributes (obj, "ReportingGroup", "PowerSystemResource", "PowerSystemResource", fields);
+                base.export_attributes (obj, "ReportingGroup", "TopologicalNode", "TopologicalNode", fields);
+                base.export_attribute (obj, "ReportingGroup", "ReportingSuperGroup", "ReportingSuperGroup", fields);
+                base.export_attributes (obj, "ReportingGroup", "BusNameMarker", "BusNameMarker", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2970,6 +3229,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReportingGroup" };
+                super.submit (obj);
+                temp = document.getElementById ("PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp.split (",");
+                temp = document.getElementById ("ReportingSuperGroup").value; if ("" != temp) obj.ReportingSuperGroup = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3028,15 +3299,14 @@ define
             {
                 var fields = BasicIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RegularIntervalSchedule", "endTime", base.from_datetime, fields);
-                base.export_element (obj, "RegularIntervalSchedule", "timeStep", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "RegularIntervalSchedule", fields);
+                base.export_element (obj, "RegularIntervalSchedule", "endTime", "endTime",  base.from_datetime, fields);
+                base.export_element (obj, "RegularIntervalSchedule", "timeStep", "timeStep",  base.from_string, fields);
+                base.export_attributes (obj, "RegularIntervalSchedule", "TimePoints", "TimePoints", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3086,6 +3356,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RegularIntervalSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("endTime").value; if ("" != temp) obj.endTime = temp;
+                temp = document.getElementById ("timeStep").value; if ("" != temp) obj.timeStep = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3140,14 +3422,13 @@ define
             {
                 var fields = PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ConnectivityNodeContainer", fields);
-                base.export_attribute (obj, "export_attributes", "ConnectivityNodeContainer", fields);
+                base.export_attributes (obj, "ConnectivityNodeContainer", "ConnectivityNodes", "ConnectivityNodes", fields);
+                base.export_attributes (obj, "ConnectivityNodeContainer", "TopologicalNode", "TopologicalNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3196,6 +3477,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ConnectivityNodeContainer" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -3263,26 +3552,25 @@ define
             {
                 var fields = PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Equipment", "normallyInService", base.from_boolean, fields);
-                base.export_element (obj, "Equipment", "aggregate", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attribute", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
-                base.export_attribute (obj, "export_attributes", "Equipment", fields);
+                base.export_element (obj, "Equipment", "normallyInService", "normallyInService",  base.from_boolean, fields);
+                base.export_element (obj, "Equipment", "aggregate", "aggregate",  base.from_boolean, fields);
+                base.export_attributes (obj, "Equipment", "PinEquipment", "PinEquipment", fields);
+                base.export_attributes (obj, "Equipment", "UsagePoints", "UsagePoints", fields);
+                base.export_attributes (obj, "Equipment", "Faults", "Faults", fields);
+                base.export_attribute (obj, "Equipment", "EquipmentContainer", "EquipmentContainer", fields);
+                base.export_attributes (obj, "Equipment", "OperationalRestrictions", "OperationalRestrictions", fields);
+                base.export_attributes (obj, "Equipment", "Outages", "Outages", fields);
+                base.export_attributes (obj, "Equipment", "ContingencyEquipment", "ContingencyEquipment", fields);
+                base.export_attributes (obj, "Equipment", "ProtectiveActionEquipment", "ProtectiveActionEquipment", fields);
+                base.export_attributes (obj, "Equipment", "WeatherStation", "WeatherStation", fields);
+                base.export_attributes (obj, "Equipment", "LimitDependencyModel", "LimitDependencyModel", fields);
+                base.export_attributes (obj, "Equipment", "EqiupmentLimitSeriesComponent", "EqiupmentLimitSeriesComponent", fields);
+                base.export_attributes (obj, "Equipment", "OperationalLimitSet", "OperationalLimitSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3370,6 +3658,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Equipment" };
+                super.submit (obj);
+                temp = document.getElementById ("normallyInService").checked; if (temp) obj.normallyInService = true;
+                temp = document.getElementById ("aggregate").checked; if (temp) obj.aggregate = true;
+                temp = document.getElementById ("UsagePoints").value; if ("" != temp) obj.UsagePoints = temp.split (",");
+                temp = document.getElementById ("EquipmentContainer").value; if ("" != temp) obj.EquipmentContainer = temp;
+                temp = document.getElementById ("OperationalRestrictions").value; if ("" != temp) obj.OperationalRestrictions = temp.split (",");
+                temp = document.getElementById ("Outages").value; if ("" != temp) obj.Outages = temp.split (",");
+                temp = document.getElementById ("WeatherStation").value; if ("" != temp) obj.WeatherStation = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3432,13 +3737,12 @@ define
             {
                 var fields = ConnectivityNodeContainer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "EquipmentContainer", fields);
+                base.export_attributes (obj, "EquipmentContainer", "Equipments", "Equipments", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3484,6 +3788,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "EquipmentContainer" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -3543,17 +3855,16 @@ define
             {
                 var fields = EquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VoltageLevel", "highVoltageLimit", base.from_string, fields);
-                base.export_element (obj, "VoltageLevel", "lowVoltageLimit", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "VoltageLevel", fields);
-                base.export_attribute (obj, "export_attributes", "VoltageLevel", fields);
-                base.export_attribute (obj, "export_attribute", "VoltageLevel", fields);
+                base.export_element (obj, "VoltageLevel", "highVoltageLimit", "highVoltageLimit",  base.from_string, fields);
+                base.export_element (obj, "VoltageLevel", "lowVoltageLimit", "lowVoltageLimit",  base.from_string, fields);
+                base.export_attribute (obj, "VoltageLevel", "BaseVoltage", "BaseVoltage", fields);
+                base.export_attributes (obj, "VoltageLevel", "Bays", "Bays", fields);
+                base.export_attribute (obj, "VoltageLevel", "Substation", "Substation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3607,6 +3918,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VoltageLevel" };
+                super.submit (obj);
+                temp = document.getElementById ("highVoltageLimit").value; if ("" != temp) obj.highVoltageLimit = temp;
+                temp = document.getElementById ("lowVoltageLimit").value; if ("" != temp) obj.lowVoltageLimit = temp;
+                temp = document.getElementById ("BaseVoltage").value; if ("" != temp) obj.BaseVoltage = temp;
+                temp = document.getElementById ("Substation").value; if ("" != temp) obj.Substation = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3668,19 +3993,18 @@ define
             {
                 var fields = Equipment.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ConductingEquipment", fields);
-                base.export_attribute (obj, "export_attribute", "ConductingEquipment", fields);
-                base.export_attribute (obj, "export_attribute", "ConductingEquipment", fields);
-                base.export_attribute (obj, "export_attributes", "ConductingEquipment", fields);
-                base.export_attribute (obj, "export_attribute", "ConductingEquipment", fields);
-                base.export_attribute (obj, "export_attributes", "ConductingEquipment", fields);
-                base.export_attribute (obj, "export_attribute", "ConductingEquipment", fields);
+                base.export_attributes (obj, "ConductingEquipment", "ProtectionEquipments", "ProtectionEquipments", fields);
+                base.export_attribute (obj, "ConductingEquipment", "GroundingAction", "GroundingAction", fields);
+                base.export_attribute (obj, "ConductingEquipment", "BaseVoltage", "BaseVoltage", fields);
+                base.export_attributes (obj, "ConductingEquipment", "ProtectiveActionAdjustment", "ProtectiveActionAdjustment", fields);
+                base.export_attribute (obj, "ConductingEquipment", "SvStatus", "SvStatus", fields);
+                base.export_attributes (obj, "ConductingEquipment", "Terminals", "Terminals", fields);
+                base.export_attribute (obj, "ConductingEquipment", "JumpingAction", "JumpingAction", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3743,6 +4067,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConductingEquipment" };
+                super.submit (obj);
+                temp = document.getElementById ("ProtectionEquipments").value; if ("" != temp) obj.ProtectionEquipments = temp.split (",");
+                temp = document.getElementById ("GroundingAction").value; if ("" != temp) obj.GroundingAction = temp;
+                temp = document.getElementById ("BaseVoltage").value; if ("" != temp) obj.BaseVoltage = temp;
+                temp = document.getElementById ("SvStatus").value; if ("" != temp) obj.SvStatus = temp;
+                temp = document.getElementById ("JumpingAction").value; if ("" != temp) obj.JumpingAction = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3803,16 +4142,15 @@ define
             {
                 var fields = EquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "Substation", fields);
-                base.export_attribute (obj, "export_attributes", "Substation", fields);
-                base.export_attribute (obj, "export_attribute", "Substation", fields);
-                base.export_attribute (obj, "export_attributes", "Substation", fields);
+                base.export_attributes (obj, "Substation", "DCConverterUnit", "DCConverterUnit", fields);
+                base.export_attributes (obj, "Substation", "Bays", "Bays", fields);
+                base.export_attribute (obj, "Substation", "Region", "Region", fields);
+                base.export_attributes (obj, "Substation", "VoltageLevels", "VoltageLevels", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3866,6 +4204,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Substation" };
+                super.submit (obj);
+                temp = document.getElementById ("Region").value; if ("" != temp) obj.Region = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3929,18 +4278,17 @@ define
             {
                 var fields = EquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Bay", "bayEnergyMeasFlag", base.from_boolean, fields);
-                base.export_element (obj, "Bay", "bayPowerMeasFlag", base.from_boolean, fields);
-                base.export_element (obj, "Bay", "breakerConfiguration", base.from_string, fields);
-                base.export_element (obj, "Bay", "busBarConfiguration", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Bay", fields);
-                base.export_attribute (obj, "export_attribute", "Bay", fields);
+                base.export_element (obj, "Bay", "bayEnergyMeasFlag", "bayEnergyMeasFlag",  base.from_boolean, fields);
+                base.export_element (obj, "Bay", "bayPowerMeasFlag", "bayPowerMeasFlag",  base.from_boolean, fields);
+                base.export_element (obj, "Bay", "breakerConfiguration", "breakerConfiguration",  base.from_string, fields);
+                base.export_element (obj, "Bay", "busBarConfiguration", "busBarConfiguration",  base.from_string, fields);
+                base.export_attribute (obj, "Bay", "Substation", "Substation", fields);
+                base.export_attribute (obj, "Bay", "VoltageLevel", "VoltageLevel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3999,6 +4347,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Bay" };
+                super.submit (obj);
+                temp = document.getElementById ("bayEnergyMeasFlag").checked; if (temp) obj.bayEnergyMeasFlag = true;
+                temp = document.getElementById ("bayPowerMeasFlag").checked; if (temp) obj.bayPowerMeasFlag = true;
+                temp = document.getElementById ("breakerConfiguration").value; if ("" != temp) { temp = BreakerConfiguration[temp]; if ("undefined" != typeof (temp)) obj.breakerConfiguration = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BreakerConfiguration." + temp; }
+                temp = document.getElementById ("busBarConfiguration").value; if ("" != temp) { temp = BusbarConfiguration[temp]; if ("undefined" != typeof (temp)) obj.busBarConfiguration = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BusbarConfiguration." + temp; }
+                temp = document.getElementById ("Substation").value; if ("" != temp) obj.Substation = temp;
+                temp = document.getElementById ("VoltageLevel").value; if ("" != temp) obj.VoltageLevel = temp;
+
+                return (obj);
             }
 
             relations ()

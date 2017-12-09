@@ -130,18 +130,17 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Receipt", "isBankable", base.from_boolean, fields);
-                base.export_element (obj, "Receipt", "line", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Receipt", fields);
-                base.export_attribute (obj, "export_attribute", "Receipt", fields);
-                base.export_attribute (obj, "export_attribute", "Receipt", fields);
-                base.export_attribute (obj, "export_attributes", "Receipt", fields);
+                base.export_element (obj, "Receipt", "isBankable", "isBankable",  base.from_boolean, fields);
+                base.export_element (obj, "Receipt", "line", "line",  base.from_string, fields);
+                base.export_attributes (obj, "Receipt", "Transactions", "Transactions", fields);
+                base.export_attribute (obj, "Receipt", "VendorShift", "VendorShift", fields);
+                base.export_attribute (obj, "Receipt", "CashierShift", "CashierShift", fields);
+                base.export_attributes (obj, "Receipt", "Tenders", "Tenders", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -198,6 +197,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Receipt" };
+                super.submit (obj);
+                temp = document.getElementById ("isBankable").checked; if (temp) obj.isBankable = true;
+                temp = document.getElementById ("line").value; if ("" != temp) obj.line = temp;
+                temp = document.getElementById ("VendorShift").value; if ("" != temp) obj.VendorShift = temp;
+                temp = document.getElementById ("CashierShift").value; if ("" != temp) obj.CashierShift = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -258,17 +271,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Card", "accountHolderName", base.from_string, fields);
-                base.export_element (obj, "Card", "cvNumber", base.from_string, fields);
-                base.export_element (obj, "Card", "expiryDate", base.from_string, fields);
-                base.export_element (obj, "Card", "pan", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Card", fields);
+                base.export_element (obj, "Card", "accountHolderName", "accountHolderName",  base.from_string, fields);
+                base.export_element (obj, "Card", "cvNumber", "cvNumber",  base.from_string, fields);
+                base.export_element (obj, "Card", "expiryDate", "expiryDate",  base.from_string, fields);
+                base.export_element (obj, "Card", "pan", "pan",  base.from_string, fields);
+                base.export_attribute (obj, "Card", "Tender", "Tender", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -321,6 +333,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Card" };
+                super.submit (obj);
+                temp = document.getElementById ("accountHolderName").value; if ("" != temp) obj.accountHolderName = temp;
+                temp = document.getElementById ("cvNumber").value; if ("" != temp) obj.cvNumber = temp;
+                temp = document.getElementById ("expiryDate").value; if ("" != temp) obj.expiryDate = temp;
+                temp = document.getElementById ("pan").value; if ("" != temp) obj.pan = temp;
+                temp = document.getElementById ("Tender").value; if ("" != temp) obj.Tender = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -378,17 +405,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Due", "arrears", base.from_string, fields);
-                base.export_element (obj, "Due", "charges", base.from_string, fields);
-                base.export_element (obj, "Due", "current", base.from_string, fields);
-                base.export_element (obj, "Due", "interest", base.from_string, fields);
-                base.export_element (obj, "Due", "principle", base.from_string, fields);
+                base.export_element (obj, "Due", "arrears", "arrears",  base.from_string, fields);
+                base.export_element (obj, "Due", "charges", "charges",  base.from_string, fields);
+                base.export_element (obj, "Due", "current", "current",  base.from_string, fields);
+                base.export_element (obj, "Due", "interest", "interest",  base.from_string, fields);
+                base.export_element (obj, "Due", "principle", "principle",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -442,6 +468,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Due" };
+                super.submit (obj);
+                temp = document.getElementById ("arrears").value; if ("" != temp) obj.arrears = temp;
+                temp = document.getElementById ("charges").value; if ("" != temp) obj.charges = temp;
+                temp = document.getElementById ("current").value; if ("" != temp) obj.current = temp;
+                temp = document.getElementById ("interest").value; if ("" != temp) obj.interest = temp;
+                temp = document.getElementById ("principle").value; if ("" != temp) obj.principle = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -494,20 +535,19 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Charge", "fixedPortion", base.from_string, fields);
-                base.export_element (obj, "Charge", "kind", base.from_string, fields);
-                base.export_element (obj, "Charge", "variablePortion", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Charge", fields);
-                base.export_attribute (obj, "export_attributes", "Charge", fields);
-                base.export_attribute (obj, "export_attributes", "Charge", fields);
-                base.export_attribute (obj, "export_attribute", "Charge", fields);
-                base.export_attribute (obj, "export_attributes", "Charge", fields);
+                base.export_element (obj, "Charge", "fixedPortion", "fixedPortion",  base.from_string, fields);
+                base.export_element (obj, "Charge", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "Charge", "variablePortion", "variablePortion",  base.from_string, fields);
+                base.export_attributes (obj, "Charge", "AuxiliaryAccounts", "AuxiliaryAccounts", fields);
+                base.export_attributes (obj, "Charge", "ConsumptionTariffIntervals", "ConsumptionTariffIntervals", fields);
+                base.export_attributes (obj, "Charge", "ChildCharges", "ChildCharges", fields);
+                base.export_attribute (obj, "Charge", "ParentCharge", "ParentCharge", fields);
+                base.export_attributes (obj, "Charge", "TimeTariffIntervals", "TimeTariffIntervals", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -577,6 +617,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Charge" };
+                super.submit (obj);
+                temp = document.getElementById ("fixedPortion").value; if ("" != temp) obj.fixedPortion = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ChargeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ChargeKind." + temp; }
+                temp = document.getElementById ("variablePortion").value; if ("" != temp) obj.variablePortion = temp;
+                temp = document.getElementById ("AuxiliaryAccounts").value; if ("" != temp) obj.AuxiliaryAccounts = temp.split (",");
+                temp = document.getElementById ("ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
+                temp = document.getElementById ("ParentCharge").value; if ("" != temp) obj.ParentCharge = temp;
+                temp = document.getElementById ("TimeTariffIntervals").value; if ("" != temp) obj.TimeTariffIntervals = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -637,16 +694,15 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TariffProfile", "tariffCycle", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "TariffProfile", fields);
-                base.export_attribute (obj, "export_attributes", "TariffProfile", fields);
-                base.export_attribute (obj, "export_attributes", "TariffProfile", fields);
+                base.export_element (obj, "TariffProfile", "tariffCycle", "tariffCycle",  base.from_string, fields);
+                base.export_attributes (obj, "TariffProfile", "TimeTariffIntervals", "TimeTariffIntervals", fields);
+                base.export_attributes (obj, "TariffProfile", "Tariffs", "Tariffs", fields);
+                base.export_attributes (obj, "TariffProfile", "ConsumptionTariffIntervals", "ConsumptionTariffIntervals", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -705,6 +761,20 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TariffProfile" };
+                super.submit (obj);
+                temp = document.getElementById ("tariffCycle").value; if ("" != temp) obj.tariffCycle = temp;
+                temp = document.getElementById ("TimeTariffIntervals").value; if ("" != temp) obj.TimeTariffIntervals = temp.split (",");
+                temp = document.getElementById ("Tariffs").value; if ("" != temp) obj.Tariffs = temp.split (",");
+                temp = document.getElementById ("ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -760,15 +830,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AccountMovement", "amount", base.from_string, fields);
-                base.export_element (obj, "AccountMovement", "dateTime", base.from_datetime, fields);
-                base.export_element (obj, "AccountMovement", "reason", base.from_string, fields);
+                base.export_element (obj, "AccountMovement", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "AccountMovement", "dateTime", "dateTime",  base.from_datetime, fields);
+                base.export_element (obj, "AccountMovement", "reason", "reason",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -817,6 +886,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AccountMovement" };
+                super.submit (obj);
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("dateTime").value; if ("" != temp) obj.dateTime = temp;
+                temp = document.getElementById ("reason").value; if ("" != temp) obj.reason = temp;
+
+                return (obj);
             }
         }
 
@@ -867,17 +949,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ConsumptionTariffInterval", "sequenceNumber", base.from_string, fields);
-                base.export_element (obj, "ConsumptionTariffInterval", "startValue", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ConsumptionTariffInterval", fields);
-                base.export_attribute (obj, "export_attributes", "ConsumptionTariffInterval", fields);
-                base.export_attribute (obj, "export_attributes", "ConsumptionTariffInterval", fields);
+                base.export_element (obj, "ConsumptionTariffInterval", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
+                base.export_element (obj, "ConsumptionTariffInterval", "startValue", "startValue",  base.from_string, fields);
+                base.export_attributes (obj, "ConsumptionTariffInterval", "Charges", "Charges", fields);
+                base.export_attributes (obj, "ConsumptionTariffInterval", "TouTariffIntervals", "TouTariffIntervals", fields);
+                base.export_attributes (obj, "ConsumptionTariffInterval", "TariffProfiles", "TariffProfiles", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -936,6 +1017,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConsumptionTariffInterval" };
+                super.submit (obj);
+                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById ("startValue").value; if ("" != temp) obj.startValue = temp;
+                temp = document.getElementById ("Charges").value; if ("" != temp) obj.Charges = temp.split (",");
+                temp = document.getElementById ("TouTariffIntervals").value; if ("" != temp) obj.TouTariffIntervals = temp.split (",");
+                temp = document.getElementById ("TariffProfiles").value; if ("" != temp) obj.TariffProfiles = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -997,17 +1093,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "TimeTariffInterval", "sequenceNumber", base.from_string, fields);
-                base.export_element (obj, "TimeTariffInterval", "startTime", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "TimeTariffInterval", fields);
-                base.export_attribute (obj, "export_attributes", "TimeTariffInterval", fields);
-                base.export_attribute (obj, "export_attributes", "TimeTariffInterval", fields);
+                base.export_element (obj, "TimeTariffInterval", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
+                base.export_element (obj, "TimeTariffInterval", "startTime", "startTime",  base.from_string, fields);
+                base.export_attributes (obj, "TimeTariffInterval", "TariffProfiles", "TariffProfiles", fields);
+                base.export_attributes (obj, "TimeTariffInterval", "ConsumptionTariffIntervals", "ConsumptionTariffIntervals", fields);
+                base.export_attributes (obj, "TimeTariffInterval", "Charges", "Charges", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1066,6 +1161,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TimeTariffInterval" };
+                super.submit (obj);
+                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById ("TariffProfiles").value; if ("" != temp) obj.TariffProfiles = temp.split (",");
+                temp = document.getElementById ("ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
+                temp = document.getElementById ("Charges").value; if ("" != temp) obj.Charges = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1133,23 +1243,22 @@ define
             {
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AuxiliaryAgreement", "arrearsInterest", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAgreement", "auxCycle", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAgreement", "auxPriorityCode", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAgreement", "fixedAmount", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAgreement", "minAmount", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAgreement", "payCycle", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAgreement", "subType", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAgreement", "vendPortion", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAgreement", "vendPortionArrear", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "AuxiliaryAgreement", fields);
-                base.export_attribute (obj, "export_attributes", "AuxiliaryAgreement", fields);
+                base.export_element (obj, "AuxiliaryAgreement", "arrearsInterest", "arrearsInterest",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAgreement", "auxCycle", "auxCycle",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAgreement", "auxPriorityCode", "auxPriorityCode",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAgreement", "fixedAmount", "fixedAmount",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAgreement", "minAmount", "minAmount",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAgreement", "payCycle", "payCycle",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAgreement", "subType", "subType",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAgreement", "vendPortion", "vendPortion",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAgreement", "vendPortionArrear", "vendPortionArrear",  base.from_string, fields);
+                base.export_attribute (obj, "AuxiliaryAgreement", "CustomerAgreement", "CustomerAgreement", fields);
+                base.export_attributes (obj, "AuxiliaryAgreement", "AuxiliaryAccounts", "AuxiliaryAccounts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1217,6 +1326,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AuxiliaryAgreement" };
+                super.submit (obj);
+                temp = document.getElementById ("arrearsInterest").value; if ("" != temp) obj.arrearsInterest = temp;
+                temp = document.getElementById ("auxCycle").value; if ("" != temp) obj.auxCycle = temp;
+                temp = document.getElementById ("auxPriorityCode").value; if ("" != temp) obj.auxPriorityCode = temp;
+                temp = document.getElementById ("fixedAmount").value; if ("" != temp) obj.fixedAmount = temp;
+                temp = document.getElementById ("minAmount").value; if ("" != temp) obj.minAmount = temp;
+                temp = document.getElementById ("payCycle").value; if ("" != temp) obj.payCycle = temp;
+                temp = document.getElementById ("subType").value; if ("" != temp) obj.subType = temp;
+                temp = document.getElementById ("vendPortion").value; if ("" != temp) obj.vendPortion = temp;
+                temp = document.getElementById ("vendPortionArrear").value; if ("" != temp) obj.vendPortionArrear = temp;
+                temp = document.getElementById ("CustomerAgreement").value; if ("" != temp) obj.CustomerAgreement = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1271,13 +1400,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "Vendor", fields);
+                base.export_attributes (obj, "Vendor", "VendorShifts", "VendorShifts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1323,6 +1451,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Vendor" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1380,17 +1516,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "BankAccountDetail", "accountNumber", base.from_string, fields);
-                base.export_element (obj, "BankAccountDetail", "bankName", base.from_string, fields);
-                base.export_element (obj, "BankAccountDetail", "branchCode", base.from_string, fields);
-                base.export_element (obj, "BankAccountDetail", "holderID", base.from_string, fields);
-                base.export_element (obj, "BankAccountDetail", "holderName", base.from_string, fields);
+                base.export_element (obj, "BankAccountDetail", "accountNumber", "accountNumber",  base.from_string, fields);
+                base.export_element (obj, "BankAccountDetail", "bankName", "bankName",  base.from_string, fields);
+                base.export_element (obj, "BankAccountDetail", "branchCode", "branchCode",  base.from_string, fields);
+                base.export_element (obj, "BankAccountDetail", "holderID", "holderID",  base.from_string, fields);
+                base.export_element (obj, "BankAccountDetail", "holderName", "holderName",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1444,6 +1579,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BankAccountDetail" };
+                super.submit (obj);
+                temp = document.getElementById ("accountNumber").value; if ("" != temp) obj.accountNumber = temp;
+                temp = document.getElementById ("bankName").value; if ("" != temp) obj.bankName = temp;
+                temp = document.getElementById ("branchCode").value; if ("" != temp) obj.branchCode = temp;
+                temp = document.getElementById ("holderID").value; if ("" != temp) obj.holderID = temp;
+                temp = document.getElementById ("holderName").value; if ("" != temp) obj.holderName = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1488,14 +1638,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PointOfSale", "location", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "PointOfSale", fields);
+                base.export_element (obj, "PointOfSale", "location", "location",  base.from_string, fields);
+                base.export_attributes (obj, "PointOfSale", "CashierShifts", "CashierShifts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1543,6 +1692,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PointOfSale" };
+                super.submit (obj);
+                temp = document.getElementById ("location").value; if ("" != temp) obj.location = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1603,18 +1763,17 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Shift", "activityInterval", base.from_string, fields);
-                base.export_element (obj, "Shift", "receiptsGrandTotalBankable", base.from_string, fields);
-                base.export_element (obj, "Shift", "receiptsGrandTotalNonBankable", base.from_string, fields);
-                base.export_element (obj, "Shift", "receiptsGrandTotalRounding", base.from_string, fields);
-                base.export_element (obj, "Shift", "transactionsGrandTotal", base.from_string, fields);
-                base.export_element (obj, "Shift", "transactionsGrandTotalRounding", base.from_string, fields);
+                base.export_element (obj, "Shift", "activityInterval", "activityInterval",  base.from_string, fields);
+                base.export_element (obj, "Shift", "receiptsGrandTotalBankable", "receiptsGrandTotalBankable",  base.from_string, fields);
+                base.export_element (obj, "Shift", "receiptsGrandTotalNonBankable", "receiptsGrandTotalNonBankable",  base.from_string, fields);
+                base.export_element (obj, "Shift", "receiptsGrandTotalRounding", "receiptsGrandTotalRounding",  base.from_string, fields);
+                base.export_element (obj, "Shift", "transactionsGrandTotal", "transactionsGrandTotal",  base.from_string, fields);
+                base.export_element (obj, "Shift", "transactionsGrandTotalRounding", "transactionsGrandTotalRounding",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1670,6 +1829,22 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Shift" };
+                super.submit (obj);
+                temp = document.getElementById ("activityInterval").value; if ("" != temp) obj.activityInterval = temp;
+                temp = document.getElementById ("receiptsGrandTotalBankable").value; if ("" != temp) obj.receiptsGrandTotalBankable = temp;
+                temp = document.getElementById ("receiptsGrandTotalNonBankable").value; if ("" != temp) obj.receiptsGrandTotalNonBankable = temp;
+                temp = document.getElementById ("receiptsGrandTotalRounding").value; if ("" != temp) obj.receiptsGrandTotalRounding = temp;
+                temp = document.getElementById ("transactionsGrandTotal").value; if ("" != temp) obj.transactionsGrandTotal = temp;
+                temp = document.getElementById ("transactionsGrandTotalRounding").value; if ("" != temp) obj.transactionsGrandTotalRounding = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1716,16 +1891,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "LineDetail", "amount", base.from_string, fields);
-                base.export_element (obj, "LineDetail", "dateTime", base.from_datetime, fields);
-                base.export_element (obj, "LineDetail", "note", base.from_string, fields);
-                base.export_element (obj, "LineDetail", "rounding", base.from_string, fields);
+                base.export_element (obj, "LineDetail", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "LineDetail", "dateTime", "dateTime",  base.from_datetime, fields);
+                base.export_element (obj, "LineDetail", "note", "note",  base.from_string, fields);
+                base.export_element (obj, "LineDetail", "rounding", "rounding",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1777,6 +1951,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LineDetail" };
+                super.submit (obj);
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("dateTime").value; if ("" != temp) obj.dateTime = temp;
+                temp = document.getElementById ("note").value; if ("" != temp) obj.note = temp;
+                temp = document.getElementById ("rounding").value; if ("" != temp) obj.rounding = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1823,14 +2011,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Cashier", "electronicAddress", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Cashier", fields);
+                base.export_element (obj, "Cashier", "electronicAddress", "electronicAddress",  base.from_string, fields);
+                base.export_attributes (obj, "Cashier", "CashierShifts", "CashierShifts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1878,6 +2065,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Cashier" };
+                super.submit (obj);
+                temp = document.getElementById ("electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1935,17 +2133,16 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ServiceSupplier", "issuerIdentificationNumber", base.from_string, fields);
-                base.export_element (obj, "ServiceSupplier", "kind", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ServiceSupplier", fields);
-                base.export_attribute (obj, "export_attributes", "ServiceSupplier", fields);
-                base.export_attribute (obj, "export_attributes", "ServiceSupplier", fields);
+                base.export_element (obj, "ServiceSupplier", "issuerIdentificationNumber", "issuerIdentificationNumber",  base.from_string, fields);
+                base.export_element (obj, "ServiceSupplier", "kind", "kind",  base.from_string, fields);
+                base.export_attributes (obj, "ServiceSupplier", "CustomerAgreements", "CustomerAgreements", fields);
+                base.export_attributes (obj, "ServiceSupplier", "BankAccounts", "BankAccounts", fields);
+                base.export_attributes (obj, "ServiceSupplier", "UsagePoints", "UsagePoints", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2003,6 +2200,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ServiceSupplier" };
+                super.submit (obj);
+                temp = document.getElementById ("issuerIdentificationNumber").value; if ("" != temp) obj.issuerIdentificationNumber = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = SupplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SupplierKind." + temp; }
+
+                return (obj);
             }
 
             relations ()
@@ -2063,18 +2272,17 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Cheque", "bankAccountDetail", base.from_string, fields);
-                base.export_element (obj, "Cheque", "chequeNumber", base.from_string, fields);
-                base.export_element (obj, "Cheque", "date", base.from_string, fields);
-                base.export_element (obj, "Cheque", "kind", base.from_string, fields);
-                base.export_element (obj, "Cheque", "micrNumber", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Cheque", fields);
+                base.export_element (obj, "Cheque", "bankAccountDetail", "bankAccountDetail",  base.from_string, fields);
+                base.export_element (obj, "Cheque", "chequeNumber", "chequeNumber",  base.from_string, fields);
+                base.export_element (obj, "Cheque", "date", "date",  base.from_string, fields);
+                base.export_element (obj, "Cheque", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "Cheque", "micrNumber", "micrNumber",  base.from_string, fields);
+                base.export_attribute (obj, "Cheque", "Tender", "Tender", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2131,6 +2339,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Cheque" };
+                super.submit (obj);
+                temp = document.getElementById ("bankAccountDetail").value; if ("" != temp) obj.bankAccountDetail = temp;
+                temp = document.getElementById ("chequeNumber").value; if ("" != temp) obj.chequeNumber = temp;
+                temp = document.getElementById ("date").value; if ("" != temp) obj.date = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ChequeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ChequeKind." + temp; }
+                temp = document.getElementById ("micrNumber").value; if ("" != temp) obj.micrNumber = temp;
+                temp = document.getElementById ("Tender").value; if ("" != temp) obj.Tender = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2191,18 +2415,17 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Tender", "amount", base.from_string, fields);
-                base.export_element (obj, "Tender", "change", base.from_string, fields);
-                base.export_element (obj, "Tender", "kind", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Tender", fields);
-                base.export_attribute (obj, "export_attribute", "Tender", fields);
-                base.export_attribute (obj, "export_attribute", "Tender", fields);
+                base.export_element (obj, "Tender", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "Tender", "change", "change",  base.from_string, fields);
+                base.export_element (obj, "Tender", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Tender", "Cheque", "Cheque", fields);
+                base.export_attribute (obj, "Tender", "Card", "Card", fields);
+                base.export_attribute (obj, "Tender", "Receipt", "Receipt", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2261,6 +2484,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Tender" };
+                super.submit (obj);
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("change").value; if ("" != temp) obj.change = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TenderKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TenderKind." + temp; }
+                temp = document.getElementById ("Cheque").value; if ("" != temp) obj.Cheque = temp;
+                temp = document.getElementById ("Card").value; if ("" != temp) obj.Card = temp;
+                temp = document.getElementById ("Receipt").value; if ("" != temp) obj.Receipt = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2314,13 +2553,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "Transactor", fields);
+                base.export_attributes (obj, "Transactor", "MerchantAccounts", "MerchantAccounts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2367,6 +2605,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Transactor" };
+                super.submit (obj);
+                temp = document.getElementById ("MerchantAccounts").value; if ("" != temp) obj.MerchantAccounts = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -2427,20 +2676,19 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AuxiliaryAccount", "balance", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAccount", "due", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAccount", "lastCredit", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAccount", "lastDebit", base.from_string, fields);
-                base.export_element (obj, "AuxiliaryAccount", "principleAmount", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "AuxiliaryAccount", fields);
-                base.export_attribute (obj, "export_attributes", "AuxiliaryAccount", fields);
-                base.export_attribute (obj, "export_attribute", "AuxiliaryAccount", fields);
+                base.export_element (obj, "AuxiliaryAccount", "balance", "balance",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAccount", "due", "due",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAccount", "lastCredit", "lastCredit",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAccount", "lastDebit", "lastDebit",  base.from_string, fields);
+                base.export_element (obj, "AuxiliaryAccount", "principleAmount", "principleAmount",  base.from_string, fields);
+                base.export_attributes (obj, "AuxiliaryAccount", "PaymentTransactions", "PaymentTransactions", fields);
+                base.export_attributes (obj, "AuxiliaryAccount", "Charges", "Charges", fields);
+                base.export_attribute (obj, "AuxiliaryAccount", "AuxiliaryAgreement", "AuxiliaryAgreement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2504,6 +2752,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AuxiliaryAccount" };
+                super.submit (obj);
+                temp = document.getElementById ("balance").value; if ("" != temp) obj.balance = temp;
+                temp = document.getElementById ("due").value; if ("" != temp) obj.due = temp;
+                temp = document.getElementById ("lastCredit").value; if ("" != temp) obj.lastCredit = temp;
+                temp = document.getElementById ("lastDebit").value; if ("" != temp) obj.lastDebit = temp;
+                temp = document.getElementById ("principleAmount").value; if ("" != temp) obj.principleAmount = temp;
+                temp = document.getElementById ("Charges").value; if ("" != temp) obj.Charges = temp.split (",");
+                temp = document.getElementById ("AuxiliaryAgreement").value; if ("" != temp) obj.AuxiliaryAgreement = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2560,16 +2825,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AccountingUnit", "energyUnit", base.from_string, fields);
-                base.export_element (obj, "AccountingUnit", "monetaryUnit", base.from_string, fields);
-                base.export_element (obj, "AccountingUnit", "multiplier", base.from_string, fields);
-                base.export_element (obj, "AccountingUnit", "value", base.from_float, fields);
+                base.export_element (obj, "AccountingUnit", "energyUnit", "energyUnit",  base.from_string, fields);
+                base.export_element (obj, "AccountingUnit", "monetaryUnit", "monetaryUnit",  base.from_string, fields);
+                base.export_element (obj, "AccountingUnit", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "AccountingUnit", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2621,6 +2885,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AccountingUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("energyUnit").value; if ("" != temp) obj.energyUnit = temp;
+                temp = document.getElementById ("monetaryUnit").value; if ("" != temp) obj.monetaryUnit = temp;
+                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2666,13 +2944,12 @@ define
             {
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MerchantAgreement", fields);
+                base.export_attributes (obj, "MerchantAgreement", "MerchantAccounts", "MerchantAccounts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2718,6 +2995,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "MerchantAgreement" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2786,28 +3071,27 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Transaction", "diverseReference", base.from_string, fields);
-                base.export_element (obj, "Transaction", "donorReference", base.from_string, fields);
-                base.export_element (obj, "Transaction", "kind", base.from_string, fields);
-                base.export_element (obj, "Transaction", "line", base.from_string, fields);
-                base.export_element (obj, "Transaction", "receiverReference", base.from_string, fields);
-                base.export_element (obj, "Transaction", "reversedId", base.from_string, fields);
-                base.export_element (obj, "Transaction", "serviceUnitsEnergy", base.from_string, fields);
-                base.export_element (obj, "Transaction", "serviceUnitsError", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Transaction", fields);
-                base.export_attribute (obj, "export_attribute", "Transaction", fields);
-                base.export_attribute (obj, "export_attribute", "Transaction", fields);
-                base.export_attribute (obj, "export_attribute", "Transaction", fields);
-                base.export_attribute (obj, "export_attribute", "Transaction", fields);
-                base.export_attribute (obj, "export_attribute", "Transaction", fields);
-                base.export_attribute (obj, "export_attribute", "Transaction", fields);
-                base.export_attribute (obj, "export_attribute", "Transaction", fields);
+                base.export_element (obj, "Transaction", "diverseReference", "diverseReference",  base.from_string, fields);
+                base.export_element (obj, "Transaction", "donorReference", "donorReference",  base.from_string, fields);
+                base.export_element (obj, "Transaction", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "Transaction", "line", "line",  base.from_string, fields);
+                base.export_element (obj, "Transaction", "receiverReference", "receiverReference",  base.from_string, fields);
+                base.export_element (obj, "Transaction", "reversedId", "reversedId",  base.from_string, fields);
+                base.export_element (obj, "Transaction", "serviceUnitsEnergy", "serviceUnitsEnergy",  base.from_string, fields);
+                base.export_element (obj, "Transaction", "serviceUnitsError", "serviceUnitsError",  base.from_string, fields);
+                base.export_attributes (obj, "Transaction", "UserAttributes", "UserAttributes", fields);
+                base.export_attribute (obj, "Transaction", "PricingStructure", "PricingStructure", fields);
+                base.export_attribute (obj, "Transaction", "AuxiliaryAccount", "AuxiliaryAccount", fields);
+                base.export_attribute (obj, "Transaction", "Receipt", "Receipt", fields);
+                base.export_attribute (obj, "Transaction", "VendorShift", "VendorShift", fields);
+                base.export_attribute (obj, "Transaction", "CashierShift", "CashierShift", fields);
+                base.export_attribute (obj, "Transaction", "Meter", "Meter", fields);
+                base.export_attribute (obj, "Transaction", "CustomerAccount", "CustomerAccount", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2887,6 +3171,31 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Transaction" };
+                super.submit (obj);
+                temp = document.getElementById ("diverseReference").value; if ("" != temp) obj.diverseReference = temp;
+                temp = document.getElementById ("donorReference").value; if ("" != temp) obj.donorReference = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TransactionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransactionKind." + temp; }
+                temp = document.getElementById ("line").value; if ("" != temp) obj.line = temp;
+                temp = document.getElementById ("receiverReference").value; if ("" != temp) obj.receiverReference = temp;
+                temp = document.getElementById ("reversedId").value; if ("" != temp) obj.reversedId = temp;
+                temp = document.getElementById ("serviceUnitsEnergy").value; if ("" != temp) obj.serviceUnitsEnergy = temp;
+                temp = document.getElementById ("serviceUnitsError").value; if ("" != temp) obj.serviceUnitsError = temp;
+                temp = document.getElementById ("PricingStructure").value; if ("" != temp) obj.PricingStructure = temp;
+                temp = document.getElementById ("AuxiliaryAccount").value; if ("" != temp) obj.AuxiliaryAccount = temp;
+                temp = document.getElementById ("Receipt").value; if ("" != temp) obj.Receipt = temp;
+                temp = document.getElementById ("VendorShift").value; if ("" != temp) obj.VendorShift = temp;
+                temp = document.getElementById ("CashierShift").value; if ("" != temp) obj.CashierShift = temp;
+                temp = document.getElementById ("Meter").value; if ("" != temp) obj.Meter = temp;
+                temp = document.getElementById ("CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2951,17 +3260,16 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MerchantAccount", "currentBalance", base.from_string, fields);
-                base.export_element (obj, "MerchantAccount", "provisionalBalance", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "MerchantAccount", fields);
-                base.export_attribute (obj, "export_attributes", "MerchantAccount", fields);
-                base.export_attribute (obj, "export_attribute", "MerchantAccount", fields);
+                base.export_element (obj, "MerchantAccount", "currentBalance", "currentBalance",  base.from_string, fields);
+                base.export_element (obj, "MerchantAccount", "provisionalBalance", "provisionalBalance",  base.from_string, fields);
+                base.export_attributes (obj, "MerchantAccount", "Transactors", "Transactors", fields);
+                base.export_attributes (obj, "MerchantAccount", "VendorShifts", "VendorShifts", fields);
+                base.export_attribute (obj, "MerchantAccount", "MerchantAgreement", "MerchantAgreement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3017,6 +3325,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MerchantAccount" };
+                super.submit (obj);
+                temp = document.getElementById ("currentBalance").value; if ("" != temp) obj.currentBalance = temp;
+                temp = document.getElementById ("provisionalBalance").value; if ("" != temp) obj.provisionalBalance = temp;
+                temp = document.getElementById ("Transactors").value; if ("" != temp) obj.Transactors = temp.split (",");
+                temp = document.getElementById ("MerchantAgreement").value; if ("" != temp) obj.MerchantAgreement = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3076,17 +3398,16 @@ define
             {
                 var fields = Shift.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CashierShift", "cashFloat", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "CashierShift", fields);
-                base.export_attribute (obj, "export_attribute", "CashierShift", fields);
-                base.export_attribute (obj, "export_attributes", "CashierShift", fields);
-                base.export_attribute (obj, "export_attributes", "CashierShift", fields);
+                base.export_element (obj, "CashierShift", "cashFloat", "cashFloat",  base.from_string, fields);
+                base.export_attribute (obj, "CashierShift", "Cashier", "Cashier", fields);
+                base.export_attribute (obj, "CashierShift", "PointOfSale", "PointOfSale", fields);
+                base.export_attributes (obj, "CashierShift", "Receipts", "Receipts", fields);
+                base.export_attributes (obj, "CashierShift", "Transactions", "Transactions", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3141,6 +3462,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CashierShift" };
+                super.submit (obj);
+                temp = document.getElementById ("cashFloat").value; if ("" != temp) obj.cashFloat = temp;
+                temp = document.getElementById ("Cashier").value; if ("" != temp) obj.Cashier = temp;
+                temp = document.getElementById ("PointOfSale").value; if ("" != temp) obj.PointOfSale = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3204,18 +3538,17 @@ define
             {
                 var fields = Shift.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VendorShift", "merchantDebitAmount", base.from_string, fields);
-                base.export_element (obj, "VendorShift", "posted", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "VendorShift", fields);
-                base.export_attribute (obj, "export_attributes", "VendorShift", fields);
-                base.export_attribute (obj, "export_attribute", "VendorShift", fields);
-                base.export_attribute (obj, "export_attribute", "VendorShift", fields);
+                base.export_element (obj, "VendorShift", "merchantDebitAmount", "merchantDebitAmount",  base.from_string, fields);
+                base.export_element (obj, "VendorShift", "posted", "posted",  base.from_boolean, fields);
+                base.export_attributes (obj, "VendorShift", "Receipts", "Receipts", fields);
+                base.export_attributes (obj, "VendorShift", "Transactions", "Transactions", fields);
+                base.export_attribute (obj, "VendorShift", "Vendor", "Vendor", fields);
+                base.export_attribute (obj, "VendorShift", "MerchantAccount", "MerchantAccount", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3272,6 +3605,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VendorShift" };
+                super.submit (obj);
+                temp = document.getElementById ("merchantDebitAmount").value; if ("" != temp) obj.merchantDebitAmount = temp;
+                temp = document.getElementById ("posted").checked; if (temp) obj.posted = true;
+                temp = document.getElementById ("Vendor").value; if ("" != temp) obj.Vendor = temp;
+                temp = document.getElementById ("MerchantAccount").value; if ("" != temp) obj.MerchantAccount = temp;
+
+                return (obj);
             }
 
             relations ()

@@ -54,13 +54,12 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PFVArControllerType2Dynamics", fields);
+                base.export_attribute (obj, "PFVArControllerType2Dynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -105,6 +104,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArControllerType2Dynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -164,17 +174,16 @@ define
             {
                 var fields = PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PFVArType2Common1", "j", base.from_boolean, fields);
-                base.export_element (obj, "PFVArType2Common1", "ki", base.from_string, fields);
-                base.export_element (obj, "PFVArType2Common1", "kp", base.from_string, fields);
-                base.export_element (obj, "PFVArType2Common1", "max", base.from_string, fields);
-                base.export_element (obj, "PFVArType2Common1", "ref", base.from_string, fields);
+                base.export_element (obj, "PFVArType2Common1", "j", "j",  base.from_boolean, fields);
+                base.export_element (obj, "PFVArType2Common1", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2Common1", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2Common1", "max", "max",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2Common1", "ref", "ref",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -228,6 +237,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArType2Common1" };
+                super.submit (obj);
+                temp = document.getElementById ("j").checked; if (temp) obj.j = true;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("max").value; if ("" != temp) obj.max = temp;
+                temp = document.getElementById ("ref").value; if ("" != temp) obj.ref = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -279,19 +303,18 @@ define
             {
                 var fields = PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PFVArType2IEEEVArController", "exlon", base.from_boolean, fields);
-                base.export_element (obj, "PFVArType2IEEEVArController", "ki", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEVArController", "kp", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEVArController", "qref", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEVArController", "vclmt", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEVArController", "vref", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEVArController", "vs", base.from_float, fields);
+                base.export_element (obj, "PFVArType2IEEEVArController", "exlon", "exlon",  base.from_boolean, fields);
+                base.export_element (obj, "PFVArType2IEEEVArController", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEVArController", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEVArController", "qref", "qref",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEVArController", "vclmt", "vclmt",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEVArController", "vref", "vref",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEVArController", "vs", "vs",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -349,6 +372,23 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArType2IEEEVArController" };
+                super.submit (obj);
+                temp = document.getElementById ("exlon").checked; if (temp) obj.exlon = true;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("qref").value; if ("" != temp) obj.qref = temp;
+                temp = document.getElementById ("vclmt").value; if ("" != temp) obj.vclmt = temp;
+                temp = document.getElementById ("vref").value; if ("" != temp) obj.vref = temp;
+                temp = document.getElementById ("vs").value; if ("" != temp) obj.vs = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -400,19 +440,18 @@ define
             {
                 var fields = PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PFVArType2IEEEPFController", "exlon", base.from_boolean, fields);
-                base.export_element (obj, "PFVArType2IEEEPFController", "ki", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEPFController", "kp", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEPFController", "pfref", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEPFController", "vclmt", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEPFController", "vref", base.from_string, fields);
-                base.export_element (obj, "PFVArType2IEEEPFController", "vs", base.from_float, fields);
+                base.export_element (obj, "PFVArType2IEEEPFController", "exlon", "exlon",  base.from_boolean, fields);
+                base.export_element (obj, "PFVArType2IEEEPFController", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEPFController", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEPFController", "pfref", "pfref",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEPFController", "vclmt", "vclmt",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEPFController", "vref", "vref",  base.from_string, fields);
+                base.export_element (obj, "PFVArType2IEEEPFController", "vs", "vs",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -469,6 +508,23 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArType2IEEEPFController" };
+                super.submit (obj);
+                temp = document.getElementById ("exlon").checked; if (temp) obj.exlon = true;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("pfref").value; if ("" != temp) obj.pfref = temp;
+                temp = document.getElementById ("vclmt").value; if ("" != temp) obj.vclmt = temp;
+                temp = document.getElementById ("vref").value; if ("" != temp) obj.vref = temp;
+                temp = document.getElementById ("vs").value; if ("" != temp) obj.vs = temp;
+
+                return (obj);
             }
         }
 

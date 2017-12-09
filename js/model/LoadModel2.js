@@ -51,13 +51,12 @@ define
             {
                 var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "NonConformLoad", fields);
+                base.export_attribute (obj, "NonConformLoad", "LoadGroup", "LoadGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -102,6 +101,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "NonConformLoad" };
+                super.submit (obj);
+                temp = document.getElementById ("LoadGroup").value; if ("" != temp) obj.LoadGroup = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -155,13 +165,12 @@ define
             {
                 var fields = Wires.EnergyConsumer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ConformLoad", fields);
+                base.export_attribute (obj, "ConformLoad", "LoadGroup", "LoadGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -206,6 +215,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConformLoad" };
+                super.submit (obj);
+                temp = document.getElementById ("LoadGroup").value; if ("" != temp) obj.LoadGroup = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -264,7 +284,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -306,6 +325,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "StationSupply" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 

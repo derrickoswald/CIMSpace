@@ -47,15 +47,14 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SecurityConstraintsClearing", "mwLimit", base.from_string, fields);
-                base.export_element (obj, "SecurityConstraintsClearing", "mwFlow", base.from_string, fields);
-                base.export_element (obj, "SecurityConstraintsClearing", "shadowPrice", base.from_string, fields);
+                base.export_element (obj, "SecurityConstraintsClearing", "mwLimit", "mwLimit",  base.from_string, fields);
+                base.export_element (obj, "SecurityConstraintsClearing", "mwFlow", "mwFlow",  base.from_string, fields);
+                base.export_element (obj, "SecurityConstraintsClearing", "shadowPrice", "shadowPrice",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -105,6 +104,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SecurityConstraintsClearing" };
+                super.submit (obj);
+                temp = document.getElementById ("mwLimit").value; if ("" != temp) obj.mwLimit = temp;
+                temp = document.getElementById ("mwFlow").value; if ("" != temp) obj.mwFlow = temp;
+                temp = document.getElementById ("shadowPrice").value; if ("" != temp) obj.shadowPrice = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -151,16 +163,15 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MarketCaseClearing", "caseType", base.from_string, fields);
-                base.export_element (obj, "MarketCaseClearing", "postedDate", base.from_datetime, fields);
-                base.export_element (obj, "MarketCaseClearing", "modifiedDate", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "MarketCaseClearing", fields);
+                base.export_element (obj, "MarketCaseClearing", "caseType", "caseType",  base.from_string, fields);
+                base.export_element (obj, "MarketCaseClearing", "postedDate", "postedDate",  base.from_datetime, fields);
+                base.export_element (obj, "MarketCaseClearing", "modifiedDate", "modifiedDate",  base.from_datetime, fields);
+                base.export_attributes (obj, "MarketCaseClearing", "MarketProductClearing", "MarketProductClearing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -212,6 +223,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketCaseClearing" };
+                super.submit (obj);
+                temp = document.getElementById ("caseType").value; if ("" != temp) obj.caseType = temp;
+                temp = document.getElementById ("postedDate").value; if ("" != temp) obj.postedDate = temp;
+                temp = document.getElementById ("modifiedDate").value; if ("" != temp) obj.modifiedDate = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -267,13 +291,12 @@ define
             {
                 var fields = MarketPlan.MarketFactors.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "InterTieClearing", fields);
+                base.export_attributes (obj, "InterTieClearing", "InterTieResults", "InterTieResults", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -319,6 +342,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "InterTieClearing" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -377,16 +408,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "InterTieResults", "clearedValue", base.from_float, fields);
-                base.export_element (obj, "InterTieResults", "baseMW", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "InterTieResults", fields);
-                base.export_attribute (obj, "export_attribute", "InterTieResults", fields);
+                base.export_element (obj, "InterTieResults", "clearedValue", "clearedValue",  base.from_float, fields);
+                base.export_element (obj, "InterTieResults", "baseMW", "baseMW",  base.from_float, fields);
+                base.export_attribute (obj, "InterTieResults", "InterTieClearing", "InterTieClearing", fields);
+                base.export_attribute (obj, "InterTieResults", "Flowgate", "Flowgate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -437,6 +467,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InterTieResults" };
+                super.submit (obj);
+                temp = document.getElementById ("clearedValue").value; if ("" != temp) obj.clearedValue = temp;
+                temp = document.getElementById ("baseMW").value; if ("" != temp) obj.baseMW = temp;
+                temp = document.getElementById ("InterTieClearing").value; if ("" != temp) obj.InterTieClearing = temp;
+                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+
+                return (obj);
             }
 
             relations ()

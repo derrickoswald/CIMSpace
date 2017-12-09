@@ -55,15 +55,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BusNameMarker", "priority", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "BusNameMarker", fields);
-                base.export_attribute (obj, "export_attribute", "BusNameMarker", fields);
+                base.export_element (obj, "BusNameMarker", "priority", "priority",  base.from_string, fields);
+                base.export_attributes (obj, "BusNameMarker", "Terminal", "Terminal", fields);
+                base.export_attribute (obj, "BusNameMarker", "ReportingGroup", "ReportingGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -113,6 +112,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BusNameMarker" };
+                super.submit (obj);
+                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById ("ReportingGroup").value; if ("" != temp) obj.ReportingGroup = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -170,16 +181,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "DCTopologicalNode", fields);
-                base.export_attribute (obj, "export_attribute", "DCTopologicalNode", fields);
-                base.export_attribute (obj, "export_attributes", "DCTopologicalNode", fields);
-                base.export_attribute (obj, "export_attribute", "DCTopologicalNode", fields);
+                base.export_attributes (obj, "DCTopologicalNode", "DCNodes", "DCNodes", fields);
+                base.export_attribute (obj, "DCTopologicalNode", "DCEquipmentContainer", "DCEquipmentContainer", fields);
+                base.export_attributes (obj, "DCTopologicalNode", "DCTerminals", "DCTerminals", fields);
+                base.export_attribute (obj, "DCTopologicalNode", "DCTopologicalIsland", "DCTopologicalIsland", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -232,6 +242,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCTopologicalNode" };
+                super.submit (obj);
+                temp = document.getElementById ("DCEquipmentContainer").value; if ("" != temp) obj.DCEquipmentContainer = temp;
+                temp = document.getElementById ("DCTopologicalIsland").value; if ("" != temp) obj.DCTopologicalIsland = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -300,23 +322,22 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TopologicalNode", "pInjection", base.from_string, fields);
-                base.export_element (obj, "TopologicalNode", "qInjection", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
-                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
-                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
-                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
-                base.export_attribute (obj, "export_attributes", "TopologicalNode", fields);
-                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
-                base.export_attribute (obj, "export_attributes", "TopologicalNode", fields);
-                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
-                base.export_attribute (obj, "export_attribute", "TopologicalNode", fields);
+                base.export_element (obj, "TopologicalNode", "pInjection", "pInjection",  base.from_string, fields);
+                base.export_element (obj, "TopologicalNode", "qInjection", "qInjection",  base.from_string, fields);
+                base.export_attribute (obj, "TopologicalNode", "AngleRefTopologicalIsland", "AngleRefTopologicalIsland", fields);
+                base.export_attribute (obj, "TopologicalNode", "SvVoltage", "SvVoltage", fields);
+                base.export_attribute (obj, "TopologicalNode", "ReportingGroup", "ReportingGroup", fields);
+                base.export_attribute (obj, "TopologicalNode", "SvInjection", "SvInjection", fields);
+                base.export_attributes (obj, "TopologicalNode", "ConnectivityNodes", "ConnectivityNodes", fields);
+                base.export_attribute (obj, "TopologicalNode", "BaseVoltage", "BaseVoltage", fields);
+                base.export_attributes (obj, "TopologicalNode", "Terminal", "Terminal", fields);
+                base.export_attribute (obj, "TopologicalNode", "TopologicalIsland", "TopologicalIsland", fields);
+                base.export_attribute (obj, "TopologicalNode", "ConnectivityNodeContainer", "ConnectivityNodeContainer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -385,6 +406,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TopologicalNode" };
+                super.submit (obj);
+                temp = document.getElementById ("pInjection").value; if ("" != temp) obj.pInjection = temp;
+                temp = document.getElementById ("qInjection").value; if ("" != temp) obj.qInjection = temp;
+                temp = document.getElementById ("AngleRefTopologicalIsland").value; if ("" != temp) obj.AngleRefTopologicalIsland = temp;
+                temp = document.getElementById ("SvVoltage").value; if ("" != temp) obj.SvVoltage = temp;
+                temp = document.getElementById ("ReportingGroup").value; if ("" != temp) obj.ReportingGroup = temp;
+                temp = document.getElementById ("SvInjection").value; if ("" != temp) obj.SvInjection = temp;
+                temp = document.getElementById ("BaseVoltage").value; if ("" != temp) obj.BaseVoltage = temp;
+                temp = document.getElementById ("TopologicalIsland").value; if ("" != temp) obj.TopologicalIsland = temp;
+                temp = document.getElementById ("ConnectivityNodeContainer").value; if ("" != temp) obj.ConnectivityNodeContainer = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -447,14 +487,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "TopologicalIsland", fields);
-                base.export_attribute (obj, "export_attributes", "TopologicalIsland", fields);
+                base.export_attribute (obj, "TopologicalIsland", "AngleRefTopologicalNode", "AngleRefTopologicalNode", fields);
+                base.export_attributes (obj, "TopologicalIsland", "TopologicalNodes", "TopologicalNodes", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -502,6 +541,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TopologicalIsland" };
+                super.submit (obj);
+                temp = document.getElementById ("AngleRefTopologicalNode").value; if ("" != temp) obj.AngleRefTopologicalNode = temp;
+
+                return (obj);
             }
 
             relations ()

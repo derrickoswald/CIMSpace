@@ -120,15 +120,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "DCNode", fields);
-                base.export_attribute (obj, "export_attributes", "DCNode", fields);
-                base.export_attribute (obj, "export_attribute", "DCNode", fields);
+                base.export_attribute (obj, "DCNode", "DCTopologicalNode", "DCTopologicalNode", fields);
+                base.export_attributes (obj, "DCNode", "DCTerminals", "DCTerminals", fields);
+                base.export_attribute (obj, "DCNode", "DCEquipmentContainer", "DCEquipmentContainer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -178,6 +177,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCNode" };
+                super.submit (obj);
+                temp = document.getElementById ("DCTopologicalNode").value; if ("" != temp) obj.DCTopologicalNode = temp;
+                temp = document.getElementById ("DCEquipmentContainer").value; if ("" != temp) obj.DCEquipmentContainer = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -235,13 +246,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "DCTopologicalIsland", fields);
+                base.export_attributes (obj, "DCTopologicalIsland", "DCTopologicalNodes", "DCTopologicalNodes", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -287,6 +297,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DCTopologicalIsland" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -343,14 +361,13 @@ define
             {
                 var fields = Core.ACDCTerminal.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "DCBaseTerminal", fields);
-                base.export_attribute (obj, "export_attribute", "DCBaseTerminal", fields);
+                base.export_attribute (obj, "DCBaseTerminal", "DCNode", "DCNode", fields);
+                base.export_attribute (obj, "DCBaseTerminal", "DCTopologicalNode", "DCTopologicalNode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -397,6 +414,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCBaseTerminal" };
+                super.submit (obj);
+                temp = document.getElementById ("DCNode").value; if ("" != temp) obj.DCNode = temp;
+                temp = document.getElementById ("DCTopologicalNode").value; if ("" != temp) obj.DCTopologicalNode = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -469,31 +498,30 @@ define
             {
                 var fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ACDCConverter", "baseS", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "switchingLoss", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "targetPpcc", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "targetUdc", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "idc", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "idleLoss", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "maxUdc", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "minUdc", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "poleLossP", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "ratedUdc", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "resistiveLoss", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "uc", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "udc", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "valveU0", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "numberOfValves", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "p", base.from_string, fields);
-                base.export_element (obj, "ACDCConverter", "q", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ACDCConverter", fields);
-                base.export_attribute (obj, "export_attribute", "ACDCConverter", fields);
+                base.export_element (obj, "ACDCConverter", "baseS", "baseS",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "switchingLoss", "switchingLoss",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "targetPpcc", "targetPpcc",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "targetUdc", "targetUdc",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "idc", "idc",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "idleLoss", "idleLoss",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "maxUdc", "maxUdc",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "minUdc", "minUdc",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "poleLossP", "poleLossP",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "ratedUdc", "ratedUdc",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "resistiveLoss", "resistiveLoss",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "uc", "uc",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "udc", "udc",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "valveU0", "valveU0",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "numberOfValves", "numberOfValves",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "p", "p",  base.from_string, fields);
+                base.export_element (obj, "ACDCConverter", "q", "q",  base.from_string, fields);
+                base.export_attributes (obj, "ACDCConverter", "DCTerminals", "DCTerminals", fields);
+                base.export_attribute (obj, "ACDCConverter", "PccTerminal", "PccTerminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -577,6 +605,34 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ACDCConverter" };
+                super.submit (obj);
+                temp = document.getElementById ("baseS").value; if ("" != temp) obj.baseS = temp;
+                temp = document.getElementById ("switchingLoss").value; if ("" != temp) obj.switchingLoss = temp;
+                temp = document.getElementById ("targetPpcc").value; if ("" != temp) obj.targetPpcc = temp;
+                temp = document.getElementById ("targetUdc").value; if ("" != temp) obj.targetUdc = temp;
+                temp = document.getElementById ("idc").value; if ("" != temp) obj.idc = temp;
+                temp = document.getElementById ("idleLoss").value; if ("" != temp) obj.idleLoss = temp;
+                temp = document.getElementById ("maxUdc").value; if ("" != temp) obj.maxUdc = temp;
+                temp = document.getElementById ("minUdc").value; if ("" != temp) obj.minUdc = temp;
+                temp = document.getElementById ("poleLossP").value; if ("" != temp) obj.poleLossP = temp;
+                temp = document.getElementById ("ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
+                temp = document.getElementById ("resistiveLoss").value; if ("" != temp) obj.resistiveLoss = temp;
+                temp = document.getElementById ("uc").value; if ("" != temp) obj.uc = temp;
+                temp = document.getElementById ("udc").value; if ("" != temp) obj.udc = temp;
+                temp = document.getElementById ("valveU0").value; if ("" != temp) obj.valveU0 = temp;
+                temp = document.getElementById ("numberOfValves").value; if ("" != temp) obj.numberOfValves = temp;
+                temp = document.getElementById ("p").value; if ("" != temp) obj.p = temp;
+                temp = document.getElementById ("q").value; if ("" != temp) obj.q = temp;
+                temp = document.getElementById ("PccTerminal").value; if ("" != temp) obj.PccTerminal = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -628,16 +684,15 @@ define
             {
                 var fields = Wires.PerLengthLineParameter.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PerLengthDCLineParameter", "capacitance", base.from_string, fields);
-                base.export_element (obj, "PerLengthDCLineParameter", "inductance", base.from_string, fields);
-                base.export_element (obj, "PerLengthDCLineParameter", "resistance", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "PerLengthDCLineParameter", fields);
+                base.export_element (obj, "PerLengthDCLineParameter", "capacitance", "capacitance",  base.from_string, fields);
+                base.export_element (obj, "PerLengthDCLineParameter", "inductance", "inductance",  base.from_string, fields);
+                base.export_element (obj, "PerLengthDCLineParameter", "resistance", "resistance",  base.from_string, fields);
+                base.export_attributes (obj, "PerLengthDCLineParameter", "DCLineSegments", "DCLineSegments", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -689,6 +744,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PerLengthDCLineParameter" };
+                super.submit (obj);
+                temp = document.getElementById ("capacitance").value; if ("" != temp) obj.capacitance = temp;
+                temp = document.getElementById ("inductance").value; if ("" != temp) obj.inductance = temp;
+                temp = document.getElementById ("resistance").value; if ("" != temp) obj.resistance = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -745,14 +813,13 @@ define
             {
                 var fields = Core.EquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "DCEquipmentContainer", fields);
-                base.export_attribute (obj, "export_attributes", "DCEquipmentContainer", fields);
+                base.export_attributes (obj, "DCEquipmentContainer", "DCTopologicalNode", "DCTopologicalNode", fields);
+                base.export_attributes (obj, "DCEquipmentContainer", "DCNodes", "DCNodes", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -801,6 +868,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DCEquipmentContainer" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -855,13 +930,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "VsCapabilityCurve", fields);
+                base.export_attributes (obj, "VsCapabilityCurve", "VsConverterDCSides", "VsConverterDCSides", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -907,6 +981,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "VsCapabilityCurve" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -961,14 +1043,13 @@ define
             {
                 var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "DCConductingEquipment", fields);
-                base.export_attribute (obj, "export_attributes", "DCConductingEquipment", fields);
+                base.export_attributes (obj, "DCConductingEquipment", "DCTerminals", "DCTerminals", fields);
+                base.export_attributes (obj, "DCConductingEquipment", "ProtectiveActionAdjustment", "ProtectiveActionAdjustment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1017,6 +1098,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DCConductingEquipment" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1074,14 +1163,13 @@ define
             {
                 var fields = DCBaseTerminal.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ACDCConverterDCTerminal", "polarity", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ACDCConverterDCTerminal", fields);
+                base.export_element (obj, "ACDCConverterDCTerminal", "polarity", "polarity",  base.from_string, fields);
+                base.export_attribute (obj, "ACDCConverterDCTerminal", "DCConductingEquipment", "DCConductingEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1130,6 +1218,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ACDCConverterDCTerminal" };
+                super.submit (obj);
+                temp = document.getElementById ("polarity").value; if ("" != temp) { temp = DCPolarityKind[temp]; if ("undefined" != typeof (temp)) obj.polarity = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DCPolarityKind." + temp; }
+                temp = document.getElementById ("DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1183,13 +1283,12 @@ define
             {
                 var fields = DCBaseTerminal.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "DCTerminal", fields);
+                base.export_attribute (obj, "DCTerminal", "DCConductingEquipment", "DCConductingEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1234,6 +1333,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCTerminal" };
+                super.submit (obj);
+                temp = document.getElementById ("DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1300,26 +1410,25 @@ define
             {
                 var fields = ACDCConverter.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CsConverter", "maxIdc", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "ratedIdc", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "pPccControl", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "alpha", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "gamma", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "maxAlpha", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "maxGamma", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "minAlpha", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "minGamma", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "targetAlpha", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "targetGamma", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "targetIdc", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "minIdc", base.from_string, fields);
-                base.export_element (obj, "CsConverter", "operatingMode", base.from_string, fields);
+                base.export_element (obj, "CsConverter", "maxIdc", "maxIdc",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "ratedIdc", "ratedIdc",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "pPccControl", "pPccControl",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "alpha", "alpha",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "gamma", "gamma",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "maxAlpha", "maxAlpha",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "maxGamma", "maxGamma",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "minAlpha", "minAlpha",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "minGamma", "minGamma",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "targetAlpha", "targetAlpha",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "targetGamma", "targetGamma",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "targetIdc", "targetIdc",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "minIdc", "minIdc",  base.from_string, fields);
+                base.export_element (obj, "CsConverter", "operatingMode", "operatingMode",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1395,6 +1504,30 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CsConverter" };
+                super.submit (obj);
+                temp = document.getElementById ("maxIdc").value; if ("" != temp) obj.maxIdc = temp;
+                temp = document.getElementById ("ratedIdc").value; if ("" != temp) obj.ratedIdc = temp;
+                temp = document.getElementById ("pPccControl").value; if ("" != temp) { temp = CsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CsPpccControlKind." + temp; }
+                temp = document.getElementById ("alpha").value; if ("" != temp) obj.alpha = temp;
+                temp = document.getElementById ("gamma").value; if ("" != temp) obj.gamma = temp;
+                temp = document.getElementById ("maxAlpha").value; if ("" != temp) obj.maxAlpha = temp;
+                temp = document.getElementById ("maxGamma").value; if ("" != temp) obj.maxGamma = temp;
+                temp = document.getElementById ("minAlpha").value; if ("" != temp) obj.minAlpha = temp;
+                temp = document.getElementById ("minGamma").value; if ("" != temp) obj.minGamma = temp;
+                temp = document.getElementById ("targetAlpha").value; if ("" != temp) obj.targetAlpha = temp;
+                temp = document.getElementById ("targetGamma").value; if ("" != temp) obj.targetGamma = temp;
+                temp = document.getElementById ("targetIdc").value; if ("" != temp) obj.targetIdc = temp;
+                temp = document.getElementById ("minIdc").value; if ("" != temp) obj.minIdc = temp;
+                temp = document.getElementById ("operatingMode").value; if ("" != temp) { temp = CsOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CsOperatingModeKind." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -1449,24 +1582,23 @@ define
             {
                 var fields = ACDCConverter.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VsConverter", "pPccControl", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "qShare", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "targetQpcc", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "targetUpcc", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "droopCompensation", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "droop", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "delta", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "uf", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "maxValveCurrent", base.from_string, fields);
-                base.export_element (obj, "VsConverter", "maxModulationIndex", base.from_float, fields);
-                base.export_element (obj, "VsConverter", "qPccControl", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "VsConverter", fields);
+                base.export_element (obj, "VsConverter", "pPccControl", "pPccControl",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "qShare", "qShare",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "targetQpcc", "targetQpcc",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "targetUpcc", "targetUpcc",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "droopCompensation", "droopCompensation",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "droop", "droop",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "delta", "delta",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "uf", "uf",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "maxValveCurrent", "maxValveCurrent",  base.from_string, fields);
+                base.export_element (obj, "VsConverter", "maxModulationIndex", "maxModulationIndex",  base.from_float, fields);
+                base.export_element (obj, "VsConverter", "qPccControl", "qPccControl",  base.from_string, fields);
+                base.export_attribute (obj, "VsConverter", "CapabilityCurve", "CapabilityCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1539,6 +1671,28 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VsConverter" };
+                super.submit (obj);
+                temp = document.getElementById ("pPccControl").value; if ("" != temp) { temp = VsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VsPpccControlKind." + temp; }
+                temp = document.getElementById ("qShare").value; if ("" != temp) obj.qShare = temp;
+                temp = document.getElementById ("targetQpcc").value; if ("" != temp) obj.targetQpcc = temp;
+                temp = document.getElementById ("targetUpcc").value; if ("" != temp) obj.targetUpcc = temp;
+                temp = document.getElementById ("droopCompensation").value; if ("" != temp) obj.droopCompensation = temp;
+                temp = document.getElementById ("droop").value; if ("" != temp) obj.droop = temp;
+                temp = document.getElementById ("delta").value; if ("" != temp) obj.delta = temp;
+                temp = document.getElementById ("uf").value; if ("" != temp) obj.uf = temp;
+                temp = document.getElementById ("maxValveCurrent").value; if ("" != temp) obj.maxValveCurrent = temp;
+                temp = document.getElementById ("maxModulationIndex").value; if ("" != temp) obj.maxModulationIndex = temp;
+                temp = document.getElementById ("qPccControl").value; if ("" != temp) { temp = VsQpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.qPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VsQpccControlKind." + temp; }
+                temp = document.getElementById ("CapabilityCurve").value; if ("" != temp) obj.CapabilityCurve = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1590,13 +1744,12 @@ define
             {
                 var fields = DCEquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "DCLine", fields);
+                base.export_attribute (obj, "DCLine", "Region", "Region", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1641,6 +1794,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCLine" };
+                super.submit (obj);
+                temp = document.getElementById ("Region").value; if ("" != temp) obj.Region = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1695,14 +1859,13 @@ define
             {
                 var fields = DCEquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DCConverterUnit", "operationMode", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "DCConverterUnit", fields);
+                base.export_element (obj, "DCConverterUnit", "operationMode", "operationMode",  base.from_string, fields);
+                base.export_attribute (obj, "DCConverterUnit", "Substation", "Substation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1751,6 +1914,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCConverterUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("operationMode").value; if ("" != temp) { temp = DCConverterOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operationMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DCConverterOperatingModeKind." + temp; }
+                temp = document.getElementById ("Substation").value; if ("" != temp) obj.Substation = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1809,7 +1984,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -1851,6 +2025,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DCSwitch" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1900,7 +2082,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -1942,6 +2123,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DCDisconnector" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1990,15 +2179,14 @@ define
             {
                 var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DCSeriesDevice", "resistance", base.from_string, fields);
-                base.export_element (obj, "DCSeriesDevice", "inductance", base.from_string, fields);
-                base.export_element (obj, "DCSeriesDevice", "ratedUdc", base.from_string, fields);
+                base.export_element (obj, "DCSeriesDevice", "resistance", "resistance",  base.from_string, fields);
+                base.export_element (obj, "DCSeriesDevice", "inductance", "inductance",  base.from_string, fields);
+                base.export_element (obj, "DCSeriesDevice", "ratedUdc", "ratedUdc",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2048,6 +2236,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCSeriesDevice" };
+                super.submit (obj);
+                temp = document.getElementById ("resistance").value; if ("" != temp) obj.resistance = temp;
+                temp = document.getElementById ("inductance").value; if ("" != temp) obj.inductance = temp;
+                temp = document.getElementById ("ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2096,7 +2297,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2138,6 +2338,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DCBusbar" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2186,15 +2394,14 @@ define
             {
                 var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DCShunt", "capacitance", base.from_string, fields);
-                base.export_element (obj, "DCShunt", "ratedUdc", base.from_string, fields);
-                base.export_element (obj, "DCShunt", "resistance", base.from_string, fields);
+                base.export_element (obj, "DCShunt", "capacitance", "capacitance",  base.from_string, fields);
+                base.export_element (obj, "DCShunt", "ratedUdc", "ratedUdc",  base.from_string, fields);
+                base.export_element (obj, "DCShunt", "resistance", "resistance",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2244,6 +2451,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCShunt" };
+                super.submit (obj);
+                temp = document.getElementById ("capacitance").value; if ("" != temp) obj.capacitance = temp;
+                temp = document.getElementById ("ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
+                temp = document.getElementById ("resistance").value; if ("" != temp) obj.resistance = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2291,17 +2511,16 @@ define
             {
                 var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DCLineSegment", "resistance", base.from_string, fields);
-                base.export_element (obj, "DCLineSegment", "capacitance", base.from_string, fields);
-                base.export_element (obj, "DCLineSegment", "inductance", base.from_string, fields);
-                base.export_element (obj, "DCLineSegment", "length", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "DCLineSegment", fields);
+                base.export_element (obj, "DCLineSegment", "resistance", "resistance",  base.from_string, fields);
+                base.export_element (obj, "DCLineSegment", "capacitance", "capacitance",  base.from_string, fields);
+                base.export_element (obj, "DCLineSegment", "inductance", "inductance",  base.from_string, fields);
+                base.export_element (obj, "DCLineSegment", "length", "length",  base.from_string, fields);
+                base.export_attribute (obj, "DCLineSegment", "PerLengthParameter", "PerLengthParameter", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2356,6 +2575,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCLineSegment" };
+                super.submit (obj);
+                temp = document.getElementById ("resistance").value; if ("" != temp) obj.resistance = temp;
+                temp = document.getElementById ("capacitance").value; if ("" != temp) obj.capacitance = temp;
+                temp = document.getElementById ("inductance").value; if ("" != temp) obj.inductance = temp;
+                temp = document.getElementById ("length").value; if ("" != temp) obj.length = temp;
+                temp = document.getElementById ("PerLengthParameter").value; if ("" != temp) obj.PerLengthParameter = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2408,14 +2642,13 @@ define
             {
                 var fields = DCConductingEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DCGround", "r", base.from_string, fields);
-                base.export_element (obj, "DCGround", "inductance", base.from_string, fields);
+                base.export_element (obj, "DCGround", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "DCGround", "inductance", "inductance",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2462,6 +2695,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DCGround" };
+                super.submit (obj);
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("inductance").value; if ("" != temp) obj.inductance = temp;
+
+                return (obj);
             }
         }
 
@@ -2511,7 +2756,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2553,6 +2797,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DCBreaker" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2604,7 +2856,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2646,6 +2897,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DCChopper" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 

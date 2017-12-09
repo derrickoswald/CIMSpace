@@ -47,15 +47,14 @@ define
             {
                 var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MaintenanceDataSet", "conditionAfter", base.from_string, fields);
-                base.export_element (obj, "MaintenanceDataSet", "conditionBefore", base.from_string, fields);
-                base.export_element (obj, "MaintenanceDataSet", "maintCode", base.from_string, fields);
+                base.export_element (obj, "MaintenanceDataSet", "conditionAfter", "conditionAfter",  base.from_string, fields);
+                base.export_element (obj, "MaintenanceDataSet", "conditionBefore", "conditionBefore",  base.from_string, fields);
+                base.export_element (obj, "MaintenanceDataSet", "maintCode", "maintCode",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -105,6 +104,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MaintenanceDataSet" };
+                super.submit (obj);
+                temp = document.getElementById ("conditionAfter").value; if ("" != temp) obj.conditionAfter = temp;
+                temp = document.getElementById ("conditionBefore").value; if ("" != temp) obj.conditionBefore = temp;
+                temp = document.getElementById ("maintCode").value; if ("" != temp) obj.maintCode = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -149,14 +161,13 @@ define
             {
                 var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "InspectionDataSet", "locationCondition", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "InspectionDataSet", fields);
+                base.export_element (obj, "InspectionDataSet", "locationCondition", "locationCondition",  base.from_string, fields);
+                base.export_attributes (obj, "InspectionDataSet", "AccordingToSchedules", "AccordingToSchedules", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -204,6 +215,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InspectionDataSet" };
+                super.submit (obj);
+                temp = document.getElementById ("locationCondition").value; if ("" != temp) obj.locationCondition = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -269,25 +291,24 @@ define
             {
                 var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DiagnosisDataSet", "effect", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "failureMode", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "finalCause", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "finalCode", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "finalOrigin", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "finalRemark", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "phaseCode", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "preliminaryCode", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "preliminaryDateTime", base.from_datetime, fields);
-                base.export_element (obj, "DiagnosisDataSet", "preliminaryRemark", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "rootCause", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "rootOrigin", base.from_string, fields);
-                base.export_element (obj, "DiagnosisDataSet", "rootRemark", base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "effect", "effect",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "failureMode", "failureMode",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "finalCause", "finalCause",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "finalCode", "finalCode",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "finalOrigin", "finalOrigin",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "finalRemark", "finalRemark",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "phaseCode", "phaseCode",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "preliminaryCode", "preliminaryCode",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "preliminaryDateTime", "preliminaryDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "DiagnosisDataSet", "preliminaryRemark", "preliminaryRemark",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "rootCause", "rootCause",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "rootOrigin", "rootOrigin",  base.from_string, fields);
+                base.export_element (obj, "DiagnosisDataSet", "rootRemark", "rootRemark",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -357,6 +378,29 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiagnosisDataSet" };
+                super.submit (obj);
+                temp = document.getElementById ("effect").value; if ("" != temp) obj.effect = temp;
+                temp = document.getElementById ("failureMode").value; if ("" != temp) obj.failureMode = temp;
+                temp = document.getElementById ("finalCause").value; if ("" != temp) obj.finalCause = temp;
+                temp = document.getElementById ("finalCode").value; if ("" != temp) obj.finalCode = temp;
+                temp = document.getElementById ("finalOrigin").value; if ("" != temp) obj.finalOrigin = temp;
+                temp = document.getElementById ("finalRemark").value; if ("" != temp) obj.finalRemark = temp;
+                temp = document.getElementById ("phaseCode").value; if ("" != temp) obj.phaseCode = temp;
+                temp = document.getElementById ("preliminaryCode").value; if ("" != temp) obj.preliminaryCode = temp;
+                temp = document.getElementById ("preliminaryDateTime").value; if ("" != temp) obj.preliminaryDateTime = temp;
+                temp = document.getElementById ("preliminaryRemark").value; if ("" != temp) obj.preliminaryRemark = temp;
+                temp = document.getElementById ("rootCause").value; if ("" != temp) obj.rootCause = temp;
+                temp = document.getElementById ("rootOrigin").value; if ("" != temp) obj.rootOrigin = temp;
+                temp = document.getElementById ("rootRemark").value; if ("" != temp) obj.rootRemark = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -402,15 +446,14 @@ define
             {
                 var fields = Assets.ProcedureDataSet.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TestDataSet", "conclusion", base.from_string, fields);
-                base.export_element (obj, "TestDataSet", "specimenID", base.from_string, fields);
-                base.export_element (obj, "TestDataSet", "specimenToLabDateTime", base.from_datetime, fields);
+                base.export_element (obj, "TestDataSet", "conclusion", "conclusion",  base.from_string, fields);
+                base.export_element (obj, "TestDataSet", "specimenID", "specimenID",  base.from_string, fields);
+                base.export_element (obj, "TestDataSet", "specimenToLabDateTime", "specimenToLabDateTime",  base.from_datetime, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -459,6 +502,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TestDataSet" };
+                super.submit (obj);
+                temp = document.getElementById ("conclusion").value; if ("" != temp) obj.conclusion = temp;
+                temp = document.getElementById ("specimenID").value; if ("" != temp) obj.specimenID = temp;
+                temp = document.getElementById ("specimenToLabDateTime").value; if ("" != temp) obj.specimenToLabDateTime = temp;
+
+                return (obj);
             }
         }
 

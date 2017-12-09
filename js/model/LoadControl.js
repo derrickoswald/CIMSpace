@@ -62,24 +62,23 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "armedTimeout", base.from_string, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "customerVoltageLimit", base.from_string, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "energyLimit", base.from_string, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "energyUsageStartDateTime", base.from_datetime, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "energyUsageWarning", base.from_string, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "isArmConnect", base.from_boolean, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "isArmDisconnect", base.from_boolean, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "isEnergyLimiting", base.from_boolean, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "needsPowerLimitCheck", base.from_boolean, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "needsVoltageLimitCheck", base.from_boolean, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "powerLimit", base.from_string, fields);
-                base.export_element (obj, "RemoteConnectDisconnectInfo", "usePushbutton", base.from_boolean, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "armedTimeout", "armedTimeout",  base.from_string, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "customerVoltageLimit", "customerVoltageLimit",  base.from_string, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "energyLimit", "energyLimit",  base.from_string, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "energyUsageStartDateTime", "energyUsageStartDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "energyUsageWarning", "energyUsageWarning",  base.from_string, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "isArmConnect", "isArmConnect",  base.from_boolean, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "isArmDisconnect", "isArmDisconnect",  base.from_boolean, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "isEnergyLimiting", "isEnergyLimiting",  base.from_boolean, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "needsPowerLimitCheck", "needsPowerLimitCheck",  base.from_boolean, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "needsVoltageLimitCheck", "needsVoltageLimitCheck",  base.from_boolean, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "powerLimit", "powerLimit",  base.from_string, fields);
+                base.export_element (obj, "RemoteConnectDisconnectInfo", "usePushbutton", "usePushbutton",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -147,6 +146,28 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RemoteConnectDisconnectInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("armedTimeout").value; if ("" != temp) obj.armedTimeout = temp;
+                temp = document.getElementById ("customerVoltageLimit").value; if ("" != temp) obj.customerVoltageLimit = temp;
+                temp = document.getElementById ("energyLimit").value; if ("" != temp) obj.energyLimit = temp;
+                temp = document.getElementById ("energyUsageStartDateTime").value; if ("" != temp) obj.energyUsageStartDateTime = temp;
+                temp = document.getElementById ("energyUsageWarning").value; if ("" != temp) obj.energyUsageWarning = temp;
+                temp = document.getElementById ("isArmConnect").checked; if (temp) obj.isArmConnect = true;
+                temp = document.getElementById ("isArmDisconnect").checked; if (temp) obj.isArmDisconnect = true;
+                temp = document.getElementById ("isEnergyLimiting").checked; if (temp) obj.isEnergyLimiting = true;
+                temp = document.getElementById ("needsPowerLimitCheck").checked; if (temp) obj.needsPowerLimitCheck = true;
+                temp = document.getElementById ("needsVoltageLimitCheck").checked; if (temp) obj.needsVoltageLimitCheck = true;
+                temp = document.getElementById ("powerLimit").value; if ("" != temp) obj.powerLimit = temp;
+                temp = document.getElementById ("usePushbutton").checked; if (temp) obj.usePushbutton = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -198,21 +219,20 @@ define
             {
                 var fields = Metering.EndDeviceFunction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ConnectDisconnectFunction", "eventCount", base.from_string, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "isConnected", base.from_boolean, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "isDelayedDiscon", base.from_boolean, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "isLocalAutoDisconOp", base.from_boolean, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "isLocalAutoReconOp", base.from_boolean, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoDisconOp", base.from_boolean, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoReconOp", base.from_boolean, fields);
-                base.export_element (obj, "ConnectDisconnectFunction", "rcdInfo", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ConnectDisconnectFunction", fields);
+                base.export_element (obj, "ConnectDisconnectFunction", "eventCount", "eventCount",  base.from_string, fields);
+                base.export_element (obj, "ConnectDisconnectFunction", "isConnected", "isConnected",  base.from_boolean, fields);
+                base.export_element (obj, "ConnectDisconnectFunction", "isDelayedDiscon", "isDelayedDiscon",  base.from_boolean, fields);
+                base.export_element (obj, "ConnectDisconnectFunction", "isLocalAutoDisconOp", "isLocalAutoDisconOp",  base.from_boolean, fields);
+                base.export_element (obj, "ConnectDisconnectFunction", "isLocalAutoReconOp", "isLocalAutoReconOp",  base.from_boolean, fields);
+                base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoDisconOp", "isRemoteAutoDisconOp",  base.from_boolean, fields);
+                base.export_element (obj, "ConnectDisconnectFunction", "isRemoteAutoReconOp", "isRemoteAutoReconOp",  base.from_boolean, fields);
+                base.export_element (obj, "ConnectDisconnectFunction", "rcdInfo", "rcdInfo",  base.from_string, fields);
+                base.export_attributes (obj, "ConnectDisconnectFunction", "Switches", "Switches", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -275,6 +295,25 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConnectDisconnectFunction" };
+                super.submit (obj);
+                temp = document.getElementById ("eventCount").value; if ("" != temp) obj.eventCount = temp;
+                temp = document.getElementById ("isConnected").checked; if (temp) obj.isConnected = true;
+                temp = document.getElementById ("isDelayedDiscon").checked; if (temp) obj.isDelayedDiscon = true;
+                temp = document.getElementById ("isLocalAutoDisconOp").checked; if (temp) obj.isLocalAutoDisconOp = true;
+                temp = document.getElementById ("isLocalAutoReconOp").checked; if (temp) obj.isLocalAutoReconOp = true;
+                temp = document.getElementById ("isRemoteAutoDisconOp").checked; if (temp) obj.isRemoteAutoDisconOp = true;
+                temp = document.getElementById ("isRemoteAutoReconOp").checked; if (temp) obj.isRemoteAutoReconOp = true;
+                temp = document.getElementById ("rcdInfo").value; if ("" != temp) obj.rcdInfo = temp;
+                temp = document.getElementById ("Switches").value; if ("" != temp) obj.Switches = temp.split (",");
+
+                return (obj);
             }
 
             relations ()

@@ -45,13 +45,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "EnergySchedulingType", fields);
+                base.export_attributes (obj, "EnergySchedulingType", "EnergySource", "EnergySource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -97,6 +96,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "EnergySchedulingType" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()

@@ -35,6 +35,16 @@ body {
   font-size: 14px;
 }
 
+#edit_frame {
+    height: 100%;
+}
+
+#edit_contents {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+}
+
 /* allow div in dropdown menus, not just a */
 .dropdown-menu > li > div
 {

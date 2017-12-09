@@ -64,13 +64,12 @@ define
             {
                 var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "AuxiliaryEquipment", fields);
+                base.export_attribute (obj, "AuxiliaryEquipment", "Terminal", "Terminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -115,6 +114,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AuxiliaryEquipment" };
+                super.submit (obj);
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -173,7 +183,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -215,6 +224,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Sensor" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -264,7 +281,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -306,6 +322,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "WaveTrap" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -355,16 +379,15 @@ define
             {
                 var fields = Sensor.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PotentialTransformer", "accuracyClass", base.from_string, fields);
-                base.export_element (obj, "PotentialTransformer", "nominalRatio", base.from_float, fields);
-                base.export_element (obj, "PotentialTransformer", "ptClass", base.from_string, fields);
-                base.export_element (obj, "PotentialTransformer", "type", base.from_string, fields);
+                base.export_element (obj, "PotentialTransformer", "accuracyClass", "accuracyClass",  base.from_string, fields);
+                base.export_element (obj, "PotentialTransformer", "nominalRatio", "nominalRatio",  base.from_float, fields);
+                base.export_element (obj, "PotentialTransformer", "ptClass", "ptClass",  base.from_string, fields);
+                base.export_element (obj, "PotentialTransformer", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -418,6 +441,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PotentialTransformer" };
+                super.submit (obj);
+                temp = document.getElementById ("accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
+                temp = document.getElementById ("nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
+                temp = document.getElementById ("ptClass").value; if ("" != temp) obj.ptClass = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) { temp = PotentialTransformerKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PotentialTransformerKind." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -468,7 +505,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -510,6 +546,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "FaultIndicator" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -560,17 +604,16 @@ define
             {
                 var fields = Sensor.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CurrentTransformer", "accuracyClass", base.from_string, fields);
-                base.export_element (obj, "CurrentTransformer", "accuracyLimit", base.from_string, fields);
-                base.export_element (obj, "CurrentTransformer", "ctClass", base.from_string, fields);
-                base.export_element (obj, "CurrentTransformer", "usage", base.from_string, fields);
-                base.export_element (obj, "CurrentTransformer", "coreBurden", base.from_string, fields);
+                base.export_element (obj, "CurrentTransformer", "accuracyClass", "accuracyClass",  base.from_string, fields);
+                base.export_element (obj, "CurrentTransformer", "accuracyLimit", "accuracyLimit",  base.from_string, fields);
+                base.export_element (obj, "CurrentTransformer", "ctClass", "ctClass",  base.from_string, fields);
+                base.export_element (obj, "CurrentTransformer", "usage", "usage",  base.from_string, fields);
+                base.export_element (obj, "CurrentTransformer", "coreBurden", "coreBurden",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -624,6 +667,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CurrentTransformer" };
+                super.submit (obj);
+                temp = document.getElementById ("accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
+                temp = document.getElementById ("accuracyLimit").value; if ("" != temp) obj.accuracyLimit = temp;
+                temp = document.getElementById ("ctClass").value; if ("" != temp) obj.ctClass = temp;
+                temp = document.getElementById ("usage").value; if ("" != temp) obj.usage = temp;
+                temp = document.getElementById ("coreBurden").value; if ("" != temp) obj.coreBurden = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -672,7 +730,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -714,6 +771,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "PostLineSensor" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -763,7 +828,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -805,6 +869,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "SurgeArrester" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 

@@ -106,7 +106,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -148,6 +147,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpDocument" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -199,7 +206,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -241,6 +247,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpIdentifiedObject" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -287,13 +301,12 @@ define
             {
                 var fields = InfCommon.BankAccount.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpBankAccount", "bankABA", base.from_string, fields);
+                base.export_element (obj, "ErpBankAccount", "bankABA", "bankABA",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -338,6 +351,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpBankAccount" };
+                super.submit (obj);
+                temp = document.getElementById ("bankABA").value; if ("" != temp) obj.bankABA = temp;
+
+                return (obj);
             }
         }
 
@@ -389,7 +413,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -431,6 +454,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpSalesOrder" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -477,13 +508,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpTimeSheet", fields);
+                base.export_attributes (obj, "ErpTimeSheet", "ErpTimeEntries", "ErpTimeEntries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -529,6 +559,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpTimeSheet" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -585,16 +623,15 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ErpPOLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpPOLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpPOLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpPOLineItem", fields);
+                base.export_attribute (obj, "ErpPOLineItem", "ErpRecDelLineItem", "ErpRecDelLineItem", fields);
+                base.export_attribute (obj, "ErpPOLineItem", "ErpReqLineItem", "ErpReqLineItem", fields);
+                base.export_attribute (obj, "ErpPOLineItem", "AssetModelCatalogueItem", "AssetModelCatalogueItem", fields);
+                base.export_attribute (obj, "ErpPOLineItem", "ErpPurchaseOrder", "ErpPurchaseOrder", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -645,6 +682,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpPOLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("ErpRecDelLineItem").value; if ("" != temp) obj.ErpRecDelLineItem = temp;
+                temp = document.getElementById ("ErpReqLineItem").value; if ("" != temp) obj.ErpReqLineItem = temp;
+                temp = document.getElementById ("AssetModelCatalogueItem").value; if ("" != temp) obj.AssetModelCatalogueItem = temp;
+                temp = document.getElementById ("ErpPurchaseOrder").value; if ("" != temp) obj.ErpPurchaseOrder = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -703,13 +754,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpReceiveDelivery", fields);
+                base.export_attributes (obj, "ErpReceiveDelivery", "ErpRecDelvLineItems", "ErpRecDelvLineItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -755,6 +805,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpReceiveDelivery" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -813,16 +871,15 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpPayment", "termsPayment", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ErpPayment", fields);
-                base.export_attribute (obj, "export_attributes", "ErpPayment", fields);
-                base.export_attribute (obj, "export_attributes", "ErpPayment", fields);
+                base.export_element (obj, "ErpPayment", "termsPayment", "termsPayment",  base.from_string, fields);
+                base.export_attributes (obj, "ErpPayment", "ErpPayableLineItems", "ErpPayableLineItems", fields);
+                base.export_attributes (obj, "ErpPayment", "ErpRecLineItems", "ErpRecLineItems", fields);
+                base.export_attributes (obj, "ErpPayment", "ErpInvoiceLineItems", "ErpInvoiceLineItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -881,6 +938,20 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpPayment" };
+                super.submit (obj);
+                temp = document.getElementById ("termsPayment").value; if ("" != temp) obj.termsPayment = temp;
+                temp = document.getElementById ("ErpPayableLineItems").value; if ("" != temp) obj.ErpPayableLineItems = temp.split (",");
+                temp = document.getElementById ("ErpRecLineItems").value; if ("" != temp) obj.ErpRecLineItems = temp.split (",");
+                temp = document.getElementById ("ErpInvoiceLineItems").value; if ("" != temp) obj.ErpInvoiceLineItems = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -936,13 +1007,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpJournal", fields);
+                base.export_attributes (obj, "ErpJournal", "ErpJournalEntries", "ErpJournalEntries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -988,6 +1058,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpJournal" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1053,23 +1131,22 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInvoice", "amount", base.from_string, fields);
-                base.export_element (obj, "ErpInvoice", "billMediaKind", base.from_string, fields);
-                base.export_element (obj, "ErpInvoice", "dueDate", base.from_string, fields);
-                base.export_element (obj, "ErpInvoice", "kind", base.from_string, fields);
-                base.export_element (obj, "ErpInvoice", "mailedDate", base.from_string, fields);
-                base.export_element (obj, "ErpInvoice", "proForma", base.from_boolean, fields);
-                base.export_element (obj, "ErpInvoice", "referenceNumber", base.from_string, fields);
-                base.export_element (obj, "ErpInvoice", "transactionDateTime", base.from_datetime, fields);
-                base.export_element (obj, "ErpInvoice", "transferType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ErpInvoice", fields);
-                base.export_attribute (obj, "export_attribute", "ErpInvoice", fields);
+                base.export_element (obj, "ErpInvoice", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoice", "billMediaKind", "billMediaKind",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoice", "dueDate", "dueDate",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoice", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoice", "mailedDate", "mailedDate",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoice", "proForma", "proForma",  base.from_boolean, fields);
+                base.export_element (obj, "ErpInvoice", "referenceNumber", "referenceNumber",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoice", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "ErpInvoice", "transferType", "transferType",  base.from_string, fields);
+                base.export_attributes (obj, "ErpInvoice", "ErpInvoiceLineItems", "ErpInvoiceLineItems", fields);
+                base.export_attribute (obj, "ErpInvoice", "CustomerAccount", "CustomerAccount", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1141,6 +1218,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpInvoice" };
+                super.submit (obj);
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("billMediaKind").value; if ("" != temp) { temp = BillMediaKind[temp]; if ("undefined" != typeof (temp)) obj.billMediaKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BillMediaKind." + temp; }
+                temp = document.getElementById ("dueDate").value; if ("" != temp) obj.dueDate = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ErpInvoiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceKind." + temp; }
+                temp = document.getElementById ("mailedDate").value; if ("" != temp) obj.mailedDate = temp;
+                temp = document.getElementById ("proForma").checked; if (temp) obj.proForma = true;
+                temp = document.getElementById ("referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
+                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById ("transferType").value; if ("" != temp) obj.transferType = temp;
+                temp = document.getElementById ("CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1195,13 +1292,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpPurchaseOrder", fields);
+                base.export_attributes (obj, "ErpPurchaseOrder", "ErpPOLineItems", "ErpPOLineItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1247,6 +1343,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpPurchaseOrder" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1302,13 +1406,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpLedger", fields);
+                base.export_attributes (obj, "ErpLedger", "ErpLedgerEntries", "ErpLedgerEntries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1354,6 +1457,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpLedger" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1409,13 +1520,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpRequisition", fields);
+                base.export_attributes (obj, "ErpRequisition", "ErpReqLineItems", "ErpReqLineItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1461,6 +1571,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpRequisition" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1517,14 +1635,13 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ErpBOM", fields);
-                base.export_attribute (obj, "export_attributes", "ErpBOM", fields);
+                base.export_attribute (obj, "ErpBOM", "Design", "Design", fields);
+                base.export_attributes (obj, "ErpBOM", "ErpBomItemDatas", "ErpBomItemDatas", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1572,6 +1689,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpBOM" };
+                super.submit (obj);
+                temp = document.getElementById ("Design").value; if ("" != temp) obj.Design = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1631,16 +1759,15 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpProjectAccounting", fields);
-                base.export_attribute (obj, "export_attributes", "ErpProjectAccounting", fields);
-                base.export_attribute (obj, "export_attributes", "ErpProjectAccounting", fields);
-                base.export_attribute (obj, "export_attributes", "ErpProjectAccounting", fields);
+                base.export_attributes (obj, "ErpProjectAccounting", "ErpTimeEntries", "ErpTimeEntries", fields);
+                base.export_attributes (obj, "ErpProjectAccounting", "WorkCostDetails", "WorkCostDetails", fields);
+                base.export_attributes (obj, "ErpProjectAccounting", "Projects", "Projects", fields);
+                base.export_attributes (obj, "ErpProjectAccounting", "Works", "Works", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1695,6 +1822,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpProjectAccounting" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1771,33 +1906,32 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInvoiceLineItem", "billPeriod", base.from_string, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "glAccount", base.from_string, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "glDateTime", base.from_datetime, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "kind", base.from_string, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "lineAmount", base.from_float, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "lineNumber", base.from_string, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "lineVersion", base.from_string, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "netAmount", base.from_float, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "previousAmount", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpInvoiceLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpInvoiceLineItem", fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "billPeriod", "billPeriod",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "glAccount", "glAccount",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "glDateTime", "glDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "lineAmount", "lineAmount",  base.from_float, fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "lineNumber", "lineNumber",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "lineVersion", "lineVersion",  base.from_string, fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "netAmount", "netAmount",  base.from_float, fields);
+                base.export_element (obj, "ErpInvoiceLineItem", "previousAmount", "previousAmount",  base.from_float, fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "ContainerErpInvoiceLineItem", "ContainerErpInvoiceLineItem", fields);
+                base.export_attributes (obj, "ErpInvoiceLineItem", "ComponentErpInvoiceLineItems", "ComponentErpInvoiceLineItems", fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "ErpPayableLineItem", "ErpPayableLineItem", fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "ErpInvoice", "ErpInvoice", fields);
+                base.export_attributes (obj, "ErpInvoiceLineItem", "CustomerBillingInfos", "CustomerBillingInfos", fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "ErpRecLineItem", "ErpRecLineItem", fields);
+                base.export_attributes (obj, "ErpInvoiceLineItem", "UserAttributes", "UserAttributes", fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "ErpRecDelvLineItem", "ErpRecDelvLineItem", fields);
+                base.export_attributes (obj, "ErpInvoiceLineItem", "ErpPayments", "ErpPayments", fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "ErpQuoteLineItem", "ErpQuoteLineItem", fields);
+                base.export_attributes (obj, "ErpInvoiceLineItem", "WorkBillingInfos", "WorkBillingInfos", fields);
+                base.export_attributes (obj, "ErpInvoiceLineItem", "ErpJournalEntries", "ErpJournalEntries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1896,6 +2030,35 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpInvoiceLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("billPeriod").value; if ("" != temp) obj.billPeriod = temp;
+                temp = document.getElementById ("glAccount").value; if ("" != temp) obj.glAccount = temp;
+                temp = document.getElementById ("glDateTime").value; if ("" != temp) obj.glDateTime = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ErpInvoiceLineItemKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceLineItemKind." + temp; }
+                temp = document.getElementById ("lineAmount").value; if ("" != temp) obj.lineAmount = temp;
+                temp = document.getElementById ("lineNumber").value; if ("" != temp) obj.lineNumber = temp;
+                temp = document.getElementById ("lineVersion").value; if ("" != temp) obj.lineVersion = temp;
+                temp = document.getElementById ("netAmount").value; if ("" != temp) obj.netAmount = temp;
+                temp = document.getElementById ("previousAmount").value; if ("" != temp) obj.previousAmount = temp;
+                temp = document.getElementById ("ContainerErpInvoiceLineItem").value; if ("" != temp) obj.ContainerErpInvoiceLineItem = temp;
+                temp = document.getElementById ("ErpPayableLineItem").value; if ("" != temp) obj.ErpPayableLineItem = temp;
+                temp = document.getElementById ("ErpInvoice").value; if ("" != temp) obj.ErpInvoice = temp;
+                temp = document.getElementById ("CustomerBillingInfos").value; if ("" != temp) obj.CustomerBillingInfos = temp.split (",");
+                temp = document.getElementById ("ErpRecLineItem").value; if ("" != temp) obj.ErpRecLineItem = temp;
+                temp = document.getElementById ("UserAttributes").value; if ("" != temp) obj.UserAttributes = temp.split (",");
+                temp = document.getElementById ("ErpRecDelvLineItem").value; if ("" != temp) obj.ErpRecDelvLineItem = temp;
+                temp = document.getElementById ("ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
+                temp = document.getElementById ("ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
+                temp = document.getElementById ("WorkBillingInfos").value; if ("" != temp) obj.WorkBillingInfos = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1965,7 +2128,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2007,6 +2169,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpChartOfAccounts" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2053,13 +2223,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpReceivable", fields);
+                base.export_attributes (obj, "ErpReceivable", "ErpRecLineItems", "ErpRecLineItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2105,6 +2274,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpReceivable" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2163,7 +2340,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2205,6 +2381,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpEngChangeOrder" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2252,14 +2436,13 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpPayable", fields);
-                base.export_attribute (obj, "export_attributes", "ErpPayable", fields);
+                base.export_attributes (obj, "ErpPayable", "ErpPayableLineItems", "ErpPayableLineItems", fields);
+                base.export_attributes (obj, "ErpPayable", "ContractorItems", "ContractorItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2309,6 +2492,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpPayable" };
+                super.submit (obj);
+                temp = document.getElementById ("ContractorItems").value; if ("" != temp) obj.ContractorItems = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -2365,13 +2559,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpLedgerBudget", fields);
+                base.export_attributes (obj, "ErpLedgerBudget", "ErpLedBudLineItems", "ErpLedBudLineItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2417,6 +2610,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpLedgerBudget" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2472,13 +2673,12 @@ define
             {
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpQuote", fields);
+                base.export_attributes (obj, "ErpQuote", "ErpQuoteLineItems", "ErpQuoteLineItems", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2524,6 +2724,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpQuote" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2579,15 +2787,14 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpLedBudLineItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpLedBudLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpLedBudLineItem", fields);
+                base.export_element (obj, "ErpLedBudLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedgerBudget", "ErpLedgerBudget", fields);
+                base.export_attribute (obj, "ErpLedBudLineItem", "ErpLedBudLineItem", "ErpLedBudLineItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2636,6 +2843,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpLedBudLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("ErpLedgerBudget").value; if ("" != temp) obj.ErpLedgerBudget = temp;
+                temp = document.getElementById ("ErpLedBudLineItem").value; if ("" != temp) obj.ErpLedBudLineItem = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2693,14 +2913,13 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInventoryCount", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpInventoryCount", fields);
+                base.export_element (obj, "ErpInventoryCount", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInventoryCount", "AssetModel", "AssetModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2747,6 +2966,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpInventoryCount" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("AssetModel").value; if ("" != temp) obj.AssetModel = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2802,15 +3033,14 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpTimeEntry", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpTimeEntry", fields);
-                base.export_attribute (obj, "export_attribute", "ErpTimeEntry", fields);
+                base.export_element (obj, "ErpTimeEntry", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpTimeEntry", "ErpTimeSheet", "ErpTimeSheet", fields);
+                base.export_attribute (obj, "ErpTimeEntry", "ErpProjectAccounting", "ErpProjectAccounting", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2859,6 +3089,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpTimeEntry" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("ErpTimeSheet").value; if ("" != temp) obj.ErpTimeSheet = temp;
+                temp = document.getElementById ("ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2918,18 +3161,17 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpQuoteLineItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpQuoteLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpQuoteLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpQuoteLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpQuoteLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpQuoteLineItem", fields);
+                base.export_element (obj, "ErpQuoteLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpQuoteLineItem", "Design", "Design", fields);
+                base.export_attribute (obj, "ErpQuoteLineItem", "ErpQuote", "ErpQuote", fields);
+                base.export_attribute (obj, "ErpQuoteLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
+                base.export_attribute (obj, "ErpQuoteLineItem", "ErpReqLineItem", "ErpReqLineItem", fields);
+                base.export_attribute (obj, "ErpQuoteLineItem", "AssetModelCatalogueItem", "AssetModelCatalogueItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2984,6 +3226,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpQuoteLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("Design").value; if ("" != temp) obj.Design = temp;
+                temp = document.getElementById ("ErpQuote").value; if ("" != temp) obj.ErpQuote = temp;
+                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                temp = document.getElementById ("ErpReqLineItem").value; if ("" != temp) obj.ErpReqLineItem = temp;
+                temp = document.getElementById ("AssetModelCatalogueItem").value; if ("" != temp) obj.AssetModelCatalogueItem = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3050,22 +3308,21 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpLedgerEntry", "accountID", base.from_string, fields);
-                base.export_element (obj, "ErpLedgerEntry", "accountKind", base.from_string, fields);
-                base.export_element (obj, "ErpLedgerEntry", "amount", base.from_string, fields);
-                base.export_element (obj, "ErpLedgerEntry", "postedDateTime", base.from_datetime, fields);
-                base.export_element (obj, "ErpLedgerEntry", "status", base.from_string, fields);
-                base.export_element (obj, "ErpLedgerEntry", "transactionDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attribute", "ErpLedgerEntry", fields);
-                base.export_attribute (obj, "export_attribute", "ErpLedgerEntry", fields);
-                base.export_attribute (obj, "export_attributes", "ErpLedgerEntry", fields);
-                base.export_attribute (obj, "export_attribute", "ErpLedgerEntry", fields);
+                base.export_element (obj, "ErpLedgerEntry", "accountID", "accountID",  base.from_string, fields);
+                base.export_element (obj, "ErpLedgerEntry", "accountKind", "accountKind",  base.from_string, fields);
+                base.export_element (obj, "ErpLedgerEntry", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "ErpLedgerEntry", "postedDateTime", "postedDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "ErpLedgerEntry", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "ErpLedgerEntry", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
+                base.export_attribute (obj, "ErpLedgerEntry", "ErpJounalEntry", "ErpJounalEntry", fields);
+                base.export_attribute (obj, "ErpLedgerEntry", "ErpLedgerEntry", "ErpLedgerEntry", fields);
+                base.export_attributes (obj, "ErpLedgerEntry", "UserAttributes", "UserAttributes", fields);
+                base.export_attribute (obj, "ErpLedgerEntry", "ErpLedger", "ErpLedger", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3134,6 +3391,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpLedgerEntry" };
+                super.submit (obj);
+                temp = document.getElementById ("accountID").value; if ("" != temp) obj.accountID = temp;
+                temp = document.getElementById ("accountKind").value; if ("" != temp) { temp = ErpAccountKind[temp]; if ("undefined" != typeof (temp)) obj.accountKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpAccountKind." + temp; }
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("postedDateTime").value; if ("" != temp) obj.postedDateTime = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById ("ErpJounalEntry").value; if ("" != temp) obj.ErpJounalEntry = temp;
+                temp = document.getElementById ("ErpLedgerEntry").value; if ("" != temp) obj.ErpLedgerEntry = temp;
+                temp = document.getElementById ("UserAttributes").value; if ("" != temp) obj.UserAttributes = temp.split (",");
+                temp = document.getElementById ("ErpLedger").value; if ("" != temp) obj.ErpLedger = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3191,14 +3468,13 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpItemMaster", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpItemMaster", fields);
+                base.export_element (obj, "ErpItemMaster", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpItemMaster", "Asset", "Asset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3245,6 +3521,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpItemMaster" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("Asset").value; if ("" != temp) obj.Asset = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3302,17 +3590,16 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpPayableLineItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ErpPayableLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpPayableLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpPayableLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpPayableLineItem", fields);
+                base.export_element (obj, "ErpPayableLineItem", "status", "status",  base.from_string, fields);
+                base.export_attributes (obj, "ErpPayableLineItem", "ErpPayments", "ErpPayments", fields);
+                base.export_attribute (obj, "ErpPayableLineItem", "ErpPayable", "ErpPayable", fields);
+                base.export_attribute (obj, "ErpPayableLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
+                base.export_attributes (obj, "ErpPayableLineItem", "ErpJournalEntries", "ErpJournalEntries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3369,6 +3656,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpPayableLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
+                temp = document.getElementById ("ErpPayable").value; if ("" != temp) obj.ErpPayable = temp;
+                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                temp = document.getElementById ("ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -3429,17 +3731,16 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpRecLineItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpRecLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpRecLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpRecLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpRecLineItem", fields);
+                base.export_element (obj, "ErpRecLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpRecLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
+                base.export_attributes (obj, "ErpRecLineItem", "ErpPayments", "ErpPayments", fields);
+                base.export_attributes (obj, "ErpRecLineItem", "ErpJournalEntries", "ErpJournalEntries", fields);
+                base.export_attribute (obj, "ErpRecLineItem", "ErpReceivable", "ErpReceivable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3498,6 +3799,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpRecLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                temp = document.getElementById ("ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
+                temp = document.getElementById ("ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
+                temp = document.getElementById ("ErpReceivable").value; if ("" != temp) obj.ErpReceivable = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3554,15 +3870,14 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpIssueInventory", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpIssueInventory", fields);
-                base.export_attribute (obj, "export_attribute", "ErpIssueInventory", fields);
+                base.export_element (obj, "ErpIssueInventory", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpIssueInventory", "TypeMaterial", "TypeMaterial", fields);
+                base.export_attribute (obj, "ErpIssueInventory", "TypeAsset", "TypeAsset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3611,6 +3926,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpIssueInventory" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
+                temp = document.getElementById ("TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3668,14 +3996,13 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpInventory", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpInventory", fields);
+                base.export_element (obj, "ErpInventory", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInventory", "Asset", "Asset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3722,6 +4049,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpInventory" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("Asset").value; if ("" != temp) obj.Asset = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3784,22 +4123,21 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpReqLineItem", "code", base.from_string, fields);
-                base.export_element (obj, "ErpReqLineItem", "cost", base.from_string, fields);
-                base.export_element (obj, "ErpReqLineItem", "deliveryDate", base.from_string, fields);
-                base.export_element (obj, "ErpReqLineItem", "quantity", base.from_string, fields);
-                base.export_element (obj, "ErpReqLineItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpReqLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpReqLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpReqLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpReqLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpReqLineItem", fields);
+                base.export_element (obj, "ErpReqLineItem", "code", "code",  base.from_string, fields);
+                base.export_element (obj, "ErpReqLineItem", "cost", "cost",  base.from_string, fields);
+                base.export_element (obj, "ErpReqLineItem", "deliveryDate", "deliveryDate",  base.from_string, fields);
+                base.export_element (obj, "ErpReqLineItem", "quantity", "quantity",  base.from_string, fields);
+                base.export_element (obj, "ErpReqLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpReqLineItem", "ErpPOLineItem", "ErpPOLineItem", fields);
+                base.export_attribute (obj, "ErpReqLineItem", "TypeMaterial", "TypeMaterial", fields);
+                base.export_attribute (obj, "ErpReqLineItem", "ErpRequisition", "ErpRequisition", fields);
+                base.export_attribute (obj, "ErpReqLineItem", "TypeAsset", "TypeAsset", fields);
+                base.export_attribute (obj, "ErpReqLineItem", "ErpQuoteLineItem", "ErpQuoteLineItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3864,6 +4202,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpReqLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("code").value; if ("" != temp) obj.code = temp;
+                temp = document.getElementById ("cost").value; if ("" != temp) obj.cost = temp;
+                temp = document.getElementById ("deliveryDate").value; if ("" != temp) obj.deliveryDate = temp;
+                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("ErpPOLineItem").value; if ("" != temp) obj.ErpPOLineItem = temp;
+                temp = document.getElementById ("TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
+                temp = document.getElementById ("ErpRequisition").value; if ("" != temp) obj.ErpRequisition = temp;
+                temp = document.getElementById ("TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
+                temp = document.getElementById ("ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3920,14 +4278,13 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpPersonnel", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ErpPersonnel", fields);
+                base.export_element (obj, "ErpPersonnel", "status", "status",  base.from_string, fields);
+                base.export_attributes (obj, "ErpPersonnel", "ErpPersons", "ErpPersons", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3975,6 +4332,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpPersonnel" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4039,24 +4407,23 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpJournalEntry", "accountID", base.from_string, fields);
-                base.export_element (obj, "ErpJournalEntry", "amount", base.from_string, fields);
-                base.export_element (obj, "ErpJournalEntry", "postingDateTime", base.from_datetime, fields);
-                base.export_element (obj, "ErpJournalEntry", "sourceID", base.from_string, fields);
-                base.export_element (obj, "ErpJournalEntry", "status", base.from_string, fields);
-                base.export_element (obj, "ErpJournalEntry", "transactionDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attribute", "ErpJournalEntry", fields);
-                base.export_attribute (obj, "export_attributes", "ErpJournalEntry", fields);
-                base.export_attribute (obj, "export_attribute", "ErpJournalEntry", fields);
-                base.export_attribute (obj, "export_attributes", "ErpJournalEntry", fields);
-                base.export_attribute (obj, "export_attributes", "ErpJournalEntry", fields);
-                base.export_attribute (obj, "export_attribute", "ErpJournalEntry", fields);
+                base.export_element (obj, "ErpJournalEntry", "accountID", "accountID",  base.from_string, fields);
+                base.export_element (obj, "ErpJournalEntry", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "ErpJournalEntry", "postingDateTime", "postingDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "ErpJournalEntry", "sourceID", "sourceID",  base.from_string, fields);
+                base.export_element (obj, "ErpJournalEntry", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "ErpJournalEntry", "transactionDateTime", "transactionDateTime",  base.from_datetime, fields);
+                base.export_attribute (obj, "ErpJournalEntry", "ErpLedgerEntry", "ErpLedgerEntry", fields);
+                base.export_attributes (obj, "ErpJournalEntry", "ErpPayableLineItems", "ErpPayableLineItems", fields);
+                base.export_attribute (obj, "ErpJournalEntry", "ErpJournal", "ErpJournal", fields);
+                base.export_attributes (obj, "ErpJournalEntry", "ErpRecLineItems", "ErpRecLineItems", fields);
+                base.export_attributes (obj, "ErpJournalEntry", "CostTypes", "CostTypes", fields);
+                base.export_attribute (obj, "ErpJournalEntry", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4131,6 +4498,28 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpJournalEntry" };
+                super.submit (obj);
+                temp = document.getElementById ("accountID").value; if ("" != temp) obj.accountID = temp;
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("postingDateTime").value; if ("" != temp) obj.postingDateTime = temp;
+                temp = document.getElementById ("sourceID").value; if ("" != temp) obj.sourceID = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById ("ErpLedgerEntry").value; if ("" != temp) obj.ErpLedgerEntry = temp;
+                temp = document.getElementById ("ErpPayableLineItems").value; if ("" != temp) obj.ErpPayableLineItems = temp.split (",");
+                temp = document.getElementById ("ErpJournal").value; if ("" != temp) obj.ErpJournal = temp;
+                temp = document.getElementById ("ErpRecLineItems").value; if ("" != temp) obj.ErpRecLineItems = temp.split (",");
+                temp = document.getElementById ("CostTypes").value; if ("" != temp) obj.CostTypes = temp.split (",");
+                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4189,15 +4578,14 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ErpBomItemData", fields);
-                base.export_attribute (obj, "export_attribute", "ErpBomItemData", fields);
-                base.export_attribute (obj, "export_attribute", "ErpBomItemData", fields);
+                base.export_attribute (obj, "ErpBomItemData", "TypeAsset", "TypeAsset", fields);
+                base.export_attribute (obj, "ErpBomItemData", "DesignLocation", "DesignLocation", fields);
+                base.export_attribute (obj, "ErpBomItemData", "ErpBOM", "ErpBOM", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4246,6 +4634,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpBomItemData" };
+                super.submit (obj);
+                temp = document.getElementById ("TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
+                temp = document.getElementById ("DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
+                temp = document.getElementById ("ErpBOM").value; if ("" != temp) obj.ErpBOM = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4304,14 +4705,13 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpSiteLevelData", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpSiteLevelData", fields);
+                base.export_element (obj, "ErpSiteLevelData", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpSiteLevelData", "LandProperty", "LandProperty", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4358,6 +4758,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpSiteLevelData" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("LandProperty").value; if ("" != temp) obj.LandProperty = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4417,17 +4829,16 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ErpRecDelvLineItem", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ErpRecDelvLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpRecDelvLineItem", fields);
-                base.export_attribute (obj, "export_attributes", "ErpRecDelvLineItem", fields);
-                base.export_attribute (obj, "export_attribute", "ErpRecDelvLineItem", fields);
+                base.export_element (obj, "ErpRecDelvLineItem", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "ErpRecDelvLineItem", "ErpPOLineItem", "ErpPOLineItem", fields);
+                base.export_attribute (obj, "ErpRecDelvLineItem", "ErpInvoiceLineItem", "ErpInvoiceLineItem", fields);
+                base.export_attributes (obj, "ErpRecDelvLineItem", "Assets", "Assets", fields);
+                base.export_attribute (obj, "ErpRecDelvLineItem", "ErpReceiveDelivery", "ErpReceiveDelivery", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4482,6 +4893,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ErpRecDelvLineItem" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("ErpPOLineItem").value; if ("" != temp) obj.ErpPOLineItem = temp;
+                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                temp = document.getElementById ("Assets").value; if ("" != temp) obj.Assets = temp.split (",");
+                temp = document.getElementById ("ErpReceiveDelivery").value; if ("" != temp) obj.ErpReceiveDelivery = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4540,13 +4966,12 @@ define
             {
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ErpCompetency", fields);
+                base.export_attributes (obj, "ErpCompetency", "ErpPersons", "ErpPersons", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4592,6 +5017,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ErpCompetency" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()

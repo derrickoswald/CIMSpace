@@ -54,14 +54,13 @@ define
             {
                 var fields = PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PFVArControllerType2UserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "PFVArControllerType2UserDefined", fields);
+                base.export_element (obj, "PFVArControllerType2UserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "PFVArControllerType2UserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -109,6 +108,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArControllerType2UserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -163,14 +173,13 @@ define
             {
                 var fields = TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TurbineLoadControllerUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "TurbineLoadControllerUserDefined", fields);
+                base.export_element (obj, "TurbineLoadControllerUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "TurbineLoadControllerUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -218,6 +227,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TurbineLoadControllerUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -272,14 +292,13 @@ define
             {
                 var fields = VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VoltageAdjusterUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "VoltageAdjusterUserDefined", fields);
+                base.export_element (obj, "VoltageAdjusterUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "VoltageAdjusterUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -327,6 +346,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VoltageAdjusterUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -381,14 +411,13 @@ define
             {
                 var fields = TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TurbineGovernorUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "TurbineGovernorUserDefined", fields);
+                base.export_element (obj, "TurbineGovernorUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "TurbineGovernorUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -436,6 +465,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TurbineGovernorUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -490,14 +530,13 @@ define
             {
                 var fields = LoadDynamics.LoadDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LoadUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "LoadUserDefined", fields);
+                base.export_element (obj, "LoadUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "LoadUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -545,6 +584,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -599,14 +649,13 @@ define
             {
                 var fields = ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcitationSystemUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "ExcitationSystemUserDefined", fields);
+                base.export_element (obj, "ExcitationSystemUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "ExcitationSystemUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -654,6 +703,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcitationSystemUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -708,14 +768,13 @@ define
             {
                 var fields = WindDynamics.WindPlantDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindPlantUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "WindPlantUserDefined", fields);
+                base.export_element (obj, "WindPlantUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "WindPlantUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -763,6 +822,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindPlantUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -817,14 +887,13 @@ define
             {
                 var fields = PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PowerSystemStabilizerUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "PowerSystemStabilizerUserDefined", fields);
+                base.export_element (obj, "PowerSystemStabilizerUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "PowerSystemStabilizerUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -872,6 +941,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PowerSystemStabilizerUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -926,14 +1006,13 @@ define
             {
                 var fields = WindDynamics.WindTurbineType3or4Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindType3or4UserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "WindType3or4UserDefined", fields);
+                base.export_element (obj, "WindType3or4UserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "WindType3or4UserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -981,6 +1060,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindType3or4UserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -1035,14 +1125,13 @@ define
             {
                 var fields = AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AsynchronousMachineUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "AsynchronousMachineUserDefined", fields);
+                base.export_element (obj, "AsynchronousMachineUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "AsynchronousMachineUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1090,6 +1179,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AsynchronousMachineUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -1144,14 +1244,13 @@ define
             {
                 var fields = PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PFVArControllerType1UserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "PFVArControllerType1UserDefined", fields);
+                base.export_element (obj, "PFVArControllerType1UserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "PFVArControllerType1UserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1199,6 +1298,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PFVArControllerType1UserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -1253,14 +1363,13 @@ define
             {
                 var fields = MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MechanicalLoadUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "MechanicalLoadUserDefined", fields);
+                base.export_element (obj, "MechanicalLoadUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "MechanicalLoadUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1308,6 +1417,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MechanicalLoadUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -1362,14 +1482,13 @@ define
             {
                 var fields = VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VoltageCompensatorUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "VoltageCompensatorUserDefined", fields);
+                base.export_element (obj, "VoltageCompensatorUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "VoltageCompensatorUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1417,6 +1536,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VoltageCompensatorUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -1471,14 +1601,13 @@ define
             {
                 var fields = UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UnderexcitationLimiterUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "UnderexcitationLimiterUserDefined", fields);
+                base.export_element (obj, "UnderexcitationLimiterUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "UnderexcitationLimiterUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1526,6 +1655,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UnderexcitationLimiterUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -1580,14 +1720,13 @@ define
             {
                 var fields = WindDynamics.WindTurbineType1or2Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindType1or2UserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "WindType1or2UserDefined", fields);
+                base.export_element (obj, "WindType1or2UserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "WindType1or2UserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1635,6 +1774,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindType1or2UserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -1689,14 +1839,13 @@ define
             {
                 var fields = OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OverexcitationLimiterUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "OverexcitationLimiterUserDefined", fields);
+                base.export_element (obj, "OverexcitationLimiterUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "OverexcitationLimiterUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1744,6 +1893,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OverexcitationLimiterUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -1820,34 +1980,33 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ProprietaryParameterDynamics", "booleanParameterValue", base.from_boolean, fields);
-                base.export_element (obj, "ProprietaryParameterDynamics", "floatParameterValue", base.from_float, fields);
-                base.export_element (obj, "ProprietaryParameterDynamics", "integerParameterValue", base.from_string, fields);
-                base.export_element (obj, "ProprietaryParameterDynamics", "parameterNumber", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ProprietaryParameterDynamics", fields);
+                base.export_element (obj, "ProprietaryParameterDynamics", "booleanParameterValue", "booleanParameterValue",  base.from_boolean, fields);
+                base.export_element (obj, "ProprietaryParameterDynamics", "floatParameterValue", "floatParameterValue",  base.from_float, fields);
+                base.export_element (obj, "ProprietaryParameterDynamics", "integerParameterValue", "integerParameterValue",  base.from_string, fields);
+                base.export_element (obj, "ProprietaryParameterDynamics", "parameterNumber", "parameterNumber",  base.from_string, fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "TurbineGovernorUserDefined", "TurbineGovernorUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "PFVArControllerType2UserDefined", "PFVArControllerType2UserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "WindType1or2UserDefined", "WindType1or2UserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "VoltageAdjusterUserDefined", "VoltageAdjusterUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "TurbineLoadControllerUserDefined", "TurbineLoadControllerUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "DiscontinuousExcitationControlUserDefined", "DiscontinuousExcitationControlUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "PowerSystemStabilizerUserDefined", "PowerSystemStabilizerUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "ExcitationSystemUserDefined", "ExcitationSystemUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "LoadUserDefined", "LoadUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "SynchronousMachineUserDefined", "SynchronousMachineUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "MechanicalLoadUserDefined", "MechanicalLoadUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "WindType3or4UserDefined", "WindType3or4UserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "PFVArControllerType1UserDefined", "PFVArControllerType1UserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "WindPlantUserDefined", "WindPlantUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "UnderexcitationLimiterUserDefined", "UnderexcitationLimiterUserDefined", fields);
+                base.export_attribute (obj, "ProprietaryParameterDynamics", "OverexcitationLimiterUserDefined", "OverexcitationLimiterUserDefined", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1936,6 +2095,38 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProprietaryParameterDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("booleanParameterValue").checked; if (temp) obj.booleanParameterValue = true;
+                temp = document.getElementById ("floatParameterValue").value; if ("" != temp) obj.floatParameterValue = temp;
+                temp = document.getElementById ("integerParameterValue").value; if ("" != temp) obj.integerParameterValue = temp;
+                temp = document.getElementById ("parameterNumber").value; if ("" != temp) obj.parameterNumber = temp;
+                temp = document.getElementById ("TurbineGovernorUserDefined").value; if ("" != temp) obj.TurbineGovernorUserDefined = temp;
+                temp = document.getElementById ("PFVArControllerType2UserDefined").value; if ("" != temp) obj.PFVArControllerType2UserDefined = temp;
+                temp = document.getElementById ("WindType1or2UserDefined").value; if ("" != temp) obj.WindType1or2UserDefined = temp;
+                temp = document.getElementById ("VoltageAdjusterUserDefined").value; if ("" != temp) obj.VoltageAdjusterUserDefined = temp;
+                temp = document.getElementById ("TurbineLoadControllerUserDefined").value; if ("" != temp) obj.TurbineLoadControllerUserDefined = temp;
+                temp = document.getElementById ("DiscontinuousExcitationControlUserDefined").value; if ("" != temp) obj.DiscontinuousExcitationControlUserDefined = temp;
+                temp = document.getElementById ("PowerSystemStabilizerUserDefined").value; if ("" != temp) obj.PowerSystemStabilizerUserDefined = temp;
+                temp = document.getElementById ("ExcitationSystemUserDefined").value; if ("" != temp) obj.ExcitationSystemUserDefined = temp;
+                temp = document.getElementById ("LoadUserDefined").value; if ("" != temp) obj.LoadUserDefined = temp;
+                temp = document.getElementById ("AsynchronousMachineUserDefined").value; if ("" != temp) obj.AsynchronousMachineUserDefined = temp;
+                temp = document.getElementById ("VoltageCompensatorUserDefined").value; if ("" != temp) obj.VoltageCompensatorUserDefined = temp;
+                temp = document.getElementById ("SynchronousMachineUserDefined").value; if ("" != temp) obj.SynchronousMachineUserDefined = temp;
+                temp = document.getElementById ("MechanicalLoadUserDefined").value; if ("" != temp) obj.MechanicalLoadUserDefined = temp;
+                temp = document.getElementById ("WindType3or4UserDefined").value; if ("" != temp) obj.WindType3or4UserDefined = temp;
+                temp = document.getElementById ("PFVArControllerType1UserDefined").value; if ("" != temp) obj.PFVArControllerType1UserDefined = temp;
+                temp = document.getElementById ("WindPlantUserDefined").value; if ("" != temp) obj.WindPlantUserDefined = temp;
+                temp = document.getElementById ("UnderexcitationLimiterUserDefined").value; if ("" != temp) obj.UnderexcitationLimiterUserDefined = temp;
+                temp = document.getElementById ("OverexcitationLimiterUserDefined").value; if ("" != temp) obj.OverexcitationLimiterUserDefined = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2005,14 +2196,13 @@ define
             {
                 var fields = SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SynchronousMachineUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "SynchronousMachineUserDefined", fields);
+                base.export_element (obj, "SynchronousMachineUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "SynchronousMachineUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2060,6 +2250,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SynchronousMachineUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()
@@ -2114,14 +2315,13 @@ define
             {
                 var fields = DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DiscontinuousExcitationControlUserDefined", "proprietary", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "DiscontinuousExcitationControlUserDefined", fields);
+                base.export_element (obj, "DiscontinuousExcitationControlUserDefined", "proprietary", "proprietary",  base.from_boolean, fields);
+                base.export_attributes (obj, "DiscontinuousExcitationControlUserDefined", "ProprietaryParameterDynamics", "ProprietaryParameterDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2169,6 +2369,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiscontinuousExcitationControlUserDefined" };
+                super.submit (obj);
+                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+
+                return (obj);
             }
 
             relations ()

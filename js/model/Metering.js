@@ -208,17 +208,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DemandResponseProgram", "type", base.from_string, fields);
-                base.export_element (obj, "DemandResponseProgram", "validityInterval", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "DemandResponseProgram", fields);
-                base.export_attribute (obj, "export_attributes", "DemandResponseProgram", fields);
-                base.export_attribute (obj, "export_attributes", "DemandResponseProgram", fields);
+                base.export_element (obj, "DemandResponseProgram", "type", "type",  base.from_string, fields);
+                base.export_element (obj, "DemandResponseProgram", "validityInterval", "validityInterval",  base.from_string, fields);
+                base.export_attributes (obj, "DemandResponseProgram", "EndDeviceGroups", "EndDeviceGroups", fields);
+                base.export_attributes (obj, "DemandResponseProgram", "CustomerAgreements", "CustomerAgreements", fields);
+                base.export_attributes (obj, "DemandResponseProgram", "UsagePointGroups", "UsagePointGroups", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -279,6 +278,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DemandResponseProgram" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("validityInterval").value; if ("" != temp) obj.validityInterval = temp;
+                temp = document.getElementById ("EndDeviceGroups").value; if ("" != temp) obj.EndDeviceGroups = temp.split (",");
+                temp = document.getElementById ("CustomerAgreements").value; if ("" != temp) obj.CustomerAgreements = temp.split (",");
+                temp = document.getElementById ("UsagePointGroups").value; if ("" != temp) obj.UsagePointGroups = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -337,16 +351,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDeviceGroup", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceGroup", fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceGroup", fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceGroup", fields);
+                base.export_element (obj, "EndDeviceGroup", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "EndDeviceGroup", "DemandResponsePrograms", "DemandResponsePrograms", fields);
+                base.export_attributes (obj, "EndDeviceGroup", "EndDeviceControls", "EndDeviceControls", fields);
+                base.export_attributes (obj, "EndDeviceGroup", "EndDevices", "EndDevices", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -403,6 +416,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceGroup" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("DemandResponsePrograms").value; if ("" != temp) obj.DemandResponsePrograms = temp.split (",");
+                temp = document.getElementById ("EndDeviceControls").value; if ("" != temp) obj.EndDeviceControls = temp.split (",");
+                temp = document.getElementById ("EndDevices").value; if ("" != temp) obj.EndDevices = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -469,24 +496,23 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ControlledAppliance", "isElectricVehicle", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isExteriorLighting", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isGenerationSystem", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isHvacCompressorOrFurnace", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isInteriorLighting", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isIrrigationPump", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isManagedCommercialIndustrialLoad", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isPoolPumpSpaJacuzzi", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isSimpleMiscLoad", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isSmartAppliance", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isStripAndBaseboardHeater", base.from_boolean, fields);
-                base.export_element (obj, "ControlledAppliance", "isWaterHeater", base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isElectricVehicle", "isElectricVehicle",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isExteriorLighting", "isExteriorLighting",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isGenerationSystem", "isGenerationSystem",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isHvacCompressorOrFurnace", "isHvacCompressorOrFurnace",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isInteriorLighting", "isInteriorLighting",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isIrrigationPump", "isIrrigationPump",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isManagedCommercialIndustrialLoad", "isManagedCommercialIndustrialLoad",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isPoolPumpSpaJacuzzi", "isPoolPumpSpaJacuzzi",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isSimpleMiscLoad", "isSimpleMiscLoad",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isSmartAppliance", "isSmartAppliance",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isStripAndBaseboardHeater", "isStripAndBaseboardHeater",  base.from_boolean, fields);
+                base.export_element (obj, "ControlledAppliance", "isWaterHeater", "isWaterHeater",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -554,6 +580,28 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ControlledAppliance" };
+                super.submit (obj);
+                temp = document.getElementById ("isElectricVehicle").checked; if (temp) obj.isElectricVehicle = true;
+                temp = document.getElementById ("isExteriorLighting").checked; if (temp) obj.isExteriorLighting = true;
+                temp = document.getElementById ("isGenerationSystem").checked; if (temp) obj.isGenerationSystem = true;
+                temp = document.getElementById ("isHvacCompressorOrFurnace").checked; if (temp) obj.isHvacCompressorOrFurnace = true;
+                temp = document.getElementById ("isInteriorLighting").checked; if (temp) obj.isInteriorLighting = true;
+                temp = document.getElementById ("isIrrigationPump").checked; if (temp) obj.isIrrigationPump = true;
+                temp = document.getElementById ("isManagedCommercialIndustrialLoad").checked; if (temp) obj.isManagedCommercialIndustrialLoad = true;
+                temp = document.getElementById ("isPoolPumpSpaJacuzzi").checked; if (temp) obj.isPoolPumpSpaJacuzzi = true;
+                temp = document.getElementById ("isSimpleMiscLoad").checked; if (temp) obj.isSimpleMiscLoad = true;
+                temp = document.getElementById ("isSmartAppliance").checked; if (temp) obj.isSmartAppliance = true;
+                temp = document.getElementById ("isStripAndBaseboardHeater").checked; if (temp) obj.isStripAndBaseboardHeater = true;
+                temp = document.getElementById ("isWaterHeater").checked; if (temp) obj.isWaterHeater = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -603,19 +651,18 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Register", "isVirtual", base.from_boolean, fields);
-                base.export_element (obj, "Register", "leftDigitCount", base.from_string, fields);
-                base.export_element (obj, "Register", "rightDigitCount", base.from_string, fields);
-                base.export_element (obj, "Register", "touTier", base.from_string, fields);
-                base.export_element (obj, "Register", "touTierName", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Register", fields);
-                base.export_attribute (obj, "export_attributes", "Register", fields);
+                base.export_element (obj, "Register", "isVirtual", "isVirtual",  base.from_boolean, fields);
+                base.export_element (obj, "Register", "leftDigitCount", "leftDigitCount",  base.from_string, fields);
+                base.export_element (obj, "Register", "rightDigitCount", "rightDigitCount",  base.from_string, fields);
+                base.export_element (obj, "Register", "touTier", "touTier",  base.from_string, fields);
+                base.export_element (obj, "Register", "touTierName", "touTierName",  base.from_string, fields);
+                base.export_attribute (obj, "Register", "EndDeviceFunction", "EndDeviceFunction", fields);
+                base.export_attributes (obj, "Register", "Channels", "Channels", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -673,6 +720,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Register" };
+                super.submit (obj);
+                temp = document.getElementById ("isVirtual").checked; if (temp) obj.isVirtual = true;
+                temp = document.getElementById ("leftDigitCount").value; if ("" != temp) obj.leftDigitCount = temp;
+                temp = document.getElementById ("rightDigitCount").value; if ("" != temp) obj.rightDigitCount = temp;
+                temp = document.getElementById ("touTier").value; if ("" != temp) obj.touTier = temp;
+                temp = document.getElementById ("touTierName").value; if ("" != temp) obj.touTierName = temp;
+                temp = document.getElementById ("EndDeviceFunction").value; if ("" != temp) obj.EndDeviceFunction = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -741,27 +804,26 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDeviceControl", "drProgramLevel", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "drProgramMandatory", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceControl", "issuerID", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "issuerTrackingID", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "priceSignal", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "primaryDeviceTiming", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "reason", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "scheduledInterval", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControl", "secondaryDeviceTiming", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceControl", fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceControl", fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceControl", fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceControl", fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceControl", fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceControl", fields);
+                base.export_element (obj, "EndDeviceControl", "drProgramLevel", "drProgramLevel",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControl", "drProgramMandatory", "drProgramMandatory",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceControl", "issuerID", "issuerID",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControl", "issuerTrackingID", "issuerTrackingID",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControl", "priceSignal", "priceSignal",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControl", "primaryDeviceTiming", "primaryDeviceTiming",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControl", "reason", "reason",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControl", "scheduledInterval", "scheduledInterval",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControl", "secondaryDeviceTiming", "secondaryDeviceTiming",  base.from_string, fields);
+                base.export_attributes (obj, "EndDeviceControl", "EndDeviceGroups", "EndDeviceGroups", fields);
+                base.export_attribute (obj, "EndDeviceControl", "EndDeviceControlType", "EndDeviceControlType", fields);
+                base.export_attribute (obj, "EndDeviceControl", "EndDeviceAction", "EndDeviceAction", fields);
+                base.export_attributes (obj, "EndDeviceControl", "UsagePoints", "UsagePoints", fields);
+                base.export_attributes (obj, "EndDeviceControl", "UsagePointGroups", "UsagePointGroups", fields);
+                base.export_attributes (obj, "EndDeviceControl", "EndDevices", "EndDevices", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -844,6 +906,31 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceControl" };
+                super.submit (obj);
+                temp = document.getElementById ("drProgramLevel").value; if ("" != temp) obj.drProgramLevel = temp;
+                temp = document.getElementById ("drProgramMandatory").checked; if (temp) obj.drProgramMandatory = true;
+                temp = document.getElementById ("issuerID").value; if ("" != temp) obj.issuerID = temp;
+                temp = document.getElementById ("issuerTrackingID").value; if ("" != temp) obj.issuerTrackingID = temp;
+                temp = document.getElementById ("priceSignal").value; if ("" != temp) obj.priceSignal = temp;
+                temp = document.getElementById ("primaryDeviceTiming").value; if ("" != temp) obj.primaryDeviceTiming = temp;
+                temp = document.getElementById ("reason").value; if ("" != temp) obj.reason = temp;
+                temp = document.getElementById ("scheduledInterval").value; if ("" != temp) obj.scheduledInterval = temp;
+                temp = document.getElementById ("secondaryDeviceTiming").value; if ("" != temp) obj.secondaryDeviceTiming = temp;
+                temp = document.getElementById ("EndDeviceGroups").value; if ("" != temp) obj.EndDeviceGroups = temp.split (",");
+                temp = document.getElementById ("EndDeviceControlType").value; if ("" != temp) obj.EndDeviceControlType = temp;
+                temp = document.getElementById ("EndDeviceAction").value; if ("" != temp) obj.EndDeviceAction = temp;
+                temp = document.getElementById ("UsagePoints").value; if ("" != temp) obj.UsagePoints = temp.split (",");
+                temp = document.getElementById ("UsagePointGroups").value; if ("" != temp) obj.UsagePointGroups = temp.split (",");
+                temp = document.getElementById ("EndDevices").value; if ("" != temp) obj.EndDevices = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -913,26 +1000,25 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PanPricingDetail", "alternateCostDelivered", base.from_float, fields);
-                base.export_element (obj, "PanPricingDetail", "alternateCostUnit", base.from_string, fields);
-                base.export_element (obj, "PanPricingDetail", "currentTimeDate", base.from_datetime, fields);
-                base.export_element (obj, "PanPricingDetail", "generationPrice", base.from_string, fields);
-                base.export_element (obj, "PanPricingDetail", "generationPriceRatio", base.from_float, fields);
-                base.export_element (obj, "PanPricingDetail", "price", base.from_string, fields);
-                base.export_element (obj, "PanPricingDetail", "priceRatio", base.from_float, fields);
-                base.export_element (obj, "PanPricingDetail", "priceTier", base.from_string, fields);
-                base.export_element (obj, "PanPricingDetail", "priceTierCount", base.from_string, fields);
-                base.export_element (obj, "PanPricingDetail", "priceTierLabel", base.from_string, fields);
-                base.export_element (obj, "PanPricingDetail", "rateLabel", base.from_string, fields);
-                base.export_element (obj, "PanPricingDetail", "registerTier", base.from_string, fields);
-                base.export_element (obj, "PanPricingDetail", "unitOfMeasure", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PanPricingDetail", fields);
+                base.export_element (obj, "PanPricingDetail", "alternateCostDelivered", "alternateCostDelivered",  base.from_float, fields);
+                base.export_element (obj, "PanPricingDetail", "alternateCostUnit", "alternateCostUnit",  base.from_string, fields);
+                base.export_element (obj, "PanPricingDetail", "currentTimeDate", "currentTimeDate",  base.from_datetime, fields);
+                base.export_element (obj, "PanPricingDetail", "generationPrice", "generationPrice",  base.from_string, fields);
+                base.export_element (obj, "PanPricingDetail", "generationPriceRatio", "generationPriceRatio",  base.from_float, fields);
+                base.export_element (obj, "PanPricingDetail", "price", "price",  base.from_string, fields);
+                base.export_element (obj, "PanPricingDetail", "priceRatio", "priceRatio",  base.from_float, fields);
+                base.export_element (obj, "PanPricingDetail", "priceTier", "priceTier",  base.from_string, fields);
+                base.export_element (obj, "PanPricingDetail", "priceTierCount", "priceTierCount",  base.from_string, fields);
+                base.export_element (obj, "PanPricingDetail", "priceTierLabel", "priceTierLabel",  base.from_string, fields);
+                base.export_element (obj, "PanPricingDetail", "rateLabel", "rateLabel",  base.from_string, fields);
+                base.export_element (obj, "PanPricingDetail", "registerTier", "registerTier",  base.from_string, fields);
+                base.export_element (obj, "PanPricingDetail", "unitOfMeasure", "unitOfMeasure",  base.from_string, fields);
+                base.export_attribute (obj, "PanPricingDetail", "PanPricing", "PanPricing", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1003,6 +1089,30 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PanPricingDetail" };
+                super.submit (obj);
+                temp = document.getElementById ("alternateCostDelivered").value; if ("" != temp) obj.alternateCostDelivered = temp;
+                temp = document.getElementById ("alternateCostUnit").value; if ("" != temp) obj.alternateCostUnit = temp;
+                temp = document.getElementById ("currentTimeDate").value; if ("" != temp) obj.currentTimeDate = temp;
+                temp = document.getElementById ("generationPrice").value; if ("" != temp) obj.generationPrice = temp;
+                temp = document.getElementById ("generationPriceRatio").value; if ("" != temp) obj.generationPriceRatio = temp;
+                temp = document.getElementById ("price").value; if ("" != temp) obj.price = temp;
+                temp = document.getElementById ("priceRatio").value; if ("" != temp) obj.priceRatio = temp;
+                temp = document.getElementById ("priceTier").value; if ("" != temp) obj.priceTier = temp;
+                temp = document.getElementById ("priceTierCount").value; if ("" != temp) obj.priceTierCount = temp;
+                temp = document.getElementById ("priceTierLabel").value; if ("" != temp) obj.priceTierLabel = temp;
+                temp = document.getElementById ("rateLabel").value; if ("" != temp) obj.rateLabel = temp;
+                temp = document.getElementById ("registerTier").value; if ("" != temp) obj.registerTier = temp;
+                temp = document.getElementById ("unitOfMeasure").value; if ("" != temp) obj.unitOfMeasure = temp;
+                temp = document.getElementById ("PanPricing").value; if ("" != temp) obj.PanPricing = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1091,46 +1201,45 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UsagePoint", "amiBillingReady", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "checkBilling", base.from_boolean, fields);
-                base.export_element (obj, "UsagePoint", "connectionState", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "estimatedLoad", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "grounded", base.from_boolean, fields);
-                base.export_element (obj, "UsagePoint", "isSdp", base.from_boolean, fields);
-                base.export_element (obj, "UsagePoint", "isVirtual", base.from_boolean, fields);
-                base.export_element (obj, "UsagePoint", "minimalUsageExpected", base.from_boolean, fields);
-                base.export_element (obj, "UsagePoint", "nominalServiceVoltage", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "outageRegion", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "phaseCode", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "ratedCurrent", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "ratedPower", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "readCycle", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "readRoute", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "serviceDeliveryRemark", base.from_string, fields);
-                base.export_element (obj, "UsagePoint", "servicePriority", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attribute", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePoint", fields);
+                base.export_element (obj, "UsagePoint", "amiBillingReady", "amiBillingReady",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "checkBilling", "checkBilling",  base.from_boolean, fields);
+                base.export_element (obj, "UsagePoint", "connectionState", "connectionState",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "estimatedLoad", "estimatedLoad",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "grounded", "grounded",  base.from_boolean, fields);
+                base.export_element (obj, "UsagePoint", "isSdp", "isSdp",  base.from_boolean, fields);
+                base.export_element (obj, "UsagePoint", "isVirtual", "isVirtual",  base.from_boolean, fields);
+                base.export_element (obj, "UsagePoint", "minimalUsageExpected", "minimalUsageExpected",  base.from_boolean, fields);
+                base.export_element (obj, "UsagePoint", "nominalServiceVoltage", "nominalServiceVoltage",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "outageRegion", "outageRegion",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "phaseCode", "phaseCode",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "ratedPower", "ratedPower",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "readCycle", "readCycle",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "readRoute", "readRoute",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "serviceDeliveryRemark", "serviceDeliveryRemark",  base.from_string, fields);
+                base.export_element (obj, "UsagePoint", "servicePriority", "servicePriority",  base.from_string, fields);
+                base.export_attributes (obj, "UsagePoint", "Equipments", "Equipments", fields);
+                base.export_attributes (obj, "UsagePoint", "MeterReadings", "MeterReadings", fields);
+                base.export_attribute (obj, "UsagePoint", "CustomerAgreement", "CustomerAgreement", fields);
+                base.export_attributes (obj, "UsagePoint", "PricingStructures", "PricingStructures", fields);
+                base.export_attribute (obj, "UsagePoint", "ServiceSupplier", "ServiceSupplier", fields);
+                base.export_attributes (obj, "UsagePoint", "ConfigurationEvents", "ConfigurationEvents", fields);
+                base.export_attributes (obj, "UsagePoint", "EndDevices", "EndDevices", fields);
+                base.export_attributes (obj, "UsagePoint", "Outages", "Outages", fields);
+                base.export_attributes (obj, "UsagePoint", "MeterServiceWorks", "MeterServiceWorks", fields);
+                base.export_attributes (obj, "UsagePoint", "MetrologyRequirements", "MetrologyRequirements", fields);
+                base.export_attributes (obj, "UsagePoint", "ServiceMultipliers", "ServiceMultipliers", fields);
+                base.export_attribute (obj, "UsagePoint", "UsagePointLocation", "UsagePointLocation", fields);
+                base.export_attributes (obj, "UsagePoint", "EndDeviceEvents", "EndDeviceEvents", fields);
+                base.export_attribute (obj, "UsagePoint", "ServiceCategory", "ServiceCategory", fields);
+                base.export_attribute (obj, "UsagePoint", "ServiceLocation", "ServiceLocation", fields);
+                base.export_attributes (obj, "UsagePoint", "UsagePointGroups", "UsagePointGroups", fields);
+                base.export_attributes (obj, "UsagePoint", "EndDeviceControls", "EndDeviceControls", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1265,6 +1374,44 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UsagePoint" };
+                super.submit (obj);
+                temp = document.getElementById ("amiBillingReady").value; if ("" != temp) { temp = AmiBillingReadyKind[temp]; if ("undefined" != typeof (temp)) obj.amiBillingReady = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AmiBillingReadyKind." + temp; }
+                temp = document.getElementById ("checkBilling").checked; if (temp) obj.checkBilling = true;
+                temp = document.getElementById ("connectionState").value; if ("" != temp) { temp = UsagePointConnectedKind[temp]; if ("undefined" != typeof (temp)) obj.connectionState = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UsagePointConnectedKind." + temp; }
+                temp = document.getElementById ("estimatedLoad").value; if ("" != temp) obj.estimatedLoad = temp;
+                temp = document.getElementById ("grounded").checked; if (temp) obj.grounded = true;
+                temp = document.getElementById ("isSdp").checked; if (temp) obj.isSdp = true;
+                temp = document.getElementById ("isVirtual").checked; if (temp) obj.isVirtual = true;
+                temp = document.getElementById ("minimalUsageExpected").checked; if (temp) obj.minimalUsageExpected = true;
+                temp = document.getElementById ("nominalServiceVoltage").value; if ("" != temp) obj.nominalServiceVoltage = temp;
+                temp = document.getElementById ("outageRegion").value; if ("" != temp) obj.outageRegion = temp;
+                temp = document.getElementById ("phaseCode").value; if ("" != temp) obj.phaseCode = temp;
+                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById ("ratedPower").value; if ("" != temp) obj.ratedPower = temp;
+                temp = document.getElementById ("readCycle").value; if ("" != temp) obj.readCycle = temp;
+                temp = document.getElementById ("readRoute").value; if ("" != temp) obj.readRoute = temp;
+                temp = document.getElementById ("serviceDeliveryRemark").value; if ("" != temp) obj.serviceDeliveryRemark = temp;
+                temp = document.getElementById ("servicePriority").value; if ("" != temp) obj.servicePriority = temp;
+                temp = document.getElementById ("Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
+                temp = document.getElementById ("CustomerAgreement").value; if ("" != temp) obj.CustomerAgreement = temp;
+                temp = document.getElementById ("PricingStructures").value; if ("" != temp) obj.PricingStructures = temp.split (",");
+                temp = document.getElementById ("ServiceSupplier").value; if ("" != temp) obj.ServiceSupplier = temp;
+                temp = document.getElementById ("Outages").value; if ("" != temp) obj.Outages = temp.split (",");
+                temp = document.getElementById ("MetrologyRequirements").value; if ("" != temp) obj.MetrologyRequirements = temp.split (",");
+                temp = document.getElementById ("UsagePointLocation").value; if ("" != temp) obj.UsagePointLocation = temp;
+                temp = document.getElementById ("ServiceCategory").value; if ("" != temp) obj.ServiceCategory = temp;
+                temp = document.getElementById ("ServiceLocation").value; if ("" != temp) obj.ServiceLocation = temp;
+                temp = document.getElementById ("UsagePointGroups").value; if ("" != temp) obj.UsagePointGroups = temp.split (",");
+                temp = document.getElementById ("EndDeviceControls").value; if ("" != temp) obj.EndDeviceControls = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1333,14 +1480,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "RationalNumber", "denominator", base.from_string, fields);
-                base.export_element (obj, "RationalNumber", "numerator", base.from_string, fields);
+                base.export_element (obj, "RationalNumber", "denominator", "denominator",  base.from_string, fields);
+                base.export_element (obj, "RationalNumber", "numerator", "numerator",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1388,6 +1534,18 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RationalNumber" };
+                super.submit (obj);
+                temp = document.getElementById ("denominator").value; if ("" != temp) obj.denominator = temp;
+                temp = document.getElementById ("numerator").value; if ("" != temp) obj.numerator = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1433,15 +1591,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "EndDeviceEventDetail", "name", base.from_string, fields);
-                base.export_element (obj, "EndDeviceEventDetail", "value", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceEventDetail", fields);
+                base.export_element (obj, "EndDeviceEventDetail", "name", "name",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceEventDetail", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "EndDeviceEventDetail", "EndDeviceEvent", "EndDeviceEvent", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1490,6 +1647,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceEventDetail" };
+                super.submit (obj);
+                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("EndDeviceEvent").value; if ("" != temp) obj.EndDeviceEvent = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1550,20 +1720,19 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MeterReading", "isCoincidentTrigger", base.from_boolean, fields);
-                base.export_element (obj, "MeterReading", "valuesInterval", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "MeterReading", fields);
-                base.export_attribute (obj, "export_attribute", "MeterReading", fields);
-                base.export_attribute (obj, "export_attributes", "MeterReading", fields);
-                base.export_attribute (obj, "export_attributes", "MeterReading", fields);
-                base.export_attribute (obj, "export_attribute", "MeterReading", fields);
-                base.export_attribute (obj, "export_attributes", "MeterReading", fields);
+                base.export_element (obj, "MeterReading", "isCoincidentTrigger", "isCoincidentTrigger",  base.from_boolean, fields);
+                base.export_element (obj, "MeterReading", "valuesInterval", "valuesInterval",  base.from_string, fields);
+                base.export_attribute (obj, "MeterReading", "UsagePoint", "UsagePoint", fields);
+                base.export_attribute (obj, "MeterReading", "Meter", "Meter", fields);
+                base.export_attributes (obj, "MeterReading", "Readings", "Readings", fields);
+                base.export_attributes (obj, "MeterReading", "EndDeviceEvents", "EndDeviceEvents", fields);
+                base.export_attribute (obj, "MeterReading", "CustomerAgreement", "CustomerAgreement", fields);
+                base.export_attributes (obj, "MeterReading", "IntervalBlocks", "IntervalBlocks", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1628,6 +1797,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MeterReading" };
+                super.submit (obj);
+                temp = document.getElementById ("isCoincidentTrigger").checked; if (temp) obj.isCoincidentTrigger = true;
+                temp = document.getElementById ("valuesInterval").value; if ("" != temp) obj.valuesInterval = temp;
+                temp = document.getElementById ("UsagePoint").value; if ("" != temp) obj.UsagePoint = temp;
+                temp = document.getElementById ("Meter").value; if ("" != temp) obj.Meter = temp;
+                temp = document.getElementById ("Readings").value; if ("" != temp) obj.Readings = temp.split (",");
+                temp = document.getElementById ("CustomerAgreement").value; if ("" != temp) obj.CustomerAgreement = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1688,15 +1873,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Channel", "isVirtual", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "Channel", fields);
-                base.export_attribute (obj, "export_attribute", "Channel", fields);
+                base.export_element (obj, "Channel", "isVirtual", "isVirtual",  base.from_boolean, fields);
+                base.export_attribute (obj, "Channel", "Register", "Register", fields);
+                base.export_attribute (obj, "Channel", "ReadingType", "ReadingType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1745,6 +1929,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Channel" };
+                super.submit (obj);
+                temp = document.getElementById ("isVirtual").checked; if (temp) obj.isVirtual = true;
+                temp = document.getElementById ("Register").value; if ("" != temp) obj.Register = temp;
+                temp = document.getElementById ("ReadingType").value; if ("" != temp) obj.ReadingType = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1805,17 +2002,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ReadingQuality", "comment", base.from_string, fields);
-                base.export_element (obj, "ReadingQuality", "source", base.from_string, fields);
-                base.export_element (obj, "ReadingQuality", "timeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attribute", "ReadingQuality", fields);
-                base.export_attribute (obj, "export_attribute", "ReadingQuality", fields);
+                base.export_element (obj, "ReadingQuality", "comment", "comment",  base.from_string, fields);
+                base.export_element (obj, "ReadingQuality", "source", "source",  base.from_string, fields);
+                base.export_element (obj, "ReadingQuality", "timeStamp", "timeStamp",  base.from_datetime, fields);
+                base.export_attribute (obj, "ReadingQuality", "ReadingQualityType", "ReadingQualityType", fields);
+                base.export_attribute (obj, "ReadingQuality", "Reading", "Reading", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1868,6 +2064,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReadingQuality" };
+                super.submit (obj);
+                temp = document.getElementById ("comment").value; if ("" != temp) obj.comment = temp;
+                temp = document.getElementById ("source").value; if ("" != temp) obj.source = temp;
+                temp = document.getElementById ("timeStamp").value; if ("" != temp) obj.timeStamp = temp;
+                temp = document.getElementById ("ReadingQualityType").value; if ("" != temp) obj.ReadingQualityType = temp;
+                temp = document.getElementById ("Reading").value; if ("" != temp) obj.Reading = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1924,15 +2135,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MeterMultiplier", "kind", base.from_string, fields);
-                base.export_element (obj, "MeterMultiplier", "value", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "MeterMultiplier", fields);
+                base.export_element (obj, "MeterMultiplier", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "MeterMultiplier", "value", "value",  base.from_float, fields);
+                base.export_attribute (obj, "MeterMultiplier", "Meter", "Meter", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1983,6 +2193,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MeterMultiplier" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = MeterMultiplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#MeterMultiplierKind." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("Meter").value; if ("" != temp) obj.Meter = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2039,16 +2262,15 @@ define
             {
                 var fields = Common.Location.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UsagePointLocation", "accessMethod", base.from_string, fields);
-                base.export_element (obj, "UsagePointLocation", "remark", base.from_string, fields);
-                base.export_element (obj, "UsagePointLocation", "siteAccessProblem", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "UsagePointLocation", fields);
+                base.export_element (obj, "UsagePointLocation", "accessMethod", "accessMethod",  base.from_string, fields);
+                base.export_element (obj, "UsagePointLocation", "remark", "remark",  base.from_string, fields);
+                base.export_element (obj, "UsagePointLocation", "siteAccessProblem", "siteAccessProblem",  base.from_string, fields);
+                base.export_attributes (obj, "UsagePointLocation", "UsagePoints", "UsagePoints", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2100,6 +2322,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UsagePointLocation" };
+                super.submit (obj);
+                temp = document.getElementById ("accessMethod").value; if ("" != temp) obj.accessMethod = temp;
+                temp = document.getElementById ("remark").value; if ("" != temp) obj.remark = temp;
+                temp = document.getElementById ("siteAccessProblem").value; if ("" != temp) obj.siteAccessProblem = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2155,15 +2390,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MetrologyRequirement", "reason", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "MetrologyRequirement", fields);
-                base.export_attribute (obj, "export_attributes", "MetrologyRequirement", fields);
+                base.export_element (obj, "MetrologyRequirement", "reason", "reason",  base.from_string, fields);
+                base.export_attributes (obj, "MetrologyRequirement", "ReadingTypes", "ReadingTypes", fields);
+                base.export_attributes (obj, "MetrologyRequirement", "UsagePoints", "UsagePoints", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2220,6 +2454,19 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MetrologyRequirement" };
+                super.submit (obj);
+                temp = document.getElementById ("reason").value; if ("" != temp) { temp = ReadingReasonKind[temp]; if ("undefined" != typeof (temp)) obj.reason = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ReadingReasonKind." + temp; }
+                temp = document.getElementById ("ReadingTypes").value; if ("" != temp) obj.ReadingTypes = temp.split (",");
+                temp = document.getElementById ("UsagePoints").value; if ("" != temp) obj.UsagePoints = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2274,15 +2521,14 @@ define
             {
                 var fields = Assets.AssetFunction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDeviceFunction", "enabled", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceFunction", fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceFunction", fields);
+                base.export_element (obj, "EndDeviceFunction", "enabled", "enabled",  base.from_boolean, fields);
+                base.export_attributes (obj, "EndDeviceFunction", "Registers", "Registers", fields);
+                base.export_attribute (obj, "EndDeviceFunction", "EndDevice", "EndDevice", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2332,6 +2578,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceFunction" };
+                super.submit (obj);
+                temp = document.getElementById ("enabled").checked; if (temp) obj.enabled = true;
+                temp = document.getElementById ("EndDevice").value; if ("" != temp) obj.EndDevice = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2391,16 +2649,15 @@ define
             {
                 var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ComModule", "amrSystem", base.from_string, fields);
-                base.export_element (obj, "ComModule", "supportsAutonomousDst", base.from_boolean, fields);
-                base.export_element (obj, "ComModule", "timeZoneOffset", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ComModule", fields);
+                base.export_element (obj, "ComModule", "amrSystem", "amrSystem",  base.from_string, fields);
+                base.export_element (obj, "ComModule", "supportsAutonomousDst", "supportsAutonomousDst",  base.from_boolean, fields);
+                base.export_element (obj, "ComModule", "timeZoneOffset", "timeZoneOffset",  base.from_string, fields);
+                base.export_attributes (obj, "ComModule", "ComFunctions", "ComFunctions", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2452,6 +2709,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ComModule" };
+                super.submit (obj);
+                temp = document.getElementById ("amrSystem").value; if ("" != temp) obj.amrSystem = temp;
+                temp = document.getElementById ("supportsAutonomousDst").checked; if (temp) obj.supportsAutonomousDst = true;
+                temp = document.getElementById ("timeZoneOffset").value; if ("" != temp) obj.timeZoneOffset = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2527,33 +2797,32 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ReadingType", "accumulation", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "aggregate", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "argument", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "commodity", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "consumptionTier", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "cpp", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "currency", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "flowDirection", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "interharmonic", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "macroPeriod", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "measurementKind", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "measuringPeriod", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "phases", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "tou", base.from_string, fields);
-                base.export_element (obj, "ReadingType", "unit", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ReadingType", fields);
-                base.export_attribute (obj, "export_attribute", "ReadingType", fields);
-                base.export_attribute (obj, "export_attributes", "ReadingType", fields);
-                base.export_attribute (obj, "export_attributes", "ReadingType", fields);
-                base.export_attribute (obj, "export_attribute", "ReadingType", fields);
+                base.export_element (obj, "ReadingType", "accumulation", "accumulation",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "aggregate", "aggregate",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "argument", "argument",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "commodity", "commodity",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "consumptionTier", "consumptionTier",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "cpp", "cpp",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "currency", "currency",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "flowDirection", "flowDirection",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "interharmonic", "interharmonic",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "macroPeriod", "macroPeriod",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "measurementKind", "measurementKind",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "measuringPeriod", "measuringPeriod",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "phases", "phases",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "tou", "tou",  base.from_string, fields);
+                base.export_element (obj, "ReadingType", "unit", "unit",  base.from_string, fields);
+                base.export_attributes (obj, "ReadingType", "Readings", "Readings", fields);
+                base.export_attribute (obj, "ReadingType", "PendingCalculation", "PendingCalculation", fields);
+                base.export_attributes (obj, "ReadingType", "IntervalBlocks", "IntervalBlocks", fields);
+                base.export_attributes (obj, "ReadingType", "MetrologyRequirements", "MetrologyRequirements", fields);
+                base.export_attribute (obj, "ReadingType", "Channel", "Channel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2644,6 +2913,35 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReadingType" };
+                super.submit (obj);
+                temp = document.getElementById ("accumulation").value; if ("" != temp) obj.accumulation = temp;
+                temp = document.getElementById ("aggregate").value; if ("" != temp) obj.aggregate = temp;
+                temp = document.getElementById ("argument").value; if ("" != temp) obj.argument = temp;
+                temp = document.getElementById ("commodity").value; if ("" != temp) obj.commodity = temp;
+                temp = document.getElementById ("consumptionTier").value; if ("" != temp) obj.consumptionTier = temp;
+                temp = document.getElementById ("cpp").value; if ("" != temp) obj.cpp = temp;
+                temp = document.getElementById ("currency").value; if ("" != temp) obj.currency = temp;
+                temp = document.getElementById ("flowDirection").value; if ("" != temp) obj.flowDirection = temp;
+                temp = document.getElementById ("interharmonic").value; if ("" != temp) obj.interharmonic = temp;
+                temp = document.getElementById ("macroPeriod").value; if ("" != temp) obj.macroPeriod = temp;
+                temp = document.getElementById ("measurementKind").value; if ("" != temp) obj.measurementKind = temp;
+                temp = document.getElementById ("measuringPeriod").value; if ("" != temp) obj.measuringPeriod = temp;
+                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById ("phases").value; if ("" != temp) obj.phases = temp;
+                temp = document.getElementById ("tou").value; if ("" != temp) obj.tou = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById ("PendingCalculation").value; if ("" != temp) obj.PendingCalculation = temp;
+                temp = document.getElementById ("MetrologyRequirements").value; if ("" != temp) obj.MetrologyRequirements = temp.split (",");
+                temp = document.getElementById ("Channel").value; if ("" != temp) obj.Channel = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2704,16 +3002,15 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "export_attribute", "IntervalBlock", fields);
-                base.export_attribute (obj, "export_attribute", "IntervalBlock", fields);
-                base.export_attribute (obj, "export_attributes", "IntervalBlock", fields);
-                base.export_attribute (obj, "export_attribute", "IntervalBlock", fields);
+                base.export_attribute (obj, "IntervalBlock", "PendingCalculation", "PendingCalculation", fields);
+                base.export_attribute (obj, "IntervalBlock", "ReadingType", "ReadingType", fields);
+                base.export_attributes (obj, "IntervalBlock", "IntervalReadings", "IntervalReadings", fields);
+                base.export_attribute (obj, "IntervalBlock", "MeterReading", "MeterReading", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2766,6 +3063,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IntervalBlock" };
+                super.submit (obj);
+                temp = document.getElementById ("PendingCalculation").value; if ("" != temp) obj.PendingCalculation = temp;
+                temp = document.getElementById ("ReadingType").value; if ("" != temp) obj.ReadingType = temp;
+                temp = document.getElementById ("IntervalReadings").value; if ("" != temp) obj.IntervalReadings = temp.split (",");
+                temp = document.getElementById ("MeterReading").value; if ("" != temp) obj.MeterReading = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2825,16 +3136,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "EndDeviceTiming", "duration", base.from_string, fields);
-                base.export_element (obj, "EndDeviceTiming", "durationIndefinite", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceTiming", "interval", base.from_string, fields);
-                base.export_element (obj, "EndDeviceTiming", "randomisation", base.from_string, fields);
+                base.export_element (obj, "EndDeviceTiming", "duration", "duration",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceTiming", "durationIndefinite", "durationIndefinite",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceTiming", "interval", "interval",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceTiming", "randomisation", "randomisation",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2888,6 +3198,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceTiming" };
+                super.submit (obj);
+                temp = document.getElementById ("duration").value; if ("" != temp) obj.duration = temp;
+                temp = document.getElementById ("durationIndefinite").checked; if (temp) obj.durationIndefinite = true;
+                temp = document.getElementById ("interval").value; if ("" != temp) obj.interval = temp;
+                temp = document.getElementById ("randomisation").value; if ("" != temp) { temp = RandomisationKind[temp]; if ("undefined" != typeof (temp)) obj.randomisation = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RandomisationKind." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -2935,17 +3259,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "EndDeviceAction", "command", base.from_string, fields);
-                base.export_element (obj, "EndDeviceAction", "duration", base.from_string, fields);
-                base.export_element (obj, "EndDeviceAction", "durationIndefinite", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceAction", "startDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceAction", fields);
+                base.export_element (obj, "EndDeviceAction", "command", "command",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceAction", "duration", "duration",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceAction", "durationIndefinite", "durationIndefinite",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceAction", "startDateTime", "startDateTime",  base.from_datetime, fields);
+                base.export_attribute (obj, "EndDeviceAction", "EndDeviceControl", "EndDeviceControl", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2998,6 +3321,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceAction" };
+                super.submit (obj);
+                temp = document.getElementById ("command").value; if ("" != temp) obj.command = temp;
+                temp = document.getElementById ("duration").value; if ("" != temp) obj.duration = temp;
+                temp = document.getElementById ("durationIndefinite").checked; if (temp) obj.durationIndefinite = true;
+                temp = document.getElementById ("startDateTime").value; if ("" != temp) obj.startDateTime = temp;
+                temp = document.getElementById ("EndDeviceControl").value; if ("" != temp) obj.EndDeviceControl = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3057,17 +3395,16 @@ define
             {
                 var fields = Meas.MeasurementValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BaseReading", "reportedDateTime", base.from_datetime, fields);
-                base.export_element (obj, "BaseReading", "source", base.from_string, fields);
-                base.export_element (obj, "BaseReading", "timePeriod", base.from_string, fields);
-                base.export_element (obj, "BaseReading", "value", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "BaseReading", fields);
+                base.export_element (obj, "BaseReading", "reportedDateTime", "reportedDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "BaseReading", "source", "source",  base.from_string, fields);
+                base.export_element (obj, "BaseReading", "timePeriod", "timePeriod",  base.from_string, fields);
+                base.export_element (obj, "BaseReading", "value", "value",  base.from_string, fields);
+                base.export_attributes (obj, "BaseReading", "ReadingQualities", "ReadingQualities", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3121,6 +3458,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BaseReading" };
+                super.submit (obj);
+                temp = document.getElementById ("reportedDateTime").value; if ("" != temp) obj.reportedDateTime = temp;
+                temp = document.getElementById ("source").value; if ("" != temp) obj.source = temp;
+                temp = document.getElementById ("timePeriod").value; if ("" != temp) obj.timePeriod = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3181,20 +3532,19 @@ define
             {
                 var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDeviceEvent", "issuerID", base.from_string, fields);
-                base.export_element (obj, "EndDeviceEvent", "issuerTrackingID", base.from_string, fields);
-                base.export_element (obj, "EndDeviceEvent", "userID", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceEvent", fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceEvent", fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceEvent", fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceEvent", fields);
-                base.export_attribute (obj, "export_attribute", "EndDeviceEvent", fields);
+                base.export_element (obj, "EndDeviceEvent", "issuerID", "issuerID",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceEvent", "issuerTrackingID", "issuerTrackingID",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceEvent", "userID", "userID",  base.from_string, fields);
+                base.export_attributes (obj, "EndDeviceEvent", "EndDeviceEventDetails", "EndDeviceEventDetails", fields);
+                base.export_attribute (obj, "EndDeviceEvent", "EndDevice", "EndDevice", fields);
+                base.export_attribute (obj, "EndDeviceEvent", "UsagePoint", "UsagePoint", fields);
+                base.export_attribute (obj, "EndDeviceEvent", "MeterReading", "MeterReading", fields);
+                base.export_attribute (obj, "EndDeviceEvent", "EndDeviceEventType", "EndDeviceEventType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3256,6 +3606,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceEvent" };
+                super.submit (obj);
+                temp = document.getElementById ("issuerID").value; if ("" != temp) obj.issuerID = temp;
+                temp = document.getElementById ("issuerTrackingID").value; if ("" != temp) obj.issuerTrackingID = temp;
+                temp = document.getElementById ("userID").value; if ("" != temp) obj.userID = temp;
+                temp = document.getElementById ("EndDevice").value; if ("" != temp) obj.EndDevice = temp;
+                temp = document.getElementById ("UsagePoint").value; if ("" != temp) obj.UsagePoint = temp;
+                temp = document.getElementById ("MeterReading").value; if ("" != temp) obj.MeterReading = temp;
+                temp = document.getElementById ("EndDeviceEventType").value; if ("" != temp) obj.EndDeviceEventType = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3313,15 +3680,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ServiceMultiplier", "kind", base.from_string, fields);
-                base.export_element (obj, "ServiceMultiplier", "value", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "ServiceMultiplier", fields);
+                base.export_element (obj, "ServiceMultiplier", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "ServiceMultiplier", "value", "value",  base.from_float, fields);
+                base.export_attribute (obj, "ServiceMultiplier", "UsagePoint", "UsagePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3372,6 +3738,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ServiceMultiplier" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ServiceMultiplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ServiceMultiplierKind." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("UsagePoint").value; if ("" != temp) obj.UsagePoint = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3433,19 +3812,18 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PendingCalculation", "multiplyBeforeAdd", base.from_boolean, fields);
-                base.export_element (obj, "PendingCalculation", "offset", base.from_string, fields);
-                base.export_element (obj, "PendingCalculation", "scalarDenominator", base.from_string, fields);
-                base.export_element (obj, "PendingCalculation", "scalarFloat", base.from_float, fields);
-                base.export_element (obj, "PendingCalculation", "scalarNumerator", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PendingCalculation", fields);
-                base.export_attribute (obj, "export_attributes", "PendingCalculation", fields);
+                base.export_element (obj, "PendingCalculation", "multiplyBeforeAdd", "multiplyBeforeAdd",  base.from_boolean, fields);
+                base.export_element (obj, "PendingCalculation", "offset", "offset",  base.from_string, fields);
+                base.export_element (obj, "PendingCalculation", "scalarDenominator", "scalarDenominator",  base.from_string, fields);
+                base.export_element (obj, "PendingCalculation", "scalarFloat", "scalarFloat",  base.from_float, fields);
+                base.export_element (obj, "PendingCalculation", "scalarNumerator", "scalarNumerator",  base.from_string, fields);
+                base.export_attribute (obj, "PendingCalculation", "ReadingType", "ReadingType", fields);
+                base.export_attributes (obj, "PendingCalculation", "IntervalBlocks", "IntervalBlocks", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3505,6 +3883,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PendingCalculation" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplyBeforeAdd").checked; if (temp) obj.multiplyBeforeAdd = true;
+                temp = document.getElementById ("offset").value; if ("" != temp) obj.offset = temp;
+                temp = document.getElementById ("scalarDenominator").value; if ("" != temp) obj.scalarDenominator = temp;
+                temp = document.getElementById ("scalarFloat").value; if ("" != temp) obj.scalarFloat = temp;
+                temp = document.getElementById ("scalarNumerator").value; if ("" != temp) obj.scalarNumerator = temp;
+                temp = document.getElementById ("ReadingType").value; if ("" != temp) obj.ReadingType = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3558,14 +3952,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ReadingInterharmonic", "denominator", base.from_string, fields);
-                base.export_element (obj, "ReadingInterharmonic", "numerator", base.from_string, fields);
+                base.export_element (obj, "ReadingInterharmonic", "denominator", "denominator",  base.from_string, fields);
+                base.export_element (obj, "ReadingInterharmonic", "numerator", "numerator",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3612,6 +4005,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReadingInterharmonic" };
+                super.submit (obj);
+                temp = document.getElementById ("denominator").value; if ("" != temp) obj.denominator = temp;
+                temp = document.getElementById ("numerator").value; if ("" != temp) obj.numerator = temp;
+
+                return (obj);
             }
         }
 
@@ -3662,17 +4067,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDeviceControlType", "domain", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControlType", "eventOrAction", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControlType", "subDomain", base.from_string, fields);
-                base.export_element (obj, "EndDeviceControlType", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceControlType", fields);
+                base.export_element (obj, "EndDeviceControlType", "domain", "domain",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControlType", "eventOrAction", "eventOrAction",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControlType", "subDomain", "subDomain",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceControlType", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "EndDeviceControlType", "EndDeviceControls", "EndDeviceControls", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3726,6 +4130,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceControlType" };
+                super.submit (obj);
+                temp = document.getElementById ("domain").value; if ("" != temp) obj.domain = temp;
+                temp = document.getElementById ("eventOrAction").value; if ("" != temp) obj.eventOrAction = temp;
+                temp = document.getElementById ("subDomain").value; if ("" != temp) obj.subDomain = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3784,16 +4202,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UsagePointGroup", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "UsagePointGroup", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePointGroup", fields);
-                base.export_attribute (obj, "export_attributes", "UsagePointGroup", fields);
+                base.export_element (obj, "UsagePointGroup", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "UsagePointGroup", "UsagePoints", "UsagePoints", fields);
+                base.export_attributes (obj, "UsagePointGroup", "EndDeviceControls", "EndDeviceControls", fields);
+                base.export_attributes (obj, "UsagePointGroup", "DemandResponsePrograms", "DemandResponsePrograms", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3852,6 +4269,20 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "UsagePointGroup" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("UsagePoints").value; if ("" != temp) obj.UsagePoints = temp.split (",");
+                temp = document.getElementById ("EndDeviceControls").value; if ("" != temp) obj.EndDeviceControls = temp.split (",");
+                temp = document.getElementById ("DemandResponsePrograms").value; if ("" != temp) obj.DemandResponsePrograms = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3907,15 +4338,14 @@ define
             {
                 var fields = Work.Work.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "MeterServiceWork", fields);
-                base.export_attribute (obj, "export_attribute", "MeterServiceWork", fields);
-                base.export_attribute (obj, "export_attribute", "MeterServiceWork", fields);
+                base.export_attribute (obj, "MeterServiceWork", "Meter", "Meter", fields);
+                base.export_attribute (obj, "MeterServiceWork", "OldMeter", "OldMeter", fields);
+                base.export_attribute (obj, "MeterServiceWork", "UsagePoint", "UsagePoint", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3964,6 +4394,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MeterServiceWork" };
+                super.submit (obj);
+                temp = document.getElementById ("Meter").value; if ("" != temp) obj.Meter = temp;
+                temp = document.getElementById ("OldMeter").value; if ("" != temp) obj.OldMeter = temp;
+                temp = document.getElementById ("UsagePoint").value; if ("" != temp) obj.UsagePoint = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4024,16 +4467,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ReadingQualityType", "category", base.from_string, fields);
-                base.export_element (obj, "ReadingQualityType", "subCategory", base.from_string, fields);
-                base.export_element (obj, "ReadingQualityType", "systemId", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ReadingQualityType", fields);
+                base.export_element (obj, "ReadingQualityType", "category", "category",  base.from_string, fields);
+                base.export_element (obj, "ReadingQualityType", "subCategory", "subCategory",  base.from_string, fields);
+                base.export_element (obj, "ReadingQualityType", "systemId", "systemId",  base.from_string, fields);
+                base.export_attributes (obj, "ReadingQualityType", "ReadingQualities", "ReadingQualities", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4085,6 +4527,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReadingQualityType" };
+                super.submit (obj);
+                temp = document.getElementById ("category").value; if ("" != temp) obj.category = temp;
+                temp = document.getElementById ("subCategory").value; if ("" != temp) obj.subCategory = temp;
+                temp = document.getElementById ("systemId").value; if ("" != temp) obj.systemId = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4144,17 +4599,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDeviceEventType", "domain", base.from_string, fields);
-                base.export_element (obj, "EndDeviceEventType", "eventOrAction", base.from_string, fields);
-                base.export_element (obj, "EndDeviceEventType", "subDomain", base.from_string, fields);
-                base.export_element (obj, "EndDeviceEventType", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceEventType", fields);
+                base.export_element (obj, "EndDeviceEventType", "domain", "domain",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceEventType", "eventOrAction", "eventOrAction",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceEventType", "subDomain", "subDomain",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceEventType", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "EndDeviceEventType", "EndDeviceEvents", "EndDeviceEvents", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4208,6 +4662,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceEventType" };
+                super.submit (obj);
+                temp = document.getElementById ("domain").value; if ("" != temp) obj.domain = temp;
+                temp = document.getElementById ("eventOrAction").value; if ("" != temp) obj.eventOrAction = temp;
+                temp = document.getElementById ("subDomain").value; if ("" != temp) obj.subDomain = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4275,25 +4743,24 @@ define
             {
                 var fields = Assets.AssetContainer.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDevice", "amrSystem", base.from_string, fields);
-                base.export_element (obj, "EndDevice", "installCode", base.from_string, fields);
-                base.export_element (obj, "EndDevice", "isPan", base.from_boolean, fields);
-                base.export_element (obj, "EndDevice", "isVirtual", base.from_boolean, fields);
-                base.export_element (obj, "EndDevice", "timeZoneOffset", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "EndDevice", fields);
-                base.export_attribute (obj, "export_attribute", "EndDevice", fields);
-                base.export_attribute (obj, "export_attributes", "EndDevice", fields);
-                base.export_attribute (obj, "export_attribute", "EndDevice", fields);
-                base.export_attribute (obj, "export_attribute", "EndDevice", fields);
-                base.export_attribute (obj, "export_attribute", "EndDevice", fields);
-                base.export_attribute (obj, "export_attributes", "EndDevice", fields);
-                base.export_attribute (obj, "export_attributes", "EndDevice", fields);
+                base.export_element (obj, "EndDevice", "amrSystem", "amrSystem",  base.from_string, fields);
+                base.export_element (obj, "EndDevice", "installCode", "installCode",  base.from_string, fields);
+                base.export_element (obj, "EndDevice", "isPan", "isPan",  base.from_boolean, fields);
+                base.export_element (obj, "EndDevice", "isVirtual", "isVirtual",  base.from_boolean, fields);
+                base.export_element (obj, "EndDevice", "timeZoneOffset", "timeZoneOffset",  base.from_string, fields);
+                base.export_attributes (obj, "EndDevice", "EndDeviceFunctions", "EndDeviceFunctions", fields);
+                base.export_attribute (obj, "EndDevice", "EndDeviceInfo", "EndDeviceInfo", fields);
+                base.export_attributes (obj, "EndDevice", "EndDeviceEvents", "EndDeviceEvents", fields);
+                base.export_attribute (obj, "EndDevice", "ServiceLocation", "ServiceLocation", fields);
+                base.export_attribute (obj, "EndDevice", "Customer", "Customer", fields);
+                base.export_attribute (obj, "EndDevice", "UsagePoint", "UsagePoint", fields);
+                base.export_attributes (obj, "EndDevice", "EndDeviceGroups", "EndDeviceGroups", fields);
+                base.export_attributes (obj, "EndDevice", "EndDeviceControls", "EndDeviceControls", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4368,6 +4835,27 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDevice" };
+                super.submit (obj);
+                temp = document.getElementById ("amrSystem").value; if ("" != temp) obj.amrSystem = temp;
+                temp = document.getElementById ("installCode").value; if ("" != temp) obj.installCode = temp;
+                temp = document.getElementById ("isPan").checked; if (temp) obj.isPan = true;
+                temp = document.getElementById ("isVirtual").checked; if (temp) obj.isVirtual = true;
+                temp = document.getElementById ("timeZoneOffset").value; if ("" != temp) obj.timeZoneOffset = temp;
+                temp = document.getElementById ("EndDeviceInfo").value; if ("" != temp) obj.EndDeviceInfo = temp;
+                temp = document.getElementById ("ServiceLocation").value; if ("" != temp) obj.ServiceLocation = temp;
+                temp = document.getElementById ("Customer").value; if ("" != temp) obj.Customer = temp;
+                temp = document.getElementById ("UsagePoint").value; if ("" != temp) obj.UsagePoint = temp;
+                temp = document.getElementById ("EndDeviceGroups").value; if ("" != temp) obj.EndDeviceGroups = temp.split (",");
+                temp = document.getElementById ("EndDeviceControls").value; if ("" != temp) obj.EndDeviceControls = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -4445,30 +4933,29 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "EndDeviceCapability", "autonomousDst", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "communication", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "connectDisconnect", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "demandResponse", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "electricMetering", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "gasMetering", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "metrology", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "onRequestRead", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "outageHistory", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "pressureCompensation", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "pricingInfo", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "pulseOutput", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "relaysProgramming", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "reverseFlow", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "superCompressibilityCompensation", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "temperatureCompensation", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "textMessage", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceCapability", "waterMetering", base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "autonomousDst", "autonomousDst",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "communication", "communication",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "connectDisconnect", "connectDisconnect",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "demandResponse", "demandResponse",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "electricMetering", "electricMetering",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "gasMetering", "gasMetering",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "metrology", "metrology",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "onRequestRead", "onRequestRead",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "outageHistory", "outageHistory",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "pressureCompensation", "pressureCompensation",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "pricingInfo", "pricingInfo",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "pulseOutput", "pulseOutput",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "relaysProgramming", "relaysProgramming",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "reverseFlow", "reverseFlow",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "superCompressibilityCompensation", "superCompressibilityCompensation",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "temperatureCompensation", "temperatureCompensation",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "textMessage", "textMessage",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceCapability", "waterMetering", "waterMetering",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4548,6 +5035,34 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceCapability" };
+                super.submit (obj);
+                temp = document.getElementById ("autonomousDst").checked; if (temp) obj.autonomousDst = true;
+                temp = document.getElementById ("communication").checked; if (temp) obj.communication = true;
+                temp = document.getElementById ("connectDisconnect").checked; if (temp) obj.connectDisconnect = true;
+                temp = document.getElementById ("demandResponse").checked; if (temp) obj.demandResponse = true;
+                temp = document.getElementById ("electricMetering").checked; if (temp) obj.electricMetering = true;
+                temp = document.getElementById ("gasMetering").checked; if (temp) obj.gasMetering = true;
+                temp = document.getElementById ("metrology").checked; if (temp) obj.metrology = true;
+                temp = document.getElementById ("onRequestRead").checked; if (temp) obj.onRequestRead = true;
+                temp = document.getElementById ("outageHistory").checked; if (temp) obj.outageHistory = true;
+                temp = document.getElementById ("pressureCompensation").checked; if (temp) obj.pressureCompensation = true;
+                temp = document.getElementById ("pricingInfo").checked; if (temp) obj.pricingInfo = true;
+                temp = document.getElementById ("pulseOutput").checked; if (temp) obj.pulseOutput = true;
+                temp = document.getElementById ("relaysProgramming").checked; if (temp) obj.relaysProgramming = true;
+                temp = document.getElementById ("reverseFlow").checked; if (temp) obj.reverseFlow = true;
+                temp = document.getElementById ("superCompressibilityCompensation").checked; if (temp) obj.superCompressibilityCompensation = true;
+                temp = document.getElementById ("temperatureCompensation").checked; if (temp) obj.temperatureCompensation = true;
+                temp = document.getElementById ("textMessage").checked; if (temp) obj.textMessage = true;
+                temp = document.getElementById ("waterMetering").checked; if (temp) obj.waterMetering = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4596,18 +5111,17 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EndDeviceInfo", "capability", base.from_string, fields);
-                base.export_element (obj, "EndDeviceInfo", "isSolidState", base.from_boolean, fields);
-                base.export_element (obj, "EndDeviceInfo", "phaseCount", base.from_string, fields);
-                base.export_element (obj, "EndDeviceInfo", "ratedCurrent", base.from_string, fields);
-                base.export_element (obj, "EndDeviceInfo", "ratedVoltage", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "EndDeviceInfo", fields);
+                base.export_element (obj, "EndDeviceInfo", "capability", "capability",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceInfo", "isSolidState", "isSolidState",  base.from_boolean, fields);
+                base.export_element (obj, "EndDeviceInfo", "phaseCount", "phaseCount",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
+                base.export_element (obj, "EndDeviceInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
+                base.export_attributes (obj, "EndDeviceInfo", "EndDevices", "EndDevices", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4665,6 +5179,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EndDeviceInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("capability").value; if ("" != temp) obj.capability = temp;
+                temp = document.getElementById ("isSolidState").checked; if (temp) obj.isSolidState = true;
+                temp = document.getElementById ("phaseCount").value; if ("" != temp) obj.phaseCount = temp;
+                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4718,13 +5247,12 @@ define
             {
                 var fields = EndDeviceFunction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SimpleEndDeviceFunction", "kind", base.from_string, fields);
+                base.export_element (obj, "SimpleEndDeviceFunction", "kind", "kind",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4771,6 +5299,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SimpleEndDeviceFunction" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = EndDeviceFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceFunctionKind." + temp; }
+
+                return (obj);
             }
         }
 
@@ -4819,17 +5358,16 @@ define
             {
                 var fields = EndDeviceFunction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ComFunction", "amrAddress", base.from_string, fields);
-                base.export_element (obj, "ComFunction", "amrRouter", base.from_string, fields);
-                base.export_element (obj, "ComFunction", "direction", base.from_string, fields);
-                base.export_element (obj, "ComFunction", "technology", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ComFunction", fields);
+                base.export_element (obj, "ComFunction", "amrAddress", "amrAddress",  base.from_string, fields);
+                base.export_element (obj, "ComFunction", "amrRouter", "amrRouter",  base.from_string, fields);
+                base.export_element (obj, "ComFunction", "direction", "direction",  base.from_string, fields);
+                base.export_element (obj, "ComFunction", "technology", "technology",  base.from_string, fields);
+                base.export_attribute (obj, "ComFunction", "ComModule", "ComModule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4888,6 +5426,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ComFunction" };
+                super.submit (obj);
+                temp = document.getElementById ("amrAddress").value; if ("" != temp) obj.amrAddress = temp;
+                temp = document.getElementById ("amrRouter").value; if ("" != temp) obj.amrRouter = temp;
+                temp = document.getElementById ("direction").value; if ("" != temp) { temp = ComDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ComDirectionKind." + temp; }
+                temp = document.getElementById ("technology").value; if ("" != temp) { temp = ComTechnologyKind[temp]; if ("undefined" != typeof (temp)) obj.technology = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ComTechnologyKind." + temp; }
+                temp = document.getElementById ("ComModule").value; if ("" != temp) obj.ComModule = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -4942,16 +5495,15 @@ define
             {
                 var fields = EndDeviceAction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PanDisplay", "confirmationRequired", base.from_boolean, fields);
-                base.export_element (obj, "PanDisplay", "priority", base.from_string, fields);
-                base.export_element (obj, "PanDisplay", "textMessage", base.from_string, fields);
-                base.export_element (obj, "PanDisplay", "transmissionMode", base.from_string, fields);
+                base.export_element (obj, "PanDisplay", "confirmationRequired", "confirmationRequired",  base.from_boolean, fields);
+                base.export_element (obj, "PanDisplay", "priority", "priority",  base.from_string, fields);
+                base.export_element (obj, "PanDisplay", "textMessage", "textMessage",  base.from_string, fields);
+                base.export_element (obj, "PanDisplay", "transmissionMode", "transmissionMode",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5004,6 +5556,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PanDisplay" };
+                super.submit (obj);
+                temp = document.getElementById ("confirmationRequired").checked; if (temp) obj.confirmationRequired = true;
+                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById ("textMessage").value; if ("" != temp) obj.textMessage = temp;
+                temp = document.getElementById ("transmissionMode").value; if ("" != temp) { temp = TransmissionModeKind[temp]; if ("undefined" != typeof (temp)) obj.transmissionMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransmissionModeKind." + temp; }
+
+                return (obj);
             }
         }
 
@@ -5059,24 +5625,23 @@ define
             {
                 var fields = EndDeviceAction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PanDemandResponse", "appliance", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "avgLoadAdjustment", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "cancelControlMode", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "cancelDateTime", base.from_datetime, fields);
-                base.export_element (obj, "PanDemandResponse", "cancelNow", base.from_boolean, fields);
-                base.export_element (obj, "PanDemandResponse", "coolingOffset", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "coolingSetpoint", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "criticalityLevel", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "dutyCycle", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "enrollmentGroup", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "heatingOffset", base.from_string, fields);
-                base.export_element (obj, "PanDemandResponse", "heatingSetpoint", base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "appliance", "appliance",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "avgLoadAdjustment", "avgLoadAdjustment",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "cancelControlMode", "cancelControlMode",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "cancelDateTime", "cancelDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "PanDemandResponse", "cancelNow", "cancelNow",  base.from_boolean, fields);
+                base.export_element (obj, "PanDemandResponse", "coolingOffset", "coolingOffset",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "coolingSetpoint", "coolingSetpoint",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "criticalityLevel", "criticalityLevel",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "dutyCycle", "dutyCycle",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "enrollmentGroup", "enrollmentGroup",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "heatingOffset", "heatingOffset",  base.from_string, fields);
+                base.export_element (obj, "PanDemandResponse", "heatingSetpoint", "heatingSetpoint",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5144,6 +5709,28 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PanDemandResponse" };
+                super.submit (obj);
+                temp = document.getElementById ("appliance").value; if ("" != temp) obj.appliance = temp;
+                temp = document.getElementById ("avgLoadAdjustment").value; if ("" != temp) obj.avgLoadAdjustment = temp;
+                temp = document.getElementById ("cancelControlMode").value; if ("" != temp) obj.cancelControlMode = temp;
+                temp = document.getElementById ("cancelDateTime").value; if ("" != temp) obj.cancelDateTime = temp;
+                temp = document.getElementById ("cancelNow").checked; if (temp) obj.cancelNow = true;
+                temp = document.getElementById ("coolingOffset").value; if ("" != temp) obj.coolingOffset = temp;
+                temp = document.getElementById ("coolingSetpoint").value; if ("" != temp) obj.coolingSetpoint = temp;
+                temp = document.getElementById ("criticalityLevel").value; if ("" != temp) obj.criticalityLevel = temp;
+                temp = document.getElementById ("dutyCycle").value; if ("" != temp) obj.dutyCycle = temp;
+                temp = document.getElementById ("enrollmentGroup").value; if ("" != temp) obj.enrollmentGroup = temp;
+                temp = document.getElementById ("heatingOffset").value; if ("" != temp) obj.heatingOffset = temp;
+                temp = document.getElementById ("heatingSetpoint").value; if ("" != temp) obj.heatingSetpoint = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5188,14 +5775,13 @@ define
             {
                 var fields = EndDeviceAction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PanPricing", "providerID", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "PanPricing", fields);
+                base.export_element (obj, "PanPricing", "providerID", "providerID",  base.from_string, fields);
+                base.export_attributes (obj, "PanPricing", "PanPricingDetails", "PanPricingDetails", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5243,6 +5829,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PanPricing" };
+                super.submit (obj);
+                temp = document.getElementById ("providerID").value; if ("" != temp) obj.providerID = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -5298,13 +5895,12 @@ define
             {
                 var fields = BaseReading.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "IntervalReading", fields);
+                base.export_attributes (obj, "IntervalReading", "IntervalBlocks", "IntervalBlocks", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5351,6 +5947,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IntervalReading" };
+                super.submit (obj);
+                temp = document.getElementById ("IntervalBlocks").value; if ("" != temp) obj.IntervalBlocks = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -5408,15 +6015,14 @@ define
             {
                 var fields = BaseReading.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Reading", "reason", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Reading", fields);
-                base.export_attribute (obj, "export_attributes", "Reading", fields);
+                base.export_element (obj, "Reading", "reason", "reason",  base.from_string, fields);
+                base.export_attribute (obj, "Reading", "ReadingType", "ReadingType", fields);
+                base.export_attributes (obj, "Reading", "MeterReadings", "MeterReadings", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5469,6 +6075,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Reading" };
+                super.submit (obj);
+                temp = document.getElementById ("reason").value; if ("" != temp) { temp = ReadingReasonKind[temp]; if ("undefined" != typeof (temp)) obj.reason = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ReadingReasonKind." + temp; }
+                temp = document.getElementById ("ReadingType").value; if ("" != temp) obj.ReadingType = temp;
+                temp = document.getElementById ("MeterReadings").value; if ("" != temp) obj.MeterReadings = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -5530,18 +6149,17 @@ define
             {
                 var fields = EndDevice.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Meter", "formNumber", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Meter", fields);
-                base.export_attribute (obj, "export_attributes", "Meter", fields);
-                base.export_attribute (obj, "export_attributes", "Meter", fields);
-                base.export_attribute (obj, "export_attributes", "Meter", fields);
-                base.export_attribute (obj, "export_attributes", "Meter", fields);
+                base.export_element (obj, "Meter", "formNumber", "formNumber",  base.from_string, fields);
+                base.export_attributes (obj, "Meter", "MeterServiceWorks", "MeterServiceWorks", fields);
+                base.export_attributes (obj, "Meter", "MeterReadings", "MeterReadings", fields);
+                base.export_attributes (obj, "Meter", "MeterMultipliers", "MeterMultipliers", fields);
+                base.export_attributes (obj, "Meter", "MeterReplacementWorks", "MeterReplacementWorks", fields);
+                base.export_attributes (obj, "Meter", "VendingTransactions", "VendingTransactions", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5601,6 +6219,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Meter" };
+                super.submit (obj);
+                temp = document.getElementById ("formNumber").value; if ("" != temp) obj.formNumber = temp;
+
+                return (obj);
             }
 
             relations ()

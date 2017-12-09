@@ -47,13 +47,12 @@ define
             {
                 var fields = ParticipantInterfaces.BidHourlySchedule.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WheelingReferenceSchedule", "value", base.from_string, fields);
+                base.export_element (obj, "WheelingReferenceSchedule", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -98,6 +97,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WheelingReferenceSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 

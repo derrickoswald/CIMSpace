@@ -104,17 +104,16 @@ define
             {
                 var fields = StandardModels.RotatingMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "SynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "SynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "SynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "export_attributes", "SynchronousMachineDynamics", fields);
-                base.export_attribute (obj, "export_attributes", "SynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "SynchronousMachineDynamics", "MechanicalLoadDynamics", "MechanicalLoadDynamics", fields);
+                base.export_attribute (obj, "SynchronousMachineDynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "SynchronousMachineDynamics", "SynchronousMachine", "SynchronousMachine", fields);
+                base.export_attributes (obj, "SynchronousMachineDynamics", "GenICompensationForGenJ", "GenICompensationForGenJ", fields);
+                base.export_attributes (obj, "SynchronousMachineDynamics", "TurbineGovernorDynamics", "TurbineGovernorDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -170,6 +169,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SynchronousMachineDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("MechanicalLoadDynamics").value; if ("" != temp) obj.MechanicalLoadDynamics = temp;
+                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                temp = document.getElementById ("SynchronousMachine").value; if ("" != temp) obj.SynchronousMachine = temp;
+                temp = document.getElementById ("TurbineGovernorDynamics").value; if ("" != temp) obj.TurbineGovernorDynamics = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -232,16 +245,15 @@ define
             {
                 var fields = SynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SynchronousMachineDetailed", "efdBaseRatio", base.from_float, fields);
-                base.export_element (obj, "SynchronousMachineDetailed", "ifdBaseType", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineDetailed", "saturationFactor120QAxis", base.from_float, fields);
-                base.export_element (obj, "SynchronousMachineDetailed", "saturationFactorQAxis", base.from_float, fields);
+                base.export_element (obj, "SynchronousMachineDetailed", "efdBaseRatio", "efdBaseRatio",  base.from_float, fields);
+                base.export_element (obj, "SynchronousMachineDetailed", "ifdBaseType", "ifdBaseType",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineDetailed", "saturationFactor120QAxis", "saturationFactor120QAxis",  base.from_float, fields);
+                base.export_element (obj, "SynchronousMachineDetailed", "saturationFactorQAxis", "saturationFactorQAxis",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -294,6 +306,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SynchronousMachineDetailed" };
+                super.submit (obj);
+                temp = document.getElementById ("efdBaseRatio").value; if ("" != temp) obj.efdBaseRatio = temp;
+                temp = document.getElementById ("ifdBaseType").value; if ("" != temp) { temp = IfdBaseKind[temp]; if ("undefined" != typeof (temp)) obj.ifdBaseType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#IfdBaseKind." + temp; }
+                temp = document.getElementById ("saturationFactor120QAxis").value; if ("" != temp) obj.saturationFactor120QAxis = temp;
+                temp = document.getElementById ("saturationFactorQAxis").value; if ("" != temp) obj.saturationFactorQAxis = temp;
+
+                return (obj);
             }
         }
 
@@ -374,23 +400,22 @@ define
             {
                 var fields = SynchronousMachineDetailed.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "r1d", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "r1q", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "r2q", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "rfd", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "x1d", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "x1q", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "x2q", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "xad", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "xaq", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "xf1d", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "xfd", base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "r1d", "r1d",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "r1q", "r1q",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "r2q", "r2q",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "rfd", "rfd",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "x1d", "x1d",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "x1q", "x1q",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "x2q", "x2q",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "xad", "xad",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "xaq", "xaq",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "xf1d", "xf1d",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineEquivalentCircuit", "xfd", "xfd",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -456,6 +481,27 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SynchronousMachineEquivalentCircuit" };
+                super.submit (obj);
+                temp = document.getElementById ("r1d").value; if ("" != temp) obj.r1d = temp;
+                temp = document.getElementById ("r1q").value; if ("" != temp) obj.r1q = temp;
+                temp = document.getElementById ("r2q").value; if ("" != temp) obj.r2q = temp;
+                temp = document.getElementById ("rfd").value; if ("" != temp) obj.rfd = temp;
+                temp = document.getElementById ("x1d").value; if ("" != temp) obj.x1d = temp;
+                temp = document.getElementById ("x1q").value; if ("" != temp) obj.x1q = temp;
+                temp = document.getElementById ("x2q").value; if ("" != temp) obj.x2q = temp;
+                temp = document.getElementById ("xad").value; if ("" != temp) obj.xad = temp;
+                temp = document.getElementById ("xaq").value; if ("" != temp) obj.xaq = temp;
+                temp = document.getElementById ("xf1d").value; if ("" != temp) obj.xf1d = temp;
+                temp = document.getElementById ("xfd").value; if ("" != temp) obj.xfd = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -506,7 +552,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -548,6 +593,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "SynchronousMachineSimplified" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -639,26 +692,25 @@ define
             {
                 var fields = SynchronousMachineDetailed.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "ks", base.from_float, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "modelType", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "rotorType", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tc", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tpdo", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tppdo", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tppqo", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tpqo", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xDirectSubtrans", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xDirectSync", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xDirectTrans", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xQuadSubtrans", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xQuadSync", base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xQuadTrans", base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "ks", "ks",  base.from_float, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "modelType", "modelType",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "rotorType", "rotorType",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tpdo", "tpdo",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tppdo", "tppdo",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tppqo", "tppqo",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tpqo", "tpqo",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xDirectSubtrans", "xDirectSubtrans",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xDirectSync", "xDirectSync",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xDirectTrans", "xDirectTrans",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xQuadSubtrans", "xQuadSubtrans",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xQuadSync", "xQuadSync",  base.from_string, fields);
+                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "xQuadTrans", "xQuadTrans",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -733,6 +785,30 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SynchronousMachineTimeConstantReactance" };
+                super.submit (obj);
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("modelType").value; if ("" != temp) { temp = SynchronousMachineModelKind[temp]; if ("undefined" != typeof (temp)) obj.modelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineModelKind." + temp; }
+                temp = document.getElementById ("rotorType").value; if ("" != temp) { temp = RotorKind[temp]; if ("undefined" != typeof (temp)) obj.rotorType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RotorKind." + temp; }
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tpdo").value; if ("" != temp) obj.tpdo = temp;
+                temp = document.getElementById ("tppdo").value; if ("" != temp) obj.tppdo = temp;
+                temp = document.getElementById ("tppqo").value; if ("" != temp) obj.tppqo = temp;
+                temp = document.getElementById ("tpqo").value; if ("" != temp) obj.tpqo = temp;
+                temp = document.getElementById ("xDirectSubtrans").value; if ("" != temp) obj.xDirectSubtrans = temp;
+                temp = document.getElementById ("xDirectSync").value; if ("" != temp) obj.xDirectSync = temp;
+                temp = document.getElementById ("xDirectTrans").value; if ("" != temp) obj.xDirectTrans = temp;
+                temp = document.getElementById ("xQuadSubtrans").value; if ("" != temp) obj.xQuadSubtrans = temp;
+                temp = document.getElementById ("xQuadSync").value; if ("" != temp) obj.xQuadSync = temp;
+                temp = document.getElementById ("xQuadTrans").value; if ("" != temp) obj.xQuadTrans = temp;
+
+                return (obj);
             }
         }
 

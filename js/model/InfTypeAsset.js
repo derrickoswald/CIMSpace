@@ -62,28 +62,27 @@ define
             {
                 var fields = InfAssets.GenericAssetModelOrMaterial.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GeneratorTypeAsset", "maxP", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "maxQ", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "minP", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "minQ", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "rDirectSubtrans", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "rDirectSync", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "rDirectTrans", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "rQuadSubtrans", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "rQuadSync", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "rQuadTrans", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "xDirectSubtrans", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "xDirectSync", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "xDirectTrans", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "xQuadSubtrans", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "xQuadSync", base.from_string, fields);
-                base.export_element (obj, "GeneratorTypeAsset", "xQuadTrans", base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "maxP", "maxP",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "maxQ", "maxQ",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "minP", "minP",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "minQ", "minQ",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "rDirectSubtrans", "rDirectSubtrans",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "rDirectSync", "rDirectSync",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "rDirectTrans", "rDirectTrans",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "rQuadSubtrans", "rQuadSubtrans",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "rQuadSync", "rQuadSync",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "rQuadTrans", "rQuadTrans",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "xDirectSubtrans", "xDirectSubtrans",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "xDirectSync", "xDirectSync",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "xDirectTrans", "xDirectTrans",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "xQuadSubtrans", "xQuadSubtrans",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "xQuadSync", "xQuadSync",  base.from_string, fields);
+                base.export_element (obj, "GeneratorTypeAsset", "xQuadTrans", "xQuadTrans",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -159,6 +158,32 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "GeneratorTypeAsset" };
+                super.submit (obj);
+                temp = document.getElementById ("maxP").value; if ("" != temp) obj.maxP = temp;
+                temp = document.getElementById ("maxQ").value; if ("" != temp) obj.maxQ = temp;
+                temp = document.getElementById ("minP").value; if ("" != temp) obj.minP = temp;
+                temp = document.getElementById ("minQ").value; if ("" != temp) obj.minQ = temp;
+                temp = document.getElementById ("rDirectSubtrans").value; if ("" != temp) obj.rDirectSubtrans = temp;
+                temp = document.getElementById ("rDirectSync").value; if ("" != temp) obj.rDirectSync = temp;
+                temp = document.getElementById ("rDirectTrans").value; if ("" != temp) obj.rDirectTrans = temp;
+                temp = document.getElementById ("rQuadSubtrans").value; if ("" != temp) obj.rQuadSubtrans = temp;
+                temp = document.getElementById ("rQuadSync").value; if ("" != temp) obj.rQuadSync = temp;
+                temp = document.getElementById ("rQuadTrans").value; if ("" != temp) obj.rQuadTrans = temp;
+                temp = document.getElementById ("xDirectSubtrans").value; if ("" != temp) obj.xDirectSubtrans = temp;
+                temp = document.getElementById ("xDirectSync").value; if ("" != temp) obj.xDirectSync = temp;
+                temp = document.getElementById ("xDirectTrans").value; if ("" != temp) obj.xDirectTrans = temp;
+                temp = document.getElementById ("xQuadSubtrans").value; if ("" != temp) obj.xQuadSubtrans = temp;
+                temp = document.getElementById ("xQuadSync").value; if ("" != temp) obj.xQuadSync = temp;
+                temp = document.getElementById ("xQuadTrans").value; if ("" != temp) obj.xQuadTrans = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -205,14 +230,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TypeAssetCatalogue", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "TypeAssetCatalogue", fields);
+                base.export_element (obj, "TypeAssetCatalogue", "status", "status",  base.from_string, fields);
+                base.export_attributes (obj, "TypeAssetCatalogue", "TypeAssets", "TypeAssets", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -260,6 +284,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TypeAssetCatalogue" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+
+                return (obj);
             }
 
             relations ()

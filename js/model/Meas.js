@@ -66,16 +66,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ValueAliasSet", fields);
-                base.export_attribute (obj, "export_attributes", "ValueAliasSet", fields);
-                base.export_attribute (obj, "export_attributes", "ValueAliasSet", fields);
-                base.export_attribute (obj, "export_attributes", "ValueAliasSet", fields);
+                base.export_attributes (obj, "ValueAliasSet", "Commands", "Commands", fields);
+                base.export_attributes (obj, "ValueAliasSet", "RaiseLowerCommands", "RaiseLowerCommands", fields);
+                base.export_attributes (obj, "ValueAliasSet", "Discretes", "Discretes", fields);
+                base.export_attributes (obj, "ValueAliasSet", "Values", "Values", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -132,6 +131,14 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var obj = obj || { cls: "ValueAliasSet" };
+                super.submit (obj);
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -177,7 +184,6 @@ define
                 obj.cls = "MeasurementValue";
                 base.parse_element (/<cim:MeasurementValue.sensorAccuracy>([\s\S]*?)<\/cim:MeasurementValue.sensorAccuracy>/g, obj, "sensorAccuracy", base.to_string, sub, context);
                 base.parse_element (/<cim:MeasurementValue.timeStamp>([\s\S]*?)<\/cim:MeasurementValue.timeStamp>/g, obj, "timeStamp", base.to_datetime, sub, context);
-                base.parse_attribute (/<cim:MeasurementValue.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 base.parse_attribute (/<cim:MeasurementValue.MeasurementValueSource\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "MeasurementValueSource", sub, context);
                 base.parse_attributes (/<cim:MeasurementValue.ProcedureDataSets\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ProcedureDataSets", sub, context);
                 base.parse_attribute (/<cim:MeasurementValue.ErpPerson\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ErpPerson", sub, context);
@@ -195,20 +201,18 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MeasurementValue", "sensorAccuracy", base.from_string, fields);
-                base.export_element (obj, "MeasurementValue", "timeStamp", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attribute", "MeasurementValue", fields);
-                base.export_attribute (obj, "export_attribute", "MeasurementValue", fields);
-                base.export_attribute (obj, "export_attributes", "MeasurementValue", fields);
-                base.export_attribute (obj, "export_attribute", "MeasurementValue", fields);
-                base.export_attribute (obj, "export_attribute", "MeasurementValue", fields);
-                base.export_attribute (obj, "export_attribute", "MeasurementValue", fields);
+                base.export_element (obj, "MeasurementValue", "sensorAccuracy", "sensorAccuracy",  base.from_string, fields);
+                base.export_element (obj, "MeasurementValue", "timeStamp", "timeStamp",  base.from_datetime, fields);
+                base.export_attribute (obj, "MeasurementValue", "MeasurementValueSource", "MeasurementValueSource", fields);
+                base.export_attributes (obj, "MeasurementValue", "ProcedureDataSets", "ProcedureDataSets", fields);
+                base.export_attribute (obj, "MeasurementValue", "ErpPerson", "ErpPerson", fields);
+                base.export_attribute (obj, "MeasurementValue", "MeasurementValueQuality", "MeasurementValueQuality", fields);
+                base.export_attribute (obj, "MeasurementValue", "RemoteSource", "RemoteSource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -222,7 +226,6 @@ define
                     `
                     {{#sensorAccuracy}}<div><b>sensorAccuracy</b>: {{sensorAccuracy}}</div>{{/sensorAccuracy}}
                     {{#timeStamp}}<div><b>timeStamp</b>: {{timeStamp}}</div>{{/timeStamp}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{}}&quot;);})'>{{}}</a></div>{{/}}
                     {{#MeasurementValueSource}}<div><b>MeasurementValueSource</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{MeasurementValueSource}}&quot;);})'>{{MeasurementValueSource}}</a></div>{{/MeasurementValueSource}}
                     {{#ProcedureDataSets}}<div><b>ProcedureDataSets</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/ProcedureDataSets}}
                     {{#ErpPerson}}<div><b>ErpPerson</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ErpPerson}}&quot;);})'>{{ErpPerson}}</a></div>{{/ErpPerson}}
@@ -259,7 +262,6 @@ define
                     `
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='sensorAccuracy'>sensorAccuracy: </label><div class='col-sm-8'><input id='sensorAccuracy' class='form-control' type='text'{{#sensorAccuracy}} value='{{sensorAccuracy}}'{{/sensorAccuracy}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeStamp'>timeStamp: </label><div class='col-sm-8'><input id='timeStamp' class='form-control' type='text'{{#timeStamp}} value='{{timeStamp}}'{{/timeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for=''>: </label><div class='col-sm-8'><input id='' class='form-control' type='text'{{#}} value='{{}}'{{/}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementValueSource'>MeasurementValueSource: </label><div class='col-sm-8'><input id='MeasurementValueSource' class='form-control' type='text'{{#MeasurementValueSource}} value='{{MeasurementValueSource}}'{{/MeasurementValueSource}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProcedureDataSets'>ProcedureDataSets: </label><div class='col-sm-8'><input id='ProcedureDataSets' class='form-control' type='text'{{#ProcedureDataSets}} value='{{ProcedureDataSets}}_string'{{/ProcedureDataSets}}></div></div>
                     <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPerson'>ErpPerson: </label><div class='col-sm-8'><input id='ErpPerson' class='form-control' type='text'{{#ErpPerson}} value='{{ErpPerson}}'{{/ErpPerson}}></div></div>
@@ -271,11 +273,27 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MeasurementValue" };
+                super.submit (obj);
+                temp = document.getElementById ("sensorAccuracy").value; if ("" != temp) obj.sensorAccuracy = temp;
+                temp = document.getElementById ("timeStamp").value; if ("" != temp) obj.timeStamp = temp;
+                temp = document.getElementById ("MeasurementValueSource").value; if ("" != temp) obj.MeasurementValueSource = temp;
+                temp = document.getElementById ("ProcedureDataSets").value; if ("" != temp) obj.ProcedureDataSets = temp.split (",");
+                temp = document.getElementById ("ErpPerson").value; if ("" != temp) obj.ErpPerson = temp;
+                temp = document.getElementById ("MeasurementValueQuality").value; if ("" != temp) obj.MeasurementValueQuality = temp;
+                temp = document.getElementById ("RemoteSource").value; if ("" != temp) obj.RemoteSource = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
                     [
-                        ["unknown", "ICCPIndicationPoint", "0..1", "0..*"],
                         ["MeasurementValueSource", "MeasurementValueSource", "1", "0..*"],
                         ["ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"],
                         ["ErpPerson", "OldPerson", "0..1", "0..*"],
@@ -338,24 +356,23 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Quality61850", "badReference", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "estimatorReplaced", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "failure", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "oldData", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "operatorBlocked", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "oscillatory", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "outOfRange", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "overFlow", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "source", base.from_string, fields);
-                base.export_element (obj, "Quality61850", "suspect", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "test", base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "validity", base.from_string, fields);
+                base.export_element (obj, "Quality61850", "badReference", "badReference",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "estimatorReplaced", "estimatorReplaced",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "failure", "failure",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "oldData", "oldData",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "operatorBlocked", "operatorBlocked",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "oscillatory", "oscillatory",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "outOfRange", "outOfRange",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "overFlow", "overFlow",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "source", "source",  base.from_string, fields);
+                base.export_element (obj, "Quality61850", "suspect", "suspect",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "test", "test",  base.from_boolean, fields);
+                base.export_element (obj, "Quality61850", "validity", "validity",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -425,6 +442,28 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Quality61850" };
+                super.submit (obj);
+                temp = document.getElementById ("badReference").checked; if (temp) obj.badReference = true;
+                temp = document.getElementById ("estimatorReplaced").checked; if (temp) obj.estimatorReplaced = true;
+                temp = document.getElementById ("failure").checked; if (temp) obj.failure = true;
+                temp = document.getElementById ("oldData").checked; if (temp) obj.oldData = true;
+                temp = document.getElementById ("operatorBlocked").checked; if (temp) obj.operatorBlocked = true;
+                temp = document.getElementById ("oscillatory").checked; if (temp) obj.oscillatory = true;
+                temp = document.getElementById ("outOfRange").checked; if (temp) obj.outOfRange = true;
+                temp = document.getElementById ("overFlow").checked; if (temp) obj.overFlow = true;
+                temp = document.getElementById ("source").value; if ("" != temp) obj.source = temp;
+                temp = document.getElementById ("suspect").checked; if (temp) obj.suspect = true;
+                temp = document.getElementById ("test").checked; if (temp) obj.test = true;
+                temp = document.getElementById ("validity").value; if ("" != temp) { temp = Validity[temp]; if ("undefined" != typeof (temp)) obj.validity = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Validity." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -470,13 +509,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "Limit", fields);
+                base.export_attributes (obj, "Limit", "Procedures", "Procedures", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -523,6 +561,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Limit" };
+                super.submit (obj);
+                temp = document.getElementById ("Procedures").value; if ("" != temp) obj.Procedures = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -584,19 +633,18 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Control", "operationInProgress", base.from_boolean, fields);
-                base.export_element (obj, "Control", "timeStamp", base.from_datetime, fields);
-                base.export_element (obj, "Control", "unitMultiplier", base.from_string, fields);
-                base.export_element (obj, "Control", "unitSymbol", base.from_string, fields);
-                base.export_element (obj, "Control", "controlType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Control", fields);
-                base.export_attribute (obj, "export_attribute", "Control", fields);
+                base.export_element (obj, "Control", "operationInProgress", "operationInProgress",  base.from_boolean, fields);
+                base.export_element (obj, "Control", "timeStamp", "timeStamp",  base.from_datetime, fields);
+                base.export_element (obj, "Control", "unitMultiplier", "unitMultiplier",  base.from_string, fields);
+                base.export_element (obj, "Control", "unitSymbol", "unitSymbol",  base.from_string, fields);
+                base.export_element (obj, "Control", "controlType", "controlType",  base.from_string, fields);
+                base.export_attribute (obj, "Control", "PowerSystemResource", "PowerSystemResource", fields);
+                base.export_attribute (obj, "Control", "RemoteControl", "RemoteControl", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -655,6 +703,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Control" };
+                super.submit (obj);
+                temp = document.getElementById ("operationInProgress").checked; if (temp) obj.operationInProgress = true;
+                temp = document.getElementById ("timeStamp").value; if ("" != temp) obj.timeStamp = temp;
+                temp = document.getElementById ("unitMultiplier").value; if ("" != temp) obj.unitMultiplier = temp;
+                temp = document.getElementById ("unitSymbol").value; if ("" != temp) obj.unitSymbol = temp;
+                temp = document.getElementById ("controlType").value; if ("" != temp) obj.controlType = temp;
+                temp = document.getElementById ("PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
+                temp = document.getElementById ("RemoteControl").value; if ("" != temp) obj.RemoteControl = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -709,13 +774,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MeasurementValueSource", fields);
+                base.export_attributes (obj, "MeasurementValueSource", "MeasurementValues", "MeasurementValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -761,6 +825,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "MeasurementValueSource" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -827,24 +899,23 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Measurement", "measurementType", base.from_string, fields);
-                base.export_element (obj, "Measurement", "phases", base.from_string, fields);
-                base.export_element (obj, "Measurement", "unitMultiplier", base.from_string, fields);
-                base.export_element (obj, "Measurement", "unitSymbol", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Measurement", fields);
-                base.export_attribute (obj, "export_attributes", "Measurement", fields);
-                base.export_attribute (obj, "export_attributes", "Measurement", fields);
-                base.export_attribute (obj, "export_attributes", "Measurement", fields);
-                base.export_attribute (obj, "export_attributes", "Measurement", fields);
-                base.export_attribute (obj, "export_attribute", "Measurement", fields);
-                base.export_attribute (obj, "export_attributes", "Measurement", fields);
-                base.export_attribute (obj, "export_attribute", "Measurement", fields);
+                base.export_element (obj, "Measurement", "measurementType", "measurementType",  base.from_string, fields);
+                base.export_element (obj, "Measurement", "phases", "phases",  base.from_string, fields);
+                base.export_element (obj, "Measurement", "unitMultiplier", "unitMultiplier",  base.from_string, fields);
+                base.export_element (obj, "Measurement", "unitSymbol", "unitSymbol",  base.from_string, fields);
+                base.export_attribute (obj, "Measurement", "Terminal", "Terminal", fields);
+                base.export_attributes (obj, "Measurement", "Procedures", "Procedures", fields);
+                base.export_attributes (obj, "Measurement", "Locations", "Locations", fields);
+                base.export_attributes (obj, "Measurement", "ProtectiveActionAdjustment", "ProtectiveActionAdjustment", fields);
+                base.export_attributes (obj, "Measurement", "MeasurementCalculatorInput", "MeasurementCalculatorInput", fields);
+                base.export_attribute (obj, "Measurement", "Asset", "Asset", fields);
+                base.export_attributes (obj, "Measurement", "PinMeasurement", "PinMeasurement", fields);
+                base.export_attribute (obj, "Measurement", "PowerSystemResource", "PowerSystemResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -920,6 +991,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Measurement" };
+                super.submit (obj);
+                temp = document.getElementById ("measurementType").value; if ("" != temp) obj.measurementType = temp;
+                temp = document.getElementById ("phases").value; if ("" != temp) obj.phases = temp;
+                temp = document.getElementById ("unitMultiplier").value; if ("" != temp) obj.unitMultiplier = temp;
+                temp = document.getElementById ("unitSymbol").value; if ("" != temp) obj.unitSymbol = temp;
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                temp = document.getElementById ("Procedures").value; if ("" != temp) obj.Procedures = temp.split (",");
+                temp = document.getElementById ("Locations").value; if ("" != temp) obj.Locations = temp.split (",");
+                temp = document.getElementById ("Asset").value; if ("" != temp) obj.Asset = temp;
+                temp = document.getElementById ("PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -980,13 +1070,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LimitSet", "isPercentageLimits", base.from_boolean, fields);
+                base.export_element (obj, "LimitSet", "isPercentageLimits", "isPercentageLimits",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1032,6 +1121,17 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LimitSet" };
+                super.submit (obj);
+                temp = document.getElementById ("isPercentageLimits").checked; if (temp) obj.isPercentageLimits = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1076,14 +1176,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ValueToAlias", "value", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ValueToAlias", fields);
+                base.export_element (obj, "ValueToAlias", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "ValueToAlias", "ValueAliasSet", "ValueAliasSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1130,6 +1229,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ValueToAlias" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("ValueAliasSet").value; if ("" != temp) obj.ValueAliasSet = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1185,15 +1296,14 @@ define
             {
                 var fields = MeasurementValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DiscreteValue", "value", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "DiscreteValue", fields);
-                base.export_attribute (obj, "export_attribute", "DiscreteValue", fields);
+                base.export_element (obj, "DiscreteValue", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "DiscreteValue", "Command", "Command", fields);
+                base.export_attribute (obj, "DiscreteValue", "Discrete", "Discrete", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1242,6 +1352,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiscreteValue" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("Command").value; if ("" != temp) obj.Command = temp;
+                temp = document.getElementById ("Discrete").value; if ("" != temp) obj.Discrete = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1297,14 +1420,13 @@ define
             {
                 var fields = MeasurementValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StringMeasurementValue", "value", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "StringMeasurementValue", fields);
+                base.export_element (obj, "StringMeasurementValue", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "StringMeasurementValue", "StringMeasurement", "StringMeasurement", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1351,6 +1473,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "StringMeasurementValue" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("StringMeasurement").value; if ("" != temp) obj.StringMeasurement = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1406,15 +1540,14 @@ define
             {
                 var fields = MeasurementValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AccumulatorValue", "value", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "AccumulatorValue", fields);
-                base.export_attribute (obj, "export_attribute", "AccumulatorValue", fields);
+                base.export_element (obj, "AccumulatorValue", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "AccumulatorValue", "Accumulator", "Accumulator", fields);
+                base.export_attribute (obj, "AccumulatorValue", "AccumulatorReset", "AccumulatorReset", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1463,6 +1596,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AccumulatorValue" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("Accumulator").value; if ("" != temp) obj.Accumulator = temp;
+                temp = document.getElementById ("AccumulatorReset").value; if ("" != temp) obj.AccumulatorReset = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1521,17 +1667,16 @@ define
             {
                 var fields = MeasurementValue.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AnalogValue", "value", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "AnalogValue", fields);
-                base.export_attribute (obj, "export_attributes", "AnalogValue", fields);
-                base.export_attribute (obj, "export_attribute", "AnalogValue", fields);
-                base.export_attribute (obj, "export_attributes", "AnalogValue", fields);
+                base.export_element (obj, "AnalogValue", "value", "value",  base.from_float, fields);
+                base.export_attribute (obj, "AnalogValue", "Analog", "Analog", fields);
+                base.export_attributes (obj, "AnalogValue", "AltTieMeas", "AltTieMeas", fields);
+                base.export_attribute (obj, "AnalogValue", "AnalogControl", "AnalogControl", fields);
+                base.export_attributes (obj, "AnalogValue", "AltGeneratingUnit", "AltGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1586,6 +1731,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AnalogValue" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("Analog").value; if ("" != temp) obj.Analog = temp;
+                temp = document.getElementById ("AnalogControl").value; if ("" != temp) obj.AnalogControl = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1644,13 +1802,12 @@ define
             {
                 var fields = Quality61850.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "MeasurementValueQuality", fields);
+                base.export_attribute (obj, "MeasurementValueQuality", "MeasurementValue", "MeasurementValue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1695,6 +1852,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MeasurementValueQuality" };
+                super.submit (obj);
+                temp = document.getElementById ("MeasurementValue").value; if ("" != temp) obj.MeasurementValue = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1749,14 +1917,13 @@ define
             {
                 var fields = Limit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AccumulatorLimit", "value", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "AccumulatorLimit", fields);
+                base.export_element (obj, "AccumulatorLimit", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "AccumulatorLimit", "LimitSet", "LimitSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1803,6 +1970,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AccumulatorLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("LimitSet").value; if ("" != temp) obj.LimitSet = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1857,14 +2036,13 @@ define
             {
                 var fields = Limit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AnalogLimit", "value", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "AnalogLimit", fields);
+                base.export_element (obj, "AnalogLimit", "value", "value",  base.from_float, fields);
+                base.export_attribute (obj, "AnalogLimit", "LimitSet", "LimitSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1911,6 +2089,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AnalogLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("LimitSet").value; if ("" != temp) obj.LimitSet = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1964,13 +2154,12 @@ define
             {
                 var fields = Control.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "AccumulatorReset", fields);
+                base.export_attribute (obj, "AccumulatorReset", "AccumulatorValue", "AccumulatorValue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2017,6 +2206,17 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AccumulatorReset" };
+                super.submit (obj);
+                temp = document.getElementById ("AccumulatorValue").value; if ("" != temp) obj.AccumulatorValue = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2057,7 +2257,6 @@ define
                 obj.cls = "AnalogControl";
                 base.parse_element (/<cim:AnalogControl.maxValue>([\s\S]*?)<\/cim:AnalogControl.maxValue>/g, obj, "maxValue", base.to_float, sub, context);
                 base.parse_element (/<cim:AnalogControl.minValue>([\s\S]*?)<\/cim:AnalogControl.minValue>/g, obj, "minValue", base.to_float, sub, context);
-                base.parse_attributes (/<cim:AnalogControl.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 base.parse_attribute (/<cim:AnalogControl.AnalogValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "AnalogValue", sub, context);
                 var bucket = context.parsed.AnalogControl;
                 if (null == bucket)
@@ -2071,16 +2270,14 @@ define
             {
                 var fields = Control.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AnalogControl", "maxValue", base.from_float, fields);
-                base.export_element (obj, "AnalogControl", "minValue", base.from_float, fields);
-                base.export_attribute (obj, "export_attributes", "AnalogControl", fields);
-                base.export_attribute (obj, "export_attribute", "AnalogControl", fields);
+                base.export_element (obj, "AnalogControl", "maxValue", "maxValue",  base.from_float, fields);
+                base.export_element (obj, "AnalogControl", "minValue", "minValue",  base.from_float, fields);
+                base.export_attribute (obj, "AnalogControl", "AnalogValue", "AnalogValue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2094,7 +2291,6 @@ define
                     `
                     {{#maxValue}}<div><b>maxValue</b>: {{maxValue}}</div>{{/maxValue}}
                     {{#minValue}}<div><b>minValue</b>: {{minValue}}</div>{{/minValue}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     {{#AnalogValue}}<div><b>AnalogValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{AnalogValue}}&quot;);})'>{{AnalogValue}}</a></div>{{/AnalogValue}}
                     </div>
                     <fieldset>
@@ -2106,13 +2302,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -2134,11 +2328,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AnalogControl" };
+                super.submit (obj);
+                temp = document.getElementById ("maxValue").value; if ("" != temp) obj.maxValue = temp;
+                temp = document.getElementById ("minValue").value; if ("" != temp) obj.minValue = temp;
+                temp = document.getElementById ("AnalogValue").value; if ("" != temp) obj.AnalogValue = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
                     [
-                        ["unknown", "ICCPSetPoint", "0..*", "1"],
                         ["AnalogValue", "AnalogValue", "1", "0..1"]
                     ]
                 );
@@ -2175,7 +2381,6 @@ define
                 obj.cls = "Command";
                 base.parse_element (/<cim:Command.normalValue>([\s\S]*?)<\/cim:Command.normalValue>/g, obj, "normalValue", base.to_string, sub, context);
                 base.parse_element (/<cim:Command.value>([\s\S]*?)<\/cim:Command.value>/g, obj, "value", base.to_string, sub, context);
-                base.parse_attributes (/<cim:Command.unknown\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "", sub, context);
                 base.parse_attribute (/<cim:Command.DiscreteValue\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "DiscreteValue", sub, context);
                 base.parse_attribute (/<cim:Command.ValueAliasSet\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "ValueAliasSet", sub, context);
                 var bucket = context.parsed.Command;
@@ -2190,17 +2395,15 @@ define
             {
                 var fields = Control.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Command", "normalValue", base.from_string, fields);
-                base.export_element (obj, "Command", "value", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Command", fields);
-                base.export_attribute (obj, "export_attribute", "Command", fields);
-                base.export_attribute (obj, "export_attribute", "Command", fields);
+                base.export_element (obj, "Command", "normalValue", "normalValue",  base.from_string, fields);
+                base.export_element (obj, "Command", "value", "value",  base.from_string, fields);
+                base.export_attribute (obj, "Command", "DiscreteValue", "DiscreteValue", fields);
+                base.export_attribute (obj, "Command", "ValueAliasSet", "ValueAliasSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2214,7 +2417,6 @@ define
                     `
                     {{#normalValue}}<div><b>normalValue</b>: {{normalValue}}</div>{{/normalValue}}
                     {{#value}}<div><b>value</b>: {{value}}</div>{{/value}}
-                    {{#}}<div><b></b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/}}
                     {{#DiscreteValue}}<div><b>DiscreteValue</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{DiscreteValue}}&quot;);})'>{{DiscreteValue}}</a></div>{{/DiscreteValue}}
                     {{#ValueAliasSet}}<div><b>ValueAliasSet</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{ValueAliasSet}}&quot;);})'>{{ValueAliasSet}}</a></div>{{/ValueAliasSet}}
                     </div>
@@ -2227,13 +2429,11 @@ define
             condition (obj)
             {
                 super.condition (obj);
-                if (obj.unknown) obj.unknown_string = obj.unknown.join ();
             }
 
             uncondition (obj)
             {
                 super.uncondition (obj);
-                delete obj.unknown_string;
             }
 
             edit_template ()
@@ -2256,11 +2456,24 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Command" };
+                super.submit (obj);
+                temp = document.getElementById ("normalValue").value; if ("" != temp) obj.normalValue = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("DiscreteValue").value; if ("" != temp) obj.DiscreteValue = temp;
+                temp = document.getElementById ("ValueAliasSet").value; if ("" != temp) obj.ValueAliasSet = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
                     [
-                        ["unknown", "ICCPCommandPoint", "0..*", "1"],
                         ["DiscreteValue", "DiscreteValue", "1", "0..1"],
                         ["ValueAliasSet", "ValueAliasSet", "0..1", "0..*"]
                     ]
@@ -2310,7 +2523,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2352,6 +2564,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DiscreteCommand" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2396,13 +2616,12 @@ define
             {
                 var fields = AnalogControl.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "RaiseLowerCommand", fields);
+                base.export_attribute (obj, "RaiseLowerCommand", "ValueAliasSet", "ValueAliasSet", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2447,6 +2666,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RaiseLowerCommand" };
+                super.submit (obj);
+                temp = document.getElementById ("ValueAliasSet").value; if ("" != temp) obj.ValueAliasSet = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2501,14 +2731,13 @@ define
             {
                 var fields = AnalogControl.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SetPoint", "normalValue", base.from_float, fields);
-                base.export_element (obj, "SetPoint", "value", base.from_float, fields);
+                base.export_element (obj, "SetPoint", "normalValue", "normalValue",  base.from_float, fields);
+                base.export_element (obj, "SetPoint", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2555,6 +2784,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SetPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("normalValue").value; if ("" != temp) obj.normalValue = temp;
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -2603,17 +2844,16 @@ define
             {
                 var fields = Measurement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Discrete", "maxValue", base.from_string, fields);
-                base.export_element (obj, "Discrete", "minValue", base.from_string, fields);
-                base.export_element (obj, "Discrete", "normalValue", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Discrete", fields);
-                base.export_attribute (obj, "export_attributes", "Discrete", fields);
+                base.export_element (obj, "Discrete", "maxValue", "maxValue",  base.from_string, fields);
+                base.export_element (obj, "Discrete", "minValue", "minValue",  base.from_string, fields);
+                base.export_element (obj, "Discrete", "normalValue", "normalValue",  base.from_string, fields);
+                base.export_attribute (obj, "Discrete", "ValueAliasSet", "ValueAliasSet", fields);
+                base.export_attributes (obj, "Discrete", "DiscreteValues", "DiscreteValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2667,6 +2907,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Discrete" };
+                super.submit (obj);
+                temp = document.getElementById ("maxValue").value; if ("" != temp) obj.maxValue = temp;
+                temp = document.getElementById ("minValue").value; if ("" != temp) obj.minValue = temp;
+                temp = document.getElementById ("normalValue").value; if ("" != temp) obj.normalValue = temp;
+                temp = document.getElementById ("ValueAliasSet").value; if ("" != temp) obj.ValueAliasSet = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2726,18 +2980,17 @@ define
             {
                 var fields = Measurement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Analog", "maxValue", base.from_float, fields);
-                base.export_element (obj, "Analog", "minValue", base.from_float, fields);
-                base.export_element (obj, "Analog", "normalValue", base.from_float, fields);
-                base.export_element (obj, "Analog", "positiveFlowIn", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "Analog", fields);
-                base.export_attribute (obj, "export_attributes", "Analog", fields);
+                base.export_element (obj, "Analog", "maxValue", "maxValue",  base.from_float, fields);
+                base.export_element (obj, "Analog", "minValue", "minValue",  base.from_float, fields);
+                base.export_element (obj, "Analog", "normalValue", "normalValue",  base.from_float, fields);
+                base.export_element (obj, "Analog", "positiveFlowIn", "positiveFlowIn",  base.from_boolean, fields);
+                base.export_attributes (obj, "Analog", "AnalogValues", "AnalogValues", fields);
+                base.export_attributes (obj, "Analog", "LimitSets", "LimitSets", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2797,6 +3050,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Analog" };
+                super.submit (obj);
+                temp = document.getElementById ("maxValue").value; if ("" != temp) obj.maxValue = temp;
+                temp = document.getElementById ("minValue").value; if ("" != temp) obj.minValue = temp;
+                temp = document.getElementById ("normalValue").value; if ("" != temp) obj.normalValue = temp;
+                temp = document.getElementById ("positiveFlowIn").checked; if (temp) obj.positiveFlowIn = true;
+                temp = document.getElementById ("LimitSets").value; if ("" != temp) obj.LimitSets = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2851,15 +3119,14 @@ define
             {
                 var fields = Measurement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Accumulator", "maxValue", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Accumulator", fields);
-                base.export_attribute (obj, "export_attributes", "Accumulator", fields);
+                base.export_element (obj, "Accumulator", "maxValue", "maxValue",  base.from_string, fields);
+                base.export_attributes (obj, "Accumulator", "AccumulatorValues", "AccumulatorValues", fields);
+                base.export_attributes (obj, "Accumulator", "LimitSets", "LimitSets", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2911,6 +3178,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Accumulator" };
+                super.submit (obj);
+                temp = document.getElementById ("maxValue").value; if ("" != temp) obj.maxValue = temp;
+                temp = document.getElementById ("LimitSets").value; if ("" != temp) obj.LimitSets = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -2965,13 +3244,12 @@ define
             {
                 var fields = Measurement.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "StringMeasurement", fields);
+                base.export_attributes (obj, "StringMeasurement", "StringMeasurementValues", "StringMeasurementValues", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3017,6 +3295,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "StringMeasurement" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -3071,14 +3357,13 @@ define
             {
                 var fields = LimitSet.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AccumulatorLimitSet", fields);
-                base.export_attribute (obj, "export_attributes", "AccumulatorLimitSet", fields);
+                base.export_attributes (obj, "AccumulatorLimitSet", "Limits", "Limits", fields);
+                base.export_attributes (obj, "AccumulatorLimitSet", "Measurements", "Measurements", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3128,6 +3413,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AccumulatorLimitSet" };
+                super.submit (obj);
+                temp = document.getElementById ("Measurements").value; if ("" != temp) obj.Measurements = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -3183,14 +3479,13 @@ define
             {
                 var fields = LimitSet.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AnalogLimitSet", fields);
-                base.export_attribute (obj, "export_attributes", "AnalogLimitSet", fields);
+                base.export_attributes (obj, "AnalogLimitSet", "Measurements", "Measurements", fields);
+                base.export_attributes (obj, "AnalogLimitSet", "Limits", "Limits", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3240,6 +3535,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AnalogLimitSet" };
+                super.submit (obj);
+                temp = document.getElementById ("Measurements").value; if ("" != temp) obj.Measurements = temp.split (",");
+
+                return (obj);
             }
 
             relations ()

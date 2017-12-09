@@ -65,15 +65,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "OperationalLimitSet", fields);
-                base.export_attribute (obj, "export_attribute", "OperationalLimitSet", fields);
-                base.export_attribute (obj, "export_attribute", "OperationalLimitSet", fields);
+                base.export_attributes (obj, "OperationalLimitSet", "OperationalLimitValue", "OperationalLimitValue", fields);
+                base.export_attribute (obj, "OperationalLimitSet", "Terminal", "Terminal", fields);
+                base.export_attribute (obj, "OperationalLimitSet", "Equipment", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -123,6 +122,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OperationalLimitSet" };
+                super.submit (obj);
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -183,16 +194,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "OperationalLimit", fields);
-                base.export_attribute (obj, "export_attribute", "OperationalLimit", fields);
-                base.export_attribute (obj, "export_attributes", "OperationalLimit", fields);
-                base.export_attribute (obj, "export_attributes", "OperationalLimit", fields);
+                base.export_attribute (obj, "OperationalLimit", "OperationalLimitSet", "OperationalLimitSet", fields);
+                base.export_attribute (obj, "OperationalLimit", "OperationalLimitType", "OperationalLimitType", fields);
+                base.export_attributes (obj, "OperationalLimit", "LimitScalingLimit", "LimitScalingLimit", fields);
+                base.export_attributes (obj, "OperationalLimit", "LimitDependencyModel", "LimitDependencyModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -246,6 +256,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OperationalLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("OperationalLimitSet").value; if ("" != temp) obj.OperationalLimitSet = temp;
+                temp = document.getElementById ("OperationalLimitType").value; if ("" != temp) obj.OperationalLimitType = temp;
+                temp = document.getElementById ("LimitDependencyModel").value; if ("" != temp) obj.LimitDependencyModel = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -304,15 +327,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "BranchGroupTerminal", "positiveFlowIn", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "BranchGroupTerminal", fields);
-                base.export_attribute (obj, "export_attribute", "BranchGroupTerminal", fields);
+                base.export_element (obj, "BranchGroupTerminal", "positiveFlowIn", "positiveFlowIn",  base.from_boolean, fields);
+                base.export_attribute (obj, "BranchGroupTerminal", "BranchGroup", "BranchGroup", fields);
+                base.export_attribute (obj, "BranchGroupTerminal", "Terminal", "Terminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -361,6 +383,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BranchGroupTerminal" };
+                super.submit (obj);
+                temp = document.getElementById ("positiveFlowIn").checked; if (temp) obj.positiveFlowIn = true;
+                temp = document.getElementById ("BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -424,20 +459,19 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BranchGroup", "maximumActivePower", base.from_string, fields);
-                base.export_element (obj, "BranchGroup", "maximumReactivePower", base.from_string, fields);
-                base.export_element (obj, "BranchGroup", "minimumActivePower", base.from_string, fields);
-                base.export_element (obj, "BranchGroup", "minimumReactivePower", base.from_string, fields);
-                base.export_element (obj, "BranchGroup", "monitorActivePower", base.from_boolean, fields);
-                base.export_element (obj, "BranchGroup", "monitorReactivePower", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attributes", "BranchGroup", fields);
-                base.export_attribute (obj, "export_attributes", "BranchGroup", fields);
+                base.export_element (obj, "BranchGroup", "maximumActivePower", "maximumActivePower",  base.from_string, fields);
+                base.export_element (obj, "BranchGroup", "maximumReactivePower", "maximumReactivePower",  base.from_string, fields);
+                base.export_element (obj, "BranchGroup", "minimumActivePower", "minimumActivePower",  base.from_string, fields);
+                base.export_element (obj, "BranchGroup", "minimumReactivePower", "minimumReactivePower",  base.from_string, fields);
+                base.export_element (obj, "BranchGroup", "monitorActivePower", "monitorActivePower",  base.from_boolean, fields);
+                base.export_element (obj, "BranchGroup", "monitorReactivePower", "monitorReactivePower",  base.from_boolean, fields);
+                base.export_attributes (obj, "BranchGroup", "PinBranchGroup", "PinBranchGroup", fields);
+                base.export_attributes (obj, "BranchGroup", "BranchGroupTerminal", "BranchGroupTerminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -500,6 +534,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BranchGroup" };
+                super.submit (obj);
+                temp = document.getElementById ("maximumActivePower").value; if ("" != temp) obj.maximumActivePower = temp;
+                temp = document.getElementById ("maximumReactivePower").value; if ("" != temp) obj.maximumReactivePower = temp;
+                temp = document.getElementById ("minimumActivePower").value; if ("" != temp) obj.minimumActivePower = temp;
+                temp = document.getElementById ("minimumReactivePower").value; if ("" != temp) obj.minimumReactivePower = temp;
+                temp = document.getElementById ("monitorActivePower").checked; if (temp) obj.monitorActivePower = true;
+                temp = document.getElementById ("monitorReactivePower").checked; if (temp) obj.monitorReactivePower = true;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -556,17 +606,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OperationalLimitType", "acceptableDuration", base.from_string, fields);
-                base.export_element (obj, "OperationalLimitType", "direction", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "OperationalLimitType", fields);
-                base.export_attribute (obj, "export_attributes", "OperationalLimitType", fields);
-                base.export_attribute (obj, "export_attribute", "OperationalLimitType", fields);
+                base.export_element (obj, "OperationalLimitType", "acceptableDuration", "acceptableDuration",  base.from_string, fields);
+                base.export_element (obj, "OperationalLimitType", "direction", "direction",  base.from_string, fields);
+                base.export_attributes (obj, "OperationalLimitType", "OperationalLimit", "OperationalLimit", fields);
+                base.export_attributes (obj, "OperationalLimitType", "SourceOperationalLimitTypeScaling", "SourceOperationalLimitTypeScaling", fields);
+                base.export_attribute (obj, "OperationalLimitType", "TargetOperationalLimitmTypeScaling", "TargetOperationalLimitmTypeScaling", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -625,6 +674,19 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OperationalLimitType" };
+                super.submit (obj);
+                temp = document.getElementById ("acceptableDuration").value; if ("" != temp) obj.acceptableDuration = temp;
+                temp = document.getElementById ("direction").value; if ("" != temp) { temp = OperationalLimitDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; }
+                temp = document.getElementById ("TargetOperationalLimitmTypeScaling").value; if ("" != temp) obj.TargetOperationalLimitmTypeScaling = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -678,13 +740,12 @@ define
             {
                 var fields = OperationalLimit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CurrentLimit", "value", base.from_string, fields);
+                base.export_element (obj, "CurrentLimit", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -729,6 +790,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CurrentLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -773,13 +845,12 @@ define
             {
                 var fields = OperationalLimit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ApparentPowerLimit", "value", base.from_string, fields);
+                base.export_element (obj, "ApparentPowerLimit", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -824,6 +895,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ApparentPowerLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -868,13 +950,12 @@ define
             {
                 var fields = OperationalLimit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VoltageLimit", "value", base.from_string, fields);
+                base.export_element (obj, "VoltageLimit", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -919,6 +1000,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VoltageLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -963,13 +1055,12 @@ define
             {
                 var fields = OperationalLimit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ActivePowerLimit", "value", base.from_string, fields);
+                base.export_element (obj, "ActivePowerLimit", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1014,6 +1105,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ActivePowerLimit" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 

@@ -57,21 +57,20 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Point", "position", base.from_string, fields);
-                base.export_element (obj, "Point", "quality", base.from_string, fields);
-                base.export_element (obj, "Point", "quantity", base.from_string, fields);
-                base.export_element (obj, "Point", "secondaryQuantity", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Point", fields);
-                base.export_attribute (obj, "export_attributes", "Point", fields);
-                base.export_attribute (obj, "export_attribute", "Point", fields);
-                base.export_attribute (obj, "export_attributes", "Point", fields);
-                base.export_attribute (obj, "export_attributes", "Point", fields);
+                base.export_element (obj, "Point", "position", "position",  base.from_string, fields);
+                base.export_element (obj, "Point", "quality", "quality",  base.from_string, fields);
+                base.export_element (obj, "Point", "quantity", "quantity",  base.from_string, fields);
+                base.export_element (obj, "Point", "secondaryQuantity", "secondaryQuantity",  base.from_string, fields);
+                base.export_attributes (obj, "Point", "AceTariffType", "AceTariffType", fields);
+                base.export_attributes (obj, "Point", "Reason", "Reason", fields);
+                base.export_attribute (obj, "Point", "Period", "Period", fields);
+                base.export_attributes (obj, "Point", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "Point", "Price", "Price", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -141,6 +140,24 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Point" };
+                super.submit (obj);
+                temp = document.getElementById ("position").value; if ("" != temp) obj.position = temp;
+                temp = document.getElementById ("quality").value; if ("" != temp) obj.quality = temp;
+                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById ("secondaryQuantity").value; if ("" != temp) obj.secondaryQuantity = temp;
+                temp = document.getElementById ("AceTariffType").value; if ("" != temp) obj.AceTariffType = temp.split (",");
+                temp = document.getElementById ("Reason").value; if ("" != temp) obj.Reason = temp.split (",");
+                temp = document.getElementById ("Period").value; if ("" != temp) obj.Period = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -201,18 +218,17 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Reason", "code", base.from_string, fields);
-                base.export_element (obj, "Reason", "text", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Reason", fields);
-                base.export_attribute (obj, "export_attributes", "Reason", fields);
-                base.export_attribute (obj, "export_attributes", "Reason", fields);
-                base.export_attribute (obj, "export_attributes", "Reason", fields);
+                base.export_element (obj, "Reason", "code", "code",  base.from_string, fields);
+                base.export_element (obj, "Reason", "text", "text",  base.from_string, fields);
+                base.export_attributes (obj, "Reason", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "Reason", "Point", "Point", fields);
+                base.export_attributes (obj, "Reason", "Period", "Period", fields);
+                base.export_attributes (obj, "Reason", "MarketDocument", "MarketDocument", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -277,6 +293,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Reason" };
+                super.submit (obj);
+                temp = document.getElementById ("code").value; if ("" != temp) obj.code = temp;
+                temp = document.getElementById ("text").value; if ("" != temp) obj.text = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById ("Point").value; if ("" != temp) obj.Point = temp.split (",");
+                temp = document.getElementById ("Period").value; if ("" != temp) obj.Period = temp.split (",");
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -333,15 +365,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Unit", "name", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Unit", fields);
-                base.export_attribute (obj, "export_attributes", "Unit", fields);
+                base.export_element (obj, "Unit", "name", "name",  base.from_string, fields);
+                base.export_attributes (obj, "Unit", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "Unit", "AceTariffType", "AceTariffType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -394,6 +425,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Unit" };
+                super.submit (obj);
+                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById ("AceTariffType").value; if ("" != temp) obj.AceTariffType = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -450,15 +494,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "DateAndOrTime", "date", base.from_string, fields);
-                base.export_element (obj, "DateAndOrTime", "time", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "DateAndOrTime", fields);
+                base.export_element (obj, "DateAndOrTime", "date", "date",  base.from_string, fields);
+                base.export_element (obj, "DateAndOrTime", "time", "time",  base.from_string, fields);
+                base.export_attributes (obj, "DateAndOrTime", "TimeSeries", "TimeSeries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -509,6 +552,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DateAndOrTime" };
+                super.submit (obj);
+                temp = document.getElementById ("date").value; if ("" != temp) obj.date = temp;
+                temp = document.getElementById ("time").value; if ("" != temp) obj.time = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -563,14 +619,13 @@ define
             {
                 var fields = Core.PSRType.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MktPSRType", "psrType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "MktPSRType", fields);
+                base.export_element (obj, "MktPSRType", "psrType", "psrType",  base.from_string, fields);
+                base.export_attributes (obj, "MktPSRType", "TimeSeries", "TimeSeries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -619,6 +674,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MktPSRType" };
+                super.submit (obj);
+                temp = document.getElementById ("psrType").value; if ("" != temp) obj.psrType = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -675,16 +742,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AceTariffType", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "AceTariffType", fields);
-                base.export_attribute (obj, "export_attributes", "AceTariffType", fields);
-                base.export_attribute (obj, "export_attributes", "AceTariffType", fields);
+                base.export_element (obj, "AceTariffType", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "AceTariffType", "Point", "Point", fields);
+                base.export_attributes (obj, "AceTariffType", "Unit", "Unit", fields);
+                base.export_attributes (obj, "AceTariffType", "MarketDocument", "MarketDocument", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -741,6 +807,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AceTariffType" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("Point").value; if ("" != temp) obj.Point = temp.split (",");
+                temp = document.getElementById ("Unit").value; if ("" != temp) obj.Unit = temp.split (",");
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -805,22 +885,21 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
-                base.export_attribute (obj, "export_attributes", "MarketDocument", fields);
+                base.export_attributes (obj, "MarketDocument", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "MarketDocument", "Period", "Period", fields);
+                base.export_attributes (obj, "MarketDocument", "AttributeInstanceComponent", "AttributeInstanceComponent", fields);
+                base.export_attributes (obj, "MarketDocument", "selfMarketDocument", "selfMarketDocument", fields);
+                base.export_attributes (obj, "MarketDocument", "MarketDocument", "MarketDocument", fields);
+                base.export_attributes (obj, "MarketDocument", "Reason", "Reason", fields);
+                base.export_attributes (obj, "MarketDocument", "Process", "Process", fields);
+                base.export_attributes (obj, "MarketDocument", "AceTariffType", "AceTariffType", fields);
+                base.export_attributes (obj, "MarketDocument", "Domain", "Domain", fields);
+                base.export_attributes (obj, "MarketDocument", "MarketParticipant", "MarketParticipant", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -905,6 +984,26 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketDocument" };
+                super.submit (obj);
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById ("Period").value; if ("" != temp) obj.Period = temp.split (",");
+                temp = document.getElementById ("AttributeInstanceComponent").value; if ("" != temp) obj.AttributeInstanceComponent = temp.split (",");
+                temp = document.getElementById ("selfMarketDocument").value; if ("" != temp) obj.selfMarketDocument = temp.split (",");
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+                temp = document.getElementById ("Reason").value; if ("" != temp) obj.Reason = temp.split (",");
+                temp = document.getElementById ("Process").value; if ("" != temp) obj.Process = temp.split (",");
+                temp = document.getElementById ("AceTariffType").value; if ("" != temp) obj.AceTariffType = temp.split (",");
+                temp = document.getElementById ("Domain").value; if ("" != temp) obj.Domain = temp.split (",");
+                temp = document.getElementById ("MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -966,14 +1065,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "Domain", fields);
-                base.export_attribute (obj, "export_attributes", "Domain", fields);
+                base.export_attributes (obj, "Domain", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "Domain", "MarketDocument", "MarketDocument", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1024,6 +1122,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Domain" };
+                super.submit (obj);
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1078,13 +1188,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "MarketEvaluationPoint", fields);
+                base.export_attributes (obj, "MarketEvaluationPoint", "TimeSeries", "TimeSeries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1131,6 +1240,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketEvaluationPoint" };
+                super.submit (obj);
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1189,18 +1309,17 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Period", "resolution", base.from_string, fields);
-                base.export_element (obj, "Period", "timeInterval", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Period", fields);
-                base.export_attribute (obj, "export_attributes", "Period", fields);
-                base.export_attribute (obj, "export_attributes", "Period", fields);
-                base.export_attribute (obj, "export_attributes", "Period", fields);
+                base.export_element (obj, "Period", "resolution", "resolution",  base.from_string, fields);
+                base.export_element (obj, "Period", "timeInterval", "timeInterval",  base.from_string, fields);
+                base.export_attributes (obj, "Period", "TimeSeries", "TimeSeries", fields);
+                base.export_attributes (obj, "Period", "MarketDocument", "MarketDocument", fields);
+                base.export_attributes (obj, "Period", "Reason", "Reason", fields);
+                base.export_attributes (obj, "Period", "Point", "Point", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1264,6 +1383,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Period" };
+                super.submit (obj);
+                temp = document.getElementById ("resolution").value; if ("" != temp) obj.resolution = temp;
+                temp = document.getElementById ("timeInterval").value; if ("" != temp) obj.timeInterval = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+                temp = document.getElementById ("Reason").value; if ("" != temp) obj.Reason = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1319,14 +1453,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MarketObjectStatus", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "MarketObjectStatus", fields);
+                base.export_element (obj, "MarketObjectStatus", "status", "status",  base.from_string, fields);
+                base.export_attributes (obj, "MarketObjectStatus", "TimeSeries", "TimeSeries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1375,6 +1508,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MarketObjectStatus" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1432,17 +1577,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AttributeInstanceComponent", "attribute", base.from_string, fields);
-                base.export_element (obj, "AttributeInstanceComponent", "attributeValue", base.from_string, fields);
-                base.export_element (obj, "AttributeInstanceComponent", "position", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "AttributeInstanceComponent", fields);
-                base.export_attribute (obj, "export_attributes", "AttributeInstanceComponent", fields);
+                base.export_element (obj, "AttributeInstanceComponent", "attribute", "attribute",  base.from_string, fields);
+                base.export_element (obj, "AttributeInstanceComponent", "attributeValue", "attributeValue",  base.from_string, fields);
+                base.export_element (obj, "AttributeInstanceComponent", "position", "position",  base.from_string, fields);
+                base.export_attributes (obj, "AttributeInstanceComponent", "MarketDocument", "MarketDocument", fields);
+                base.export_attributes (obj, "AttributeInstanceComponent", "TimeSeries", "TimeSeries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1499,6 +1643,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AttributeInstanceComponent" };
+                super.submit (obj);
+                temp = document.getElementById ("attribute").value; if ("" != temp) obj.attribute = temp;
+                temp = document.getElementById ("attributeValue").value; if ("" != temp) obj.attributeValue = temp;
+                temp = document.getElementById ("position").value; if ("" != temp) obj.position = temp;
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1559,19 +1718,18 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Auction", "allocationMode", base.from_string, fields);
-                base.export_element (obj, "Auction", "cancelled", base.from_string, fields);
-                base.export_element (obj, "Auction", "category", base.from_string, fields);
-                base.export_element (obj, "Auction", "paymentTerms", base.from_string, fields);
-                base.export_element (obj, "Auction", "rights", base.from_string, fields);
-                base.export_element (obj, "Auction", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Auction", fields);
+                base.export_element (obj, "Auction", "allocationMode", "allocationMode",  base.from_string, fields);
+                base.export_element (obj, "Auction", "cancelled", "cancelled",  base.from_string, fields);
+                base.export_element (obj, "Auction", "category", "category",  base.from_string, fields);
+                base.export_element (obj, "Auction", "paymentTerms", "paymentTerms",  base.from_string, fields);
+                base.export_element (obj, "Auction", "rights", "rights",  base.from_string, fields);
+                base.export_element (obj, "Auction", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "Auction", "TimeSeries", "TimeSeries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1632,6 +1790,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Auction" };
+                super.submit (obj);
+                temp = document.getElementById ("allocationMode").value; if ("" != temp) obj.allocationMode = temp;
+                temp = document.getElementById ("cancelled").value; if ("" != temp) obj.cancelled = temp;
+                temp = document.getElementById ("category").value; if ("" != temp) obj.category = temp;
+                temp = document.getElementById ("paymentTerms").value; if ("" != temp) obj.paymentTerms = temp;
+                temp = document.getElementById ("rights").value; if ("" != temp) obj.rights = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1686,16 +1861,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Price", "amount", base.from_string, fields);
-                base.export_element (obj, "Price", "category", base.from_string, fields);
-                base.export_element (obj, "Price", "direction", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Price", fields);
+                base.export_element (obj, "Price", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "Price", "category", "category",  base.from_string, fields);
+                base.export_element (obj, "Price", "direction", "direction",  base.from_string, fields);
+                base.export_attribute (obj, "Price", "Point", "Point", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1746,6 +1920,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Price" };
+                super.submit (obj);
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("category").value; if ("" != temp) obj.category = temp;
+                temp = document.getElementById ("direction").value; if ("" != temp) obj.direction = temp;
+                temp = document.getElementById ("Point").value; if ("" != temp) obj.Point = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1801,15 +1989,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Process", "classificationType", base.from_string, fields);
-                base.export_element (obj, "Process", "processType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Process", fields);
+                base.export_element (obj, "Process", "classificationType", "classificationType",  base.from_string, fields);
+                base.export_element (obj, "Process", "processType", "processType",  base.from_string, fields);
+                base.export_attributes (obj, "Process", "MarketDocument", "MarketDocument", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1860,6 +2047,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Process" };
+                super.submit (obj);
+                temp = document.getElementById ("classificationType").value; if ("" != temp) obj.classificationType = temp;
+                temp = document.getElementById ("processType").value; if ("" != temp) obj.processType = temp;
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1933,33 +2133,32 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TimeSeries", "businessType", base.from_string, fields);
-                base.export_element (obj, "TimeSeries", "cancelledTS", base.from_string, fields);
-                base.export_element (obj, "TimeSeries", "curveType", base.from_string, fields);
-                base.export_element (obj, "TimeSeries", "objectAggregation", base.from_string, fields);
-                base.export_element (obj, "TimeSeries", "product", base.from_string, fields);
-                base.export_element (obj, "TimeSeries", "version", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
-                base.export_attribute (obj, "export_attributes", "TimeSeries", fields);
+                base.export_element (obj, "TimeSeries", "businessType", "businessType",  base.from_string, fields);
+                base.export_element (obj, "TimeSeries", "cancelledTS", "cancelledTS",  base.from_string, fields);
+                base.export_element (obj, "TimeSeries", "curveType", "curveType",  base.from_string, fields);
+                base.export_element (obj, "TimeSeries", "objectAggregation", "objectAggregation",  base.from_string, fields);
+                base.export_element (obj, "TimeSeries", "product", "product",  base.from_string, fields);
+                base.export_element (obj, "TimeSeries", "version", "version",  base.from_string, fields);
+                base.export_attributes (obj, "TimeSeries", "MarketDocument", "MarketDocument", fields);
+                base.export_attributes (obj, "TimeSeries", "FlowDirection", "FlowDirection", fields);
+                base.export_attributes (obj, "TimeSeries", "Period", "Period", fields);
+                base.export_attributes (obj, "TimeSeries", "Auction", "Auction", fields);
+                base.export_attributes (obj, "TimeSeries", "DateAndOrTime", "DateAndOrTime", fields);
+                base.export_attributes (obj, "TimeSeries", "AttributeInstanceComponent", "AttributeInstanceComponent", fields);
+                base.export_attributes (obj, "TimeSeries", "Domain", "Domain", fields);
+                base.export_attributes (obj, "TimeSeries", "Unit", "Unit", fields);
+                base.export_attributes (obj, "TimeSeries", "Reason", "Reason", fields);
+                base.export_attributes (obj, "TimeSeries", "MarketParticipant", "MarketParticipant", fields);
+                base.export_attributes (obj, "TimeSeries", "MarketEvaluationPoint", "MarketEvaluationPoint", fields);
+                base.export_attributes (obj, "TimeSeries", "MarketObjectStatus", "MarketObjectStatus", fields);
+                base.export_attributes (obj, "TimeSeries", "Point", "Point", fields);
+                base.export_attributes (obj, "TimeSeries", "MktPSRType", "MktPSRType", fields);
+                base.export_attributes (obj, "TimeSeries", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2076,6 +2275,37 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TimeSeries" };
+                super.submit (obj);
+                temp = document.getElementById ("businessType").value; if ("" != temp) obj.businessType = temp;
+                temp = document.getElementById ("cancelledTS").value; if ("" != temp) obj.cancelledTS = temp;
+                temp = document.getElementById ("curveType").value; if ("" != temp) obj.curveType = temp;
+                temp = document.getElementById ("objectAggregation").value; if ("" != temp) obj.objectAggregation = temp;
+                temp = document.getElementById ("product").value; if ("" != temp) obj.product = temp;
+                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+                temp = document.getElementById ("FlowDirection").value; if ("" != temp) obj.FlowDirection = temp.split (",");
+                temp = document.getElementById ("Period").value; if ("" != temp) obj.Period = temp.split (",");
+                temp = document.getElementById ("Auction").value; if ("" != temp) obj.Auction = temp.split (",");
+                temp = document.getElementById ("DateAndOrTime").value; if ("" != temp) obj.DateAndOrTime = temp.split (",");
+                temp = document.getElementById ("AttributeInstanceComponent").value; if ("" != temp) obj.AttributeInstanceComponent = temp.split (",");
+                temp = document.getElementById ("Domain").value; if ("" != temp) obj.Domain = temp.split (",");
+                temp = document.getElementById ("Unit").value; if ("" != temp) obj.Unit = temp.split (",");
+                temp = document.getElementById ("Reason").value; if ("" != temp) obj.Reason = temp.split (",");
+                temp = document.getElementById ("MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp.split (",");
+                temp = document.getElementById ("MarketEvaluationPoint").value; if ("" != temp) obj.MarketEvaluationPoint = temp.split (",");
+                temp = document.getElementById ("MarketObjectStatus").value; if ("" != temp) obj.MarketObjectStatus = temp.split (",");
+                temp = document.getElementById ("Point").value; if ("" != temp) obj.Point = temp.split (",");
+                temp = document.getElementById ("MktPSRType").value; if ("" != temp) obj.MktPSRType = temp.split (",");
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2142,14 +2372,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "FlowDirection", "direction", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "FlowDirection", fields);
+                base.export_element (obj, "FlowDirection", "direction", "direction",  base.from_string, fields);
+                base.export_attributes (obj, "FlowDirection", "TimeSeries", "TimeSeries", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2198,6 +2427,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FlowDirection" };
+                super.submit (obj);
+                temp = document.getElementById ("direction").value; if ("" != temp) obj.direction = temp;
+                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -2256,7 +2497,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2298,6 +2538,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "MarketAgreement" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2347,18 +2595,17 @@ define
             {
                 var fields = TimeSeries.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BidTimeSeries", "blockBid", base.from_string, fields);
-                base.export_element (obj, "BidTimeSeries", "direction", base.from_string, fields);
-                base.export_element (obj, "BidTimeSeries", "divisible", base.from_string, fields);
-                base.export_element (obj, "BidTimeSeries", "linkedBidsIdentification", base.from_string, fields);
-                base.export_element (obj, "BidTimeSeries", "minimumActivationQuantity", base.from_string, fields);
-                base.export_element (obj, "BidTimeSeries", "stepIncrementQuantity", base.from_string, fields);
+                base.export_element (obj, "BidTimeSeries", "blockBid", "blockBid",  base.from_string, fields);
+                base.export_element (obj, "BidTimeSeries", "direction", "direction",  base.from_string, fields);
+                base.export_element (obj, "BidTimeSeries", "divisible", "divisible",  base.from_string, fields);
+                base.export_element (obj, "BidTimeSeries", "linkedBidsIdentification", "linkedBidsIdentification",  base.from_string, fields);
+                base.export_element (obj, "BidTimeSeries", "minimumActivationQuantity", "minimumActivationQuantity",  base.from_string, fields);
+                base.export_element (obj, "BidTimeSeries", "stepIncrementQuantity", "stepIncrementQuantity",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2413,6 +2660,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BidTimeSeries" };
+                super.submit (obj);
+                temp = document.getElementById ("blockBid").value; if ("" != temp) obj.blockBid = temp;
+                temp = document.getElementById ("direction").value; if ("" != temp) obj.direction = temp;
+                temp = document.getElementById ("divisible").value; if ("" != temp) obj.divisible = temp;
+                temp = document.getElementById ("linkedBidsIdentification").value; if ("" != temp) obj.linkedBidsIdentification = temp;
+                temp = document.getElementById ("minimumActivationQuantity").value; if ("" != temp) obj.minimumActivationQuantity = temp;
+                temp = document.getElementById ("stepIncrementQuantity").value; if ("" != temp) obj.stepIncrementQuantity = temp;
+
+                return (obj);
             }
         }
 

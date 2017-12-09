@@ -121,20 +121,19 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "ExcitationSystemDynamics", "PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", fields);
+                base.export_attribute (obj, "ExcitationSystemDynamics", "UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", fields);
+                base.export_attribute (obj, "ExcitationSystemDynamics", "DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", fields);
+                base.export_attribute (obj, "ExcitationSystemDynamics", "PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", fields);
+                base.export_attribute (obj, "ExcitationSystemDynamics", "SynchronousMachineDynamics", "SynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "ExcitationSystemDynamics", "VoltageCompensatorDynamics", "VoltageCompensatorDynamics", fields);
+                base.export_attribute (obj, "ExcitationSystemDynamics", "OverexcitationLimiterDynamics", "OverexcitationLimiterDynamics", fields);
+                base.export_attribute (obj, "ExcitationSystemDynamics", "PFVArControllerType2Dynamics", "PFVArControllerType2Dynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -193,6 +192,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcitationSystemDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("PowerSystemStabilizerDynamics").value; if ("" != temp) obj.PowerSystemStabilizerDynamics = temp;
+                temp = document.getElementById ("UnderexcitationLimiterDynamics").value; if ("" != temp) obj.UnderexcitationLimiterDynamics = temp;
+                temp = document.getElementById ("DiscontinuousExcitationControlDynamics").value; if ("" != temp) obj.DiscontinuousExcitationControlDynamics = temp;
+                temp = document.getElementById ("PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
+                temp = document.getElementById ("SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp;
+                temp = document.getElementById ("VoltageCompensatorDynamics").value; if ("" != temp) obj.VoltageCompensatorDynamics = temp;
+                temp = document.getElementById ("OverexcitationLimiterDynamics").value; if ("" != temp) obj.OverexcitationLimiterDynamics = temp;
+                temp = document.getElementById ("PFVArControllerType2Dynamics").value; if ("" != temp) obj.PFVArControllerType2Dynamics = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -270,28 +287,27 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEDC1A", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "exclim", base.from_boolean, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "uelin", base.from_boolean, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC1A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "exclim", "exclim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "uelin", "uelin",  base.from_boolean, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC1A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -367,6 +383,32 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEDC1A" };
+                super.submit (obj);
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("exclim").checked; if (temp) obj.exclim = true;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("uelin").checked; if (temp) obj.uelin = true;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -417,20 +459,19 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcSCRX", "cswitch", base.from_boolean, fields);
-                base.export_element (obj, "ExcSCRX", "emax", base.from_string, fields);
-                base.export_element (obj, "ExcSCRX", "emin", base.from_string, fields);
-                base.export_element (obj, "ExcSCRX", "k", base.from_string, fields);
-                base.export_element (obj, "ExcSCRX", "rcrfd", base.from_float, fields);
-                base.export_element (obj, "ExcSCRX", "tatb", base.from_float, fields);
-                base.export_element (obj, "ExcSCRX", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcSCRX", "te", base.from_string, fields);
+                base.export_element (obj, "ExcSCRX", "cswitch", "cswitch",  base.from_boolean, fields);
+                base.export_element (obj, "ExcSCRX", "emax", "emax",  base.from_string, fields);
+                base.export_element (obj, "ExcSCRX", "emin", "emin",  base.from_string, fields);
+                base.export_element (obj, "ExcSCRX", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "ExcSCRX", "rcrfd", "rcrfd",  base.from_float, fields);
+                base.export_element (obj, "ExcSCRX", "tatb", "tatb",  base.from_float, fields);
+                base.export_element (obj, "ExcSCRX", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcSCRX", "te", "te",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -489,6 +530,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcSCRX" };
+                super.submit (obj);
+                temp = document.getElementById ("cswitch").checked; if (temp) obj.cswitch = true;
+                temp = document.getElementById ("emax").value; if ("" != temp) obj.emax = temp;
+                temp = document.getElementById ("emin").value; if ("" != temp) obj.emin = temp;
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("rcrfd").value; if ("" != temp) obj.rcrfd = temp;
+                temp = document.getElementById ("tatb").value; if ("" != temp) obj.tatb = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+
+                return (obj);
             }
         }
 
@@ -553,31 +612,30 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEDC4B", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "oelin", base.from_boolean, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "td", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "uelin", base.from_boolean, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "vemin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC4B", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "oelin", "oelin",  base.from_boolean, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "uelin", "uelin",  base.from_boolean, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "vemin", "vemin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC4B", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -659,6 +717,35 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEDC4B" };
+                super.submit (obj);
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("oelin").checked; if (temp) obj.oelin = true;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("uelin").checked; if (temp) obj.uelin = true;
+                temp = document.getElementById ("vemin").value; if ("" != temp) obj.vemin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -724,33 +811,32 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC3A", "efdn", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "kn", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "kr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "vemin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC3A", "vfemax", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "efdn", "efdn",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "kn", "kn",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "kr", "kr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "vemin", "vemin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC3A", "vfemax", "vfemax",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -836,6 +922,37 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEAC3A" };
+                super.submit (obj);
+                temp = document.getElementById ("efdn").value; if ("" != temp) obj.efdn = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("kn").value; if ("" != temp) obj.kn = temp;
+                temp = document.getElementById ("kr").value; if ("" != temp) obj.kr = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vemin").value; if ("" != temp) obj.vemin = temp;
+                temp = document.getElementById ("vfemax").value; if ("" != temp) obj.vfemax = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -883,15 +1000,14 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAVR5", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcAVR5", "rex", base.from_string, fields);
-                base.export_element (obj, "ExcAVR5", "ta", base.from_string, fields);
+                base.export_element (obj, "ExcAVR5", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR5", "rex", "rex",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR5", "ta", "ta",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -940,6 +1056,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAVR5" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("rex").value; if ("" != temp) obj.rex = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+
+                return (obj);
             }
         }
 
@@ -998,27 +1127,26 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcST2A", "efdmax", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "uelin", base.from_boolean, fields);
-                base.export_element (obj, "ExcST2A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcST2A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "efdmax", "efdmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "uelin", "uelin",  base.from_boolean, fields);
+                base.export_element (obj, "ExcST2A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST2A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1092,6 +1220,31 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcST2A" };
+                super.submit (obj);
+                temp = document.getElementById ("efdmax").value; if ("" != temp) obj.efdmax = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("uelin").checked; if (temp) obj.uelin = true;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1163,39 +1316,38 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcELIN2", "efdbas", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "iefmax", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "iefmax2", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "iefmin", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "k1", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "k1ec", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "k2", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "k3", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "k4", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "kd1", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "ke2", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "ketb", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "pid1max", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "seve1", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "seve2", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "tb1", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "te", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "te2", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "ti1", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "ti3", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "ti4", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "tr4", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "upmax", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "upmin", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcELIN2", "xp", base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "efdbas", "efdbas",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "iefmax", "iefmax",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "iefmax2", "iefmax2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "iefmin", "iefmin",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "k1", "k1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "k1ec", "k1ec",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "k2", "k2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "k3", "k3",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "k4", "k4",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "kd1", "kd1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ke2", "ke2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ketb", "ketb",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "pid1max", "pid1max",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "seve1", "seve1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "seve2", "seve2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "tb1", "tb1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "te2", "te2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ti1", "ti1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ti3", "ti3",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ti4", "ti4",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "tr4", "tr4",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "upmax", "upmax",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "upmin", "upmin",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN2", "xp", "xp",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1293,6 +1445,43 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcELIN2" };
+                super.submit (obj);
+                temp = document.getElementById ("efdbas").value; if ("" != temp) obj.efdbas = temp;
+                temp = document.getElementById ("iefmax").value; if ("" != temp) obj.iefmax = temp;
+                temp = document.getElementById ("iefmax2").value; if ("" != temp) obj.iefmax2 = temp;
+                temp = document.getElementById ("iefmin").value; if ("" != temp) obj.iefmin = temp;
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k1ec").value; if ("" != temp) obj.k1ec = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("k4").value; if ("" != temp) obj.k4 = temp;
+                temp = document.getElementById ("kd1").value; if ("" != temp) obj.kd1 = temp;
+                temp = document.getElementById ("ke2").value; if ("" != temp) obj.ke2 = temp;
+                temp = document.getElementById ("ketb").value; if ("" != temp) obj.ketb = temp;
+                temp = document.getElementById ("pid1max").value; if ("" != temp) obj.pid1max = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("tb1").value; if ("" != temp) obj.tb1 = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("te2").value; if ("" != temp) obj.te2 = temp;
+                temp = document.getElementById ("ti1").value; if ("" != temp) obj.ti1 = temp;
+                temp = document.getElementById ("ti3").value; if ("" != temp) obj.ti3 = temp;
+                temp = document.getElementById ("ti4").value; if ("" != temp) obj.ti4 = temp;
+                temp = document.getElementById ("tr4").value; if ("" != temp) obj.tr4 = temp;
+                temp = document.getElementById ("upmax").value; if ("" != temp) obj.upmax = temp;
+                temp = document.getElementById ("upmin").value; if ("" != temp) obj.upmin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("xp").value; if ("" != temp) obj.xp = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1348,23 +1537,22 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEDC3A", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "exclim", base.from_boolean, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "kv", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "trh", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC3A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "exclim", "exclim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "kv", "kv",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "trh", "trh",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC3A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1429,6 +1617,27 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEDC3A" };
+                super.submit (obj);
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("exclim").checked; if (temp) obj.exclim = true;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kv").value; if ("" != temp) obj.kv = temp;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("trh").value; if ("" != temp) obj.trh = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
             }
         }
 
@@ -1495,33 +1704,32 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC2A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "kb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "kh", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "vfemax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC2A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "kb", "kb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "kh", "kh",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "vfemax", "vfemax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC2A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1607,6 +1815,37 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEAC2A" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kb").value; if ("" != temp) obj.kb = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("kh").value; if ("" != temp) obj.kh = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vfemax").value; if ("" != temp) obj.vfemax = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1671,34 +1910,33 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAC1A", "hvlvgates", base.from_boolean, fields);
-                base.export_element (obj, "ExcAC1A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "kf1", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "kf2", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcAC1A", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcAC1A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcAC1A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "hvlvgates", "hvlvgates",  base.from_boolean, fields);
+                base.export_element (obj, "ExcAC1A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "kf1", "kf1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "kf2", "kf2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcAC1A", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcAC1A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC1A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1786,6 +2024,38 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAC1A" };
+                super.submit (obj);
+                temp = document.getElementById ("hvlvgates").checked; if (temp) obj.hvlvgates = true;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("kf1").value; if ("" != temp) obj.kf1 = temp;
+                temp = document.getElementById ("kf2").value; if ("" != temp) obj.kf2 = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1838,22 +2108,21 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcSEXS", "efdmax", base.from_string, fields);
-                base.export_element (obj, "ExcSEXS", "efdmin", base.from_string, fields);
-                base.export_element (obj, "ExcSEXS", "emax", base.from_string, fields);
-                base.export_element (obj, "ExcSEXS", "emin", base.from_string, fields);
-                base.export_element (obj, "ExcSEXS", "k", base.from_string, fields);
-                base.export_element (obj, "ExcSEXS", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcSEXS", "tatb", base.from_float, fields);
-                base.export_element (obj, "ExcSEXS", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcSEXS", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcSEXS", "te", base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "efdmax", "efdmax",  base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "efdmin", "efdmin",  base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "emax", "emax",  base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "emin", "emin",  base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "tatb", "tatb",  base.from_float, fields);
+                base.export_element (obj, "ExcSEXS", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcSEXS", "te", "te",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1917,6 +2186,26 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcSEXS" };
+                super.submit (obj);
+                temp = document.getElementById ("efdmax").value; if ("" != temp) obj.efdmax = temp;
+                temp = document.getElementById ("efdmin").value; if ("" != temp) obj.efdmin = temp;
+                temp = document.getElementById ("emax").value; if ("" != temp) obj.emax = temp;
+                temp = document.getElementById ("emin").value; if ("" != temp) obj.emin = temp;
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("tatb").value; if ("" != temp) obj.tatb = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1974,25 +2263,24 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAVR2", "e1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR2", "e2", base.from_string, fields);
-                base.export_element (obj, "ExcAVR2", "ka", base.from_float, fields);
-                base.export_element (obj, "ExcAVR2", "kf", base.from_float, fields);
-                base.export_element (obj, "ExcAVR2", "se1", base.from_float, fields);
-                base.export_element (obj, "ExcAVR2", "se2", base.from_float, fields);
-                base.export_element (obj, "ExcAVR2", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAVR2", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcAVR2", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAVR2", "tf1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR2", "tf2", base.from_string, fields);
-                base.export_element (obj, "ExcAVR2", "vrmn", base.from_string, fields);
-                base.export_element (obj, "ExcAVR2", "vrmx", base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "e1", "e1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "e2", "e2",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "ka", "ka",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR2", "kf", "kf",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR2", "se1", "se1",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR2", "se2", "se2",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR2", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "tf1", "tf1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "tf2", "tf2",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "vrmn", "vrmn",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR2", "vrmx", "vrmx",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2062,6 +2350,29 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAVR2" };
+                super.submit (obj);
+                temp = document.getElementById ("e1").value; if ("" != temp) obj.e1 = temp;
+                temp = document.getElementById ("e2").value; if ("" != temp) obj.e2 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("se1").value; if ("" != temp) obj.se1 = temp;
+                temp = document.getElementById ("se2").value; if ("" != temp) obj.se2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf1").value; if ("" != temp) obj.tf1 = temp;
+                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById ("vrmn").value; if ("" != temp) obj.vrmn = temp;
+                temp = document.getElementById ("vrmx").value; if ("" != temp) obj.vrmx = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2122,28 +2433,27 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcDC3A", "edfmax", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "efdlim", base.from_boolean, fields);
-                base.export_element (obj, "ExcDC3A", "efdmin", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "exclim", base.from_boolean, fields);
-                base.export_element (obj, "ExcDC3A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "kr", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "kv", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcDC3A", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcDC3A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "trh", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "edfmax", "edfmax",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "efdlim", "efdlim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcDC3A", "efdmin", "efdmin",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "exclim", "exclim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcDC3A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "kr", "kr",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "kv", "kv",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcDC3A", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcDC3A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "trh", "trh",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2219,6 +2529,32 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcDC3A" };
+                super.submit (obj);
+                temp = document.getElementById ("edfmax").value; if ("" != temp) obj.edfmax = temp;
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("efdlim").checked; if (temp) obj.efdlim = true;
+                temp = document.getElementById ("efdmin").value; if ("" != temp) obj.efdmin = temp;
+                temp = document.getElementById ("exclim").checked; if (temp) obj.exclim = true;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kr").value; if ("" != temp) obj.kr = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("kv").value; if ("" != temp) obj.kv = temp;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("trh").value; if ("" != temp) obj.trh = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2284,35 +2620,34 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcST6B", "ilr", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "k1", base.from_boolean, fields);
-                base.export_element (obj, "ExcST6B", "kcl", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "kff", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "kg", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "kia", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "klr", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "km", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "kpa", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "kvd", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "oelin", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "tg", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "ts", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "tvd", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "vilim", base.from_boolean, fields);
-                base.export_element (obj, "ExcST6B", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "vimin", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "vmult", base.from_boolean, fields);
-                base.export_element (obj, "ExcST6B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "xc", base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "ilr", "ilr",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "k1", "k1",  base.from_boolean, fields);
+                base.export_element (obj, "ExcST6B", "kcl", "kcl",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "kff", "kff",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "kia", "kia",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "klr", "klr",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "km", "km",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "kpa", "kpa",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "kvd", "kvd",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "oelin", "oelin",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "ts", "ts",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "tvd", "tvd",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "vilim", "vilim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcST6B", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "vmult", "vmult",  base.from_boolean, fields);
+                base.export_element (obj, "ExcST6B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcST6B", "xc", "xc",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2404,6 +2739,39 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcST6B" };
+                super.submit (obj);
+                temp = document.getElementById ("ilr").value; if ("" != temp) obj.ilr = temp;
+                temp = document.getElementById ("k1").checked; if (temp) obj.k1 = true;
+                temp = document.getElementById ("kcl").value; if ("" != temp) obj.kcl = temp;
+                temp = document.getElementById ("kff").value; if ("" != temp) obj.kff = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("kia").value; if ("" != temp) obj.kia = temp;
+                temp = document.getElementById ("klr").value; if ("" != temp) obj.klr = temp;
+                temp = document.getElementById ("km").value; if ("" != temp) obj.km = temp;
+                temp = document.getElementById ("kpa").value; if ("" != temp) obj.kpa = temp;
+                temp = document.getElementById ("kvd").value; if ("" != temp) obj.kvd = temp;
+                temp = document.getElementById ("oelin").value; if ("" != temp) { temp = ExcST6BOELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.oelin = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST6BOELselectorKind." + temp; }
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("ts").value; if ("" != temp) obj.ts = temp;
+                temp = document.getElementById ("tvd").value; if ("" != temp) obj.tvd = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("vilim").checked; if (temp) obj.vilim = true;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById ("vmult").checked; if (temp) obj.vmult = true;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("xc").value; if ("" != temp) obj.xc = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2471,35 +2839,34 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcPIC", "e1", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "e2", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "efdmax", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "efdmin", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "se1", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "se2", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "ta1", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "ta2", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "ta3", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "ta4", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "te", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "tf1", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "tf2", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "vr1", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "vr2", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcPIC", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "e1", "e1",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "e2", "e2",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "efdmax", "efdmax",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "efdmin", "efdmin",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "se1", "se1",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "se2", "se2",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "ta1", "ta1",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "ta2", "ta2",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "ta3", "ta3",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "ta4", "ta4",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "tf1", "tf1",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "tf2", "tf2",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "vr1", "vr1",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "vr2", "vr2",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcPIC", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2589,6 +2956,39 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcPIC" };
+                super.submit (obj);
+                temp = document.getElementById ("e1").value; if ("" != temp) obj.e1 = temp;
+                temp = document.getElementById ("e2").value; if ("" != temp) obj.e2 = temp;
+                temp = document.getElementById ("efdmax").value; if ("" != temp) obj.efdmax = temp;
+                temp = document.getElementById ("efdmin").value; if ("" != temp) obj.efdmin = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("se1").value; if ("" != temp) obj.se1 = temp;
+                temp = document.getElementById ("se2").value; if ("" != temp) obj.se2 = temp;
+                temp = document.getElementById ("ta1").value; if ("" != temp) obj.ta1 = temp;
+                temp = document.getElementById ("ta2").value; if ("" != temp) obj.ta2 = temp;
+                temp = document.getElementById ("ta3").value; if ("" != temp) obj.ta3 = temp;
+                temp = document.getElementById ("ta4").value; if ("" != temp) obj.ta4 = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf1").value; if ("" != temp) obj.tf1 = temp;
+                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById ("vr1").value; if ("" != temp) obj.vr1 = temp;
+                temp = document.getElementById ("vr2").value; if ("" != temp) obj.vr2 = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2641,22 +3041,21 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcCZ", "efdmax", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "efdmin", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "te", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcCZ", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "efdmax", "efdmax",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "efdmin", "efdmin",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcCZ", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2719,6 +3118,26 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcCZ" };
+                super.submit (obj);
+                temp = document.getElementById ("efdmax").value; if ("" != temp) obj.efdmax = temp;
+                temp = document.getElementById ("efdmin").value; if ("" != temp) obj.efdmin = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
             }
         }
 
@@ -2789,39 +3208,38 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAC8B", "inlim", base.from_boolean, fields);
-                base.export_element (obj, "ExcAC8B", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "kdr", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "kir", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "kpr", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "pidlim", base.from_boolean, fields);
-                base.export_element (obj, "ExcAC8B", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcAC8B", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcAC8B", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "tdr", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "telim", base.from_boolean, fields);
-                base.export_element (obj, "ExcAC8B", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vemin", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vfemax", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vimin", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vpidmax", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vpidmin", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcAC8B", "vtmult", base.from_boolean, fields);
+                base.export_element (obj, "ExcAC8B", "inlim", "inlim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcAC8B", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "kdr", "kdr",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "kir", "kir",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "kpr", "kpr",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "pidlim", "pidlim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcAC8B", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcAC8B", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcAC8B", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "tdr", "tdr",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "telim", "telim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcAC8B", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vemin", "vemin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vfemax", "vfemax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vpidmax", "vpidmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vpidmin", "vpidmin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC8B", "vtmult", "vtmult",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2919,6 +3337,43 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAC8B" };
+                super.submit (obj);
+                temp = document.getElementById ("inlim").checked; if (temp) obj.inlim = true;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("kdr").value; if ("" != temp) obj.kdr = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kir").value; if ("" != temp) obj.kir = temp;
+                temp = document.getElementById ("kpr").value; if ("" != temp) obj.kpr = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("pidlim").checked; if (temp) obj.pidlim = true;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tdr").value; if ("" != temp) obj.tdr = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("telim").checked; if (temp) obj.telim = true;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vemin").value; if ("" != temp) obj.vemin = temp;
+                temp = document.getElementById ("vfemax").value; if ("" != temp) obj.vfemax = temp;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById ("vpidmax").value; if ("" != temp) obj.vpidmax = temp;
+                temp = document.getElementById ("vpidmin").value; if ("" != temp) obj.vpidmin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("vtmult").checked; if (temp) obj.vtmult = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -2977,26 +3432,25 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC5A", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "tf1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "tf2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "tf3", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC5A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "tf1", "tf1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "tf2", "tf2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "tf3", "tf3",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC5A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3068,6 +3522,30 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEAC5A" };
+                super.submit (obj);
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf1").value; if ("" != temp) obj.tf1 = temp;
+                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById ("tf3").value; if ("" != temp) obj.tf3 = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3125,25 +3603,24 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEST2A", "efdmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "uelin", base.from_boolean, fields);
-                base.export_element (obj, "ExcIEEEST2A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST2A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "efdmax", "efdmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "uelin", "uelin",  base.from_boolean, fields);
+                base.export_element (obj, "ExcIEEEST2A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST2A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3213,6 +3690,29 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEST2A" };
+                super.submit (obj);
+                temp = document.getElementById ("efdmax").value; if ("" != temp) obj.efdmax = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("uelin").checked; if (temp) obj.uelin = true;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3274,29 +3774,28 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEST5B", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "kr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "t1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tb1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tb2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tc1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tc2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tob1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tob2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "toc1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "toc2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tub1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tub2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tuc1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "tuc2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST5B", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "kr", "kr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tb1", "tb1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tb2", "tb2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tc1", "tc1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tc2", "tc2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tob1", "tob1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tob2", "tob2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "toc1", "toc1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "toc2", "toc2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tub1", "tub1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tub2", "tub2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tuc1", "tuc1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "tuc2", "tuc2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST5B", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3374,6 +3873,33 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEST5B" };
+                super.submit (obj);
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kr").value; if ("" != temp) obj.kr = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("tb1").value; if ("" != temp) obj.tb1 = temp;
+                temp = document.getElementById ("tb2").value; if ("" != temp) obj.tb2 = temp;
+                temp = document.getElementById ("tc1").value; if ("" != temp) obj.tc1 = temp;
+                temp = document.getElementById ("tc2").value; if ("" != temp) obj.tc2 = temp;
+                temp = document.getElementById ("tob1").value; if ("" != temp) obj.tob1 = temp;
+                temp = document.getElementById ("tob2").value; if ("" != temp) obj.tob2 = temp;
+                temp = document.getElementById ("toc1").value; if ("" != temp) obj.toc1 = temp;
+                temp = document.getElementById ("toc2").value; if ("" != temp) obj.toc2 = temp;
+                temp = document.getElementById ("tub1").value; if ("" != temp) obj.tub1 = temp;
+                temp = document.getElementById ("tub2").value; if ("" != temp) obj.tub2 = temp;
+                temp = document.getElementById ("tuc1").value; if ("" != temp) obj.tuc1 = temp;
+                temp = document.getElementById ("tuc2").value; if ("" != temp) obj.tuc2 = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3425,21 +3951,20 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAC4A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcAC4A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcAC4A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAC4A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcAC4A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcAC4A", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcAC4A", "vimin", base.from_string, fields);
-                base.export_element (obj, "ExcAC4A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcAC4A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC4A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3500,6 +4025,25 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAC4A" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
             }
         }
 
@@ -3563,30 +4107,29 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC8B", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "kdr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "kir", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "kpr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "tdr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "vemin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "vfemax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC8B", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "kdr", "kdr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "kir", "kir",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "kpr", "kpr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "tdr", "tdr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "vemin", "vemin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "vfemax", "vfemax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC8B", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3666,6 +4209,34 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEAC8B" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("kdr").value; if ("" != temp) obj.kdr = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kir").value; if ("" != temp) obj.kir = temp;
+                temp = document.getElementById ("kpr").value; if ("" != temp) obj.kpr = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tdr").value; if ("" != temp) obj.tdr = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vemin").value; if ("" != temp) obj.vemin = temp;
+                temp = document.getElementById ("vfemax").value; if ("" != temp) obj.vfemax = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3742,44 +4313,43 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcSK", "efdmax", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "efdmin", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "emax", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "emin", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "k", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "k1", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "k2", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "kce", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "kgob", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "kqi", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "kqob", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "kqp", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "nq", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "qconoff", base.from_boolean, fields);
-                base.export_element (obj, "ExcSK", "qz", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "remote", base.from_boolean, fields);
-                base.export_element (obj, "ExcSK", "sbase", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "te", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "ti", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "tp", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "tr", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "uimax", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "uimin", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "urmax", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "urmin", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "vtmax", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "vtmin", base.from_string, fields);
-                base.export_element (obj, "ExcSK", "yp", base.from_string, fields);
+                base.export_element (obj, "ExcSK", "efdmax", "efdmax",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "efdmin", "efdmin",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "emax", "emax",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "emin", "emin",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "k1", "k1",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "k2", "k2",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "kce", "kce",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "kgob", "kgob",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "kqi", "kqi",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "kqob", "kqob",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "kqp", "kqp",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "nq", "nq",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "qconoff", "qconoff",  base.from_boolean, fields);
+                base.export_element (obj, "ExcSK", "qz", "qz",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "remote", "remote",  base.from_boolean, fields);
+                base.export_element (obj, "ExcSK", "sbase", "sbase",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "ti", "ti",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "uimax", "uimax",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "uimin", "uimin",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "urmax", "urmax",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "urmin", "urmin",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "vtmax", "vtmax",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "vtmin", "vtmin",  base.from_string, fields);
+                base.export_element (obj, "ExcSK", "yp", "yp",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3887,6 +4457,48 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcSK" };
+                super.submit (obj);
+                temp = document.getElementById ("efdmax").value; if ("" != temp) obj.efdmax = temp;
+                temp = document.getElementById ("efdmin").value; if ("" != temp) obj.efdmin = temp;
+                temp = document.getElementById ("emax").value; if ("" != temp) obj.emax = temp;
+                temp = document.getElementById ("emin").value; if ("" != temp) obj.emin = temp;
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kce").value; if ("" != temp) obj.kce = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("kgob").value; if ("" != temp) obj.kgob = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("kqi").value; if ("" != temp) obj.kqi = temp;
+                temp = document.getElementById ("kqob").value; if ("" != temp) obj.kqob = temp;
+                temp = document.getElementById ("kqp").value; if ("" != temp) obj.kqp = temp;
+                temp = document.getElementById ("nq").value; if ("" != temp) obj.nq = temp;
+                temp = document.getElementById ("qconoff").checked; if (temp) obj.qconoff = true;
+                temp = document.getElementById ("qz").value; if ("" != temp) obj.qz = temp;
+                temp = document.getElementById ("remote").checked; if (temp) obj.remote = true;
+                temp = document.getElementById ("sbase").value; if ("" != temp) obj.sbase = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("ti").value; if ("" != temp) obj.ti = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("uimax").value; if ("" != temp) obj.uimax = temp;
+                temp = document.getElementById ("uimin").value; if ("" != temp) obj.uimin = temp;
+                temp = document.getElementById ("urmax").value; if ("" != temp) obj.urmax = temp;
+                temp = document.getElementById ("urmin").value; if ("" != temp) obj.urmin = temp;
+                temp = document.getElementById ("vtmax").value; if ("" != temp) obj.vtmax = temp;
+                temp = document.getElementById ("vtmin").value; if ("" != temp) obj.vtmin = temp;
+                temp = document.getElementById ("yp").value; if ("" != temp) obj.yp = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3967,48 +4579,47 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcREXS", "e1", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "e2", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "fbf", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "flimf", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kefd", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kh", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kii", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kip", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kvi", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kvp", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "kvphz", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "nvphz", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "se1", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "se2", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "tb1", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "tb2", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "tc1", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "tc2", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "te", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "tf1", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "tf2", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "tp", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "vcmax", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "vfmax", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "vfmin", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "xc", base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "e1", "e1",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "e2", "e2",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "fbf", "fbf",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "flimf", "flimf",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kefd", "kefd",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kh", "kh",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kii", "kii",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kip", "kip",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kvi", "kvi",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kvp", "kvp",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "kvphz", "kvphz",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "nvphz", "nvphz",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "se1", "se1",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "se2", "se2",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "tb1", "tb1",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "tb2", "tb2",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "tc1", "tc1",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "tc2", "tc2",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "tf1", "tf1",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "tf2", "tf2",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "vcmax", "vcmax",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "vfmax", "vfmax",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "vfmin", "vfmin",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcREXS", "xc", "xc",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4126,6 +4737,52 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcREXS" };
+                super.submit (obj);
+                temp = document.getElementById ("e1").value; if ("" != temp) obj.e1 = temp;
+                temp = document.getElementById ("e2").value; if ("" != temp) obj.e2 = temp;
+                temp = document.getElementById ("fbf").value; if ("" != temp) { temp = ExcREXSFeedbackSignalKind[temp]; if ("undefined" != typeof (temp)) obj.fbf = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ExcREXSFeedbackSignalKind." + temp; }
+                temp = document.getElementById ("flimf").value; if ("" != temp) obj.flimf = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kefd").value; if ("" != temp) obj.kefd = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("kh").value; if ("" != temp) obj.kh = temp;
+                temp = document.getElementById ("kii").value; if ("" != temp) obj.kii = temp;
+                temp = document.getElementById ("kip").value; if ("" != temp) obj.kip = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("kvi").value; if ("" != temp) obj.kvi = temp;
+                temp = document.getElementById ("kvp").value; if ("" != temp) obj.kvp = temp;
+                temp = document.getElementById ("kvphz").value; if ("" != temp) obj.kvphz = temp;
+                temp = document.getElementById ("nvphz").value; if ("" != temp) obj.nvphz = temp;
+                temp = document.getElementById ("se1").value; if ("" != temp) obj.se1 = temp;
+                temp = document.getElementById ("se2").value; if ("" != temp) obj.se2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb1").value; if ("" != temp) obj.tb1 = temp;
+                temp = document.getElementById ("tb2").value; if ("" != temp) obj.tb2 = temp;
+                temp = document.getElementById ("tc1").value; if ("" != temp) obj.tc1 = temp;
+                temp = document.getElementById ("tc2").value; if ("" != temp) obj.tc2 = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tf1").value; if ("" != temp) obj.tf1 = temp;
+                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("vcmax").value; if ("" != temp) obj.vcmax = temp;
+                temp = document.getElementById ("vfmax").value; if ("" != temp) obj.vfmax = temp;
+                temp = document.getElementById ("vfmin").value; if ("" != temp) obj.vfmin = temp;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("xc").value; if ("" != temp) obj.xc = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4184,26 +4841,25 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcANS", "blint", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "ifmn", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "ifmx", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "k2", base.from_float, fields);
-                base.export_element (obj, "ExcANS", "k3", base.from_float, fields);
-                base.export_element (obj, "ExcANS", "kce", base.from_float, fields);
-                base.export_element (obj, "ExcANS", "krvecc", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "kvfif", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "t1", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "t2", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "t3", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "vrmn", base.from_string, fields);
-                base.export_element (obj, "ExcANS", "vrmx", base.from_string, fields);
+                base.export_element (obj, "ExcANS", "blint", "blint",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "ifmn", "ifmn",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "ifmx", "ifmx",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "k2", "k2",  base.from_float, fields);
+                base.export_element (obj, "ExcANS", "k3", "k3",  base.from_float, fields);
+                base.export_element (obj, "ExcANS", "kce", "kce",  base.from_float, fields);
+                base.export_element (obj, "ExcANS", "krvecc", "krvecc",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "kvfif", "kvfif",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "vrmn", "vrmn",  base.from_string, fields);
+                base.export_element (obj, "ExcANS", "vrmx", "vrmx",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4275,6 +4931,30 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcANS" };
+                super.submit (obj);
+                temp = document.getElementById ("blint").value; if ("" != temp) obj.blint = temp;
+                temp = document.getElementById ("ifmn").value; if ("" != temp) obj.ifmn = temp;
+                temp = document.getElementById ("ifmx").value; if ("" != temp) obj.ifmx = temp;
+                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("kce").value; if ("" != temp) obj.kce = temp;
+                temp = document.getElementById ("krvecc").value; if ("" != temp) obj.krvecc = temp;
+                temp = document.getElementById ("kvfif").value; if ("" != temp) obj.kvfif = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("vrmn").value; if ("" != temp) obj.vrmn = temp;
+                temp = document.getElementById ("vrmx").value; if ("" != temp) obj.vrmx = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4345,38 +5025,37 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC7B", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kdr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kf1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kf2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kf3", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kia", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kir", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kl", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kpa", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "kpr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "tdr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "vemin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "vfemax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC7B", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kdr", "kdr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kf1", "kf1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kf2", "kf2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kf3", "kf3",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kia", "kia",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kir", "kir",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kl", "kl",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kpa", "kpa",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "kpr", "kpr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "tdr", "tdr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "vemin", "vemin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "vfemax", "vfemax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC7B", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4472,6 +5151,42 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEAC7B" };
+                super.submit (obj);
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("kdr").value; if ("" != temp) obj.kdr = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf1").value; if ("" != temp) obj.kf1 = temp;
+                temp = document.getElementById ("kf2").value; if ("" != temp) obj.kf2 = temp;
+                temp = document.getElementById ("kf3").value; if ("" != temp) obj.kf3 = temp;
+                temp = document.getElementById ("kia").value; if ("" != temp) obj.kia = temp;
+                temp = document.getElementById ("kir").value; if ("" != temp) obj.kir = temp;
+                temp = document.getElementById ("kl").value; if ("" != temp) obj.kl = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("kpa").value; if ("" != temp) obj.kpa = temp;
+                temp = document.getElementById ("kpr").value; if ("" != temp) obj.kpr = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("tdr").value; if ("" != temp) obj.tdr = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vemin").value; if ("" != temp) obj.vemin = temp;
+                temp = document.getElementById ("vfemax").value; if ("" != temp) obj.vfemax = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4532,28 +5247,27 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEST4B", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "kg", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "kim", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "kir", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "kpm", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "kpr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "thetap", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "vbmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "vmmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "vmmin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST4B", "xl", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "kim", "kim",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "kir", "kir",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "kpm", "kpm",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "kpr", "kpr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "thetap", "thetap",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "vbmax", "vbmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "vmmax", "vmmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "vmmin", "vmmin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST4B", "xl", "xl",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4629,6 +5343,32 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEST4B" };
+                super.submit (obj);
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kim").value; if ("" != temp) obj.kim = temp;
+                temp = document.getElementById ("kir").value; if ("" != temp) obj.kir = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("kpm").value; if ("" != temp) obj.kpm = temp;
+                temp = document.getElementById ("kpr").value; if ("" != temp) obj.kpr = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("thetap").value; if ("" != temp) obj.thetap = temp;
+                temp = document.getElementById ("vbmax").value; if ("" != temp) obj.vbmax = temp;
+                temp = document.getElementById ("vmmax").value; if ("" != temp) obj.vmmax = temp;
+                temp = document.getElementById ("vmmin").value; if ("" != temp) obj.vmmin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("xl").value; if ("" != temp) obj.xl = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4687,28 +5427,27 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcST7B", "kh", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "kia", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "kl", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "kpa", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "oelin", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "tg", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "tia", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "ts", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "uelin", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "vmax", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "vmin", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "kh", "kh",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "kia", "kia",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "kl", "kl",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "kpa", "kpa",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "oelin", "oelin",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "tia", "tia",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "ts", "ts",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "uelin", "uelin",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "vmax", "vmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "vmin", "vmin",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST7B", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4788,6 +5527,32 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcST7B" };
+                super.submit (obj);
+                temp = document.getElementById ("kh").value; if ("" != temp) obj.kh = temp;
+                temp = document.getElementById ("kia").value; if ("" != temp) obj.kia = temp;
+                temp = document.getElementById ("kl").value; if ("" != temp) obj.kl = temp;
+                temp = document.getElementById ("kpa").value; if ("" != temp) obj.kpa = temp;
+                temp = document.getElementById ("oelin").value; if ("" != temp) { temp = ExcST7BOELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.oelin = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BOELselectorKind." + temp; }
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("tia").value; if ("" != temp) obj.tia = temp;
+                temp = document.getElementById ("ts").value; if ("" != temp) obj.ts = temp;
+                temp = document.getElementById ("uelin").value; if ("" != temp) { temp = ExcST7BUELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.uelin = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BUELselectorKind." + temp; }
+                temp = document.getElementById ("vmax").value; if ("" != temp) obj.vmax = temp;
+                temp = document.getElementById ("vmin").value; if ("" != temp) obj.vmin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4848,30 +5613,29 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcDC1A", "edfmax", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "efdmin", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "exclim", base.from_boolean, fields);
-                base.export_element (obj, "ExcDC1A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcDC1A", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcDC1A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcDC1A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "edfmax", "edfmax",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "efdmin", "efdmin",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "exclim", "exclim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcDC1A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcDC1A", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcDC1A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcDC1A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4951,6 +5715,34 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcDC1A" };
+                super.submit (obj);
+                temp = document.getElementById ("edfmax").value; if ("" != temp) obj.edfmax = temp;
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("efdmin").value; if ("" != temp) obj.efdmin = temp;
+                temp = document.getElementById ("exclim").checked; if (temp) obj.exclim = true;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5013,32 +5805,31 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcST3A", "efdmax", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "kg", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "kj", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "km", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "ks1", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "thetap", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "tm", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "vbmax", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "vgmax", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "vimin", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcST3A", "xl", base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "efdmax", "efdmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "kj", "kj",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "km", "km",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "ks1", "ks1",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "thetap", "thetap",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "tm", "tm",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "vbmax", "vbmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "vgmax", "vgmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcST3A", "xl", "xl",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5122,6 +5913,36 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcST3A" };
+                super.submit (obj);
+                temp = document.getElementById ("efdmax").value; if ("" != temp) obj.efdmax = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kj").value; if ("" != temp) obj.kj = temp;
+                temp = document.getElementById ("km").value; if ("" != temp) obj.km = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("ks1").value; if ("" != temp) obj.ks1 = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("thetap").value; if ("" != temp) obj.thetap = temp;
+                temp = document.getElementById ("tm").value; if ("" != temp) obj.tm = temp;
+                temp = document.getElementById ("vbmax").value; if ("" != temp) obj.vbmax = temp;
+                temp = document.getElementById ("vgmax").value; if ("" != temp) obj.vgmax = temp;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("xl").value; if ("" != temp) obj.xl = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5184,30 +6005,29 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC1A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC1A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC1A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5287,6 +6107,34 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEAC1A" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5347,30 +6195,29 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAC5A", "a", base.from_float, fields);
-                base.export_element (obj, "ExcAC5A", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcAC5A", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcAC5A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "tf1", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "tf2", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "tf3", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcAC5A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "a", "a",  base.from_float, fields);
+                base.export_element (obj, "ExcAC5A", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcAC5A", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcAC5A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "tf1", "tf1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "tf2", "tf2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "tf3", "tf3",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC5A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5450,6 +6297,34 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAC5A" };
+                super.submit (obj);
+                temp = document.getElementById ("a").value; if ("" != temp) obj.a = temp;
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf1").value; if ("" != temp) obj.tf1 = temp;
+                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById ("tf3").value; if ("" != temp) obj.tf3 = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5504,24 +6379,23 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcHU", "ae", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "ai", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "atr", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "emax", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "emin", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "imax", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "imin", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "ke", base.from_float, fields);
-                base.export_element (obj, "ExcHU", "ki", base.from_float, fields);
-                base.export_element (obj, "ExcHU", "te", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "ti", base.from_string, fields);
-                base.export_element (obj, "ExcHU", "tr", base.from_string, fields);
+                base.export_element (obj, "ExcHU", "ae", "ae",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "ai", "ai",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "atr", "atr",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "emax", "emax",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "emin", "emin",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "imax", "imax",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "imin", "imin",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "ke", "ke",  base.from_float, fields);
+                base.export_element (obj, "ExcHU", "ki", "ki",  base.from_float, fields);
+                base.export_element (obj, "ExcHU", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "ti", "ti",  base.from_string, fields);
+                base.export_element (obj, "ExcHU", "tr", "tr",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5589,6 +6463,28 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcHU" };
+                super.submit (obj);
+                temp = document.getElementById ("ae").value; if ("" != temp) obj.ae = temp;
+                temp = document.getElementById ("ai").value; if ("" != temp) obj.ai = temp;
+                temp = document.getElementById ("atr").value; if ("" != temp) obj.atr = temp;
+                temp = document.getElementById ("emax").value; if ("" != temp) obj.emax = temp;
+                temp = document.getElementById ("emin").value; if ("" != temp) obj.emin = temp;
+                temp = document.getElementById ("imax").value; if ("" != temp) obj.imax = temp;
+                temp = document.getElementById ("imin").value; if ("" != temp) obj.imin = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("ti").value; if ("" != temp) obj.ti = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5652,33 +6548,32 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAVR7", "a1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "a2", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "a3", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "a4", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "a5", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "a6", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "k1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "k3", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "k5", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "t1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "t2", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "t3", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "t4", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "t5", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "t6", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "vmax1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "vmax3", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "vmax5", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "vmin1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "vmin3", base.from_string, fields);
-                base.export_element (obj, "ExcAVR7", "vmin5", base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "a1", "a1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "a2", "a2",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "a3", "a3",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "a4", "a4",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "a5", "a5",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "a6", "a6",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "k1", "k1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "k3", "k3",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "k5", "k5",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "t6", "t6",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "vmax1", "vmax1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "vmax3", "vmax3",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "vmax5", "vmax5",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "vmin1", "vmin1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "vmin3", "vmin3",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR7", "vmin5", "vmin5",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5764,6 +6659,37 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAVR7" };
+                super.submit (obj);
+                temp = document.getElementById ("a1").value; if ("" != temp) obj.a1 = temp;
+                temp = document.getElementById ("a2").value; if ("" != temp) obj.a2 = temp;
+                temp = document.getElementById ("a3").value; if ("" != temp) obj.a3 = temp;
+                temp = document.getElementById ("a4").value; if ("" != temp) obj.a4 = temp;
+                temp = document.getElementById ("a5").value; if ("" != temp) obj.a5 = temp;
+                temp = document.getElementById ("a6").value; if ("" != temp) obj.a6 = temp;
+                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById ("k5").value; if ("" != temp) obj.k5 = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById ("vmax1").value; if ("" != temp) obj.vmax1 = temp;
+                temp = document.getElementById ("vmax3").value; if ("" != temp) obj.vmax3 = temp;
+                temp = document.getElementById ("vmax5").value; if ("" != temp) obj.vmax5 = temp;
+                temp = document.getElementById ("vmin1").value; if ("" != temp) obj.vmin1 = temp;
+                temp = document.getElementById ("vmin3").value; if ("" != temp) obj.vmin3 = temp;
+                temp = document.getElementById ("vmin5").value; if ("" != temp) obj.vmin5 = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5823,27 +6749,26 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEST7B", "kh", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "kia", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "kl", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "kpa", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "oelin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "tg", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "tia", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "uelin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "vmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "vmin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "kh", "kh",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "kia", "kia",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "kl", "kl",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "kpa", "kpa",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "oelin", "oelin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "tia", "tia",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "uelin", "uelin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "vmax", "vmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "vmin", "vmin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST7B", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5921,6 +6846,31 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEST7B" };
+                super.submit (obj);
+                temp = document.getElementById ("kh").value; if ("" != temp) obj.kh = temp;
+                temp = document.getElementById ("kia").value; if ("" != temp) obj.kia = temp;
+                temp = document.getElementById ("kl").value; if ("" != temp) obj.kl = temp;
+                temp = document.getElementById ("kpa").value; if ("" != temp) obj.kpa = temp;
+                temp = document.getElementById ("oelin").value; if ("" != temp) { temp = ExcST7BOELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.oelin = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BOELselectorKind." + temp; }
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("tia").value; if ("" != temp) obj.tia = temp;
+                temp = document.getElementById ("uelin").value; if ("" != temp) { temp = ExcST7BUELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.uelin = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST7BUELselectorKind." + temp; }
+                temp = document.getElementById ("vmax").value; if ("" != temp) obj.vmax = temp;
+                temp = document.getElementById ("vmin").value; if ("" != temp) obj.vmin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5981,28 +6931,27 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEDC2A", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "exclim", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "uelin", base.from_boolean, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEDC2A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "exclim", "exclim",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "uelin", "uelin",  base.from_boolean, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEDC2A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6078,6 +7027,32 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEDC2A" };
+                super.submit (obj);
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("exclim").value; if ("" != temp) obj.exclim = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("uelin").checked; if (temp) obj.uelin = true;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -6134,24 +7109,23 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAVR3", "e1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR3", "e2", base.from_string, fields);
-                base.export_element (obj, "ExcAVR3", "ka", base.from_float, fields);
-                base.export_element (obj, "ExcAVR3", "se1", base.from_float, fields);
-                base.export_element (obj, "ExcAVR3", "se2", base.from_float, fields);
-                base.export_element (obj, "ExcAVR3", "t1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR3", "t2", base.from_string, fields);
-                base.export_element (obj, "ExcAVR3", "t3", base.from_string, fields);
-                base.export_element (obj, "ExcAVR3", "t4", base.from_string, fields);
-                base.export_element (obj, "ExcAVR3", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAVR3", "vrmn", base.from_string, fields);
-                base.export_element (obj, "ExcAVR3", "vrmx", base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "e1", "e1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "e2", "e2",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "ka", "ka",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR3", "se1", "se1",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR3", "se2", "se2",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR3", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "vrmn", "vrmn",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR3", "vrmx", "vrmx",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6219,6 +7193,28 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAVR3" };
+                super.submit (obj);
+                temp = document.getElementById ("e1").value; if ("" != temp) obj.e1 = temp;
+                temp = document.getElementById ("e2").value; if ("" != temp) obj.e2 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("se1").value; if ("" != temp) obj.se1 = temp;
+                temp = document.getElementById ("se2").value; if ("" != temp) obj.se2 = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("vrmn").value; if ("" != temp) obj.vrmn = temp;
+                temp = document.getElementById ("vrmx").value; if ("" != temp) obj.vrmx = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -6272,21 +7268,20 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC4A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC4A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC4A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC4A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC4A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC4A", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC4A", "vimin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC4A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC4A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC4A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6347,6 +7342,25 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEAC4A" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
             }
         }
 
@@ -6418,40 +7432,39 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAC2A", "hvgate", base.from_boolean, fields);
-                base.export_element (obj, "ExcAC2A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "kb", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "kb1", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "kh", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "kl", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "kl1", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "lvgate", base.from_boolean, fields);
-                base.export_element (obj, "ExcAC2A", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcAC2A", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcAC2A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "vfemax", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "vlr", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcAC2A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "hvgate", "hvgate",  base.from_boolean, fields);
+                base.export_element (obj, "ExcAC2A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "kb", "kb",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "kb1", "kb1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "kh", "kh",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "kl", "kl",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "kl1", "kl1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "lvgate", "lvgate",  base.from_boolean, fields);
+                base.export_element (obj, "ExcAC2A", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcAC2A", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcAC2A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "vfemax", "vfemax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "vlr", "vlr",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC2A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6551,6 +7564,44 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAC2A" };
+                super.submit (obj);
+                temp = document.getElementById ("hvgate").checked; if (temp) obj.hvgate = true;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kb").value; if ("" != temp) obj.kb = temp;
+                temp = document.getElementById ("kb1").value; if ("" != temp) obj.kb1 = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("kh").value; if ("" != temp) obj.kh = temp;
+                temp = document.getElementById ("kl").value; if ("" != temp) obj.kl = temp;
+                temp = document.getElementById ("kl1").value; if ("" != temp) obj.kl1 = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("lvgate").checked; if (temp) obj.lvgate = true;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vfemax").value; if ("" != temp) obj.vfemax = temp;
+                temp = document.getElementById ("vlr").value; if ("" != temp) obj.vlr = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -6607,26 +7658,25 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcDC3A1", "exclim", base.from_boolean, fields);
-                base.export_element (obj, "ExcDC3A1", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "te", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "vb1max", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "vblim", base.from_boolean, fields);
-                base.export_element (obj, "ExcDC3A1", "vbmax", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcDC3A1", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "exclim", "exclim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcDC3A1", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "vb1max", "vb1max",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "vblim", "vblim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcDC3A1", "vbmax", "vbmax",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcDC3A1", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6698,6 +7748,30 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcDC3A1" };
+                super.submit (obj);
+                temp = document.getElementById ("exclim").checked; if (temp) obj.exclim = true;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vb1max").value; if ("" != temp) obj.vb1max = temp;
+                temp = document.getElementById ("vblim").checked; if (temp) obj.vblim = true;
+                temp = document.getElementById ("vbmax").value; if ("" != temp) obj.vbmax = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -6761,31 +7835,30 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEST1A", "ilr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "klr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "pssin", base.from_boolean, fields);
-                base.export_element (obj, "ExcIEEEST1A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "tb1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "tc1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "uelin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "vimin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "ilr", "ilr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "klr", "klr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "pssin", "pssin",  base.from_boolean, fields);
+                base.export_element (obj, "ExcIEEEST1A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "tb1", "tb1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "tc1", "tc1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "uelin", "uelin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST1A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6869,6 +7942,35 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEST1A" };
+                super.submit (obj);
+                temp = document.getElementById ("ilr").value; if ("" != temp) obj.ilr = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("klr").value; if ("" != temp) obj.klr = temp;
+                temp = document.getElementById ("pssin").checked; if (temp) obj.pssin = true;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tb1").value; if ("" != temp) obj.tb1 = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tc1").value; if ("" != temp) obj.tc1 = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("uelin").value; if ("" != temp) { temp = ExcIEEEST1AUELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.uelin = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ExcIEEEST1AUELselectorKind." + temp; }
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -6924,23 +8026,22 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcBBC", "efdmax", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "efdmin", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "k", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "switch", base.from_boolean, fields);
-                base.export_element (obj, "ExcBBC", "t1", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "t2", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "t3", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "t4", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcBBC", "xe", base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "efdmax", "efdmax",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "efdmin", "efdmin",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "k", "k",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "switch", "switch",  base.from_boolean, fields);
+                base.export_element (obj, "ExcBBC", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcBBC", "xe", "xe",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7006,6 +8107,27 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcBBC" };
+                super.submit (obj);
+                temp = document.getElementById ("efdmax").value; if ("" != temp) obj.efdmax = temp;
+                temp = document.getElementById ("efdmin").value; if ("" != temp) obj.efdmin = temp;
+                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById ("switch").checked; if (temp) obj.switch = true;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("xe").value; if ("" != temp) obj.xe = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -7067,31 +8189,30 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcST4B", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "kg", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "kim", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "kir", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "kpm", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "kpr", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "lvgate", base.from_boolean, fields);
-                base.export_element (obj, "ExcST4B", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "thetap", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "uel", base.from_boolean, fields);
-                base.export_element (obj, "ExcST4B", "vbmax", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "vgmax", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "vmmax", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "vmmin", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcST4B", "xl", base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "kim", "kim",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "kir", "kir",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "kpm", "kpm",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "kpr", "kpr",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "lvgate", "lvgate",  base.from_boolean, fields);
+                base.export_element (obj, "ExcST4B", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "thetap", "thetap",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "uel", "uel",  base.from_boolean, fields);
+                base.export_element (obj, "ExcST4B", "vbmax", "vbmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "vgmax", "vgmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "vmmax", "vmmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "vmmin", "vmmin",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcST4B", "xl", "xl",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7173,6 +8294,35 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcST4B" };
+                super.submit (obj);
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("kim").value; if ("" != temp) obj.kim = temp;
+                temp = document.getElementById ("kir").value; if ("" != temp) obj.kir = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("kpm").value; if ("" != temp) obj.kpm = temp;
+                temp = document.getElementById ("kpr").value; if ("" != temp) obj.kpr = temp;
+                temp = document.getElementById ("lvgate").checked; if (temp) obj.lvgate = true;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("thetap").value; if ("" != temp) obj.thetap = temp;
+                temp = document.getElementById ("uel").checked; if (temp) obj.uel = true;
+                temp = document.getElementById ("vbmax").value; if ("" != temp) obj.vbmax = temp;
+                temp = document.getElementById ("vgmax").value; if ("" != temp) obj.vgmax = temp;
+                temp = document.getElementById ("vmmax").value; if ("" != temp) obj.vmmax = temp;
+                temp = document.getElementById ("vmmin").value; if ("" != temp) obj.vmmin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("xl").value; if ("" != temp) obj.xl = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -7238,35 +8388,34 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAC6A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "kh", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcAC6A", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcAC6A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "th", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "tj", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "tk", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "vfelim", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "vhmax", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcAC6A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "kh", "kh",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcAC6A", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcAC6A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "th", "th",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "tj", "tj",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "tk", "tk",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "vfelim", "vfelim",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "vhmax", "vhmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC6A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7356,6 +8505,39 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAC6A" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kh").value; if ("" != temp) obj.kh = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("th").value; if ("" != temp) obj.th = temp;
+                temp = document.getElementById ("tj").value; if ("" != temp) obj.tj = temp;
+                temp = document.getElementById ("tk").value; if ("" != temp) obj.tk = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vfelim").value; if ("" != temp) obj.vfelim = temp;
+                temp = document.getElementById ("vhmax").value; if ("" != temp) obj.vhmax = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -7417,31 +8599,30 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcOEX3T", "e1", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "e2", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "see1", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "see2", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "t1", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "t2", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "t3", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "t4", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "t5", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "t6", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "te", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcOEX3T", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "e1", "e1",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "e2", "e2",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "see1", "see1",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "see2", "see2",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "t5", "t5",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "t6", "t6",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcOEX3T", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7523,6 +8704,35 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcOEX3T" };
+                super.submit (obj);
+                temp = document.getElementById ("e1").value; if ("" != temp) obj.e1 = temp;
+                temp = document.getElementById ("e2").value; if ("" != temp) obj.e2 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("see1").value; if ("" != temp) obj.see1 = temp;
+                temp = document.getElementById ("see2").value; if ("" != temp) obj.see2 = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -7591,38 +8801,37 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAC3A", "efdn", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "kf1", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "kf2", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "klv", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "kn", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "kr", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcAC3A", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcAC3A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "vemin", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "vfemax", base.from_string, fields);
-                base.export_element (obj, "ExcAC3A", "vlv", base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "efdn", "efdn",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "kf1", "kf1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "kf2", "kf2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "klv", "klv",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "kn", "kn",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "kr", "kr",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcAC3A", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcAC3A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "vemin", "vemin",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "vfemax", "vfemax",  base.from_string, fields);
+                base.export_element (obj, "ExcAC3A", "vlv", "vlv",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7718,6 +8927,42 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAC3A" };
+                super.submit (obj);
+                temp = document.getElementById ("efdn").value; if ("" != temp) obj.efdn = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("kf1").value; if ("" != temp) obj.kf1 = temp;
+                temp = document.getElementById ("kf2").value; if ("" != temp) obj.kf2 = temp;
+                temp = document.getElementById ("klv").value; if ("" != temp) obj.klv = temp;
+                temp = document.getElementById ("kn").value; if ("" != temp) obj.kn = temp;
+                temp = document.getElementById ("kr").value; if ("" != temp) obj.kr = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vemin").value; if ("" != temp) obj.vemin = temp;
+                temp = document.getElementById ("vfemax").value; if ("" != temp) obj.vfemax = temp;
+                temp = document.getElementById ("vlv").value; if ("" != temp) obj.vlv = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -7784,34 +9029,33 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEAC6A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "kd", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "kh", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "seve1", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "seve2", base.from_float, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "th", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "tj", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "tk", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "ve1", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "ve2", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "vfelim", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "vhmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEAC6A", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "kd", "kd",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "kh", "kh",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "seve1", "seve1",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "seve2", "seve2",  base.from_float, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "th", "th",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "tj", "tj",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "tk", "tk",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "ve1", "ve1",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "ve2", "ve2",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "vfelim", "vfelim",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "vhmax", "vhmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEAC6A", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7899,6 +9143,38 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEAC6A" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kd").value; if ("" != temp) obj.kd = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kh").value; if ("" != temp) obj.kh = temp;
+                temp = document.getElementById ("seve1").value; if ("" != temp) obj.seve1 = temp;
+                temp = document.getElementById ("seve2").value; if ("" != temp) obj.seve2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("th").value; if ("" != temp) obj.th = temp;
+                temp = document.getElementById ("tj").value; if ("" != temp) obj.tj = temp;
+                temp = document.getElementById ("tk").value; if ("" != temp) obj.tk = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("ve1").value; if ("" != temp) obj.ve1 = temp;
+                temp = document.getElementById ("ve2").value; if ("" != temp) obj.ve2 = temp;
+                temp = document.getElementById ("vfelim").value; if ("" != temp) obj.vfelim = temp;
+                temp = document.getElementById ("vhmax").value; if ("" != temp) obj.vhmax = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -7959,30 +9235,29 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcST1A", "ilr", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "klr", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "tb1", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "tc1", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "vimin", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcST1A", "xe", base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "ilr", "ilr",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "klr", "klr",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "tb1", "tb1",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "tc1", "tc1",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcST1A", "xe", "xe",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -8062,6 +9337,34 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcST1A" };
+                super.submit (obj);
+                temp = document.getElementById ("ilr").value; if ("" != temp) obj.ilr = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("klr").value; if ("" != temp) obj.klr = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tb1").value; if ("" != temp) obj.tb1 = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("tc1").value; if ("" != temp) obj.tc1 = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("xe").value; if ("" != temp) obj.xe = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -8121,27 +9424,26 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcELIN1", "dpnf", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "efmax", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "efmin", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "ks1", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "ks2", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "smax", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "tfi", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "tnu", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "ts1", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "ts2", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "tsw", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "vpi", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "vpnf", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "vpu", base.from_string, fields);
-                base.export_element (obj, "ExcELIN1", "xe", base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "dpnf", "dpnf",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "efmax", "efmax",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "efmin", "efmin",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "ks1", "ks1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "ks2", "ks2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "smax", "smax",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "tfi", "tfi",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "tnu", "tnu",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "ts1", "ts1",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "ts2", "ts2",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "tsw", "tsw",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "vpi", "vpi",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "vpnf", "vpnf",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "vpu", "vpu",  base.from_string, fields);
+                base.export_element (obj, "ExcELIN1", "xe", "xe",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -8215,6 +9517,31 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcELIN1" };
+                super.submit (obj);
+                temp = document.getElementById ("dpnf").value; if ("" != temp) obj.dpnf = temp;
+                temp = document.getElementById ("efmax").value; if ("" != temp) obj.efmax = temp;
+                temp = document.getElementById ("efmin").value; if ("" != temp) obj.efmin = temp;
+                temp = document.getElementById ("ks1").value; if ("" != temp) obj.ks1 = temp;
+                temp = document.getElementById ("ks2").value; if ("" != temp) obj.ks2 = temp;
+                temp = document.getElementById ("smax").value; if ("" != temp) obj.smax = temp;
+                temp = document.getElementById ("tfi").value; if ("" != temp) obj.tfi = temp;
+                temp = document.getElementById ("tnu").value; if ("" != temp) obj.tnu = temp;
+                temp = document.getElementById ("ts1").value; if ("" != temp) obj.ts1 = temp;
+                temp = document.getElementById ("ts2").value; if ("" != temp) obj.ts2 = temp;
+                temp = document.getElementById ("tsw").value; if ("" != temp) obj.tsw = temp;
+                temp = document.getElementById ("vpi").value; if ("" != temp) obj.vpi = temp;
+                temp = document.getElementById ("vpnf").value; if ("" != temp) obj.vpnf = temp;
+                temp = document.getElementById ("vpu").value; if ("" != temp) obj.vpu = temp;
+                temp = document.getElementById ("xe").value; if ("" != temp) obj.xe = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -8273,26 +9600,25 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAVR4", "imul", base.from_boolean, fields);
-                base.export_element (obj, "ExcAVR4", "ka", base.from_float, fields);
-                base.export_element (obj, "ExcAVR4", "ke", base.from_float, fields);
-                base.export_element (obj, "ExcAVR4", "kif", base.from_float, fields);
-                base.export_element (obj, "ExcAVR4", "t1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "t1if", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "t2", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "t3", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "t4", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "tif", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "vfmn", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "vfmx", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "vrmn", base.from_string, fields);
-                base.export_element (obj, "ExcAVR4", "vrmx", base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "imul", "imul",  base.from_boolean, fields);
+                base.export_element (obj, "ExcAVR4", "ka", "ka",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR4", "ke", "ke",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR4", "kif", "kif",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR4", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "t1if", "t1if",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "t2", "t2",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "t3", "t3",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "t4", "t4",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "tif", "tif",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "vfmn", "vfmn",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "vfmx", "vfmx",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "vrmn", "vrmn",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR4", "vrmx", "vrmx",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -8364,6 +9690,30 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAVR4" };
+                super.submit (obj);
+                temp = document.getElementById ("imul").checked; if (temp) obj.imul = true;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kif").value; if ("" != temp) obj.kif = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("t1if").value; if ("" != temp) obj.t1if = temp;
+                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById ("tif").value; if ("" != temp) obj.tif = temp;
+                temp = document.getElementById ("vfmn").value; if ("" != temp) obj.vfmn = temp;
+                temp = document.getElementById ("vfmx").value; if ("" != temp) obj.vfmx = temp;
+                temp = document.getElementById ("vrmn").value; if ("" != temp) obj.vrmn = temp;
+                temp = document.getElementById ("vrmx").value; if ("" != temp) obj.vrmx = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -8428,32 +9778,31 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEST3A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "kc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "kg", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "ki", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "km", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "kp", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "thetap", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "tm", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "vbmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "vgmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "vimax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "vimin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "vmmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "vmmin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST3A", "xl", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "kc", "kc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "ki", "ki",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "km", "km",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "kp", "kp",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "thetap", "thetap",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "tm", "tm",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "vbmax", "vbmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "vgmax", "vgmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "vimax", "vimax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "vimin", "vimin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "vmmax", "vmmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "vmmin", "vmmin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST3A", "xl", "xl",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -8537,6 +9886,36 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEST3A" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kc").value; if ("" != temp) obj.kc = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById ("km").value; if ("" != temp) obj.km = temp;
+                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("thetap").value; if ("" != temp) obj.thetap = temp;
+                temp = document.getElementById ("tm").value; if ("" != temp) obj.tm = temp;
+                temp = document.getElementById ("vbmax").value; if ("" != temp) obj.vbmax = temp;
+                temp = document.getElementById ("vgmax").value; if ("" != temp) obj.vgmax = temp;
+                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById ("vmmax").value; if ("" != temp) obj.vmmax = temp;
+                temp = document.getElementById ("vmmin").value; if ("" != temp) obj.vmmin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("xl").value; if ("" != temp) obj.xl = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -8599,30 +9978,29 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcDC2A", "efd1", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "efd2", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "exclim", base.from_boolean, fields);
-                base.export_element (obj, "ExcDC2A", "ka", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "ke", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "kf", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "ks", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "seefd1", base.from_float, fields);
-                base.export_element (obj, "ExcDC2A", "seefd2", base.from_float, fields);
-                base.export_element (obj, "ExcDC2A", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "tc", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "te", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "tf1", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "vrmin", base.from_string, fields);
-                base.export_element (obj, "ExcDC2A", "vtlim", base.from_boolean, fields);
+                base.export_element (obj, "ExcDC2A", "efd1", "efd1",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "efd2", "efd2",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "exclim", "exclim",  base.from_boolean, fields);
+                base.export_element (obj, "ExcDC2A", "ka", "ka",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "ke", "ke",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "kf", "kf",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "ks", "ks",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "seefd1", "seefd1",  base.from_float, fields);
+                base.export_element (obj, "ExcDC2A", "seefd2", "seefd2",  base.from_float, fields);
+                base.export_element (obj, "ExcDC2A", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "tc", "tc",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "tf1", "tf1",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "vrmin", "vrmin",  base.from_string, fields);
+                base.export_element (obj, "ExcDC2A", "vtlim", "vtlim",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -8702,6 +10080,34 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcDC2A" };
+                super.submit (obj);
+                temp = document.getElementById ("efd1").value; if ("" != temp) obj.efd1 = temp;
+                temp = document.getElementById ("efd2").value; if ("" != temp) obj.efd2 = temp;
+                temp = document.getElementById ("exclim").checked; if (temp) obj.exclim = true;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("ke").value; if ("" != temp) obj.ke = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById ("seefd1").value; if ("" != temp) obj.seefd1 = temp;
+                temp = document.getElementById ("seefd2").value; if ("" != temp) obj.seefd2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("tf1").value; if ("" != temp) obj.tf1 = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                temp = document.getElementById ("vtlim").checked; if (temp) obj.vtlim = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -8758,24 +10164,23 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcAVR1", "e1", base.from_string, fields);
-                base.export_element (obj, "ExcAVR1", "e2", base.from_string, fields);
-                base.export_element (obj, "ExcAVR1", "ka", base.from_float, fields);
-                base.export_element (obj, "ExcAVR1", "kf", base.from_float, fields);
-                base.export_element (obj, "ExcAVR1", "se1", base.from_float, fields);
-                base.export_element (obj, "ExcAVR1", "se2", base.from_float, fields);
-                base.export_element (obj, "ExcAVR1", "ta", base.from_string, fields);
-                base.export_element (obj, "ExcAVR1", "tb", base.from_string, fields);
-                base.export_element (obj, "ExcAVR1", "te", base.from_string, fields);
-                base.export_element (obj, "ExcAVR1", "tf", base.from_string, fields);
-                base.export_element (obj, "ExcAVR1", "vrmn", base.from_string, fields);
-                base.export_element (obj, "ExcAVR1", "vrmx", base.from_string, fields);
+                base.export_element (obj, "ExcAVR1", "e1", "e1",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR1", "e2", "e2",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR1", "ka", "ka",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR1", "kf", "kf",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR1", "se1", "se1",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR1", "se2", "se2",  base.from_float, fields);
+                base.export_element (obj, "ExcAVR1", "ta", "ta",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR1", "tb", "tb",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR1", "te", "te",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR1", "tf", "tf",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR1", "vrmn", "vrmn",  base.from_string, fields);
+                base.export_element (obj, "ExcAVR1", "vrmx", "vrmx",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -8843,6 +10248,28 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcAVR1" };
+                super.submit (obj);
+                temp = document.getElementById ("e1").value; if ("" != temp) obj.e1 = temp;
+                temp = document.getElementById ("e2").value; if ("" != temp) obj.e2 = temp;
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById ("se1").value; if ("" != temp) obj.se1 = temp;
+                temp = document.getElementById ("se2").value; if ("" != temp) obj.se2 = temp;
+                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById ("vrmn").value; if ("" != temp) obj.vrmn = temp;
+                temp = document.getElementById ("vrmx").value; if ("" != temp) obj.vrmx = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -8901,26 +10328,25 @@ define
             {
                 var fields = ExcitationSystemDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ExcIEEEST6B", "ilr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "kci", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "kff", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "kg", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "kia", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "klr", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "km", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "kpa", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "oelin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "tg", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "vamax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "vamin", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "vrmax", base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "vrmin", base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "ilr", "ilr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "kci", "kci",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "kff", "kff",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "kg", "kg",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "kia", "kia",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "klr", "klr",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "km", "km",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "kpa", "kpa",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "oelin", "oelin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "vamax", "vamax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "vamin", "vamin",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "vrmax", "vrmax",  base.from_string, fields);
+                base.export_element (obj, "ExcIEEEST6B", "vrmin", "vrmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -8993,6 +10419,30 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ExcIEEEST6B" };
+                super.submit (obj);
+                temp = document.getElementById ("ilr").value; if ("" != temp) obj.ilr = temp;
+                temp = document.getElementById ("kci").value; if ("" != temp) obj.kci = temp;
+                temp = document.getElementById ("kff").value; if ("" != temp) obj.kff = temp;
+                temp = document.getElementById ("kg").value; if ("" != temp) obj.kg = temp;
+                temp = document.getElementById ("kia").value; if ("" != temp) obj.kia = temp;
+                temp = document.getElementById ("klr").value; if ("" != temp) obj.klr = temp;
+                temp = document.getElementById ("km").value; if ("" != temp) obj.km = temp;
+                temp = document.getElementById ("kpa").value; if ("" != temp) obj.kpa = temp;
+                temp = document.getElementById ("oelin").value; if ("" != temp) { temp = ExcST6BOELselectorKind[temp]; if ("undefined" != typeof (temp)) obj.oelin = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ExcST6BOELselectorKind." + temp; }
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("vamax").value; if ("" != temp) obj.vamax = temp;
+                temp = document.getElementById ("vamin").value; if ("" != temp) obj.vamin = temp;
+                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+
+                return (obj);
             }
         }
 

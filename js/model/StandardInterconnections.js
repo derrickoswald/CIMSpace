@@ -78,22 +78,21 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RemoteInputSignal", "remoteSignalType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
-                base.export_attribute (obj, "export_attribute", "RemoteInputSignal", fields);
+                base.export_element (obj, "RemoteInputSignal", "remoteSignalType", "remoteSignalType",  base.from_string, fields);
+                base.export_attribute (obj, "RemoteInputSignal", "Terminal", "Terminal", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "VoltageCompensatorDynamics", "VoltageCompensatorDynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "WindPlantDynamics", "WindPlantDynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", fields);
+                base.export_attribute (obj, "RemoteInputSignal", "DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -158,6 +157,26 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RemoteInputSignal" };
+                super.submit (obj);
+                temp = document.getElementById ("remoteSignalType").value; if ("" != temp) { temp = RemoteSignalKind[temp]; if ("undefined" != typeof (temp)) obj.remoteSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; }
+                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                temp = document.getElementById ("VoltageCompensatorDynamics").value; if ("" != temp) obj.VoltageCompensatorDynamics = temp;
+                temp = document.getElementById ("WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;
+                temp = document.getElementById ("PowerSystemStabilizerDynamics").value; if ("" != temp) obj.PowerSystemStabilizerDynamics = temp;
+                temp = document.getElementById ("WindTurbineType3or4Dynamics").value; if ("" != temp) obj.WindTurbineType3or4Dynamics = temp;
+                temp = document.getElementById ("UnderexcitationLimiterDynamics").value; if ("" != temp) obj.UnderexcitationLimiterDynamics = temp;
+                temp = document.getElementById ("WindTurbineType1or2Dynamics").value; if ("" != temp) obj.WindTurbineType1or2Dynamics = temp;
+                temp = document.getElementById ("PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
+                temp = document.getElementById ("DiscontinuousExcitationControlDynamics").value; if ("" != temp) obj.DiscontinuousExcitationControlDynamics = temp;
+
+                return (obj);
             }
 
             relations ()

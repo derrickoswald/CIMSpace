@@ -49,13 +49,12 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "export_attributes", "ModelingAuthority", fields);
+                base.export_attributes (obj, "ModelingAuthority", "ModelingAuthoritySets", "ModelingAuthoritySets", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -101,6 +100,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ModelingAuthority" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -156,13 +163,12 @@ define
             {
                 var fields = [];
 
-                base.export_attribute (obj, "export_attribute", "ModelingAuthoritySet", fields);
+                base.export_attribute (obj, "ModelingAuthoritySet", "ModelingAuthority", "ModelingAuthority", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -207,6 +213,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ModelingAuthoritySet" };
+                super.submit (obj);
+                temp = document.getElementById ("ModelingAuthority").value; if ("" != temp) obj.ModelingAuthority = temp;
+
+                return (obj);
             }
 
             relations ()

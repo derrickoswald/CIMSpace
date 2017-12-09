@@ -155,46 +155,45 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Asset", "acceptanceTest", base.from_string, fields);
-                base.export_element (obj, "Asset", "critical", base.from_boolean, fields);
-                base.export_element (obj, "Asset", "electronicAddress", base.from_string, fields);
-                base.export_element (obj, "Asset", "initialCondition", base.from_string, fields);
-                base.export_element (obj, "Asset", "initialLossOfLife", base.from_string, fields);
-                base.export_element (obj, "Asset", "lifecycle", base.from_string, fields);
-                base.export_element (obj, "Asset", "lotNumber", base.from_string, fields);
-                base.export_element (obj, "Asset", "purchasePrice", base.from_string, fields);
-                base.export_element (obj, "Asset", "serialNumber", base.from_string, fields);
-                base.export_element (obj, "Asset", "status", base.from_string, fields);
-                base.export_element (obj, "Asset", "type", base.from_string, fields);
-                base.export_element (obj, "Asset", "utcNumber", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attribute", "Asset", fields);
-                base.export_attribute (obj, "export_attribute", "Asset", fields);
-                base.export_attribute (obj, "export_attribute", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attribute", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attribute", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attribute", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
-                base.export_attribute (obj, "export_attributes", "Asset", fields);
+                base.export_element (obj, "Asset", "acceptanceTest", "acceptanceTest",  base.from_string, fields);
+                base.export_element (obj, "Asset", "critical", "critical",  base.from_boolean, fields);
+                base.export_element (obj, "Asset", "electronicAddress", "electronicAddress",  base.from_string, fields);
+                base.export_element (obj, "Asset", "initialCondition", "initialCondition",  base.from_string, fields);
+                base.export_element (obj, "Asset", "initialLossOfLife", "initialLossOfLife",  base.from_string, fields);
+                base.export_element (obj, "Asset", "lifecycle", "lifecycle",  base.from_string, fields);
+                base.export_element (obj, "Asset", "lotNumber", "lotNumber",  base.from_string, fields);
+                base.export_element (obj, "Asset", "purchasePrice", "purchasePrice",  base.from_string, fields);
+                base.export_element (obj, "Asset", "serialNumber", "serialNumber",  base.from_string, fields);
+                base.export_element (obj, "Asset", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "Asset", "type", "type",  base.from_string, fields);
+                base.export_element (obj, "Asset", "utcNumber", "utcNumber",  base.from_string, fields);
+                base.export_attributes (obj, "Asset", "OperationTags", "OperationTags", fields);
+                base.export_attributes (obj, "Asset", "ActivityRecords", "ActivityRecords", fields);
+                base.export_attribute (obj, "Asset", "FinancialInfo", "FinancialInfo", fields);
+                base.export_attribute (obj, "Asset", "ErpItemMaster", "ErpItemMaster", fields);
+                base.export_attribute (obj, "Asset", "AssetContainer", "AssetContainer", fields);
+                base.export_attributes (obj, "Asset", "Mediums", "Mediums", fields);
+                base.export_attributes (obj, "Asset", "ScheduledEvents", "ScheduledEvents", fields);
+                base.export_attributes (obj, "Asset", "OrganisationRoles", "OrganisationRoles", fields);
+                base.export_attributes (obj, "Asset", "WorkTasks", "WorkTasks", fields);
+                base.export_attributes (obj, "Asset", "Procedures", "Procedures", fields);
+                base.export_attributes (obj, "Asset", "Reconditionings", "Reconditionings", fields);
+                base.export_attributes (obj, "Asset", "PowerSystemResources", "PowerSystemResources", fields);
+                base.export_attribute (obj, "Asset", "Location", "Location", fields);
+                base.export_attributes (obj, "Asset", "AssetPropertyCurves", "AssetPropertyCurves", fields);
+                base.export_attributes (obj, "Asset", "ConfigurationEvents", "ConfigurationEvents", fields);
+                base.export_attribute (obj, "Asset", "ErpInventory", "ErpInventory", fields);
+                base.export_attributes (obj, "Asset", "ErpRecDeliveryItems", "ErpRecDeliveryItems", fields);
+                base.export_attributes (obj, "Asset", "ReliabilityInfos", "ReliabilityInfos", fields);
+                base.export_attributes (obj, "Asset", "Measurements", "Measurements", fields);
+                base.export_attribute (obj, "Asset", "AssetInfo", "AssetInfo", fields);
+                base.export_attributes (obj, "Asset", "Ownerships", "Ownerships", fields);
+                base.export_attributes (obj, "Asset", "ReplacementWorkTasks", "ReplacementWorkTasks", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -333,6 +332,44 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Asset" };
+                super.submit (obj);
+                temp = document.getElementById ("acceptanceTest").value; if ("" != temp) obj.acceptanceTest = temp;
+                temp = document.getElementById ("critical").checked; if (temp) obj.critical = true;
+                temp = document.getElementById ("electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
+                temp = document.getElementById ("initialCondition").value; if ("" != temp) obj.initialCondition = temp;
+                temp = document.getElementById ("initialLossOfLife").value; if ("" != temp) obj.initialLossOfLife = temp;
+                temp = document.getElementById ("lifecycle").value; if ("" != temp) obj.lifecycle = temp;
+                temp = document.getElementById ("lotNumber").value; if ("" != temp) obj.lotNumber = temp;
+                temp = document.getElementById ("purchasePrice").value; if ("" != temp) obj.purchasePrice = temp;
+                temp = document.getElementById ("serialNumber").value; if ("" != temp) obj.serialNumber = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("utcNumber").value; if ("" != temp) obj.utcNumber = temp;
+                temp = document.getElementById ("ActivityRecords").value; if ("" != temp) obj.ActivityRecords = temp.split (",");
+                temp = document.getElementById ("FinancialInfo").value; if ("" != temp) obj.FinancialInfo = temp;
+                temp = document.getElementById ("ErpItemMaster").value; if ("" != temp) obj.ErpItemMaster = temp;
+                temp = document.getElementById ("AssetContainer").value; if ("" != temp) obj.AssetContainer = temp;
+                temp = document.getElementById ("Mediums").value; if ("" != temp) obj.Mediums = temp.split (",");
+                temp = document.getElementById ("ScheduledEvents").value; if ("" != temp) obj.ScheduledEvents = temp.split (",");
+                temp = document.getElementById ("OrganisationRoles").value; if ("" != temp) obj.OrganisationRoles = temp.split (",");
+                temp = document.getElementById ("WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
+                temp = document.getElementById ("Procedures").value; if ("" != temp) obj.Procedures = temp.split (",");
+                temp = document.getElementById ("PowerSystemResources").value; if ("" != temp) obj.PowerSystemResources = temp.split (",");
+                temp = document.getElementById ("Location").value; if ("" != temp) obj.Location = temp;
+                temp = document.getElementById ("AssetPropertyCurves").value; if ("" != temp) obj.AssetPropertyCurves = temp.split (",");
+                temp = document.getElementById ("ErpInventory").value; if ("" != temp) obj.ErpInventory = temp;
+                temp = document.getElementById ("ErpRecDeliveryItems").value; if ("" != temp) obj.ErpRecDeliveryItems = temp.split (",");
+                temp = document.getElementById ("ReliabilityInfos").value; if ("" != temp) obj.ReliabilityInfos = temp.split (",");
+                temp = document.getElementById ("AssetInfo").value; if ("" != temp) obj.AssetInfo = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -407,15 +444,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AcceptanceTest", "dateTime", base.from_datetime, fields);
-                base.export_element (obj, "AcceptanceTest", "success", base.from_boolean, fields);
-                base.export_element (obj, "AcceptanceTest", "type", base.from_string, fields);
+                base.export_element (obj, "AcceptanceTest", "dateTime", "dateTime",  base.from_datetime, fields);
+                base.export_element (obj, "AcceptanceTest", "success", "success",  base.from_boolean, fields);
+                base.export_element (obj, "AcceptanceTest", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -464,6 +500,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AcceptanceTest" };
+                super.submit (obj);
+                temp = document.getElementById ("dateTime").value; if ("" != temp) obj.dateTime = temp;
+                temp = document.getElementById ("success").checked; if (temp) obj.success = true;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+
+                return (obj);
             }
         }
 
@@ -514,15 +563,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AssetInfo", fields);
-                base.export_attribute (obj, "export_attribute", "AssetInfo", fields);
-                base.export_attribute (obj, "export_attributes", "AssetInfo", fields);
+                base.export_attributes (obj, "AssetInfo", "PowerSystemResources", "PowerSystemResources", fields);
+                base.export_attribute (obj, "AssetInfo", "AssetModel", "AssetModel", fields);
+                base.export_attributes (obj, "AssetInfo", "Assets", "Assets", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -573,6 +621,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AssetInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("AssetModel").value; if ("" != temp) obj.AssetModel = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -628,13 +687,12 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AssetOrganisationRole", fields);
+                base.export_attributes (obj, "AssetOrganisationRole", "Assets", "Assets", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -681,6 +739,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AssetOrganisationRole" };
+                super.submit (obj);
+                temp = document.getElementById ("Assets").value; if ("" != temp) obj.Assets = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -734,13 +803,12 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "Manufacturer", fields);
+                base.export_attributes (obj, "Manufacturer", "ProductAssetModels", "ProductAssetModels", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -786,6 +854,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Manufacturer" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -845,17 +921,16 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ProcedureDataSet", "completedDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "ProcedureDataSet", fields);
-                base.export_attribute (obj, "export_attributes", "ProcedureDataSet", fields);
-                base.export_attribute (obj, "export_attributes", "ProcedureDataSet", fields);
-                base.export_attribute (obj, "export_attribute", "ProcedureDataSet", fields);
+                base.export_element (obj, "ProcedureDataSet", "completedDateTime", "completedDateTime",  base.from_datetime, fields);
+                base.export_attributes (obj, "ProcedureDataSet", "TransformerObservations", "TransformerObservations", fields);
+                base.export_attributes (obj, "ProcedureDataSet", "MeasurementValues", "MeasurementValues", fields);
+                base.export_attributes (obj, "ProcedureDataSet", "Properties", "Properties", fields);
+                base.export_attribute (obj, "ProcedureDataSet", "Procedure", "Procedure", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -916,6 +991,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProcedureDataSet" };
+                super.submit (obj);
+                temp = document.getElementById ("completedDateTime").value; if ("" != temp) obj.completedDateTime = temp;
+                temp = document.getElementById ("TransformerObservations").value; if ("" != temp) obj.TransformerObservations = temp.split (",");
+                temp = document.getElementById ("MeasurementValues").value; if ("" != temp) obj.MeasurementValues = temp.split (",");
+                temp = document.getElementById ("Properties").value; if ("" != temp) obj.Properties = temp.split (",");
+                temp = document.getElementById ("Procedure").value; if ("" != temp) obj.Procedure = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -974,17 +1064,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "AssetFunction", "configID", base.from_string, fields);
-                base.export_element (obj, "AssetFunction", "firmwareID", base.from_string, fields);
-                base.export_element (obj, "AssetFunction", "hardwareID", base.from_string, fields);
-                base.export_element (obj, "AssetFunction", "password", base.from_string, fields);
-                base.export_element (obj, "AssetFunction", "programID", base.from_string, fields);
+                base.export_element (obj, "AssetFunction", "configID", "configID",  base.from_string, fields);
+                base.export_element (obj, "AssetFunction", "firmwareID", "firmwareID",  base.from_string, fields);
+                base.export_element (obj, "AssetFunction", "hardwareID", "hardwareID",  base.from_string, fields);
+                base.export_element (obj, "AssetFunction", "password", "password",  base.from_string, fields);
+                base.export_element (obj, "AssetFunction", "programID", "programID",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1038,6 +1127,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AssetFunction" };
+                super.submit (obj);
+                temp = document.getElementById ("configID").value; if ("" != temp) obj.configID = temp;
+                temp = document.getElementById ("firmwareID").value; if ("" != temp) obj.firmwareID = temp;
+                temp = document.getElementById ("hardwareID").value; if ("" != temp) obj.hardwareID = temp;
+                temp = document.getElementById ("password").value; if ("" != temp) obj.password = temp;
+                temp = document.getElementById ("programID").value; if ("" != temp) obj.programID = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1085,17 +1189,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Seal", "appliedDateTime", base.from_datetime, fields);
-                base.export_element (obj, "Seal", "condition", base.from_string, fields);
-                base.export_element (obj, "Seal", "kind", base.from_string, fields);
-                base.export_element (obj, "Seal", "sealNumber", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Seal", fields);
+                base.export_element (obj, "Seal", "appliedDateTime", "appliedDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "Seal", "condition", "condition",  base.from_string, fields);
+                base.export_element (obj, "Seal", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "Seal", "sealNumber", "sealNumber",  base.from_string, fields);
+                base.export_attribute (obj, "Seal", "AssetContainer", "AssetContainer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1154,6 +1257,21 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Seal" };
+                super.submit (obj);
+                temp = document.getElementById ("appliedDateTime").value; if ("" != temp) obj.appliedDateTime = temp;
+                temp = document.getElementById ("condition").value; if ("" != temp) { temp = SealConditionKind[temp]; if ("undefined" != typeof (temp)) obj.condition = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SealConditionKind." + temp; }
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = SealKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SealKind." + temp; }
+                temp = document.getElementById ("sealNumber").value; if ("" != temp) obj.sealNumber = temp;
+                temp = document.getElementById ("AssetContainer").value; if ("" != temp) obj.AssetContainer = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1207,13 +1325,12 @@ define
             {
                 var fields = Common.Hazard.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AssetLocationHazard", fields);
+                base.export_attributes (obj, "AssetLocationHazard", "Locations", "Locations", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1260,6 +1377,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AssetLocationHazard" };
+                super.submit (obj);
+                temp = document.getElementById ("Locations").value; if ("" != temp) obj.Locations = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1318,18 +1446,17 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "LifecycleDate", "installationDate", base.from_string, fields);
-                base.export_element (obj, "LifecycleDate", "manufacturedDate", base.from_string, fields);
-                base.export_element (obj, "LifecycleDate", "purchaseDate", base.from_string, fields);
-                base.export_element (obj, "LifecycleDate", "receivedDate", base.from_string, fields);
-                base.export_element (obj, "LifecycleDate", "removalDate", base.from_string, fields);
-                base.export_element (obj, "LifecycleDate", "retiredDate", base.from_string, fields);
+                base.export_element (obj, "LifecycleDate", "installationDate", "installationDate",  base.from_string, fields);
+                base.export_element (obj, "LifecycleDate", "manufacturedDate", "manufacturedDate",  base.from_string, fields);
+                base.export_element (obj, "LifecycleDate", "purchaseDate", "purchaseDate",  base.from_string, fields);
+                base.export_element (obj, "LifecycleDate", "receivedDate", "receivedDate",  base.from_string, fields);
+                base.export_element (obj, "LifecycleDate", "removalDate", "removalDate",  base.from_string, fields);
+                base.export_element (obj, "LifecycleDate", "retiredDate", "retiredDate",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1385,6 +1512,22 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LifecycleDate" };
+                super.submit (obj);
+                temp = document.getElementById ("installationDate").value; if ("" != temp) obj.installationDate = temp;
+                temp = document.getElementById ("manufacturedDate").value; if ("" != temp) obj.manufacturedDate = temp;
+                temp = document.getElementById ("purchaseDate").value; if ("" != temp) obj.purchaseDate = temp;
+                temp = document.getElementById ("receivedDate").value; if ("" != temp) obj.receivedDate = temp;
+                temp = document.getElementById ("removalDate").value; if ("" != temp) obj.removalDate = temp;
+                temp = document.getElementById ("retiredDate").value; if ("" != temp) obj.retiredDate = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1431,14 +1574,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AssetModel", fields);
-                base.export_attribute (obj, "export_attribute", "AssetModel", fields);
+                base.export_attributes (obj, "AssetModel", "ErpInventoryCounts", "ErpInventoryCounts", fields);
+                base.export_attribute (obj, "AssetModel", "AssetInfo", "AssetInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1486,6 +1628,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AssetModel" };
+                super.submit (obj);
+                temp = document.getElementById ("AssetInfo").value; if ("" != temp) obj.AssetInfo = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1547,20 +1700,19 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Procedure", "instruction", base.from_string, fields);
-                base.export_element (obj, "Procedure", "kind", base.from_string, fields);
-                base.export_element (obj, "Procedure", "sequenceNumber", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Procedure", fields);
-                base.export_attribute (obj, "export_attributes", "Procedure", fields);
-                base.export_attribute (obj, "export_attributes", "Procedure", fields);
-                base.export_attribute (obj, "export_attributes", "Procedure", fields);
-                base.export_attribute (obj, "export_attributes", "Procedure", fields);
+                base.export_element (obj, "Procedure", "instruction", "instruction",  base.from_string, fields);
+                base.export_element (obj, "Procedure", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "Procedure", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
+                base.export_attributes (obj, "Procedure", "Measurements", "Measurements", fields);
+                base.export_attributes (obj, "Procedure", "Limits", "Limits", fields);
+                base.export_attributes (obj, "Procedure", "Assets", "Assets", fields);
+                base.export_attributes (obj, "Procedure", "ProcedureDataSets", "ProcedureDataSets", fields);
+                base.export_attributes (obj, "Procedure", "CompatibleUnits", "CompatibleUnits", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1632,6 +1784,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Procedure" };
+                super.submit (obj);
+                temp = document.getElementById ("instruction").value; if ("" != temp) obj.instruction = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ProcedureKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProcedureKind." + temp; }
+                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById ("Measurements").value; if ("" != temp) obj.Measurements = temp.split (",");
+                temp = document.getElementById ("Limits").value; if ("" != temp) obj.Limits = temp.split (",");
+                temp = document.getElementById ("Assets").value; if ("" != temp) obj.Assets = temp.split (",");
+                temp = document.getElementById ("CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1689,15 +1858,14 @@ define
             {
                 var fields = Asset.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AssetContainer", fields);
-                base.export_attribute (obj, "export_attributes", "AssetContainer", fields);
-                base.export_attribute (obj, "export_attributes", "AssetContainer", fields);
+                base.export_attributes (obj, "AssetContainer", "Seals", "Seals", fields);
+                base.export_attributes (obj, "AssetContainer", "Assets", "Assets", fields);
+                base.export_attributes (obj, "AssetContainer", "LandProperties", "LandProperties", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1750,6 +1918,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AssetContainer" };
+                super.submit (obj);
+                temp = document.getElementById ("LandProperties").value; if ("" != temp) obj.LandProperties = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1810,7 +1989,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -1852,6 +2030,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ComMedia" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1901,7 +2087,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -1943,6 +2128,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "AssetUser" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1987,13 +2180,12 @@ define
             {
                 var fields = AssetOrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "AssetOwner", fields);
+                base.export_attributes (obj, "AssetOwner", "Ownerships", "Ownerships", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2039,6 +2231,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "AssetOwner" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -2097,7 +2297,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2139,6 +2338,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Maintainer" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2191,21 +2398,20 @@ define
             {
                 var fields = AssetModel.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ProductAssetModel", "corporateStandardKind", base.from_string, fields);
-                base.export_element (obj, "ProductAssetModel", "modelNumber", base.from_string, fields);
-                base.export_element (obj, "ProductAssetModel", "modelVersion", base.from_string, fields);
-                base.export_element (obj, "ProductAssetModel", "usageKind", base.from_string, fields);
-                base.export_element (obj, "ProductAssetModel", "weightTotal", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ProductAssetModel", fields);
-                base.export_attribute (obj, "export_attribute", "ProductAssetModel", fields);
-                base.export_attribute (obj, "export_attribute", "ProductAssetModel", fields);
-                base.export_attribute (obj, "export_attributes", "ProductAssetModel", fields);
+                base.export_element (obj, "ProductAssetModel", "corporateStandardKind", "corporateStandardKind",  base.from_string, fields);
+                base.export_element (obj, "ProductAssetModel", "modelNumber", "modelNumber",  base.from_string, fields);
+                base.export_element (obj, "ProductAssetModel", "modelVersion", "modelVersion",  base.from_string, fields);
+                base.export_element (obj, "ProductAssetModel", "usageKind", "usageKind",  base.from_string, fields);
+                base.export_element (obj, "ProductAssetModel", "weightTotal", "weightTotal",  base.from_string, fields);
+                base.export_attributes (obj, "ProductAssetModel", "AssetModelCatalogueItems", "AssetModelCatalogueItems", fields);
+                base.export_attribute (obj, "ProductAssetModel", "GenericAssetModelOrMaterial", "GenericAssetModelOrMaterial", fields);
+                base.export_attribute (obj, "ProductAssetModel", "Manufacturer", "Manufacturer", fields);
+                base.export_attributes (obj, "ProductAssetModel", "OperationalRestrictions", "OperationalRestrictions", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2272,6 +2478,23 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProductAssetModel" };
+                super.submit (obj);
+                temp = document.getElementById ("corporateStandardKind").value; if ("" != temp) { temp = CorporateStandardKind[temp]; if ("undefined" != typeof (temp)) obj.corporateStandardKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CorporateStandardKind." + temp; }
+                temp = document.getElementById ("modelNumber").value; if ("" != temp) obj.modelNumber = temp;
+                temp = document.getElementById ("modelVersion").value; if ("" != temp) obj.modelVersion = temp;
+                temp = document.getElementById ("usageKind").value; if ("" != temp) { temp = AssetModelUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AssetModelUsageKind." + temp; }
+                temp = document.getElementById ("weightTotal").value; if ("" != temp) obj.weightTotal = temp;
+                temp = document.getElementById ("GenericAssetModelOrMaterial").value; if ("" != temp) obj.GenericAssetModelOrMaterial = temp;
+                temp = document.getElementById ("Manufacturer").value; if ("" != temp) obj.Manufacturer = temp;
+
+                return (obj);
             }
 
             relations ()

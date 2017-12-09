@@ -72,13 +72,12 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "CTTempActivePowerCurve", fields);
+                base.export_attribute (obj, "CTTempActivePowerCurve", "CombustionTurbine", "CombustionTurbine", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -123,6 +122,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CTTempActivePowerCurve" };
+                super.submit (obj);
+                temp = document.getElementById ("CombustionTurbine").value; if ("" != temp) obj.CombustionTurbine = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -177,14 +187,13 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SteamSupply", "steamSupplyRating", base.from_float, fields);
-                base.export_attribute (obj, "export_attributes", "SteamSupply", fields);
+                base.export_element (obj, "SteamSupply", "steamSupplyRating", "steamSupplyRating",  base.from_float, fields);
+                base.export_attributes (obj, "SteamSupply", "SteamTurbines", "SteamTurbines", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -233,6 +242,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SteamSupply" };
+                super.submit (obj);
+                temp = document.getElementById ("steamSupplyRating").value; if ("" != temp) obj.steamSupplyRating = temp;
+                temp = document.getElementById ("SteamTurbines").value; if ("" != temp) obj.SteamTurbines = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -287,14 +308,13 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PrimeMover", "primeMoverRating", base.from_float, fields);
-                base.export_attribute (obj, "export_attributes", "PrimeMover", fields);
+                base.export_element (obj, "PrimeMover", "primeMoverRating", "primeMoverRating",  base.from_float, fields);
+                base.export_attributes (obj, "PrimeMover", "SynchronousMachines", "SynchronousMachines", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -343,6 +363,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PrimeMover" };
+                super.submit (obj);
+                temp = document.getElementById ("primeMoverRating").value; if ("" != temp) obj.primeMoverRating = temp;
+                temp = document.getElementById ("SynchronousMachines").value; if ("" != temp) obj.SynchronousMachines = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -416,33 +448,32 @@ define
             {
                 var fields = SteamSupply.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BWRSteamSupply", "highPowerLimit", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "inCoreThermalTC", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "integralGain", base.from_float, fields);
-                base.export_element (obj, "BWRSteamSupply", "lowerLimit", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "lowPowerLimit", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "pressureLimit", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "pressureSetpointGA", base.from_float, fields);
-                base.export_element (obj, "BWRSteamSupply", "pressureSetpointTC1", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "pressureSetpointTC2", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "proportionalGain", base.from_float, fields);
-                base.export_element (obj, "BWRSteamSupply", "rfAux1", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rfAux2", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rfAux3", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rfAux4", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rfAux5", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rfAux6", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rfAux7", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rfAux8", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rodPattern", base.from_string, fields);
-                base.export_element (obj, "BWRSteamSupply", "rodPatternConstant", base.from_float, fields);
-                base.export_element (obj, "BWRSteamSupply", "upperLimit", base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "highPowerLimit", "highPowerLimit",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "inCoreThermalTC", "inCoreThermalTC",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "integralGain", "integralGain",  base.from_float, fields);
+                base.export_element (obj, "BWRSteamSupply", "lowerLimit", "lowerLimit",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "lowPowerLimit", "lowPowerLimit",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "pressureLimit", "pressureLimit",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "pressureSetpointGA", "pressureSetpointGA",  base.from_float, fields);
+                base.export_element (obj, "BWRSteamSupply", "pressureSetpointTC1", "pressureSetpointTC1",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "pressureSetpointTC2", "pressureSetpointTC2",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "proportionalGain", "proportionalGain",  base.from_float, fields);
+                base.export_element (obj, "BWRSteamSupply", "rfAux1", "rfAux1",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rfAux2", "rfAux2",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rfAux3", "rfAux3",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rfAux4", "rfAux4",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rfAux5", "rfAux5",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rfAux6", "rfAux6",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rfAux7", "rfAux7",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rfAux8", "rfAux8",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rodPattern", "rodPattern",  base.from_string, fields);
+                base.export_element (obj, "BWRSteamSupply", "rodPatternConstant", "rodPatternConstant",  base.from_float, fields);
+                base.export_element (obj, "BWRSteamSupply", "upperLimit", "upperLimit",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -528,6 +559,37 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BWRSteamSupply" };
+                super.submit (obj);
+                temp = document.getElementById ("highPowerLimit").value; if ("" != temp) obj.highPowerLimit = temp;
+                temp = document.getElementById ("inCoreThermalTC").value; if ("" != temp) obj.inCoreThermalTC = temp;
+                temp = document.getElementById ("integralGain").value; if ("" != temp) obj.integralGain = temp;
+                temp = document.getElementById ("lowerLimit").value; if ("" != temp) obj.lowerLimit = temp;
+                temp = document.getElementById ("lowPowerLimit").value; if ("" != temp) obj.lowPowerLimit = temp;
+                temp = document.getElementById ("pressureLimit").value; if ("" != temp) obj.pressureLimit = temp;
+                temp = document.getElementById ("pressureSetpointGA").value; if ("" != temp) obj.pressureSetpointGA = temp;
+                temp = document.getElementById ("pressureSetpointTC1").value; if ("" != temp) obj.pressureSetpointTC1 = temp;
+                temp = document.getElementById ("pressureSetpointTC2").value; if ("" != temp) obj.pressureSetpointTC2 = temp;
+                temp = document.getElementById ("proportionalGain").value; if ("" != temp) obj.proportionalGain = temp;
+                temp = document.getElementById ("rfAux1").value; if ("" != temp) obj.rfAux1 = temp;
+                temp = document.getElementById ("rfAux2").value; if ("" != temp) obj.rfAux2 = temp;
+                temp = document.getElementById ("rfAux3").value; if ("" != temp) obj.rfAux3 = temp;
+                temp = document.getElementById ("rfAux4").value; if ("" != temp) obj.rfAux4 = temp;
+                temp = document.getElementById ("rfAux5").value; if ("" != temp) obj.rfAux5 = temp;
+                temp = document.getElementById ("rfAux6").value; if ("" != temp) obj.rfAux6 = temp;
+                temp = document.getElementById ("rfAux7").value; if ("" != temp) obj.rfAux7 = temp;
+                temp = document.getElementById ("rfAux8").value; if ("" != temp) obj.rfAux8 = temp;
+                temp = document.getElementById ("rodPattern").value; if ("" != temp) obj.rodPattern = temp;
+                temp = document.getElementById ("rodPatternConstant").value; if ("" != temp) obj.rodPatternConstant = temp;
+                temp = document.getElementById ("upperLimit").value; if ("" != temp) obj.upperLimit = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -596,38 +658,37 @@ define
             {
                 var fields = SteamSupply.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "FossilSteamSupply", "auxPowerVersusFrequency", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "auxPowerVersusVoltage", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "boilerControlMode", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "controlErrorBiasP", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "controlIC", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "controlPC", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "controlPEB", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "controlPED", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "controlTC", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "feedWaterIG", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "feedWaterPG", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "feedWaterTC", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "fuelDemandLimit", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "fuelSupplyDelay", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "fuelSupplyTC", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "maxErrorRateP", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "mechPowerSensorLag", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "minErrorRateP", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "pressureCtrlDG", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "pressureCtrlIG", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "pressureCtrlPG", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "pressureFeedback", base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "superHeater1Capacity", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "superHeater2Capacity", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "superHeaterPipePD", base.from_float, fields);
-                base.export_element (obj, "FossilSteamSupply", "throttlePressureSP", base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "auxPowerVersusFrequency", "auxPowerVersusFrequency",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "auxPowerVersusVoltage", "auxPowerVersusVoltage",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "boilerControlMode", "boilerControlMode",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "controlErrorBiasP", "controlErrorBiasP",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "controlIC", "controlIC",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "controlPC", "controlPC",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "controlPEB", "controlPEB",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "controlPED", "controlPED",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "controlTC", "controlTC",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "feedWaterIG", "feedWaterIG",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "feedWaterPG", "feedWaterPG",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "feedWaterTC", "feedWaterTC",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "fuelDemandLimit", "fuelDemandLimit",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "fuelSupplyDelay", "fuelSupplyDelay",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "fuelSupplyTC", "fuelSupplyTC",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "maxErrorRateP", "maxErrorRateP",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "mechPowerSensorLag", "mechPowerSensorLag",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "minErrorRateP", "minErrorRateP",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "pressureCtrlDG", "pressureCtrlDG",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "pressureCtrlIG", "pressureCtrlIG",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "pressureCtrlPG", "pressureCtrlPG",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "pressureFeedback", "pressureFeedback",  base.from_string, fields);
+                base.export_element (obj, "FossilSteamSupply", "superHeater1Capacity", "superHeater1Capacity",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "superHeater2Capacity", "superHeater2Capacity",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "superHeaterPipePD", "superHeaterPipePD",  base.from_float, fields);
+                base.export_element (obj, "FossilSteamSupply", "throttlePressureSP", "throttlePressureSP",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -725,6 +786,42 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FossilSteamSupply" };
+                super.submit (obj);
+                temp = document.getElementById ("auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
+                temp = document.getElementById ("auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
+                temp = document.getElementById ("boilerControlMode").value; if ("" != temp) { temp = BoilerControlMode[temp]; if ("undefined" != typeof (temp)) obj.boilerControlMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; }
+                temp = document.getElementById ("controlErrorBiasP").value; if ("" != temp) obj.controlErrorBiasP = temp;
+                temp = document.getElementById ("controlIC").value; if ("" != temp) obj.controlIC = temp;
+                temp = document.getElementById ("controlPC").value; if ("" != temp) obj.controlPC = temp;
+                temp = document.getElementById ("controlPEB").value; if ("" != temp) obj.controlPEB = temp;
+                temp = document.getElementById ("controlPED").value; if ("" != temp) obj.controlPED = temp;
+                temp = document.getElementById ("controlTC").value; if ("" != temp) obj.controlTC = temp;
+                temp = document.getElementById ("feedWaterIG").value; if ("" != temp) obj.feedWaterIG = temp;
+                temp = document.getElementById ("feedWaterPG").value; if ("" != temp) obj.feedWaterPG = temp;
+                temp = document.getElementById ("feedWaterTC").value; if ("" != temp) obj.feedWaterTC = temp;
+                temp = document.getElementById ("fuelDemandLimit").value; if ("" != temp) obj.fuelDemandLimit = temp;
+                temp = document.getElementById ("fuelSupplyDelay").value; if ("" != temp) obj.fuelSupplyDelay = temp;
+                temp = document.getElementById ("fuelSupplyTC").value; if ("" != temp) obj.fuelSupplyTC = temp;
+                temp = document.getElementById ("maxErrorRateP").value; if ("" != temp) obj.maxErrorRateP = temp;
+                temp = document.getElementById ("mechPowerSensorLag").value; if ("" != temp) obj.mechPowerSensorLag = temp;
+                temp = document.getElementById ("minErrorRateP").value; if ("" != temp) obj.minErrorRateP = temp;
+                temp = document.getElementById ("pressureCtrlDG").value; if ("" != temp) obj.pressureCtrlDG = temp;
+                temp = document.getElementById ("pressureCtrlIG").value; if ("" != temp) obj.pressureCtrlIG = temp;
+                temp = document.getElementById ("pressureCtrlPG").value; if ("" != temp) obj.pressureCtrlPG = temp;
+                temp = document.getElementById ("pressureFeedback").value; if ("" != temp) obj.pressureFeedback = temp;
+                temp = document.getElementById ("superHeater1Capacity").value; if ("" != temp) obj.superHeater1Capacity = temp;
+                temp = document.getElementById ("superHeater2Capacity").value; if ("" != temp) obj.superHeater2Capacity = temp;
+                temp = document.getElementById ("superHeaterPipePD").value; if ("" != temp) obj.superHeaterPipePD = temp;
+                temp = document.getElementById ("throttlePressureSP").value; if ("" != temp) obj.throttlePressureSP = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -773,7 +870,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -815,6 +911,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Supercritical" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -878,32 +982,31 @@ define
             {
                 var fields = SteamSupply.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PWRSteamSupply", "coldLegFBLagTC", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coldLegFBLeadTC1", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coldLegFBLeadTC2", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coldLegFG1", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coldLegFG2", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coldLegLagTC", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coreHTLagTC1", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coreHTLagTC2", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coreNeutronicsEffTC", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "coreNeutronicsHT", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "feedbackFactor", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "hotLegLagTC", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "hotLegSteamGain", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "hotLegToColdLegGain", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "pressureCG", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "steamFlowFG", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "steamPressureDropLagTC", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "steamPressureFG", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "throttlePressureFactor", base.from_string, fields);
-                base.export_element (obj, "PWRSteamSupply", "throttlePressureSP", base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coldLegFBLagTC", "coldLegFBLagTC",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coldLegFBLeadTC1", "coldLegFBLeadTC1",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coldLegFBLeadTC2", "coldLegFBLeadTC2",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coldLegFG1", "coldLegFG1",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coldLegFG2", "coldLegFG2",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coldLegLagTC", "coldLegLagTC",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coreHTLagTC1", "coreHTLagTC1",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coreHTLagTC2", "coreHTLagTC2",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coreNeutronicsEffTC", "coreNeutronicsEffTC",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "coreNeutronicsHT", "coreNeutronicsHT",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "feedbackFactor", "feedbackFactor",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "hotLegLagTC", "hotLegLagTC",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "hotLegSteamGain", "hotLegSteamGain",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "hotLegToColdLegGain", "hotLegToColdLegGain",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "pressureCG", "pressureCG",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "steamFlowFG", "steamFlowFG",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "steamPressureDropLagTC", "steamPressureDropLagTC",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "steamPressureFG", "steamPressureFG",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "throttlePressureFactor", "throttlePressureFactor",  base.from_string, fields);
+                base.export_element (obj, "PWRSteamSupply", "throttlePressureSP", "throttlePressureSP",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -987,6 +1090,36 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PWRSteamSupply" };
+                super.submit (obj);
+                temp = document.getElementById ("coldLegFBLagTC").value; if ("" != temp) obj.coldLegFBLagTC = temp;
+                temp = document.getElementById ("coldLegFBLeadTC1").value; if ("" != temp) obj.coldLegFBLeadTC1 = temp;
+                temp = document.getElementById ("coldLegFBLeadTC2").value; if ("" != temp) obj.coldLegFBLeadTC2 = temp;
+                temp = document.getElementById ("coldLegFG1").value; if ("" != temp) obj.coldLegFG1 = temp;
+                temp = document.getElementById ("coldLegFG2").value; if ("" != temp) obj.coldLegFG2 = temp;
+                temp = document.getElementById ("coldLegLagTC").value; if ("" != temp) obj.coldLegLagTC = temp;
+                temp = document.getElementById ("coreHTLagTC1").value; if ("" != temp) obj.coreHTLagTC1 = temp;
+                temp = document.getElementById ("coreHTLagTC2").value; if ("" != temp) obj.coreHTLagTC2 = temp;
+                temp = document.getElementById ("coreNeutronicsEffTC").value; if ("" != temp) obj.coreNeutronicsEffTC = temp;
+                temp = document.getElementById ("coreNeutronicsHT").value; if ("" != temp) obj.coreNeutronicsHT = temp;
+                temp = document.getElementById ("feedbackFactor").value; if ("" != temp) obj.feedbackFactor = temp;
+                temp = document.getElementById ("hotLegLagTC").value; if ("" != temp) obj.hotLegLagTC = temp;
+                temp = document.getElementById ("hotLegSteamGain").value; if ("" != temp) obj.hotLegSteamGain = temp;
+                temp = document.getElementById ("hotLegToColdLegGain").value; if ("" != temp) obj.hotLegToColdLegGain = temp;
+                temp = document.getElementById ("pressureCG").value; if ("" != temp) obj.pressureCG = temp;
+                temp = document.getElementById ("steamFlowFG").value; if ("" != temp) obj.steamFlowFG = temp;
+                temp = document.getElementById ("steamPressureDropLagTC").value; if ("" != temp) obj.steamPressureDropLagTC = temp;
+                temp = document.getElementById ("steamPressureFG").value; if ("" != temp) obj.steamPressureFG = temp;
+                temp = document.getElementById ("throttlePressureFactor").value; if ("" != temp) obj.throttlePressureFactor = temp;
+                temp = document.getElementById ("throttlePressureSP").value; if ("" != temp) obj.throttlePressureSP = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1031,14 +1164,13 @@ define
             {
                 var fields = FossilSteamSupply.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HeatRecoveryBoiler", "steamSupplyRating2", base.from_float, fields);
-                base.export_attribute (obj, "export_attributes", "HeatRecoveryBoiler", fields);
+                base.export_element (obj, "HeatRecoveryBoiler", "steamSupplyRating2", "steamSupplyRating2",  base.from_float, fields);
+                base.export_attributes (obj, "HeatRecoveryBoiler", "CombustionTurbines", "CombustionTurbines", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1086,6 +1218,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HeatRecoveryBoiler" };
+                super.submit (obj);
+                temp = document.getElementById ("steamSupplyRating2").value; if ("" != temp) obj.steamSupplyRating2 = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1139,13 +1282,12 @@ define
             {
                 var fields = FossilSteamSupply.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DrumBoiler", "drumBoilerRating", base.from_float, fields);
+                base.export_element (obj, "DrumBoiler", "drumBoilerRating", "drumBoilerRating",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1190,6 +1332,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DrumBoiler" };
+                super.submit (obj);
+                temp = document.getElementById ("drumBoilerRating").value; if ("" != temp) obj.drumBoilerRating = temp;
+
+                return (obj);
             }
         }
 
@@ -1239,7 +1392,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -1281,6 +1433,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Subcritical" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1337,23 +1497,22 @@ define
             {
                 var fields = PrimeMover.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HydroTurbine", "gateRateLimit", base.from_float, fields);
-                base.export_element (obj, "HydroTurbine", "gateUpperLimit", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "maxHeadMaxP", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "minHeadMaxP", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "speedRating", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "speedRegulation", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "transientDroopTime", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "transientRegulation", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "turbineRating", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "turbineType", base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "waterStartingTime", base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "gateRateLimit", "gateRateLimit",  base.from_float, fields);
+                base.export_element (obj, "HydroTurbine", "gateUpperLimit", "gateUpperLimit",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "maxHeadMaxP", "maxHeadMaxP",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "minHeadMaxP", "minHeadMaxP",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "speedRating", "speedRating",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "speedRegulation", "speedRegulation",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "transientDroopTime", "transientDroopTime",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "transientRegulation", "transientRegulation",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "turbineRating", "turbineRating",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "turbineType", "turbineType",  base.from_string, fields);
+                base.export_element (obj, "HydroTurbine", "waterStartingTime", "waterStartingTime",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1421,6 +1580,27 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "HydroTurbine" };
+                super.submit (obj);
+                temp = document.getElementById ("gateRateLimit").value; if ("" != temp) obj.gateRateLimit = temp;
+                temp = document.getElementById ("gateUpperLimit").value; if ("" != temp) obj.gateUpperLimit = temp;
+                temp = document.getElementById ("maxHeadMaxP").value; if ("" != temp) obj.maxHeadMaxP = temp;
+                temp = document.getElementById ("minHeadMaxP").value; if ("" != temp) obj.minHeadMaxP = temp;
+                temp = document.getElementById ("speedRating").value; if ("" != temp) obj.speedRating = temp;
+                temp = document.getElementById ("speedRegulation").value; if ("" != temp) obj.speedRegulation = temp;
+                temp = document.getElementById ("transientDroopTime").value; if ("" != temp) obj.transientDroopTime = temp;
+                temp = document.getElementById ("transientRegulation").value; if ("" != temp) obj.transientRegulation = temp;
+                temp = document.getElementById ("turbineRating").value; if ("" != temp) obj.turbineRating = temp;
+                temp = document.getElementById ("turbineType").value; if ("" != temp) { temp = TurbineType[temp]; if ("undefined" != typeof (temp)) obj.turbineType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; }
+                temp = document.getElementById ("waterStartingTime").value; if ("" != temp) obj.waterStartingTime = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1476,25 +1656,24 @@ define
             {
                 var fields = PrimeMover.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SteamTurbine", "crossoverTC", base.from_string, fields);
-                base.export_element (obj, "SteamTurbine", "reheater1TC", base.from_string, fields);
-                base.export_element (obj, "SteamTurbine", "reheater2TC", base.from_string, fields);
-                base.export_element (obj, "SteamTurbine", "shaft1PowerHP", base.from_float, fields);
-                base.export_element (obj, "SteamTurbine", "shaft1PowerIP", base.from_float, fields);
-                base.export_element (obj, "SteamTurbine", "shaft1PowerLP1", base.from_float, fields);
-                base.export_element (obj, "SteamTurbine", "shaft1PowerLP2", base.from_float, fields);
-                base.export_element (obj, "SteamTurbine", "shaft2PowerHP", base.from_float, fields);
-                base.export_element (obj, "SteamTurbine", "shaft2PowerIP", base.from_float, fields);
-                base.export_element (obj, "SteamTurbine", "shaft2PowerLP1", base.from_float, fields);
-                base.export_element (obj, "SteamTurbine", "shaft2PowerLP2", base.from_float, fields);
-                base.export_element (obj, "SteamTurbine", "steamChestTC", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "SteamTurbine", fields);
+                base.export_element (obj, "SteamTurbine", "crossoverTC", "crossoverTC",  base.from_string, fields);
+                base.export_element (obj, "SteamTurbine", "reheater1TC", "reheater1TC",  base.from_string, fields);
+                base.export_element (obj, "SteamTurbine", "reheater2TC", "reheater2TC",  base.from_string, fields);
+                base.export_element (obj, "SteamTurbine", "shaft1PowerHP", "shaft1PowerHP",  base.from_float, fields);
+                base.export_element (obj, "SteamTurbine", "shaft1PowerIP", "shaft1PowerIP",  base.from_float, fields);
+                base.export_element (obj, "SteamTurbine", "shaft1PowerLP1", "shaft1PowerLP1",  base.from_float, fields);
+                base.export_element (obj, "SteamTurbine", "shaft1PowerLP2", "shaft1PowerLP2",  base.from_float, fields);
+                base.export_element (obj, "SteamTurbine", "shaft2PowerHP", "shaft2PowerHP",  base.from_float, fields);
+                base.export_element (obj, "SteamTurbine", "shaft2PowerIP", "shaft2PowerIP",  base.from_float, fields);
+                base.export_element (obj, "SteamTurbine", "shaft2PowerLP1", "shaft2PowerLP1",  base.from_float, fields);
+                base.export_element (obj, "SteamTurbine", "shaft2PowerLP2", "shaft2PowerLP2",  base.from_float, fields);
+                base.export_element (obj, "SteamTurbine", "steamChestTC", "steamChestTC",  base.from_string, fields);
+                base.export_attributes (obj, "SteamTurbine", "SteamSupplys", "SteamSupplys", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1567,6 +1746,29 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SteamTurbine" };
+                super.submit (obj);
+                temp = document.getElementById ("crossoverTC").value; if ("" != temp) obj.crossoverTC = temp;
+                temp = document.getElementById ("reheater1TC").value; if ("" != temp) obj.reheater1TC = temp;
+                temp = document.getElementById ("reheater2TC").value; if ("" != temp) obj.reheater2TC = temp;
+                temp = document.getElementById ("shaft1PowerHP").value; if ("" != temp) obj.shaft1PowerHP = temp;
+                temp = document.getElementById ("shaft1PowerIP").value; if ("" != temp) obj.shaft1PowerIP = temp;
+                temp = document.getElementById ("shaft1PowerLP1").value; if ("" != temp) obj.shaft1PowerLP1 = temp;
+                temp = document.getElementById ("shaft1PowerLP2").value; if ("" != temp) obj.shaft1PowerLP2 = temp;
+                temp = document.getElementById ("shaft2PowerHP").value; if ("" != temp) obj.shaft2PowerHP = temp;
+                temp = document.getElementById ("shaft2PowerIP").value; if ("" != temp) obj.shaft2PowerIP = temp;
+                temp = document.getElementById ("shaft2PowerLP1").value; if ("" != temp) obj.shaft2PowerLP1 = temp;
+                temp = document.getElementById ("shaft2PowerLP2").value; if ("" != temp) obj.shaft2PowerLP2 = temp;
+                temp = document.getElementById ("steamChestTC").value; if ("" != temp) obj.steamChestTC = temp;
+                temp = document.getElementById ("SteamSupplys").value; if ("" != temp) obj.SteamSupplys = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1628,23 +1830,22 @@ define
             {
                 var fields = PrimeMover.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CombustionTurbine", "ambientTemp", base.from_string, fields);
-                base.export_element (obj, "CombustionTurbine", "auxPowerVersusFrequency", base.from_string, fields);
-                base.export_element (obj, "CombustionTurbine", "auxPowerVersusVoltage", base.from_string, fields);
-                base.export_element (obj, "CombustionTurbine", "capabilityVersusFrequency", base.from_string, fields);
-                base.export_element (obj, "CombustionTurbine", "heatRecoveryFlag", base.from_boolean, fields);
-                base.export_element (obj, "CombustionTurbine", "powerVariationByTemp", base.from_string, fields);
-                base.export_element (obj, "CombustionTurbine", "referenceTemp", base.from_string, fields);
-                base.export_element (obj, "CombustionTurbine", "timeConstant", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "CombustionTurbine", fields);
-                base.export_attribute (obj, "export_attribute", "CombustionTurbine", fields);
-                base.export_attribute (obj, "export_attribute", "CombustionTurbine", fields);
+                base.export_element (obj, "CombustionTurbine", "ambientTemp", "ambientTemp",  base.from_string, fields);
+                base.export_element (obj, "CombustionTurbine", "auxPowerVersusFrequency", "auxPowerVersusFrequency",  base.from_string, fields);
+                base.export_element (obj, "CombustionTurbine", "auxPowerVersusVoltage", "auxPowerVersusVoltage",  base.from_string, fields);
+                base.export_element (obj, "CombustionTurbine", "capabilityVersusFrequency", "capabilityVersusFrequency",  base.from_string, fields);
+                base.export_element (obj, "CombustionTurbine", "heatRecoveryFlag", "heatRecoveryFlag",  base.from_boolean, fields);
+                base.export_element (obj, "CombustionTurbine", "powerVariationByTemp", "powerVariationByTemp",  base.from_string, fields);
+                base.export_element (obj, "CombustionTurbine", "referenceTemp", "referenceTemp",  base.from_string, fields);
+                base.export_element (obj, "CombustionTurbine", "timeConstant", "timeConstant",  base.from_string, fields);
+                base.export_attribute (obj, "CombustionTurbine", "AirCompressor", "AirCompressor", fields);
+                base.export_attribute (obj, "CombustionTurbine", "HeatRecoveryBoiler", "HeatRecoveryBoiler", fields);
+                base.export_attribute (obj, "CombustionTurbine", "CTTempActivePowerCurve", "CTTempActivePowerCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1709,6 +1910,27 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CombustionTurbine" };
+                super.submit (obj);
+                temp = document.getElementById ("ambientTemp").value; if ("" != temp) obj.ambientTemp = temp;
+                temp = document.getElementById ("auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
+                temp = document.getElementById ("auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
+                temp = document.getElementById ("capabilityVersusFrequency").value; if ("" != temp) obj.capabilityVersusFrequency = temp;
+                temp = document.getElementById ("heatRecoveryFlag").checked; if (temp) obj.heatRecoveryFlag = true;
+                temp = document.getElementById ("powerVariationByTemp").value; if ("" != temp) obj.powerVariationByTemp = temp;
+                temp = document.getElementById ("referenceTemp").value; if ("" != temp) obj.referenceTemp = temp;
+                temp = document.getElementById ("timeConstant").value; if ("" != temp) obj.timeConstant = temp;
+                temp = document.getElementById ("AirCompressor").value; if ("" != temp) obj.AirCompressor = temp;
+                temp = document.getElementById ("HeatRecoveryBoiler").value; if ("" != temp) obj.HeatRecoveryBoiler = temp;
+                temp = document.getElementById ("CTTempActivePowerCurve").value; if ("" != temp) obj.CTTempActivePowerCurve = temp;
+
+                return (obj);
             }
 
             relations ()

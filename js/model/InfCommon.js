@@ -64,15 +64,14 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Bank", "bic", base.from_string, fields);
-                base.export_element (obj, "Bank", "iban", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Bank", fields);
+                base.export_element (obj, "Bank", "bic", "bic",  base.from_string, fields);
+                base.export_element (obj, "Bank", "iban", "iban",  base.from_string, fields);
+                base.export_attributes (obj, "Bank", "BankAccounts", "BankAccounts", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -122,6 +121,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Bank" };
+                super.submit (obj);
+                temp = document.getElementById ("bic").value; if ("" != temp) obj.bic = temp;
+                temp = document.getElementById ("iban").value; if ("" != temp) obj.iban = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -178,14 +189,13 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BusinessRole", "status", base.from_string, fields);
-                base.export_element (obj, "BusinessRole", "type", base.from_string, fields);
+                base.export_element (obj, "BusinessRole", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "BusinessRole", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -233,6 +243,18 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BusinessRole" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -276,13 +298,12 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "PropertyOrganisationRole", fields);
+                base.export_attributes (obj, "PropertyOrganisationRole", "LandProperty", "LandProperty", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -328,6 +349,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "PropertyOrganisationRole" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -387,19 +416,18 @@ define
             {
                 var fields = Common.Crew.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OldCrew", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "OldCrew", fields);
-                base.export_attribute (obj, "export_attributes", "OldCrew", fields);
-                base.export_attribute (obj, "export_attributes", "OldCrew", fields);
-                base.export_attribute (obj, "export_attributes", "OldCrew", fields);
-                base.export_attribute (obj, "export_attributes", "OldCrew", fields);
-                base.export_attribute (obj, "export_attribute", "OldCrew", fields);
+                base.export_element (obj, "OldCrew", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "OldCrew", "Assignments", "Assignments", fields);
+                base.export_attributes (obj, "OldCrew", "Organisations", "Organisations", fields);
+                base.export_attributes (obj, "OldCrew", "ShiftPatterns", "ShiftPatterns", fields);
+                base.export_attributes (obj, "OldCrew", "Locations", "Locations", fields);
+                base.export_attributes (obj, "OldCrew", "Capabilities", "Capabilities", fields);
+                base.export_attribute (obj, "OldCrew", "Route", "Route", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -467,6 +495,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OldCrew" };
+                super.submit (obj);
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("Assignments").value; if ("" != temp) obj.Assignments = temp.split (",");
+                temp = document.getElementById ("Organisations").value; if ("" != temp) obj.Organisations = temp.split (",");
+                temp = document.getElementById ("ShiftPatterns").value; if ("" != temp) obj.ShiftPatterns = temp.split (",");
+                temp = document.getElementById ("Locations").value; if ("" != temp) obj.Locations = temp.split (",");
+                temp = document.getElementById ("Route").value; if ("" != temp) obj.Route = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -525,13 +569,12 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OrgOrgRole", "clientID", base.from_string, fields);
+                base.export_element (obj, "OrgOrgRole", "clientID", "clientID",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -576,6 +619,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OrgOrgRole" };
+                super.submit (obj);
+                temp = document.getElementById ("clientID").value; if ("" != temp) obj.clientID = temp;
+
+                return (obj);
             }
         }
 
@@ -625,18 +679,17 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Skill", "certificationPeriod", base.from_string, fields);
-                base.export_element (obj, "Skill", "effectiveDateTime", base.from_datetime, fields);
-                base.export_element (obj, "Skill", "level", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "Skill", fields);
-                base.export_attribute (obj, "export_attributes", "Skill", fields);
-                base.export_attribute (obj, "export_attributes", "Skill", fields);
+                base.export_element (obj, "Skill", "certificationPeriod", "certificationPeriod",  base.from_string, fields);
+                base.export_element (obj, "Skill", "effectiveDateTime", "effectiveDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "Skill", "level", "level",  base.from_string, fields);
+                base.export_attribute (obj, "Skill", "ErpPerson", "ErpPerson", fields);
+                base.export_attributes (obj, "Skill", "Crafts", "Crafts", fields);
+                base.export_attributes (obj, "Skill", "QualificationRequirements", "QualificationRequirements", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -699,6 +752,22 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Skill" };
+                super.submit (obj);
+                temp = document.getElementById ("certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
+                temp = document.getElementById ("effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
+                temp = document.getElementById ("level").value; if ("" != temp) { temp = SkillLevelKind[temp]; if ("undefined" != typeof (temp)) obj.level = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SkillLevelKind." + temp; }
+                temp = document.getElementById ("ErpPerson").value; if ("" != temp) obj.ErpPerson = temp;
+                temp = document.getElementById ("Crafts").value; if ("" != temp) obj.Crafts = temp.split (",");
+                temp = document.getElementById ("QualificationRequirements").value; if ("" != temp) obj.QualificationRequirements = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -759,7 +828,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -801,6 +869,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "BusinessPlan" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -846,14 +922,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Role", "status", base.from_string, fields);
-                base.export_element (obj, "Role", "type", base.from_string, fields);
+                base.export_element (obj, "Role", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "Role", "type", "type",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -900,6 +975,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Role" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+
+                return (obj);
             }
         }
 
@@ -949,7 +1036,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -991,6 +1077,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DocumentOrganisationRole" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1036,14 +1130,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Ratio", "denominator", base.from_float, fields);
-                base.export_element (obj, "Ratio", "numerator", base.from_float, fields);
+                base.export_element (obj, "Ratio", "denominator", "denominator",  base.from_float, fields);
+                base.export_element (obj, "Ratio", "numerator", "numerator",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1090,6 +1183,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Ratio" };
+                super.submit (obj);
+                temp = document.getElementById ("denominator").value; if ("" != temp) obj.denominator = temp;
+                temp = document.getElementById ("numerator").value; if ("" != temp) obj.numerator = temp;
+
+                return (obj);
             }
         }
 
@@ -1140,17 +1245,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Craft", "status", base.from_string, fields);
-                base.export_element (obj, "Craft", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Craft", fields);
-                base.export_attribute (obj, "export_attributes", "Craft", fields);
-                base.export_attribute (obj, "export_attributes", "Craft", fields);
+                base.export_element (obj, "Craft", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "Craft", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "Craft", "Capabilities", "Capabilities", fields);
+                base.export_attributes (obj, "Craft", "Skills", "Skills", fields);
+                base.export_attributes (obj, "Craft", "ErpPersons", "ErpPersons", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1209,6 +1313,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Craft" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("Capabilities").value; if ("" != temp) obj.Capabilities = temp.split (",");
+                temp = document.getElementById ("Skills").value; if ("" != temp) obj.Skills = temp.split (",");
+                temp = document.getElementById ("ErpPersons").value; if ("" != temp) obj.ErpPersons = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -1275,24 +1394,23 @@ define
             {
                 var fields = Common.Person.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OldPerson", "status", base.from_string, fields);
-                base.export_element (obj, "OldPerson", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "OldPerson", fields);
-                base.export_attribute (obj, "export_attribute", "OldPerson", fields);
-                base.export_attribute (obj, "export_attribute", "OldPerson", fields);
-                base.export_attribute (obj, "export_attributes", "OldPerson", fields);
-                base.export_attribute (obj, "export_attributes", "OldPerson", fields);
-                base.export_attribute (obj, "export_attribute", "OldPerson", fields);
-                base.export_attribute (obj, "export_attributes", "OldPerson", fields);
-                base.export_attribute (obj, "export_attributes", "OldPerson", fields);
-                base.export_attribute (obj, "export_attributes", "OldPerson", fields);
-                base.export_attribute (obj, "export_attributes", "OldPerson", fields);
+                base.export_element (obj, "OldPerson", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "OldPerson", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "OldPerson", "Skills", "Skills", fields);
+                base.export_attribute (obj, "OldPerson", "CustomerData", "CustomerData", fields);
+                base.export_attribute (obj, "OldPerson", "ErpPersonnel", "ErpPersonnel", fields);
+                base.export_attributes (obj, "OldPerson", "DocumentRoles", "DocumentRoles", fields);
+                base.export_attributes (obj, "OldPerson", "MeasurementValues", "MeasurementValues", fields);
+                base.export_attribute (obj, "OldPerson", "ErpCompetency", "ErpCompetency", fields);
+                base.export_attributes (obj, "OldPerson", "LaborItems", "LaborItems", fields);
+                base.export_attributes (obj, "OldPerson", "Crafts", "Crafts", fields);
+                base.export_attributes (obj, "OldPerson", "OrganisationRoles", "OrganisationRoles", fields);
+                base.export_attributes (obj, "OldPerson", "LandPropertyRoles", "LandPropertyRoles", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1370,6 +1488,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OldPerson" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("CustomerData").value; if ("" != temp) obj.CustomerData = temp;
+                temp = document.getElementById ("ErpPersonnel").value; if ("" != temp) obj.ErpPersonnel = temp;
+                temp = document.getElementById ("ErpCompetency").value; if ("" != temp) obj.ErpCompetency = temp;
+                temp = document.getElementById ("LaborItems").value; if ("" != temp) obj.LaborItems = temp.split (",");
+                temp = document.getElementById ("Crafts").value; if ("" != temp) obj.Crafts = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1431,14 +1566,13 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PersonOrganisationRole", "clientID", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "PersonOrganisationRole", fields);
+                base.export_element (obj, "PersonOrganisationRole", "clientID", "clientID",  base.from_string, fields);
+                base.export_attribute (obj, "PersonOrganisationRole", "ErpPerson", "ErpPerson", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1485,6 +1619,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PersonOrganisationRole" };
+                super.submit (obj);
+                temp = document.getElementById ("clientID").value; if ("" != temp) obj.clientID = temp;
+                temp = document.getElementById ("ErpPerson").value; if ("" != temp) obj.ErpPerson = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1540,15 +1686,14 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BankAccount", "accountNumber", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "BankAccount", fields);
-                base.export_attribute (obj, "export_attribute", "BankAccount", fields);
+                base.export_element (obj, "BankAccount", "accountNumber", "accountNumber",  base.from_string, fields);
+                base.export_attribute (obj, "BankAccount", "ServiceSupplier", "ServiceSupplier", fields);
+                base.export_attribute (obj, "BankAccount", "Bank", "Bank", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1597,6 +1742,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BankAccount" };
+                super.submit (obj);
+                temp = document.getElementById ("accountNumber").value; if ("" != temp) obj.accountNumber = temp;
+                temp = document.getElementById ("ServiceSupplier").value; if ("" != temp) obj.ServiceSupplier = temp;
+                temp = document.getElementById ("Bank").value; if ("" != temp) obj.Bank = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1651,13 +1809,12 @@ define
             {
                 var fields = Role.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PersonDocumentRole", fields);
+                base.export_attribute (obj, "PersonDocumentRole", "Person", "Person", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1702,6 +1859,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PersonDocumentRole" };
+                super.submit (obj);
+                temp = document.getElementById ("Person").value; if ("" != temp) obj.Person = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1758,14 +1926,13 @@ define
             {
                 var fields = Role.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "PersonPropertyRole", fields);
-                base.export_attribute (obj, "export_attribute", "PersonPropertyRole", fields);
+                base.export_attribute (obj, "PersonPropertyRole", "LandProperty", "LandProperty", fields);
+                base.export_attribute (obj, "PersonPropertyRole", "Person", "Person", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1812,6 +1979,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PersonPropertyRole" };
+                super.submit (obj);
+                temp = document.getElementById ("LandProperty").value; if ("" != temp) obj.LandProperty = temp;
+                temp = document.getElementById ("Person").value; if ("" != temp) obj.Person = temp;
+
+                return (obj);
             }
 
             relations ()

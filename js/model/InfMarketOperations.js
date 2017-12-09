@@ -52,20 +52,19 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "BilateralTransaction", "scope", base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "transactionType", base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "marketType", base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "purchaseTimeMin", base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "purchaseTimeMax", base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "curtailTimeMin", base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "curtailTimeMax", base.from_string, fields);
-                base.export_element (obj, "BilateralTransaction", "totalTranChargeMax", base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "scope", "scope",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "transactionType", "transactionType",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "marketType", "marketType",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "purchaseTimeMin", "purchaseTimeMin",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "purchaseTimeMax", "purchaseTimeMax",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "curtailTimeMin", "curtailTimeMin",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "curtailTimeMax", "curtailTimeMax",  base.from_string, fields);
+                base.export_element (obj, "BilateralTransaction", "totalTranChargeMax", "totalTranChargeMax",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -125,6 +124,24 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BilateralTransaction" };
+                super.submit (obj);
+                temp = document.getElementById ("scope").value; if ("" != temp) obj.scope = temp;
+                temp = document.getElementById ("transactionType").value; if ("" != temp) obj.transactionType = temp;
+                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById ("purchaseTimeMin").value; if ("" != temp) obj.purchaseTimeMin = temp;
+                temp = document.getElementById ("purchaseTimeMax").value; if ("" != temp) obj.purchaseTimeMax = temp;
+                temp = document.getElementById ("curtailTimeMin").value; if ("" != temp) obj.curtailTimeMin = temp;
+                temp = document.getElementById ("curtailTimeMax").value; if ("" != temp) obj.curtailTimeMax = temp;
+                temp = document.getElementById ("totalTranChargeMax").value; if ("" != temp) obj.totalTranChargeMax = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -168,13 +185,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Participation", "factor", base.from_float, fields);
+                base.export_element (obj, "Participation", "factor", "factor",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -219,6 +235,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Participation" };
+                super.submit (obj);
+                temp = document.getElementById ("factor").value; if ("" != temp) obj.factor = temp;
+
+                return (obj);
             }
         }
 
@@ -278,26 +305,25 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResourceCertification", "certifiedDAM", base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedNonspinDAM", base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedNonspinDAMMw", base.from_float, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedNonspinRTM", base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedNonspinRTMMw", base.from_float, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedPIRP", base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedRegulation", base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedRegulationMw", base.from_float, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedReplaceAS", base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedSpin", base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedSpinMw", base.from_float, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedRTM", base.from_string, fields);
-                base.export_element (obj, "ResourceCertification", "certifiedRUC", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ResourceCertification", fields);
+                base.export_element (obj, "ResourceCertification", "certifiedDAM", "certifiedDAM",  base.from_string, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedNonspinDAM", "certifiedNonspinDAM",  base.from_string, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedNonspinDAMMw", "certifiedNonspinDAMMw",  base.from_float, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedNonspinRTM", "certifiedNonspinRTM",  base.from_string, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedNonspinRTMMw", "certifiedNonspinRTMMw",  base.from_float, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedPIRP", "certifiedPIRP",  base.from_string, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedRegulation", "certifiedRegulation",  base.from_string, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedRegulationMw", "certifiedRegulationMw",  base.from_float, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedReplaceAS", "certifiedReplaceAS",  base.from_string, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedSpin", "certifiedSpin",  base.from_string, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedSpinMw", "certifiedSpinMw",  base.from_float, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedRTM", "certifiedRTM",  base.from_string, fields);
+                base.export_element (obj, "ResourceCertification", "certifiedRUC", "certifiedRUC",  base.from_string, fields);
+                base.export_attributes (obj, "ResourceCertification", "RegisteredResource", "RegisteredResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -370,6 +396,30 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ResourceCertification" };
+                super.submit (obj);
+                temp = document.getElementById ("certifiedDAM").value; if ("" != temp) obj.certifiedDAM = temp;
+                temp = document.getElementById ("certifiedNonspinDAM").value; if ("" != temp) obj.certifiedNonspinDAM = temp;
+                temp = document.getElementById ("certifiedNonspinDAMMw").value; if ("" != temp) obj.certifiedNonspinDAMMw = temp;
+                temp = document.getElementById ("certifiedNonspinRTM").value; if ("" != temp) obj.certifiedNonspinRTM = temp;
+                temp = document.getElementById ("certifiedNonspinRTMMw").value; if ("" != temp) obj.certifiedNonspinRTMMw = temp;
+                temp = document.getElementById ("certifiedPIRP").value; if ("" != temp) obj.certifiedPIRP = temp;
+                temp = document.getElementById ("certifiedRegulation").value; if ("" != temp) obj.certifiedRegulation = temp;
+                temp = document.getElementById ("certifiedRegulationMw").value; if ("" != temp) obj.certifiedRegulationMw = temp;
+                temp = document.getElementById ("certifiedReplaceAS").value; if ("" != temp) obj.certifiedReplaceAS = temp;
+                temp = document.getElementById ("certifiedSpin").value; if ("" != temp) obj.certifiedSpin = temp;
+                temp = document.getElementById ("certifiedSpinMw").value; if ("" != temp) obj.certifiedSpinMw = temp;
+                temp = document.getElementById ("certifiedRTM").value; if ("" != temp) obj.certifiedRTM = temp;
+                temp = document.getElementById ("certifiedRUC").value; if ("" != temp) obj.certifiedRUC = temp;
+                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+
+                return (obj);
             }
 
             relations ()

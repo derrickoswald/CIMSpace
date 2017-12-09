@@ -127,23 +127,22 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContPitchAngleIEC", "dthetamax", base.from_float, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "dthetamin", base.from_float, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "kic", base.from_string, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "kiomega", base.from_string, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "kpc", base.from_string, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "kpomega", base.from_string, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "kpx", base.from_string, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "thetamax", base.from_string, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "thetamin", base.from_string, fields);
-                base.export_element (obj, "WindContPitchAngleIEC", "ttheta", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindContPitchAngleIEC", fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "dthetamax", "dthetamax",  base.from_float, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "dthetamin", "dthetamin",  base.from_float, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "kic", "kic",  base.from_string, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "kiomega", "kiomega",  base.from_string, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "kpc", "kpc",  base.from_string, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "kpomega", "kpomega",  base.from_string, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "kpx", "kpx",  base.from_string, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "thetamax", "thetamax",  base.from_string, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "thetamin", "thetamin",  base.from_string, fields);
+                base.export_element (obj, "WindContPitchAngleIEC", "ttheta", "ttheta",  base.from_string, fields);
+                base.export_attribute (obj, "WindContPitchAngleIEC", "WindTurbineType3IEC", "WindTurbineType3IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -210,6 +209,27 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContPitchAngleIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dthetamax").value; if ("" != temp) obj.dthetamax = temp;
+                temp = document.getElementById ("dthetamin").value; if ("" != temp) obj.dthetamin = temp;
+                temp = document.getElementById ("kic").value; if ("" != temp) obj.kic = temp;
+                temp = document.getElementById ("kiomega").value; if ("" != temp) obj.kiomega = temp;
+                temp = document.getElementById ("kpc").value; if ("" != temp) obj.kpc = temp;
+                temp = document.getElementById ("kpomega").value; if ("" != temp) obj.kpomega = temp;
+                temp = document.getElementById ("kpx").value; if ("" != temp) obj.kpx = temp;
+                temp = document.getElementById ("thetamax").value; if ("" != temp) obj.thetamax = temp;
+                temp = document.getElementById ("thetamin").value; if ("" != temp) obj.thetamin = temp;
+                temp = document.getElementById ("ttheta").value; if ("" != temp) obj.ttheta = temp;
+                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -272,22 +292,21 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindPitchContPowerIEC", "dpmax", base.from_string, fields);
-                base.export_element (obj, "WindPitchContPowerIEC", "dpmin", base.from_string, fields);
-                base.export_element (obj, "WindPitchContPowerIEC", "pmin", base.from_string, fields);
-                base.export_element (obj, "WindPitchContPowerIEC", "pset", base.from_string, fields);
-                base.export_element (obj, "WindPitchContPowerIEC", "t1", base.from_string, fields);
-                base.export_element (obj, "WindPitchContPowerIEC", "tr", base.from_string, fields);
-                base.export_element (obj, "WindPitchContPowerIEC", "uuvrt", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "WindPitchContPowerIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindPitchContPowerIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindPitchContPowerIEC", fields);
+                base.export_element (obj, "WindPitchContPowerIEC", "dpmax", "dpmax",  base.from_string, fields);
+                base.export_element (obj, "WindPitchContPowerIEC", "dpmin", "dpmin",  base.from_string, fields);
+                base.export_element (obj, "WindPitchContPowerIEC", "pmin", "pmin",  base.from_string, fields);
+                base.export_element (obj, "WindPitchContPowerIEC", "pset", "pset",  base.from_string, fields);
+                base.export_element (obj, "WindPitchContPowerIEC", "t1", "t1",  base.from_string, fields);
+                base.export_element (obj, "WindPitchContPowerIEC", "tr", "tr",  base.from_string, fields);
+                base.export_element (obj, "WindPitchContPowerIEC", "uuvrt", "uuvrt",  base.from_string, fields);
+                base.export_attributes (obj, "WindPitchContPowerIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "WindPitchContPowerIEC", "WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", fields);
+                base.export_attribute (obj, "WindPitchContPowerIEC", "WindGenTurbineType2IEC", "WindGenTurbineType2IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -353,6 +372,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindPitchContPowerIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dpmax").value; if ("" != temp) obj.dpmax = temp;
+                temp = document.getElementById ("dpmin").value; if ("" != temp) obj.dpmin = temp;
+                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById ("pset").value; if ("" != temp) obj.pset = temp;
+                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById ("uuvrt").value; if ("" != temp) obj.uuvrt = temp;
+                temp = document.getElementById ("WindGenTurbineType1bIEC").value; if ("" != temp) obj.WindGenTurbineType1bIEC = temp;
+                temp = document.getElementById ("WindGenTurbineType2IEC").value; if ("" != temp) obj.WindGenTurbineType2IEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -413,18 +451,17 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindGenType4IEC", "dipmax", base.from_string, fields);
-                base.export_element (obj, "WindGenType4IEC", "diqmax", base.from_string, fields);
-                base.export_element (obj, "WindGenType4IEC", "diqmin", base.from_string, fields);
-                base.export_element (obj, "WindGenType4IEC", "tg", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindGenType4IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindGenType4IEC", fields);
+                base.export_element (obj, "WindGenType4IEC", "dipmax", "dipmax",  base.from_string, fields);
+                base.export_element (obj, "WindGenType4IEC", "diqmax", "diqmax",  base.from_string, fields);
+                base.export_element (obj, "WindGenType4IEC", "diqmin", "diqmin",  base.from_string, fields);
+                base.export_element (obj, "WindGenType4IEC", "tg", "tg",  base.from_string, fields);
+                base.export_attribute (obj, "WindGenType4IEC", "WindTurbineType4aIEC", "WindTurbineType4aIEC", fields);
+                base.export_attribute (obj, "WindGenType4IEC", "WindTurbineType4bIEC", "WindTurbineType4bIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -479,6 +516,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindGenType4IEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dipmax").value; if ("" != temp) obj.dipmax = temp;
+                temp = document.getElementById ("diqmax").value; if ("" != temp) obj.diqmax = temp;
+                temp = document.getElementById ("diqmin").value; if ("" != temp) obj.diqmin = temp;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("WindTurbineType4aIEC").value; if ("" != temp) obj.WindTurbineType4aIEC = temp;
+                temp = document.getElementById ("WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -554,32 +607,31 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindPlantReactiveControlIEC", "dxrefmax", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "dxrefmin", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "kiwpx", base.from_float, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "kiwpxmax", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "kiwpxmin", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "kpwpx", base.from_float, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "kwpqref", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "kwpqu", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "tuqfilt", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "twppfiltq", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "twpqfiltq", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "twpufiltq", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "txft", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "txfv", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "uwpqdip", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "windPlantQcontrolModesType", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "xrefmax", base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "xrefmin", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "WindPlantReactiveControlIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindPlantReactiveControlIEC", fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "dxrefmax", "dxrefmax",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "dxrefmin", "dxrefmin",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "kiwpx", "kiwpx",  base.from_float, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "kiwpxmax", "kiwpxmax",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "kiwpxmin", "kiwpxmin",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "kpwpx", "kpwpx",  base.from_float, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "kwpqref", "kwpqref",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "kwpqu", "kwpqu",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "tuqfilt", "tuqfilt",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "twppfiltq", "twppfiltq",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "twpqfiltq", "twpqfiltq",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "twpufiltq", "twpufiltq",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "txft", "txft",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "txfv", "txfv",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "uwpqdip", "uwpqdip",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "windPlantQcontrolModesType", "windPlantQcontrolModesType",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "xrefmax", "xrefmax",  base.from_string, fields);
+                base.export_element (obj, "WindPlantReactiveControlIEC", "xrefmin", "xrefmin",  base.from_string, fields);
+                base.export_attributes (obj, "WindPlantReactiveControlIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "WindPlantReactiveControlIEC", "WindPlantIEC", "WindPlantIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -667,6 +719,35 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindPlantReactiveControlIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dxrefmax").value; if ("" != temp) obj.dxrefmax = temp;
+                temp = document.getElementById ("dxrefmin").value; if ("" != temp) obj.dxrefmin = temp;
+                temp = document.getElementById ("kiwpx").value; if ("" != temp) obj.kiwpx = temp;
+                temp = document.getElementById ("kiwpxmax").value; if ("" != temp) obj.kiwpxmax = temp;
+                temp = document.getElementById ("kiwpxmin").value; if ("" != temp) obj.kiwpxmin = temp;
+                temp = document.getElementById ("kpwpx").value; if ("" != temp) obj.kpwpx = temp;
+                temp = document.getElementById ("kwpqref").value; if ("" != temp) obj.kwpqref = temp;
+                temp = document.getElementById ("kwpqu").value; if ("" != temp) obj.kwpqu = temp;
+                temp = document.getElementById ("tuqfilt").value; if ("" != temp) obj.tuqfilt = temp;
+                temp = document.getElementById ("twppfiltq").value; if ("" != temp) obj.twppfiltq = temp;
+                temp = document.getElementById ("twpqfiltq").value; if ("" != temp) obj.twpqfiltq = temp;
+                temp = document.getElementById ("twpufiltq").value; if ("" != temp) obj.twpufiltq = temp;
+                temp = document.getElementById ("txft").value; if ("" != temp) obj.txft = temp;
+                temp = document.getElementById ("txfv").value; if ("" != temp) obj.txfv = temp;
+                temp = document.getElementById ("uwpqdip").value; if ("" != temp) obj.uwpqdip = temp;
+                temp = document.getElementById ("windPlantQcontrolModesType").value; if ("" != temp) { temp = WindPlantQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windPlantQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindPlantQcontrolModeKind." + temp; }
+                temp = document.getElementById ("xrefmax").value; if ("" != temp) obj.xrefmax = temp;
+                temp = document.getElementById ("xrefmin").value; if ("" != temp) obj.xrefmin = temp;
+                temp = document.getElementById ("WindPlantIEC").value; if ("" != temp) obj.WindPlantIEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -745,37 +826,36 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContPType3IEC", "dpmax", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "dprefmax", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "dprefmin", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "dthetamax", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "dthetamaxuvrt", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "kdtd", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "kip", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "kpp", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "mpuvrt", base.from_boolean, fields);
-                base.export_element (obj, "WindContPType3IEC", "omegaoffset", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "pdtdmax", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "tdvs", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "thetaemin", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "thetauscale", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "tomegafiltp3", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "tpfiltp3", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "tpord", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "tufiltp3", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "twref", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "udvs", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "updip", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "wdtd", base.from_string, fields);
-                base.export_element (obj, "WindContPType3IEC", "zeta", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "WindContPType3IEC", fields);
-                base.export_attribute (obj, "export_attributes", "WindContPType3IEC", fields);
+                base.export_element (obj, "WindContPType3IEC", "dpmax", "dpmax",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "dprefmax", "dprefmax",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "dprefmin", "dprefmin",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "dthetamax", "dthetamax",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "dthetamaxuvrt", "dthetamaxuvrt",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "kdtd", "kdtd",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "kip", "kip",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "kpp", "kpp",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "mpuvrt", "mpuvrt",  base.from_boolean, fields);
+                base.export_element (obj, "WindContPType3IEC", "omegaoffset", "omegaoffset",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "pdtdmax", "pdtdmax",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "tdvs", "tdvs",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "thetaemin", "thetaemin",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "thetauscale", "thetauscale",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "tomegafiltp3", "tomegafiltp3",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "tpfiltp3", "tpfiltp3",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "tpord", "tpord",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "tufiltp3", "tufiltp3",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "twref", "twref",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "udvs", "udvs",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "updip", "updip",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "wdtd", "wdtd",  base.from_string, fields);
+                base.export_element (obj, "WindContPType3IEC", "zeta", "zeta",  base.from_float, fields);
+                base.export_attribute (obj, "WindContPType3IEC", "WindTurbineType3IEC", "WindTurbineType3IEC", fields);
+                base.export_attributes (obj, "WindContPType3IEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -871,6 +951,40 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContPType3IEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dpmax").value; if ("" != temp) obj.dpmax = temp;
+                temp = document.getElementById ("dprefmax").value; if ("" != temp) obj.dprefmax = temp;
+                temp = document.getElementById ("dprefmin").value; if ("" != temp) obj.dprefmin = temp;
+                temp = document.getElementById ("dthetamax").value; if ("" != temp) obj.dthetamax = temp;
+                temp = document.getElementById ("dthetamaxuvrt").value; if ("" != temp) obj.dthetamaxuvrt = temp;
+                temp = document.getElementById ("kdtd").value; if ("" != temp) obj.kdtd = temp;
+                temp = document.getElementById ("kip").value; if ("" != temp) obj.kip = temp;
+                temp = document.getElementById ("kpp").value; if ("" != temp) obj.kpp = temp;
+                temp = document.getElementById ("mpuvrt").checked; if (temp) obj.mpuvrt = true;
+                temp = document.getElementById ("omegaoffset").value; if ("" != temp) obj.omegaoffset = temp;
+                temp = document.getElementById ("pdtdmax").value; if ("" != temp) obj.pdtdmax = temp;
+                temp = document.getElementById ("tdvs").value; if ("" != temp) obj.tdvs = temp;
+                temp = document.getElementById ("thetaemin").value; if ("" != temp) obj.thetaemin = temp;
+                temp = document.getElementById ("thetauscale").value; if ("" != temp) obj.thetauscale = temp;
+                temp = document.getElementById ("tomegafiltp3").value; if ("" != temp) obj.tomegafiltp3 = temp;
+                temp = document.getElementById ("tpfiltp3").value; if ("" != temp) obj.tpfiltp3 = temp;
+                temp = document.getElementById ("tpord").value; if ("" != temp) obj.tpord = temp;
+                temp = document.getElementById ("tufiltp3").value; if ("" != temp) obj.tufiltp3 = temp;
+                temp = document.getElementById ("twref").value; if ("" != temp) obj.twref = temp;
+                temp = document.getElementById ("udvs").value; if ("" != temp) obj.udvs = temp;
+                temp = document.getElementById ("updip").value; if ("" != temp) obj.updip = temp;
+                temp = document.getElementById ("wdtd").value; if ("" != temp) obj.wdtd = temp;
+                temp = document.getElementById ("zeta").value; if ("" != temp) obj.zeta = temp;
+                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -948,36 +1062,35 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContQIEC", "iqh1", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "iqmax", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "iqmin", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "iqpost", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "kiq", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "kiu", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "kpq", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "kpu", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "kqv", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "rdroop", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "tpfiltq", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "tpost", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "tqord", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "tufiltq", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "udb1", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "udb2", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "umax", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "umin", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "uqdip", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "uref0", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "windQcontrolModesType", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "windUVRTQcontrolModesType", base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "xdroop", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindContQIEC", fields);
+                base.export_element (obj, "WindContQIEC", "iqh1", "iqh1",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "iqmax", "iqmax",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "iqmin", "iqmin",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "iqpost", "iqpost",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "kiq", "kiq",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "kiu", "kiu",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "kpq", "kpq",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "kpu", "kpu",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "kqv", "kqv",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "rdroop", "rdroop",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "tpfiltq", "tpfiltq",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "tpost", "tpost",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "tqord", "tqord",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "tufiltq", "tufiltq",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "udb1", "udb1",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "udb2", "udb2",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "umax", "umax",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "umin", "umin",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "uqdip", "uqdip",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "uref0", "uref0",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "windQcontrolModesType", "windQcontrolModesType",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "windUVRTQcontrolModesType", "windUVRTQcontrolModesType",  base.from_string, fields);
+                base.export_element (obj, "WindContQIEC", "xdroop", "xdroop",  base.from_string, fields);
+                base.export_attribute (obj, "WindContQIEC", "WindTurbineType3or4IEC", "WindTurbineType3or4IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1074,6 +1187,40 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContQIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("iqh1").value; if ("" != temp) obj.iqh1 = temp;
+                temp = document.getElementById ("iqmax").value; if ("" != temp) obj.iqmax = temp;
+                temp = document.getElementById ("iqmin").value; if ("" != temp) obj.iqmin = temp;
+                temp = document.getElementById ("iqpost").value; if ("" != temp) obj.iqpost = temp;
+                temp = document.getElementById ("kiq").value; if ("" != temp) obj.kiq = temp;
+                temp = document.getElementById ("kiu").value; if ("" != temp) obj.kiu = temp;
+                temp = document.getElementById ("kpq").value; if ("" != temp) obj.kpq = temp;
+                temp = document.getElementById ("kpu").value; if ("" != temp) obj.kpu = temp;
+                temp = document.getElementById ("kqv").value; if ("" != temp) obj.kqv = temp;
+                temp = document.getElementById ("rdroop").value; if ("" != temp) obj.rdroop = temp;
+                temp = document.getElementById ("tpfiltq").value; if ("" != temp) obj.tpfiltq = temp;
+                temp = document.getElementById ("tpost").value; if ("" != temp) obj.tpost = temp;
+                temp = document.getElementById ("tqord").value; if ("" != temp) obj.tqord = temp;
+                temp = document.getElementById ("tufiltq").value; if ("" != temp) obj.tufiltq = temp;
+                temp = document.getElementById ("udb1").value; if ("" != temp) obj.udb1 = temp;
+                temp = document.getElementById ("udb2").value; if ("" != temp) obj.udb2 = temp;
+                temp = document.getElementById ("umax").value; if ("" != temp) obj.umax = temp;
+                temp = document.getElementById ("umin").value; if ("" != temp) obj.umin = temp;
+                temp = document.getElementById ("uqdip").value; if ("" != temp) obj.uqdip = temp;
+                temp = document.getElementById ("uref0").value; if ("" != temp) obj.uref0 = temp;
+                temp = document.getElementById ("windQcontrolModesType").value; if ("" != temp) { temp = WindQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindQcontrolModeKind." + temp; }
+                temp = document.getElementById ("windUVRTQcontrolModesType").value; if ("" != temp) { temp = WindUVRTQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windUVRTQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindUVRTQcontrolModeKind." + temp; }
+                temp = document.getElementById ("xdroop").value; if ("" != temp) obj.xdroop = temp;
+                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1127,13 +1274,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindAeroConstIEC", fields);
+                base.export_attribute (obj, "WindAeroConstIEC", "WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1178,6 +1324,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindAeroConstIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindGenTurbineType1aIEC").value; if ("" != temp) obj.WindGenTurbineType1aIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1233,15 +1390,14 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4Dynamics", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4Dynamics", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4Dynamics", fields);
+                base.export_attribute (obj, "WindTurbineType3or4Dynamics", "EnergySource", "EnergySource", fields);
+                base.export_attribute (obj, "WindTurbineType3or4Dynamics", "WindPlantDynamics", "WindPlantDynamics", fields);
+                base.export_attribute (obj, "WindTurbineType3or4Dynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1290,6 +1446,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindTurbineType3or4Dynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("EnergySource").value; if ("" != temp) obj.EnergySource = temp;
+                temp = document.getElementById ("WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;
+                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1350,16 +1519,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContQPQULimIEC", "tpfiltql", base.from_string, fields);
-                base.export_element (obj, "WindContQPQULimIEC", "tufiltql", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindContQPQULimIEC", fields);
-                base.export_attribute (obj, "export_attributes", "WindContQPQULimIEC", fields);
+                base.export_element (obj, "WindContQPQULimIEC", "tpfiltql", "tpfiltql",  base.from_string, fields);
+                base.export_element (obj, "WindContQPQULimIEC", "tufiltql", "tufiltql",  base.from_string, fields);
+                base.export_attribute (obj, "WindContQPQULimIEC", "WindTurbineType3or4IEC", "WindTurbineType3or4IEC", fields);
+                base.export_attributes (obj, "WindContQPQULimIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1411,6 +1579,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContQPQULimIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("tpfiltql").value; if ("" != temp) obj.tpfiltql = temp;
+                temp = document.getElementById ("tufiltql").value; if ("" != temp) obj.tufiltql = temp;
+                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1473,19 +1654,18 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindMechIEC", "cdrt", base.from_string, fields);
-                base.export_element (obj, "WindMechIEC", "hgen", base.from_string, fields);
-                base.export_element (obj, "WindMechIEC", "hwtr", base.from_string, fields);
-                base.export_element (obj, "WindMechIEC", "kdrt", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindMechIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindMechIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindMechIEC", fields);
+                base.export_element (obj, "WindMechIEC", "cdrt", "cdrt",  base.from_string, fields);
+                base.export_element (obj, "WindMechIEC", "hgen", "hgen",  base.from_string, fields);
+                base.export_element (obj, "WindMechIEC", "hwtr", "hwtr",  base.from_string, fields);
+                base.export_element (obj, "WindMechIEC", "kdrt", "kdrt",  base.from_string, fields);
+                base.export_attribute (obj, "WindMechIEC", "WindTurbineType1or2IEC", "WindTurbineType1or2IEC", fields);
+                base.export_attribute (obj, "WindMechIEC", "WindTurbineType3IEC", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "WindMechIEC", "WindTurbineType4bIEC", "WindTurbineType4bIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1542,6 +1722,23 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindMechIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("cdrt").value; if ("" != temp) obj.cdrt = temp;
+                temp = document.getElementById ("hgen").value; if ("" != temp) obj.hgen = temp;
+                temp = document.getElementById ("hwtr").value; if ("" != temp) obj.hwtr = temp;
+                temp = document.getElementById ("kdrt").value; if ("" != temp) obj.kdrt = temp;
+                temp = document.getElementById ("WindTurbineType1or2IEC").value; if ("" != temp) obj.WindTurbineType1or2IEC = temp;
+                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+                temp = document.getElementById ("WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1606,20 +1803,19 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindAeroTwoDimIEC", "dpomega", base.from_string, fields);
-                base.export_element (obj, "WindAeroTwoDimIEC", "dptheta", base.from_string, fields);
-                base.export_element (obj, "WindAeroTwoDimIEC", "dpv1", base.from_string, fields);
-                base.export_element (obj, "WindAeroTwoDimIEC", "omegazero", base.from_string, fields);
-                base.export_element (obj, "WindAeroTwoDimIEC", "pavail", base.from_string, fields);
-                base.export_element (obj, "WindAeroTwoDimIEC", "thetav2", base.from_string, fields);
-                base.export_element (obj, "WindAeroTwoDimIEC", "thetazero", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindAeroTwoDimIEC", fields);
+                base.export_element (obj, "WindAeroTwoDimIEC", "dpomega", "dpomega",  base.from_string, fields);
+                base.export_element (obj, "WindAeroTwoDimIEC", "dptheta", "dptheta",  base.from_string, fields);
+                base.export_element (obj, "WindAeroTwoDimIEC", "dpv1", "dpv1",  base.from_string, fields);
+                base.export_element (obj, "WindAeroTwoDimIEC", "omegazero", "omegazero",  base.from_string, fields);
+                base.export_element (obj, "WindAeroTwoDimIEC", "pavail", "pavail",  base.from_string, fields);
+                base.export_element (obj, "WindAeroTwoDimIEC", "thetav2", "thetav2",  base.from_string, fields);
+                base.export_element (obj, "WindAeroTwoDimIEC", "thetazero", "thetazero",  base.from_string, fields);
+                base.export_attribute (obj, "WindAeroTwoDimIEC", "WindTurbineType3IEC", "WindTurbineType3IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1680,6 +1876,24 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindAeroTwoDimIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dpomega").value; if ("" != temp) obj.dpomega = temp;
+                temp = document.getElementById ("dptheta").value; if ("" != temp) obj.dptheta = temp;
+                temp = document.getElementById ("dpv1").value; if ("" != temp) obj.dpv1 = temp;
+                temp = document.getElementById ("omegazero").value; if ("" != temp) obj.omegazero = temp;
+                temp = document.getElementById ("pavail").value; if ("" != temp) obj.pavail = temp;
+                temp = document.getElementById ("thetav2").value; if ("" != temp) obj.thetav2 = temp;
+                temp = document.getElementById ("thetazero").value; if ("" != temp) obj.thetazero = temp;
+                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1735,15 +1949,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContQLimIEC", "qmax", base.from_string, fields);
-                base.export_element (obj, "WindContQLimIEC", "qmin", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindContQLimIEC", fields);
+                base.export_element (obj, "WindContQLimIEC", "qmax", "qmax",  base.from_string, fields);
+                base.export_element (obj, "WindContQLimIEC", "qmin", "qmin",  base.from_string, fields);
+                base.export_attribute (obj, "WindContQLimIEC", "WindTurbineType3or4IEC", "WindTurbineType3or4IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1792,6 +2005,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContQLimIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("qmax").value; if ("" != temp) obj.qmax = temp;
+                temp = document.getElementById ("qmin").value; if ("" != temp) obj.qmin = temp;
+                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1848,16 +2074,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindGenType3IEC", "dipmax", base.from_string, fields);
-                base.export_element (obj, "WindGenType3IEC", "diqmax", base.from_string, fields);
-                base.export_element (obj, "WindGenType3IEC", "xs", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindGenType3IEC", fields);
+                base.export_element (obj, "WindGenType3IEC", "dipmax", "dipmax",  base.from_string, fields);
+                base.export_element (obj, "WindGenType3IEC", "diqmax", "diqmax",  base.from_string, fields);
+                base.export_element (obj, "WindGenType3IEC", "xs", "xs",  base.from_string, fields);
+                base.export_attribute (obj, "WindGenType3IEC", "WindTurbineType3IEC", "WindTurbineType3IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1908,6 +2133,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindGenType3IEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dipmax").value; if ("" != temp) obj.dipmax = temp;
+                temp = document.getElementById ("diqmax").value; if ("" != temp) obj.diqmax = temp;
+                temp = document.getElementById ("xs").value; if ("" != temp) obj.xs = temp;
+                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1972,22 +2211,21 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindProtectionIEC", "dfimax", base.from_string, fields);
-                base.export_element (obj, "WindProtectionIEC", "fover", base.from_string, fields);
-                base.export_element (obj, "WindProtectionIEC", "funder", base.from_string, fields);
-                base.export_element (obj, "WindProtectionIEC", "mzc", base.from_boolean, fields);
-                base.export_element (obj, "WindProtectionIEC", "tfma", base.from_string, fields);
-                base.export_element (obj, "WindProtectionIEC", "uover", base.from_string, fields);
-                base.export_element (obj, "WindProtectionIEC", "uunder", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindProtectionIEC", fields);
-                base.export_attribute (obj, "export_attributes", "WindProtectionIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindProtectionIEC", fields);
+                base.export_element (obj, "WindProtectionIEC", "dfimax", "dfimax",  base.from_string, fields);
+                base.export_element (obj, "WindProtectionIEC", "fover", "fover",  base.from_string, fields);
+                base.export_element (obj, "WindProtectionIEC", "funder", "funder",  base.from_string, fields);
+                base.export_element (obj, "WindProtectionIEC", "mzc", "mzc",  base.from_boolean, fields);
+                base.export_element (obj, "WindProtectionIEC", "tfma", "tfma",  base.from_string, fields);
+                base.export_element (obj, "WindProtectionIEC", "uover", "uover",  base.from_string, fields);
+                base.export_element (obj, "WindProtectionIEC", "uunder", "uunder",  base.from_string, fields);
+                base.export_attribute (obj, "WindProtectionIEC", "WindTurbineType1or2IEC", "WindTurbineType1or2IEC", fields);
+                base.export_attributes (obj, "WindProtectionIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "WindProtectionIEC", "WindTurbineType3or4IEC", "WindTurbineType3or4IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2051,6 +2289,25 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindProtectionIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dfimax").value; if ("" != temp) obj.dfimax = temp;
+                temp = document.getElementById ("fover").value; if ("" != temp) obj.fover = temp;
+                temp = document.getElementById ("funder").value; if ("" != temp) obj.funder = temp;
+                temp = document.getElementById ("mzc").checked; if (temp) obj.mzc = true;
+                temp = document.getElementById ("tfma").value; if ("" != temp) obj.tfma = temp;
+                temp = document.getElementById ("uover").value; if ("" != temp) obj.uover = temp;
+                temp = document.getElementById ("uunder").value; if ("" != temp) obj.uunder = temp;
+                temp = document.getElementById ("WindTurbineType1or2IEC").value; if ("" != temp) obj.WindTurbineType1or2IEC = temp;
+                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2117,22 +2374,21 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContRotorRIEC", "kirr", base.from_string, fields);
-                base.export_element (obj, "WindContRotorRIEC", "komegafilt", base.from_float, fields);
-                base.export_element (obj, "WindContRotorRIEC", "kpfilt", base.from_float, fields);
-                base.export_element (obj, "WindContRotorRIEC", "kprr", base.from_string, fields);
-                base.export_element (obj, "WindContRotorRIEC", "rmax", base.from_string, fields);
-                base.export_element (obj, "WindContRotorRIEC", "rmin", base.from_string, fields);
-                base.export_element (obj, "WindContRotorRIEC", "tomegafiltrr", base.from_string, fields);
-                base.export_element (obj, "WindContRotorRIEC", "tpfiltrr", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindContRotorRIEC", fields);
-                base.export_attribute (obj, "export_attributes", "WindContRotorRIEC", fields);
+                base.export_element (obj, "WindContRotorRIEC", "kirr", "kirr",  base.from_string, fields);
+                base.export_element (obj, "WindContRotorRIEC", "komegafilt", "komegafilt",  base.from_float, fields);
+                base.export_element (obj, "WindContRotorRIEC", "kpfilt", "kpfilt",  base.from_float, fields);
+                base.export_element (obj, "WindContRotorRIEC", "kprr", "kprr",  base.from_string, fields);
+                base.export_element (obj, "WindContRotorRIEC", "rmax", "rmax",  base.from_string, fields);
+                base.export_element (obj, "WindContRotorRIEC", "rmin", "rmin",  base.from_string, fields);
+                base.export_element (obj, "WindContRotorRIEC", "tomegafiltrr", "tomegafiltrr",  base.from_string, fields);
+                base.export_element (obj, "WindContRotorRIEC", "tpfiltrr", "tpfiltrr",  base.from_string, fields);
+                base.export_attribute (obj, "WindContRotorRIEC", "WindGenTurbineType2IEC", "WindGenTurbineType2IEC", fields);
+                base.export_attributes (obj, "WindContRotorRIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2198,6 +2454,25 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContRotorRIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("kirr").value; if ("" != temp) obj.kirr = temp;
+                temp = document.getElementById ("komegafilt").value; if ("" != temp) obj.komegafilt = temp;
+                temp = document.getElementById ("kpfilt").value; if ("" != temp) obj.kpfilt = temp;
+                temp = document.getElementById ("kprr").value; if ("" != temp) obj.kprr = temp;
+                temp = document.getElementById ("rmax").value; if ("" != temp) obj.rmax = temp;
+                temp = document.getElementById ("rmin").value; if ("" != temp) obj.rmin = temp;
+                temp = document.getElementById ("tomegafiltrr").value; if ("" != temp) obj.tomegafiltrr = temp;
+                temp = document.getElementById ("tpfiltrr").value; if ("" != temp) obj.tpfiltrr = temp;
+                temp = document.getElementById ("WindGenTurbineType2IEC").value; if ("" != temp) obj.WindGenTurbineType2IEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2256,17 +2531,16 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContPType4bIEC", "dpmaxp4b", base.from_string, fields);
-                base.export_element (obj, "WindContPType4bIEC", "tpaero", base.from_string, fields);
-                base.export_element (obj, "WindContPType4bIEC", "tpordp4b", base.from_string, fields);
-                base.export_element (obj, "WindContPType4bIEC", "tufiltp4b", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindContPType4bIEC", fields);
+                base.export_element (obj, "WindContPType4bIEC", "dpmaxp4b", "dpmaxp4b",  base.from_string, fields);
+                base.export_element (obj, "WindContPType4bIEC", "tpaero", "tpaero",  base.from_string, fields);
+                base.export_element (obj, "WindContPType4bIEC", "tpordp4b", "tpordp4b",  base.from_string, fields);
+                base.export_element (obj, "WindContPType4bIEC", "tufiltp4b", "tufiltp4b",  base.from_string, fields);
+                base.export_attribute (obj, "WindContPType4bIEC", "WindTurbineType4bIEC", "WindTurbineType4bIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2319,6 +2593,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContPType4bIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dpmaxp4b").value; if ("" != temp) obj.dpmaxp4b = temp;
+                temp = document.getElementById ("tpaero").value; if ("" != temp) obj.tpaero = temp;
+                temp = document.getElementById ("tpordp4b").value; if ("" != temp) obj.tpordp4b = temp;
+                temp = document.getElementById ("tufiltp4b").value; if ("" != temp) obj.tufiltp4b = temp;
+                temp = document.getElementById ("WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2377,16 +2666,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindRefFrameRotIEC", "tpll", base.from_string, fields);
-                base.export_element (obj, "WindRefFrameRotIEC", "upll1", base.from_string, fields);
-                base.export_element (obj, "WindRefFrameRotIEC", "upll2", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindRefFrameRotIEC", fields);
+                base.export_element (obj, "WindRefFrameRotIEC", "tpll", "tpll",  base.from_string, fields);
+                base.export_element (obj, "WindRefFrameRotIEC", "upll1", "upll1",  base.from_string, fields);
+                base.export_element (obj, "WindRefFrameRotIEC", "upll2", "upll2",  base.from_string, fields);
+                base.export_attribute (obj, "WindRefFrameRotIEC", "WindTurbineType3or4IEC", "WindTurbineType3or4IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2437,6 +2725,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindRefFrameRotIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("tpll").value; if ("" != temp) obj.tpll = temp;
+                temp = document.getElementById ("upll1").value; if ("" != temp) obj.upll1 = temp;
+                temp = document.getElementById ("upll2").value; if ("" != temp) obj.upll2 = temp;
+                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2502,25 +2804,24 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindDynamicsLookupTable", "input", base.from_float, fields);
-                base.export_element (obj, "WindDynamicsLookupTable", "lookupTableFunctionType", base.from_string, fields);
-                base.export_element (obj, "WindDynamicsLookupTable", "output", base.from_float, fields);
-                base.export_element (obj, "WindDynamicsLookupTable", "sequence", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
-                base.export_attribute (obj, "export_attribute", "WindDynamicsLookupTable", fields);
+                base.export_element (obj, "WindDynamicsLookupTable", "input", "input",  base.from_float, fields);
+                base.export_element (obj, "WindDynamicsLookupTable", "lookupTableFunctionType", "lookupTableFunctionType",  base.from_string, fields);
+                base.export_element (obj, "WindDynamicsLookupTable", "output", "output",  base.from_float, fields);
+                base.export_element (obj, "WindDynamicsLookupTable", "sequence", "sequence",  base.from_string, fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindPitchContPowerIEC", "WindPitchContPowerIEC", fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindContQPQULimIEC", "WindContQPQULimIEC", fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindGenType3bIEC", "WindGenType3bIEC", fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindContPType3IEC", "WindContPType3IEC", fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindProtectionIEC", "WindProtectionIEC", fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindContCurrLimIEC", "WindContCurrLimIEC", fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "WindContRotorRIEC", "WindContRotorRIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2593,6 +2894,29 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindDynamicsLookupTable" };
+                super.submit (obj);
+                temp = document.getElementById ("input").value; if ("" != temp) obj.input = temp;
+                temp = document.getElementById ("lookupTableFunctionType").value; if ("" != temp) { temp = WindLookupTableFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.lookupTableFunctionType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindLookupTableFunctionKind." + temp; }
+                temp = document.getElementById ("output").value; if ("" != temp) obj.output = temp;
+                temp = document.getElementById ("sequence").value; if ("" != temp) obj.sequence = temp;
+                temp = document.getElementById ("WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
+                temp = document.getElementById ("WindPlantFreqPcontrolIEC").value; if ("" != temp) obj.WindPlantFreqPcontrolIEC = temp;
+                temp = document.getElementById ("WindContQPQULimIEC").value; if ("" != temp) obj.WindContQPQULimIEC = temp;
+                temp = document.getElementById ("WindGenType3bIEC").value; if ("" != temp) obj.WindGenType3bIEC = temp;
+                temp = document.getElementById ("WindContPType3IEC").value; if ("" != temp) obj.WindContPType3IEC = temp;
+                temp = document.getElementById ("WindPlantReactiveControlIEC").value; if ("" != temp) obj.WindPlantReactiveControlIEC = temp;
+                temp = document.getElementById ("WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
+                temp = document.getElementById ("WindContCurrLimIEC").value; if ("" != temp) obj.WindContCurrLimIEC = temp;
+                temp = document.getElementById ("WindContRotorRIEC").value; if ("" != temp) obj.WindContRotorRIEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2653,14 +2977,13 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindTurbineType1or2Dynamics", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType1or2Dynamics", fields);
+                base.export_attribute (obj, "WindTurbineType1or2Dynamics", "AsynchronousMachineDynamics", "AsynchronousMachineDynamics", fields);
+                base.export_attribute (obj, "WindTurbineType1or2Dynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2707,6 +3030,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindTurbineType1or2Dynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
+                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2779,29 +3114,28 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "dprefmax", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "dprefmin", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "dpwprefmax", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "dpwprefmin", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kiwpp", base.from_float, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kiwppmax", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kiwppmin", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kpwpp", base.from_float, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kwppref", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "prefmax", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "prefmin", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "tpft", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "tpfv", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "twpffiltp", base.from_string, fields);
-                base.export_element (obj, "WindPlantFreqPcontrolIEC", "twppfiltp", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "WindPlantFreqPcontrolIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindPlantFreqPcontrolIEC", fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "dprefmax", "dprefmax",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "dprefmin", "dprefmin",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "dpwprefmax", "dpwprefmax",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "dpwprefmin", "dpwprefmin",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kiwpp", "kiwpp",  base.from_float, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kiwppmax", "kiwppmax",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kiwppmin", "kiwppmin",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kpwpp", "kpwpp",  base.from_float, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "kwppref", "kwppref",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "prefmax", "prefmax",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "prefmin", "prefmin",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "tpft", "tpft",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "tpfv", "tpfv",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "twpffiltp", "twpffiltp",  base.from_string, fields);
+                base.export_element (obj, "WindPlantFreqPcontrolIEC", "twppfiltp", "twppfiltp",  base.from_string, fields);
+                base.export_attributes (obj, "WindPlantFreqPcontrolIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
+                base.export_attribute (obj, "WindPlantFreqPcontrolIEC", "WindPlantIEC", "WindPlantIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2881,6 +3215,32 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindPlantFreqPcontrolIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dprefmax").value; if ("" != temp) obj.dprefmax = temp;
+                temp = document.getElementById ("dprefmin").value; if ("" != temp) obj.dprefmin = temp;
+                temp = document.getElementById ("dpwprefmax").value; if ("" != temp) obj.dpwprefmax = temp;
+                temp = document.getElementById ("dpwprefmin").value; if ("" != temp) obj.dpwprefmin = temp;
+                temp = document.getElementById ("kiwpp").value; if ("" != temp) obj.kiwpp = temp;
+                temp = document.getElementById ("kiwppmax").value; if ("" != temp) obj.kiwppmax = temp;
+                temp = document.getElementById ("kiwppmin").value; if ("" != temp) obj.kiwppmin = temp;
+                temp = document.getElementById ("kpwpp").value; if ("" != temp) obj.kpwpp = temp;
+                temp = document.getElementById ("kwppref").value; if ("" != temp) obj.kwppref = temp;
+                temp = document.getElementById ("prefmax").value; if ("" != temp) obj.prefmax = temp;
+                temp = document.getElementById ("prefmin").value; if ("" != temp) obj.prefmin = temp;
+                temp = document.getElementById ("tpft").value; if ("" != temp) obj.tpft = temp;
+                temp = document.getElementById ("tpfv").value; if ("" != temp) obj.tpfv = temp;
+                temp = document.getElementById ("twpffiltp").value; if ("" != temp) obj.twpffiltp = temp;
+                temp = document.getElementById ("twppfiltp").value; if ("" != temp) obj.twppfiltp = temp;
+                temp = document.getElementById ("WindPlantIEC").value; if ("" != temp) obj.WindPlantIEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2938,16 +3298,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContPType4aIEC", "dpmaxp4a", base.from_string, fields);
-                base.export_element (obj, "WindContPType4aIEC", "tpordp4a", base.from_string, fields);
-                base.export_element (obj, "WindContPType4aIEC", "tufiltp4a", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindContPType4aIEC", fields);
+                base.export_element (obj, "WindContPType4aIEC", "dpmaxp4a", "dpmaxp4a",  base.from_string, fields);
+                base.export_element (obj, "WindContPType4aIEC", "tpordp4a", "tpordp4a",  base.from_string, fields);
+                base.export_element (obj, "WindContPType4aIEC", "tufiltp4a", "tufiltp4a",  base.from_string, fields);
+                base.export_attribute (obj, "WindContPType4aIEC", "WindTurbineType4aIEC", "WindTurbineType4aIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2998,6 +3357,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContPType4aIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("dpmaxp4a").value; if ("" != temp) obj.dpmaxp4a = temp;
+                temp = document.getElementById ("tpordp4a").value; if ("" != temp) obj.tpordp4a = temp;
+                temp = document.getElementById ("tufiltp4a").value; if ("" != temp) obj.tufiltp4a = temp;
+                temp = document.getElementById ("WindTurbineType4aIEC").value; if ("" != temp) obj.WindTurbineType4aIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3061,21 +3434,20 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindContCurrLimIEC", "imax", base.from_string, fields);
-                base.export_element (obj, "WindContCurrLimIEC", "imaxdip", base.from_string, fields);
-                base.export_element (obj, "WindContCurrLimIEC", "kpqu", base.from_string, fields);
-                base.export_element (obj, "WindContCurrLimIEC", "mdfslim", base.from_boolean, fields);
-                base.export_element (obj, "WindContCurrLimIEC", "mqpri", base.from_boolean, fields);
-                base.export_element (obj, "WindContCurrLimIEC", "tufiltcl", base.from_string, fields);
-                base.export_element (obj, "WindContCurrLimIEC", "upqumax", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindContCurrLimIEC", fields);
-                base.export_attribute (obj, "export_attributes", "WindContCurrLimIEC", fields);
+                base.export_element (obj, "WindContCurrLimIEC", "imax", "imax",  base.from_string, fields);
+                base.export_element (obj, "WindContCurrLimIEC", "imaxdip", "imaxdip",  base.from_string, fields);
+                base.export_element (obj, "WindContCurrLimIEC", "kpqu", "kpqu",  base.from_string, fields);
+                base.export_element (obj, "WindContCurrLimIEC", "mdfslim", "mdfslim",  base.from_boolean, fields);
+                base.export_element (obj, "WindContCurrLimIEC", "mqpri", "mqpri",  base.from_boolean, fields);
+                base.export_element (obj, "WindContCurrLimIEC", "tufiltcl", "tufiltcl",  base.from_string, fields);
+                base.export_element (obj, "WindContCurrLimIEC", "upqumax", "upqumax",  base.from_string, fields);
+                base.export_attribute (obj, "WindContCurrLimIEC", "WindTurbineType3or4IEC", "WindTurbineType3or4IEC", fields);
+                base.export_attributes (obj, "WindContCurrLimIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3139,6 +3511,24 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindContCurrLimIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("imax").value; if ("" != temp) obj.imax = temp;
+                temp = document.getElementById ("imaxdip").value; if ("" != temp) obj.imaxdip = temp;
+                temp = document.getElementById ("kpqu").value; if ("" != temp) obj.kpqu = temp;
+                temp = document.getElementById ("mdfslim").checked; if (temp) obj.mdfslim = true;
+                temp = document.getElementById ("mqpri").checked; if (temp) obj.mqpri = true;
+                temp = document.getElementById ("tufiltcl").value; if ("" != temp) obj.tufiltcl = temp;
+                temp = document.getElementById ("upqumax").value; if ("" != temp) obj.upqumax = temp;
+                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -3195,15 +3585,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindAeroOneDimIEC", "ka", base.from_float, fields);
-                base.export_element (obj, "WindAeroOneDimIEC", "thetaomega", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindAeroOneDimIEC", fields);
+                base.export_element (obj, "WindAeroOneDimIEC", "ka", "ka",  base.from_float, fields);
+                base.export_element (obj, "WindAeroOneDimIEC", "thetaomega", "thetaomega",  base.from_string, fields);
+                base.export_attribute (obj, "WindAeroOneDimIEC", "WindTurbineType3IEC", "WindTurbineType3IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3252,6 +3641,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindAeroOneDimIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById ("thetaomega").value; if ("" != temp) obj.thetaomega = temp;
+                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3306,14 +3708,13 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindPlantDynamics", fields);
-                base.export_attribute (obj, "export_attributes", "WindPlantDynamics", fields);
+                base.export_attribute (obj, "WindPlantDynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
+                base.export_attributes (obj, "WindPlantDynamics", "WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3361,6 +3762,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindPlantDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3420,18 +3832,17 @@ define
             {
                 var fields = WindTurbineType3or4Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3or4IEC", fields);
+                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindRefFrameRotIEC", "WindRefFrameRotIEC", fields);
+                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindContQPQULimIEC", "WindContQPQULimIEC", fields);
+                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindContCurrLimIEC", "WindContCurrLimIEC", fields);
+                base.export_attribute (obj, "WindTurbineType3or4IEC", "WIndContQIEC", "WIndContQIEC", fields);
+                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindContQLimIEC", "WindContQLimIEC", fields);
+                base.export_attribute (obj, "WindTurbineType3or4IEC", "WindProtectionIEC", "WindProtectionIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3486,6 +3897,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindTurbineType3or4IEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindRefFrameRotIEC").value; if ("" != temp) obj.WindRefFrameRotIEC = temp;
+                temp = document.getElementById ("WindContQPQULimIEC").value; if ("" != temp) obj.WindContQPQULimIEC = temp;
+                temp = document.getElementById ("WindContCurrLimIEC").value; if ("" != temp) obj.WindContCurrLimIEC = temp;
+                temp = document.getElementById ("WIndContQIEC").value; if ("" != temp) obj.WIndContQIEC = temp;
+                temp = document.getElementById ("WindContQLimIEC").value; if ("" != temp) obj.WindContQLimIEC = temp;
+                temp = document.getElementById ("WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3544,13 +3971,12 @@ define
             {
                 var fields = WindTurbineType3or4IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindTurbineType4IEC", fields);
+                base.export_attribute (obj, "WindTurbineType4IEC", "WindGenType3aIEC", "WindGenType3aIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3595,6 +4021,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindTurbineType4IEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindGenType3aIEC").value; if ("" != temp) obj.WindGenType3aIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3653,18 +4090,17 @@ define
             {
                 var fields = WindTurbineType3or4IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType3IEC", fields);
+                base.export_attribute (obj, "WindTurbineType3IEC", "WindGenType3IEC", "WindGenType3IEC", fields);
+                base.export_attribute (obj, "WindTurbineType3IEC", "WindContPitchAngleIEC", "WindContPitchAngleIEC", fields);
+                base.export_attribute (obj, "WindTurbineType3IEC", "WindContPType3IEC", "WindContPType3IEC", fields);
+                base.export_attribute (obj, "WindTurbineType3IEC", "WindAeroTwoDimIEC", "WindAeroTwoDimIEC", fields);
+                base.export_attribute (obj, "WindTurbineType3IEC", "WindMechIEC", "WindMechIEC", fields);
+                base.export_attribute (obj, "WindTurbineType3IEC", "WindAeroOneDimIEC", "WindAeroOneDimIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3719,6 +4155,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindTurbineType3IEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindGenType3IEC").value; if ("" != temp) obj.WindGenType3IEC = temp;
+                temp = document.getElementById ("WindContPitchAngleIEC").value; if ("" != temp) obj.WindContPitchAngleIEC = temp;
+                temp = document.getElementById ("WindContPType3IEC").value; if ("" != temp) obj.WindContPType3IEC = temp;
+                temp = document.getElementById ("WindAeroTwoDimIEC").value; if ("" != temp) obj.WindAeroTwoDimIEC = temp;
+                temp = document.getElementById ("WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
+                temp = document.getElementById ("WindAeroOneDimIEC").value; if ("" != temp) obj.WindAeroOneDimIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3780,14 +4232,13 @@ define
             {
                 var fields = WindTurbineType4IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindTurbineType4aIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType4aIEC", fields);
+                base.export_attribute (obj, "WindTurbineType4aIEC", "WindGenType4IEC", "WindGenType4IEC", fields);
+                base.export_attribute (obj, "WindTurbineType4aIEC", "WindContPType4aIEC", "WindContPType4aIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3834,6 +4285,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindTurbineType4aIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindGenType4IEC").value; if ("" != temp) obj.WindGenType4IEC = temp;
+                temp = document.getElementById ("WindContPType4aIEC").value; if ("" != temp) obj.WindContPType4aIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -3892,15 +4355,14 @@ define
             {
                 var fields = WindTurbineType4IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindTurbineType4bIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType4bIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType4bIEC", fields);
+                base.export_attribute (obj, "WindTurbineType4bIEC", "WindContPType4bIEC", "WindContPType4bIEC", fields);
+                base.export_attribute (obj, "WindTurbineType4bIEC", "WindGenType4IEC", "WindGenType4IEC", fields);
+                base.export_attribute (obj, "WindTurbineType4bIEC", "WindMechIEC", "WindMechIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3949,6 +4411,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindTurbineType4bIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindContPType4bIEC").value; if ("" != temp) obj.WindContPType4bIEC = temp;
+                temp = document.getElementById ("WindGenType4IEC").value; if ("" != temp) obj.WindGenType4IEC = temp;
+                temp = document.getElementById ("WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4008,15 +4483,14 @@ define
             {
                 var fields = WindGenType3IEC.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindGenType3aIEC", "kpc", base.from_float, fields);
-                base.export_element (obj, "WindGenType3aIEC", "tic", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WindGenType3aIEC", fields);
+                base.export_element (obj, "WindGenType3aIEC", "kpc", "kpc",  base.from_float, fields);
+                base.export_element (obj, "WindGenType3aIEC", "tic", "tic",  base.from_string, fields);
+                base.export_attribute (obj, "WindGenType3aIEC", "WindTurbineType4IEC", "WindTurbineType4IEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4065,6 +4539,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindGenType3aIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("kpc").value; if ("" != temp) obj.kpc = temp;
+                temp = document.getElementById ("tic").value; if ("" != temp) obj.tic = temp;
+                temp = document.getElementById ("WindTurbineType4IEC").value; if ("" != temp) obj.WindTurbineType4IEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4123,16 +4610,15 @@ define
             {
                 var fields = WindGenType3IEC.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindGenType3bIEC", "mwtcwp", base.from_boolean, fields);
-                base.export_element (obj, "WindGenType3bIEC", "tg", base.from_string, fields);
-                base.export_element (obj, "WindGenType3bIEC", "two", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "WindGenType3bIEC", fields);
+                base.export_element (obj, "WindGenType3bIEC", "mwtcwp", "mwtcwp",  base.from_boolean, fields);
+                base.export_element (obj, "WindGenType3bIEC", "tg", "tg",  base.from_string, fields);
+                base.export_element (obj, "WindGenType3bIEC", "two", "two",  base.from_string, fields);
+                base.export_attributes (obj, "WindGenType3bIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4184,6 +4670,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindGenType3bIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("mwtcwp").checked; if (temp) obj.mwtcwp = true;
+                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById ("two").value; if ("" != temp) obj.two = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4240,14 +4739,13 @@ define
             {
                 var fields = WindTurbineType1or2Dynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindTurbineType1or2IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindTurbineType1or2IEC", fields);
+                base.export_attribute (obj, "WindTurbineType1or2IEC", "WindProtectionIEC", "WindProtectionIEC", fields);
+                base.export_attribute (obj, "WindTurbineType1or2IEC", "WindMechIEC", "WindMechIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4294,6 +4792,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindTurbineType1or2IEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
+                temp = document.getElementById ("WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4350,13 +4860,12 @@ define
             {
                 var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindGenTurbineType1bIEC", fields);
+                base.export_attribute (obj, "WindGenTurbineType1bIEC", "WindPitchContPowerIEC", "WindPitchContPowerIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4401,6 +4910,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindGenTurbineType1bIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4456,13 +4976,12 @@ define
             {
                 var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindGenTurbineType1aIEC", fields);
+                base.export_attribute (obj, "WindGenTurbineType1aIEC", "WindAeroConstIEC", "WindAeroConstIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4507,6 +5026,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindGenTurbineType1aIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindAeroConstIEC").value; if ("" != temp) obj.WindAeroConstIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4563,14 +5093,13 @@ define
             {
                 var fields = WindTurbineType1or2IEC.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindGenTurbineType2IEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindGenTurbineType2IEC", fields);
+                base.export_attribute (obj, "WindGenTurbineType2IEC", "WindContRotorRIEC", "WindContRotorRIEC", fields);
+                base.export_attribute (obj, "WindGenTurbineType2IEC", "WindPitchContPowerIEC", "WindPitchContPowerIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4617,6 +5146,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindGenTurbineType2IEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindContRotorRIEC").value; if ("" != temp) obj.WindContRotorRIEC = temp;
+                temp = document.getElementById ("WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -4674,14 +5215,13 @@ define
             {
                 var fields = WindPlantDynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "WindPlantIEC", fields);
-                base.export_attribute (obj, "export_attribute", "WindPlantIEC", fields);
+                base.export_attribute (obj, "WindPlantIEC", "WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", fields);
+                base.export_attribute (obj, "WindPlantIEC", "WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4728,6 +5268,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WindPlantIEC" };
+                super.submit (obj);
+                temp = document.getElementById ("WindPlantReactiveControlIEC").value; if ("" != temp) obj.WindPlantReactiveControlIEC = temp;
+                temp = document.getElementById ("WindPlantFreqPcontrolIEC").value; if ("" != temp) obj.WindPlantFreqPcontrolIEC = temp;
+
+                return (obj);
             }
 
             relations ()

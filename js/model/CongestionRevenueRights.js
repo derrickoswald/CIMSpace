@@ -60,20 +60,19 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CRRSegment", "amount", base.from_string, fields);
-                base.export_element (obj, "CRRSegment", "clearingPrice", base.from_string, fields);
-                base.export_element (obj, "CRRSegment", "endDateTime", base.from_datetime, fields);
-                base.export_element (obj, "CRRSegment", "quantity", base.from_float, fields);
-                base.export_element (obj, "CRRSegment", "startDateTime", base.from_datetime, fields);
-                base.export_attribute (obj, "export_attributes", "CRRSegment", fields);
-                base.export_attribute (obj, "export_attributes", "CRRSegment", fields);
-                base.export_attribute (obj, "export_attribute", "CRRSegment", fields);
+                base.export_element (obj, "CRRSegment", "amount", "amount",  base.from_string, fields);
+                base.export_element (obj, "CRRSegment", "clearingPrice", "clearingPrice",  base.from_string, fields);
+                base.export_element (obj, "CRRSegment", "endDateTime", "endDateTime",  base.from_datetime, fields);
+                base.export_element (obj, "CRRSegment", "quantity", "quantity",  base.from_float, fields);
+                base.export_element (obj, "CRRSegment", "startDateTime", "startDateTime",  base.from_datetime, fields);
+                base.export_attributes (obj, "CRRSegment", "Source", "Source", fields);
+                base.export_attributes (obj, "CRRSegment", "Sink", "Sink", fields);
+                base.export_attribute (obj, "CRRSegment", "CRR", "CRR", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -136,6 +135,24 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CRRSegment" };
+                super.submit (obj);
+                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById ("clearingPrice").value; if ("" != temp) obj.clearingPrice = temp;
+                temp = document.getElementById ("endDateTime").value; if ("" != temp) obj.endDateTime = temp;
+                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById ("startDateTime").value; if ("" != temp) obj.startDateTime = temp;
+                temp = document.getElementById ("Source").value; if ("" != temp) obj.Source = temp.split (",");
+                temp = document.getElementById ("Sink").value; if ("" != temp) obj.Sink = temp.split (",");
+                temp = document.getElementById ("CRR").value; if ("" != temp) obj.CRR = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -201,21 +218,20 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CRR", "cRRcategory", base.from_string, fields);
-                base.export_element (obj, "CRR", "cRRtype", base.from_string, fields);
-                base.export_element (obj, "CRR", "hedgeType", base.from_string, fields);
-                base.export_element (obj, "CRR", "timeOfUse", base.from_string, fields);
-                base.export_element (obj, "CRR", "tradeSliceID", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "CRR", fields);
-                base.export_attribute (obj, "export_attribute", "CRR", fields);
-                base.export_attribute (obj, "export_attribute", "CRR", fields);
-                base.export_attribute (obj, "export_attributes", "CRR", fields);
+                base.export_element (obj, "CRR", "cRRcategory", "cRRcategory",  base.from_string, fields);
+                base.export_element (obj, "CRR", "cRRtype", "cRRtype",  base.from_string, fields);
+                base.export_element (obj, "CRR", "hedgeType", "hedgeType",  base.from_string, fields);
+                base.export_element (obj, "CRR", "timeOfUse", "timeOfUse",  base.from_string, fields);
+                base.export_element (obj, "CRR", "tradeSliceID", "tradeSliceID",  base.from_string, fields);
+                base.export_attributes (obj, "CRR", "CRROrgRole", "CRROrgRole", fields);
+                base.export_attribute (obj, "CRR", "CRRMarket", "CRRMarket", fields);
+                base.export_attribute (obj, "CRR", "Flowgate", "Flowgate", fields);
+                base.export_attributes (obj, "CRR", "CRRSegment", "CRRSegment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -280,6 +296,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CRR" };
+                super.submit (obj);
+                temp = document.getElementById ("cRRcategory").value; if ("" != temp) obj.cRRcategory = temp;
+                temp = document.getElementById ("cRRtype").value; if ("" != temp) obj.cRRtype = temp;
+                temp = document.getElementById ("hedgeType").value; if ("" != temp) obj.hedgeType = temp;
+                temp = document.getElementById ("timeOfUse").value; if ("" != temp) obj.timeOfUse = temp;
+                temp = document.getElementById ("tradeSliceID").value; if ("" != temp) obj.tradeSliceID = temp;
+                temp = document.getElementById ("CRRMarket").value; if ("" != temp) obj.CRRMarket = temp;
+                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -337,16 +370,15 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CRROrgRole", "kind", base.from_string, fields);
-                base.export_element (obj, "CRROrgRole", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "CRROrgRole", fields);
-                base.export_attribute (obj, "export_attribute", "CRROrgRole", fields);
+                base.export_element (obj, "CRROrgRole", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "CRROrgRole", "status", "status",  base.from_string, fields);
+                base.export_attribute (obj, "CRROrgRole", "CRR", "CRR", fields);
+                base.export_attribute (obj, "CRROrgRole", "MktOrganisation", "MktOrganisation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -397,6 +429,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CRROrgRole" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) obj.kind = temp;
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("CRR").value; if ("" != temp) obj.CRR = temp;
+                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
+
+                return (obj);
             }
 
             relations ()

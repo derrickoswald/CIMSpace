@@ -54,16 +54,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Season", "endDate", base.from_string, fields);
-                base.export_element (obj, "Season", "startDate", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Season", fields);
-                base.export_attribute (obj, "export_attributes", "Season", fields);
+                base.export_element (obj, "Season", "endDate", "endDate",  base.from_string, fields);
+                base.export_element (obj, "Season", "startDate", "startDate",  base.from_string, fields);
+                base.export_attributes (obj, "Season", "ScheduledLimits", "ScheduledLimits", fields);
+                base.export_attributes (obj, "Season", "SeasonDayTypeSchedules", "SeasonDayTypeSchedules", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -116,6 +115,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Season" };
+                super.submit (obj);
+                temp = document.getElementById ("endDate").value; if ("" != temp) obj.endDate = temp;
+                temp = document.getElementById ("startDate").value; if ("" != temp) obj.startDate = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -171,14 +182,13 @@ define
             {
                 var fields = Core.RegularIntervalSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "SeasonDayTypeSchedule", fields);
-                base.export_attribute (obj, "export_attribute", "SeasonDayTypeSchedule", fields);
+                base.export_attribute (obj, "SeasonDayTypeSchedule", "Season", "Season", fields);
+                base.export_attribute (obj, "SeasonDayTypeSchedule", "DayType", "DayType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -225,6 +235,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SeasonDayTypeSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("Season").value; if ("" != temp) obj.Season = temp;
+                temp = document.getElementById ("DayType").value; if ("" != temp) obj.DayType = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -279,13 +301,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "LoadGroup", fields);
+                base.export_attribute (obj, "LoadGroup", "SubLoadArea", "SubLoadArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -330,6 +351,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadGroup" };
+                super.submit (obj);
+                temp = document.getElementById ("SubLoadArea").value; if ("" != temp) obj.SubLoadArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -385,13 +417,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "EnergyArea", fields);
+                base.export_attribute (obj, "EnergyArea", "ControlArea", "ControlArea", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -436,6 +467,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EnergyArea" };
+                super.submit (obj);
+                temp = document.getElementById ("ControlArea").value; if ("" != temp) obj.ControlArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -491,13 +533,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "DayType", fields);
+                base.export_attributes (obj, "DayType", "SeasonDayTypeSchedules", "SeasonDayTypeSchedules", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -543,6 +584,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DayType" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -609,24 +658,23 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LoadResponseCharacteristic", "exponentModel", base.from_boolean, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "pConstantCurrent", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "pConstantImpedance", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "pConstantPower", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "pFrequencyExponent", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "pVoltageExponent", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "qConstantCurrent", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "qConstantImpedance", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "qConstantPower", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "qFrequencyExponent", base.from_float, fields);
-                base.export_element (obj, "LoadResponseCharacteristic", "qVoltageExponent", base.from_float, fields);
-                base.export_attribute (obj, "export_attributes", "LoadResponseCharacteristic", fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "exponentModel", "exponentModel",  base.from_boolean, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "pConstantCurrent", "pConstantCurrent",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "pConstantImpedance", "pConstantImpedance",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "pConstantPower", "pConstantPower",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "pFrequencyExponent", "pFrequencyExponent",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "pVoltageExponent", "pVoltageExponent",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "qConstantCurrent", "qConstantCurrent",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "qConstantImpedance", "qConstantImpedance",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "qConstantPower", "qConstantPower",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "qFrequencyExponent", "qFrequencyExponent",  base.from_float, fields);
+                base.export_element (obj, "LoadResponseCharacteristic", "qVoltageExponent", "qVoltageExponent",  base.from_float, fields);
+                base.export_attributes (obj, "LoadResponseCharacteristic", "EnergyConsumer", "EnergyConsumer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -696,6 +744,27 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadResponseCharacteristic" };
+                super.submit (obj);
+                temp = document.getElementById ("exponentModel").checked; if (temp) obj.exponentModel = true;
+                temp = document.getElementById ("pConstantCurrent").value; if ("" != temp) obj.pConstantCurrent = temp;
+                temp = document.getElementById ("pConstantImpedance").value; if ("" != temp) obj.pConstantImpedance = temp;
+                temp = document.getElementById ("pConstantPower").value; if ("" != temp) obj.pConstantPower = temp;
+                temp = document.getElementById ("pFrequencyExponent").value; if ("" != temp) obj.pFrequencyExponent = temp;
+                temp = document.getElementById ("pVoltageExponent").value; if ("" != temp) obj.pVoltageExponent = temp;
+                temp = document.getElementById ("qConstantCurrent").value; if ("" != temp) obj.qConstantCurrent = temp;
+                temp = document.getElementById ("qConstantImpedance").value; if ("" != temp) obj.qConstantImpedance = temp;
+                temp = document.getElementById ("qConstantPower").value; if ("" != temp) obj.qConstantPower = temp;
+                temp = document.getElementById ("qFrequencyExponent").value; if ("" != temp) obj.qFrequencyExponent = temp;
+                temp = document.getElementById ("qVoltageExponent").value; if ("" != temp) obj.qVoltageExponent = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -749,15 +818,14 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PowerCutZone", "cutLevel1", base.from_string, fields);
-                base.export_element (obj, "PowerCutZone", "cutLevel2", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "PowerCutZone", fields);
+                base.export_element (obj, "PowerCutZone", "cutLevel1", "cutLevel1",  base.from_string, fields);
+                base.export_element (obj, "PowerCutZone", "cutLevel2", "cutLevel2",  base.from_string, fields);
+                base.export_attributes (obj, "PowerCutZone", "EnergyConsumers", "EnergyConsumers", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -807,6 +875,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PowerCutZone" };
+                super.submit (obj);
+                temp = document.getElementById ("cutLevel1").value; if ("" != temp) obj.cutLevel1 = temp;
+                temp = document.getElementById ("cutLevel2").value; if ("" != temp) obj.cutLevel2 = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -860,13 +940,12 @@ define
             {
                 var fields = SeasonDayTypeSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "NonConformLoadSchedule", fields);
+                base.export_attribute (obj, "NonConformLoadSchedule", "NonConformLoadGroup", "NonConformLoadGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -911,6 +990,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "NonConformLoadSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("NonConformLoadGroup").value; if ("" != temp) obj.NonConformLoadGroup = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -966,13 +1056,12 @@ define
             {
                 var fields = SeasonDayTypeSchedule.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "ConformLoadSchedule", fields);
+                base.export_attribute (obj, "ConformLoadSchedule", "ConformLoadGroup", "ConformLoadGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1017,6 +1106,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConformLoadSchedule" };
+                super.submit (obj);
+                temp = document.getElementById ("ConformLoadGroup").value; if ("" != temp) obj.ConformLoadGroup = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1071,14 +1171,13 @@ define
             {
                 var fields = LoadGroup.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "NonConformLoadGroup", fields);
-                base.export_attribute (obj, "export_attributes", "NonConformLoadGroup", fields);
+                base.export_attributes (obj, "NonConformLoadGroup", "EnergyConsumers", "EnergyConsumers", fields);
+                base.export_attributes (obj, "NonConformLoadGroup", "NonConformLoadSchedules", "NonConformLoadSchedules", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1127,6 +1226,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "NonConformLoadGroup" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1182,14 +1289,13 @@ define
             {
                 var fields = LoadGroup.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "ConformLoadGroup", fields);
-                base.export_attribute (obj, "export_attributes", "ConformLoadGroup", fields);
+                base.export_attributes (obj, "ConformLoadGroup", "EnergyConsumers", "EnergyConsumers", fields);
+                base.export_attributes (obj, "ConformLoadGroup", "ConformLoadSchedules", "ConformLoadSchedules", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1238,6 +1344,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "ConformLoadGroup" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -1293,14 +1407,13 @@ define
             {
                 var fields = EnergyArea.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "SubLoadArea", fields);
-                base.export_attribute (obj, "export_attributes", "SubLoadArea", fields);
+                base.export_attribute (obj, "SubLoadArea", "LoadArea", "LoadArea", fields);
+                base.export_attributes (obj, "SubLoadArea", "LoadGroups", "LoadGroups", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1348,6 +1461,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SubLoadArea" };
+                super.submit (obj);
+                temp = document.getElementById ("LoadArea").value; if ("" != temp) obj.LoadArea = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1402,13 +1526,12 @@ define
             {
                 var fields = EnergyArea.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "LoadArea", fields);
+                base.export_attributes (obj, "LoadArea", "SubLoadAreas", "SubLoadAreas", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1454,6 +1577,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "LoadArea" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()

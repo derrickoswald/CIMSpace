@@ -88,13 +88,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RedLine", "status", base.from_string, fields);
+                base.export_element (obj, "RedLine", "status", "status",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -139,6 +138,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RedLine" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+
+                return (obj);
             }
         }
 
@@ -185,13 +195,12 @@ define
             {
                 var fields = Common.Location.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Zone", "kind", base.from_string, fields);
+                base.export_element (obj, "Zone", "kind", "kind",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -239,6 +248,17 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Zone" };
+                super.submit (obj);
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ZoneKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ZoneKind." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -285,14 +305,13 @@ define
             {
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LocationGrant", "propertyData", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "LocationGrant", fields);
+                base.export_element (obj, "LocationGrant", "propertyData", "propertyData",  base.from_string, fields);
+                base.export_attribute (obj, "LocationGrant", "LandProperty", "LandProperty", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -339,6 +358,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LocationGrant" };
+                super.submit (obj);
+                temp = document.getElementById ("propertyData").value; if ("" != temp) obj.propertyData = temp;
+                temp = document.getElementById ("LandProperty").value; if ("" != temp) obj.LandProperty = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -395,16 +426,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Route", "status", base.from_string, fields);
-                base.export_element (obj, "Route", "type", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "Route", fields);
-                base.export_attribute (obj, "export_attributes", "Route", fields);
+                base.export_element (obj, "Route", "status", "status",  base.from_string, fields);
+                base.export_element (obj, "Route", "type", "type",  base.from_string, fields);
+                base.export_attributes (obj, "Route", "Locations", "Locations", fields);
+                base.export_attributes (obj, "Route", "Crews", "Crews", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -458,6 +488,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Route" };
+                super.submit (obj);
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById ("Locations").value; if ("" != temp) obj.Locations = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -524,23 +567,22 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LandProperty", "demographicKind", base.from_string, fields);
-                base.export_element (obj, "LandProperty", "externalRecordReference", base.from_string, fields);
-                base.export_element (obj, "LandProperty", "kind", base.from_string, fields);
-                base.export_element (obj, "LandProperty", "status", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
-                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
-                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
-                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
-                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
-                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
-                base.export_attribute (obj, "export_attributes", "LandProperty", fields);
+                base.export_element (obj, "LandProperty", "demographicKind", "demographicKind",  base.from_string, fields);
+                base.export_element (obj, "LandProperty", "externalRecordReference", "externalRecordReference",  base.from_string, fields);
+                base.export_element (obj, "LandProperty", "kind", "kind",  base.from_string, fields);
+                base.export_element (obj, "LandProperty", "status", "status",  base.from_string, fields);
+                base.export_attributes (obj, "LandProperty", "ErpOrganisationRoles", "ErpOrganisationRoles", fields);
+                base.export_attributes (obj, "LandProperty", "LocationGrants", "LocationGrants", fields);
+                base.export_attributes (obj, "LandProperty", "RightOfWays", "RightOfWays", fields);
+                base.export_attributes (obj, "LandProperty", "Locations", "Locations", fields);
+                base.export_attributes (obj, "LandProperty", "AssetContainers", "AssetContainers", fields);
+                base.export_attributes (obj, "LandProperty", "ErpSiteLevelDatas", "ErpSiteLevelDatas", fields);
+                base.export_attributes (obj, "LandProperty", "ErpPersonRoles", "ErpPersonRoles", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -621,6 +663,23 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LandProperty" };
+                super.submit (obj);
+                temp = document.getElementById ("demographicKind").value; if ("" != temp) { temp = DemographicKind[temp]; if ("undefined" != typeof (temp)) obj.demographicKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DemographicKind." + temp; }
+                temp = document.getElementById ("externalRecordReference").value; if ("" != temp) obj.externalRecordReference = temp;
+                temp = document.getElementById ("kind").value; if ("" != temp) { temp = LandPropertyKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#LandPropertyKind." + temp; }
+                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById ("RightOfWays").value; if ("" != temp) obj.RightOfWays = temp.split (",");
+                temp = document.getElementById ("Locations").value; if ("" != temp) obj.Locations = temp.split (",");
+                temp = document.getElementById ("AssetContainers").value; if ("" != temp) obj.AssetContainers = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -681,14 +740,13 @@ define
             {
                 var fields = Common.Agreement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RightOfWay", "propertyData", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "RightOfWay", fields);
+                base.export_element (obj, "RightOfWay", "propertyData", "propertyData",  base.from_string, fields);
+                base.export_attributes (obj, "RightOfWay", "LandProperties", "LandProperties", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -737,6 +795,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RightOfWay" };
+                super.submit (obj);
+                temp = document.getElementById ("propertyData").value; if ("" != temp) obj.propertyData = temp;
+                temp = document.getElementById ("LandProperties").value; if ("" != temp) obj.LandProperties = temp.split (",");
+
+                return (obj);
             }
 
             relations ()

@@ -46,14 +46,13 @@ define
             {
                 var fields = Wires.ShuntCompensator.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SVC", "capacitiveRating", base.from_string, fields);
-                base.export_element (obj, "SVC", "inductiveRating", base.from_string, fields);
+                base.export_element (obj, "SVC", "capacitiveRating", "capacitiveRating",  base.from_string, fields);
+                base.export_element (obj, "SVC", "inductiveRating", "inductiveRating",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -100,6 +99,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SVC" };
+                super.submit (obj);
+                temp = document.getElementById ("capacitiveRating").value; if ("" != temp) obj.capacitiveRating = temp;
+                temp = document.getElementById ("inductiveRating").value; if ("" != temp) obj.inductiveRating = temp;
+
+                return (obj);
             }
         }
 
@@ -161,30 +172,29 @@ define
             {
                 var fields = Wires.RegulatingControl.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ShuntCompensatorControl", "branchDirect", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "cellSize", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "controlKind", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "highVoltageOverride", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "localControlKind", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "localOffLevel", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "localOnLevel", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "localOverride", base.from_boolean, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "lowVoltageOverride", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "maxSwitchOperationCount", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "normalOpen", base.from_boolean, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "regBranch", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "regBranchEnd", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "regBranchKind", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "sensingPhaseCode", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "switchOperationCycle", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorControl", "vRegLineLine", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "ShuntCompensatorControl", fields);
+                base.export_element (obj, "ShuntCompensatorControl", "branchDirect", "branchDirect",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "cellSize", "cellSize",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "controlKind", "controlKind",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "highVoltageOverride", "highVoltageOverride",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "localControlKind", "localControlKind",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "localOffLevel", "localOffLevel",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "localOnLevel", "localOnLevel",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "localOverride", "localOverride",  base.from_boolean, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "lowVoltageOverride", "lowVoltageOverride",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "maxSwitchOperationCount", "maxSwitchOperationCount",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "normalOpen", "normalOpen",  base.from_boolean, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "regBranch", "regBranch",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "regBranchEnd", "regBranchEnd",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "regBranchKind", "regBranchKind",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "sensingPhaseCode", "sensingPhaseCode",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "switchOperationCycle", "switchOperationCycle",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorControl", "vRegLineLine", "vRegLineLine",  base.from_boolean, fields);
+                base.export_attribute (obj, "ShuntCompensatorControl", "ShuntCompensatorInfo", "ShuntCompensatorInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -263,6 +273,34 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ShuntCompensatorControl" };
+                super.submit (obj);
+                temp = document.getElementById ("branchDirect").value; if ("" != temp) obj.branchDirect = temp;
+                temp = document.getElementById ("cellSize").value; if ("" != temp) obj.cellSize = temp;
+                temp = document.getElementById ("controlKind").value; if ("" != temp) obj.controlKind = temp;
+                temp = document.getElementById ("highVoltageOverride").value; if ("" != temp) obj.highVoltageOverride = temp;
+                temp = document.getElementById ("localControlKind").value; if ("" != temp) obj.localControlKind = temp;
+                temp = document.getElementById ("localOffLevel").value; if ("" != temp) obj.localOffLevel = temp;
+                temp = document.getElementById ("localOnLevel").value; if ("" != temp) obj.localOnLevel = temp;
+                temp = document.getElementById ("localOverride").checked; if (temp) obj.localOverride = true;
+                temp = document.getElementById ("lowVoltageOverride").value; if ("" != temp) obj.lowVoltageOverride = temp;
+                temp = document.getElementById ("maxSwitchOperationCount").value; if ("" != temp) obj.maxSwitchOperationCount = temp;
+                temp = document.getElementById ("normalOpen").checked; if (temp) obj.normalOpen = true;
+                temp = document.getElementById ("regBranch").value; if ("" != temp) obj.regBranch = temp;
+                temp = document.getElementById ("regBranchEnd").value; if ("" != temp) obj.regBranchEnd = temp;
+                temp = document.getElementById ("regBranchKind").value; if ("" != temp) obj.regBranchKind = temp;
+                temp = document.getElementById ("sensingPhaseCode").value; if ("" != temp) obj.sensingPhaseCode = temp;
+                temp = document.getElementById ("switchOperationCycle").value; if ("" != temp) obj.switchOperationCycle = temp;
+                temp = document.getElementById ("vRegLineLine").checked; if (temp) obj.vRegLineLine = true;
+                temp = document.getElementById ("ShuntCompensatorInfo").value; if ("" != temp) obj.ShuntCompensatorInfo = temp;
+
+                return (obj);
             }
 
             relations ()

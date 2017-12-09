@@ -51,13 +51,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DynamicsFunctionBlock", "enabled", base.from_boolean, fields);
+                base.export_element (obj, "DynamicsFunctionBlock", "enabled", "enabled",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -102,6 +101,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DynamicsFunctionBlock" };
+                super.submit (obj);
+                temp = document.getElementById ("enabled").checked; if (temp) obj.enabled = true;
+
+                return (obj);
             }
         }
 
@@ -151,18 +161,17 @@ define
             {
                 var fields = DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RotatingMachineDynamics", "damping", base.from_float, fields);
-                base.export_element (obj, "RotatingMachineDynamics", "inertia", base.from_string, fields);
-                base.export_element (obj, "RotatingMachineDynamics", "saturationFactor", base.from_float, fields);
-                base.export_element (obj, "RotatingMachineDynamics", "saturationFactor120", base.from_float, fields);
-                base.export_element (obj, "RotatingMachineDynamics", "statorLeakageReactance", base.from_string, fields);
-                base.export_element (obj, "RotatingMachineDynamics", "statorResistance", base.from_string, fields);
+                base.export_element (obj, "RotatingMachineDynamics", "damping", "damping",  base.from_float, fields);
+                base.export_element (obj, "RotatingMachineDynamics", "inertia", "inertia",  base.from_string, fields);
+                base.export_element (obj, "RotatingMachineDynamics", "saturationFactor", "saturationFactor",  base.from_float, fields);
+                base.export_element (obj, "RotatingMachineDynamics", "saturationFactor120", "saturationFactor120",  base.from_float, fields);
+                base.export_element (obj, "RotatingMachineDynamics", "statorLeakageReactance", "statorLeakageReactance",  base.from_string, fields);
+                base.export_element (obj, "RotatingMachineDynamics", "statorResistance", "statorResistance",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -217,6 +226,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RotatingMachineDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("damping").value; if ("" != temp) obj.damping = temp;
+                temp = document.getElementById ("inertia").value; if ("" != temp) obj.inertia = temp;
+                temp = document.getElementById ("saturationFactor").value; if ("" != temp) obj.saturationFactor = temp;
+                temp = document.getElementById ("saturationFactor120").value; if ("" != temp) obj.saturationFactor120 = temp;
+                temp = document.getElementById ("statorLeakageReactance").value; if ("" != temp) obj.statorLeakageReactance = temp;
+                temp = document.getElementById ("statorResistance").value; if ("" != temp) obj.statorResistance = temp;
+
+                return (obj);
             }
         }
 

@@ -164,20 +164,19 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WireSpacingInfo", "isCable", base.from_boolean, fields);
-                base.export_element (obj, "WireSpacingInfo", "phaseWireCount", base.from_string, fields);
-                base.export_element (obj, "WireSpacingInfo", "phaseWireSpacing", base.from_string, fields);
-                base.export_element (obj, "WireSpacingInfo", "usage", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WireSpacingInfo", fields);
-                base.export_attribute (obj, "export_attributes", "WireSpacingInfo", fields);
-                base.export_attribute (obj, "export_attributes", "WireSpacingInfo", fields);
-                base.export_attribute (obj, "export_attributes", "WireSpacingInfo", fields);
+                base.export_element (obj, "WireSpacingInfo", "isCable", "isCable",  base.from_boolean, fields);
+                base.export_element (obj, "WireSpacingInfo", "phaseWireCount", "phaseWireCount",  base.from_string, fields);
+                base.export_element (obj, "WireSpacingInfo", "phaseWireSpacing", "phaseWireSpacing",  base.from_string, fields);
+                base.export_element (obj, "WireSpacingInfo", "usage", "usage",  base.from_string, fields);
+                base.export_attribute (obj, "WireSpacingInfo", "DuctBank", "DuctBank", fields);
+                base.export_attributes (obj, "WireSpacingInfo", "WirePositions", "WirePositions", fields);
+                base.export_attributes (obj, "WireSpacingInfo", "Structures", "Structures", fields);
+                base.export_attributes (obj, "WireSpacingInfo", "PerLengthParameters", "PerLengthParameters", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -242,6 +241,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WireSpacingInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("isCable").checked; if (temp) obj.isCable = true;
+                temp = document.getElementById ("phaseWireCount").value; if ("" != temp) obj.phaseWireCount = temp;
+                temp = document.getElementById ("phaseWireSpacing").value; if ("" != temp) obj.phaseWireSpacing = temp;
+                temp = document.getElementById ("usage").value; if ("" != temp) { temp = WireUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usage = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireUsageKind." + temp; }
+                temp = document.getElementById ("DuctBank").value; if ("" != temp) obj.DuctBank = temp;
+                temp = document.getElementById ("Structures").value; if ("" != temp) obj.Structures = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -312,27 +327,26 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TapChangerInfo", "bil", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "ctRating", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "ctRatio", base.from_float, fields);
-                base.export_element (obj, "TapChangerInfo", "frequency", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "highStep", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "isTcul", base.from_boolean, fields);
-                base.export_element (obj, "TapChangerInfo", "lowStep", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "neutralStep", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "neutralU", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "ptRatio", base.from_float, fields);
-                base.export_element (obj, "TapChangerInfo", "ratedApparentPower", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "ratedCurrent", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "ratedVoltage", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "stepPhaseIncrement", base.from_string, fields);
-                base.export_element (obj, "TapChangerInfo", "stepVoltageIncrement", base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "bil", "bil",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "ctRating", "ctRating",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "ctRatio", "ctRatio",  base.from_float, fields);
+                base.export_element (obj, "TapChangerInfo", "frequency", "frequency",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "highStep", "highStep",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "isTcul", "isTcul",  base.from_boolean, fields);
+                base.export_element (obj, "TapChangerInfo", "lowStep", "lowStep",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "neutralStep", "neutralStep",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "neutralU", "neutralU",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "ptRatio", "ptRatio",  base.from_float, fields);
+                base.export_element (obj, "TapChangerInfo", "ratedApparentPower", "ratedApparentPower",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "stepPhaseIncrement", "stepPhaseIncrement",  base.from_string, fields);
+                base.export_element (obj, "TapChangerInfo", "stepVoltageIncrement", "stepVoltageIncrement",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -406,6 +420,31 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TapChangerInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("bil").value; if ("" != temp) obj.bil = temp;
+                temp = document.getElementById ("ctRating").value; if ("" != temp) obj.ctRating = temp;
+                temp = document.getElementById ("ctRatio").value; if ("" != temp) obj.ctRatio = temp;
+                temp = document.getElementById ("frequency").value; if ("" != temp) obj.frequency = temp;
+                temp = document.getElementById ("highStep").value; if ("" != temp) obj.highStep = temp;
+                temp = document.getElementById ("isTcul").checked; if (temp) obj.isTcul = true;
+                temp = document.getElementById ("lowStep").value; if ("" != temp) obj.lowStep = temp;
+                temp = document.getElementById ("neutralStep").value; if ("" != temp) obj.neutralStep = temp;
+                temp = document.getElementById ("neutralU").value; if ("" != temp) obj.neutralU = temp;
+                temp = document.getElementById ("ptRatio").value; if ("" != temp) obj.ptRatio = temp;
+                temp = document.getElementById ("ratedApparentPower").value; if ("" != temp) obj.ratedApparentPower = temp;
+                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById ("stepPhaseIncrement").value; if ("" != temp) obj.stepPhaseIncrement = temp;
+                temp = document.getElementById ("stepVoltageIncrement").value; if ("" != temp) obj.stepVoltageIncrement = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -450,14 +489,13 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "TransformerTankInfo", fields);
-                base.export_attribute (obj, "export_attributes", "TransformerTankInfo", fields);
+                base.export_attribute (obj, "TransformerTankInfo", "PowerTransformerInfo", "PowerTransformerInfo", fields);
+                base.export_attributes (obj, "TransformerTankInfo", "TransformerEndInfos", "TransformerEndInfos", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -505,6 +543,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TransformerTankInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("PowerTransformerInfo").value; if ("" != temp) obj.PowerTransformerInfo = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -560,14 +609,13 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BusbarSectionInfo", "ratedCurrent", base.from_string, fields);
-                base.export_element (obj, "BusbarSectionInfo", "ratedVoltage", base.from_string, fields);
+                base.export_element (obj, "BusbarSectionInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
+                base.export_element (obj, "BusbarSectionInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -615,6 +663,18 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "BusbarSectionInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -658,13 +718,12 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "PowerTransformerInfo", fields);
+                base.export_attributes (obj, "PowerTransformerInfo", "TransformerTankInfos", "TransformerTankInfos", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -710,6 +769,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "PowerTransformerInfo" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -778,28 +845,27 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WireInfo", "coreRadius", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "coreStrandCount", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "gmr", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "insulated", base.from_boolean, fields);
-                base.export_element (obj, "WireInfo", "insulationMaterial", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "insulationThickness", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "material", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "rAC25", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "rAC50", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "rAC75", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "radius", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "ratedCurrent", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "rDC20", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "sizeDescription", base.from_string, fields);
-                base.export_element (obj, "WireInfo", "strandCount", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "WireInfo", fields);
+                base.export_element (obj, "WireInfo", "coreRadius", "coreRadius",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "coreStrandCount", "coreStrandCount",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "gmr", "gmr",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "insulated", "insulated",  base.from_boolean, fields);
+                base.export_element (obj, "WireInfo", "insulationMaterial", "insulationMaterial",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "insulationThickness", "insulationThickness",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "material", "material",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "rAC25", "rAC25",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "rAC50", "rAC50",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "rAC75", "rAC75",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "radius", "radius",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "rDC20", "rDC20",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "sizeDescription", "sizeDescription",  base.from_string, fields);
+                base.export_element (obj, "WireInfo", "strandCount", "strandCount",  base.from_string, fields);
+                base.export_attributes (obj, "WireInfo", "PerLengthParameters", "PerLengthParameters", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -882,6 +948,32 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WireInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("coreRadius").value; if ("" != temp) obj.coreRadius = temp;
+                temp = document.getElementById ("coreStrandCount").value; if ("" != temp) obj.coreStrandCount = temp;
+                temp = document.getElementById ("gmr").value; if ("" != temp) obj.gmr = temp;
+                temp = document.getElementById ("insulated").checked; if (temp) obj.insulated = true;
+                temp = document.getElementById ("insulationMaterial").value; if ("" != temp) { temp = WireInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.insulationMaterial = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireInsulationKind." + temp; }
+                temp = document.getElementById ("insulationThickness").value; if ("" != temp) obj.insulationThickness = temp;
+                temp = document.getElementById ("material").value; if ("" != temp) { temp = WireMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.material = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireMaterialKind." + temp; }
+                temp = document.getElementById ("rAC25").value; if ("" != temp) obj.rAC25 = temp;
+                temp = document.getElementById ("rAC50").value; if ("" != temp) obj.rAC50 = temp;
+                temp = document.getElementById ("rAC75").value; if ("" != temp) obj.rAC75 = temp;
+                temp = document.getElementById ("radius").value; if ("" != temp) obj.radius = temp;
+                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById ("rDC20").value; if ("" != temp) obj.rDC20 = temp;
+                temp = document.getElementById ("sizeDescription").value; if ("" != temp) obj.sizeDescription = temp;
+                temp = document.getElementById ("strandCount").value; if ("" != temp) obj.strandCount = temp;
+                temp = document.getElementById ("PerLengthParameters").value; if ("" != temp) obj.PerLengthParameters = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -937,17 +1029,16 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ShuntCompensatorInfo", "maxPowerLoss", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorInfo", "ratedCurrent", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorInfo", "ratedVoltage", base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorInfo", "ratedReactivePower", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ShuntCompensatorInfo", fields);
+                base.export_element (obj, "ShuntCompensatorInfo", "maxPowerLoss", "maxPowerLoss",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
+                base.export_element (obj, "ShuntCompensatorInfo", "ratedReactivePower", "ratedReactivePower",  base.from_string, fields);
+                base.export_attribute (obj, "ShuntCompensatorInfo", "ShuntCompensatorControl", "ShuntCompensatorControl", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1000,6 +1091,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ShuntCompensatorInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("maxPowerLoss").value; if ("" != temp) obj.maxPowerLoss = temp;
+                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById ("ratedReactivePower").value; if ("" != temp) obj.ratedReactivePower = temp;
+                temp = document.getElementById ("ShuntCompensatorControl").value; if ("" != temp) obj.ShuntCompensatorControl = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1057,17 +1163,16 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SwitchInfo", "breakingCapacity", base.from_string, fields);
-                base.export_element (obj, "SwitchInfo", "ratedCurrent", base.from_string, fields);
-                base.export_element (obj, "SwitchInfo", "ratedVoltage", base.from_string, fields);
-                base.export_element (obj, "SwitchInfo", "isSinglePhase", base.from_boolean, fields);
-                base.export_element (obj, "SwitchInfo", "isUnganged", base.from_boolean, fields);
+                base.export_element (obj, "SwitchInfo", "breakingCapacity", "breakingCapacity",  base.from_string, fields);
+                base.export_element (obj, "SwitchInfo", "ratedCurrent", "ratedCurrent",  base.from_string, fields);
+                base.export_element (obj, "SwitchInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
+                base.export_element (obj, "SwitchInfo", "isSinglePhase", "isSinglePhase",  base.from_boolean, fields);
+                base.export_element (obj, "SwitchInfo", "isUnganged", "isUnganged",  base.from_boolean, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1121,6 +1226,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SwitchInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("breakingCapacity").value; if ("" != temp) obj.breakingCapacity = temp;
+                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById ("isSinglePhase").checked; if (temp) obj.isSinglePhase = true;
+                temp = document.getElementById ("isUnganged").checked; if (temp) obj.isUnganged = true;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1167,16 +1287,15 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WirePosition", "phase", base.from_string, fields);
-                base.export_element (obj, "WirePosition", "xCoord", base.from_string, fields);
-                base.export_element (obj, "WirePosition", "yCoord", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "WirePosition", fields);
+                base.export_element (obj, "WirePosition", "phase", "phase",  base.from_string, fields);
+                base.export_element (obj, "WirePosition", "xCoord", "xCoord",  base.from_string, fields);
+                base.export_element (obj, "WirePosition", "yCoord", "yCoord",  base.from_string, fields);
+                base.export_attribute (obj, "WirePosition", "WireSpacingInfo", "WireSpacingInfo", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1227,6 +1346,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WirePosition" };
+                super.submit (obj);
+                temp = document.getElementById ("phase").value; if ("" != temp) obj.phase = temp;
+                temp = document.getElementById ("xCoord").value; if ("" != temp) obj.xCoord = temp;
+                temp = document.getElementById ("yCoord").value; if ("" != temp) obj.yCoord = temp;
+                temp = document.getElementById ("WireSpacingInfo").value; if ("" != temp) obj.WireSpacingInfo = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -1298,31 +1431,30 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TransformerEndInfo", "connectionKind", base.from_string, fields);
-                base.export_element (obj, "TransformerEndInfo", "emergencyS", base.from_string, fields);
-                base.export_element (obj, "TransformerEndInfo", "endNumber", base.from_string, fields);
-                base.export_element (obj, "TransformerEndInfo", "insulationU", base.from_string, fields);
-                base.export_element (obj, "TransformerEndInfo", "phaseAngleClock", base.from_string, fields);
-                base.export_element (obj, "TransformerEndInfo", "r", base.from_string, fields);
-                base.export_element (obj, "TransformerEndInfo", "ratedS", base.from_string, fields);
-                base.export_element (obj, "TransformerEndInfo", "ratedU", base.from_string, fields);
-                base.export_element (obj, "TransformerEndInfo", "shortTermS", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attribute", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attribute", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attribute", "TransformerEndInfo", fields);
-                base.export_attribute (obj, "export_attributes", "TransformerEndInfo", fields);
+                base.export_element (obj, "TransformerEndInfo", "connectionKind", "connectionKind",  base.from_string, fields);
+                base.export_element (obj, "TransformerEndInfo", "emergencyS", "emergencyS",  base.from_string, fields);
+                base.export_element (obj, "TransformerEndInfo", "endNumber", "endNumber",  base.from_string, fields);
+                base.export_element (obj, "TransformerEndInfo", "insulationU", "insulationU",  base.from_string, fields);
+                base.export_element (obj, "TransformerEndInfo", "phaseAngleClock", "phaseAngleClock",  base.from_string, fields);
+                base.export_element (obj, "TransformerEndInfo", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "TransformerEndInfo", "ratedS", "ratedS",  base.from_string, fields);
+                base.export_element (obj, "TransformerEndInfo", "ratedU", "ratedU",  base.from_string, fields);
+                base.export_element (obj, "TransformerEndInfo", "shortTermS", "shortTermS",  base.from_string, fields);
+                base.export_attributes (obj, "TransformerEndInfo", "EnergisedEndNoLoadTests", "EnergisedEndNoLoadTests", fields);
+                base.export_attributes (obj, "TransformerEndInfo", "ToMeshImpedances", "ToMeshImpedances", fields);
+                base.export_attributes (obj, "TransformerEndInfo", "EnergisedEndShortCircuitTests", "EnergisedEndShortCircuitTests", fields);
+                base.export_attributes (obj, "TransformerEndInfo", "GroundedEndShortCircuitTests", "GroundedEndShortCircuitTests", fields);
+                base.export_attribute (obj, "TransformerEndInfo", "TransformerStarImpedance", "TransformerStarImpedance", fields);
+                base.export_attribute (obj, "TransformerEndInfo", "TransformerTankInfo", "TransformerTankInfo", fields);
+                base.export_attributes (obj, "TransformerEndInfo", "OpenEndOpenCircuitTests", "OpenEndOpenCircuitTests", fields);
+                base.export_attributes (obj, "TransformerEndInfo", "FromMeshImpedances", "FromMeshImpedances", fields);
+                base.export_attribute (obj, "TransformerEndInfo", "CoreAdmittance", "CoreAdmittance", fields);
+                base.export_attributes (obj, "TransformerEndInfo", "EnergisedEndOpenCircuitTests", "EnergisedEndOpenCircuitTests", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1414,6 +1546,30 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TransformerEndInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("connectionKind").value; if ("" != temp) obj.connectionKind = temp;
+                temp = document.getElementById ("emergencyS").value; if ("" != temp) obj.emergencyS = temp;
+                temp = document.getElementById ("endNumber").value; if ("" != temp) obj.endNumber = temp;
+                temp = document.getElementById ("insulationU").value; if ("" != temp) obj.insulationU = temp;
+                temp = document.getElementById ("phaseAngleClock").value; if ("" != temp) obj.phaseAngleClock = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("ratedS").value; if ("" != temp) obj.ratedS = temp;
+                temp = document.getElementById ("ratedU").value; if ("" != temp) obj.ratedU = temp;
+                temp = document.getElementById ("shortTermS").value; if ("" != temp) obj.shortTermS = temp;
+                temp = document.getElementById ("ToMeshImpedances").value; if ("" != temp) obj.ToMeshImpedances = temp.split (",");
+                temp = document.getElementById ("GroundedEndShortCircuitTests").value; if ("" != temp) obj.GroundedEndShortCircuitTests = temp.split (",");
+                temp = document.getElementById ("TransformerStarImpedance").value; if ("" != temp) obj.TransformerStarImpedance = temp;
+                temp = document.getElementById ("TransformerTankInfo").value; if ("" != temp) obj.TransformerTankInfo = temp;
+                temp = document.getElementById ("CoreAdmittance").value; if ("" != temp) obj.CoreAdmittance = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -1475,14 +1631,13 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TransformerTest", "basePower", base.from_string, fields);
-                base.export_element (obj, "TransformerTest", "temperature", base.from_string, fields);
+                base.export_element (obj, "TransformerTest", "basePower", "basePower",  base.from_string, fields);
+                base.export_element (obj, "TransformerTest", "temperature", "temperature",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1529,6 +1684,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TransformerTest" };
+                super.submit (obj);
+                temp = document.getElementById ("basePower").value; if ("" != temp) obj.basePower = temp;
+                temp = document.getElementById ("temperature").value; if ("" != temp) obj.temperature = temp;
+
+                return (obj);
             }
         }
 
@@ -1582,22 +1749,21 @@ define
             {
                 var fields = WireInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CableInfo", "constructionKind", base.from_string, fields);
-                base.export_element (obj, "CableInfo", "diameterOverCore", base.from_string, fields);
-                base.export_element (obj, "CableInfo", "diameterOverInsulation", base.from_string, fields);
-                base.export_element (obj, "CableInfo", "diameterOverJacket", base.from_string, fields);
-                base.export_element (obj, "CableInfo", "diameterOverScreen", base.from_string, fields);
-                base.export_element (obj, "CableInfo", "isStrandFill", base.from_boolean, fields);
-                base.export_element (obj, "CableInfo", "nominalTemperature", base.from_string, fields);
-                base.export_element (obj, "CableInfo", "outerJacketKind", base.from_string, fields);
-                base.export_element (obj, "CableInfo", "sheathAsNeutral", base.from_boolean, fields);
-                base.export_element (obj, "CableInfo", "shieldMaterial", base.from_string, fields);
+                base.export_element (obj, "CableInfo", "constructionKind", "constructionKind",  base.from_string, fields);
+                base.export_element (obj, "CableInfo", "diameterOverCore", "diameterOverCore",  base.from_string, fields);
+                base.export_element (obj, "CableInfo", "diameterOverInsulation", "diameterOverInsulation",  base.from_string, fields);
+                base.export_element (obj, "CableInfo", "diameterOverJacket", "diameterOverJacket",  base.from_string, fields);
+                base.export_element (obj, "CableInfo", "diameterOverScreen", "diameterOverScreen",  base.from_string, fields);
+                base.export_element (obj, "CableInfo", "isStrandFill", "isStrandFill",  base.from_boolean, fields);
+                base.export_element (obj, "CableInfo", "nominalTemperature", "nominalTemperature",  base.from_string, fields);
+                base.export_element (obj, "CableInfo", "outerJacketKind", "outerJacketKind",  base.from_string, fields);
+                base.export_element (obj, "CableInfo", "sheathAsNeutral", "sheathAsNeutral",  base.from_boolean, fields);
+                base.export_element (obj, "CableInfo", "shieldMaterial", "shieldMaterial",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1667,6 +1833,26 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CableInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("constructionKind").value; if ("" != temp) { temp = CableConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableConstructionKind." + temp; }
+                temp = document.getElementById ("diameterOverCore").value; if ("" != temp) obj.diameterOverCore = temp;
+                temp = document.getElementById ("diameterOverInsulation").value; if ("" != temp) obj.diameterOverInsulation = temp;
+                temp = document.getElementById ("diameterOverJacket").value; if ("" != temp) obj.diameterOverJacket = temp;
+                temp = document.getElementById ("diameterOverScreen").value; if ("" != temp) obj.diameterOverScreen = temp;
+                temp = document.getElementById ("isStrandFill").checked; if (temp) obj.isStrandFill = true;
+                temp = document.getElementById ("nominalTemperature").value; if ("" != temp) obj.nominalTemperature = temp;
+                temp = document.getElementById ("outerJacketKind").value; if ("" != temp) { temp = CableOuterJacketKind[temp]; if ("undefined" != typeof (temp)) obj.outerJacketKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableOuterJacketKind." + temp; }
+                temp = document.getElementById ("sheathAsNeutral").checked; if (temp) obj.sheathAsNeutral = true;
+                temp = document.getElementById ("shieldMaterial").value; if ("" != temp) { temp = CableShieldMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.shieldMaterial = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableShieldMaterialKind." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -1714,17 +1900,16 @@ define
             {
                 var fields = CableInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ConcentricNeutralCableInfo", "diameterOverNeutral", base.from_string, fields);
-                base.export_element (obj, "ConcentricNeutralCableInfo", "neutralStrandCount", base.from_string, fields);
-                base.export_element (obj, "ConcentricNeutralCableInfo", "neutralStrandGmr", base.from_string, fields);
-                base.export_element (obj, "ConcentricNeutralCableInfo", "neutralStrandRadius", base.from_string, fields);
-                base.export_element (obj, "ConcentricNeutralCableInfo", "neutralStrandRDC20", base.from_string, fields);
+                base.export_element (obj, "ConcentricNeutralCableInfo", "diameterOverNeutral", "diameterOverNeutral",  base.from_string, fields);
+                base.export_element (obj, "ConcentricNeutralCableInfo", "neutralStrandCount", "neutralStrandCount",  base.from_string, fields);
+                base.export_element (obj, "ConcentricNeutralCableInfo", "neutralStrandGmr", "neutralStrandGmr",  base.from_string, fields);
+                base.export_element (obj, "ConcentricNeutralCableInfo", "neutralStrandRadius", "neutralStrandRadius",  base.from_string, fields);
+                base.export_element (obj, "ConcentricNeutralCableInfo", "neutralStrandRDC20", "neutralStrandRDC20",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1778,6 +1963,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConcentricNeutralCableInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("diameterOverNeutral").value; if ("" != temp) obj.diameterOverNeutral = temp;
+                temp = document.getElementById ("neutralStrandCount").value; if ("" != temp) obj.neutralStrandCount = temp;
+                temp = document.getElementById ("neutralStrandGmr").value; if ("" != temp) obj.neutralStrandGmr = temp;
+                temp = document.getElementById ("neutralStrandRadius").value; if ("" != temp) obj.neutralStrandRadius = temp;
+                temp = document.getElementById ("neutralStrandRDC20").value; if ("" != temp) obj.neutralStrandRDC20 = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1826,7 +2026,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -1868,6 +2067,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "OverheadWireInfo" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1913,14 +2120,13 @@ define
             {
                 var fields = CableInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TapeShieldCableInfo", "tapeLap", base.from_string, fields);
-                base.export_element (obj, "TapeShieldCableInfo", "tapeThickness", base.from_string, fields);
+                base.export_element (obj, "TapeShieldCableInfo", "tapeLap", "tapeLap",  base.from_string, fields);
+                base.export_element (obj, "TapeShieldCableInfo", "tapeThickness", "tapeThickness",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1967,6 +2173,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TapeShieldCableInfo" };
+                super.submit (obj);
+                temp = document.getElementById ("tapeLap").value; if ("" != temp) obj.tapeLap = temp;
+                temp = document.getElementById ("tapeThickness").value; if ("" != temp) obj.tapeThickness = temp;
+
+                return (obj);
             }
         }
 
@@ -2020,20 +2238,19 @@ define
             {
                 var fields = TransformerTest.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ShortCircuitTest", "energisedEndStep", base.from_string, fields);
-                base.export_element (obj, "ShortCircuitTest", "groundedEndStep", base.from_string, fields);
-                base.export_element (obj, "ShortCircuitTest", "leakageImpedance", base.from_string, fields);
-                base.export_element (obj, "ShortCircuitTest", "leakageImpedanceZero", base.from_string, fields);
-                base.export_element (obj, "ShortCircuitTest", "loss", base.from_string, fields);
-                base.export_element (obj, "ShortCircuitTest", "lossZero", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "ShortCircuitTest", fields);
-                base.export_attribute (obj, "export_attributes", "ShortCircuitTest", fields);
+                base.export_element (obj, "ShortCircuitTest", "energisedEndStep", "energisedEndStep",  base.from_string, fields);
+                base.export_element (obj, "ShortCircuitTest", "groundedEndStep", "groundedEndStep",  base.from_string, fields);
+                base.export_element (obj, "ShortCircuitTest", "leakageImpedance", "leakageImpedance",  base.from_string, fields);
+                base.export_element (obj, "ShortCircuitTest", "leakageImpedanceZero", "leakageImpedanceZero",  base.from_string, fields);
+                base.export_element (obj, "ShortCircuitTest", "loss", "loss",  base.from_string, fields);
+                base.export_element (obj, "ShortCircuitTest", "lossZero", "lossZero",  base.from_string, fields);
+                base.export_attribute (obj, "ShortCircuitTest", "EnergisedEnd", "EnergisedEnd", fields);
+                base.export_attributes (obj, "ShortCircuitTest", "GroundedEnds", "GroundedEnds", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2096,6 +2313,24 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ShortCircuitTest" };
+                super.submit (obj);
+                temp = document.getElementById ("energisedEndStep").value; if ("" != temp) obj.energisedEndStep = temp;
+                temp = document.getElementById ("groundedEndStep").value; if ("" != temp) obj.groundedEndStep = temp;
+                temp = document.getElementById ("leakageImpedance").value; if ("" != temp) obj.leakageImpedance = temp;
+                temp = document.getElementById ("leakageImpedanceZero").value; if ("" != temp) obj.leakageImpedanceZero = temp;
+                temp = document.getElementById ("loss").value; if ("" != temp) obj.loss = temp;
+                temp = document.getElementById ("lossZero").value; if ("" != temp) obj.lossZero = temp;
+                temp = document.getElementById ("EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
+                temp = document.getElementById ("GroundedEnds").value; if ("" != temp) obj.GroundedEnds = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -2155,18 +2390,17 @@ define
             {
                 var fields = TransformerTest.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "NoLoadTest", "energisedEndVoltage", base.from_string, fields);
-                base.export_element (obj, "NoLoadTest", "excitingCurrent", base.from_string, fields);
-                base.export_element (obj, "NoLoadTest", "excitingCurrentZero", base.from_string, fields);
-                base.export_element (obj, "NoLoadTest", "loss", base.from_string, fields);
-                base.export_element (obj, "NoLoadTest", "lossZero", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "NoLoadTest", fields);
+                base.export_element (obj, "NoLoadTest", "energisedEndVoltage", "energisedEndVoltage",  base.from_string, fields);
+                base.export_element (obj, "NoLoadTest", "excitingCurrent", "excitingCurrent",  base.from_string, fields);
+                base.export_element (obj, "NoLoadTest", "excitingCurrentZero", "excitingCurrentZero",  base.from_string, fields);
+                base.export_element (obj, "NoLoadTest", "loss", "loss",  base.from_string, fields);
+                base.export_element (obj, "NoLoadTest", "lossZero", "lossZero",  base.from_string, fields);
+                base.export_attribute (obj, "NoLoadTest", "EnergisedEnd", "EnergisedEnd", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2221,6 +2455,22 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "NoLoadTest" };
+                super.submit (obj);
+                temp = document.getElementById ("energisedEndVoltage").value; if ("" != temp) obj.energisedEndVoltage = temp;
+                temp = document.getElementById ("excitingCurrent").value; if ("" != temp) obj.excitingCurrent = temp;
+                temp = document.getElementById ("excitingCurrentZero").value; if ("" != temp) obj.excitingCurrentZero = temp;
+                temp = document.getElementById ("loss").value; if ("" != temp) obj.loss = temp;
+                temp = document.getElementById ("lossZero").value; if ("" != temp) obj.lossZero = temp;
+                temp = document.getElementById ("EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -2282,19 +2532,18 @@ define
             {
                 var fields = TransformerTest.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OpenCircuitTest", "energisedEndStep", base.from_string, fields);
-                base.export_element (obj, "OpenCircuitTest", "energisedEndVoltage", base.from_string, fields);
-                base.export_element (obj, "OpenCircuitTest", "openEndStep", base.from_string, fields);
-                base.export_element (obj, "OpenCircuitTest", "openEndVoltage", base.from_string, fields);
-                base.export_element (obj, "OpenCircuitTest", "phaseShift", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "OpenCircuitTest", fields);
-                base.export_attribute (obj, "export_attribute", "OpenCircuitTest", fields);
+                base.export_element (obj, "OpenCircuitTest", "energisedEndStep", "energisedEndStep",  base.from_string, fields);
+                base.export_element (obj, "OpenCircuitTest", "energisedEndVoltage", "energisedEndVoltage",  base.from_string, fields);
+                base.export_element (obj, "OpenCircuitTest", "openEndStep", "openEndStep",  base.from_string, fields);
+                base.export_element (obj, "OpenCircuitTest", "openEndVoltage", "openEndVoltage",  base.from_string, fields);
+                base.export_element (obj, "OpenCircuitTest", "phaseShift", "phaseShift",  base.from_string, fields);
+                base.export_attribute (obj, "OpenCircuitTest", "OpenEnd", "OpenEnd", fields);
+                base.export_attribute (obj, "OpenCircuitTest", "EnergisedEnd", "EnergisedEnd", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2351,6 +2600,23 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "OpenCircuitTest" };
+                super.submit (obj);
+                temp = document.getElementById ("energisedEndStep").value; if ("" != temp) obj.energisedEndStep = temp;
+                temp = document.getElementById ("energisedEndVoltage").value; if ("" != temp) obj.energisedEndVoltage = temp;
+                temp = document.getElementById ("openEndStep").value; if ("" != temp) obj.openEndStep = temp;
+                temp = document.getElementById ("openEndVoltage").value; if ("" != temp) obj.openEndVoltage = temp;
+                temp = document.getElementById ("phaseShift").value; if ("" != temp) obj.phaseShift = temp;
+                temp = document.getElementById ("OpenEnd").value; if ("" != temp) obj.OpenEnd = temp;
+                temp = document.getElementById ("EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
+
+                return (obj);
             }
 
             relations ()

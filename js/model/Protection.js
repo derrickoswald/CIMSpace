@@ -53,15 +53,14 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RecloseSequence", "recloseDelay", base.from_string, fields);
-                base.export_element (obj, "RecloseSequence", "recloseStep", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "RecloseSequence", fields);
+                base.export_element (obj, "RecloseSequence", "recloseDelay", "recloseDelay",  base.from_string, fields);
+                base.export_element (obj, "RecloseSequence", "recloseStep", "recloseStep",  base.from_string, fields);
+                base.export_attribute (obj, "RecloseSequence", "ProtectedSwitch", "ProtectedSwitch", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -110,6 +109,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RecloseSequence" };
+                super.submit (obj);
+                temp = document.getElementById ("recloseDelay").value; if ("" != temp) obj.recloseDelay = temp;
+                temp = document.getElementById ("recloseStep").value; if ("" != temp) obj.recloseStep = temp;
+                temp = document.getElementById ("ProtectedSwitch").value; if ("" != temp) obj.ProtectedSwitch = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -173,21 +185,20 @@ define
             {
                 var fields = Core.Equipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ProtectionEquipment", "highLimit", base.from_float, fields);
-                base.export_element (obj, "ProtectionEquipment", "lowLimit", base.from_float, fields);
-                base.export_element (obj, "ProtectionEquipment", "powerDirectionFlag", base.from_boolean, fields);
-                base.export_element (obj, "ProtectionEquipment", "relayDelayTime", base.from_string, fields);
-                base.export_element (obj, "ProtectionEquipment", "unitMultiplier", base.from_string, fields);
-                base.export_element (obj, "ProtectionEquipment", "unitSymbol", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "ProtectionEquipment", fields);
-                base.export_attribute (obj, "export_attributes", "ProtectionEquipment", fields);
-                base.export_attribute (obj, "export_attributes", "ProtectionEquipment", fields);
+                base.export_element (obj, "ProtectionEquipment", "highLimit", "highLimit",  base.from_float, fields);
+                base.export_element (obj, "ProtectionEquipment", "lowLimit", "lowLimit",  base.from_float, fields);
+                base.export_element (obj, "ProtectionEquipment", "powerDirectionFlag", "powerDirectionFlag",  base.from_boolean, fields);
+                base.export_element (obj, "ProtectionEquipment", "relayDelayTime", "relayDelayTime",  base.from_string, fields);
+                base.export_element (obj, "ProtectionEquipment", "unitMultiplier", "unitMultiplier",  base.from_string, fields);
+                base.export_element (obj, "ProtectionEquipment", "unitSymbol", "unitSymbol",  base.from_string, fields);
+                base.export_attributes (obj, "ProtectionEquipment", "ProtectiveAction", "ProtectiveAction", fields);
+                base.export_attributes (obj, "ProtectionEquipment", "ConductingEquipments", "ConductingEquipments", fields);
+                base.export_attributes (obj, "ProtectionEquipment", "ProtectedSwitches", "ProtectedSwitches", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -255,6 +266,24 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ProtectionEquipment" };
+                super.submit (obj);
+                temp = document.getElementById ("highLimit").value; if ("" != temp) obj.highLimit = temp;
+                temp = document.getElementById ("lowLimit").value; if ("" != temp) obj.lowLimit = temp;
+                temp = document.getElementById ("powerDirectionFlag").checked; if (temp) obj.powerDirectionFlag = true;
+                temp = document.getElementById ("relayDelayTime").value; if ("" != temp) obj.relayDelayTime = temp;
+                temp = document.getElementById ("unitMultiplier").value; if ("" != temp) obj.unitMultiplier = temp;
+                temp = document.getElementById ("unitSymbol").value; if ("" != temp) obj.unitSymbol = temp;
+                temp = document.getElementById ("ConductingEquipments").value; if ("" != temp) obj.ConductingEquipments = temp.split (",");
+                temp = document.getElementById ("ProtectedSwitches").value; if ("" != temp) obj.ProtectedSwitches = temp.split (",");
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -314,19 +343,18 @@ define
             {
                 var fields = ProtectionEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CurrentRelay", "currentLimit1", base.from_string, fields);
-                base.export_element (obj, "CurrentRelay", "currentLimit2", base.from_string, fields);
-                base.export_element (obj, "CurrentRelay", "currentLimit3", base.from_string, fields);
-                base.export_element (obj, "CurrentRelay", "inverseTimeFlag", base.from_boolean, fields);
-                base.export_element (obj, "CurrentRelay", "timeDelay1", base.from_string, fields);
-                base.export_element (obj, "CurrentRelay", "timeDelay2", base.from_string, fields);
-                base.export_element (obj, "CurrentRelay", "timeDelay3", base.from_string, fields);
+                base.export_element (obj, "CurrentRelay", "currentLimit1", "currentLimit1",  base.from_string, fields);
+                base.export_element (obj, "CurrentRelay", "currentLimit2", "currentLimit2",  base.from_string, fields);
+                base.export_element (obj, "CurrentRelay", "currentLimit3", "currentLimit3",  base.from_string, fields);
+                base.export_element (obj, "CurrentRelay", "inverseTimeFlag", "inverseTimeFlag",  base.from_boolean, fields);
+                base.export_element (obj, "CurrentRelay", "timeDelay1", "timeDelay1",  base.from_string, fields);
+                base.export_element (obj, "CurrentRelay", "timeDelay2", "timeDelay2",  base.from_string, fields);
+                base.export_element (obj, "CurrentRelay", "timeDelay3", "timeDelay3",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -384,6 +412,23 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CurrentRelay" };
+                super.submit (obj);
+                temp = document.getElementById ("currentLimit1").value; if ("" != temp) obj.currentLimit1 = temp;
+                temp = document.getElementById ("currentLimit2").value; if ("" != temp) obj.currentLimit2 = temp;
+                temp = document.getElementById ("currentLimit3").value; if ("" != temp) obj.currentLimit3 = temp;
+                temp = document.getElementById ("inverseTimeFlag").checked; if (temp) obj.inverseTimeFlag = true;
+                temp = document.getElementById ("timeDelay1").value; if ("" != temp) obj.timeDelay1 = temp;
+                temp = document.getElementById ("timeDelay2").value; if ("" != temp) obj.timeDelay2 = temp;
+                temp = document.getElementById ("timeDelay3").value; if ("" != temp) obj.timeDelay3 = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -431,15 +476,14 @@ define
             {
                 var fields = ProtectionEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SynchrocheckRelay", "maxAngleDiff", base.from_string, fields);
-                base.export_element (obj, "SynchrocheckRelay", "maxFreqDiff", base.from_string, fields);
-                base.export_element (obj, "SynchrocheckRelay", "maxVoltDiff", base.from_string, fields);
+                base.export_element (obj, "SynchrocheckRelay", "maxAngleDiff", "maxAngleDiff",  base.from_string, fields);
+                base.export_element (obj, "SynchrocheckRelay", "maxFreqDiff", "maxFreqDiff",  base.from_string, fields);
+                base.export_element (obj, "SynchrocheckRelay", "maxVoltDiff", "maxVoltDiff",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -488,6 +532,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SynchrocheckRelay" };
+                super.submit (obj);
+                temp = document.getElementById ("maxAngleDiff").value; if ("" != temp) obj.maxAngleDiff = temp;
+                temp = document.getElementById ("maxFreqDiff").value; if ("" != temp) obj.maxFreqDiff = temp;
+                temp = document.getElementById ("maxVoltDiff").value; if ("" != temp) obj.maxVoltDiff = temp;
+
+                return (obj);
             }
         }
 

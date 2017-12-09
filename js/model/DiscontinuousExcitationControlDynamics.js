@@ -52,14 +52,13 @@ define
             {
                 var fields = StandardModels.DynamicsFunctionBlock.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "DiscontinuousExcitationControlDynamics", fields);
-                base.export_attribute (obj, "export_attribute", "DiscontinuousExcitationControlDynamics", fields);
+                base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "ExcitationSystemDynamics", "ExcitationSystemDynamics", fields);
+                base.export_attribute (obj, "DiscontinuousExcitationControlDynamics", "RemoteInputSignal", "RemoteInputSignal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -106,6 +105,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiscontinuousExcitationControlDynamics" };
+                super.submit (obj);
+                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -166,17 +177,16 @@ define
             {
                 var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "td1", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "td2", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmax", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmin", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC2A", "vk", base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "td1", "td1",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "td2", "td2",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmax", "vdmax",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "vdmin", "vdmin",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC2A", "vk", "vk",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -229,6 +239,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiscExcContIEEEDEC2A" };
+                super.submit (obj);
+                temp = document.getElementById ("td1").value; if ("" != temp) obj.td1 = temp;
+                temp = document.getElementById ("td2").value; if ("" != temp) obj.td2 = temp;
+                temp = document.getElementById ("vdmax").value; if ("" != temp) obj.vdmax = temp;
+                temp = document.getElementById ("vdmin").value; if ("" != temp) obj.vdmin = temp;
+                temp = document.getElementById ("vk").value; if ("" != temp) obj.vk = temp;
+
+                return (obj);
             }
         }
 
@@ -292,30 +317,29 @@ define
             {
                 var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "esc", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "kan", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "ketl", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "tan", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "td", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "tl1", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "tl2", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "tw5", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "val", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vanmax", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vomax", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vomin", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vsmax", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vsmin", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vtc", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vtlmt", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vtm", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC1A", "vtn", base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "esc", "esc",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "kan", "kan",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "ketl", "ketl",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "tan", "tan",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "td", "td",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "tl1", "tl1",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "tl2", "tl2",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "tw5", "tw5",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "val", "val",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vanmax", "vanmax",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vomax", "vomax",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vomin", "vomin",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vsmax", "vsmax",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vsmin", "vsmin",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vtc", "vtc",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vtlmt", "vtlmt",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vtm", "vtm",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC1A", "vtn", "vtn",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -395,6 +419,34 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiscExcContIEEEDEC1A" };
+                super.submit (obj);
+                temp = document.getElementById ("esc").value; if ("" != temp) obj.esc = temp;
+                temp = document.getElementById ("kan").value; if ("" != temp) obj.kan = temp;
+                temp = document.getElementById ("ketl").value; if ("" != temp) obj.ketl = temp;
+                temp = document.getElementById ("tan").value; if ("" != temp) obj.tan = temp;
+                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById ("tl1").value; if ("" != temp) obj.tl1 = temp;
+                temp = document.getElementById ("tl2").value; if ("" != temp) obj.tl2 = temp;
+                temp = document.getElementById ("tw5").value; if ("" != temp) obj.tw5 = temp;
+                temp = document.getElementById ("val").value; if ("" != temp) obj.val = temp;
+                temp = document.getElementById ("vanmax").value; if ("" != temp) obj.vanmax = temp;
+                temp = document.getElementById ("vomax").value; if ("" != temp) obj.vomax = temp;
+                temp = document.getElementById ("vomin").value; if ("" != temp) obj.vomin = temp;
+                temp = document.getElementById ("vsmax").value; if ("" != temp) obj.vsmax = temp;
+                temp = document.getElementById ("vsmin").value; if ("" != temp) obj.vsmin = temp;
+                temp = document.getElementById ("vtc").value; if ("" != temp) obj.vtc = temp;
+                temp = document.getElementById ("vtlmt").value; if ("" != temp) obj.vtlmt = temp;
+                temp = document.getElementById ("vtm").value; if ("" != temp) obj.vtm = temp;
+                temp = document.getElementById ("vtn").value; if ("" != temp) obj.vtn = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -441,14 +493,13 @@ define
             {
                 var fields = DiscontinuousExcitationControlDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DiscExcContIEEEDEC3A", "tdr", base.from_string, fields);
-                base.export_element (obj, "DiscExcContIEEEDEC3A", "vtmin", base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC3A", "tdr", "tdr",  base.from_string, fields);
+                base.export_element (obj, "DiscExcContIEEEDEC3A", "vtmin", "vtmin",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -495,6 +546,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DiscExcContIEEEDEC3A" };
+                super.submit (obj);
+                temp = document.getElementById ("tdr").value; if ("" != temp) obj.tdr = temp;
+                temp = document.getElementById ("vtmin").value; if ("" != temp) obj.vtmin = temp;
+
+                return (obj);
             }
         }
 

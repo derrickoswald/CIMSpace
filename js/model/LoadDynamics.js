@@ -90,26 +90,25 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LoadMotor", "d", base.from_float, fields);
-                base.export_element (obj, "LoadMotor", "h", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "lfac", base.from_float, fields);
-                base.export_element (obj, "LoadMotor", "lp", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "lpp", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "ls", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "pfrac", base.from_float, fields);
-                base.export_element (obj, "LoadMotor", "ra", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "tbkr", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "tpo", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "tppo", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "tv", base.from_string, fields);
-                base.export_element (obj, "LoadMotor", "vt", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "LoadMotor", fields);
+                base.export_element (obj, "LoadMotor", "d", "d",  base.from_float, fields);
+                base.export_element (obj, "LoadMotor", "h", "h",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "lfac", "lfac",  base.from_float, fields);
+                base.export_element (obj, "LoadMotor", "lp", "lp",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "lpp", "lpp",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "ls", "ls",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "pfrac", "pfrac",  base.from_float, fields);
+                base.export_element (obj, "LoadMotor", "ra", "ra",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "tbkr", "tbkr",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "tpo", "tpo",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "tppo", "tppo",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "tv", "tv",  base.from_string, fields);
+                base.export_element (obj, "LoadMotor", "vt", "vt",  base.from_string, fields);
+                base.export_attribute (obj, "LoadMotor", "LoadAggregate", "LoadAggregate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -182,6 +181,30 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadMotor" };
+                super.submit (obj);
+                temp = document.getElementById ("d").value; if ("" != temp) obj.d = temp;
+                temp = document.getElementById ("h").value; if ("" != temp) obj.h = temp;
+                temp = document.getElementById ("lfac").value; if ("" != temp) obj.lfac = temp;
+                temp = document.getElementById ("lp").value; if ("" != temp) obj.lp = temp;
+                temp = document.getElementById ("lpp").value; if ("" != temp) obj.lpp = temp;
+                temp = document.getElementById ("ls").value; if ("" != temp) obj.ls = temp;
+                temp = document.getElementById ("pfrac").value; if ("" != temp) obj.pfrac = temp;
+                temp = document.getElementById ("ra").value; if ("" != temp) obj.ra = temp;
+                temp = document.getElementById ("tbkr").value; if ("" != temp) obj.tbkr = temp;
+                temp = document.getElementById ("tpo").value; if ("" != temp) obj.tpo = temp;
+                temp = document.getElementById ("tppo").value; if ("" != temp) obj.tppo = temp;
+                temp = document.getElementById ("tv").value; if ("" != temp) obj.tv = temp;
+                temp = document.getElementById ("vt").value; if ("" != temp) obj.vt = temp;
+                temp = document.getElementById ("LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -237,13 +260,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "LoadDynamics", fields);
+                base.export_attributes (obj, "LoadDynamics", "EnergyConsumer", "EnergyConsumer", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -289,6 +311,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "LoadDynamics" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -359,30 +389,29 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LoadStatic", "ep1", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "ep2", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "ep3", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "eq1", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "eq2", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "eq3", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kp1", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kp2", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kp3", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kp4", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kpf", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kq1", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kq2", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kq3", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kq4", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "kqf", base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "staticLoadModelType", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "LoadStatic", fields);
+                base.export_element (obj, "LoadStatic", "ep1", "ep1",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "ep2", "ep2",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "ep3", "ep3",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "eq1", "eq1",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "eq2", "eq2",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "eq3", "eq3",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kp1", "kp1",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kp2", "kp2",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kp3", "kp3",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kp4", "kp4",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kpf", "kpf",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kq1", "kq1",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kq2", "kq2",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kq3", "kq3",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kq4", "kq4",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "kqf", "kqf",  base.from_float, fields);
+                base.export_element (obj, "LoadStatic", "staticLoadModelType", "staticLoadModelType",  base.from_string, fields);
+                base.export_attribute (obj, "LoadStatic", "LoadAggregate", "LoadAggregate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -465,6 +494,34 @@ define
                 );
             }
 
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadStatic" };
+                super.submit (obj);
+                temp = document.getElementById ("ep1").value; if ("" != temp) obj.ep1 = temp;
+                temp = document.getElementById ("ep2").value; if ("" != temp) obj.ep2 = temp;
+                temp = document.getElementById ("ep3").value; if ("" != temp) obj.ep3 = temp;
+                temp = document.getElementById ("eq1").value; if ("" != temp) obj.eq1 = temp;
+                temp = document.getElementById ("eq2").value; if ("" != temp) obj.eq2 = temp;
+                temp = document.getElementById ("eq3").value; if ("" != temp) obj.eq3 = temp;
+                temp = document.getElementById ("kp1").value; if ("" != temp) obj.kp1 = temp;
+                temp = document.getElementById ("kp2").value; if ("" != temp) obj.kp2 = temp;
+                temp = document.getElementById ("kp3").value; if ("" != temp) obj.kp3 = temp;
+                temp = document.getElementById ("kp4").value; if ("" != temp) obj.kp4 = temp;
+                temp = document.getElementById ("kpf").value; if ("" != temp) obj.kpf = temp;
+                temp = document.getElementById ("kq1").value; if ("" != temp) obj.kq1 = temp;
+                temp = document.getElementById ("kq2").value; if ("" != temp) obj.kq2 = temp;
+                temp = document.getElementById ("kq3").value; if ("" != temp) obj.kq3 = temp;
+                temp = document.getElementById ("kq4").value; if ("" != temp) obj.kq4 = temp;
+                temp = document.getElementById ("kqf").value; if ("" != temp) obj.kqf = temp;
+                temp = document.getElementById ("staticLoadModelType").value; if ("" != temp) { temp = StaticLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.staticLoadModelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; }
+                temp = document.getElementById ("LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
+
+                return (obj);
+            }
+
             relations ()
             {
                 return (
@@ -528,23 +585,22 @@ define
             {
                 var fields = LoadDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LoadComposite", "epfd", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "epfs", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "epvd", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "epvs", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "eqfd", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "eqfs", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "eqvd", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "eqvs", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "h", base.from_string, fields);
-                base.export_element (obj, "LoadComposite", "lfrac", base.from_float, fields);
-                base.export_element (obj, "LoadComposite", "pfrac", base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "epfd", "epfd",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "epfs", "epfs",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "epvd", "epvd",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "epvs", "epvs",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "eqfd", "eqfd",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "eqfs", "eqfs",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "eqvd", "eqvd",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "eqvs", "eqvs",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "h", "h",  base.from_string, fields);
+                base.export_element (obj, "LoadComposite", "lfrac", "lfrac",  base.from_float, fields);
+                base.export_element (obj, "LoadComposite", "pfrac", "pfrac",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -610,6 +666,27 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadComposite" };
+                super.submit (obj);
+                temp = document.getElementById ("epfd").value; if ("" != temp) obj.epfd = temp;
+                temp = document.getElementById ("epfs").value; if ("" != temp) obj.epfs = temp;
+                temp = document.getElementById ("epvd").value; if ("" != temp) obj.epvd = temp;
+                temp = document.getElementById ("epvs").value; if ("" != temp) obj.epvs = temp;
+                temp = document.getElementById ("eqfd").value; if ("" != temp) obj.eqfd = temp;
+                temp = document.getElementById ("eqfs").value; if ("" != temp) obj.eqfs = temp;
+                temp = document.getElementById ("eqvd").value; if ("" != temp) obj.eqvd = temp;
+                temp = document.getElementById ("eqvs").value; if ("" != temp) obj.eqvs = temp;
+                temp = document.getElementById ("h").value; if ("" != temp) obj.h = temp;
+                temp = document.getElementById ("lfrac").value; if ("" != temp) obj.lfrac = temp;
+                temp = document.getElementById ("pfrac").value; if ("" != temp) obj.pfrac = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -661,21 +738,20 @@ define
             {
                 var fields = LoadDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LoadGenericNonLinear", "bs", base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "bt", base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "genericNonLinearLoadModelType", base.from_string, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "ls", base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "lt", base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "pt", base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "qt", base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "tp", base.from_string, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "tq", base.from_string, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "bs", "bs",  base.from_float, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "bt", "bt",  base.from_float, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "genericNonLinearLoadModelType", "genericNonLinearLoadModelType",  base.from_string, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "ls", "ls",  base.from_float, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "lt", "lt",  base.from_float, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "pt", "pt",  base.from_float, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "qt", "qt",  base.from_float, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "tp", "tp",  base.from_string, fields);
+                base.export_element (obj, "LoadGenericNonLinear", "tq", "tq",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -739,6 +815,25 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadGenericNonLinear" };
+                super.submit (obj);
+                temp = document.getElementById ("bs").value; if ("" != temp) obj.bs = temp;
+                temp = document.getElementById ("bt").value; if ("" != temp) obj.bt = temp;
+                temp = document.getElementById ("genericNonLinearLoadModelType").value; if ("" != temp) { temp = GenericNonLinearLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.genericNonLinearLoadModelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; }
+                temp = document.getElementById ("ls").value; if ("" != temp) obj.ls = temp;
+                temp = document.getElementById ("lt").value; if ("" != temp) obj.lt = temp;
+                temp = document.getElementById ("pt").value; if ("" != temp) obj.pt = temp;
+                temp = document.getElementById ("qt").value; if ("" != temp) obj.qt = temp;
+                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById ("tq").value; if ("" != temp) obj.tq = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -785,14 +880,13 @@ define
             {
                 var fields = LoadDynamics.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "LoadAggregate", fields);
-                base.export_attribute (obj, "export_attribute", "LoadAggregate", fields);
+                base.export_attribute (obj, "LoadAggregate", "LoadMotor", "LoadMotor", fields);
+                base.export_attribute (obj, "LoadAggregate", "LoadStatic", "LoadStatic", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -839,6 +933,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "LoadAggregate" };
+                super.submit (obj);
+                temp = document.getElementById ("LoadMotor").value; if ("" != temp) obj.LoadMotor = temp;
+                temp = document.getElementById ("LoadStatic").value; if ("" != temp) obj.LoadStatic = temp;
+
+                return (obj);
             }
 
             relations ()

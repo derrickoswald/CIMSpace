@@ -136,17 +136,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CapacitancePerLength", "value", base.from_float, fields);
-                base.export_element (obj, "CapacitancePerLength", "unit", base.from_string, fields);
-                base.export_element (obj, "CapacitancePerLength", "multiplier", base.from_string, fields);
-                base.export_element (obj, "CapacitancePerLength", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "CapacitancePerLength", "denominatorMultiplier", base.from_string, fields);
+                base.export_element (obj, "CapacitancePerLength", "value", "value",  base.from_float, fields);
+                base.export_element (obj, "CapacitancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "CapacitancePerLength", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "CapacitancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "CapacitancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -208,6 +207,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CapacitancePerLength" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -255,17 +269,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CostPerVolume", "value", base.from_float, fields);
-                base.export_element (obj, "CostPerVolume", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "CostPerVolume", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "CostPerVolume", "multiplier", base.from_string, fields);
-                base.export_element (obj, "CostPerVolume", "unit", base.from_string, fields);
+                base.export_element (obj, "CostPerVolume", "value", "value",  base.from_float, fields);
+                base.export_element (obj, "CostPerVolume", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "CostPerVolume", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "CostPerVolume", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "CostPerVolume", "unit", "unit",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -327,6 +340,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CostPerVolume" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -377,7 +405,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -419,6 +446,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Float" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -465,15 +500,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ReactivePower", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ReactivePower", "unit", base.from_string, fields);
-                base.export_element (obj, "ReactivePower", "value", base.from_float, fields);
+                base.export_element (obj, "ReactivePower", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ReactivePower", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ReactivePower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -527,6 +561,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReactivePower" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -571,14 +618,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "MonthDayInterval", "end", base.from_string, fields);
-                base.export_element (obj, "MonthDayInterval", "start", base.from_string, fields);
+                base.export_element (obj, "MonthDayInterval", "end", "end",  base.from_string, fields);
+                base.export_element (obj, "MonthDayInterval", "start", "start",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -626,6 +672,18 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "MonthDayInterval" };
+                super.submit (obj);
+                temp = document.getElementById ("end").value; if ("" != temp) obj.end = temp;
+                temp = document.getElementById ("start").value; if ("" != temp) obj.start = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -671,15 +729,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Reactance", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Reactance", "unit", base.from_string, fields);
-                base.export_element (obj, "Reactance", "value", base.from_float, fields);
+                base.export_element (obj, "Reactance", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Reactance", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Reactance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -732,6 +789,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Reactance" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -780,17 +850,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResistancePerLength", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "ResistancePerLength", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "ResistancePerLength", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ResistancePerLength", "unit", base.from_string, fields);
-                base.export_element (obj, "ResistancePerLength", "value", base.from_float, fields);
+                base.export_element (obj, "ResistancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "ResistancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "ResistancePerLength", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ResistancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ResistancePerLength", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -852,6 +921,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ResistancePerLength" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -897,15 +981,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AngleRadians", "multiplier", base.from_string, fields);
-                base.export_element (obj, "AngleRadians", "unit", base.from_string, fields);
-                base.export_element (obj, "AngleRadians", "value", base.from_float, fields);
+                base.export_element (obj, "AngleRadians", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "AngleRadians", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "AngleRadians", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -958,6 +1041,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AngleRadians" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -1004,15 +1100,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Voltage", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Voltage", "unit", base.from_string, fields);
-                base.export_element (obj, "Voltage", "value", base.from_float, fields);
+                base.export_element (obj, "Voltage", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Voltage", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Voltage", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1065,6 +1160,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Voltage" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -1113,17 +1221,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ActivePowerChangeRate", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "ActivePowerChangeRate", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "ActivePowerChangeRate", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ActivePowerChangeRate", "unit", base.from_string, fields);
-                base.export_element (obj, "ActivePowerChangeRate", "value", base.from_float, fields);
+                base.export_element (obj, "ActivePowerChangeRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerChangeRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerChangeRate", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerChangeRate", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerChangeRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1185,6 +1292,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ActivePowerChangeRate" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         class ActivePowerPerCurrentFlow extends base.Element
@@ -1228,17 +1350,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "unit", base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "value", base.from_float, fields);
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "demoninatorUnit", base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "denominatorMultiplier", base.from_string, fields);
+                base.export_element (obj, "ActivePowerPerCurrentFlow", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerPerCurrentFlow", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerPerCurrentFlow", "value", "value",  base.from_float, fields);
+                base.export_element (obj, "ActivePowerPerCurrentFlow", "demoninatorUnit", "demoninatorUnit",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerPerCurrentFlow", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1300,6 +1421,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ActivePowerPerCurrentFlow" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("demoninatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.demoninatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -1347,17 +1483,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CostRate", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "CostRate", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "CostRate", "multiplier", base.from_string, fields);
-                base.export_element (obj, "CostRate", "unit", base.from_string, fields);
-                base.export_element (obj, "CostRate", "value", base.from_float, fields);
+                base.export_element (obj, "CostRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "CostRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "CostRate", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "CostRate", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "CostRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1419,6 +1554,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CostRate" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1464,15 +1614,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "WaterLevel", "multiplier", base.from_string, fields);
-                base.export_element (obj, "WaterLevel", "unit", base.from_string, fields);
-                base.export_element (obj, "WaterLevel", "value", base.from_float, fields);
+                base.export_element (obj, "WaterLevel", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "WaterLevel", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "WaterLevel", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1525,6 +1674,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "WaterLevel" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -1576,7 +1738,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -1618,6 +1779,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Integer" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -1664,15 +1833,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Admittance", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Admittance", "unit", base.from_string, fields);
-                base.export_element (obj, "Admittance", "value", base.from_float, fields);
+                base.export_element (obj, "Admittance", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Admittance", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Admittance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1726,6 +1894,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Admittance" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1773,17 +1954,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CostPerEnergyUnit", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "CostPerEnergyUnit", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "CostPerEnergyUnit", "multiplier", base.from_string, fields);
-                base.export_element (obj, "CostPerEnergyUnit", "unit", base.from_string, fields);
-                base.export_element (obj, "CostPerEnergyUnit", "value", base.from_float, fields);
+                base.export_element (obj, "CostPerEnergyUnit", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "CostPerEnergyUnit", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "CostPerEnergyUnit", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "CostPerEnergyUnit", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "CostPerEnergyUnit", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1845,6 +2025,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CostPerEnergyUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -1892,17 +2087,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ReactancePerLength", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "ReactancePerLength", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "ReactancePerLength", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ReactancePerLength", "unit", base.from_string, fields);
-                base.export_element (obj, "ReactancePerLength", "value", base.from_float, fields);
+                base.export_element (obj, "ReactancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "ReactancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "ReactancePerLength", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ReactancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ReactancePerLength", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -1963,6 +2157,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ReactancePerLength" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -2014,7 +2223,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2056,6 +2264,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Duration" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2107,7 +2323,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -2149,6 +2364,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Time" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -2199,17 +2422,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Damping", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "Damping", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "Damping", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Damping", "unit", base.from_string, fields);
-                base.export_element (obj, "Damping", "value", base.from_float, fields);
+                base.export_element (obj, "Damping", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "Damping", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "Damping", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Damping", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Damping", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2270,6 +2492,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Damping" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -2318,15 +2555,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PU", "multiplier", base.from_string, fields);
-                base.export_element (obj, "PU", "unit", base.from_string, fields);
-                base.export_element (obj, "PU", "value", base.from_float, fields);
+                base.export_element (obj, "PU", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "PU", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "PU", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2379,6 +2615,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PU" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -2425,15 +2674,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ActivePower", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ActivePower", "unit", base.from_string, fields);
-                base.export_element (obj, "ActivePower", "value", base.from_float, fields);
+                base.export_element (obj, "ActivePower", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ActivePower", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ActivePower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2486,6 +2734,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ActivePower" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -2532,15 +2793,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Capacitance", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Capacitance", "unit", base.from_string, fields);
-                base.export_element (obj, "Capacitance", "value", base.from_float, fields);
+                base.export_element (obj, "Capacitance", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Capacitance", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Capacitance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2593,6 +2853,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Capacitance" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -2641,15 +2914,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Conductance", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Conductance", "unit", base.from_string, fields);
-                base.export_element (obj, "Conductance", "value", base.from_float, fields);
+                base.export_element (obj, "Conductance", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Conductance", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Conductance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2702,6 +2974,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Conductance" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -2750,17 +3035,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "InductancePerLength", "value", base.from_float, fields);
-                base.export_element (obj, "InductancePerLength", "unit", base.from_string, fields);
-                base.export_element (obj, "InductancePerLength", "multiplier", base.from_string, fields);
-                base.export_element (obj, "InductancePerLength", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "InductancePerLength", "denominatorMultiplier", base.from_string, fields);
+                base.export_element (obj, "InductancePerLength", "value", "value",  base.from_float, fields);
+                base.export_element (obj, "InductancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "InductancePerLength", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "InductancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "InductancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2821,6 +3105,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "InductancePerLength" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+
+                return (obj);
             }
         }
 
@@ -2869,17 +3168,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "VolumeFlowRate", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "VolumeFlowRate", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "VolumeFlowRate", "multiplier", base.from_string, fields);
-                base.export_element (obj, "VolumeFlowRate", "unit", base.from_string, fields);
-                base.export_element (obj, "VolumeFlowRate", "value", base.from_float, fields);
+                base.export_element (obj, "VolumeFlowRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "VolumeFlowRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "VolumeFlowRate", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "VolumeFlowRate", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "VolumeFlowRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -2940,6 +3238,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VolumeFlowRate" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -2991,7 +3304,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -3033,6 +3345,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "DateTime" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -3082,7 +3402,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -3124,6 +3443,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "MonthDay" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -3172,15 +3499,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CurrentFlow", "multiplier", base.from_string, fields);
-                base.export_element (obj, "CurrentFlow", "unit", base.from_string, fields);
-                base.export_element (obj, "CurrentFlow", "value", base.from_float, fields);
+                base.export_element (obj, "CurrentFlow", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "CurrentFlow", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "CurrentFlow", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3233,6 +3559,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CurrentFlow" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -3279,15 +3618,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "KiloActivePower", "multiplier", base.from_string, fields);
-                base.export_element (obj, "KiloActivePower", "unit", base.from_string, fields);
-                base.export_element (obj, "KiloActivePower", "value", base.from_float, fields);
+                base.export_element (obj, "KiloActivePower", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "KiloActivePower", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "KiloActivePower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3340,6 +3678,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "KiloActivePower" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -3386,15 +3737,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Impedance", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Impedance", "unit", base.from_string, fields);
-                base.export_element (obj, "Impedance", "value", base.from_float, fields);
+                base.export_element (obj, "Impedance", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Impedance", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Impedance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3447,6 +3797,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Impedance" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -3495,15 +3858,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PerCent", "multiplier", base.from_string, fields);
-                base.export_element (obj, "PerCent", "unit", base.from_string, fields);
-                base.export_element (obj, "PerCent", "value", base.from_float, fields);
+                base.export_element (obj, "PerCent", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "PerCent", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "PerCent", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3556,6 +3918,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "PerCent" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -3602,15 +3977,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Seconds", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Seconds", "unit", base.from_string, fields);
-                base.export_element (obj, "Seconds", "value", base.from_float, fields);
+                base.export_element (obj, "Seconds", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Seconds", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Seconds", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3663,6 +4037,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Seconds" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -3711,17 +4098,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ActivePowerPerFrequency", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerFrequency", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerFrequency", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerFrequency", "unit", base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerFrequency", "value", base.from_float, fields);
+                base.export_element (obj, "ActivePowerPerFrequency", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerPerFrequency", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerPerFrequency", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerPerFrequency", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ActivePowerPerFrequency", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3783,6 +4169,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ActivePowerPerFrequency" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3828,15 +4229,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Money", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Money", "unit", base.from_string, fields);
-                base.export_element (obj, "Money", "value", base.from_string, fields);
+                base.export_element (obj, "Money", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Money", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Money", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3890,6 +4290,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Money" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -3934,14 +4347,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "DateTimeInterval", "end", base.from_datetime, fields);
-                base.export_element (obj, "DateTimeInterval", "start", base.from_datetime, fields);
+                base.export_element (obj, "DateTimeInterval", "end", "end",  base.from_datetime, fields);
+                base.export_element (obj, "DateTimeInterval", "start", "start",  base.from_datetime, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -3989,6 +4401,18 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DateTimeInterval" };
+                super.submit (obj);
+                temp = document.getElementById ("end").value; if ("" != temp) obj.end = temp;
+                temp = document.getElementById ("start").value; if ("" != temp) obj.start = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -4034,15 +4458,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ApparentPower", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ApparentPower", "unit", base.from_string, fields);
-                base.export_element (obj, "ApparentPower", "value", base.from_float, fields);
+                base.export_element (obj, "ApparentPower", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ApparentPower", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ApparentPower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4095,6 +4518,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ApparentPower" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -4141,15 +4577,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Volume", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Volume", "unit", base.from_string, fields);
-                base.export_element (obj, "Volume", "value", base.from_float, fields);
+                base.export_element (obj, "Volume", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Volume", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Volume", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4202,6 +4637,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Volume" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -4248,15 +4696,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AngleDegrees", "multiplier", base.from_string, fields);
-                base.export_element (obj, "AngleDegrees", "unit", base.from_string, fields);
-                base.export_element (obj, "AngleDegrees", "value", base.from_float, fields);
+                base.export_element (obj, "AngleDegrees", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "AngleDegrees", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "AngleDegrees", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4309,6 +4756,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "AngleDegrees" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -4360,7 +4820,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -4402,6 +4861,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Date" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -4445,16 +4912,15 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "DecimalQuantity", "value", base.from_string, fields);
-                base.export_element (obj, "DecimalQuantity", "unit", base.from_string, fields);
-                base.export_element (obj, "DecimalQuantity", "multiplier", base.from_string, fields);
-                base.export_element (obj, "DecimalQuantity", "currency", base.from_string, fields);
+                base.export_element (obj, "DecimalQuantity", "value", "value",  base.from_string, fields);
+                base.export_element (obj, "DecimalQuantity", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "DecimalQuantity", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "DecimalQuantity", "currency", "currency",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4512,6 +4978,20 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DecimalQuantity" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("currency").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.currency = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+
+                return (obj);
+            }
         }
 
         /**
@@ -4557,15 +5037,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "RealEnergy", "multiplier", base.from_string, fields);
-                base.export_element (obj, "RealEnergy", "unit", base.from_string, fields);
-                base.export_element (obj, "RealEnergy", "value", base.from_float, fields);
+                base.export_element (obj, "RealEnergy", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "RealEnergy", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "RealEnergy", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4618,6 +5097,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RealEnergy" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -4667,7 +5159,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -4709,6 +5200,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Decimal" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -4757,15 +5256,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Length", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Length", "unit", base.from_string, fields);
-                base.export_element (obj, "Length", "value", base.from_float, fields);
+                base.export_element (obj, "Length", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Length", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Length", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4818,6 +5316,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Length" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -4864,15 +5375,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Temperature", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Temperature", "unit", base.from_string, fields);
-                base.export_element (obj, "Temperature", "value", base.from_float, fields);
+                base.export_element (obj, "Temperature", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Temperature", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Temperature", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -4925,6 +5435,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Temperature" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -4971,15 +5494,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "FloatQuantity", "multiplier", base.from_string, fields);
-                base.export_element (obj, "FloatQuantity", "unit", base.from_string, fields);
-                base.export_element (obj, "FloatQuantity", "value", base.from_float, fields);
+                base.export_element (obj, "FloatQuantity", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "FloatQuantity", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "FloatQuantity", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5032,6 +5554,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "FloatQuantity" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -5078,15 +5613,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Susceptance", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Susceptance", "unit", base.from_string, fields);
-                base.export_element (obj, "Susceptance", "value", base.from_float, fields);
+                base.export_element (obj, "Susceptance", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Susceptance", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Susceptance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5139,6 +5673,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Susceptance" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -5185,15 +5732,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Frequency", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Frequency", "unit", base.from_string, fields);
-                base.export_element (obj, "Frequency", "value", base.from_float, fields);
+                base.export_element (obj, "Frequency", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Frequency", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Frequency", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5246,6 +5792,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Frequency" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -5292,15 +5851,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Area", "value", base.from_float, fields);
-                base.export_element (obj, "Area", "unit", base.from_string, fields);
-                base.export_element (obj, "Area", "multiplier", base.from_string, fields);
+                base.export_element (obj, "Area", "value", "value",  base.from_float, fields);
+                base.export_element (obj, "Area", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Area", "multiplier", "multiplier",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5353,6 +5911,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Area" };
+                super.submit (obj);
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+
+                return (obj);
             }
         }
 
@@ -5399,15 +5970,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Minutes", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Minutes", "unit", base.from_string, fields);
-                base.export_element (obj, "Minutes", "value", base.from_float, fields);
+                base.export_element (obj, "Minutes", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Minutes", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Minutes", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5461,6 +6031,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Minutes" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5505,14 +6088,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "DateInterval", "end", base.from_string, fields);
-                base.export_element (obj, "DateInterval", "start", base.from_string, fields);
+                base.export_element (obj, "DateInterval", "end", "end",  base.from_string, fields);
+                base.export_element (obj, "DateInterval", "start", "start",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5559,6 +6141,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "DateInterval" };
+                super.submit (obj);
+                temp = document.getElementById ("end").value; if ("" != temp) obj.end = temp;
+                temp = document.getElementById ("start").value; if ("" != temp) obj.start = temp;
+
+                return (obj);
             }
         }
 
@@ -5607,17 +6201,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "VoltagePerReactivePower", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "VoltagePerReactivePower", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "VoltagePerReactivePower", "multiplier", base.from_string, fields);
-                base.export_element (obj, "VoltagePerReactivePower", "unit", base.from_string, fields);
-                base.export_element (obj, "VoltagePerReactivePower", "value", base.from_float, fields);
+                base.export_element (obj, "VoltagePerReactivePower", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "VoltagePerReactivePower", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "VoltagePerReactivePower", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "VoltagePerReactivePower", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "VoltagePerReactivePower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5679,6 +6272,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "VoltagePerReactivePower" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5724,15 +6332,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Hours", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Hours", "unit", base.from_string, fields);
-                base.export_element (obj, "Hours", "value", base.from_float, fields);
+                base.export_element (obj, "Hours", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Hours", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Hours", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5785,6 +6392,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Hours" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -5833,17 +6453,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Speed", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "Speed", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "Speed", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Speed", "unit", base.from_string, fields);
-                base.export_element (obj, "Speed", "value", base.from_float, fields);
+                base.export_element (obj, "Speed", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "Speed", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "Speed", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Speed", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Speed", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -5905,6 +6524,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Speed" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -5950,15 +6584,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Displacement", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Displacement", "unit", base.from_string, fields);
-                base.export_element (obj, "Displacement", "value", base.from_float, fields);
+                base.export_element (obj, "Displacement", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Displacement", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Displacement", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6011,6 +6644,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Displacement" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -6062,7 +6708,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -6104,6 +6749,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "String" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -6152,17 +6805,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "RotationSpeed", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "RotationSpeed", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "RotationSpeed", "multiplier", base.from_string, fields);
-                base.export_element (obj, "RotationSpeed", "unit", base.from_string, fields);
-                base.export_element (obj, "RotationSpeed", "value", base.from_float, fields);
+                base.export_element (obj, "RotationSpeed", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "RotationSpeed", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "RotationSpeed", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "RotationSpeed", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "RotationSpeed", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6224,6 +6876,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RotationSpeed" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -6269,15 +6936,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Resistance", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Resistance", "unit", base.from_string, fields);
-                base.export_element (obj, "Resistance", "value", base.from_float, fields);
+                base.export_element (obj, "Resistance", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Resistance", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Resistance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6330,6 +6996,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Resistance" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -6376,15 +7055,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Weight", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Weight", "unit", base.from_string, fields);
-                base.export_element (obj, "Weight", "value", base.from_float, fields);
+                base.export_element (obj, "Weight", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Weight", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Weight", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6437,6 +7115,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Weight" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -6483,15 +7174,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Pressure", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Pressure", "unit", base.from_string, fields);
-                base.export_element (obj, "Pressure", "value", base.from_float, fields);
+                base.export_element (obj, "Pressure", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Pressure", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Pressure", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6544,6 +7234,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Pressure" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -6592,17 +7295,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ConductancePerLength", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "ConductancePerLength", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "ConductancePerLength", "multiplier", base.from_string, fields);
-                base.export_element (obj, "ConductancePerLength", "unit", base.from_string, fields);
-                base.export_element (obj, "ConductancePerLength", "value", base.from_float, fields);
+                base.export_element (obj, "ConductancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "ConductancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "ConductancePerLength", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "ConductancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "ConductancePerLength", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6663,6 +7365,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "ConductancePerLength" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -6712,7 +7429,6 @@ define
                 return (fields);
             }
 
-
             template ()
             {
                 return (
@@ -6754,6 +7470,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "Boolean" };
+                super.submit (obj);
+
+                return (obj);
             }
         }
 
@@ -6802,17 +7526,16 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "SusceptancePerLength", "denominatorMultiplier", base.from_string, fields);
-                base.export_element (obj, "SusceptancePerLength", "denominatorUnit", base.from_string, fields);
-                base.export_element (obj, "SusceptancePerLength", "multiplier", base.from_string, fields);
-                base.export_element (obj, "SusceptancePerLength", "unit", base.from_string, fields);
-                base.export_element (obj, "SusceptancePerLength", "value", base.from_float, fields);
+                base.export_element (obj, "SusceptancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_element (obj, "SusceptancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
+                base.export_element (obj, "SusceptancePerLength", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "SusceptancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "SusceptancePerLength", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6874,6 +7597,21 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "SusceptancePerLength" };
+                super.submit (obj);
+                temp = document.getElementById ("denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -6919,15 +7657,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "StringQuantity", "multiplier", base.from_string, fields);
-                base.export_element (obj, "StringQuantity", "unit", base.from_string, fields);
-                base.export_element (obj, "StringQuantity", "value", base.from_string, fields);
+                base.export_element (obj, "StringQuantity", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "StringQuantity", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "StringQuantity", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -6980,6 +7717,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "StringQuantity" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 
@@ -7026,15 +7776,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "IntegerQuantity", "multiplier", base.from_string, fields);
-                base.export_element (obj, "IntegerQuantity", "unit", base.from_string, fields);
-                base.export_element (obj, "IntegerQuantity", "value", base.from_string, fields);
+                base.export_element (obj, "IntegerQuantity", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "IntegerQuantity", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "IntegerQuantity", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7088,6 +7837,19 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "IntegerQuantity" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -7132,14 +7894,13 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "TimeInterval", "end", base.from_string, fields);
-                base.export_element (obj, "TimeInterval", "start", base.from_string, fields);
+                base.export_element (obj, "TimeInterval", "end", "end",  base.from_string, fields);
+                base.export_element (obj, "TimeInterval", "start", "start",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7187,6 +7948,18 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "TimeInterval" };
+                super.submit (obj);
+                temp = document.getElementById ("end").value; if ("" != temp) obj.end = temp;
+                temp = document.getElementById ("start").value; if ("" != temp) obj.start = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -7232,15 +8005,14 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Inductance", "multiplier", base.from_string, fields);
-                base.export_element (obj, "Inductance", "unit", base.from_string, fields);
-                base.export_element (obj, "Inductance", "value", base.from_float, fields);
+                base.export_element (obj, "Inductance", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_element (obj, "Inductance", "unit", "unit",  base.from_string, fields);
+                base.export_element (obj, "Inductance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -7293,6 +8065,19 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "Inductance" };
+                super.submit (obj);
+                temp = document.getElementById ("multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById ("unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+
+                return (obj);
             }
         }
 

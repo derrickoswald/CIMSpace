@@ -51,13 +51,12 @@ define
             {
                 var fields = Core.ConnectivityNodeContainer.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "EquivalentNetwork", fields);
+                base.export_attributes (obj, "EquivalentNetwork", "EquivalentEquipments", "EquivalentEquipments", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -103,6 +102,14 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var obj = obj || { cls: "EquivalentNetwork" };
+                super.submit (obj);
+
+                return (obj);
             }
 
             relations ()
@@ -158,13 +165,12 @@ define
             {
                 var fields = Core.ConductingEquipment.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "EquivalentEquipment", fields);
+                base.export_attribute (obj, "EquivalentEquipment", "EquivalentNetwork", "EquivalentNetwork", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -209,6 +215,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EquivalentEquipment" };
+                super.submit (obj);
+                temp = document.getElementById ("EquivalentNetwork").value; if ("" != temp) obj.EquivalentNetwork = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -263,14 +280,13 @@ define
             {
                 var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EquivalentShunt", "b", base.from_string, fields);
-                base.export_element (obj, "EquivalentShunt", "g", base.from_string, fields);
+                base.export_element (obj, "EquivalentShunt", "b", "b",  base.from_string, fields);
+                base.export_element (obj, "EquivalentShunt", "g", "g",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -317,6 +333,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EquivalentShunt" };
+                super.submit (obj);
+                temp = document.getElementById ("b").value; if ("" != temp) obj.b = temp;
+                temp = document.getElementById ("g").value; if ("" != temp) obj.g = temp;
+
+                return (obj);
             }
         }
 
@@ -376,28 +404,27 @@ define
             {
                 var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EquivalentBranch", "negativeR12", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "negativeR21", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "negativeX12", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "negativeX21", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "positiveR12", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "positiveR21", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "positiveX12", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "positiveX21", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "r", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "r21", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "x", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "x21", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "zeroR12", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "zeroR21", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "zeroX12", base.from_string, fields);
-                base.export_element (obj, "EquivalentBranch", "zeroX21", base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "negativeR12", "negativeR12",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "negativeR21", "negativeR21",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "negativeX12", "negativeX12",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "negativeX21", "negativeX21",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "positiveR12", "positiveR12",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "positiveR21", "positiveR21",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "positiveX12", "positiveX12",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "positiveX21", "positiveX21",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "r21", "r21",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "x", "x",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "x21", "x21",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "zeroR12", "zeroR12",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "zeroR21", "zeroR21",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "zeroX12", "zeroX12",  base.from_string, fields);
+                base.export_element (obj, "EquivalentBranch", "zeroX21", "zeroX21",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -473,6 +500,32 @@ define
                     `
                 );
             }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EquivalentBranch" };
+                super.submit (obj);
+                temp = document.getElementById ("negativeR12").value; if ("" != temp) obj.negativeR12 = temp;
+                temp = document.getElementById ("negativeR21").value; if ("" != temp) obj.negativeR21 = temp;
+                temp = document.getElementById ("negativeX12").value; if ("" != temp) obj.negativeX12 = temp;
+                temp = document.getElementById ("negativeX21").value; if ("" != temp) obj.negativeX21 = temp;
+                temp = document.getElementById ("positiveR12").value; if ("" != temp) obj.positiveR12 = temp;
+                temp = document.getElementById ("positiveR21").value; if ("" != temp) obj.positiveR21 = temp;
+                temp = document.getElementById ("positiveX12").value; if ("" != temp) obj.positiveX12 = temp;
+                temp = document.getElementById ("positiveX21").value; if ("" != temp) obj.positiveX21 = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("r21").value; if ("" != temp) obj.r21 = temp;
+                temp = document.getElementById ("x").value; if ("" != temp) obj.x = temp;
+                temp = document.getElementById ("x21").value; if ("" != temp) obj.x21 = temp;
+                temp = document.getElementById ("zeroR12").value; if ("" != temp) obj.zeroR12 = temp;
+                temp = document.getElementById ("zeroR21").value; if ("" != temp) obj.zeroR21 = temp;
+                temp = document.getElementById ("zeroX12").value; if ("" != temp) obj.zeroX12 = temp;
+                temp = document.getElementById ("zeroX21").value; if ("" != temp) obj.zeroX21 = temp;
+
+                return (obj);
+            }
         }
 
         /**
@@ -533,28 +586,27 @@ define
             {
                 var fields = EquivalentEquipment.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EquivalentInjection", "maxP", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "maxQ", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "minP", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "minQ", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "r", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "r0", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "r2", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "regulationCapability", base.from_boolean, fields);
-                base.export_element (obj, "EquivalentInjection", "regulationStatus", base.from_boolean, fields);
-                base.export_element (obj, "EquivalentInjection", "regulationTarget", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "x", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "x0", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "x2", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "p", base.from_string, fields);
-                base.export_element (obj, "EquivalentInjection", "q", base.from_string, fields);
-                base.export_attribute (obj, "export_attribute", "EquivalentInjection", fields);
+                base.export_element (obj, "EquivalentInjection", "maxP", "maxP",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "maxQ", "maxQ",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "minP", "minP",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "minQ", "minQ",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "r", "r",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "r0", "r0",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "r2", "r2",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "regulationCapability", "regulationCapability",  base.from_boolean, fields);
+                base.export_element (obj, "EquivalentInjection", "regulationStatus", "regulationStatus",  base.from_boolean, fields);
+                base.export_element (obj, "EquivalentInjection", "regulationTarget", "regulationTarget",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "x", "x",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "x0", "x0",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "x2", "x2",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "p", "p",  base.from_string, fields);
+                base.export_element (obj, "EquivalentInjection", "q", "q",  base.from_string, fields);
+                base.export_attribute (obj, "EquivalentInjection", "ReactiveCapabilityCurve", "ReactiveCapabilityCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -629,6 +681,32 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "EquivalentInjection" };
+                super.submit (obj);
+                temp = document.getElementById ("maxP").value; if ("" != temp) obj.maxP = temp;
+                temp = document.getElementById ("maxQ").value; if ("" != temp) obj.maxQ = temp;
+                temp = document.getElementById ("minP").value; if ("" != temp) obj.minP = temp;
+                temp = document.getElementById ("minQ").value; if ("" != temp) obj.minQ = temp;
+                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById ("r0").value; if ("" != temp) obj.r0 = temp;
+                temp = document.getElementById ("r2").value; if ("" != temp) obj.r2 = temp;
+                temp = document.getElementById ("regulationCapability").checked; if (temp) obj.regulationCapability = true;
+                temp = document.getElementById ("regulationStatus").checked; if (temp) obj.regulationStatus = true;
+                temp = document.getElementById ("regulationTarget").value; if ("" != temp) obj.regulationTarget = temp;
+                temp = document.getElementById ("x").value; if ("" != temp) obj.x = temp;
+                temp = document.getElementById ("x0").value; if ("" != temp) obj.x0 = temp;
+                temp = document.getElementById ("x2").value; if ("" != temp) obj.x2 = temp;
+                temp = document.getElementById ("p").value; if ("" != temp) obj.p = temp;
+                temp = document.getElementById ("q").value; if ("" != temp) obj.q = temp;
+                temp = document.getElementById ("ReactiveCapabilityCurve").value; if ("" != temp) obj.ReactiveCapabilityCurve = temp;
+
+                return (obj);
             }
 
             relations ()

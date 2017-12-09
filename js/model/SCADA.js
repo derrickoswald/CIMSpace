@@ -78,13 +78,12 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attribute", "RemotePoint", fields);
+                base.export_attribute (obj, "RemotePoint", "RemoteUnit", "RemoteUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -129,6 +128,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RemotePoint" };
+                super.submit (obj);
+                temp = document.getElementById ("RemoteUnit").value; if ("" != temp) obj.RemoteUnit = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -186,15 +196,14 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RemoteUnit", "remoteUnitType", base.from_string, fields);
-                base.export_attribute (obj, "export_attributes", "RemoteUnit", fields);
-                base.export_attribute (obj, "export_attributes", "RemoteUnit", fields);
+                base.export_element (obj, "RemoteUnit", "remoteUnitType", "remoteUnitType",  base.from_string, fields);
+                base.export_attributes (obj, "RemoteUnit", "CommunicationLinks", "CommunicationLinks", fields);
+                base.export_attributes (obj, "RemoteUnit", "RemotePoints", "RemotePoints", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -248,6 +257,18 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RemoteUnit" };
+                super.submit (obj);
+                temp = document.getElementById ("remoteUnitType").value; if ("" != temp) { temp = RemoteUnitType[temp]; if ("undefined" != typeof (temp)) obj.remoteUnitType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteUnitType." + temp; }
+                temp = document.getElementById ("CommunicationLinks").value; if ("" != temp) obj.CommunicationLinks = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -304,13 +325,12 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_attribute (obj, "export_attributes", "CommunicationLink", fields);
+                base.export_attributes (obj, "CommunicationLink", "RemoteUnits", "RemoteUnits", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -357,6 +377,17 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "CommunicationLink" };
+                super.submit (obj);
+                temp = document.getElementById ("RemoteUnits").value; if ("" != temp) obj.RemoteUnits = temp.split (",");
+
+                return (obj);
             }
 
             relations ()
@@ -414,17 +445,16 @@ define
             {
                 var fields = RemotePoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RemoteSource", "deadband", base.from_float, fields);
-                base.export_element (obj, "RemoteSource", "scanInterval", base.from_string, fields);
-                base.export_element (obj, "RemoteSource", "sensorMaximum", base.from_float, fields);
-                base.export_element (obj, "RemoteSource", "sensorMinimum", base.from_float, fields);
-                base.export_attribute (obj, "export_attribute", "RemoteSource", fields);
+                base.export_element (obj, "RemoteSource", "deadband", "deadband",  base.from_float, fields);
+                base.export_element (obj, "RemoteSource", "scanInterval", "scanInterval",  base.from_string, fields);
+                base.export_element (obj, "RemoteSource", "sensorMaximum", "sensorMaximum",  base.from_float, fields);
+                base.export_element (obj, "RemoteSource", "sensorMinimum", "sensorMinimum",  base.from_float, fields);
+                base.export_attribute (obj, "RemoteSource", "MeasurementValue", "MeasurementValue", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -477,6 +507,21 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RemoteSource" };
+                super.submit (obj);
+                temp = document.getElementById ("deadband").value; if ("" != temp) obj.deadband = temp;
+                temp = document.getElementById ("scanInterval").value; if ("" != temp) obj.scanInterval = temp;
+                temp = document.getElementById ("sensorMaximum").value; if ("" != temp) obj.sensorMaximum = temp;
+                temp = document.getElementById ("sensorMinimum").value; if ("" != temp) obj.sensorMinimum = temp;
+                temp = document.getElementById ("MeasurementValue").value; if ("" != temp) obj.MeasurementValue = temp;
+
+                return (obj);
             }
 
             relations ()
@@ -533,16 +578,15 @@ define
             {
                 var fields = RemotePoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RemoteControl", "actuatorMaximum", base.from_float, fields);
-                base.export_element (obj, "RemoteControl", "actuatorMinimum", base.from_float, fields);
-                base.export_element (obj, "RemoteControl", "remoteControlled", base.from_boolean, fields);
-                base.export_attribute (obj, "export_attribute", "RemoteControl", fields);
+                base.export_element (obj, "RemoteControl", "actuatorMaximum", "actuatorMaximum",  base.from_float, fields);
+                base.export_element (obj, "RemoteControl", "actuatorMinimum", "actuatorMinimum",  base.from_float, fields);
+                base.export_element (obj, "RemoteControl", "remoteControlled", "remoteControlled",  base.from_boolean, fields);
+                base.export_attribute (obj, "RemoteControl", "Control", "Control", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
                 return (fields);
             }
-
 
             template ()
             {
@@ -593,6 +637,20 @@ define
                     <fieldset>
                     `
                 );
+            }
+
+            submit (obj)
+            {
+                var temp;
+
+                var obj = obj || { cls: "RemoteControl" };
+                super.submit (obj);
+                temp = document.getElementById ("actuatorMaximum").value; if ("" != temp) obj.actuatorMaximum = temp;
+                temp = document.getElementById ("actuatorMinimum").value; if ("" != temp) obj.actuatorMinimum = temp;
+                temp = document.getElementById ("remoteControlled").checked; if (temp) obj.remoteControlled = true;
+                temp = document.getElementById ("Control").value; if ("" != temp) obj.Control = temp;
+
+                return (obj);
             }
 
             relations ()
