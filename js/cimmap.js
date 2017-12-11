@@ -208,8 +208,7 @@ define
                     TheMap.removeControl (TheThemer.getTheme ().getLegend ());
             TheThemer.theme (TheMap, CIM_Data,
                 {
-                    show_internal_features: show_internal_features (),
-                    editing: false
+                    show_internal_features: show_internal_features ()
                 });
             TheExtents = TheThemer.getExtents ();
 

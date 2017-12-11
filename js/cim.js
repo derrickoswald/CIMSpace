@@ -55,6 +55,17 @@ define
         );
 
         /**
+         * Get the registered classes.
+         * @return the map between class name and ES6 class
+         * @function classes
+         * @memberOf module:cim
+         */
+        function classes ()
+        {
+            return (theExportMap);
+        }
+
+        /**
          * Get the class for a given object.
          * @param {Object} obj the JavaScript bucket-o-properies' object.
          * @return the ES6 class for the object
@@ -63,7 +74,7 @@ define
          */
         function class_map (obj)
         {
-            return (theExportMap[obj.cls]);
+            return (classes ()[obj.cls]);
         }
 
         /**
@@ -343,7 +354,7 @@ define
                     obj = elements[property];
                     if (filter (obj))
                     {
-                        exporter = theExportMap[obj.cls];
+                        exporter = class_map (obj);
                         if ("undefined" != typeof (exporter))
                             Array.prototype.push.apply (ret, exporter.prototype.export (obj, true));
                         else
@@ -414,14 +425,14 @@ define
             {
                 // ToDo: check if we need to handle individual attributes with "rdf:Description rdf:about", or if we can use the sledgehammer: delete then new
                 xml.push ("		<dm:reverseDifferences parseType=\"Statements\">");
-                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "delete" || disp == "edit"); }));
+                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { return (obj.EditDisposition == "delete" && obj.id.startsWith ("1:")); }));
                 xml.push ("		</dm:reverseDifferences>");
                 xml.push ("		<dm:forwardDifferences parseType=\"Statements\">");
                 Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "new" || disp == "edit"); }));
                 xml.push ("		</dm:forwardDifferences>");
             }
             else
-                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { return (true); }));
+                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" == typeof (disp) || disp != "delete"); }));
             Array.prototype.push.apply (xml, trailer);
 
             return (xml.join ("\n"));
@@ -429,6 +440,7 @@ define
 
         return (
             {
+                classes: classes,
                 class_map: class_map,
                 read_full_xml: read_full_xml,
                 read_xml_blob: read_xml_blob,

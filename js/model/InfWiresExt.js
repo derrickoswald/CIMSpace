@@ -13,17 +13,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SVC;
                 if (null == bucket)
                    cim_data.SVC = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SVC[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SVC[obj.id];
             }
 
             parse (context, sub)
@@ -123,17 +122,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ShuntCompensatorControl;
                 if (null == bucket)
                    cim_data.ShuntCompensatorControl = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ShuntCompensatorControl[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ShuntCompensatorControl[obj.id];
             }
 
             parse (context, sub)

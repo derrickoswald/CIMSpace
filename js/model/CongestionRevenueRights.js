@@ -21,17 +21,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.CRRSegment;
                 if (null == bucket)
                    cim_data.CRRSegment = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.CRRSegment[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.CRRSegment[obj.id];
             }
 
             parse (context, sub)
@@ -178,17 +177,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.CRR;
                 if (null == bucket)
                    cim_data.CRR = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.CRR[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.CRR[obj.id];
             }
 
             parse (context, sub)
@@ -335,17 +333,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.CRROrgRole;
                 if (null == bucket)
                    cim_data.CRROrgRole = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.CRROrgRole[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.CRROrgRole[obj.id];
             }
 
             parse (context, sub)

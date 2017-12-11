@@ -25,17 +25,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.AsynchronousMachineDynamics;
                 if (null == bucket)
                    cim_data.AsynchronousMachineDynamics = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.AsynchronousMachineDynamics[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.AsynchronousMachineDynamics[obj.id];
             }
 
             parse (context, sub)
@@ -172,17 +171,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.AsynchronousMachineEquivalentCircuit;
                 if (null == bucket)
                    cim_data.AsynchronousMachineEquivalentCircuit = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.AsynchronousMachineEquivalentCircuit[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.AsynchronousMachineEquivalentCircuit[obj.id];
             }
 
             parse (context, sub)
@@ -318,17 +316,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.AsynchronousMachineTimeConstantReactance;
                 if (null == bucket)
                    cim_data.AsynchronousMachineTimeConstantReactance = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.AsynchronousMachineTimeConstantReactance[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.AsynchronousMachineTimeConstantReactance[obj.id];
             }
 
             parse (context, sub)

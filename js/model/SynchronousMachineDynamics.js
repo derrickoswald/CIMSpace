@@ -68,17 +68,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SynchronousMachineDynamics;
                 if (null == bucket)
                    cim_data.SynchronousMachineDynamics = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SynchronousMachineDynamics[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SynchronousMachineDynamics[obj.id];
             }
 
             parse (context, sub)
@@ -210,17 +209,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SynchronousMachineDetailed;
                 if (null == bucket)
                    cim_data.SynchronousMachineDetailed = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SynchronousMachineDetailed[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SynchronousMachineDetailed[obj.id];
             }
 
             parse (context, sub)
@@ -358,17 +356,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SynchronousMachineEquivalentCircuit;
                 if (null == bucket)
                    cim_data.SynchronousMachineEquivalentCircuit = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SynchronousMachineEquivalentCircuit[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SynchronousMachineEquivalentCircuit[obj.id];
             }
 
             parse (context, sub)
@@ -515,17 +512,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SynchronousMachineSimplified;
                 if (null == bucket)
                    cim_data.SynchronousMachineSimplified = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SynchronousMachineSimplified[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SynchronousMachineSimplified[obj.id];
             }
 
             parse (context, sub)
@@ -647,17 +643,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SynchronousMachineTimeConstantReactance;
                 if (null == bucket)
                    cim_data.SynchronousMachineTimeConstantReactance = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SynchronousMachineTimeConstantReactance[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SynchronousMachineTimeConstantReactance[obj.id];
             }
 
             parse (context, sub)

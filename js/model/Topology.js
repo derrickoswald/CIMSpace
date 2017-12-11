@@ -21,17 +21,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.BusNameMarker;
                 if (null == bucket)
                    cim_data.BusNameMarker = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.BusNameMarker[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.BusNameMarker[obj.id];
             }
 
             parse (context, sub)
@@ -146,17 +145,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.DCTopologicalNode;
                 if (null == bucket)
                    cim_data.DCTopologicalNode = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.DCTopologicalNode[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.DCTopologicalNode[obj.id];
             }
 
             parse (context, sub)
@@ -280,17 +278,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.TopologicalNode;
                 if (null == bucket)
                    cim_data.TopologicalNode = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.TopologicalNode[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.TopologicalNode[obj.id];
             }
 
             parse (context, sub)
@@ -454,17 +451,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.TopologicalIsland;
                 if (null == bucket)
                    cim_data.TopologicalIsland = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.TopologicalIsland[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.TopologicalIsland[obj.id];
             }
 
             parse (context, sub)

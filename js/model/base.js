@@ -326,18 +326,17 @@ define
                     UNIQUE_NUMBER++;
                     template.id = "element_" + UNIQUE_NUMBER;
                 }
-                this._id = template.id;
                 var bucket = cim_data.Element;
                 if (null == bucket)
                    cim_data.Element = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
                 if (null != this)
                     Object.assign (this, template);
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-                delete cim_data.Element[this._id];
+                delete cim_data.Element[obj.id];
             }
 
             /**
@@ -368,6 +367,21 @@ define
                 return (ret);
             }
 
+            id (feature)
+            {
+                var id = feature.id.startsWith ("element_") ? null : feature.id;
+
+                if (id)
+                {
+                    while (!isNaN (Number (id.charAt (0))))
+                        id = id.substring (1);
+                    if (":" == id.charAt (0))
+                        id = id.substring (1);
+                }
+
+                return (id);
+            }
+
             /**
              * Add the main element header and tail to the beginning and end, respectively, of the forming element.
              * @param {Object} obj - the CIM object
@@ -375,7 +389,7 @@ define
              */
             export (obj, fields)
             {
-                var id = obj.id.startsWith ("element_") ? null : obj.id;
+                var id = this.id (obj);
                 fields.splice (0, 0, "\t<cim:" + obj.cls + (id ? (" rdf:ID=\"" + id + "\">") : ">"));
                 fields.push ("\t</cim:" + obj.cls + ">");
             }

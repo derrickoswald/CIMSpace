@@ -32,17 +32,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.DiagramObjectPoint;
                 if (null == bucket)
                    cim_data.DiagramObjectPoint = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.DiagramObjectPoint[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.DiagramObjectPoint[obj.id];
             }
 
             parse (context, sub)
@@ -174,17 +173,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.DiagramObjectStyle;
                 if (null == bucket)
                    cim_data.DiagramObjectStyle = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.DiagramObjectStyle[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.DiagramObjectStyle[obj.id];
             }
 
             parse (context, sub)
@@ -286,17 +284,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.DiagramObjectGluePoint;
                 if (null == bucket)
                    cim_data.DiagramObjectGluePoint = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.DiagramObjectGluePoint[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.DiagramObjectGluePoint[obj.id];
             }
 
             parse (context, sub)
@@ -400,17 +397,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Diagram;
                 if (null == bucket)
                    cim_data.Diagram = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Diagram[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Diagram[obj.id];
             }
 
             parse (context, sub)
@@ -549,17 +545,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.VisibilityLayer;
                 if (null == bucket)
                    cim_data.VisibilityLayer = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.VisibilityLayer[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.VisibilityLayer[obj.id];
             }
 
             parse (context, sub)
@@ -672,17 +667,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.DiagramObject;
                 if (null == bucket)
                    cim_data.DiagramObject = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.DiagramObject[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.DiagramObject[obj.id];
             }
 
             parse (context, sub)
@@ -839,17 +833,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.DiagramStyle;
                 if (null == bucket)
                    cim_data.DiagramStyle = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.DiagramStyle[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.DiagramStyle[obj.id];
             }
 
             parse (context, sub)
@@ -951,17 +944,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.TextDiagramObject;
                 if (null == bucket)
                    cim_data.TextDiagramObject = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.TextDiagramObject[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.TextDiagramObject[obj.id];
             }
 
             parse (context, sub)

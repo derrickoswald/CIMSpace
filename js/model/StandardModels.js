@@ -19,17 +19,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.DynamicsFunctionBlock;
                 if (null == bucket)
                    cim_data.DynamicsFunctionBlock = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.DynamicsFunctionBlock[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.DynamicsFunctionBlock[obj.id];
             }
 
             parse (context, sub)
@@ -124,17 +123,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.RotatingMachineDynamics;
                 if (null == bucket)
                    cim_data.RotatingMachineDynamics = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.RotatingMachineDynamics[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.RotatingMachineDynamics[obj.id];
             }
 
             parse (context, sub)

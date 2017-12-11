@@ -13,17 +13,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ViolationLimit;
                 if (null == bucket)
                    cim_data.ViolationLimit = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ViolationLimit[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ViolationLimit[obj.id];
             }
 
             parse (context, sub)
@@ -146,17 +145,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.FTR;
                 if (null == bucket)
                    cim_data.FTR = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.FTR[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.FTR[obj.id];
             }
 
             parse (context, sub)

@@ -28,17 +28,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Contingency;
                 if (null == bucket)
                    cim_data.Contingency = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Contingency[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Contingency[obj.id];
             }
 
             parse (context, sub)
@@ -147,17 +146,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ContingencyElement;
                 if (null == bucket)
                    cim_data.ContingencyElement = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ContingencyElement[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ContingencyElement[obj.id];
             }
 
             parse (context, sub)
@@ -261,17 +259,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ContingencyEquipment;
                 if (null == bucket)
                    cim_data.ContingencyEquipment = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ContingencyEquipment[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ContingencyEquipment[obj.id];
             }
 
             parse (context, sub)

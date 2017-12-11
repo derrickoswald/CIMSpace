@@ -15,17 +15,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.GeneratorTypeAsset;
                 if (null == bucket)
                    cim_data.GeneratorTypeAsset = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.GeneratorTypeAsset[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.GeneratorTypeAsset[obj.id];
             }
 
             parse (context, sub)
@@ -197,17 +196,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.TypeAssetCatalogue;
                 if (null == bucket)
                    cim_data.TypeAssetCatalogue = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.TypeAssetCatalogue[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.TypeAssetCatalogue[obj.id];
             }
 
             parse (context, sub)

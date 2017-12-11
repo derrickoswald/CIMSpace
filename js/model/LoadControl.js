@@ -19,17 +19,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.RemoteConnectDisconnectInfo;
                 if (null == bucket)
                    cim_data.RemoteConnectDisconnectInfo = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.RemoteConnectDisconnectInfo[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.RemoteConnectDisconnectInfo[obj.id];
             }
 
             parse (context, sub)
@@ -179,17 +178,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ConnectDisconnectFunction;
                 if (null == bucket)
                    cim_data.ConnectDisconnectFunction = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ConnectDisconnectFunction[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ConnectDisconnectFunction[obj.id];
             }
 
             parse (context, sub)

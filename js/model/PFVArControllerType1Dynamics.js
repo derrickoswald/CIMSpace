@@ -19,17 +19,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PFVArControllerType1Dynamics;
                 if (null == bucket)
                    cim_data.PFVArControllerType1Dynamics = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PFVArControllerType1Dynamics[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PFVArControllerType1Dynamics[obj.id];
             }
 
             parse (context, sub)
@@ -147,17 +146,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PFVArType1IEEEVArController;
                 if (null == bucket)
                    cim_data.PFVArType1IEEEVArController = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PFVArType1IEEEVArController[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PFVArType1IEEEVArController[obj.id];
             }
 
             parse (context, sub)
@@ -279,17 +277,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PFVArType1IEEEPFController;
                 if (null == bucket)
                    cim_data.PFVArType1IEEEPFController = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PFVArType1IEEEPFController[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PFVArType1IEEEPFController[obj.id];
             }
 
             parse (context, sub)

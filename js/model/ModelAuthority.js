@@ -17,17 +17,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ModelingAuthority;
                 if (null == bucket)
                    cim_data.ModelingAuthority = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ModelingAuthority[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ModelingAuthority[obj.id];
             }
 
             parse (context, sub)
@@ -131,17 +130,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ModelingAuthoritySet;
                 if (null == bucket)
                    cim_data.ModelingAuthoritySet = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ModelingAuthoritySet[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ModelingAuthoritySet[obj.id];
             }
 
             parse (context, sub)

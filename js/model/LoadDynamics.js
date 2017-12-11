@@ -45,17 +45,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.LoadMotor;
                 if (null == bucket)
                    cim_data.LoadMotor = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.LoadMotor[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.LoadMotor[obj.id];
             }
 
             parse (context, sub)
@@ -228,17 +227,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.LoadDynamics;
                 if (null == bucket)
                    cim_data.LoadDynamics = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.LoadDynamics[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.LoadDynamics[obj.id];
             }
 
             parse (context, sub)
@@ -340,17 +338,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.LoadStatic;
                 if (null == bucket)
                    cim_data.LoadStatic = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.LoadStatic[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.LoadStatic[obj.id];
             }
 
             parse (context, sub)
@@ -543,17 +540,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.LoadComposite;
                 if (null == bucket)
                    cim_data.LoadComposite = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.LoadComposite[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.LoadComposite[obj.id];
             }
 
             parse (context, sub)
@@ -698,17 +694,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.LoadGenericNonLinear;
                 if (null == bucket)
                    cim_data.LoadGenericNonLinear = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.LoadGenericNonLinear[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.LoadGenericNonLinear[obj.id];
             }
 
             parse (context, sub)
@@ -847,17 +842,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.LoadAggregate;
                 if (null == bucket)
                    cim_data.LoadAggregate = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.LoadAggregate[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.LoadAggregate[obj.id];
             }
 
             parse (context, sub)

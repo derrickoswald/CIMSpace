@@ -32,17 +32,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.AuxiliaryEquipment;
                 if (null == bucket)
                    cim_data.AuxiliaryEquipment = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.AuxiliaryEquipment[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.AuxiliaryEquipment[obj.id];
             }
 
             parse (context, sub)
@@ -146,17 +145,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Sensor;
                 if (null == bucket)
                    cim_data.Sensor = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Sensor[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Sensor[obj.id];
             }
 
             parse (context, sub)
@@ -244,17 +242,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.WaveTrap;
                 if (null == bucket)
                    cim_data.WaveTrap = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.WaveTrap[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.WaveTrap[obj.id];
             }
 
             parse (context, sub)
@@ -344,17 +341,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PotentialTransformer;
                 if (null == bucket)
                    cim_data.PotentialTransformer = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PotentialTransformer[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PotentialTransformer[obj.id];
             }
 
             parse (context, sub)
@@ -468,17 +464,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.FaultIndicator;
                 if (null == bucket)
                    cim_data.FaultIndicator = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.FaultIndicator[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.FaultIndicator[obj.id];
             }
 
             parse (context, sub)
@@ -568,17 +563,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.CurrentTransformer;
                 if (null == bucket)
                    cim_data.CurrentTransformer = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.CurrentTransformer[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.CurrentTransformer[obj.id];
             }
 
             parse (context, sub)
@@ -693,17 +687,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PostLineSensor;
                 if (null == bucket)
                    cim_data.PostLineSensor = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PostLineSensor[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PostLineSensor[obj.id];
             }
 
             parse (context, sub)
@@ -791,17 +784,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SurgeArrester;
                 if (null == bucket)
                    cim_data.SurgeArrester = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SurgeArrester[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SurgeArrester[obj.id];
             }
 
             parse (context, sub)

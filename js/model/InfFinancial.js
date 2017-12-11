@@ -21,17 +21,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ControlAreaOperator;
                 if (null == bucket)
                    cim_data.ControlAreaOperator = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ControlAreaOperator[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ControlAreaOperator[obj.id];
             }
 
             parse (context, sub)
@@ -143,17 +142,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.OpenAccessProduct;
                 if (null == bucket)
                    cim_data.OpenAccessProduct = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.OpenAccessProduct[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.OpenAccessProduct[obj.id];
             }
 
             parse (context, sub)
@@ -237,17 +235,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.TransmissionProduct;
                 if (null == bucket)
                    cim_data.TransmissionProduct = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.TransmissionProduct[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.TransmissionProduct[obj.id];
             }
 
             parse (context, sub)
@@ -364,17 +361,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.IntSchedAgreement;
                 if (null == bucket)
                    cim_data.IntSchedAgreement = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.IntSchedAgreement[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.IntSchedAgreement[obj.id];
             }
 
             parse (context, sub)
@@ -485,17 +481,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.CustomerConsumer;
                 if (null == bucket)
                    cim_data.CustomerConsumer = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.CustomerConsumer[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.CustomerConsumer[obj.id];
             }
 
             parse (context, sub)
@@ -599,17 +594,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.TransmissionProvider;
                 if (null == bucket)
                    cim_data.TransmissionProvider = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.TransmissionProvider[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.TransmissionProvider[obj.id];
             }
 
             parse (context, sub)
@@ -717,17 +711,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Marketer;
                 if (null == bucket)
                    cim_data.Marketer = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Marketer[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Marketer[obj.id];
             }
 
             parse (context, sub)
@@ -839,17 +832,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.GenerationProvider;
                 if (null == bucket)
                    cim_data.GenerationProvider = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.GenerationProvider[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.GenerationProvider[obj.id];
             }
 
             parse (context, sub)

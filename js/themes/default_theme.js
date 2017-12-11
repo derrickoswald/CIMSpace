@@ -215,7 +215,6 @@ define
             {
                 var coordinates;
                 var location;
-                var editing = options.editing || false;
                 var psr = data.PowerSystemResource
                 for (var id in psr)
                 {
@@ -223,8 +222,8 @@ define
                     {
                         if (null != (coordinates = locations[location]))
                         {
-                            if ((psr[id].EditDisposition && !editing) ||
-                                (!psr[id].EditDisposition && editing))
+                            // don't show deleted elements
+                            if (psr[id].EditDisposition && ("delete" == psr[id].EditDisposition))
                                 continue;
 
                             if (2 == coordinates.length)
@@ -254,7 +253,57 @@ define
                                     psr[id].symbol = fuse_symbol;
                                     psr[id].color = "rgb(0, 0, 139)";
                                 }
-                                else if ("undefined" != typeof (psr[id].normalOpen)) // all switches have this attribute
+                                else if ("Switch" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("Cut" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("Disconnector" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("GroundDisconnector" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("Jumper" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("MktSwitch" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("ProtectedSwitch" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("Breaker" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("LoadBreakSwitch" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("Recloser" == psr[id].cls)
+                                {
+                                    psr[id].symbol = switch_symbol;
+                                    psr[id].color = "rgb(0, 0, 139)";
+                                }
+                                else if ("Sectionaliser" == psr[id].cls)
                                 {
                                     psr[id].symbol = switch_symbol;
                                     psr[id].color = "rgb(0, 0, 139)";
@@ -404,7 +453,6 @@ define
              * @param {Object} data - the hash table object of CIM classes by class name
              * @param {Object} options - object with rendering options, e.g.
              *   show_internal_features flag - render internal features
-             *   editing flag - render new features or, if false, existing features
              * @function make_theme
              * @memberOf module:default_theme
              */

@@ -13,17 +13,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ResourceGroupReq;
                 if (null == bucket)
                    cim_data.ResourceGroupReq = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ResourceGroupReq[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ResourceGroupReq[obj.id];
             }
 
             parse (context, sub)
@@ -137,17 +136,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ReserveReqCurve;
                 if (null == bucket)
                    cim_data.ReserveReqCurve = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ReserveReqCurve[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ReserveReqCurve[obj.id];
             }
 
             parse (context, sub)
@@ -251,17 +249,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ResourceGroup;
                 if (null == bucket)
                    cim_data.ResourceGroup = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ResourceGroup[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ResourceGroup[obj.id];
             }
 
             parse (context, sub)
@@ -385,17 +382,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SensitivityPriceCurve;
                 if (null == bucket)
                    cim_data.SensitivityPriceCurve = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SensitivityPriceCurve[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SensitivityPriceCurve[obj.id];
             }
 
             parse (context, sub)
@@ -499,17 +495,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ReserveReq;
                 if (null == bucket)
                    cim_data.ReserveReq = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ReserveReq[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ReserveReq[obj.id];
             }
 
             parse (context, sub)

@@ -19,17 +19,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.RecloseSequence;
                 if (null == bucket)
                    cim_data.RecloseSequence = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.RecloseSequence[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.RecloseSequence[obj.id];
             }
 
             parse (context, sub)
@@ -145,17 +144,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ProtectionEquipment;
                 if (null == bucket)
                    cim_data.ProtectionEquipment = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ProtectionEquipment[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ProtectionEquipment[obj.id];
             }
 
             parse (context, sub)
@@ -305,17 +303,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.CurrentRelay;
                 if (null == bucket)
                    cim_data.CurrentRelay = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.CurrentRelay[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.CurrentRelay[obj.id];
             }
 
             parse (context, sub)
@@ -442,17 +439,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.SynchrocheckRelay;
                 if (null == bucket)
                    cim_data.SynchrocheckRelay = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.SynchrocheckRelay[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.SynchrocheckRelay[obj.id];
             }
 
             parse (context, sub)

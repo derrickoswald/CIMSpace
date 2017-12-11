@@ -40,17 +40,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PowerSystemStabilizerDynamics;
                 if (null == bucket)
                    cim_data.PowerSystemStabilizerDynamics = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PowerSystemStabilizerDynamics[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PowerSystemStabilizerDynamics[obj.id];
             }
 
             parse (context, sub)
@@ -160,17 +159,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssPTIST1;
                 if (null == bucket)
                    cim_data.PssPTIST1 = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssPTIST1[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssPTIST1[obj.id];
             }
 
             parse (context, sub)
@@ -317,17 +315,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssIEEE2B;
                 if (null == bucket)
                    cim_data.PssIEEE2B = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssIEEE2B[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssIEEE2B[obj.id];
             }
 
             parse (context, sub)
@@ -556,17 +553,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Pss2ST;
                 if (null == bucket)
                    cim_data.Pss2ST = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Pss2ST[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Pss2ST[obj.id];
             }
 
             parse (context, sub)
@@ -750,17 +746,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Pss1;
                 if (null == bucket)
                    cim_data.Pss1 = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Pss1[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Pss1[obj.id];
             }
 
             parse (context, sub)
@@ -925,17 +920,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssSH;
                 if (null == bucket)
                    cim_data.PssSH = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssSH[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssSH[obj.id];
             }
 
             parse (context, sub)
@@ -1092,17 +1086,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Pss1A;
                 if (null == bucket)
                    cim_data.Pss1A = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Pss1A[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Pss1A[obj.id];
             }
 
             parse (context, sub)
@@ -1304,17 +1297,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssSK;
                 if (null == bucket)
                    cim_data.PssSK = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssSK[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssSK[obj.id];
             }
 
             parse (context, sub)
@@ -1461,17 +1453,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssIEEE1A;
                 if (null == bucket)
                    cim_data.PssIEEE1A = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssIEEE1A[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssIEEE1A[obj.id];
             }
 
             parse (context, sub)
@@ -1623,17 +1614,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssPTIST3;
                 if (null == bucket)
                    cim_data.PssPTIST3 = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssPTIST3[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssPTIST3[obj.id];
             }
 
             parse (context, sub)
@@ -1895,17 +1885,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssIEEE4B;
                 if (null == bucket)
                    cim_data.PssIEEE4B = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssIEEE4B[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssIEEE4B[obj.id];
             }
 
             parse (context, sub)
@@ -2330,17 +2319,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Pss5;
                 if (null == bucket)
                    cim_data.Pss5 = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Pss5[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Pss5[obj.id];
             }
 
             parse (context, sub)
@@ -2515,17 +2503,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssSB4;
                 if (null == bucket)
                    cim_data.PssSB4 = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssSB4[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssSB4[obj.id];
             }
 
             parse (context, sub)
@@ -2672,17 +2659,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssIEEE3B;
                 if (null == bucket)
                    cim_data.PssIEEE3B = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssIEEE3B[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssIEEE3B[obj.id];
             }
 
             parse (context, sub)
@@ -2871,17 +2857,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssELIN2;
                 if (null == bucket)
                    cim_data.PssELIN2 = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssELIN2[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssELIN2[obj.id];
             }
 
             parse (context, sub)
@@ -3028,17 +3013,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Pss2B;
                 if (null == bucket)
                    cim_data.Pss2B = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Pss2B[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Pss2B[obj.id];
             }
 
             parse (context, sub)
@@ -3287,17 +3271,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.PssWECC;
                 if (null == bucket)
                    cim_data.PssWECC = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.PssWECC[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.PssWECC[obj.id];
             }
 
             parse (context, sub)

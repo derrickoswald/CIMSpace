@@ -80,17 +80,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.MarketRole;
                 if (null == bucket)
                    cim_data.MarketRole = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.MarketRole[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.MarketRole[obj.id];
             }
 
             parse (context, sub)
@@ -215,17 +214,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.RegisteredResource;
                 if (null == bucket)
                    cim_data.RegisteredResource = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.RegisteredResource[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.RegisteredResource[obj.id];
             }
 
             parse (context, sub)
@@ -730,17 +728,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.MarketParticipant;
                 if (null == bucket)
                    cim_data.MarketParticipant = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.MarketParticipant[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.MarketParticipant[obj.id];
             }
 
             parse (context, sub)

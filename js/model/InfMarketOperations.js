@@ -13,17 +13,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.BilateralTransaction;
                 if (null == bucket)
                    cim_data.BilateralTransaction = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.BilateralTransaction[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.BilateralTransaction[obj.id];
             }
 
             parse (context, sub)
@@ -153,17 +152,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.Participation;
                 if (null == bucket)
                    cim_data.Participation = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.Participation[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.Participation[obj.id];
             }
 
             parse (context, sub)
@@ -260,17 +258,16 @@ define
             constructor (template, cim_data)
             {
                 super (template, cim_data);
-                this._id = template.id;
                 var bucket = cim_data.ResourceCertification;
                 if (null == bucket)
                    cim_data.ResourceCertification = bucket = {};
-                bucket[this._id] = template;
+                bucket[template.id] = template;
             }
 
-            remove (cim_data)
+            remove (obj, cim_data)
             {
-               super.remove (cim_data);
-               delete cim_data.ResourceCertification[this._id];
+               super.remove (obj, cim_data);
+               delete cim_data.ResourceCertification[obj.id];
             }
 
             parse (context, sub)
