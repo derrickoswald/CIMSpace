@@ -1194,9 +1194,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "UsagePoint", "amiBillingReady", "amiBillingReady",  base.from_string, fields);
+                base.export_attribute (obj, "UsagePoint", "amiBillingReady", "amiBillingReady", fields);
                 base.export_element (obj, "UsagePoint", "checkBilling", "checkBilling",  base.from_boolean, fields);
-                base.export_element (obj, "UsagePoint", "connectionState", "connectionState",  base.from_string, fields);
+                base.export_attribute (obj, "UsagePoint", "connectionState", "connectionState", fields);
                 base.export_element (obj, "UsagePoint", "estimatedLoad", "estimatedLoad",  base.from_string, fields);
                 base.export_element (obj, "UsagePoint", "grounded", "grounded",  base.from_boolean, fields);
                 base.export_element (obj, "UsagePoint", "isSdp", "isSdp",  base.from_boolean, fields);
@@ -2122,7 +2122,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MeterMultiplier", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "MeterMultiplier", "kind", "kind", fields);
                 base.export_element (obj, "MeterMultiplier", "value", "value",  base.from_float, fields);
                 base.export_attribute (obj, "MeterMultiplier", "Meter", "Meter", fields);
                 if (full)
@@ -2375,7 +2375,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MetrologyRequirement", "reason", "reason",  base.from_string, fields);
+                base.export_attribute (obj, "MetrologyRequirement", "reason", "reason", fields);
                 base.export_attributes (obj, "MetrologyRequirement", "ReadingTypes", "ReadingTypes", fields);
                 base.export_attributes (obj, "MetrologyRequirement", "UsagePoints", "UsagePoints", fields);
                 if (full)
@@ -3119,7 +3119,7 @@ define
                 base.export_element (obj, "EndDeviceTiming", "duration", "duration",  base.from_string, fields);
                 base.export_element (obj, "EndDeviceTiming", "durationIndefinite", "durationIndefinite",  base.from_boolean, fields);
                 base.export_element (obj, "EndDeviceTiming", "interval", "interval",  base.from_string, fields);
-                base.export_element (obj, "EndDeviceTiming", "randomisation", "randomisation",  base.from_string, fields);
+                base.export_attribute (obj, "EndDeviceTiming", "randomisation", "randomisation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3656,7 +3656,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ServiceMultiplier", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "ServiceMultiplier", "kind", "kind", fields);
                 base.export_element (obj, "ServiceMultiplier", "value", "value",  base.from_float, fields);
                 base.export_attribute (obj, "ServiceMultiplier", "UsagePoint", "UsagePoint", fields);
                 if (full)
@@ -5212,7 +5212,7 @@ define
             {
                 var fields = EndDeviceFunction.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SimpleEndDeviceFunction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "SimpleEndDeviceFunction", "kind", "kind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5324,8 +5324,8 @@ define
 
                 base.export_element (obj, "ComFunction", "amrAddress", "amrAddress",  base.from_string, fields);
                 base.export_element (obj, "ComFunction", "amrRouter", "amrRouter",  base.from_string, fields);
-                base.export_element (obj, "ComFunction", "direction", "direction",  base.from_string, fields);
-                base.export_element (obj, "ComFunction", "technology", "technology",  base.from_string, fields);
+                base.export_attribute (obj, "ComFunction", "direction", "direction", fields);
+                base.export_attribute (obj, "ComFunction", "technology", "technology", fields);
                 base.export_attribute (obj, "ComFunction", "ComModule", "ComModule", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -5461,7 +5461,7 @@ define
                 base.export_element (obj, "PanDisplay", "confirmationRequired", "confirmationRequired",  base.from_boolean, fields);
                 base.export_element (obj, "PanDisplay", "priority", "priority",  base.from_string, fields);
                 base.export_element (obj, "PanDisplay", "textMessage", "textMessage",  base.from_string, fields);
-                base.export_element (obj, "PanDisplay", "transmissionMode", "transmissionMode",  base.from_string, fields);
+                base.export_attribute (obj, "PanDisplay", "transmissionMode", "transmissionMode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5974,7 +5974,7 @@ define
             {
                 var fields = BaseReading.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Reading", "reason", "reason",  base.from_string, fields);
+                base.export_attribute (obj, "Reading", "reason", "reason", fields);
                 base.export_attribute (obj, "Reading", "ReadingType", "ReadingType", fields);
                 base.export_attributes (obj, "Reading", "MeterReadings", "MeterReadings", fields);
                 if (full)

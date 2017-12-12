@@ -244,7 +244,7 @@ define
                 var fields = SynchronousMachineDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SynchronousMachineDetailed", "efdBaseRatio", "efdBaseRatio",  base.from_float, fields);
-                base.export_element (obj, "SynchronousMachineDetailed", "ifdBaseType", "ifdBaseType",  base.from_string, fields);
+                base.export_attribute (obj, "SynchronousMachineDetailed", "ifdBaseType", "ifdBaseType", fields);
                 base.export_element (obj, "SynchronousMachineDetailed", "saturationFactor120QAxis", "saturationFactor120QAxis",  base.from_float, fields);
                 base.export_element (obj, "SynchronousMachineDetailed", "saturationFactorQAxis", "saturationFactorQAxis",  base.from_float, fields);
                 if (full)
@@ -688,8 +688,8 @@ define
                 var fields = SynchronousMachineDetailed.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SynchronousMachineTimeConstantReactance", "ks", "ks",  base.from_float, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "modelType", "modelType",  base.from_string, fields);
-                base.export_element (obj, "SynchronousMachineTimeConstantReactance", "rotorType", "rotorType",  base.from_string, fields);
+                base.export_attribute (obj, "SynchronousMachineTimeConstantReactance", "modelType", "modelType", fields);
+                base.export_attribute (obj, "SynchronousMachineTimeConstantReactance", "rotorType", "rotorType", fields);
                 base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tc", "tc",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tpdo", "tpdo",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachineTimeConstantReactance", "tppdo", "tppdo",  base.from_string, fields);

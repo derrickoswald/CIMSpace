@@ -1122,9 +1122,9 @@ define
                 var fields = ErpDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpInvoice", "amount", "amount",  base.from_string, fields);
-                base.export_element (obj, "ErpInvoice", "billMediaKind", "billMediaKind",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInvoice", "billMediaKind", "billMediaKind", fields);
                 base.export_element (obj, "ErpInvoice", "dueDate", "dueDate",  base.from_string, fields);
-                base.export_element (obj, "ErpInvoice", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInvoice", "kind", "kind", fields);
                 base.export_element (obj, "ErpInvoice", "mailedDate", "mailedDate",  base.from_string, fields);
                 base.export_element (obj, "ErpInvoice", "proForma", "proForma",  base.from_boolean, fields);
                 base.export_element (obj, "ErpInvoice", "referenceNumber", "referenceNumber",  base.from_string, fields);
@@ -1893,7 +1893,7 @@ define
                 base.export_element (obj, "ErpInvoiceLineItem", "billPeriod", "billPeriod",  base.from_string, fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "glAccount", "glAccount",  base.from_string, fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "glDateTime", "glDateTime",  base.from_datetime, fields);
-                base.export_element (obj, "ErpInvoiceLineItem", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "ErpInvoiceLineItem", "kind", "kind", fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "lineAmount", "lineAmount",  base.from_float, fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "lineNumber", "lineNumber",  base.from_string, fields);
                 base.export_element (obj, "ErpInvoiceLineItem", "lineVersion", "lineVersion",  base.from_string, fields);
@@ -3282,7 +3282,7 @@ define
                 var fields = ErpIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ErpLedgerEntry", "accountID", "accountID",  base.from_string, fields);
-                base.export_element (obj, "ErpLedgerEntry", "accountKind", "accountKind",  base.from_string, fields);
+                base.export_attribute (obj, "ErpLedgerEntry", "accountKind", "accountKind", fields);
                 base.export_element (obj, "ErpLedgerEntry", "amount", "amount",  base.from_string, fields);
                 base.export_element (obj, "ErpLedgerEntry", "postedDateTime", "postedDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "ErpLedgerEntry", "status", "status",  base.from_string, fields);

@@ -194,7 +194,7 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RemoteUnit", "remoteUnitType", "remoteUnitType",  base.from_string, fields);
+                base.export_attribute (obj, "RemoteUnit", "remoteUnitType", "remoteUnitType", fields);
                 base.export_attributes (obj, "RemoteUnit", "CommunicationLinks", "CommunicationLinks", fields);
                 base.export_attributes (obj, "RemoteUnit", "RemotePoints", "RemotePoints", fields);
                 if (full)

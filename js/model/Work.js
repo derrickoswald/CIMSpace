@@ -125,7 +125,7 @@ define
             {
                 var fields = Common.TimeSchedule.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WorkTimeSchedule", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "WorkTimeSchedule", "kind", "kind", fields);
                 base.export_attribute (obj, "WorkTimeSchedule", "BaseWork", "BaseWork", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -248,9 +248,9 @@ define
             {
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "BaseWork", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "BaseWork", "kind", "kind", fields);
                 base.export_element (obj, "BaseWork", "priority", "priority",  base.from_string, fields);
-                base.export_element (obj, "BaseWork", "statusKind", "statusKind",  base.from_string, fields);
+                base.export_attribute (obj, "BaseWork", "statusKind", "statusKind", fields);
                 base.export_attribute (obj, "BaseWork", "WorkLocation", "WorkLocation", fields);
                 base.export_attributes (obj, "BaseWork", "TimeSchedules", "TimeSchedules", fields);
                 if (full)
@@ -755,7 +755,7 @@ define
 
                 base.export_element (obj, "WorkTask", "instruction", "instruction",  base.from_string, fields);
                 base.export_element (obj, "WorkTask", "schedOverride", "schedOverride",  base.from_string, fields);
-                base.export_element (obj, "WorkTask", "taskKind", "taskKind",  base.from_string, fields);
+                base.export_attribute (obj, "WorkTask", "taskKind", "taskKind", fields);
                 base.export_element (obj, "WorkTask", "crewETA", "crewETA",  base.from_datetime, fields);
                 base.export_attributes (obj, "WorkTask", "Crews", "Crews", fields);
                 base.export_attributes (obj, "WorkTask", "Assets", "Assets", fields);
@@ -1222,7 +1222,7 @@ define
 
                 base.export_element (obj, "Vehicle", "odometerReadDateTime", "odometerReadDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "Vehicle", "odometerReading", "odometerReading",  base.from_string, fields);
-                base.export_element (obj, "Vehicle", "usageKind", "usageKind",  base.from_string, fields);
+                base.export_attribute (obj, "Vehicle", "usageKind", "usageKind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 

@@ -2230,7 +2230,7 @@ define
                 var fields = WorkDocument.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Design", "costEstimate", "costEstimate",  base.from_string, fields);
-                base.export_element (obj, "Design", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Design", "kind", "kind", fields);
                 base.export_element (obj, "Design", "price", "price",  base.from_string, fields);
                 base.export_attribute (obj, "Design", "Work", "Work", fields);
                 base.export_attribute (obj, "Design", "ErpQuoteLineItem", "ErpQuoteLineItem", fields);
@@ -2555,7 +2555,7 @@ define
                 var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ConditionFactor", "cfValue", "cfValue",  base.from_string, fields);
-                base.export_element (obj, "ConditionFactor", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "ConditionFactor", "kind", "kind", fields);
                 base.export_element (obj, "ConditionFactor", "status", "status",  base.from_string, fields);
                 base.export_attributes (obj, "ConditionFactor", "DesignLocations", "DesignLocations", fields);
                 base.export_attributes (obj, "ConditionFactor", "Designs", "Designs", fields);
@@ -4654,7 +4654,7 @@ define
                 var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "PropertyUnit", "accountingUsage", "accountingUsage",  base.from_string, fields);
-                base.export_element (obj, "PropertyUnit", "activityCode", "activityCode",  base.from_string, fields);
+                base.export_attribute (obj, "PropertyUnit", "activityCode", "activityCode", fields);
                 base.export_element (obj, "PropertyUnit", "propertyAccount", "propertyAccount",  base.from_string, fields);
                 base.export_element (obj, "PropertyUnit", "status", "status",  base.from_string, fields);
                 base.export_attributes (obj, "PropertyUnit", "CUMaterialItems", "CUMaterialItems", fields);
@@ -4960,7 +4960,7 @@ define
                 var fields = WorkIdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "DesignLocationCU", "cuAccount", "cuAccount",  base.from_string, fields);
-                base.export_element (obj, "DesignLocationCU", "cuAction", "cuAction",  base.from_string, fields);
+                base.export_attribute (obj, "DesignLocationCU", "cuAction", "cuAction", fields);
                 base.export_element (obj, "DesignLocationCU", "cuQuantity", "cuQuantity",  base.from_string, fields);
                 base.export_element (obj, "DesignLocationCU", "cuUsage", "cuUsage",  base.from_string, fields);
                 base.export_element (obj, "DesignLocationCU", "removalDate", "removalDate",  base.from_string, fields);

@@ -378,7 +378,7 @@ define
                 base.export_element (obj, "PotentialTransformer", "accuracyClass", "accuracyClass",  base.from_string, fields);
                 base.export_element (obj, "PotentialTransformer", "nominalRatio", "nominalRatio",  base.from_float, fields);
                 base.export_element (obj, "PotentialTransformer", "ptClass", "ptClass",  base.from_string, fields);
-                base.export_element (obj, "PotentialTransformer", "type", "type",  base.from_string, fields);
+                base.export_attribute (obj, "PotentialTransformer", "type", "type", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 

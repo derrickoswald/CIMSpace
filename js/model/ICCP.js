@@ -302,7 +302,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ICCPInformationMessage", "localReference", "localReference",  base.from_string, fields);
-                base.export_element (obj, "ICCPInformationMessage", "scope", "scope",  base.from_string, fields);
+                base.export_attribute (obj, "ICCPInformationMessage", "scope", "scope", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -413,7 +413,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPPoint", "scope", "scope",  base.from_string, fields);
+                base.export_attribute (obj, "ICCPPoint", "scope", "scope", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -966,7 +966,7 @@ define
             {
                 var fields = ICCPPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPIndicationPoint", "type", "type",  base.from_string, fields);
+                base.export_attribute (obj, "ICCPIndicationPoint", "type", "type", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1068,7 +1068,7 @@ define
             {
                 var fields = ICCPPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPControlPoint", "deviceClass", "deviceClass",  base.from_string, fields);
+                base.export_attribute (obj, "ICCPControlPoint", "deviceClass", "deviceClass", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1263,7 +1263,7 @@ define
             {
                 var fields = ICCPControlPoint.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ICCPSetPoint", "type", "type",  base.from_string, fields);
+                base.export_attribute (obj, "ICCPSetPoint", "type", "type", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 

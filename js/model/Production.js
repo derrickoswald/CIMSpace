@@ -1122,7 +1122,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StartIgnFuelCurve", "ignitionFuelType", "ignitionFuelType",  base.from_string, fields);
+                base.export_attribute (obj, "StartIgnFuelCurve", "ignitionFuelType", "ignitionFuelType", fields);
                 base.export_attribute (obj, "StartIgnFuelCurve", "StartupModel", "StartupModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1727,7 +1727,7 @@ define
 
                 base.export_element (obj, "FuelAllocationSchedule", "fuelAllocationEndDate", "fuelAllocationEndDate",  base.from_datetime, fields);
                 base.export_element (obj, "FuelAllocationSchedule", "fuelAllocationStartDate", "fuelAllocationStartDate",  base.from_datetime, fields);
-                base.export_element (obj, "FuelAllocationSchedule", "fuelType", "fuelType",  base.from_string, fields);
+                base.export_attribute (obj, "FuelAllocationSchedule", "fuelType", "fuelType", fields);
                 base.export_element (obj, "FuelAllocationSchedule", "maxFuelAllocation", "maxFuelAllocation",  base.from_float, fields);
                 base.export_element (obj, "FuelAllocationSchedule", "minFuelAllocation", "minFuelAllocation",  base.from_float, fields);
                 base.export_attribute (obj, "FuelAllocationSchedule", "FossilFuel", "FossilFuel", fields);
@@ -2698,7 +2698,7 @@ define
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "EmissionCurve", "emissionContent", "emissionContent",  base.from_string, fields);
-                base.export_element (obj, "EmissionCurve", "emissionType", "emissionType",  base.from_string, fields);
+                base.export_attribute (obj, "EmissionCurve", "emissionType", "emissionType", fields);
                 base.export_element (obj, "EmissionCurve", "isNetGrossP", "isNetGrossP",  base.from_boolean, fields);
                 base.export_attribute (obj, "EmissionCurve", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
@@ -2825,7 +2825,7 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StartMainFuelCurve", "mainFuelType", "mainFuelType",  base.from_string, fields);
+                base.export_attribute (obj, "StartMainFuelCurve", "mainFuelType", "mainFuelType", fields);
                 base.export_attribute (obj, "StartMainFuelCurve", "StartupModel", "StartupModel", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3075,7 +3075,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "FossilFuel", "fossilFuelType", "fossilFuelType",  base.from_string, fields);
+                base.export_attribute (obj, "FossilFuel", "fossilFuelType", "fossilFuelType", fields);
                 base.export_element (obj, "FossilFuel", "fuelCost", "fuelCost",  base.from_string, fields);
                 base.export_element (obj, "FossilFuel", "fuelDispatchCost", "fuelDispatchCost",  base.from_string, fields);
                 base.export_element (obj, "FossilFuel", "fuelEffFactor", "fuelEffFactor",  base.from_string, fields);
@@ -3286,8 +3286,8 @@ define
                 base.export_element (obj, "GeneratingUnit", "controlPulseLow", "controlPulseLow",  base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "controlResponseRate", "controlResponseRate",  base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "efficiency", "efficiency",  base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "genControlMode", "genControlMode",  base.from_string, fields);
-                base.export_element (obj, "GeneratingUnit", "genControlSource", "genControlSource",  base.from_string, fields);
+                base.export_attribute (obj, "GeneratingUnit", "genControlMode", "genControlMode", fields);
+                base.export_attribute (obj, "GeneratingUnit", "genControlSource", "genControlSource", fields);
                 base.export_element (obj, "GeneratingUnit", "governorMPL", "governorMPL",  base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "governorSCD", "governorSCD",  base.from_string, fields);
                 base.export_element (obj, "GeneratingUnit", "highControlLimit", "highControlLimit",  base.from_string, fields);
@@ -3579,7 +3579,7 @@ define
 
                 base.export_element (obj, "HydroPowerPlant", "dischargeTravelDelay", "dischargeTravelDelay",  base.from_string, fields);
                 base.export_element (obj, "HydroPowerPlant", "genRatedP", "genRatedP",  base.from_string, fields);
-                base.export_element (obj, "HydroPowerPlant", "hydroPlantStorageType", "hydroPlantStorageType",  base.from_string, fields);
+                base.export_attribute (obj, "HydroPowerPlant", "hydroPlantStorageType", "hydroPlantStorageType", fields);
                 base.export_element (obj, "HydroPowerPlant", "penstockType", "penstockType",  base.from_string, fields);
                 base.export_element (obj, "HydroPowerPlant", "plantDischargeCapacity", "plantDischargeCapacity",  base.from_string, fields);
                 base.export_element (obj, "HydroPowerPlant", "plantRatedHead", "plantRatedHead",  base.from_string, fields);
@@ -3985,8 +3985,8 @@ define
             {
                 var fields = Core.Curve.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EmissionAccount", "emissionType", "emissionType",  base.from_string, fields);
-                base.export_element (obj, "EmissionAccount", "emissionValueSource", "emissionValueSource",  base.from_string, fields);
+                base.export_attribute (obj, "EmissionAccount", "emissionType", "emissionType", fields);
+                base.export_attribute (obj, "EmissionAccount", "emissionValueSource", "emissionValueSource", fields);
                 base.export_attribute (obj, "EmissionAccount", "ThermalGeneratingUnit", "ThermalGeneratingUnit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -5102,7 +5102,7 @@ define
             {
                 var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "HydroGeneratingUnit", "energyConversionCapability", "energyConversionCapability",  base.from_string, fields);
+                base.export_attribute (obj, "HydroGeneratingUnit", "energyConversionCapability", "energyConversionCapability", fields);
                 base.export_element (obj, "HydroGeneratingUnit", "hydroUnitWaterCost", "hydroUnitWaterCost",  base.from_string, fields);
                 base.export_attributes (obj, "HydroGeneratingUnit", "TailbayLossCurve", "TailbayLossCurve", fields);
                 base.export_attributes (obj, "HydroGeneratingUnit", "HydroGeneratingEfficiencyCurves", "HydroGeneratingEfficiencyCurves", fields);
@@ -5242,7 +5242,7 @@ define
             {
                 var fields = GeneratingUnit.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "WindGeneratingUnit", "windGenUnitType", "windGenUnitType",  base.from_string, fields);
+                base.export_attribute (obj, "WindGeneratingUnit", "windGenUnitType", "windGenUnitType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 

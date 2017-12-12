@@ -292,7 +292,7 @@ define
             {
                 var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "FACTSDevice", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "FACTSDevice", "kind", "kind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -557,7 +557,7 @@ define
                 var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "FailureEvent", "corporateCode", "corporateCode",  base.from_string, fields);
-                base.export_element (obj, "FailureEvent", "failureIsolationMethod", "failureIsolationMethod",  base.from_string, fields);
+                base.export_attribute (obj, "FailureEvent", "failureIsolationMethod", "failureIsolationMethod", fields);
                 base.export_element (obj, "FailureEvent", "faultLocatingMethod", "faultLocatingMethod",  base.from_string, fields);
                 base.export_element (obj, "FailureEvent", "location", "location",  base.from_string, fields);
                 if (full)
@@ -687,7 +687,7 @@ define
                 base.export_element (obj, "Structure", "fumigantAppliedDate", "fumigantAppliedDate",  base.from_string, fields);
                 base.export_element (obj, "Structure", "fumigantName", "fumigantName",  base.from_string, fields);
                 base.export_element (obj, "Structure", "height", "height",  base.from_string, fields);
-                base.export_element (obj, "Structure", "materialKind", "materialKind",  base.from_string, fields);
+                base.export_attribute (obj, "Structure", "materialKind", "materialKind", fields);
                 base.export_element (obj, "Structure", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
                 base.export_element (obj, "Structure", "removeWeed", "removeWeed",  base.from_boolean, fields);
                 base.export_element (obj, "Structure", "weedRemovedDate", "weedRemovedDate",  base.from_string, fields);
@@ -1003,7 +1003,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CoolingPowerRating", "coolingKind", "coolingKind",  base.from_string, fields);
+                base.export_attribute (obj, "CoolingPowerRating", "coolingKind", "coolingKind", fields);
                 base.export_element (obj, "CoolingPowerRating", "powerRating", "powerRating",  base.from_string, fields);
                 base.export_element (obj, "CoolingPowerRating", "stage", "stage",  base.from_string, fields);
                 base.export_attributes (obj, "CoolingPowerRating", "Reconditionings", "Reconditionings", fields);
@@ -1309,11 +1309,11 @@ define
             {
                 var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "StructureSupport", "anchorKind", "anchorKind",  base.from_string, fields);
+                base.export_attribute (obj, "StructureSupport", "anchorKind", "anchorKind", fields);
                 base.export_element (obj, "StructureSupport", "anchorRodCount", "anchorRodCount",  base.from_string, fields);
                 base.export_element (obj, "StructureSupport", "anchorRodLength", "anchorRodLength",  base.from_string, fields);
                 base.export_element (obj, "StructureSupport", "direction", "direction",  base.from_string, fields);
-                base.export_element (obj, "StructureSupport", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "StructureSupport", "kind", "kind", fields);
                 base.export_element (obj, "StructureSupport", "length", "length",  base.from_string, fields);
                 base.export_element (obj, "StructureSupport", "size", "size",  base.from_string, fields);
                 base.export_attribute (obj, "StructureSupport", "SecuredStructure", "SecuredStructure", fields);
@@ -1582,7 +1582,7 @@ define
                 base.export_element (obj, "Bushing", "c1PowerFactor", "c1PowerFactor",  base.from_float, fields);
                 base.export_element (obj, "Bushing", "c2Capacitance", "c2Capacitance",  base.from_string, fields);
                 base.export_element (obj, "Bushing", "c2PowerFactor", "c2PowerFactor",  base.from_float, fields);
-                base.export_element (obj, "Bushing", "insulationKind", "insulationKind",  base.from_string, fields);
+                base.export_attribute (obj, "Bushing", "insulationKind", "insulationKind", fields);
                 base.export_attributes (obj, "Bushing", "BushingInsulationPFs", "BushingInsulationPFs", fields);
                 base.export_attribute (obj, "Bushing", "Terminal", "Terminal", fields);
                 if (full)
@@ -2571,8 +2571,8 @@ define
             {
                 var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Joint", "configurationKind", "configurationKind",  base.from_string, fields);
-                base.export_element (obj, "Joint", "fillKind", "fillKind",  base.from_string, fields);
+                base.export_attribute (obj, "Joint", "configurationKind", "configurationKind", fields);
+                base.export_attribute (obj, "Joint", "fillKind", "fillKind", fields);
                 base.export_element (obj, "Joint", "insulation", "insulation",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2822,7 +2822,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Medium", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Medium", "kind", "kind", fields);
                 base.export_element (obj, "Medium", "volumeSpec", "volumeSpec",  base.from_string, fields);
                 base.export_attributes (obj, "Medium", "Assets", "Assets", fields);
                 base.export_attribute (obj, "Medium", "Specification", "Specification", fields);
@@ -3062,7 +3062,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "BushingInsulationPF", "status", "status",  base.from_string, fields);
-                base.export_element (obj, "BushingInsulationPF", "testKind", "testKind",  base.from_string, fields);
+                base.export_attribute (obj, "BushingInsulationPF", "testKind", "testKind", fields);
                 base.export_attribute (obj, "BushingInsulationPF", "Bushing", "Bushing", fields);
                 base.export_attribute (obj, "BushingInsulationPF", "TransformerObservation", "TransformerObservation", fields);
                 if (full)
@@ -3193,7 +3193,7 @@ define
                 var fields = Assets.Asset.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Streetlight", "armLength", "armLength",  base.from_string, fields);
-                base.export_element (obj, "Streetlight", "lampKind", "lampKind",  base.from_string, fields);
+                base.export_attribute (obj, "Streetlight", "lampKind", "lampKind", fields);
                 base.export_element (obj, "Streetlight", "lightRating", "lightRating",  base.from_string, fields);
                 base.export_attribute (obj, "Streetlight", "Pole", "Pole", fields);
                 if (full)
@@ -3330,17 +3330,17 @@ define
             {
                 var fields = Structure.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Pole", "baseKind", "baseKind",  base.from_string, fields);
+                base.export_attribute (obj, "Pole", "baseKind", "baseKind", fields);
                 base.export_element (obj, "Pole", "breastBlock", "breastBlock",  base.from_boolean, fields);
                 base.export_element (obj, "Pole", "classification", "classification",  base.from_string, fields);
                 base.export_element (obj, "Pole", "construction", "construction",  base.from_string, fields);
                 base.export_element (obj, "Pole", "diameter", "diameter",  base.from_string, fields);
                 base.export_element (obj, "Pole", "jpaReference", "jpaReference",  base.from_string, fields);
                 base.export_element (obj, "Pole", "length", "length",  base.from_string, fields);
-                base.export_element (obj, "Pole", "preservativeKind", "preservativeKind",  base.from_string, fields);
+                base.export_attribute (obj, "Pole", "preservativeKind", "preservativeKind", fields);
                 base.export_element (obj, "Pole", "speciesType", "speciesType",  base.from_string, fields);
                 base.export_element (obj, "Pole", "treatedDateTime", "treatedDateTime",  base.from_datetime, fields);
-                base.export_element (obj, "Pole", "treatmentKind", "treatmentKind",  base.from_string, fields);
+                base.export_attribute (obj, "Pole", "treatmentKind", "treatmentKind", fields);
                 base.export_attributes (obj, "Pole", "Streetlights", "Streetlights", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3495,7 +3495,7 @@ define
             {
                 var fields = Structure.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Tower", "constructionKind", "constructionKind",  base.from_string, fields);
+                base.export_attribute (obj, "Tower", "constructionKind", "constructionKind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3605,7 +3605,7 @@ define
                 var fields = Structure.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "UndergroundStructure", "hasVentilation", "hasVentilation",  base.from_boolean, fields);
-                base.export_element (obj, "UndergroundStructure", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "UndergroundStructure", "kind", "kind", fields);
                 base.export_element (obj, "UndergroundStructure", "material", "material",  base.from_string, fields);
                 base.export_element (obj, "UndergroundStructure", "sealingWarrantyExpiresDate", "sealingWarrantyExpiresDate",  base.from_string, fields);
                 if (full)

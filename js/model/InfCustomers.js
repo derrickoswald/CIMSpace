@@ -925,7 +925,7 @@ define
 
                 base.export_element (obj, "CustomerBillingInfo", "billingDate", "billingDate",  base.from_string, fields);
                 base.export_element (obj, "CustomerBillingInfo", "dueDate", "dueDate",  base.from_string, fields);
-                base.export_element (obj, "CustomerBillingInfo", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "CustomerBillingInfo", "kind", "kind", fields);
                 base.export_element (obj, "CustomerBillingInfo", "lastPaymentAmt", "lastPaymentAmt",  base.from_string, fields);
                 base.export_element (obj, "CustomerBillingInfo", "lastPaymentDate", "lastPaymentDate",  base.from_string, fields);
                 base.export_element (obj, "CustomerBillingInfo", "outBalance", "outBalance",  base.from_string, fields);

@@ -5,7 +5,7 @@
 
 define
 (
-    ["mustache", "cim", "model/Common", "model/Wires", "themes/layers"],
+    ["mustache", "cim", "themes/layers", "model/Common", "model/Core", "model/Wires"],
     /**
      * @summary Edit control.
      * @description UI element for editing
@@ -13,7 +13,7 @@ define
      * @exports cimedit
      * @version 1.0
      */
-    function (mustache, cim, Common, Wires, layers)
+    function (mustache, cim, layers, Common, Core, Wires)
     {
         class CIMEdit
         {
@@ -320,9 +320,11 @@ define
                 this.edit (obj);
 
                 this._new_elements = [ obj ];
-                if (digitize_line)
+                if (this._features.Conductor)
                     this.digitize_line (obj, this.make_cable.bind (this));
-                else if (digitize_point)
+                else if (this._features.ConductingEquipment)
+                    this.digitize_point (obj, this.make_equipment.bind (this));
+                else if (this._features.PowerSystemResource)
                     this.digitize_point (obj, this.make_psr.bind (this));
             }
 
@@ -365,15 +367,15 @@ define
 
                 // set the position points
                 var pp =
-                    {
-                        EditDisposition: "new",
-                        Location: location.id,
-                        cls: "PositionPoint",
-                        id: id + "_location_p",
-                        sequenceNumber: 1,
-                        xPosition: feature.geometry.coordinates[0].toString (),
-                        yPosition: feature.geometry.coordinates[1].toString ()
-                    };
+                {
+                    EditDisposition: "new",
+                    Location: location.id,
+                    cls: "PositionPoint",
+                    id: id + "_location_p",
+                    sequenceNumber: 1,
+                    xPosition: feature.geometry.coordinates[0].toString (),
+                    yPosition: feature.geometry.coordinates[1].toString ()
+                };
                 this._new_elements.push (new Common.PositionPoint (pp, this._features));
 
                 // add the location to the PSR object
@@ -386,6 +388,29 @@ define
 
                 // update the display
                 this.refresh ();
+            }
+
+            make_equipment (feature)
+            {
+                var point = this._current_feature;
+                var id = point.id;
+
+                // add the terminal
+                var terminal =
+                {
+                    EditDisposition: "new",
+                    cls: "Terminal",
+                    id: id + "_terminal_1",
+                    name: id + "_terminal_1",
+                    sequenceNumber: 1,
+                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    ConductingEquipment: id
+                    // ConnectivityNode
+                    // TopologicalNode
+                };
+                this._new_elements.push (new Core.Terminal (terminal, this._features));
+
+                this.make_psr (feature);
             }
 
             make_cable (feature)
@@ -424,6 +449,34 @@ define
                         )
                     );
                 }
+
+                // add the terminals
+                var terminal1 =
+                {
+                    EditDisposition: "new",
+                    cls: "Terminal",
+                    id: id + "_terminal_1",
+                    name: id + "_terminal_1",
+                    sequenceNumber: 1,
+                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    ConductingEquipment: id
+                    // ConnectivityNode
+                    // TopologicalNode
+                };
+                var terminal2 =
+                {
+                    EditDisposition: "new",
+                    cls: "Terminal",
+                    id: id + "_terminal_2",
+                    name: id + "_terminal_2",
+                    sequenceNumber: 2,
+                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    ConductingEquipment: id
+                    // ConnectivityNode
+                    // TopologicalNode
+                };
+                this._new_elements.push (new Core.Terminal (terminal1, this._features));
+                this._new_elements.push (new Core.Terminal (terminal2, this._features));
 
                 // add the location to the Cable object
                 line.Location = location.id;

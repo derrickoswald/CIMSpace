@@ -77,7 +77,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "RemoteInputSignal", "remoteSignalType", "remoteSignalType",  base.from_string, fields);
+                base.export_attribute (obj, "RemoteInputSignal", "remoteSignalType", "remoteSignalType", fields);
                 base.export_attribute (obj, "RemoteInputSignal", "Terminal", "Terminal", fields);
                 base.export_attribute (obj, "RemoteInputSignal", "VoltageCompensatorDynamics", "VoltageCompensatorDynamics", fields);
                 base.export_attribute (obj, "RemoteInputSignal", "WindPlantDynamics", "WindPlantDynamics", fields);

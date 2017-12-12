@@ -136,10 +136,10 @@ define
                 var fields = [];
 
                 base.export_element (obj, "CapacitancePerLength", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "CapacitancePerLength", "unit", "unit",  base.from_string, fields);
-                base.export_element (obj, "CapacitancePerLength", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "CapacitancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "CapacitancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_attribute (obj, "CapacitancePerLength", "unit", "unit", fields);
+                base.export_attribute (obj, "CapacitancePerLength", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "CapacitancePerLength", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "CapacitancePerLength", "denominatorMultiplier", "denominatorMultiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -268,10 +268,10 @@ define
                 var fields = [];
 
                 base.export_element (obj, "CostPerVolume", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "CostPerVolume", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "CostPerVolume", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "CostPerVolume", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "CostPerVolume", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "CostPerVolume", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "CostPerVolume", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "CostPerVolume", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "CostPerVolume", "unit", "unit", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -496,8 +496,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ReactivePower", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ReactivePower", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ReactivePower", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ReactivePower", "unit", "unit", fields);
                 base.export_element (obj, "ReactivePower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -723,8 +723,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Reactance", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Reactance", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Reactance", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Reactance", "unit", "unit", fields);
                 base.export_element (obj, "Reactance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -843,10 +843,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ResistancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "ResistancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "ResistancePerLength", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ResistancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ResistancePerLength", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "ResistancePerLength", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "ResistancePerLength", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ResistancePerLength", "unit", "unit", fields);
                 base.export_element (obj, "ResistancePerLength", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -973,8 +973,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AngleRadians", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "AngleRadians", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "AngleRadians", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "AngleRadians", "unit", "unit", fields);
                 base.export_element (obj, "AngleRadians", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1091,8 +1091,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Voltage", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Voltage", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Voltage", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Voltage", "unit", "unit", fields);
                 base.export_element (obj, "Voltage", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1211,10 +1211,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ActivePowerChangeRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "ActivePowerChangeRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "ActivePowerChangeRate", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ActivePowerChangeRate", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ActivePowerChangeRate", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "ActivePowerChangeRate", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "ActivePowerChangeRate", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ActivePowerChangeRate", "unit", "unit", fields);
                 base.export_element (obj, "ActivePowerChangeRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1339,11 +1339,11 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ActivePowerPerCurrentFlow", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ActivePowerPerCurrentFlow", "unit", "unit", fields);
                 base.export_element (obj, "ActivePowerPerCurrentFlow", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "demoninatorUnit", "demoninatorUnit",  base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerCurrentFlow", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_attribute (obj, "ActivePowerPerCurrentFlow", "demoninatorUnit", "demoninatorUnit", fields);
+                base.export_attribute (obj, "ActivePowerPerCurrentFlow", "denominatorMultiplier", "denominatorMultiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1471,10 +1471,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CostRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "CostRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "CostRate", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "CostRate", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "CostRate", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "CostRate", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "CostRate", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "CostRate", "unit", "unit", fields);
                 base.export_element (obj, "CostRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1601,8 +1601,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "WaterLevel", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "WaterLevel", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "WaterLevel", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "WaterLevel", "unit", "unit", fields);
                 base.export_element (obj, "WaterLevel", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1818,8 +1818,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Admittance", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Admittance", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Admittance", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Admittance", "unit", "unit", fields);
                 base.export_element (obj, "Admittance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1938,10 +1938,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CostPerEnergyUnit", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "CostPerEnergyUnit", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "CostPerEnergyUnit", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "CostPerEnergyUnit", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "CostPerEnergyUnit", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "CostPerEnergyUnit", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "CostPerEnergyUnit", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "CostPerEnergyUnit", "unit", "unit", fields);
                 base.export_element (obj, "CostPerEnergyUnit", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2070,10 +2070,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ReactancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "ReactancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "ReactancePerLength", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ReactancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ReactancePerLength", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "ReactancePerLength", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "ReactancePerLength", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ReactancePerLength", "unit", "unit", fields);
                 base.export_element (obj, "ReactancePerLength", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2402,10 +2402,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Damping", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "Damping", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "Damping", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Damping", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Damping", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "Damping", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "Damping", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Damping", "unit", "unit", fields);
                 base.export_element (obj, "Damping", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2534,8 +2534,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PU", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "PU", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "PU", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "PU", "unit", "unit", fields);
                 base.export_element (obj, "PU", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2652,8 +2652,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ActivePower", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ActivePower", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ActivePower", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ActivePower", "unit", "unit", fields);
                 base.export_element (obj, "ActivePower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2770,8 +2770,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Capacitance", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Capacitance", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Capacitance", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Capacitance", "unit", "unit", fields);
                 base.export_element (obj, "Capacitance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2890,8 +2890,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Conductance", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Conductance", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Conductance", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Conductance", "unit", "unit", fields);
                 base.export_element (obj, "Conductance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3011,10 +3011,10 @@ define
                 var fields = [];
 
                 base.export_element (obj, "InductancePerLength", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "InductancePerLength", "unit", "unit",  base.from_string, fields);
-                base.export_element (obj, "InductancePerLength", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "InductancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "InductancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
+                base.export_attribute (obj, "InductancePerLength", "unit", "unit", fields);
+                base.export_attribute (obj, "InductancePerLength", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "InductancePerLength", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "InductancePerLength", "denominatorMultiplier", "denominatorMultiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -3142,10 +3142,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "VolumeFlowRate", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "VolumeFlowRate", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "VolumeFlowRate", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "VolumeFlowRate", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "VolumeFlowRate", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "VolumeFlowRate", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "VolumeFlowRate", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "VolumeFlowRate", "unit", "unit", fields);
                 base.export_element (obj, "VolumeFlowRate", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3470,8 +3470,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CurrentFlow", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "CurrentFlow", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "CurrentFlow", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "CurrentFlow", "unit", "unit", fields);
                 base.export_element (obj, "CurrentFlow", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3588,8 +3588,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "KiloActivePower", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "KiloActivePower", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "KiloActivePower", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "KiloActivePower", "unit", "unit", fields);
                 base.export_element (obj, "KiloActivePower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3706,8 +3706,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Impedance", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Impedance", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Impedance", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Impedance", "unit", "unit", fields);
                 base.export_element (obj, "Impedance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3826,8 +3826,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "PerCent", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "PerCent", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "PerCent", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "PerCent", "unit", "unit", fields);
                 base.export_element (obj, "PerCent", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3944,8 +3944,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Seconds", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Seconds", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Seconds", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Seconds", "unit", "unit", fields);
                 base.export_element (obj, "Seconds", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4064,10 +4064,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ActivePowerPerFrequency", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerFrequency", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerFrequency", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ActivePowerPerFrequency", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ActivePowerPerFrequency", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "ActivePowerPerFrequency", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "ActivePowerPerFrequency", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ActivePowerPerFrequency", "unit", "unit", fields);
                 base.export_element (obj, "ActivePowerPerFrequency", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4194,8 +4194,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Money", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Money", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Money", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Money", "unit", "unit", fields);
                 base.export_element (obj, "Money", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4421,8 +4421,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ApparentPower", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ApparentPower", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ApparentPower", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ApparentPower", "unit", "unit", fields);
                 base.export_element (obj, "ApparentPower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4539,8 +4539,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Volume", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Volume", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Volume", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Volume", "unit", "unit", fields);
                 base.export_element (obj, "Volume", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4657,8 +4657,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "AngleDegrees", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "AngleDegrees", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "AngleDegrees", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "AngleDegrees", "unit", "unit", fields);
                 base.export_element (obj, "AngleDegrees", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4872,9 +4872,9 @@ define
                 var fields = [];
 
                 base.export_element (obj, "DecimalQuantity", "value", "value",  base.from_string, fields);
-                base.export_element (obj, "DecimalQuantity", "unit", "unit",  base.from_string, fields);
-                base.export_element (obj, "DecimalQuantity", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "DecimalQuantity", "currency", "currency",  base.from_string, fields);
+                base.export_attribute (obj, "DecimalQuantity", "unit", "unit", fields);
+                base.export_attribute (obj, "DecimalQuantity", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "DecimalQuantity", "currency", "currency", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -4995,8 +4995,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "RealEnergy", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "RealEnergy", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "RealEnergy", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "RealEnergy", "unit", "unit", fields);
                 base.export_element (obj, "RealEnergy", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -5212,8 +5212,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Length", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Length", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Length", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Length", "unit", "unit", fields);
                 base.export_element (obj, "Length", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -5330,8 +5330,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Temperature", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Temperature", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Temperature", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Temperature", "unit", "unit", fields);
                 base.export_element (obj, "Temperature", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -5448,8 +5448,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "FloatQuantity", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "FloatQuantity", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "FloatQuantity", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "FloatQuantity", "unit", "unit", fields);
                 base.export_element (obj, "FloatQuantity", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -5566,8 +5566,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Susceptance", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Susceptance", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Susceptance", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Susceptance", "unit", "unit", fields);
                 base.export_element (obj, "Susceptance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -5684,8 +5684,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Frequency", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Frequency", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Frequency", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Frequency", "unit", "unit", fields);
                 base.export_element (obj, "Frequency", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -5803,8 +5803,8 @@ define
                 var fields = [];
 
                 base.export_element (obj, "Area", "value", "value",  base.from_float, fields);
-                base.export_element (obj, "Area", "unit", "unit",  base.from_string, fields);
-                base.export_element (obj, "Area", "multiplier", "multiplier",  base.from_string, fields);
+                base.export_attribute (obj, "Area", "unit", "unit", fields);
+                base.export_attribute (obj, "Area", "multiplier", "multiplier", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -5920,8 +5920,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Minutes", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Minutes", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Minutes", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Minutes", "unit", "unit", fields);
                 base.export_element (obj, "Minutes", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -6149,10 +6149,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "VoltagePerReactivePower", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "VoltagePerReactivePower", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "VoltagePerReactivePower", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "VoltagePerReactivePower", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "VoltagePerReactivePower", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "VoltagePerReactivePower", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "VoltagePerReactivePower", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "VoltagePerReactivePower", "unit", "unit", fields);
                 base.export_element (obj, "VoltagePerReactivePower", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -6279,8 +6279,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Hours", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Hours", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Hours", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Hours", "unit", "unit", fields);
                 base.export_element (obj, "Hours", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -6399,10 +6399,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Speed", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "Speed", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "Speed", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Speed", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Speed", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "Speed", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "Speed", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Speed", "unit", "unit", fields);
                 base.export_element (obj, "Speed", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -6529,8 +6529,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Displacement", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Displacement", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Displacement", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Displacement", "unit", "unit", fields);
                 base.export_element (obj, "Displacement", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -6748,10 +6748,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "RotationSpeed", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "RotationSpeed", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "RotationSpeed", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "RotationSpeed", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "RotationSpeed", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "RotationSpeed", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "RotationSpeed", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "RotationSpeed", "unit", "unit", fields);
                 base.export_element (obj, "RotationSpeed", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -6878,8 +6878,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Resistance", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Resistance", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Resistance", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Resistance", "unit", "unit", fields);
                 base.export_element (obj, "Resistance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -6996,8 +6996,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Weight", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Weight", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Weight", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Weight", "unit", "unit", fields);
                 base.export_element (obj, "Weight", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -7114,8 +7114,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Pressure", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Pressure", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Pressure", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Pressure", "unit", "unit", fields);
                 base.export_element (obj, "Pressure", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -7234,10 +7234,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "ConductancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "ConductancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "ConductancePerLength", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "ConductancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "ConductancePerLength", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "ConductancePerLength", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "ConductancePerLength", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "ConductancePerLength", "unit", "unit", fields);
                 base.export_element (obj, "ConductancePerLength", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -7463,10 +7463,10 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "SusceptancePerLength", "denominatorMultiplier", "denominatorMultiplier",  base.from_string, fields);
-                base.export_element (obj, "SusceptancePerLength", "denominatorUnit", "denominatorUnit",  base.from_string, fields);
-                base.export_element (obj, "SusceptancePerLength", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "SusceptancePerLength", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "SusceptancePerLength", "denominatorMultiplier", "denominatorMultiplier", fields);
+                base.export_attribute (obj, "SusceptancePerLength", "denominatorUnit", "denominatorUnit", fields);
+                base.export_attribute (obj, "SusceptancePerLength", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "SusceptancePerLength", "unit", "unit", fields);
                 base.export_element (obj, "SusceptancePerLength", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -7593,8 +7593,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "StringQuantity", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "StringQuantity", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "StringQuantity", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "StringQuantity", "unit", "unit", fields);
                 base.export_element (obj, "StringQuantity", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -7711,8 +7711,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "IntegerQuantity", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "IntegerQuantity", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "IntegerQuantity", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "IntegerQuantity", "unit", "unit", fields);
                 base.export_element (obj, "IntegerQuantity", "value", "value",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -7938,8 +7938,8 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "Inductance", "multiplier", "multiplier",  base.from_string, fields);
-                base.export_element (obj, "Inductance", "unit", "unit",  base.from_string, fields);
+                base.export_attribute (obj, "Inductance", "multiplier", "multiplier", fields);
+                base.export_attribute (obj, "Inductance", "unit", "unit", fields);
                 base.export_element (obj, "Inductance", "value", "value",  base.from_float, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

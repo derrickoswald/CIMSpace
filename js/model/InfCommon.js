@@ -675,7 +675,7 @@ define
 
                 base.export_element (obj, "Skill", "certificationPeriod", "certificationPeriod",  base.from_string, fields);
                 base.export_element (obj, "Skill", "effectiveDateTime", "effectiveDateTime",  base.from_datetime, fields);
-                base.export_element (obj, "Skill", "level", "level",  base.from_string, fields);
+                base.export_attribute (obj, "Skill", "level", "level", fields);
                 base.export_attribute (obj, "Skill", "ErpPerson", "ErpPerson", fields);
                 base.export_attributes (obj, "Skill", "Crafts", "Crafts", fields);
                 base.export_attributes (obj, "Skill", "QualificationRequirements", "QualificationRequirements", fields);

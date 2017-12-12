@@ -195,7 +195,7 @@ define
             {
                 var fields = Assets.AssetInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "FaultIndicatorInfo", "resetKind", "resetKind",  base.from_string, fields);
+                base.export_attribute (obj, "FaultIndicatorInfo", "resetKind", "resetKind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1126,12 +1126,12 @@ define
             {
                 var fields = AssetInfo.TransformerTankInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "OldTransformerTankInfo", "constructionKind", "constructionKind",  base.from_string, fields);
+                base.export_attribute (obj, "OldTransformerTankInfo", "constructionKind", "constructionKind", fields);
                 base.export_element (obj, "OldTransformerTankInfo", "coreCoilsWeight", "coreCoilsWeight",  base.from_string, fields);
-                base.export_element (obj, "OldTransformerTankInfo", "coreKind", "coreKind",  base.from_string, fields);
-                base.export_element (obj, "OldTransformerTankInfo", "function", "function",  base.from_string, fields);
+                base.export_attribute (obj, "OldTransformerTankInfo", "coreKind", "coreKind", fields);
+                base.export_attribute (obj, "OldTransformerTankInfo", "function", "function", fields);
                 base.export_element (obj, "OldTransformerTankInfo", "neutralBIL", "neutralBIL",  base.from_string, fields);
-                base.export_element (obj, "OldTransformerTankInfo", "oilPreservationKind", "oilPreservationKind",  base.from_string, fields);
+                base.export_attribute (obj, "OldTransformerTankInfo", "oilPreservationKind", "oilPreservationKind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1269,7 +1269,7 @@ define
                 base.export_element (obj, "CompositeSwitchInfo", "ganged", "ganged",  base.from_boolean, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "initOpMode", "initOpMode",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "interruptingRating", "interruptingRating",  base.from_string, fields);
-                base.export_element (obj, "CompositeSwitchInfo", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "CompositeSwitchInfo", "kind", "kind", fields);
                 base.export_element (obj, "CompositeSwitchInfo", "phaseCode", "phaseCode",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "phaseCount", "phaseCount",  base.from_string, fields);
                 base.export_element (obj, "CompositeSwitchInfo", "ratedVoltage", "ratedVoltage",  base.from_string, fields);
@@ -1540,7 +1540,7 @@ define
                 base.export_element (obj, "OldTransformerEndInfo", "dayOverLoadRating", "dayOverLoadRating",  base.from_string, fields);
                 base.export_element (obj, "OldTransformerEndInfo", "hourOverLoadRating", "hourOverLoadRating",  base.from_string, fields);
                 base.export_element (obj, "OldTransformerEndInfo", "solidInsulationWeight", "solidInsulationWeight",  base.from_string, fields);
-                base.export_element (obj, "OldTransformerEndInfo", "windingInsulationKind", "windingInsulationKind",  base.from_string, fields);
+                base.export_attribute (obj, "OldTransformerEndInfo", "windingInsulationKind", "windingInsulationKind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 

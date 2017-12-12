@@ -747,7 +747,7 @@ define
                 base.export_element (obj, "GovCT2", "rclose", "rclose",  base.from_float, fields);
                 base.export_element (obj, "GovCT2", "rdown", "rdown",  base.from_string, fields);
                 base.export_element (obj, "GovCT2", "ropen", "ropen",  base.from_float, fields);
-                base.export_element (obj, "GovCT2", "rselect", "rselect",  base.from_string, fields);
+                base.export_attribute (obj, "GovCT2", "rselect", "rselect", fields);
                 base.export_element (obj, "GovCT2", "rup", "rup",  base.from_string, fields);
                 base.export_element (obj, "GovCT2", "ta", "ta",  base.from_string, fields);
                 base.export_element (obj, "GovCT2", "tact", "tact",  base.from_string, fields);
@@ -4120,7 +4120,7 @@ define
                 base.export_element (obj, "GovCT1", "rclose", "rclose",  base.from_float, fields);
                 base.export_element (obj, "GovCT1", "rdown", "rdown",  base.from_string, fields);
                 base.export_element (obj, "GovCT1", "ropen", "ropen",  base.from_float, fields);
-                base.export_element (obj, "GovCT1", "rselect", "rselect",  base.from_string, fields);
+                base.export_attribute (obj, "GovCT1", "rselect", "rselect", fields);
                 base.export_element (obj, "GovCT1", "rup", "rup",  base.from_string, fields);
                 base.export_element (obj, "GovCT1", "ta", "ta",  base.from_string, fields);
                 base.export_element (obj, "GovCT1", "tact", "tact",  base.from_string, fields);
@@ -6561,7 +6561,7 @@ define
                 base.export_element (obj, "GovHydroFrancis", "bp", "bp",  base.from_string, fields);
                 base.export_element (obj, "GovHydroFrancis", "db1", "db1",  base.from_string, fields);
                 base.export_element (obj, "GovHydroFrancis", "etamax", "etamax",  base.from_string, fields);
-                base.export_element (obj, "GovHydroFrancis", "governorControl", "governorControl",  base.from_string, fields);
+                base.export_attribute (obj, "GovHydroFrancis", "governorControl", "governorControl", fields);
                 base.export_element (obj, "GovHydroFrancis", "h1", "h1",  base.from_string, fields);
                 base.export_element (obj, "GovHydroFrancis", "h2", "h2",  base.from_string, fields);
                 base.export_element (obj, "GovHydroFrancis", "hn", "hn",  base.from_string, fields);

@@ -2615,7 +2615,7 @@ define
                 base.export_element (obj, "ExcST6B", "km", "km",  base.from_string, fields);
                 base.export_element (obj, "ExcST6B", "kpa", "kpa",  base.from_string, fields);
                 base.export_element (obj, "ExcST6B", "kvd", "kvd",  base.from_string, fields);
-                base.export_element (obj, "ExcST6B", "oelin", "oelin",  base.from_string, fields);
+                base.export_attribute (obj, "ExcST6B", "oelin", "oelin", fields);
                 base.export_element (obj, "ExcST6B", "tg", "tg",  base.from_string, fields);
                 base.export_element (obj, "ExcST6B", "ts", "ts",  base.from_string, fields);
                 base.export_element (obj, "ExcST6B", "tvd", "tvd",  base.from_string, fields);
@@ -4556,7 +4556,7 @@ define
 
                 base.export_element (obj, "ExcREXS", "e1", "e1",  base.from_string, fields);
                 base.export_element (obj, "ExcREXS", "e2", "e2",  base.from_string, fields);
-                base.export_element (obj, "ExcREXS", "fbf", "fbf",  base.from_string, fields);
+                base.export_attribute (obj, "ExcREXS", "fbf", "fbf", fields);
                 base.export_element (obj, "ExcREXS", "flimf", "flimf",  base.from_string, fields);
                 base.export_element (obj, "ExcREXS", "kc", "kc",  base.from_string, fields);
                 base.export_element (obj, "ExcREXS", "kd", "kd",  base.from_string, fields);
@@ -5402,14 +5402,14 @@ define
                 base.export_element (obj, "ExcST7B", "kia", "kia",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "kl", "kl",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "kpa", "kpa",  base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "oelin", "oelin",  base.from_string, fields);
+                base.export_attribute (obj, "ExcST7B", "oelin", "oelin", fields);
                 base.export_element (obj, "ExcST7B", "tb", "tb",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "tc", "tc",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "tf", "tf",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "tg", "tg",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "tia", "tia",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "ts", "ts",  base.from_string, fields);
-                base.export_element (obj, "ExcST7B", "uelin", "uelin",  base.from_string, fields);
+                base.export_attribute (obj, "ExcST7B", "uelin", "uelin", fields);
                 base.export_element (obj, "ExcST7B", "vmax", "vmax",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "vmin", "vmin",  base.from_string, fields);
                 base.export_element (obj, "ExcST7B", "vrmax", "vrmax",  base.from_string, fields);
@@ -6717,13 +6717,13 @@ define
                 base.export_element (obj, "ExcIEEEST7B", "kia", "kia",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "kl", "kl",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "kpa", "kpa",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "oelin", "oelin",  base.from_string, fields);
+                base.export_attribute (obj, "ExcIEEEST7B", "oelin", "oelin", fields);
                 base.export_element (obj, "ExcIEEEST7B", "tb", "tb",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "tc", "tc",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "tf", "tf",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "tg", "tg",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "tia", "tia",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST7B", "uelin", "uelin",  base.from_string, fields);
+                base.export_attribute (obj, "ExcIEEEST7B", "uelin", "uelin", fields);
                 base.export_element (obj, "ExcIEEEST7B", "vmax", "vmax",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "vmin", "vmin",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST7B", "vrmax", "vrmax",  base.from_string, fields);
@@ -7805,7 +7805,7 @@ define
                 base.export_element (obj, "ExcIEEEST1A", "tc", "tc",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST1A", "tc1", "tc1",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST1A", "tf", "tf",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST1A", "uelin", "uelin",  base.from_string, fields);
+                base.export_attribute (obj, "ExcIEEEST1A", "uelin", "uelin", fields);
                 base.export_element (obj, "ExcIEEEST1A", "vamax", "vamax",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST1A", "vamin", "vamin",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST1A", "vimax", "vimax",  base.from_string, fields);
@@ -10281,7 +10281,7 @@ define
                 base.export_element (obj, "ExcIEEEST6B", "klr", "klr",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST6B", "km", "km",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST6B", "kpa", "kpa",  base.from_string, fields);
-                base.export_element (obj, "ExcIEEEST6B", "oelin", "oelin",  base.from_string, fields);
+                base.export_attribute (obj, "ExcIEEEST6B", "oelin", "oelin", fields);
                 base.export_element (obj, "ExcIEEEST6B", "tg", "tg",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST6B", "vamax", "vamax",  base.from_string, fields);
                 base.export_element (obj, "ExcIEEEST6B", "vamin", "vamin",  base.from_string, fields);

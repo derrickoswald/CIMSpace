@@ -602,7 +602,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "OperationalLimitType", "acceptableDuration", "acceptableDuration",  base.from_string, fields);
-                base.export_element (obj, "OperationalLimitType", "direction", "direction",  base.from_string, fields);
+                base.export_attribute (obj, "OperationalLimitType", "direction", "direction", fields);
                 base.export_attributes (obj, "OperationalLimitType", "OperationalLimit", "OperationalLimit", fields);
                 base.export_attributes (obj, "OperationalLimitType", "SourceOperationalLimitTypeScaling", "SourceOperationalLimitTypeScaling", fields);
                 base.export_attribute (obj, "OperationalLimitType", "TargetOperationalLimitmTypeScaling", "TargetOperationalLimitmTypeScaling", fields);

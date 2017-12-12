@@ -299,7 +299,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Fault", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Fault", "kind", "kind", fields);
                 base.export_element (obj, "Fault", "phases", "phases",  base.from_string, fields);
                 base.export_element (obj, "Fault", "impedance", "impedance",  base.from_string, fields);
                 base.export_attribute (obj, "Fault", "FaultyEquipment", "FaultyEquipment", fields);

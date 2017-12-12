@@ -1154,7 +1154,7 @@ define
             {
                 var fields = DCBaseTerminal.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ACDCConverterDCTerminal", "polarity", "polarity",  base.from_string, fields);
+                base.export_attribute (obj, "ACDCConverterDCTerminal", "polarity", "polarity", fields);
                 base.export_attribute (obj, "ACDCConverterDCTerminal", "DCConductingEquipment", "DCConductingEquipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1401,7 +1401,7 @@ define
 
                 base.export_element (obj, "CsConverter", "maxIdc", "maxIdc",  base.from_string, fields);
                 base.export_element (obj, "CsConverter", "ratedIdc", "ratedIdc",  base.from_string, fields);
-                base.export_element (obj, "CsConverter", "pPccControl", "pPccControl",  base.from_string, fields);
+                base.export_attribute (obj, "CsConverter", "pPccControl", "pPccControl", fields);
                 base.export_element (obj, "CsConverter", "alpha", "alpha",  base.from_string, fields);
                 base.export_element (obj, "CsConverter", "gamma", "gamma",  base.from_string, fields);
                 base.export_element (obj, "CsConverter", "maxAlpha", "maxAlpha",  base.from_string, fields);
@@ -1412,7 +1412,7 @@ define
                 base.export_element (obj, "CsConverter", "targetGamma", "targetGamma",  base.from_string, fields);
                 base.export_element (obj, "CsConverter", "targetIdc", "targetIdc",  base.from_string, fields);
                 base.export_element (obj, "CsConverter", "minIdc", "minIdc",  base.from_string, fields);
-                base.export_element (obj, "CsConverter", "operatingMode", "operatingMode",  base.from_string, fields);
+                base.export_attribute (obj, "CsConverter", "operatingMode", "operatingMode", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -1570,7 +1570,7 @@ define
             {
                 var fields = ACDCConverter.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "VsConverter", "pPccControl", "pPccControl",  base.from_string, fields);
+                base.export_attribute (obj, "VsConverter", "pPccControl", "pPccControl", fields);
                 base.export_element (obj, "VsConverter", "qShare", "qShare",  base.from_string, fields);
                 base.export_element (obj, "VsConverter", "targetQpcc", "targetQpcc",  base.from_string, fields);
                 base.export_element (obj, "VsConverter", "targetUpcc", "targetUpcc",  base.from_string, fields);
@@ -1580,7 +1580,7 @@ define
                 base.export_element (obj, "VsConverter", "uf", "uf",  base.from_string, fields);
                 base.export_element (obj, "VsConverter", "maxValveCurrent", "maxValveCurrent",  base.from_string, fields);
                 base.export_element (obj, "VsConverter", "maxModulationIndex", "maxModulationIndex",  base.from_float, fields);
-                base.export_element (obj, "VsConverter", "qPccControl", "qPccControl",  base.from_string, fields);
+                base.export_attribute (obj, "VsConverter", "qPccControl", "qPccControl", fields);
                 base.export_attribute (obj, "VsConverter", "CapabilityCurve", "CapabilityCurve", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1845,7 +1845,7 @@ define
             {
                 var fields = DCEquipmentContainer.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "DCConverterUnit", "operationMode", "operationMode",  base.from_string, fields);
+                base.export_attribute (obj, "DCConverterUnit", "operationMode", "operationMode", fields);
                 base.export_attribute (obj, "DCConverterUnit", "Substation", "Substation", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

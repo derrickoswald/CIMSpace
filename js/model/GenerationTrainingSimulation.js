@@ -655,7 +655,7 @@ define
 
                 base.export_element (obj, "FossilSteamSupply", "auxPowerVersusFrequency", "auxPowerVersusFrequency",  base.from_string, fields);
                 base.export_element (obj, "FossilSteamSupply", "auxPowerVersusVoltage", "auxPowerVersusVoltage",  base.from_string, fields);
-                base.export_element (obj, "FossilSteamSupply", "boilerControlMode", "boilerControlMode",  base.from_string, fields);
+                base.export_attribute (obj, "FossilSteamSupply", "boilerControlMode", "boilerControlMode", fields);
                 base.export_element (obj, "FossilSteamSupply", "controlErrorBiasP", "controlErrorBiasP",  base.from_float, fields);
                 base.export_element (obj, "FossilSteamSupply", "controlIC", "controlIC",  base.from_float, fields);
                 base.export_element (obj, "FossilSteamSupply", "controlPC", "controlPC",  base.from_float, fields);
@@ -1495,7 +1495,7 @@ define
                 base.export_element (obj, "HydroTurbine", "transientDroopTime", "transientDroopTime",  base.from_string, fields);
                 base.export_element (obj, "HydroTurbine", "transientRegulation", "transientRegulation",  base.from_string, fields);
                 base.export_element (obj, "HydroTurbine", "turbineRating", "turbineRating",  base.from_string, fields);
-                base.export_element (obj, "HydroTurbine", "turbineType", "turbineType",  base.from_string, fields);
+                base.export_attribute (obj, "HydroTurbine", "turbineType", "turbineType", fields);
                 base.export_element (obj, "HydroTurbine", "waterStartingTime", "waterStartingTime",  base.from_string, fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

@@ -167,7 +167,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "GateInputPin", "absoluteValue", "absoluteValue",  base.from_boolean, fields);
-                base.export_element (obj, "GateInputPin", "aDLogicKind", "aDLogicKind",  base.from_string, fields);
+                base.export_attribute (obj, "GateInputPin", "aDLogicKind", "aDLogicKind", fields);
                 base.export_element (obj, "GateInputPin", "duration", "duration",  base.from_string, fields);
                 base.export_element (obj, "GateInputPin", "negate", "negate",  base.from_boolean, fields);
                 base.export_element (obj, "GateInputPin", "thresholdPercentage", "thresholdPercentage",  base.from_string, fields);
@@ -311,7 +311,7 @@ define
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RemedialActionScheme", "armed", "armed",  base.from_boolean, fields);
-                base.export_element (obj, "RemedialActionScheme", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "RemedialActionScheme", "kind", "kind", fields);
                 base.export_element (obj, "RemedialActionScheme", "normalArmed", "normalArmed",  base.from_boolean, fields);
                 base.export_attributes (obj, "RemedialActionScheme", "TriggerCondition", "TriggerCondition", fields);
                 base.export_attributes (obj, "RemedialActionScheme", "Stage", "Stage", fields);
@@ -880,7 +880,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Gate", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Gate", "kind", "kind", fields);
                 base.export_attributes (obj, "Gate", "GateInputPin", "GateInputPin", fields);
                 base.export_attributes (obj, "Gate", "RemedialActionScheme", "RemedialActionScheme", fields);
                 base.export_attributes (obj, "Gate", "ProtectiveActionCom", "ProtectiveActionCom", fields);
@@ -1165,7 +1165,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MeasurementCalculator", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "MeasurementCalculator", "kind", "kind", fields);
                 base.export_attributes (obj, "MeasurementCalculator", "MeasurementCalculatorInput", "MeasurementCalculatorInput", fields);
                 base.export_attributes (obj, "MeasurementCalculator", "PinMeasurement", "PinMeasurement", fields);
                 if (full)
@@ -1526,7 +1526,7 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PinEquipment", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "PinEquipment", "kind", "kind", fields);
                 base.export_attribute (obj, "PinEquipment", "Equipment", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1759,7 +1759,7 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PinTerminal", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "PinTerminal", "kind", "kind", fields);
                 base.export_attribute (obj, "PinTerminal", "Terminal", "Terminal", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1879,7 +1879,7 @@ define
             {
                 var fields = GateInputPin.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PinBranchGroup", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "PinBranchGroup", "kind", "kind", fields);
                 base.export_attribute (obj, "PinBranchGroup", "BranchGroup", "BranchGroup", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -2251,7 +2251,7 @@ define
 
                 base.export_element (obj, "ProtectiveActionAdjustment", "byPercentage", "byPercentage",  base.from_string, fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "byValue", "byValue",  base.from_float, fields);
-                base.export_element (obj, "ProtectiveActionAdjustment", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "ProtectiveActionAdjustment", "kind", "kind", fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "reduce", "reduce",  base.from_boolean, fields);
                 base.export_element (obj, "ProtectiveActionAdjustment", "setValue", "setValue",  base.from_float, fields);
                 base.export_attribute (obj, "ProtectiveActionAdjustment", "Measurement", "Measurement", fields);

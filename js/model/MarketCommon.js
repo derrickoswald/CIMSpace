@@ -114,7 +114,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "MarketRole", "roleType", "roleType",  base.from_string, fields);
+                base.export_attribute (obj, "MarketRole", "roleType", "roleType", fields);
                 base.export_element (obj, "MarketRole", "status", "status",  base.from_string, fields);
                 base.export_element (obj, "MarketRole", "type", "type",  base.from_string, fields);
                 base.export_attributes (obj, "MarketRole", "MarketParticipant", "MarketParticipant", fields);

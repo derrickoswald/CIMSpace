@@ -576,7 +576,7 @@ define
 
                 base.export_element (obj, "ControlArea", "netInterchange", "netInterchange",  base.from_string, fields);
                 base.export_element (obj, "ControlArea", "pTolerance", "pTolerance",  base.from_string, fields);
-                base.export_element (obj, "ControlArea", "type", "type",  base.from_string, fields);
+                base.export_attribute (obj, "ControlArea", "type", "type", fields);
                 base.export_attributes (obj, "ControlArea", "ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", fields);
                 base.export_attributes (obj, "ControlArea", "TieFlow", "TieFlow", fields);
                 base.export_attribute (obj, "ControlArea", "EnergyArea", "EnergyArea", fields);

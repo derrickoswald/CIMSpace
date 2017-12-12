@@ -193,7 +193,7 @@ define
             {
                 var fields = Common.Location.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Zone", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Zone", "kind", "kind", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -562,9 +562,9 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "LandProperty", "demographicKind", "demographicKind",  base.from_string, fields);
+                base.export_attribute (obj, "LandProperty", "demographicKind", "demographicKind", fields);
                 base.export_element (obj, "LandProperty", "externalRecordReference", "externalRecordReference",  base.from_string, fields);
-                base.export_element (obj, "LandProperty", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "LandProperty", "kind", "kind", fields);
                 base.export_element (obj, "LandProperty", "status", "status",  base.from_string, fields);
                 base.export_attributes (obj, "LandProperty", "ErpOrganisationRoles", "ErpOrganisationRoles", fields);
                 base.export_attributes (obj, "LandProperty", "LocationGrants", "LocationGrants", fields);

@@ -364,7 +364,7 @@ define
                 base.export_element (obj, "Quality61850", "source", "source",  base.from_string, fields);
                 base.export_element (obj, "Quality61850", "suspect", "suspect",  base.from_boolean, fields);
                 base.export_element (obj, "Quality61850", "test", "test",  base.from_boolean, fields);
-                base.export_element (obj, "Quality61850", "validity", "validity",  base.from_string, fields);
+                base.export_attribute (obj, "Quality61850", "validity", "validity", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 

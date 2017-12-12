@@ -532,7 +532,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Charge", "fixedPortion", "fixedPortion",  base.from_string, fields);
-                base.export_element (obj, "Charge", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Charge", "kind", "kind", fields);
                 base.export_element (obj, "Charge", "variablePortion", "variablePortion",  base.from_string, fields);
                 base.export_attributes (obj, "Charge", "AuxiliaryAccounts", "AuxiliaryAccounts", fields);
                 base.export_attributes (obj, "Charge", "ConsumptionTariffIntervals", "ConsumptionTariffIntervals", fields);
@@ -2118,7 +2118,7 @@ define
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "ServiceSupplier", "issuerIdentificationNumber", "issuerIdentificationNumber",  base.from_string, fields);
-                base.export_element (obj, "ServiceSupplier", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "ServiceSupplier", "kind", "kind", fields);
                 base.export_attributes (obj, "ServiceSupplier", "CustomerAgreements", "CustomerAgreements", fields);
                 base.export_attributes (obj, "ServiceSupplier", "BankAccounts", "BankAccounts", fields);
                 base.export_attributes (obj, "ServiceSupplier", "UsagePoints", "UsagePoints", fields);
@@ -2258,7 +2258,7 @@ define
                 base.export_element (obj, "Cheque", "bankAccountDetail", "bankAccountDetail",  base.from_string, fields);
                 base.export_element (obj, "Cheque", "chequeNumber", "chequeNumber",  base.from_string, fields);
                 base.export_element (obj, "Cheque", "date", "date",  base.from_string, fields);
-                base.export_element (obj, "Cheque", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Cheque", "kind", "kind", fields);
                 base.export_element (obj, "Cheque", "micrNumber", "micrNumber",  base.from_string, fields);
                 base.export_attribute (obj, "Cheque", "Tender", "Tender", fields);
                 if (full)
@@ -2399,7 +2399,7 @@ define
 
                 base.export_element (obj, "Tender", "amount", "amount",  base.from_string, fields);
                 base.export_element (obj, "Tender", "change", "change",  base.from_string, fields);
-                base.export_element (obj, "Tender", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Tender", "kind", "kind", fields);
                 base.export_attribute (obj, "Tender", "Cheque", "Cheque", fields);
                 base.export_attribute (obj, "Tender", "Card", "Card", fields);
                 base.export_attribute (obj, "Tender", "Receipt", "Receipt", fields);
@@ -3050,7 +3050,7 @@ define
 
                 base.export_element (obj, "Transaction", "diverseReference", "diverseReference",  base.from_string, fields);
                 base.export_element (obj, "Transaction", "donorReference", "donorReference",  base.from_string, fields);
-                base.export_element (obj, "Transaction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Transaction", "kind", "kind", fields);
                 base.export_element (obj, "Transaction", "line", "line",  base.from_string, fields);
                 base.export_element (obj, "Transaction", "receiverReference", "receiverReference",  base.from_string, fields);
                 base.export_element (obj, "Transaction", "reversedId", "reversedId",  base.from_string, fields);

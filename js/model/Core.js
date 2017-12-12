@@ -1173,7 +1173,7 @@ define
             {
                 var fields = IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Curve", "curveStyle", "curveStyle",  base.from_string, fields);
+                base.export_attribute (obj, "Curve", "curveStyle", "curveStyle", fields);
                 base.export_element (obj, "Curve", "xMultiplier", "xMultiplier",  base.from_string, fields);
                 base.export_element (obj, "Curve", "xUnit", "xUnit",  base.from_string, fields);
                 base.export_element (obj, "Curve", "y1Multiplier", "y1Multiplier",  base.from_string, fields);
@@ -2416,7 +2416,7 @@ define
             {
                 var fields = ACDCTerminal.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Terminal", "phases", "phases",  base.from_string, fields);
+                base.export_attribute (obj, "Terminal", "phases", "phases", fields);
                 base.export_attributes (obj, "Terminal", "RemoteInputSignal", "RemoteInputSignal", fields);
                 base.export_attributes (obj, "Terminal", "TieFlow", "TieFlow", fields);
                 base.export_attribute (obj, "Terminal", "TopologicalNode", "TopologicalNode", fields);
@@ -4248,8 +4248,8 @@ define
 
                 base.export_element (obj, "Bay", "bayEnergyMeasFlag", "bayEnergyMeasFlag",  base.from_boolean, fields);
                 base.export_element (obj, "Bay", "bayPowerMeasFlag", "bayPowerMeasFlag",  base.from_boolean, fields);
-                base.export_element (obj, "Bay", "breakerConfiguration", "breakerConfiguration",  base.from_string, fields);
-                base.export_element (obj, "Bay", "busBarConfiguration", "busBarConfiguration",  base.from_string, fields);
+                base.export_attribute (obj, "Bay", "breakerConfiguration", "breakerConfiguration", fields);
+                base.export_attribute (obj, "Bay", "busBarConfiguration", "busBarConfiguration", fields);
                 base.export_attribute (obj, "Bay", "Substation", "Substation", fields);
                 base.export_attribute (obj, "Bay", "VoltageLevel", "VoltageLevel", fields);
                 if (full)

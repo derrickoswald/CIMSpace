@@ -434,7 +434,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Diagram", "orientation", "orientation",  base.from_string, fields);
+                base.export_attribute (obj, "Diagram", "orientation", "orientation", fields);
                 base.export_element (obj, "Diagram", "x1InitialView", "x1InitialView",  base.from_float, fields);
                 base.export_element (obj, "Diagram", "x2InitialView", "x2InitialView",  base.from_float, fields);
                 base.export_element (obj, "Diagram", "y1InitialView", "y1InitialView",  base.from_float, fields);

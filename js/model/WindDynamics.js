@@ -618,7 +618,7 @@ define
                 base.export_element (obj, "WindPlantReactiveControlIEC", "txft", "txft",  base.from_string, fields);
                 base.export_element (obj, "WindPlantReactiveControlIEC", "txfv", "txfv",  base.from_string, fields);
                 base.export_element (obj, "WindPlantReactiveControlIEC", "uwpqdip", "uwpqdip",  base.from_string, fields);
-                base.export_element (obj, "WindPlantReactiveControlIEC", "windPlantQcontrolModesType", "windPlantQcontrolModesType",  base.from_string, fields);
+                base.export_attribute (obj, "WindPlantReactiveControlIEC", "windPlantQcontrolModesType", "windPlantQcontrolModesType", fields);
                 base.export_element (obj, "WindPlantReactiveControlIEC", "xrefmax", "xrefmax",  base.from_string, fields);
                 base.export_element (obj, "WindPlantReactiveControlIEC", "xrefmin", "xrefmin",  base.from_string, fields);
                 base.export_attributes (obj, "WindPlantReactiveControlIEC", "WindDynamicsLookupTable", "WindDynamicsLookupTable", fields);
@@ -1076,8 +1076,8 @@ define
                 base.export_element (obj, "WindContQIEC", "umin", "umin",  base.from_string, fields);
                 base.export_element (obj, "WindContQIEC", "uqdip", "uqdip",  base.from_string, fields);
                 base.export_element (obj, "WindContQIEC", "uref0", "uref0",  base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "windQcontrolModesType", "windQcontrolModesType",  base.from_string, fields);
-                base.export_element (obj, "WindContQIEC", "windUVRTQcontrolModesType", "windUVRTQcontrolModesType",  base.from_string, fields);
+                base.export_attribute (obj, "WindContQIEC", "windQcontrolModesType", "windQcontrolModesType", fields);
+                base.export_attribute (obj, "WindContQIEC", "windUVRTQcontrolModesType", "windUVRTQcontrolModesType", fields);
                 base.export_element (obj, "WindContQIEC", "xdroop", "xdroop",  base.from_string, fields);
                 base.export_attribute (obj, "WindContQIEC", "WindTurbineType3or4IEC", "WindTurbineType3or4IEC", fields);
                 if (full)
@@ -2787,7 +2787,7 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "WindDynamicsLookupTable", "input", "input",  base.from_float, fields);
-                base.export_element (obj, "WindDynamicsLookupTable", "lookupTableFunctionType", "lookupTableFunctionType",  base.from_string, fields);
+                base.export_attribute (obj, "WindDynamicsLookupTable", "lookupTableFunctionType", "lookupTableFunctionType", fields);
                 base.export_element (obj, "WindDynamicsLookupTable", "output", "output",  base.from_float, fields);
                 base.export_element (obj, "WindDynamicsLookupTable", "sequence", "sequence",  base.from_string, fields);
                 base.export_attribute (obj, "WindDynamicsLookupTable", "WindPitchContPowerIEC", "WindPitchContPowerIEC", fields);

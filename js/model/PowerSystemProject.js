@@ -76,8 +76,8 @@ define
                 base.export_element (obj, "PowerSystemProjectSchedule", "actualStart", "actualStart",  base.from_datetime, fields);
                 base.export_element (obj, "PowerSystemProjectSchedule", "scheduledEnd", "scheduledEnd",  base.from_datetime, fields);
                 base.export_element (obj, "PowerSystemProjectSchedule", "scheduledStart", "scheduledStart",  base.from_datetime, fields);
-                base.export_element (obj, "PowerSystemProjectSchedule", "status", "status",  base.from_string, fields);
-                base.export_element (obj, "PowerSystemProjectSchedule", "stepType", "stepType",  base.from_string, fields);
+                base.export_attribute (obj, "PowerSystemProjectSchedule", "status", "status", fields);
+                base.export_attribute (obj, "PowerSystemProjectSchedule", "stepType", "stepType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 
@@ -210,7 +210,7 @@ define
 
                 base.export_element (obj, "PowerSystemProject", "name", "name",  base.from_string, fields);
                 base.export_element (obj, "PowerSystemProject", "priority", "priority",  base.from_string, fields);
-                base.export_element (obj, "PowerSystemProject", "state", "state",  base.from_string, fields);
+                base.export_attribute (obj, "PowerSystemProject", "state", "state", fields);
                 base.export_element (obj, "PowerSystemProject", "type", "type",  base.from_string, fields);
                 base.export_element (obj, "PowerSystemProject", "version", "version",  base.from_string, fields);
                 base.export_element (obj, "PowerSystemProject", "description", "description",  base.from_string, fields);
@@ -366,8 +366,8 @@ define
                 base.export_element (obj, "ProjectStep", "actualStart", "actualStart",  base.from_datetime, fields);
                 base.export_element (obj, "ProjectStep", "scheduledEnd", "scheduledEnd",  base.from_datetime, fields);
                 base.export_element (obj, "ProjectStep", "scheduledStart", "scheduledStart",  base.from_datetime, fields);
-                base.export_element (obj, "ProjectStep", "status", "status",  base.from_string, fields);
-                base.export_element (obj, "ProjectStep", "stepType", "stepType",  base.from_string, fields);
+                base.export_attribute (obj, "ProjectStep", "status", "status", fields);
+                base.export_attribute (obj, "ProjectStep", "stepType", "stepType", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 

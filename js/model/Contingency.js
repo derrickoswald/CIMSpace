@@ -291,7 +291,7 @@ define
             {
                 var fields = ContingencyElement.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ContingencyEquipment", "contingentStatus", "contingentStatus",  base.from_string, fields);
+                base.export_attribute (obj, "ContingencyEquipment", "contingentStatus", "contingentStatus", fields);
                 base.export_attribute (obj, "ContingencyEquipment", "Equipment", "Equipment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

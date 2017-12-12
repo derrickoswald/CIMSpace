@@ -372,8 +372,8 @@ define
             {
                 var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PssIEEE2B", "inputSignal1Type", "inputSignal1Type",  base.from_string, fields);
-                base.export_element (obj, "PssIEEE2B", "inputSignal2Type", "inputSignal2Type",  base.from_string, fields);
+                base.export_attribute (obj, "PssIEEE2B", "inputSignal1Type", "inputSignal1Type", fields);
+                base.export_attribute (obj, "PssIEEE2B", "inputSignal2Type", "inputSignal2Type", fields);
                 base.export_element (obj, "PssIEEE2B", "ks1", "ks1",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE2B", "ks2", "ks2",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE2B", "ks3", "ks3",  base.from_string, fields);
@@ -601,8 +601,8 @@ define
             {
                 var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Pss2ST", "inputSignal1Type", "inputSignal1Type",  base.from_string, fields);
-                base.export_element (obj, "Pss2ST", "inputSignal2Type", "inputSignal2Type",  base.from_string, fields);
+                base.export_attribute (obj, "Pss2ST", "inputSignal1Type", "inputSignal1Type", fields);
+                base.export_attribute (obj, "Pss2ST", "inputSignal2Type", "inputSignal2Type", fields);
                 base.export_element (obj, "Pss2ST", "k1", "k1",  base.from_string, fields);
                 base.export_element (obj, "Pss2ST", "k2", "k2",  base.from_string, fields);
                 base.export_element (obj, "Pss2ST", "lsmax", "lsmax",  base.from_string, fields);
@@ -1146,7 +1146,7 @@ define
                 base.export_element (obj, "Pss1A", "a6", "a6",  base.from_string, fields);
                 base.export_element (obj, "Pss1A", "a7", "a7",  base.from_string, fields);
                 base.export_element (obj, "Pss1A", "a8", "a8",  base.from_string, fields);
-                base.export_element (obj, "Pss1A", "inputSignalType", "inputSignalType",  base.from_string, fields);
+                base.export_attribute (obj, "Pss1A", "inputSignalType", "inputSignalType", fields);
                 base.export_element (obj, "Pss1A", "kd", "kd",  base.from_boolean, fields);
                 base.export_element (obj, "Pss1A", "ks", "ks",  base.from_string, fields);
                 base.export_element (obj, "Pss1A", "t1", "t1",  base.from_string, fields);
@@ -1497,7 +1497,7 @@ define
 
                 base.export_element (obj, "PssIEEE1A", "a1", "a1",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE1A", "a2", "a2",  base.from_string, fields);
-                base.export_element (obj, "PssIEEE1A", "inputSignalType", "inputSignalType",  base.from_string, fields);
+                base.export_attribute (obj, "PssIEEE1A", "inputSignalType", "inputSignalType", fields);
                 base.export_element (obj, "PssIEEE1A", "ks", "ks",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE1A", "t1", "t1",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE1A", "t2", "t2",  base.from_string, fields);
@@ -2716,8 +2716,8 @@ define
                 base.export_element (obj, "PssIEEE3B", "a6", "a6",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "a7", "a7",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "a8", "a8",  base.from_string, fields);
-                base.export_element (obj, "PssIEEE3B", "inputSignal1Type", "inputSignal1Type",  base.from_string, fields);
-                base.export_element (obj, "PssIEEE3B", "inputSignal2Type", "inputSignal2Type",  base.from_string, fields);
+                base.export_attribute (obj, "PssIEEE3B", "inputSignal1Type", "inputSignal1Type", fields);
+                base.export_attribute (obj, "PssIEEE3B", "inputSignal2Type", "inputSignal2Type", fields);
                 base.export_element (obj, "PssIEEE3B", "ks1", "ks1",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "ks2", "ks2",  base.from_string, fields);
                 base.export_element (obj, "PssIEEE3B", "t1", "t1",  base.from_string, fields);
@@ -3075,8 +3075,8 @@ define
                 var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Pss2B", "a", "a",  base.from_float, fields);
-                base.export_element (obj, "Pss2B", "inputSignal1Type", "inputSignal1Type",  base.from_string, fields);
-                base.export_element (obj, "Pss2B", "inputSignal2Type", "inputSignal2Type",  base.from_string, fields);
+                base.export_attribute (obj, "Pss2B", "inputSignal1Type", "inputSignal1Type", fields);
+                base.export_attribute (obj, "Pss2B", "inputSignal2Type", "inputSignal2Type", fields);
                 base.export_element (obj, "Pss2B", "ks1", "ks1",  base.from_string, fields);
                 base.export_element (obj, "Pss2B", "ks2", "ks2",  base.from_string, fields);
                 base.export_element (obj, "Pss2B", "ks3", "ks3",  base.from_string, fields);
@@ -3319,8 +3319,8 @@ define
             {
                 var fields = PowerSystemStabilizerDynamics.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PssWECC", "inputSignal1Type", "inputSignal1Type",  base.from_string, fields);
-                base.export_element (obj, "PssWECC", "inputSignal2Type", "inputSignal2Type",  base.from_string, fields);
+                base.export_attribute (obj, "PssWECC", "inputSignal1Type", "inputSignal1Type", fields);
+                base.export_attribute (obj, "PssWECC", "inputSignal2Type", "inputSignal2Type", fields);
                 base.export_element (obj, "PssWECC", "k1", "k1",  base.from_string, fields);
                 base.export_element (obj, "PssWECC", "k2", "k2",  base.from_string, fields);
                 base.export_element (obj, "PssWECC", "t1", "t1",  base.from_string, fields);

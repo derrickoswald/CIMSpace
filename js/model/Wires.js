@@ -529,7 +529,7 @@ define
                 base.export_element (obj, "EnergyConsumer", "grounded", "grounded",  base.from_boolean, fields);
                 base.export_element (obj, "EnergyConsumer", "pfixed", "pfixed",  base.from_string, fields);
                 base.export_element (obj, "EnergyConsumer", "pfixedPct", "pfixedPct",  base.from_string, fields);
-                base.export_element (obj, "EnergyConsumer", "phaseConnection", "phaseConnection",  base.from_string, fields);
+                base.export_attribute (obj, "EnergyConsumer", "phaseConnection", "phaseConnection", fields);
                 base.export_element (obj, "EnergyConsumer", "qfixed", "qfixed",  base.from_string, fields);
                 base.export_element (obj, "EnergyConsumer", "qfixedPct", "qfixedPct",  base.from_string, fields);
                 base.export_element (obj, "EnergyConsumer", "p", "p",  base.from_string, fields);
@@ -2330,7 +2330,7 @@ define
 
                 base.export_element (obj, "EnergyConsumerPhase", "pfixed", "pfixed",  base.from_string, fields);
                 base.export_element (obj, "EnergyConsumerPhase", "pfixedPct", "pfixedPct",  base.from_string, fields);
-                base.export_element (obj, "EnergyConsumerPhase", "phase", "phase",  base.from_string, fields);
+                base.export_attribute (obj, "EnergyConsumerPhase", "phase", "phase", fields);
                 base.export_element (obj, "EnergyConsumerPhase", "qfixed", "qfixed",  base.from_string, fields);
                 base.export_element (obj, "EnergyConsumerPhase", "qfixedPct", "qfixedPct",  base.from_string, fields);
                 base.export_attribute (obj, "EnergyConsumerPhase", "EnergyConsumer", "EnergyConsumer", fields);
@@ -3533,7 +3533,7 @@ define
             {
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ACLineSegmentPhase", "phase", "phase",  base.from_string, fields);
+                base.export_attribute (obj, "ACLineSegmentPhase", "phase", "phase", fields);
                 base.export_attribute (obj, "ACLineSegmentPhase", "ACLineSegment", "ACLineSegment", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -3986,7 +3986,7 @@ define
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RegulatingControl", "discrete", "discrete",  base.from_boolean, fields);
-                base.export_element (obj, "RegulatingControl", "mode", "mode",  base.from_string, fields);
+                base.export_attribute (obj, "RegulatingControl", "mode", "mode", fields);
                 base.export_element (obj, "RegulatingControl", "monitoredPhase", "monitoredPhase",  base.from_string, fields);
                 base.export_element (obj, "RegulatingControl", "targetDeadband", "targetDeadband",  base.from_float, fields);
                 base.export_element (obj, "RegulatingControl", "targetValue", "targetValue",  base.from_float, fields);
@@ -4503,7 +4503,7 @@ define
 
                 base.export_element (obj, "ShuntCompensatorPhase", "maximumSections", "maximumSections",  base.from_string, fields);
                 base.export_element (obj, "ShuntCompensatorPhase", "normalSections", "normalSections",  base.from_string, fields);
-                base.export_element (obj, "ShuntCompensatorPhase", "phase", "phase",  base.from_string, fields);
+                base.export_attribute (obj, "ShuntCompensatorPhase", "phase", "phase", fields);
                 base.export_attribute (obj, "ShuntCompensatorPhase", "ShuntCompensator", "ShuntCompensator", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -4633,8 +4633,8 @@ define
                 var fields = Core.PowerSystemResource.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "SwitchPhase", "normalOpen", "normalOpen",  base.from_boolean, fields);
-                base.export_element (obj, "SwitchPhase", "phaseSide1", "phaseSide1",  base.from_string, fields);
-                base.export_element (obj, "SwitchPhase", "phaseSide2", "phaseSide2",  base.from_string, fields);
+                base.export_attribute (obj, "SwitchPhase", "phaseSide1", "phaseSide1", fields);
+                base.export_attribute (obj, "SwitchPhase", "phaseSide2", "phaseSide2", fields);
                 base.export_element (obj, "SwitchPhase", "closed", "closed",  base.from_boolean, fields);
                 base.export_attribute (obj, "SwitchPhase", "Switch", "Switch", fields);
                 if (full)
@@ -7202,7 +7202,7 @@ define
             {
                 var fields = EarthFaultCompensator.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PetersenCoil", "mode", "mode",  base.from_string, fields);
+                base.export_attribute (obj, "PetersenCoil", "mode", "mode", fields);
                 base.export_element (obj, "PetersenCoil", "nominalU", "nominalU",  base.from_string, fields);
                 base.export_element (obj, "PetersenCoil", "offsetCurrent", "offsetCurrent",  base.from_string, fields);
                 base.export_element (obj, "PetersenCoil", "positionCurrent", "positionCurrent",  base.from_string, fields);
@@ -7452,7 +7452,7 @@ define
 
                 base.export_element (obj, "PowerTransformerEnd", "b", "b",  base.from_string, fields);
                 base.export_element (obj, "PowerTransformerEnd", "b0", "b0",  base.from_string, fields);
-                base.export_element (obj, "PowerTransformerEnd", "connectionKind", "connectionKind",  base.from_string, fields);
+                base.export_attribute (obj, "PowerTransformerEnd", "connectionKind", "connectionKind", fields);
                 base.export_element (obj, "PowerTransformerEnd", "g", "g",  base.from_string, fields);
                 base.export_element (obj, "PowerTransformerEnd", "g0", "g0",  base.from_string, fields);
                 base.export_element (obj, "PowerTransformerEnd", "phaseAngleClock", "phaseAngleClock",  base.from_string, fields);
@@ -8109,7 +8109,7 @@ define
                 var fields = TapChanger.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "RatioTapChanger", "stepVoltageIncrement", "stepVoltageIncrement",  base.from_string, fields);
-                base.export_element (obj, "RatioTapChanger", "tculControlMode", "tculControlMode",  base.from_string, fields);
+                base.export_attribute (obj, "RatioTapChanger", "tculControlMode", "tculControlMode", fields);
                 base.export_attribute (obj, "RatioTapChanger", "RatioTapChangerTable", "RatioTapChangerTable", fields);
                 base.export_attribute (obj, "RatioTapChanger", "TransformerEnd", "TransformerEnd", fields);
                 if (full)
@@ -8904,7 +8904,7 @@ define
                 base.export_element (obj, "ShuntCompensator", "maximumSections", "maximumSections",  base.from_string, fields);
                 base.export_element (obj, "ShuntCompensator", "nomU", "nomU",  base.from_string, fields);
                 base.export_element (obj, "ShuntCompensator", "normalSections", "normalSections",  base.from_string, fields);
-                base.export_element (obj, "ShuntCompensator", "phaseConnection", "phaseConnection",  base.from_string, fields);
+                base.export_attribute (obj, "ShuntCompensator", "phaseConnection", "phaseConnection", fields);
                 base.export_element (obj, "ShuntCompensator", "switchOnCount", "switchOnCount",  base.from_string, fields);
                 base.export_element (obj, "ShuntCompensator", "switchOnDate", "switchOnDate",  base.from_datetime, fields);
                 base.export_element (obj, "ShuntCompensator", "voltageSensitivity", "voltageSensitivity",  base.from_string, fields);
@@ -9369,7 +9369,7 @@ define
                 base.export_element (obj, "SynchronousMachine", "baseQ", "baseQ",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "condenserP", "condenserP",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "coolantCondition", "coolantCondition",  base.from_float, fields);
-                base.export_element (obj, "SynchronousMachine", "coolantType", "coolantType",  base.from_string, fields);
+                base.export_attribute (obj, "SynchronousMachine", "coolantType", "coolantType", fields);
                 base.export_element (obj, "SynchronousMachine", "earthing", "earthing",  base.from_boolean, fields);
                 base.export_element (obj, "SynchronousMachine", "earthingStarPointR", "earthingStarPointR",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "earthingStarPointX", "earthingStarPointX",  base.from_string, fields);
@@ -9380,7 +9380,7 @@ define
                 base.export_element (obj, "SynchronousMachine", "minQ", "minQ",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "minU", "minU",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "mu", "mu",  base.from_float, fields);
-                base.export_element (obj, "SynchronousMachine", "operatingMode", "operatingMode",  base.from_string, fields);
+                base.export_attribute (obj, "SynchronousMachine", "operatingMode", "operatingMode", fields);
                 base.export_element (obj, "SynchronousMachine", "qPercent", "qPercent",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "r", "r",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "r0", "r0",  base.from_string, fields);
@@ -9389,8 +9389,8 @@ define
                 base.export_element (obj, "SynchronousMachine", "satDirectSubtransX", "satDirectSubtransX",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "satDirectSyncX", "satDirectSyncX",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "satDirectTransX", "satDirectTransX",  base.from_string, fields);
-                base.export_element (obj, "SynchronousMachine", "shortCircuitRotorType", "shortCircuitRotorType",  base.from_string, fields);
-                base.export_element (obj, "SynchronousMachine", "type", "type",  base.from_string, fields);
+                base.export_attribute (obj, "SynchronousMachine", "shortCircuitRotorType", "shortCircuitRotorType", fields);
+                base.export_attribute (obj, "SynchronousMachine", "type", "type", fields);
                 base.export_element (obj, "SynchronousMachine", "voltageRegulationRange", "voltageRegulationRange",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "x0", "x0",  base.from_string, fields);
                 base.export_element (obj, "SynchronousMachine", "x2", "x2",  base.from_string, fields);
@@ -9634,7 +9634,7 @@ define
                 base.export_element (obj, "StaticVarCompensator", "capacitiveRating", "capacitiveRating",  base.from_string, fields);
                 base.export_element (obj, "StaticVarCompensator", "inductiveRating", "inductiveRating",  base.from_string, fields);
                 base.export_element (obj, "StaticVarCompensator", "slope", "slope",  base.from_string, fields);
-                base.export_element (obj, "StaticVarCompensator", "sVCControlMode", "sVCControlMode",  base.from_string, fields);
+                base.export_attribute (obj, "StaticVarCompensator", "sVCControlMode", "sVCControlMode", fields);
                 base.export_element (obj, "StaticVarCompensator", "voltageSetPoint", "voltageSetPoint",  base.from_string, fields);
                 base.export_element (obj, "StaticVarCompensator", "q", "q",  base.from_string, fields);
                 if (full)
@@ -10217,7 +10217,7 @@ define
                 base.export_element (obj, "AsynchronousMachine", "xp", "xp",  base.from_string, fields);
                 base.export_element (obj, "AsynchronousMachine", "xpp", "xpp",  base.from_string, fields);
                 base.export_element (obj, "AsynchronousMachine", "xs", "xs",  base.from_string, fields);
-                base.export_element (obj, "AsynchronousMachine", "asynchronousMachineType", "asynchronousMachineType",  base.from_string, fields);
+                base.export_attribute (obj, "AsynchronousMachine", "asynchronousMachineType", "asynchronousMachineType", fields);
                 base.export_attribute (obj, "AsynchronousMachine", "AsynchronousMachineDynamics", "AsynchronousMachineDynamics", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)

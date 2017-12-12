@@ -1182,8 +1182,8 @@ define
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Seal", "appliedDateTime", "appliedDateTime",  base.from_datetime, fields);
-                base.export_element (obj, "Seal", "condition", "condition",  base.from_string, fields);
-                base.export_element (obj, "Seal", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Seal", "condition", "condition", fields);
+                base.export_attribute (obj, "Seal", "kind", "kind", fields);
                 base.export_element (obj, "Seal", "sealNumber", "sealNumber",  base.from_string, fields);
                 base.export_attribute (obj, "Seal", "AssetContainer", "AssetContainer", fields);
                 if (full)
@@ -1689,7 +1689,7 @@ define
                 var fields = Common.Document.prototype.export.call (this, obj, false);
 
                 base.export_element (obj, "Procedure", "instruction", "instruction",  base.from_string, fields);
-                base.export_element (obj, "Procedure", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Procedure", "kind", "kind", fields);
                 base.export_element (obj, "Procedure", "sequenceNumber", "sequenceNumber",  base.from_string, fields);
                 base.export_attributes (obj, "Procedure", "Measurements", "Measurements", fields);
                 base.export_attributes (obj, "Procedure", "Limits", "Limits", fields);
@@ -2380,10 +2380,10 @@ define
             {
                 var fields = AssetModel.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ProductAssetModel", "corporateStandardKind", "corporateStandardKind",  base.from_string, fields);
+                base.export_attribute (obj, "ProductAssetModel", "corporateStandardKind", "corporateStandardKind", fields);
                 base.export_element (obj, "ProductAssetModel", "modelNumber", "modelNumber",  base.from_string, fields);
                 base.export_element (obj, "ProductAssetModel", "modelVersion", "modelVersion",  base.from_string, fields);
-                base.export_element (obj, "ProductAssetModel", "usageKind", "usageKind",  base.from_string, fields);
+                base.export_attribute (obj, "ProductAssetModel", "usageKind", "usageKind", fields);
                 base.export_element (obj, "ProductAssetModel", "weightTotal", "weightTotal",  base.from_string, fields);
                 base.export_attributes (obj, "ProductAssetModel", "AssetModelCatalogueItems", "AssetModelCatalogueItems", fields);
                 base.export_attribute (obj, "ProductAssetModel", "GenericAssetModelOrMaterial", "GenericAssetModelOrMaterial", fields);

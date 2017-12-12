@@ -140,7 +140,7 @@ define
             {
                 var fields = [];
 
-                base.export_element (obj, "CustomerNotification", "trigger", "trigger",  base.from_string, fields);
+                base.export_attribute (obj, "CustomerNotification", "trigger", "trigger", fields);
                 base.export_element (obj, "CustomerNotification", "earliestDateTimeToCall", "earliestDateTimeToCall",  base.from_datetime, fields);
                 base.export_element (obj, "CustomerNotification", "latestDateTimeToCall", "latestDateTimeToCall",  base.from_datetime, fields);
                 base.export_element (obj, "CustomerNotification", "contactType", "contactType",  base.from_string, fields);
@@ -301,7 +301,7 @@ define
                 base.export_element (obj, "PricingStructure", "dailyCeilingUsage", "dailyCeilingUsage",  base.from_string, fields);
                 base.export_element (obj, "PricingStructure", "dailyEstimatedUsage", "dailyEstimatedUsage",  base.from_string, fields);
                 base.export_element (obj, "PricingStructure", "dailyFloorUsage", "dailyFloorUsage",  base.from_string, fields);
-                base.export_element (obj, "PricingStructure", "revenueKind", "revenueKind",  base.from_string, fields);
+                base.export_attribute (obj, "PricingStructure", "revenueKind", "revenueKind", fields);
                 base.export_element (obj, "PricingStructure", "taxExemption", "taxExemption",  base.from_boolean, fields);
                 base.export_attributes (obj, "PricingStructure", "Tariffs", "Tariffs", fields);
                 base.export_attributes (obj, "PricingStructure", "Transactions", "Transactions", fields);
@@ -610,7 +610,7 @@ define
             {
                 var fields = Common.OrganisationRole.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "Customer", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "Customer", "kind", "kind", fields);
                 base.export_element (obj, "Customer", "pucNumber", "pucNumber",  base.from_string, fields);
                 base.export_element (obj, "Customer", "specialNeed", "specialNeed",  base.from_string, fields);
                 base.export_element (obj, "Customer", "status", "status",  base.from_string, fields);
@@ -1238,7 +1238,7 @@ define
             {
                 var fields = Core.IdentifiedObject.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ServiceCategory", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "ServiceCategory", "kind", "kind", fields);
                 base.export_attributes (obj, "ServiceCategory", "CustomerAgreements", "CustomerAgreements", fields);
                 base.export_attributes (obj, "ServiceCategory", "PricingStructures", "PricingStructures", fields);
                 base.export_attributes (obj, "ServiceCategory", "ConfigurationEvents", "ConfigurationEvents", fields);
@@ -1378,7 +1378,7 @@ define
 
                 base.export_element (obj, "TroubleTicket", "dateTimeOfReport", "dateTimeOfReport",  base.from_datetime, fields);
                 base.export_element (obj, "TroubleTicket", "troubleCode", "troubleCode",  base.from_string, fields);
-                base.export_element (obj, "TroubleTicket", "reportingKind", "reportingKind",  base.from_string, fields);
+                base.export_attribute (obj, "TroubleTicket", "reportingKind", "reportingKind", fields);
                 base.export_element (obj, "TroubleTicket", "resolvedDateTime", "resolvedDateTime",  base.from_datetime, fields);
                 base.export_element (obj, "TroubleTicket", "firstResponder", "firstResponder",  base.from_string, fields);
                 base.export_attribute (obj, "TroubleTicket", "Notification", "Notification", fields);

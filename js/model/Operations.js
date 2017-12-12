@@ -405,7 +405,7 @@ define
             {
                 var fields = Common.ActivityRecord.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "PSREvent", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "PSREvent", "kind", "kind", fields);
                 base.export_attribute (obj, "PSREvent", "PowerSystemResource", "PowerSystemResource", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -1997,7 +1997,7 @@ define
             {
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "ClearanceAction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "ClearanceAction", "kind", "kind", fields);
                 base.export_attribute (obj, "ClearanceAction", "Clearance", "Clearance", fields);
                 base.export_attribute (obj, "ClearanceAction", "SwitchingStepGroup", "SwitchingStepGroup", fields);
                 if (full)
@@ -2125,7 +2125,7 @@ define
             {
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "GroundAction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "GroundAction", "kind", "kind", fields);
                 base.export_attribute (obj, "GroundAction", "Ground", "Ground", fields);
                 base.export_attribute (obj, "GroundAction", "AlongACLineSegment", "AlongACLineSegment", fields);
                 base.export_attribute (obj, "GroundAction", "GroundedEquipment", "GroundedEquipment", fields);
@@ -2261,7 +2261,7 @@ define
             {
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CutAction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "CutAction", "kind", "kind", fields);
                 base.export_attribute (obj, "CutAction", "SwitchingStepGroup", "SwitchingStepGroup", fields);
                 base.export_attribute (obj, "CutAction", "Cut", "Cut", fields);
                 if (full)
@@ -2388,7 +2388,7 @@ define
             {
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "SwitchAction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "SwitchAction", "kind", "kind", fields);
                 base.export_attribute (obj, "SwitchAction", "PlannedOutage", "PlannedOutage", fields);
                 base.export_attribute (obj, "SwitchAction", "OperatedSwitch", "OperatedSwitch", fields);
                 base.export_attribute (obj, "SwitchAction", "SwitchingStepGroup", "SwitchingStepGroup", fields);
@@ -2521,7 +2521,7 @@ define
             {
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "JumperAction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "JumperAction", "kind", "kind", fields);
                 base.export_attributes (obj, "JumperAction", "AlongACLineSegments", "AlongACLineSegments", fields);
                 base.export_attribute (obj, "JumperAction", "Jumper", "Jumper", fields);
                 base.export_attribute (obj, "JumperAction", "SwitchingStepGroup", "SwitchingStepGroup", fields);
@@ -2657,7 +2657,7 @@ define
             {
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "TagAction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "TagAction", "kind", "kind", fields);
                 base.export_attribute (obj, "TagAction", "OperationTag", "OperationTag", fields);
                 base.export_attribute (obj, "TagAction", "SwitchingStepGroup", "SwitchingStepGroup", fields);
                 if (full)
@@ -2783,7 +2783,7 @@ define
             {
                 var fields = SwitchingStep.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "EnergySourceAction", "kind", "kind",  base.from_string, fields);
+                base.export_attribute (obj, "EnergySourceAction", "kind", "kind", fields);
                 base.export_attribute (obj, "EnergySourceAction", "EnergySource", "EnergySource", fields);
                 base.export_attribute (obj, "EnergySourceAction", "SwitchingStepGroup", "SwitchingStepGroup", fields);
                 if (full)

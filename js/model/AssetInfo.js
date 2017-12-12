@@ -166,7 +166,7 @@ define
                 base.export_element (obj, "WireSpacingInfo", "isCable", "isCable",  base.from_boolean, fields);
                 base.export_element (obj, "WireSpacingInfo", "phaseWireCount", "phaseWireCount",  base.from_string, fields);
                 base.export_element (obj, "WireSpacingInfo", "phaseWireSpacing", "phaseWireSpacing",  base.from_string, fields);
-                base.export_element (obj, "WireSpacingInfo", "usage", "usage",  base.from_string, fields);
+                base.export_attribute (obj, "WireSpacingInfo", "usage", "usage", fields);
                 base.export_attribute (obj, "WireSpacingInfo", "DuctBank", "DuctBank", fields);
                 base.export_attributes (obj, "WireSpacingInfo", "WirePositions", "WirePositions", fields);
                 base.export_attributes (obj, "WireSpacingInfo", "Structures", "Structures", fields);
@@ -843,9 +843,9 @@ define
                 base.export_element (obj, "WireInfo", "coreStrandCount", "coreStrandCount",  base.from_string, fields);
                 base.export_element (obj, "WireInfo", "gmr", "gmr",  base.from_string, fields);
                 base.export_element (obj, "WireInfo", "insulated", "insulated",  base.from_boolean, fields);
-                base.export_element (obj, "WireInfo", "insulationMaterial", "insulationMaterial",  base.from_string, fields);
+                base.export_attribute (obj, "WireInfo", "insulationMaterial", "insulationMaterial", fields);
                 base.export_element (obj, "WireInfo", "insulationThickness", "insulationThickness",  base.from_string, fields);
-                base.export_element (obj, "WireInfo", "material", "material",  base.from_string, fields);
+                base.export_attribute (obj, "WireInfo", "material", "material", fields);
                 base.export_element (obj, "WireInfo", "rAC25", "rAC25",  base.from_string, fields);
                 base.export_element (obj, "WireInfo", "rAC50", "rAC50",  base.from_string, fields);
                 base.export_element (obj, "WireInfo", "rAC75", "rAC75",  base.from_string, fields);
@@ -1737,16 +1737,16 @@ define
             {
                 var fields = WireInfo.prototype.export.call (this, obj, false);
 
-                base.export_element (obj, "CableInfo", "constructionKind", "constructionKind",  base.from_string, fields);
+                base.export_attribute (obj, "CableInfo", "constructionKind", "constructionKind", fields);
                 base.export_element (obj, "CableInfo", "diameterOverCore", "diameterOverCore",  base.from_string, fields);
                 base.export_element (obj, "CableInfo", "diameterOverInsulation", "diameterOverInsulation",  base.from_string, fields);
                 base.export_element (obj, "CableInfo", "diameterOverJacket", "diameterOverJacket",  base.from_string, fields);
                 base.export_element (obj, "CableInfo", "diameterOverScreen", "diameterOverScreen",  base.from_string, fields);
                 base.export_element (obj, "CableInfo", "isStrandFill", "isStrandFill",  base.from_boolean, fields);
                 base.export_element (obj, "CableInfo", "nominalTemperature", "nominalTemperature",  base.from_string, fields);
-                base.export_element (obj, "CableInfo", "outerJacketKind", "outerJacketKind",  base.from_string, fields);
+                base.export_attribute (obj, "CableInfo", "outerJacketKind", "outerJacketKind", fields);
                 base.export_element (obj, "CableInfo", "sheathAsNeutral", "sheathAsNeutral",  base.from_boolean, fields);
-                base.export_element (obj, "CableInfo", "shieldMaterial", "shieldMaterial",  base.from_string, fields);
+                base.export_attribute (obj, "CableInfo", "shieldMaterial", "shieldMaterial", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
 

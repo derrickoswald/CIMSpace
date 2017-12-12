@@ -402,7 +402,7 @@ define
                 base.export_element (obj, "LoadStatic", "kq3", "kq3",  base.from_float, fields);
                 base.export_element (obj, "LoadStatic", "kq4", "kq4",  base.from_float, fields);
                 base.export_element (obj, "LoadStatic", "kqf", "kqf",  base.from_float, fields);
-                base.export_element (obj, "LoadStatic", "staticLoadModelType", "staticLoadModelType",  base.from_string, fields);
+                base.export_attribute (obj, "LoadStatic", "staticLoadModelType", "staticLoadModelType", fields);
                 base.export_attribute (obj, "LoadStatic", "LoadAggregate", "LoadAggregate", fields);
                 if (full)
                     base.Element.prototype.export.call (this, obj, fields)
@@ -735,7 +735,7 @@ define
 
                 base.export_element (obj, "LoadGenericNonLinear", "bs", "bs",  base.from_float, fields);
                 base.export_element (obj, "LoadGenericNonLinear", "bt", "bt",  base.from_float, fields);
-                base.export_element (obj, "LoadGenericNonLinear", "genericNonLinearLoadModelType", "genericNonLinearLoadModelType",  base.from_string, fields);
+                base.export_attribute (obj, "LoadGenericNonLinear", "genericNonLinearLoadModelType", "genericNonLinearLoadModelType", fields);
                 base.export_element (obj, "LoadGenericNonLinear", "ls", "ls",  base.from_float, fields);
                 base.export_element (obj, "LoadGenericNonLinear", "lt", "lt",  base.from_float, fields);
                 base.export_element (obj, "LoadGenericNonLinear", "pt", "pt",  base.from_float, fields);
