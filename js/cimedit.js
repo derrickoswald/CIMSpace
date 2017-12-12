@@ -112,7 +112,7 @@ define
 
             digitize_point_mousedown_listener (points, callback, event)
             {
-                var lnglat = event.lngLat;
+                var lnglat = this.snap (event);
                 var feature = points.features[points.features.length - 1];
                 feature.geometry.coordinates = [lnglat.lng, lnglat.lat];
                 this._map.getSource ("edit points").setData (points);
@@ -157,11 +157,75 @@ define
                 this.popup ("<h1>Digitize point geometry</h1>");
             }
 
+            distance (a, b)
+            {
+                var dx = a.lng - b.lng;
+                var dy = a.lat - b.lat;
+                return (dx * dx + dy * dy);
+            }
+
+            snap (event)
+            {
+                var ret = event.lngLat
+                var width = 4;
+                var height = 4;
+                var features = this._map.queryRenderedFeatures
+                (
+                    [
+                      [event.point.x - width / 2, event.point.y - height / 2],
+                      [event.point.x + width / 2, event.point.y + height / 2]
+                    ],
+                    {}
+                );
+                if ((null != features) && (0 != features.length))
+                {
+                    var mrid = this._current_feature.mRID;
+                    var best_lnglat = null;
+                    var best_feature = null;
+                    var dist = this.distance.bind (this);
+                    function assign_best (lnglat, feature)
+                    {
+                        best_lnglat = lnglat;
+                        best_feature = feature;
+                        console.log ("snap " + feature.properties.cls + ":" + feature.properties.mRID + " " + dist (ret, lnglat));
+                    }
+                    for (var i = 0; i < features.length; i++)
+                    {
+                        if (features[i].properties.mRID && (mrid != features[i].properties.mRID)) // only our features and not the current one
+                        {
+                            if ("Point" == features[i].geometry.type)
+                            {
+                                var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates);
+                                if (null == best_lnglat)
+                                    assign_best (candidate, features[i]);
+                                else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
+                                    assign_best (candidate, features[i]);
+                            }
+                            else if ("LineString" == features[i].geometry.type)
+                            {
+                                for (var j = 0; j < features[i].geometry.coordinates.length; j++)
+                                {
+                                    var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates[j]);
+                                    if (null == best_lnglat)
+                                        assign_best (candidate, features[i]);
+                                    else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
+                                        assign_best (candidate, features[i]);
+                                }
+                            }
+                        }
+                    }
+                    if (null != best_lnglat)
+                        ret = best_lnglat;
+                }
+
+                return (ret);
+            }
+
             digitize_line_mousedown_listener (lines, callback, event)
             {
                 var feature = lines.features[lines.features.length - 1];
                 var coordinates = feature.geometry.coordinates;
-                var lnglat = event.lngLat;
+                var lnglat = this.snap (event);
                 var buttons = event.originalEvent.buttons;
                 var leftbutton = 0 != (buttons & 1);
                 var rightbutton = 0 != (buttons & 2);

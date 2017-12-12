@@ -333,7 +333,7 @@ define
                                 }
                                 else
                                 {
-                                    if ("undefined" != typeof (data.Substation[id]))
+                                    if (data.Substation && ("undefined" != typeof (data.Substation[id])))
                                     {
                                         if (psr[id].PSRType == "PSRType_DistributionBox")
                                             psr[id].symbol = distribution_box_symbol;
