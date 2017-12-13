@@ -91,27 +91,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="MechanicalLoadDynamics_collapse" style="margin-left: 10px;">MechanicalLoadDynamics</a></legend>
-                    <div id="MechanicalLoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MechanicalLoadDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_MechanicalLoadDynamics_collapse" style="margin-left: 10px;">MechanicalLoadDynamics</a></legend>
+                    <div id="{{id}}_MechanicalLoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}'{{/SynchronousMachineDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}'{{/SynchronousMachineDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MechanicalLoadDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp;
-                temp = document.getElementById ("AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
+                var obj = obj || { id: id, cls: "MechanicalLoadDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp;
+                temp = document.getElementById (id + "_AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
 
                 return (obj);
             }
@@ -216,31 +216,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechLoad1_collapse" aria-expanded="true" aria-controls="MechLoad1_collapse" style="margin-left: 10px;">MechLoad1</a></legend>
-                    <div id="MechLoad1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MechLoad1_collapse" aria-expanded="true" aria-controls="{{id}}_MechLoad1_collapse" style="margin-left: 10px;">MechLoad1</a></legend>
+                    <div id="{{id}}_MechLoad1_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MechanicalLoadDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a'>a: </label><div class='col-sm-8'><input id='a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b'>b: </label><div class='col-sm-8'><input id='b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='d'>d: </label><div class='col-sm-8'><input id='d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='e'>e: </label><div class='col-sm-8'><input id='e' class='form-control' type='text'{{#e}} value='{{e}}'{{/e}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a'>a: </label><div class='col-sm-8'><input id='{{id}}_a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b'>b: </label><div class='col-sm-8'><input id='{{id}}_b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_d'>d: </label><div class='col-sm-8'><input id='{{id}}_d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_e'>e: </label><div class='col-sm-8'><input id='{{id}}_e' class='form-control' type='text'{{#e}} value='{{e}}'{{/e}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MechLoad1" };
-                super.submit (obj);
-                temp = document.getElementById ("a").value; if ("" != temp) obj.a = temp;
-                temp = document.getElementById ("b").value; if ("" != temp) obj.b = temp;
-                temp = document.getElementById ("d").value; if ("" != temp) obj.d = temp;
-                temp = document.getElementById ("e").value; if ("" != temp) obj.e = temp;
+                var obj = obj || { id: id, cls: "MechLoad1" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_a").value; if ("" != temp) obj.a = temp;
+                temp = document.getElementById (id + "_b").value; if ("" != temp) obj.b = temp;
+                temp = document.getElementById (id + "_d").value; if ("" != temp) obj.d = temp;
+                temp = document.getElementById (id + "_e").value; if ("" != temp) obj.e = temp;
 
                 return (obj);
             }

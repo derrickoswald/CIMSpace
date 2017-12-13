@@ -165,27 +165,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCNode_collapse" aria-expanded="true" aria-controls="DCNode_collapse" style="margin-left: 10px;">DCNode</a></legend>
-                    <div id="DCNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCNode_collapse" aria-expanded="true" aria-controls="{{id}}_DCNode_collapse" style="margin-left: 10px;">DCNode</a></legend>
+                    <div id="{{id}}_DCNode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCTopologicalNode'>DCTopologicalNode: </label><div class='col-sm-8'><input id='DCTopologicalNode' class='form-control' type='text'{{#DCTopologicalNode}} value='{{DCTopologicalNode}}'{{/DCTopologicalNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCEquipmentContainer'>DCEquipmentContainer: </label><div class='col-sm-8'><input id='DCEquipmentContainer' class='form-control' type='text'{{#DCEquipmentContainer}} value='{{DCEquipmentContainer}}'{{/DCEquipmentContainer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCTopologicalNode'>DCTopologicalNode: </label><div class='col-sm-8'><input id='{{id}}_DCTopologicalNode' class='form-control' type='text'{{#DCTopologicalNode}} value='{{DCTopologicalNode}}'{{/DCTopologicalNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCEquipmentContainer'>DCEquipmentContainer: </label><div class='col-sm-8'><input id='{{id}}_DCEquipmentContainer' class='form-control' type='text'{{#DCEquipmentContainer}} value='{{DCEquipmentContainer}}'{{/DCEquipmentContainer}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCNode" };
-                super.submit (obj);
-                temp = document.getElementById ("DCTopologicalNode").value; if ("" != temp) obj.DCTopologicalNode = temp;
-                temp = document.getElementById ("DCEquipmentContainer").value; if ("" != temp) obj.DCEquipmentContainer = temp;
+                var obj = obj || { id: id, cls: "DCNode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_DCTopologicalNode").value; if ("" != temp) obj.DCTopologicalNode = temp;
+                temp = document.getElementById (id + "_DCEquipmentContainer").value; if ("" != temp) obj.DCEquipmentContainer = temp;
 
                 return (obj);
             }
@@ -286,8 +286,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="DCTopologicalIsland_collapse" style="margin-left: 10px;">DCTopologicalIsland</a></legend>
-                    <div id="DCTopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCTopologicalIsland_collapse" aria-expanded="true" aria-controls="{{id}}_DCTopologicalIsland_collapse" style="margin-left: 10px;">DCTopologicalIsland</a></legend>
+                    <div id="{{id}}_DCTopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -297,10 +297,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DCTopologicalIsland" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DCTopologicalIsland" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -400,27 +400,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBaseTerminal_collapse" aria-expanded="true" aria-controls="DCBaseTerminal_collapse" style="margin-left: 10px;">DCBaseTerminal</a></legend>
-                    <div id="DCBaseTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCBaseTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_DCBaseTerminal_collapse" style="margin-left: 10px;">DCBaseTerminal</a></legend>
+                    <div id="{{id}}_DCBaseTerminal_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.ACDCTerminal.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCNode'>DCNode: </label><div class='col-sm-8'><input id='DCNode' class='form-control' type='text'{{#DCNode}} value='{{DCNode}}'{{/DCNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCTopologicalNode'>DCTopologicalNode: </label><div class='col-sm-8'><input id='DCTopologicalNode' class='form-control' type='text'{{#DCTopologicalNode}} value='{{DCTopologicalNode}}'{{/DCTopologicalNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCNode'>DCNode: </label><div class='col-sm-8'><input id='{{id}}_DCNode' class='form-control' type='text'{{#DCNode}} value='{{DCNode}}'{{/DCNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCTopologicalNode'>DCTopologicalNode: </label><div class='col-sm-8'><input id='{{id}}_DCTopologicalNode' class='form-control' type='text'{{#DCTopologicalNode}} value='{{DCTopologicalNode}}'{{/DCTopologicalNode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCBaseTerminal" };
-                super.submit (obj);
-                temp = document.getElementById ("DCNode").value; if ("" != temp) obj.DCNode = temp;
-                temp = document.getElementById ("DCTopologicalNode").value; if ("" != temp) obj.DCTopologicalNode = temp;
+                var obj = obj || { id: id, cls: "DCBaseTerminal" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_DCNode").value; if ("" != temp) obj.DCNode = temp;
+                temp = document.getElementById (id + "_DCTopologicalNode").value; if ("" != temp) obj.DCTopologicalNode = temp;
 
                 return (obj);
             }
@@ -572,59 +572,59 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCConverter_collapse" aria-expanded="true" aria-controls="ACDCConverter_collapse" style="margin-left: 10px;">ACDCConverter</a></legend>
-                    <div id="ACDCConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ACDCConverter_collapse" aria-expanded="true" aria-controls="{{id}}_ACDCConverter_collapse" style="margin-left: 10px;">ACDCConverter</a></legend>
+                    <div id="{{id}}_ACDCConverter_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='baseS'>baseS: </label><div class='col-sm-8'><input id='baseS' class='form-control' type='text'{{#baseS}} value='{{baseS}}'{{/baseS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='switchingLoss'>switchingLoss: </label><div class='col-sm-8'><input id='switchingLoss' class='form-control' type='text'{{#switchingLoss}} value='{{switchingLoss}}'{{/switchingLoss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetPpcc'>targetPpcc: </label><div class='col-sm-8'><input id='targetPpcc' class='form-control' type='text'{{#targetPpcc}} value='{{targetPpcc}}'{{/targetPpcc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetUdc'>targetUdc: </label><div class='col-sm-8'><input id='targetUdc' class='form-control' type='text'{{#targetUdc}} value='{{targetUdc}}'{{/targetUdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='idc'>idc: </label><div class='col-sm-8'><input id='idc' class='form-control' type='text'{{#idc}} value='{{idc}}'{{/idc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='idleLoss'>idleLoss: </label><div class='col-sm-8'><input id='idleLoss' class='form-control' type='text'{{#idleLoss}} value='{{idleLoss}}'{{/idleLoss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxUdc'>maxUdc: </label><div class='col-sm-8'><input id='maxUdc' class='form-control' type='text'{{#maxUdc}} value='{{maxUdc}}'{{/maxUdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minUdc'>minUdc: </label><div class='col-sm-8'><input id='minUdc' class='form-control' type='text'{{#minUdc}} value='{{minUdc}}'{{/minUdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='poleLossP'>poleLossP: </label><div class='col-sm-8'><input id='poleLossP' class='form-control' type='text'{{#poleLossP}} value='{{poleLossP}}'{{/poleLossP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistiveLoss'>resistiveLoss: </label><div class='col-sm-8'><input id='resistiveLoss' class='form-control' type='text'{{#resistiveLoss}} value='{{resistiveLoss}}'{{/resistiveLoss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uc'>uc: </label><div class='col-sm-8'><input id='uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='udc'>udc: </label><div class='col-sm-8'><input id='udc' class='form-control' type='text'{{#udc}} value='{{udc}}'{{/udc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valveU0'>valveU0: </label><div class='col-sm-8'><input id='valveU0' class='form-control' type='text'{{#valveU0}} value='{{valveU0}}'{{/valveU0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='numberOfValves'>numberOfValves: </label><div class='col-sm-8'><input id='numberOfValves' class='form-control' type='text'{{#numberOfValves}} value='{{numberOfValves}}'{{/numberOfValves}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p'>p: </label><div class='col-sm-8'><input id='p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q'>q: </label><div class='col-sm-8'><input id='q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PccTerminal'>PccTerminal: </label><div class='col-sm-8'><input id='PccTerminal' class='form-control' type='text'{{#PccTerminal}} value='{{PccTerminal}}'{{/PccTerminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_baseS'>baseS: </label><div class='col-sm-8'><input id='{{id}}_baseS' class='form-control' type='text'{{#baseS}} value='{{baseS}}'{{/baseS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchingLoss'>switchingLoss: </label><div class='col-sm-8'><input id='{{id}}_switchingLoss' class='form-control' type='text'{{#switchingLoss}} value='{{switchingLoss}}'{{/switchingLoss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetPpcc'>targetPpcc: </label><div class='col-sm-8'><input id='{{id}}_targetPpcc' class='form-control' type='text'{{#targetPpcc}} value='{{targetPpcc}}'{{/targetPpcc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetUdc'>targetUdc: </label><div class='col-sm-8'><input id='{{id}}_targetUdc' class='form-control' type='text'{{#targetUdc}} value='{{targetUdc}}'{{/targetUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_idc'>idc: </label><div class='col-sm-8'><input id='{{id}}_idc' class='form-control' type='text'{{#idc}} value='{{idc}}'{{/idc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_idleLoss'>idleLoss: </label><div class='col-sm-8'><input id='{{id}}_idleLoss' class='form-control' type='text'{{#idleLoss}} value='{{idleLoss}}'{{/idleLoss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxUdc'>maxUdc: </label><div class='col-sm-8'><input id='{{id}}_maxUdc' class='form-control' type='text'{{#maxUdc}} value='{{maxUdc}}'{{/maxUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minUdc'>minUdc: </label><div class='col-sm-8'><input id='{{id}}_minUdc' class='form-control' type='text'{{#minUdc}} value='{{minUdc}}'{{/minUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_poleLossP'>poleLossP: </label><div class='col-sm-8'><input id='{{id}}_poleLossP' class='form-control' type='text'{{#poleLossP}} value='{{poleLossP}}'{{/poleLossP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='{{id}}_ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resistiveLoss'>resistiveLoss: </label><div class='col-sm-8'><input id='{{id}}_resistiveLoss' class='form-control' type='text'{{#resistiveLoss}} value='{{resistiveLoss}}'{{/resistiveLoss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uc'>uc: </label><div class='col-sm-8'><input id='{{id}}_uc' class='form-control' type='text'{{#uc}} value='{{uc}}'{{/uc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_udc'>udc: </label><div class='col-sm-8'><input id='{{id}}_udc' class='form-control' type='text'{{#udc}} value='{{udc}}'{{/udc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valveU0'>valveU0: </label><div class='col-sm-8'><input id='{{id}}_valveU0' class='form-control' type='text'{{#valveU0}} value='{{valveU0}}'{{/valveU0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_numberOfValves'>numberOfValves: </label><div class='col-sm-8'><input id='{{id}}_numberOfValves' class='form-control' type='text'{{#numberOfValves}} value='{{numberOfValves}}'{{/numberOfValves}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p'>p: </label><div class='col-sm-8'><input id='{{id}}_p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q'>q: </label><div class='col-sm-8'><input id='{{id}}_q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PccTerminal'>PccTerminal: </label><div class='col-sm-8'><input id='{{id}}_PccTerminal' class='form-control' type='text'{{#PccTerminal}} value='{{PccTerminal}}'{{/PccTerminal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ACDCConverter" };
-                super.submit (obj);
-                temp = document.getElementById ("baseS").value; if ("" != temp) obj.baseS = temp;
-                temp = document.getElementById ("switchingLoss").value; if ("" != temp) obj.switchingLoss = temp;
-                temp = document.getElementById ("targetPpcc").value; if ("" != temp) obj.targetPpcc = temp;
-                temp = document.getElementById ("targetUdc").value; if ("" != temp) obj.targetUdc = temp;
-                temp = document.getElementById ("idc").value; if ("" != temp) obj.idc = temp;
-                temp = document.getElementById ("idleLoss").value; if ("" != temp) obj.idleLoss = temp;
-                temp = document.getElementById ("maxUdc").value; if ("" != temp) obj.maxUdc = temp;
-                temp = document.getElementById ("minUdc").value; if ("" != temp) obj.minUdc = temp;
-                temp = document.getElementById ("poleLossP").value; if ("" != temp) obj.poleLossP = temp;
-                temp = document.getElementById ("ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
-                temp = document.getElementById ("resistiveLoss").value; if ("" != temp) obj.resistiveLoss = temp;
-                temp = document.getElementById ("uc").value; if ("" != temp) obj.uc = temp;
-                temp = document.getElementById ("udc").value; if ("" != temp) obj.udc = temp;
-                temp = document.getElementById ("valveU0").value; if ("" != temp) obj.valveU0 = temp;
-                temp = document.getElementById ("numberOfValves").value; if ("" != temp) obj.numberOfValves = temp;
-                temp = document.getElementById ("p").value; if ("" != temp) obj.p = temp;
-                temp = document.getElementById ("q").value; if ("" != temp) obj.q = temp;
-                temp = document.getElementById ("PccTerminal").value; if ("" != temp) obj.PccTerminal = temp;
+                var obj = obj || { id: id, cls: "ACDCConverter" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_baseS").value; if ("" != temp) obj.baseS = temp;
+                temp = document.getElementById (id + "_switchingLoss").value; if ("" != temp) obj.switchingLoss = temp;
+                temp = document.getElementById (id + "_targetPpcc").value; if ("" != temp) obj.targetPpcc = temp;
+                temp = document.getElementById (id + "_targetUdc").value; if ("" != temp) obj.targetUdc = temp;
+                temp = document.getElementById (id + "_idc").value; if ("" != temp) obj.idc = temp;
+                temp = document.getElementById (id + "_idleLoss").value; if ("" != temp) obj.idleLoss = temp;
+                temp = document.getElementById (id + "_maxUdc").value; if ("" != temp) obj.maxUdc = temp;
+                temp = document.getElementById (id + "_minUdc").value; if ("" != temp) obj.minUdc = temp;
+                temp = document.getElementById (id + "_poleLossP").value; if ("" != temp) obj.poleLossP = temp;
+                temp = document.getElementById (id + "_ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
+                temp = document.getElementById (id + "_resistiveLoss").value; if ("" != temp) obj.resistiveLoss = temp;
+                temp = document.getElementById (id + "_uc").value; if ("" != temp) obj.uc = temp;
+                temp = document.getElementById (id + "_udc").value; if ("" != temp) obj.udc = temp;
+                temp = document.getElementById (id + "_valveU0").value; if ("" != temp) obj.valveU0 = temp;
+                temp = document.getElementById (id + "_numberOfValves").value; if ("" != temp) obj.numberOfValves = temp;
+                temp = document.getElementById (id + "_p").value; if ("" != temp) obj.p = temp;
+                temp = document.getElementById (id + "_q").value; if ("" != temp) obj.q = temp;
+                temp = document.getElementById (id + "_PccTerminal").value; if ("" != temp) obj.PccTerminal = temp;
 
                 return (obj);
             }
@@ -727,29 +727,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="PerLengthDCLineParameter_collapse" style="margin-left: 10px;">PerLengthDCLineParameter</a></legend>
-                    <div id="PerLengthDCLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PerLengthDCLineParameter_collapse" aria-expanded="true" aria-controls="{{id}}_PerLengthDCLineParameter_collapse" style="margin-left: 10px;">PerLengthDCLineParameter</a></legend>
+                    <div id="{{id}}_PerLengthDCLineParameter_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Wires.PerLengthLineParameter.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacitance'>capacitance: </label><div class='col-sm-8'><input id='capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductance'>inductance: </label><div class='col-sm-8'><input id='inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistance'>resistance: </label><div class='col-sm-8'><input id='resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacitance'>capacitance: </label><div class='col-sm-8'><input id='{{id}}_capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductance'>inductance: </label><div class='col-sm-8'><input id='{{id}}_inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resistance'>resistance: </label><div class='col-sm-8'><input id='{{id}}_resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PerLengthDCLineParameter" };
-                super.submit (obj);
-                temp = document.getElementById ("capacitance").value; if ("" != temp) obj.capacitance = temp;
-                temp = document.getElementById ("inductance").value; if ("" != temp) obj.inductance = temp;
-                temp = document.getElementById ("resistance").value; if ("" != temp) obj.resistance = temp;
+                var obj = obj || { id: id, cls: "PerLengthDCLineParameter" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_capacitance").value; if ("" != temp) obj.capacitance = temp;
+                temp = document.getElementById (id + "_inductance").value; if ("" != temp) obj.inductance = temp;
+                temp = document.getElementById (id + "_resistance").value; if ("" != temp) obj.resistance = temp;
 
                 return (obj);
             }
@@ -853,8 +853,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="DCEquipmentContainer_collapse" style="margin-left: 10px;">DCEquipmentContainer</a></legend>
-                    <div id="DCEquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCEquipmentContainer_collapse" aria-expanded="true" aria-controls="{{id}}_DCEquipmentContainer_collapse" style="margin-left: 10px;">DCEquipmentContainer</a></legend>
+                    <div id="{{id}}_DCEquipmentContainer_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.EquipmentContainer.prototype.edit_template.call (this) +
                     `
@@ -864,10 +864,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DCEquipmentContainer" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DCEquipmentContainer" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -965,8 +965,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="VsCapabilityCurve_collapse" style="margin-left: 10px;">VsCapabilityCurve</a></legend>
-                    <div id="VsCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VsCapabilityCurve_collapse" aria-expanded="true" aria-controls="{{id}}_VsCapabilityCurve_collapse" style="margin-left: 10px;">VsCapabilityCurve</a></legend>
+                    <div id="{{id}}_VsCapabilityCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -976,10 +976,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "VsCapabilityCurve" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "VsCapabilityCurve" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1081,8 +1081,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCConductingEquipment_collapse" aria-expanded="true" aria-controls="DCConductingEquipment_collapse" style="margin-left: 10px;">DCConductingEquipment</a></legend>
-                    <div id="DCConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCConductingEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_DCConductingEquipment_collapse" style="margin-left: 10px;">DCConductingEquipment</a></legend>
+                    <div id="{{id}}_DCConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
                     `
@@ -1092,10 +1092,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DCConductingEquipment" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DCConductingEquipment" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1198,27 +1198,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="ACDCConverterDCTerminal_collapse" style="margin-left: 10px;">ACDCConverterDCTerminal</a></legend>
-                    <div id="ACDCConverterDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ACDCConverterDCTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_ACDCConverterDCTerminal_collapse" style="margin-left: 10px;">ACDCConverterDCTerminal</a></legend>
+                    <div id="{{id}}_ACDCConverterDCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCBaseTerminal.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='polarity'>polarity: </label><div class='col-sm-8'><select id='polarity' class='form-control'>{{#DCPolarityKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DCPolarityKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_polarity'>polarity: </label><div class='col-sm-8'><select id='{{id}}_polarity' class='form-control'>{{#DCPolarityKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DCPolarityKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ACDCConverterDCTerminal" };
-                super.submit (obj);
-                temp = document.getElementById ("polarity").value; if ("" != temp) { temp = DCPolarityKind[temp]; if ("undefined" != typeof (temp)) obj.polarity = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DCPolarityKind." + temp; }
-                temp = document.getElementById ("DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
+                var obj = obj || { id: id, cls: "ACDCConverterDCTerminal" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_polarity").value; if ("" != temp) { temp = DCPolarityKind[temp]; if ("undefined" != typeof (temp)) obj.polarity = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DCPolarityKind." + temp; }
+                temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
 
                 return (obj);
             }
@@ -1313,25 +1313,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTerminal_collapse" aria-expanded="true" aria-controls="DCTerminal_collapse" style="margin-left: 10px;">DCTerminal</a></legend>
-                    <div id="DCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_DCTerminal_collapse" style="margin-left: 10px;">DCTerminal</a></legend>
+                    <div id="{{id}}_DCTerminal_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCBaseTerminal.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCTerminal" };
-                super.submit (obj);
-                temp = document.getElementById ("DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
+                var obj = obj || { id: id, cls: "DCTerminal" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
 
                 return (obj);
             }
@@ -1469,51 +1469,51 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CsConverter_collapse" aria-expanded="true" aria-controls="CsConverter_collapse" style="margin-left: 10px;">CsConverter</a></legend>
-                    <div id="CsConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CsConverter_collapse" aria-expanded="true" aria-controls="{{id}}_CsConverter_collapse" style="margin-left: 10px;">CsConverter</a></legend>
+                    <div id="{{id}}_CsConverter_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ACDCConverter.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxIdc'>maxIdc: </label><div class='col-sm-8'><input id='maxIdc' class='form-control' type='text'{{#maxIdc}} value='{{maxIdc}}'{{/maxIdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedIdc'>ratedIdc: </label><div class='col-sm-8'><input id='ratedIdc' class='form-control' type='text'{{#ratedIdc}} value='{{ratedIdc}}'{{/ratedIdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='pPccControl' class='form-control'>{{#CsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CsPpccControlKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='alpha'>alpha: </label><div class='col-sm-8'><input id='alpha' class='form-control' type='text'{{#alpha}} value='{{alpha}}'{{/alpha}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gamma'>gamma: </label><div class='col-sm-8'><input id='gamma' class='form-control' type='text'{{#gamma}} value='{{gamma}}'{{/gamma}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxAlpha'>maxAlpha: </label><div class='col-sm-8'><input id='maxAlpha' class='form-control' type='text'{{#maxAlpha}} value='{{maxAlpha}}'{{/maxAlpha}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxGamma'>maxGamma: </label><div class='col-sm-8'><input id='maxGamma' class='form-control' type='text'{{#maxGamma}} value='{{maxGamma}}'{{/maxGamma}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minAlpha'>minAlpha: </label><div class='col-sm-8'><input id='minAlpha' class='form-control' type='text'{{#minAlpha}} value='{{minAlpha}}'{{/minAlpha}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minGamma'>minGamma: </label><div class='col-sm-8'><input id='minGamma' class='form-control' type='text'{{#minGamma}} value='{{minGamma}}'{{/minGamma}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetAlpha'>targetAlpha: </label><div class='col-sm-8'><input id='targetAlpha' class='form-control' type='text'{{#targetAlpha}} value='{{targetAlpha}}'{{/targetAlpha}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetGamma'>targetGamma: </label><div class='col-sm-8'><input id='targetGamma' class='form-control' type='text'{{#targetGamma}} value='{{targetGamma}}'{{/targetGamma}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetIdc'>targetIdc: </label><div class='col-sm-8'><input id='targetIdc' class='form-control' type='text'{{#targetIdc}} value='{{targetIdc}}'{{/targetIdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minIdc'>minIdc: </label><div class='col-sm-8'><input id='minIdc' class='form-control' type='text'{{#minIdc}} value='{{minIdc}}'{{/minIdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operatingMode'>operatingMode: </label><div class='col-sm-8'><select id='operatingMode' class='form-control'>{{#CsOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CsOperatingModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxIdc'>maxIdc: </label><div class='col-sm-8'><input id='{{id}}_maxIdc' class='form-control' type='text'{{#maxIdc}} value='{{maxIdc}}'{{/maxIdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedIdc'>ratedIdc: </label><div class='col-sm-8'><input id='{{id}}_ratedIdc' class='form-control' type='text'{{#ratedIdc}} value='{{ratedIdc}}'{{/ratedIdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='{{id}}_pPccControl' class='form-control'>{{#CsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CsPpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_alpha'>alpha: </label><div class='col-sm-8'><input id='{{id}}_alpha' class='form-control' type='text'{{#alpha}} value='{{alpha}}'{{/alpha}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gamma'>gamma: </label><div class='col-sm-8'><input id='{{id}}_gamma' class='form-control' type='text'{{#gamma}} value='{{gamma}}'{{/gamma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxAlpha'>maxAlpha: </label><div class='col-sm-8'><input id='{{id}}_maxAlpha' class='form-control' type='text'{{#maxAlpha}} value='{{maxAlpha}}'{{/maxAlpha}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxGamma'>maxGamma: </label><div class='col-sm-8'><input id='{{id}}_maxGamma' class='form-control' type='text'{{#maxGamma}} value='{{maxGamma}}'{{/maxGamma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minAlpha'>minAlpha: </label><div class='col-sm-8'><input id='{{id}}_minAlpha' class='form-control' type='text'{{#minAlpha}} value='{{minAlpha}}'{{/minAlpha}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minGamma'>minGamma: </label><div class='col-sm-8'><input id='{{id}}_minGamma' class='form-control' type='text'{{#minGamma}} value='{{minGamma}}'{{/minGamma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetAlpha'>targetAlpha: </label><div class='col-sm-8'><input id='{{id}}_targetAlpha' class='form-control' type='text'{{#targetAlpha}} value='{{targetAlpha}}'{{/targetAlpha}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetGamma'>targetGamma: </label><div class='col-sm-8'><input id='{{id}}_targetGamma' class='form-control' type='text'{{#targetGamma}} value='{{targetGamma}}'{{/targetGamma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetIdc'>targetIdc: </label><div class='col-sm-8'><input id='{{id}}_targetIdc' class='form-control' type='text'{{#targetIdc}} value='{{targetIdc}}'{{/targetIdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minIdc'>minIdc: </label><div class='col-sm-8'><input id='{{id}}_minIdc' class='form-control' type='text'{{#minIdc}} value='{{minIdc}}'{{/minIdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><select id='{{id}}_operatingMode' class='form-control'>{{#CsOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CsOperatingModeKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CsConverter" };
-                super.submit (obj);
-                temp = document.getElementById ("maxIdc").value; if ("" != temp) obj.maxIdc = temp;
-                temp = document.getElementById ("ratedIdc").value; if ("" != temp) obj.ratedIdc = temp;
-                temp = document.getElementById ("pPccControl").value; if ("" != temp) { temp = CsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CsPpccControlKind." + temp; }
-                temp = document.getElementById ("alpha").value; if ("" != temp) obj.alpha = temp;
-                temp = document.getElementById ("gamma").value; if ("" != temp) obj.gamma = temp;
-                temp = document.getElementById ("maxAlpha").value; if ("" != temp) obj.maxAlpha = temp;
-                temp = document.getElementById ("maxGamma").value; if ("" != temp) obj.maxGamma = temp;
-                temp = document.getElementById ("minAlpha").value; if ("" != temp) obj.minAlpha = temp;
-                temp = document.getElementById ("minGamma").value; if ("" != temp) obj.minGamma = temp;
-                temp = document.getElementById ("targetAlpha").value; if ("" != temp) obj.targetAlpha = temp;
-                temp = document.getElementById ("targetGamma").value; if ("" != temp) obj.targetGamma = temp;
-                temp = document.getElementById ("targetIdc").value; if ("" != temp) obj.targetIdc = temp;
-                temp = document.getElementById ("minIdc").value; if ("" != temp) obj.minIdc = temp;
-                temp = document.getElementById ("operatingMode").value; if ("" != temp) { temp = CsOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CsOperatingModeKind." + temp; }
+                var obj = obj || { id: id, cls: "CsConverter" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_maxIdc").value; if ("" != temp) obj.maxIdc = temp;
+                temp = document.getElementById (id + "_ratedIdc").value; if ("" != temp) obj.ratedIdc = temp;
+                temp = document.getElementById (id + "_pPccControl").value; if ("" != temp) { temp = CsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CsPpccControlKind." + temp; }
+                temp = document.getElementById (id + "_alpha").value; if ("" != temp) obj.alpha = temp;
+                temp = document.getElementById (id + "_gamma").value; if ("" != temp) obj.gamma = temp;
+                temp = document.getElementById (id + "_maxAlpha").value; if ("" != temp) obj.maxAlpha = temp;
+                temp = document.getElementById (id + "_maxGamma").value; if ("" != temp) obj.maxGamma = temp;
+                temp = document.getElementById (id + "_minAlpha").value; if ("" != temp) obj.minAlpha = temp;
+                temp = document.getElementById (id + "_minGamma").value; if ("" != temp) obj.minGamma = temp;
+                temp = document.getElementById (id + "_targetAlpha").value; if ("" != temp) obj.targetAlpha = temp;
+                temp = document.getElementById (id + "_targetGamma").value; if ("" != temp) obj.targetGamma = temp;
+                temp = document.getElementById (id + "_targetIdc").value; if ("" != temp) obj.targetIdc = temp;
+                temp = document.getElementById (id + "_minIdc").value; if ("" != temp) obj.minIdc = temp;
+                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) { temp = CsOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CsOperatingModeKind." + temp; }
 
                 return (obj);
             }
@@ -1636,47 +1636,47 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VsConverter_collapse" aria-expanded="true" aria-controls="VsConverter_collapse" style="margin-left: 10px;">VsConverter</a></legend>
-                    <div id="VsConverter_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VsConverter_collapse" aria-expanded="true" aria-controls="{{id}}_VsConverter_collapse" style="margin-left: 10px;">VsConverter</a></legend>
+                    <div id="{{id}}_VsConverter_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ACDCConverter.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='pPccControl' class='form-control'>{{#VsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VsPpccControlKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qShare'>qShare: </label><div class='col-sm-8'><input id='qShare' class='form-control' type='text'{{#qShare}} value='{{qShare}}'{{/qShare}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetQpcc'>targetQpcc: </label><div class='col-sm-8'><input id='targetQpcc' class='form-control' type='text'{{#targetQpcc}} value='{{targetQpcc}}'{{/targetQpcc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetUpcc'>targetUpcc: </label><div class='col-sm-8'><input id='targetUpcc' class='form-control' type='text'{{#targetUpcc}} value='{{targetUpcc}}'{{/targetUpcc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='droopCompensation'>droopCompensation: </label><div class='col-sm-8'><input id='droopCompensation' class='form-control' type='text'{{#droopCompensation}} value='{{droopCompensation}}'{{/droopCompensation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='droop'>droop: </label><div class='col-sm-8'><input id='droop' class='form-control' type='text'{{#droop}} value='{{droop}}'{{/droop}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='delta'>delta: </label><div class='col-sm-8'><input id='delta' class='form-control' type='text'{{#delta}} value='{{delta}}'{{/delta}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uf'>uf: </label><div class='col-sm-8'><input id='uf' class='form-control' type='text'{{#uf}} value='{{uf}}'{{/uf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxValveCurrent'>maxValveCurrent: </label><div class='col-sm-8'><input id='maxValveCurrent' class='form-control' type='text'{{#maxValveCurrent}} value='{{maxValveCurrent}}'{{/maxValveCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxModulationIndex'>maxModulationIndex: </label><div class='col-sm-8'><input id='maxModulationIndex' class='form-control' type='text'{{#maxModulationIndex}} value='{{maxModulationIndex}}'{{/maxModulationIndex}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qPccControl'>qPccControl: </label><div class='col-sm-8'><select id='qPccControl' class='form-control'>{{#VsQpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VsQpccControlKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CapabilityCurve'>CapabilityCurve: </label><div class='col-sm-8'><input id='CapabilityCurve' class='form-control' type='text'{{#CapabilityCurve}} value='{{CapabilityCurve}}'{{/CapabilityCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pPccControl'>pPccControl: </label><div class='col-sm-8'><select id='{{id}}_pPccControl' class='form-control'>{{#VsPpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VsPpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qShare'>qShare: </label><div class='col-sm-8'><input id='{{id}}_qShare' class='form-control' type='text'{{#qShare}} value='{{qShare}}'{{/qShare}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetQpcc'>targetQpcc: </label><div class='col-sm-8'><input id='{{id}}_targetQpcc' class='form-control' type='text'{{#targetQpcc}} value='{{targetQpcc}}'{{/targetQpcc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetUpcc'>targetUpcc: </label><div class='col-sm-8'><input id='{{id}}_targetUpcc' class='form-control' type='text'{{#targetUpcc}} value='{{targetUpcc}}'{{/targetUpcc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_droopCompensation'>droopCompensation: </label><div class='col-sm-8'><input id='{{id}}_droopCompensation' class='form-control' type='text'{{#droopCompensation}} value='{{droopCompensation}}'{{/droopCompensation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_droop'>droop: </label><div class='col-sm-8'><input id='{{id}}_droop' class='form-control' type='text'{{#droop}} value='{{droop}}'{{/droop}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_delta'>delta: </label><div class='col-sm-8'><input id='{{id}}_delta' class='form-control' type='text'{{#delta}} value='{{delta}}'{{/delta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uf'>uf: </label><div class='col-sm-8'><input id='{{id}}_uf' class='form-control' type='text'{{#uf}} value='{{uf}}'{{/uf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxValveCurrent'>maxValveCurrent: </label><div class='col-sm-8'><input id='{{id}}_maxValveCurrent' class='form-control' type='text'{{#maxValveCurrent}} value='{{maxValveCurrent}}'{{/maxValveCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxModulationIndex'>maxModulationIndex: </label><div class='col-sm-8'><input id='{{id}}_maxModulationIndex' class='form-control' type='text'{{#maxModulationIndex}} value='{{maxModulationIndex}}'{{/maxModulationIndex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qPccControl'>qPccControl: </label><div class='col-sm-8'><select id='{{id}}_qPccControl' class='form-control'>{{#VsQpccControlKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/VsQpccControlKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CapabilityCurve'>CapabilityCurve: </label><div class='col-sm-8'><input id='{{id}}_CapabilityCurve' class='form-control' type='text'{{#CapabilityCurve}} value='{{CapabilityCurve}}'{{/CapabilityCurve}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VsConverter" };
-                super.submit (obj);
-                temp = document.getElementById ("pPccControl").value; if ("" != temp) { temp = VsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VsPpccControlKind." + temp; }
-                temp = document.getElementById ("qShare").value; if ("" != temp) obj.qShare = temp;
-                temp = document.getElementById ("targetQpcc").value; if ("" != temp) obj.targetQpcc = temp;
-                temp = document.getElementById ("targetUpcc").value; if ("" != temp) obj.targetUpcc = temp;
-                temp = document.getElementById ("droopCompensation").value; if ("" != temp) obj.droopCompensation = temp;
-                temp = document.getElementById ("droop").value; if ("" != temp) obj.droop = temp;
-                temp = document.getElementById ("delta").value; if ("" != temp) obj.delta = temp;
-                temp = document.getElementById ("uf").value; if ("" != temp) obj.uf = temp;
-                temp = document.getElementById ("maxValveCurrent").value; if ("" != temp) obj.maxValveCurrent = temp;
-                temp = document.getElementById ("maxModulationIndex").value; if ("" != temp) obj.maxModulationIndex = temp;
-                temp = document.getElementById ("qPccControl").value; if ("" != temp) { temp = VsQpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.qPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VsQpccControlKind." + temp; }
-                temp = document.getElementById ("CapabilityCurve").value; if ("" != temp) obj.CapabilityCurve = temp;
+                var obj = obj || { id: id, cls: "VsConverter" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_pPccControl").value; if ("" != temp) { temp = VsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VsPpccControlKind." + temp; }
+                temp = document.getElementById (id + "_qShare").value; if ("" != temp) obj.qShare = temp;
+                temp = document.getElementById (id + "_targetQpcc").value; if ("" != temp) obj.targetQpcc = temp;
+                temp = document.getElementById (id + "_targetUpcc").value; if ("" != temp) obj.targetUpcc = temp;
+                temp = document.getElementById (id + "_droopCompensation").value; if ("" != temp) obj.droopCompensation = temp;
+                temp = document.getElementById (id + "_droop").value; if ("" != temp) obj.droop = temp;
+                temp = document.getElementById (id + "_delta").value; if ("" != temp) obj.delta = temp;
+                temp = document.getElementById (id + "_uf").value; if ("" != temp) obj.uf = temp;
+                temp = document.getElementById (id + "_maxValveCurrent").value; if ("" != temp) obj.maxValveCurrent = temp;
+                temp = document.getElementById (id + "_maxModulationIndex").value; if ("" != temp) obj.maxModulationIndex = temp;
+                temp = document.getElementById (id + "_qPccControl").value; if ("" != temp) { temp = VsQpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.qPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VsQpccControlKind." + temp; }
+                temp = document.getElementById (id + "_CapabilityCurve").value; if ("" != temp) obj.CapabilityCurve = temp;
 
                 return (obj);
             }
@@ -1771,25 +1771,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCLine_collapse" aria-expanded="true" aria-controls="DCLine_collapse" style="margin-left: 10px;">DCLine</a></legend>
-                    <div id="DCLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCLine_collapse" aria-expanded="true" aria-controls="{{id}}_DCLine_collapse" style="margin-left: 10px;">DCLine</a></legend>
+                    <div id="{{id}}_DCLine_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCEquipmentContainer.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Region'>Region: </label><div class='col-sm-8'><input id='Region' class='form-control' type='text'{{#Region}} value='{{Region}}'{{/Region}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Region'>Region: </label><div class='col-sm-8'><input id='{{id}}_Region' class='form-control' type='text'{{#Region}} value='{{Region}}'{{/Region}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCLine" };
-                super.submit (obj);
-                temp = document.getElementById ("Region").value; if ("" != temp) obj.Region = temp;
+                var obj = obj || { id: id, cls: "DCLine" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Region").value; if ("" != temp) obj.Region = temp;
 
                 return (obj);
             }
@@ -1889,27 +1889,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCConverterUnit_collapse" aria-expanded="true" aria-controls="DCConverterUnit_collapse" style="margin-left: 10px;">DCConverterUnit</a></legend>
-                    <div id="DCConverterUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCConverterUnit_collapse" aria-expanded="true" aria-controls="{{id}}_DCConverterUnit_collapse" style="margin-left: 10px;">DCConverterUnit</a></legend>
+                    <div id="{{id}}_DCConverterUnit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCEquipmentContainer.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operationMode'>operationMode: </label><div class='col-sm-8'><select id='operationMode' class='form-control'>{{#DCConverterOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DCConverterOperatingModeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Substation'>Substation: </label><div class='col-sm-8'><input id='Substation' class='form-control' type='text'{{#Substation}} value='{{Substation}}'{{/Substation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operationMode'>operationMode: </label><div class='col-sm-8'><select id='{{id}}_operationMode' class='form-control'>{{#DCConverterOperatingModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DCConverterOperatingModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Substation'>Substation: </label><div class='col-sm-8'><input id='{{id}}_Substation' class='form-control' type='text'{{#Substation}} value='{{Substation}}'{{/Substation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCConverterUnit" };
-                super.submit (obj);
-                temp = document.getElementById ("operationMode").value; if ("" != temp) { temp = DCConverterOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operationMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DCConverterOperatingModeKind." + temp; }
-                temp = document.getElementById ("Substation").value; if ("" != temp) obj.Substation = temp;
+                var obj = obj || { id: id, cls: "DCConverterUnit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_operationMode").value; if ("" != temp) { temp = DCConverterOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operationMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DCConverterOperatingModeKind." + temp; }
+                temp = document.getElementById (id + "_Substation").value; if ("" != temp) obj.Substation = temp;
 
                 return (obj);
             }
@@ -2001,8 +2001,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCSwitch_collapse" aria-expanded="true" aria-controls="DCSwitch_collapse" style="margin-left: 10px;">DCSwitch</a></legend>
-                    <div id="DCSwitch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCSwitch_collapse" aria-expanded="true" aria-controls="{{id}}_DCSwitch_collapse" style="margin-left: 10px;">DCSwitch</a></legend>
+                    <div id="{{id}}_DCSwitch_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -2012,10 +2012,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DCSwitch" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DCSwitch" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2098,8 +2098,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCDisconnector_collapse" aria-expanded="true" aria-controls="DCDisconnector_collapse" style="margin-left: 10px;">DCDisconnector</a></legend>
-                    <div id="DCDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCDisconnector_collapse" aria-expanded="true" aria-controls="{{id}}_DCDisconnector_collapse" style="margin-left: 10px;">DCDisconnector</a></legend>
+                    <div id="{{id}}_DCDisconnector_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCSwitch.prototype.edit_template.call (this) +
                     `
@@ -2109,10 +2109,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DCDisconnector" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DCDisconnector" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2206,29 +2206,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCSeriesDevice_collapse" aria-expanded="true" aria-controls="DCSeriesDevice_collapse" style="margin-left: 10px;">DCSeriesDevice</a></legend>
-                    <div id="DCSeriesDevice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCSeriesDevice_collapse" aria-expanded="true" aria-controls="{{id}}_DCSeriesDevice_collapse" style="margin-left: 10px;">DCSeriesDevice</a></legend>
+                    <div id="{{id}}_DCSeriesDevice_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistance'>resistance: </label><div class='col-sm-8'><input id='resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductance'>inductance: </label><div class='col-sm-8'><input id='inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resistance'>resistance: </label><div class='col-sm-8'><input id='{{id}}_resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductance'>inductance: </label><div class='col-sm-8'><input id='{{id}}_inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='{{id}}_ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCSeriesDevice" };
-                super.submit (obj);
-                temp = document.getElementById ("resistance").value; if ("" != temp) obj.resistance = temp;
-                temp = document.getElementById ("inductance").value; if ("" != temp) obj.inductance = temp;
-                temp = document.getElementById ("ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
+                var obj = obj || { id: id, cls: "DCSeriesDevice" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_resistance").value; if ("" != temp) obj.resistance = temp;
+                temp = document.getElementById (id + "_inductance").value; if ("" != temp) obj.inductance = temp;
+                temp = document.getElementById (id + "_ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
 
                 return (obj);
             }
@@ -2311,8 +2311,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBusbar_collapse" aria-expanded="true" aria-controls="DCBusbar_collapse" style="margin-left: 10px;">DCBusbar</a></legend>
-                    <div id="DCBusbar_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCBusbar_collapse" aria-expanded="true" aria-controls="{{id}}_DCBusbar_collapse" style="margin-left: 10px;">DCBusbar</a></legend>
+                    <div id="{{id}}_DCBusbar_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -2322,10 +2322,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DCBusbar" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DCBusbar" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2419,29 +2419,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCShunt_collapse" aria-expanded="true" aria-controls="DCShunt_collapse" style="margin-left: 10px;">DCShunt</a></legend>
-                    <div id="DCShunt_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCShunt_collapse" aria-expanded="true" aria-controls="{{id}}_DCShunt_collapse" style="margin-left: 10px;">DCShunt</a></legend>
+                    <div id="{{id}}_DCShunt_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacitance'>capacitance: </label><div class='col-sm-8'><input id='capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistance'>resistance: </label><div class='col-sm-8'><input id='resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacitance'>capacitance: </label><div class='col-sm-8'><input id='{{id}}_capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedUdc'>ratedUdc: </label><div class='col-sm-8'><input id='{{id}}_ratedUdc' class='form-control' type='text'{{#ratedUdc}} value='{{ratedUdc}}'{{/ratedUdc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resistance'>resistance: </label><div class='col-sm-8'><input id='{{id}}_resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCShunt" };
-                super.submit (obj);
-                temp = document.getElementById ("capacitance").value; if ("" != temp) obj.capacitance = temp;
-                temp = document.getElementById ("ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
-                temp = document.getElementById ("resistance").value; if ("" != temp) obj.resistance = temp;
+                var obj = obj || { id: id, cls: "DCShunt" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_capacitance").value; if ("" != temp) obj.capacitance = temp;
+                temp = document.getElementById (id + "_ratedUdc").value; if ("" != temp) obj.ratedUdc = temp;
+                temp = document.getElementById (id + "_resistance").value; if ("" != temp) obj.resistance = temp;
 
                 return (obj);
             }
@@ -2539,33 +2539,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCLineSegment_collapse" aria-expanded="true" aria-controls="DCLineSegment_collapse" style="margin-left: 10px;">DCLineSegment</a></legend>
-                    <div id="DCLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCLineSegment_collapse" aria-expanded="true" aria-controls="{{id}}_DCLineSegment_collapse" style="margin-left: 10px;">DCLineSegment</a></legend>
+                    <div id="{{id}}_DCLineSegment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resistance'>resistance: </label><div class='col-sm-8'><input id='resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacitance'>capacitance: </label><div class='col-sm-8'><input id='capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductance'>inductance: </label><div class='col-sm-8'><input id='inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='length'>length: </label><div class='col-sm-8'><input id='length' class='form-control' type='text'{{#length}} value='{{length}}'{{/length}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PerLengthParameter'>PerLengthParameter: </label><div class='col-sm-8'><input id='PerLengthParameter' class='form-control' type='text'{{#PerLengthParameter}} value='{{PerLengthParameter}}'{{/PerLengthParameter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resistance'>resistance: </label><div class='col-sm-8'><input id='{{id}}_resistance' class='form-control' type='text'{{#resistance}} value='{{resistance}}'{{/resistance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacitance'>capacitance: </label><div class='col-sm-8'><input id='{{id}}_capacitance' class='form-control' type='text'{{#capacitance}} value='{{capacitance}}'{{/capacitance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductance'>inductance: </label><div class='col-sm-8'><input id='{{id}}_inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_length'>length: </label><div class='col-sm-8'><input id='{{id}}_length' class='form-control' type='text'{{#length}} value='{{length}}'{{/length}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PerLengthParameter'>PerLengthParameter: </label><div class='col-sm-8'><input id='{{id}}_PerLengthParameter' class='form-control' type='text'{{#PerLengthParameter}} value='{{PerLengthParameter}}'{{/PerLengthParameter}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCLineSegment" };
-                super.submit (obj);
-                temp = document.getElementById ("resistance").value; if ("" != temp) obj.resistance = temp;
-                temp = document.getElementById ("capacitance").value; if ("" != temp) obj.capacitance = temp;
-                temp = document.getElementById ("inductance").value; if ("" != temp) obj.inductance = temp;
-                temp = document.getElementById ("length").value; if ("" != temp) obj.length = temp;
-                temp = document.getElementById ("PerLengthParameter").value; if ("" != temp) obj.PerLengthParameter = temp;
+                var obj = obj || { id: id, cls: "DCLineSegment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_resistance").value; if ("" != temp) obj.resistance = temp;
+                temp = document.getElementById (id + "_capacitance").value; if ("" != temp) obj.capacitance = temp;
+                temp = document.getElementById (id + "_inductance").value; if ("" != temp) obj.inductance = temp;
+                temp = document.getElementById (id + "_length").value; if ("" != temp) obj.length = temp;
+                temp = document.getElementById (id + "_PerLengthParameter").value; if ("" != temp) obj.PerLengthParameter = temp;
 
                 return (obj);
             }
@@ -2663,27 +2663,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCGround_collapse" aria-expanded="true" aria-controls="DCGround_collapse" style="margin-left: 10px;">DCGround</a></legend>
-                    <div id="DCGround_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCGround_collapse" aria-expanded="true" aria-controls="{{id}}_DCGround_collapse" style="margin-left: 10px;">DCGround</a></legend>
+                    <div id="{{id}}_DCGround_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductance'>inductance: </label><div class='col-sm-8'><input id='inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductance'>inductance: </label><div class='col-sm-8'><input id='{{id}}_inductance' class='form-control' type='text'{{#inductance}} value='{{inductance}}'{{/inductance}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCGround" };
-                super.submit (obj);
-                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
-                temp = document.getElementById ("inductance").value; if ("" != temp) obj.inductance = temp;
+                var obj = obj || { id: id, cls: "DCGround" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById (id + "_inductance").value; if ("" != temp) obj.inductance = temp;
 
                 return (obj);
             }
@@ -2766,8 +2766,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCBreaker_collapse" aria-expanded="true" aria-controls="DCBreaker_collapse" style="margin-left: 10px;">DCBreaker</a></legend>
-                    <div id="DCBreaker_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCBreaker_collapse" aria-expanded="true" aria-controls="{{id}}_DCBreaker_collapse" style="margin-left: 10px;">DCBreaker</a></legend>
+                    <div id="{{id}}_DCBreaker_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCSwitch.prototype.edit_template.call (this) +
                     `
@@ -2777,10 +2777,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DCBreaker" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DCBreaker" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2865,8 +2865,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCChopper_collapse" aria-expanded="true" aria-controls="DCChopper_collapse" style="margin-left: 10px;">DCChopper</a></legend>
-                    <div id="DCChopper_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCChopper_collapse" aria-expanded="true" aria-controls="{{id}}_DCChopper_collapse" style="margin-left: 10px;">DCChopper</a></legend>
+                    <div id="{{id}}_DCChopper_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DCConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -2876,10 +2876,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DCChopper" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DCChopper" };
+                super.submit (id, obj);
 
                 return (obj);
             }

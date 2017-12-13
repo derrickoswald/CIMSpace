@@ -409,7 +409,7 @@ define
                     {
                         document.getElementById ("feature_detail_contents").innerHTML = "";
                         hide_details ();
-                        TheEditor.edit (feature);
+                        TheEditor.edit (feature, true);
                     }
                     else
                     {

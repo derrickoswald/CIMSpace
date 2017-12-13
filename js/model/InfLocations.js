@@ -127,25 +127,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RedLine_collapse" aria-expanded="true" aria-controls="RedLine_collapse" style="margin-left: 10px;">RedLine</a></legend>
-                    <div id="RedLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RedLine_collapse" aria-expanded="true" aria-controls="{{id}}_RedLine_collapse" style="margin-left: 10px;">RedLine</a></legend>
+                    <div id="{{id}}_RedLine_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RedLine" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                var obj = obj || { id: id, cls: "RedLine" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -235,25 +235,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Zone_collapse" aria-expanded="true" aria-controls="Zone_collapse" style="margin-left: 10px;">Zone</a></legend>
-                    <div id="Zone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Zone_collapse" aria-expanded="true" aria-controls="{{id}}_Zone_collapse" style="margin-left: 10px;">Zone</a></legend>
+                    <div id="{{id}}_Zone_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Location.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ZoneKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ZoneKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#ZoneKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ZoneKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Zone" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ZoneKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ZoneKind." + temp; }
+                var obj = obj || { id: id, cls: "Zone" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ZoneKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ZoneKind." + temp; }
 
                 return (obj);
             }
@@ -344,27 +344,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LocationGrant_collapse" aria-expanded="true" aria-controls="LocationGrant_collapse" style="margin-left: 10px;">LocationGrant</a></legend>
-                    <div id="LocationGrant_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LocationGrant_collapse" aria-expanded="true" aria-controls="{{id}}_LocationGrant_collapse" style="margin-left: 10px;">LocationGrant</a></legend>
+                    <div id="{{id}}_LocationGrant_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='propertyData'>propertyData: </label><div class='col-sm-8'><input id='propertyData' class='form-control' type='text'{{#propertyData}} value='{{propertyData}}'{{/propertyData}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyData'>propertyData: </label><div class='col-sm-8'><input id='{{id}}_propertyData' class='form-control' type='text'{{#propertyData}} value='{{propertyData}}'{{/propertyData}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='{{id}}_LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LocationGrant" };
-                super.submit (obj);
-                temp = document.getElementById ("propertyData").value; if ("" != temp) obj.propertyData = temp;
-                temp = document.getElementById ("LandProperty").value; if ("" != temp) obj.LandProperty = temp;
+                var obj = obj || { id: id, cls: "LocationGrant" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_propertyData").value; if ("" != temp) obj.propertyData = temp;
+                temp = document.getElementById (id + "_LandProperty").value; if ("" != temp) obj.LandProperty = temp;
 
                 return (obj);
             }
@@ -472,29 +472,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Route_collapse" aria-expanded="true" aria-controls="Route_collapse" style="margin-left: 10px;">Route</a></legend>
-                    <div id="Route_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Route_collapse" aria-expanded="true" aria-controls="{{id}}_Route_collapse" style="margin-left: 10px;">Route</a></legend>
+                    <div id="{{id}}_Route_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Locations'>Locations: </label><div class='col-sm-8'><input id='Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Route" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById ("Locations").value; if ("" != temp) obj.Locations = temp.split (",");
+                var obj = obj || { id: id, cls: "Route" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_Locations").value; if ("" != temp) obj.Locations = temp.split (",");
 
                 return (obj);
             }
@@ -640,37 +640,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LandProperty_collapse" aria-expanded="true" aria-controls="LandProperty_collapse" style="margin-left: 10px;">LandProperty</a></legend>
-                    <div id="LandProperty_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LandProperty_collapse" aria-expanded="true" aria-controls="{{id}}_LandProperty_collapse" style="margin-left: 10px;">LandProperty</a></legend>
+                    <div id="{{id}}_LandProperty_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='demographicKind'>demographicKind: </label><div class='col-sm-8'><select id='demographicKind' class='form-control'>{{#DemographicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DemographicKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='externalRecordReference'>externalRecordReference: </label><div class='col-sm-8'><input id='externalRecordReference' class='form-control' type='text'{{#externalRecordReference}} value='{{externalRecordReference}}'{{/externalRecordReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#LandPropertyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LandPropertyKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RightOfWays'>RightOfWays: </label><div class='col-sm-8'><input id='RightOfWays' class='form-control' type='text'{{#RightOfWays}} value='{{RightOfWays}}_string'{{/RightOfWays}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Locations'>Locations: </label><div class='col-sm-8'><input id='Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetContainers'>AssetContainers: </label><div class='col-sm-8'><input id='AssetContainers' class='form-control' type='text'{{#AssetContainers}} value='{{AssetContainers}}_string'{{/AssetContainers}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_demographicKind'>demographicKind: </label><div class='col-sm-8'><select id='{{id}}_demographicKind' class='form-control'>{{#DemographicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DemographicKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_externalRecordReference'>externalRecordReference: </label><div class='col-sm-8'><input id='{{id}}_externalRecordReference' class='form-control' type='text'{{#externalRecordReference}} value='{{externalRecordReference}}'{{/externalRecordReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#LandPropertyKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/LandPropertyKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RightOfWays'>RightOfWays: </label><div class='col-sm-8'><input id='{{id}}_RightOfWays' class='form-control' type='text'{{#RightOfWays}} value='{{RightOfWays}}_string'{{/RightOfWays}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Locations'>Locations: </label><div class='col-sm-8'><input id='{{id}}_Locations' class='form-control' type='text'{{#Locations}} value='{{Locations}}_string'{{/Locations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetContainers'>AssetContainers: </label><div class='col-sm-8'><input id='{{id}}_AssetContainers' class='form-control' type='text'{{#AssetContainers}} value='{{AssetContainers}}_string'{{/AssetContainers}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LandProperty" };
-                super.submit (obj);
-                temp = document.getElementById ("demographicKind").value; if ("" != temp) { temp = DemographicKind[temp]; if ("undefined" != typeof (temp)) obj.demographicKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DemographicKind." + temp; }
-                temp = document.getElementById ("externalRecordReference").value; if ("" != temp) obj.externalRecordReference = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = LandPropertyKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#LandPropertyKind." + temp; }
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("RightOfWays").value; if ("" != temp) obj.RightOfWays = temp.split (",");
-                temp = document.getElementById ("Locations").value; if ("" != temp) obj.Locations = temp.split (",");
-                temp = document.getElementById ("AssetContainers").value; if ("" != temp) obj.AssetContainers = temp.split (",");
+                var obj = obj || { id: id, cls: "LandProperty" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_demographicKind").value; if ("" != temp) { temp = DemographicKind[temp]; if ("undefined" != typeof (temp)) obj.demographicKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DemographicKind." + temp; }
+                temp = document.getElementById (id + "_externalRecordReference").value; if ("" != temp) obj.externalRecordReference = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = LandPropertyKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#LandPropertyKind." + temp; }
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_RightOfWays").value; if ("" != temp) obj.RightOfWays = temp.split (",");
+                temp = document.getElementById (id + "_Locations").value; if ("" != temp) obj.Locations = temp.split (",");
+                temp = document.getElementById (id + "_AssetContainers").value; if ("" != temp) obj.AssetContainers = temp.split (",");
 
                 return (obj);
             }
@@ -778,27 +778,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RightOfWay_collapse" aria-expanded="true" aria-controls="RightOfWay_collapse" style="margin-left: 10px;">RightOfWay</a></legend>
-                    <div id="RightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RightOfWay_collapse" aria-expanded="true" aria-controls="{{id}}_RightOfWay_collapse" style="margin-left: 10px;">RightOfWay</a></legend>
+                    <div id="{{id}}_RightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='propertyData'>propertyData: </label><div class='col-sm-8'><input id='propertyData' class='form-control' type='text'{{#propertyData}} value='{{propertyData}}'{{/propertyData}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties}}_string'{{/LandProperties}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyData'>propertyData: </label><div class='col-sm-8'><input id='{{id}}_propertyData' class='form-control' type='text'{{#propertyData}} value='{{propertyData}}'{{/propertyData}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperties'>LandProperties: </label><div class='col-sm-8'><input id='{{id}}_LandProperties' class='form-control' type='text'{{#LandProperties}} value='{{LandProperties}}_string'{{/LandProperties}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RightOfWay" };
-                super.submit (obj);
-                temp = document.getElementById ("propertyData").value; if ("" != temp) obj.propertyData = temp;
-                temp = document.getElementById ("LandProperties").value; if ("" != temp) obj.LandProperties = temp.split (",");
+                var obj = obj || { id: id, cls: "RightOfWay" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_propertyData").value; if ("" != temp) obj.propertyData = temp;
+                temp = document.getElementById (id + "_LandProperties").value; if ("" != temp) obj.LandProperties = temp.split (",");
 
                 return (obj);
             }

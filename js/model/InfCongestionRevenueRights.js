@@ -95,31 +95,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ViolationLimit_collapse" aria-expanded="true" aria-controls="ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
-                    <div id="ViolationLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ViolationLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ViolationLimit_collapse" style="margin-left: 10px;">ViolationLimit</a></legend>
+                    <div id="{{id}}_ViolationLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Meas.Limit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='enforced'>enforced: </label><div class='col-sm-8'><input id='enforced' class='form-check-input' type='checkbox'{{#enforced}} checked{{/enforced}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_enforced'>enforced: </label><div class='col-sm-8'><input id='{{id}}_enforced' class='form-check-input' type='checkbox'{{#enforced}} checked{{/enforced}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='{{id}}_MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ViolationLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("enforced").checked; if (temp) obj.enforced = true;
-                temp = document.getElementById ("MktMeasurement").value; if ("" != temp) obj.MktMeasurement = temp;
-                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                var obj = obj || { id: id, cls: "ViolationLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_enforced").checked; if (temp) obj.enforced = true;
+                temp = document.getElementById (id + "_MktMeasurement").value; if ("" != temp) obj.MktMeasurement = temp;
+                temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
 
                 return (obj);
             }
@@ -239,39 +239,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FTR_collapse" aria-expanded="true" aria-controls="FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
-                    <div id="FTR_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FTR_collapse" aria-expanded="true" aria-controls="{{id}}_FTR_collapse" style="margin-left: 10px;">FTR</a></legend>
+                    <div id="{{id}}_FTR_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='optimized'>optimized: </label><div class='col-sm-8'><input id='optimized' class='form-control' type='text'{{#optimized}} value='{{optimized}}'{{/optimized}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='action'>action: </label><div class='col-sm-8'><input id='action' class='form-control' type='text'{{#action}} value='{{action}}'{{/action}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='baseEnergy'>baseEnergy: </label><div class='col-sm-8'><input id='baseEnergy' class='form-control' type='text'{{#baseEnergy}} value='{{baseEnergy}}'{{/baseEnergy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ftrType'>ftrType: </label><div class='col-sm-8'><input id='ftrType' class='form-control' type='text'{{#ftrType}} value='{{ftrType}}'{{/ftrType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='class'>class: </label><div class='col-sm-8'><input id='class' class='form-control' type='text'{{#class}} value='{{class}}'{{/class}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyPriceCurve'>EnergyPriceCurve: </label><div class='col-sm-8'><input id='EnergyPriceCurve' class='form-control' type='text'{{#EnergyPriceCurve}} value='{{EnergyPriceCurve}}'{{/EnergyPriceCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pnodes'>Pnodes: </label><div class='col-sm-8'><input id='Pnodes' class='form-control' type='text'{{#Pnodes}} value='{{Pnodes}}_string'{{/Pnodes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_optimized'>optimized: </label><div class='col-sm-8'><input id='{{id}}_optimized' class='form-control' type='text'{{#optimized}} value='{{optimized}}'{{/optimized}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_action'>action: </label><div class='col-sm-8'><input id='{{id}}_action' class='form-control' type='text'{{#action}} value='{{action}}'{{/action}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_baseEnergy'>baseEnergy: </label><div class='col-sm-8'><input id='{{id}}_baseEnergy' class='form-control' type='text'{{#baseEnergy}} value='{{baseEnergy}}'{{/baseEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ftrType'>ftrType: </label><div class='col-sm-8'><input id='{{id}}_ftrType' class='form-control' type='text'{{#ftrType}} value='{{ftrType}}'{{/ftrType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_class'>class: </label><div class='col-sm-8'><input id='{{id}}_class' class='form-control' type='text'{{#class}} value='{{class}}'{{/class}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyPriceCurve'>EnergyPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_EnergyPriceCurve' class='form-control' type='text'{{#EnergyPriceCurve}} value='{{EnergyPriceCurve}}'{{/EnergyPriceCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnodes'>Pnodes: </label><div class='col-sm-8'><input id='{{id}}_Pnodes' class='form-control' type='text'{{#Pnodes}} value='{{Pnodes}}_string'{{/Pnodes}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FTR" };
-                super.submit (obj);
-                temp = document.getElementById ("optimized").value; if ("" != temp) obj.optimized = temp;
-                temp = document.getElementById ("action").value; if ("" != temp) obj.action = temp;
-                temp = document.getElementById ("baseEnergy").value; if ("" != temp) obj.baseEnergy = temp;
-                temp = document.getElementById ("ftrType").value; if ("" != temp) obj.ftrType = temp;
-                temp = document.getElementById ("class").value; if ("" != temp) obj.class = temp;
-                temp = document.getElementById ("EnergyPriceCurve").value; if ("" != temp) obj.EnergyPriceCurve = temp;
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
-                temp = document.getElementById ("Pnodes").value; if ("" != temp) obj.Pnodes = temp.split (",");
+                var obj = obj || { id: id, cls: "FTR" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_optimized").value; if ("" != temp) obj.optimized = temp;
+                temp = document.getElementById (id + "_action").value; if ("" != temp) obj.action = temp;
+                temp = document.getElementById (id + "_baseEnergy").value; if ("" != temp) obj.baseEnergy = temp;
+                temp = document.getElementById (id + "_ftrType").value; if ("" != temp) obj.ftrType = temp;
+                temp = document.getElementById (id + "_class").value; if ("" != temp) obj.class = temp;
+                temp = document.getElementById (id + "_EnergyPriceCurve").value; if ("" != temp) obj.EnergyPriceCurve = temp;
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                temp = document.getElementById (id + "_Pnodes").value; if ("" != temp) obj.Pnodes = temp.split (",");
 
                 return (obj);
             }

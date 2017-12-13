@@ -90,29 +90,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="MaintenanceDataSet_collapse" style="margin-left: 10px;">MaintenanceDataSet</a></legend>
-                    <div id="MaintenanceDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MaintenanceDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_MaintenanceDataSet_collapse" style="margin-left: 10px;">MaintenanceDataSet</a></legend>
+                    <div id="{{id}}_MaintenanceDataSet_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='conditionAfter'>conditionAfter: </label><div class='col-sm-8'><input id='conditionAfter' class='form-control' type='text'{{#conditionAfter}} value='{{conditionAfter}}'{{/conditionAfter}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='conditionBefore'>conditionBefore: </label><div class='col-sm-8'><input id='conditionBefore' class='form-control' type='text'{{#conditionBefore}} value='{{conditionBefore}}'{{/conditionBefore}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maintCode'>maintCode: </label><div class='col-sm-8'><input id='maintCode' class='form-control' type='text'{{#maintCode}} value='{{maintCode}}'{{/maintCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_conditionAfter'>conditionAfter: </label><div class='col-sm-8'><input id='{{id}}_conditionAfter' class='form-control' type='text'{{#conditionAfter}} value='{{conditionAfter}}'{{/conditionAfter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_conditionBefore'>conditionBefore: </label><div class='col-sm-8'><input id='{{id}}_conditionBefore' class='form-control' type='text'{{#conditionBefore}} value='{{conditionBefore}}'{{/conditionBefore}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maintCode'>maintCode: </label><div class='col-sm-8'><input id='{{id}}_maintCode' class='form-control' type='text'{{#maintCode}} value='{{maintCode}}'{{/maintCode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MaintenanceDataSet" };
-                super.submit (obj);
-                temp = document.getElementById ("conditionAfter").value; if ("" != temp) obj.conditionAfter = temp;
-                temp = document.getElementById ("conditionBefore").value; if ("" != temp) obj.conditionBefore = temp;
-                temp = document.getElementById ("maintCode").value; if ("" != temp) obj.maintCode = temp;
+                var obj = obj || { id: id, cls: "MaintenanceDataSet" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_conditionAfter").value; if ("" != temp) obj.conditionAfter = temp;
+                temp = document.getElementById (id + "_conditionBefore").value; if ("" != temp) obj.conditionBefore = temp;
+                temp = document.getElementById (id + "_maintCode").value; if ("" != temp) obj.maintCode = temp;
 
                 return (obj);
             }
@@ -203,25 +203,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InspectionDataSet_collapse" aria-expanded="true" aria-controls="InspectionDataSet_collapse" style="margin-left: 10px;">InspectionDataSet</a></legend>
-                    <div id="InspectionDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InspectionDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_InspectionDataSet_collapse" style="margin-left: 10px;">InspectionDataSet</a></legend>
+                    <div id="{{id}}_InspectionDataSet_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='locationCondition'>locationCondition: </label><div class='col-sm-8'><input id='locationCondition' class='form-control' type='text'{{#locationCondition}} value='{{locationCondition}}'{{/locationCondition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_locationCondition'>locationCondition: </label><div class='col-sm-8'><input id='{{id}}_locationCondition' class='form-control' type='text'{{#locationCondition}} value='{{locationCondition}}'{{/locationCondition}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "InspectionDataSet" };
-                super.submit (obj);
-                temp = document.getElementById ("locationCondition").value; if ("" != temp) obj.locationCondition = temp;
+                var obj = obj || { id: id, cls: "InspectionDataSet" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_locationCondition").value; if ("" != temp) obj.locationCondition = temp;
 
                 return (obj);
             }
@@ -352,49 +352,49 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="DiagnosisDataSet_collapse" style="margin-left: 10px;">DiagnosisDataSet</a></legend>
-                    <div id="DiagnosisDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagnosisDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_DiagnosisDataSet_collapse" style="margin-left: 10px;">DiagnosisDataSet</a></legend>
+                    <div id="{{id}}_DiagnosisDataSet_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effect'>effect: </label><div class='col-sm-8'><input id='effect' class='form-control' type='text'{{#effect}} value='{{effect}}'{{/effect}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='failureMode'>failureMode: </label><div class='col-sm-8'><input id='failureMode' class='form-control' type='text'{{#failureMode}} value='{{failureMode}}'{{/failureMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='finalCause'>finalCause: </label><div class='col-sm-8'><input id='finalCause' class='form-control' type='text'{{#finalCause}} value='{{finalCause}}'{{/finalCause}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='finalCode'>finalCode: </label><div class='col-sm-8'><input id='finalCode' class='form-control' type='text'{{#finalCode}} value='{{finalCode}}'{{/finalCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='finalOrigin'>finalOrigin: </label><div class='col-sm-8'><input id='finalOrigin' class='form-control' type='text'{{#finalOrigin}} value='{{finalOrigin}}'{{/finalOrigin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='finalRemark'>finalRemark: </label><div class='col-sm-8'><input id='finalRemark' class='form-control' type='text'{{#finalRemark}} value='{{finalRemark}}'{{/finalRemark}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='preliminaryCode'>preliminaryCode: </label><div class='col-sm-8'><input id='preliminaryCode' class='form-control' type='text'{{#preliminaryCode}} value='{{preliminaryCode}}'{{/preliminaryCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='preliminaryDateTime'>preliminaryDateTime: </label><div class='col-sm-8'><input id='preliminaryDateTime' class='form-control' type='text'{{#preliminaryDateTime}} value='{{preliminaryDateTime}}'{{/preliminaryDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='preliminaryRemark'>preliminaryRemark: </label><div class='col-sm-8'><input id='preliminaryRemark' class='form-control' type='text'{{#preliminaryRemark}} value='{{preliminaryRemark}}'{{/preliminaryRemark}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rootCause'>rootCause: </label><div class='col-sm-8'><input id='rootCause' class='form-control' type='text'{{#rootCause}} value='{{rootCause}}'{{/rootCause}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rootOrigin'>rootOrigin: </label><div class='col-sm-8'><input id='rootOrigin' class='form-control' type='text'{{#rootOrigin}} value='{{rootOrigin}}'{{/rootOrigin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rootRemark'>rootRemark: </label><div class='col-sm-8'><input id='rootRemark' class='form-control' type='text'{{#rootRemark}} value='{{rootRemark}}'{{/rootRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effect'>effect: </label><div class='col-sm-8'><input id='{{id}}_effect' class='form-control' type='text'{{#effect}} value='{{effect}}'{{/effect}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_failureMode'>failureMode: </label><div class='col-sm-8'><input id='{{id}}_failureMode' class='form-control' type='text'{{#failureMode}} value='{{failureMode}}'{{/failureMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalCause'>finalCause: </label><div class='col-sm-8'><input id='{{id}}_finalCause' class='form-control' type='text'{{#finalCause}} value='{{finalCause}}'{{/finalCause}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalCode'>finalCode: </label><div class='col-sm-8'><input id='{{id}}_finalCode' class='form-control' type='text'{{#finalCode}} value='{{finalCode}}'{{/finalCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalOrigin'>finalOrigin: </label><div class='col-sm-8'><input id='{{id}}_finalOrigin' class='form-control' type='text'{{#finalOrigin}} value='{{finalOrigin}}'{{/finalOrigin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_finalRemark'>finalRemark: </label><div class='col-sm-8'><input id='{{id}}_finalRemark' class='form-control' type='text'{{#finalRemark}} value='{{finalRemark}}'{{/finalRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='{{id}}_phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryCode'>preliminaryCode: </label><div class='col-sm-8'><input id='{{id}}_preliminaryCode' class='form-control' type='text'{{#preliminaryCode}} value='{{preliminaryCode}}'{{/preliminaryCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryDateTime'>preliminaryDateTime: </label><div class='col-sm-8'><input id='{{id}}_preliminaryDateTime' class='form-control' type='text'{{#preliminaryDateTime}} value='{{preliminaryDateTime}}'{{/preliminaryDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_preliminaryRemark'>preliminaryRemark: </label><div class='col-sm-8'><input id='{{id}}_preliminaryRemark' class='form-control' type='text'{{#preliminaryRemark}} value='{{preliminaryRemark}}'{{/preliminaryRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rootCause'>rootCause: </label><div class='col-sm-8'><input id='{{id}}_rootCause' class='form-control' type='text'{{#rootCause}} value='{{rootCause}}'{{/rootCause}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rootOrigin'>rootOrigin: </label><div class='col-sm-8'><input id='{{id}}_rootOrigin' class='form-control' type='text'{{#rootOrigin}} value='{{rootOrigin}}'{{/rootOrigin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rootRemark'>rootRemark: </label><div class='col-sm-8'><input id='{{id}}_rootRemark' class='form-control' type='text'{{#rootRemark}} value='{{rootRemark}}'{{/rootRemark}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DiagnosisDataSet" };
-                super.submit (obj);
-                temp = document.getElementById ("effect").value; if ("" != temp) obj.effect = temp;
-                temp = document.getElementById ("failureMode").value; if ("" != temp) obj.failureMode = temp;
-                temp = document.getElementById ("finalCause").value; if ("" != temp) obj.finalCause = temp;
-                temp = document.getElementById ("finalCode").value; if ("" != temp) obj.finalCode = temp;
-                temp = document.getElementById ("finalOrigin").value; if ("" != temp) obj.finalOrigin = temp;
-                temp = document.getElementById ("finalRemark").value; if ("" != temp) obj.finalRemark = temp;
-                temp = document.getElementById ("phaseCode").value; if ("" != temp) obj.phaseCode = temp;
-                temp = document.getElementById ("preliminaryCode").value; if ("" != temp) obj.preliminaryCode = temp;
-                temp = document.getElementById ("preliminaryDateTime").value; if ("" != temp) obj.preliminaryDateTime = temp;
-                temp = document.getElementById ("preliminaryRemark").value; if ("" != temp) obj.preliminaryRemark = temp;
-                temp = document.getElementById ("rootCause").value; if ("" != temp) obj.rootCause = temp;
-                temp = document.getElementById ("rootOrigin").value; if ("" != temp) obj.rootOrigin = temp;
-                temp = document.getElementById ("rootRemark").value; if ("" != temp) obj.rootRemark = temp;
+                var obj = obj || { id: id, cls: "DiagnosisDataSet" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_effect").value; if ("" != temp) obj.effect = temp;
+                temp = document.getElementById (id + "_failureMode").value; if ("" != temp) obj.failureMode = temp;
+                temp = document.getElementById (id + "_finalCause").value; if ("" != temp) obj.finalCause = temp;
+                temp = document.getElementById (id + "_finalCode").value; if ("" != temp) obj.finalCode = temp;
+                temp = document.getElementById (id + "_finalOrigin").value; if ("" != temp) obj.finalOrigin = temp;
+                temp = document.getElementById (id + "_finalRemark").value; if ("" != temp) obj.finalRemark = temp;
+                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) obj.phaseCode = temp;
+                temp = document.getElementById (id + "_preliminaryCode").value; if ("" != temp) obj.preliminaryCode = temp;
+                temp = document.getElementById (id + "_preliminaryDateTime").value; if ("" != temp) obj.preliminaryDateTime = temp;
+                temp = document.getElementById (id + "_preliminaryRemark").value; if ("" != temp) obj.preliminaryRemark = temp;
+                temp = document.getElementById (id + "_rootCause").value; if ("" != temp) obj.rootCause = temp;
+                temp = document.getElementById (id + "_rootOrigin").value; if ("" != temp) obj.rootOrigin = temp;
+                temp = document.getElementById (id + "_rootRemark").value; if ("" != temp) obj.rootRemark = temp;
 
                 return (obj);
             }
@@ -486,29 +486,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TestDataSet_collapse" aria-expanded="true" aria-controls="TestDataSet_collapse" style="margin-left: 10px;">TestDataSet</a></legend>
-                    <div id="TestDataSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TestDataSet_collapse" aria-expanded="true" aria-controls="{{id}}_TestDataSet_collapse" style="margin-left: 10px;">TestDataSet</a></legend>
+                    <div id="{{id}}_TestDataSet_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.ProcedureDataSet.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='conclusion'>conclusion: </label><div class='col-sm-8'><input id='conclusion' class='form-control' type='text'{{#conclusion}} value='{{conclusion}}'{{/conclusion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='specimenID'>specimenID: </label><div class='col-sm-8'><input id='specimenID' class='form-control' type='text'{{#specimenID}} value='{{specimenID}}'{{/specimenID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='specimenToLabDateTime'>specimenToLabDateTime: </label><div class='col-sm-8'><input id='specimenToLabDateTime' class='form-control' type='text'{{#specimenToLabDateTime}} value='{{specimenToLabDateTime}}'{{/specimenToLabDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_conclusion'>conclusion: </label><div class='col-sm-8'><input id='{{id}}_conclusion' class='form-control' type='text'{{#conclusion}} value='{{conclusion}}'{{/conclusion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specimenID'>specimenID: </label><div class='col-sm-8'><input id='{{id}}_specimenID' class='form-control' type='text'{{#specimenID}} value='{{specimenID}}'{{/specimenID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specimenToLabDateTime'>specimenToLabDateTime: </label><div class='col-sm-8'><input id='{{id}}_specimenToLabDateTime' class='form-control' type='text'{{#specimenToLabDateTime}} value='{{specimenToLabDateTime}}'{{/specimenToLabDateTime}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TestDataSet" };
-                super.submit (obj);
-                temp = document.getElementById ("conclusion").value; if ("" != temp) obj.conclusion = temp;
-                temp = document.getElementById ("specimenID").value; if ("" != temp) obj.specimenID = temp;
-                temp = document.getElementById ("specimenToLabDateTime").value; if ("" != temp) obj.specimenToLabDateTime = temp;
+                var obj = obj || { id: id, cls: "TestDataSet" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_conclusion").value; if ("" != temp) obj.conclusion = temp;
+                temp = document.getElementById (id + "_specimenID").value; if ("" != temp) obj.specimenID = temp;
+                temp = document.getElementById (id + "_specimenToLabDateTime").value; if ("" != temp) obj.specimenToLabDateTime = temp;
 
                 return (obj);
             }

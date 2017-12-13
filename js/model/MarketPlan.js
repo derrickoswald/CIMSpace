@@ -124,31 +124,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketProduct_collapse" aria-expanded="true" aria-controls="MarketProduct_collapse" style="margin-left: 10px;">MarketProduct</a></legend>
-                    <div id="MarketProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketProduct_collapse" aria-expanded="true" aria-controls="{{id}}_MarketProduct_collapse" style="margin-left: 10px;">MarketProduct</a></legend>
+                    <div id="{{id}}_MarketProduct_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketProductType'>marketProductType: </label><div class='col-sm-8'><input id='marketProductType' class='form-control' type='text'{{#marketProductType}} value='{{marketProductType}}'{{/marketProductType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rampInterval'>rampInterval: </label><div class='col-sm-8'><input id='rampInterval' class='form-control' type='text'{{#rampInterval}} value='{{rampInterval}}'{{/rampInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketRegionResults'>MarketRegionResults: </label><div class='col-sm-8'><input id='MarketRegionResults' class='form-control' type='text'{{#MarketRegionResults}} value='{{MarketRegionResults}}'{{/MarketRegionResults}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Market'>Market: </label><div class='col-sm-8'><input id='Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketProductType'>marketProductType: </label><div class='col-sm-8'><input id='{{id}}_marketProductType' class='form-control' type='text'{{#marketProductType}} value='{{marketProductType}}'{{/marketProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampInterval'>rampInterval: </label><div class='col-sm-8'><input id='{{id}}_rampInterval' class='form-control' type='text'{{#rampInterval}} value='{{rampInterval}}'{{/rampInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketRegionResults'>MarketRegionResults: </label><div class='col-sm-8'><input id='{{id}}_MarketRegionResults' class='form-control' type='text'{{#MarketRegionResults}} value='{{MarketRegionResults}}'{{/MarketRegionResults}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Market'>Market: </label><div class='col-sm-8'><input id='{{id}}_Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketProduct" };
-                super.submit (obj);
-                temp = document.getElementById ("marketProductType").value; if ("" != temp) obj.marketProductType = temp;
-                temp = document.getElementById ("rampInterval").value; if ("" != temp) obj.rampInterval = temp;
-                temp = document.getElementById ("MarketRegionResults").value; if ("" != temp) obj.MarketRegionResults = temp;
-                temp = document.getElementById ("Market").value; if ("" != temp) obj.Market = temp;
+                var obj = obj || { id: id, cls: "MarketProduct" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_marketProductType").value; if ("" != temp) obj.marketProductType = temp;
+                temp = document.getElementById (id + "_rampInterval").value; if ("" != temp) obj.rampInterval = temp;
+                temp = document.getElementById (id + "_MarketRegionResults").value; if ("" != temp) obj.MarketRegionResults = temp;
+                temp = document.getElementById (id + "_Market").value; if ("" != temp) obj.Market = temp;
 
                 return (obj);
             }
@@ -270,33 +270,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PlannedMarketEvent_collapse" aria-expanded="true" aria-controls="PlannedMarketEvent_collapse" style="margin-left: 10px;">PlannedMarketEvent</a></legend>
-                    <div id="PlannedMarketEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PlannedMarketEvent_collapse" aria-expanded="true" aria-controls="{{id}}_PlannedMarketEvent_collapse" style="margin-left: 10px;">PlannedMarketEvent</a></legend>
+                    <div id="{{id}}_PlannedMarketEvent_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventType'>eventType: </label><div class='col-sm-8'><input id='eventType' class='form-control' type='text'{{#eventType}} value='{{eventType}}'{{/eventType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plannedEventID'>plannedEventID: </label><div class='col-sm-8'><input id='plannedEventID' class='form-control' type='text'{{#plannedEventID}} value='{{plannedEventID}}'{{/plannedEventID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plannedTime'>plannedTime: </label><div class='col-sm-8'><input id='plannedTime' class='form-control' type='text'{{#plannedTime}} value='{{plannedTime}}'{{/plannedTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PlannedMarket'>PlannedMarket: </label><div class='col-sm-8'><input id='PlannedMarket' class='form-control' type='text'{{#PlannedMarket}} value='{{PlannedMarket}}_string'{{/PlannedMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eventType'>eventType: </label><div class='col-sm-8'><input id='{{id}}_eventType' class='form-control' type='text'{{#eventType}} value='{{eventType}}'{{/eventType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plannedEventID'>plannedEventID: </label><div class='col-sm-8'><input id='{{id}}_plannedEventID' class='form-control' type='text'{{#plannedEventID}} value='{{plannedEventID}}'{{/plannedEventID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plannedTime'>plannedTime: </label><div class='col-sm-8'><input id='{{id}}_plannedTime' class='form-control' type='text'{{#plannedTime}} value='{{plannedTime}}'{{/plannedTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarket'>PlannedMarket: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarket' class='form-control' type='text'{{#PlannedMarket}} value='{{PlannedMarket}}_string'{{/PlannedMarket}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PlannedMarketEvent" };
-                super.submit (obj);
-                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
-                temp = document.getElementById ("eventType").value; if ("" != temp) obj.eventType = temp;
-                temp = document.getElementById ("plannedEventID").value; if ("" != temp) obj.plannedEventID = temp;
-                temp = document.getElementById ("plannedTime").value; if ("" != temp) obj.plannedTime = temp;
-                temp = document.getElementById ("PlannedMarket").value; if ("" != temp) obj.PlannedMarket = temp.split (",");
+                var obj = obj || { id: id, cls: "PlannedMarketEvent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById (id + "_eventType").value; if ("" != temp) obj.eventType = temp;
+                temp = document.getElementById (id + "_plannedEventID").value; if ("" != temp) obj.plannedEventID = temp;
+                temp = document.getElementById (id + "_plannedTime").value; if ("" != temp) obj.plannedTime = temp;
+                temp = document.getElementById (id + "_PlannedMarket").value; if ("" != temp) obj.PlannedMarket = temp.split (",");
 
                 return (obj);
             }
@@ -408,31 +408,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketPlan_collapse" aria-expanded="true" aria-controls="MarketPlan_collapse" style="margin-left: 10px;">MarketPlan</a></legend>
-                    <div id="MarketPlan_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketPlan_collapse" aria-expanded="true" aria-controls="{{id}}_MarketPlan_collapse" style="margin-left: 10px;">MarketPlan</a></legend>
+                    <div id="{{id}}_MarketPlan_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketPlanID'>marketPlanID: </label><div class='col-sm-8'><input id='marketPlanID' class='form-control' type='text'{{#marketPlanID}} value='{{marketPlanID}}'{{/marketPlanID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradingDay'>tradingDay: </label><div class='col-sm-8'><input id='tradingDay' class='form-control' type='text'{{#tradingDay}} value='{{tradingDay}}'{{/tradingDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketPlanID'>marketPlanID: </label><div class='col-sm-8'><input id='{{id}}_marketPlanID' class='form-control' type='text'{{#marketPlanID}} value='{{marketPlanID}}'{{/marketPlanID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_name'>name: </label><div class='col-sm-8'><input id='{{id}}_name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradingDay'>tradingDay: </label><div class='col-sm-8'><input id='{{id}}_tradingDay' class='form-control' type='text'{{#tradingDay}} value='{{tradingDay}}'{{/tradingDay}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketPlan" };
-                super.submit (obj);
-                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
-                temp = document.getElementById ("marketPlanID").value; if ("" != temp) obj.marketPlanID = temp;
-                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
-                temp = document.getElementById ("tradingDay").value; if ("" != temp) obj.tradingDay = temp;
+                var obj = obj || { id: id, cls: "MarketPlan" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById (id + "_marketPlanID").value; if ("" != temp) obj.marketPlanID = temp;
+                temp = document.getElementById (id + "_name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById (id + "_tradingDay").value; if ("" != temp) obj.tradingDay = temp;
 
                 return (obj);
             }
@@ -538,31 +538,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketFactors_collapse" aria-expanded="true" aria-controls="MarketFactors_collapse" style="margin-left: 10px;">MarketFactors</a></legend>
-                    <div id="MarketFactors_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketFactors_collapse" aria-expanded="true" aria-controls="{{id}}_MarketFactors_collapse" style="margin-left: 10px;">MarketFactors</a></legend>
+                    <div id="{{id}}_MarketFactors_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Market'>Market: </label><div class='col-sm-8'><input id='Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktActivityRecord'>MktActivityRecord: </label><div class='col-sm-8'><input id='MktActivityRecord' class='form-control' type='text'{{#MktActivityRecord}} value='{{MktActivityRecord}}_string'{{/MktActivityRecord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='{{id}}_intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Market'>Market: </label><div class='col-sm-8'><input id='{{id}}_Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktActivityRecord'>MktActivityRecord: </label><div class='col-sm-8'><input id='{{id}}_MktActivityRecord' class='form-control' type='text'{{#MktActivityRecord}} value='{{MktActivityRecord}}_string'{{/MktActivityRecord}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketFactors" };
-                super.submit (obj);
-                temp = document.getElementById ("intervalEndTime").value; if ("" != temp) obj.intervalEndTime = temp;
-                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById ("Market").value; if ("" != temp) obj.Market = temp;
-                temp = document.getElementById ("MktActivityRecord").value; if ("" != temp) obj.MktActivityRecord = temp.split (",");
+                var obj = obj || { id: id, cls: "MarketFactors" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_intervalEndTime").value; if ("" != temp) obj.intervalEndTime = temp;
+                temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById (id + "_Market").value; if ("" != temp) obj.Market = temp;
+                temp = document.getElementById (id + "_MktActivityRecord").value; if ("" != temp) obj.MktActivityRecord = temp.split (",");
 
                 return (obj);
             }
@@ -702,43 +702,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Market_collapse" aria-expanded="true" aria-controls="Market_collapse" style="margin-left: 10px;">Market</a></legend>
-                    <div id="Market_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Market_collapse" aria-expanded="true" aria-controls="{{id}}_Market_collapse" style="margin-left: 10px;">Market</a></legend>
+                    <div id="{{id}}_Market_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualStart'>actualStart: </label><div class='col-sm-8'><input id='actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='dst'>dst: </label><div class='col-sm-8'><input id='dst' class='form-check-input' type='checkbox'{{#dst}} checked{{/dst}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='end'>end: </label><div class='col-sm-8'><input id='end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localTimeZone'>localTimeZone: </label><div class='col-sm-8'><input id='localTimeZone' class='form-control' type='text'{{#localTimeZone}} value='{{localTimeZone}}'{{/localTimeZone}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='start'>start: </label><div class='col-sm-8'><input id='start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeIntervalLength'>timeIntervalLength: </label><div class='col-sm-8'><input id='timeIntervalLength' class='form-control' type='text'{{#timeIntervalLength}} value='{{timeIntervalLength}}'{{/timeIntervalLength}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradingDay'>tradingDay: </label><div class='col-sm-8'><input id='tradingDay' class='form-control' type='text'{{#tradingDay}} value='{{tradingDay}}'{{/tradingDay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradingPeriod'>tradingPeriod: </label><div class='col-sm-8'><input id='tradingPeriod' class='form-control' type='text'{{#tradingPeriod}} value='{{tradingPeriod}}'{{/tradingPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='{{id}}_actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualStart'>actualStart: </label><div class='col-sm-8'><input id='{{id}}_actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_dst'>dst: </label><div class='col-sm-8'><input id='{{id}}_dst' class='form-check-input' type='checkbox'{{#dst}} checked{{/dst}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_end'>end: </label><div class='col-sm-8'><input id='{{id}}_end' class='form-control' type='text'{{#end}} value='{{end}}'{{/end}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localTimeZone'>localTimeZone: </label><div class='col-sm-8'><input id='{{id}}_localTimeZone' class='form-control' type='text'{{#localTimeZone}} value='{{localTimeZone}}'{{/localTimeZone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_start'>start: </label><div class='col-sm-8'><input id='{{id}}_start' class='form-control' type='text'{{#start}} value='{{start}}'{{/start}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeIntervalLength'>timeIntervalLength: </label><div class='col-sm-8'><input id='{{id}}_timeIntervalLength' class='form-control' type='text'{{#timeIntervalLength}} value='{{timeIntervalLength}}'{{/timeIntervalLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradingDay'>tradingDay: </label><div class='col-sm-8'><input id='{{id}}_tradingDay' class='form-control' type='text'{{#tradingDay}} value='{{tradingDay}}'{{/tradingDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradingPeriod'>tradingPeriod: </label><div class='col-sm-8'><input id='{{id}}_tradingPeriod' class='form-control' type='text'{{#tradingPeriod}} value='{{tradingPeriod}}'{{/tradingPeriod}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Market" };
-                super.submit (obj);
-                temp = document.getElementById ("actualEnd").value; if ("" != temp) obj.actualEnd = temp;
-                temp = document.getElementById ("actualStart").value; if ("" != temp) obj.actualStart = temp;
-                temp = document.getElementById ("dst").checked; if (temp) obj.dst = true;
-                temp = document.getElementById ("end").value; if ("" != temp) obj.end = temp;
-                temp = document.getElementById ("localTimeZone").value; if ("" != temp) obj.localTimeZone = temp;
-                temp = document.getElementById ("start").value; if ("" != temp) obj.start = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("timeIntervalLength").value; if ("" != temp) obj.timeIntervalLength = temp;
-                temp = document.getElementById ("tradingDay").value; if ("" != temp) obj.tradingDay = temp;
-                temp = document.getElementById ("tradingPeriod").value; if ("" != temp) obj.tradingPeriod = temp;
+                var obj = obj || { id: id, cls: "Market" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_actualEnd").value; if ("" != temp) obj.actualEnd = temp;
+                temp = document.getElementById (id + "_actualStart").value; if ("" != temp) obj.actualStart = temp;
+                temp = document.getElementById (id + "_dst").checked; if (temp) obj.dst = true;
+                temp = document.getElementById (id + "_end").value; if ("" != temp) obj.end = temp;
+                temp = document.getElementById (id + "_localTimeZone").value; if ("" != temp) obj.localTimeZone = temp;
+                temp = document.getElementById (id + "_start").value; if ("" != temp) obj.start = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_timeIntervalLength").value; if ("" != temp) obj.timeIntervalLength = temp;
+                temp = document.getElementById (id + "_tradingDay").value; if ("" != temp) obj.tradingDay = temp;
+                temp = document.getElementById (id + "_tradingPeriod").value; if ("" != temp) obj.tradingPeriod = temp;
 
                 return (obj);
             }
@@ -847,33 +847,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketActualEvent_collapse" aria-expanded="true" aria-controls="MarketActualEvent_collapse" style="margin-left: 10px;">MarketActualEvent</a></legend>
-                    <div id="MarketActualEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketActualEvent_collapse" aria-expanded="true" aria-controls="{{id}}_MarketActualEvent_collapse" style="margin-left: 10px;">MarketActualEvent</a></legend>
+                    <div id="{{id}}_MarketActualEvent_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventID'>eventID: </label><div class='col-sm-8'><input id='eventID' class='form-control' type='text'{{#eventID}} value='{{eventID}}'{{/eventID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventTime'>eventTime: </label><div class='col-sm-8'><input id='eventTime' class='form-control' type='text'{{#eventTime}} value='{{eventTime}}'{{/eventTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PlannedMarketEvent'>PlannedMarketEvent: </label><div class='col-sm-8'><input id='PlannedMarketEvent' class='form-control' type='text'{{#PlannedMarketEvent}} value='{{PlannedMarketEvent}}'{{/PlannedMarketEvent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketRun'>MarketRun: </label><div class='col-sm-8'><input id='MarketRun' class='form-control' type='text'{{#MarketRun}} value='{{MarketRun}}'{{/MarketRun}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eventID'>eventID: </label><div class='col-sm-8'><input id='{{id}}_eventID' class='form-control' type='text'{{#eventID}} value='{{eventID}}'{{/eventID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eventTime'>eventTime: </label><div class='col-sm-8'><input id='{{id}}_eventTime' class='form-control' type='text'{{#eventTime}} value='{{eventTime}}'{{/eventTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarketEvent'>PlannedMarketEvent: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarketEvent' class='form-control' type='text'{{#PlannedMarketEvent}} value='{{PlannedMarketEvent}}'{{/PlannedMarketEvent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketRun'>MarketRun: </label><div class='col-sm-8'><input id='{{id}}_MarketRun' class='form-control' type='text'{{#MarketRun}} value='{{MarketRun}}'{{/MarketRun}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketActualEvent" };
-                super.submit (obj);
-                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
-                temp = document.getElementById ("eventID").value; if ("" != temp) obj.eventID = temp;
-                temp = document.getElementById ("eventTime").value; if ("" != temp) obj.eventTime = temp;
-                temp = document.getElementById ("PlannedMarketEvent").value; if ("" != temp) obj.PlannedMarketEvent = temp;
-                temp = document.getElementById ("MarketRun").value; if ("" != temp) obj.MarketRun = temp;
+                var obj = obj || { id: id, cls: "MarketActualEvent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById (id + "_eventID").value; if ("" != temp) obj.eventID = temp;
+                temp = document.getElementById (id + "_eventTime").value; if ("" != temp) obj.eventTime = temp;
+                temp = document.getElementById (id + "_PlannedMarketEvent").value; if ("" != temp) obj.PlannedMarketEvent = temp;
+                temp = document.getElementById (id + "_MarketRun").value; if ("" != temp) obj.MarketRun = temp;
 
                 return (obj);
             }
@@ -993,35 +993,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PlannedMarket_collapse" aria-expanded="true" aria-controls="PlannedMarket_collapse" style="margin-left: 10px;">PlannedMarket</a></legend>
-                    <div id="PlannedMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PlannedMarket_collapse" aria-expanded="true" aria-controls="{{id}}_PlannedMarket_collapse" style="margin-left: 10px;">PlannedMarket</a></legend>
+                    <div id="{{id}}_PlannedMarket_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketID'>marketID: </label><div class='col-sm-8'><input id='marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PlannedMarketEvent'>PlannedMarketEvent: </label><div class='col-sm-8'><input id='PlannedMarketEvent' class='form-control' type='text'{{#PlannedMarketEvent}} value='{{PlannedMarketEvent}}_string'{{/PlannedMarketEvent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketPlan'>MarketPlan: </label><div class='col-sm-8'><input id='MarketPlan' class='form-control' type='text'{{#MarketPlan}} value='{{MarketPlan}}'{{/MarketPlan}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='{{id}}_marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketID'>marketID: </label><div class='col-sm-8'><input id='{{id}}_marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='{{id}}_marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarketEvent'>PlannedMarketEvent: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarketEvent' class='form-control' type='text'{{#PlannedMarketEvent}} value='{{PlannedMarketEvent}}_string'{{/PlannedMarketEvent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketPlan'>MarketPlan: </label><div class='col-sm-8'><input id='{{id}}_MarketPlan' class='form-control' type='text'{{#MarketPlan}} value='{{MarketPlan}}'{{/MarketPlan}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PlannedMarket" };
-                super.submit (obj);
-                temp = document.getElementById ("marketEndTime").value; if ("" != temp) obj.marketEndTime = temp;
-                temp = document.getElementById ("marketID").value; if ("" != temp) obj.marketID = temp;
-                temp = document.getElementById ("marketStartTime").value; if ("" != temp) obj.marketStartTime = temp;
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("PlannedMarketEvent").value; if ("" != temp) obj.PlannedMarketEvent = temp.split (",");
-                temp = document.getElementById ("MarketPlan").value; if ("" != temp) obj.MarketPlan = temp;
+                var obj = obj || { id: id, cls: "PlannedMarket" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_marketEndTime").value; if ("" != temp) obj.marketEndTime = temp;
+                temp = document.getElementById (id + "_marketID").value; if ("" != temp) obj.marketID = temp;
+                temp = document.getElementById (id + "_marketStartTime").value; if ("" != temp) obj.marketStartTime = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_PlannedMarketEvent").value; if ("" != temp) obj.PlannedMarketEvent = temp.split (",");
+                temp = document.getElementById (id + "_MarketPlan").value; if ("" != temp) obj.MarketPlan = temp;
 
                 return (obj);
             }
@@ -1158,47 +1158,47 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRun_collapse" aria-expanded="true" aria-controls="MarketRun_collapse" style="margin-left: 10px;">MarketRun</a></legend>
-                    <div id="MarketRun_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketRun_collapse" aria-expanded="true" aria-controls="{{id}}_MarketRun_collapse" style="margin-left: 10px;">MarketRun</a></legend>
+                    <div id="{{id}}_MarketRun_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='executionType'>executionType: </label><div class='col-sm-8'><input id='executionType' class='form-control' type='text'{{#executionType}} value='{{executionType}}'{{/executionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketApprovalTime'>marketApprovalTime: </label><div class='col-sm-8'><input id='marketApprovalTime' class='form-control' type='text'{{#marketApprovalTime}} value='{{marketApprovalTime}}'{{/marketApprovalTime}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='marketApprovedStatus'>marketApprovedStatus: </label><div class='col-sm-8'><input id='marketApprovedStatus' class='form-check-input' type='checkbox'{{#marketApprovedStatus}} checked{{/marketApprovedStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketID'>marketID: </label><div class='col-sm-8'><input id='marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketRunID'>marketRunID: </label><div class='col-sm-8'><input id='marketRunID' class='form-control' type='text'{{#marketRunID}} value='{{marketRunID}}'{{/marketRunID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reportedState'>reportedState: </label><div class='col-sm-8'><input id='reportedState' class='form-control' type='text'{{#reportedState}} value='{{reportedState}}'{{/reportedState}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='runState'>runState: </label><div class='col-sm-8'><input id='runState' class='form-control' type='text'{{#runState}} value='{{runState}}'{{/runState}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PlannedMarket'>PlannedMarket: </label><div class='col-sm-8'><input id='PlannedMarket' class='form-control' type='text'{{#PlannedMarket}} value='{{PlannedMarket}}'{{/PlannedMarket}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Market'>Market: </label><div class='col-sm-8'><input id='Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_executionType'>executionType: </label><div class='col-sm-8'><input id='{{id}}_executionType' class='form-control' type='text'{{#executionType}} value='{{executionType}}'{{/executionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketApprovalTime'>marketApprovalTime: </label><div class='col-sm-8'><input id='{{id}}_marketApprovalTime' class='form-control' type='text'{{#marketApprovalTime}} value='{{marketApprovalTime}}'{{/marketApprovalTime}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_marketApprovedStatus'>marketApprovedStatus: </label><div class='col-sm-8'><input id='{{id}}_marketApprovedStatus' class='form-check-input' type='checkbox'{{#marketApprovedStatus}} checked{{/marketApprovedStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketEndTime'>marketEndTime: </label><div class='col-sm-8'><input id='{{id}}_marketEndTime' class='form-control' type='text'{{#marketEndTime}} value='{{marketEndTime}}'{{/marketEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketID'>marketID: </label><div class='col-sm-8'><input id='{{id}}_marketID' class='form-control' type='text'{{#marketID}} value='{{marketID}}'{{/marketID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketRunID'>marketRunID: </label><div class='col-sm-8'><input id='{{id}}_marketRunID' class='form-control' type='text'{{#marketRunID}} value='{{marketRunID}}'{{/marketRunID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketStartTime'>marketStartTime: </label><div class='col-sm-8'><input id='{{id}}_marketStartTime' class='form-control' type='text'{{#marketStartTime}} value='{{marketStartTime}}'{{/marketStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reportedState'>reportedState: </label><div class='col-sm-8'><input id='{{id}}_reportedState' class='form-control' type='text'{{#reportedState}} value='{{reportedState}}'{{/reportedState}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runState'>runState: </label><div class='col-sm-8'><input id='{{id}}_runState' class='form-control' type='text'{{#runState}} value='{{runState}}'{{/runState}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedMarket'>PlannedMarket: </label><div class='col-sm-8'><input id='{{id}}_PlannedMarket' class='form-control' type='text'{{#PlannedMarket}} value='{{PlannedMarket}}'{{/PlannedMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Market'>Market: </label><div class='col-sm-8'><input id='{{id}}_Market' class='form-control' type='text'{{#Market}} value='{{Market}}'{{/Market}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketRun" };
-                super.submit (obj);
-                temp = document.getElementById ("executionType").value; if ("" != temp) obj.executionType = temp;
-                temp = document.getElementById ("marketApprovalTime").value; if ("" != temp) obj.marketApprovalTime = temp;
-                temp = document.getElementById ("marketApprovedStatus").checked; if (temp) obj.marketApprovedStatus = true;
-                temp = document.getElementById ("marketEndTime").value; if ("" != temp) obj.marketEndTime = temp;
-                temp = document.getElementById ("marketID").value; if ("" != temp) obj.marketID = temp;
-                temp = document.getElementById ("marketRunID").value; if ("" != temp) obj.marketRunID = temp;
-                temp = document.getElementById ("marketStartTime").value; if ("" != temp) obj.marketStartTime = temp;
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("reportedState").value; if ("" != temp) obj.reportedState = temp;
-                temp = document.getElementById ("runState").value; if ("" != temp) obj.runState = temp;
-                temp = document.getElementById ("PlannedMarket").value; if ("" != temp) obj.PlannedMarket = temp;
-                temp = document.getElementById ("Market").value; if ("" != temp) obj.Market = temp;
+                var obj = obj || { id: id, cls: "MarketRun" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_executionType").value; if ("" != temp) obj.executionType = temp;
+                temp = document.getElementById (id + "_marketApprovalTime").value; if ("" != temp) obj.marketApprovalTime = temp;
+                temp = document.getElementById (id + "_marketApprovedStatus").checked; if (temp) obj.marketApprovedStatus = true;
+                temp = document.getElementById (id + "_marketEndTime").value; if ("" != temp) obj.marketEndTime = temp;
+                temp = document.getElementById (id + "_marketID").value; if ("" != temp) obj.marketID = temp;
+                temp = document.getElementById (id + "_marketRunID").value; if ("" != temp) obj.marketRunID = temp;
+                temp = document.getElementById (id + "_marketStartTime").value; if ("" != temp) obj.marketStartTime = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_reportedState").value; if ("" != temp) obj.reportedState = temp;
+                temp = document.getElementById (id + "_runState").value; if ("" != temp) obj.runState = temp;
+                temp = document.getElementById (id + "_PlannedMarket").value; if ("" != temp) obj.PlannedMarket = temp;
+                temp = document.getElementById (id + "_Market").value; if ("" != temp) obj.Market = temp;
 
                 return (obj);
             }
@@ -1315,29 +1315,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyMarket_collapse" aria-expanded="true" aria-controls="EnergyMarket_collapse" style="margin-left: 10px;">EnergyMarket</a></legend>
-                    <div id="EnergyMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyMarket_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyMarket_collapse" style="margin-left: 10px;">EnergyMarket</a></legend>
+                    <div id="{{id}}_EnergyMarket_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Market.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketResults'>MarketResults: </label><div class='col-sm-8'><input id='MarketResults' class='form-control' type='text'{{#MarketResults}} value='{{MarketResults}}'{{/MarketResults}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources}}_string'{{/RegisteredResources}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketResults'>MarketResults: </label><div class='col-sm-8'><input id='{{id}}_MarketResults' class='form-control' type='text'{{#MarketResults}} value='{{MarketResults}}'{{/MarketResults}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources}}_string'{{/RegisteredResources}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EnergyMarket" };
-                super.submit (obj);
-                temp = document.getElementById ("MarketResults").value; if ("" != temp) obj.MarketResults = temp;
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
-                temp = document.getElementById ("RegisteredResources").value; if ("" != temp) obj.RegisteredResources = temp.split (",");
+                var obj = obj || { id: id, cls: "EnergyMarket" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_MarketResults").value; if ("" != temp) obj.MarketResults = temp;
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
+                temp = document.getElementById (id + "_RegisteredResources").value; if ("" != temp) obj.RegisteredResources = temp.split (",");
 
                 return (obj);
             }
@@ -1441,25 +1441,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRRMarket_collapse" aria-expanded="true" aria-controls="CRRMarket_collapse" style="margin-left: 10px;">CRRMarket</a></legend>
-                    <div id="CRRMarket_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CRRMarket_collapse" aria-expanded="true" aria-controls="{{id}}_CRRMarket_collapse" style="margin-left: 10px;">CRRMarket</a></legend>
+                    <div id="{{id}}_CRRMarket_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Market.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='labelID'>labelID: </label><div class='col-sm-8'><input id='labelID' class='form-control' type='text'{{#labelID}} value='{{labelID}}'{{/labelID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_labelID'>labelID: </label><div class='col-sm-8'><input id='{{id}}_labelID' class='form-control' type='text'{{#labelID}} value='{{labelID}}'{{/labelID}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CRRMarket" };
-                super.submit (obj);
-                temp = document.getElementById ("labelID").value; if ("" != temp) obj.labelID = temp;
+                var obj = obj || { id: id, cls: "CRRMarket" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_labelID").value; if ("" != temp) obj.labelID = temp;
 
                 return (obj);
             }

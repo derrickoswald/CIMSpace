@@ -183,31 +183,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Receipt_collapse" aria-expanded="true" aria-controls="Receipt_collapse" style="margin-left: 10px;">Receipt</a></legend>
-                    <div id="Receipt_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Receipt_collapse" aria-expanded="true" aria-controls="{{id}}_Receipt_collapse" style="margin-left: 10px;">Receipt</a></legend>
+                    <div id="{{id}}_Receipt_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isBankable'>isBankable: </label><div class='col-sm-8'><input id='isBankable' class='form-check-input' type='checkbox'{{#isBankable}} checked{{/isBankable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='line'>line: </label><div class='col-sm-8'><input id='line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VendorShift'>VendorShift: </label><div class='col-sm-8'><input id='VendorShift' class='form-control' type='text'{{#VendorShift}} value='{{VendorShift}}'{{/VendorShift}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CashierShift'>CashierShift: </label><div class='col-sm-8'><input id='CashierShift' class='form-control' type='text'{{#CashierShift}} value='{{CashierShift}}'{{/CashierShift}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isBankable'>isBankable: </label><div class='col-sm-8'><input id='{{id}}_isBankable' class='form-check-input' type='checkbox'{{#isBankable}} checked{{/isBankable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_line'>line: </label><div class='col-sm-8'><input id='{{id}}_line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VendorShift'>VendorShift: </label><div class='col-sm-8'><input id='{{id}}_VendorShift' class='form-control' type='text'{{#VendorShift}} value='{{VendorShift}}'{{/VendorShift}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CashierShift'>CashierShift: </label><div class='col-sm-8'><input id='{{id}}_CashierShift' class='form-control' type='text'{{#CashierShift}} value='{{CashierShift}}'{{/CashierShift}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Receipt" };
-                super.submit (obj);
-                temp = document.getElementById ("isBankable").checked; if (temp) obj.isBankable = true;
-                temp = document.getElementById ("line").value; if ("" != temp) obj.line = temp;
-                temp = document.getElementById ("VendorShift").value; if ("" != temp) obj.VendorShift = temp;
-                temp = document.getElementById ("CashierShift").value; if ("" != temp) obj.CashierShift = temp;
+                var obj = obj || { id: id, cls: "Receipt" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_isBankable").checked; if (temp) obj.isBankable = true;
+                temp = document.getElementById (id + "_line").value; if ("" != temp) obj.line = temp;
+                temp = document.getElementById (id + "_VendorShift").value; if ("" != temp) obj.VendorShift = temp;
+                temp = document.getElementById (id + "_CashierShift").value; if ("" != temp) obj.CashierShift = temp;
 
                 return (obj);
             }
@@ -317,33 +317,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Card_collapse" aria-expanded="true" aria-controls="Card_collapse" style="margin-left: 10px;">Card</a></legend>
-                    <div id="Card_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Card_collapse" aria-expanded="true" aria-controls="{{id}}_Card_collapse" style="margin-left: 10px;">Card</a></legend>
+                    <div id="{{id}}_Card_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountHolderName'>accountHolderName: </label><div class='col-sm-8'><input id='accountHolderName' class='form-control' type='text'{{#accountHolderName}} value='{{accountHolderName}}'{{/accountHolderName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cvNumber'>cvNumber: </label><div class='col-sm-8'><input id='cvNumber' class='form-control' type='text'{{#cvNumber}} value='{{cvNumber}}'{{/cvNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='expiryDate'>expiryDate: </label><div class='col-sm-8'><input id='expiryDate' class='form-control' type='text'{{#expiryDate}} value='{{expiryDate}}'{{/expiryDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pan'>pan: </label><div class='col-sm-8'><input id='pan' class='form-control' type='text'{{#pan}} value='{{pan}}'{{/pan}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Tender'>Tender: </label><div class='col-sm-8'><input id='Tender' class='form-control' type='text'{{#Tender}} value='{{Tender}}'{{/Tender}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountHolderName'>accountHolderName: </label><div class='col-sm-8'><input id='{{id}}_accountHolderName' class='form-control' type='text'{{#accountHolderName}} value='{{accountHolderName}}'{{/accountHolderName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cvNumber'>cvNumber: </label><div class='col-sm-8'><input id='{{id}}_cvNumber' class='form-control' type='text'{{#cvNumber}} value='{{cvNumber}}'{{/cvNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_expiryDate'>expiryDate: </label><div class='col-sm-8'><input id='{{id}}_expiryDate' class='form-control' type='text'{{#expiryDate}} value='{{expiryDate}}'{{/expiryDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pan'>pan: </label><div class='col-sm-8'><input id='{{id}}_pan' class='form-control' type='text'{{#pan}} value='{{pan}}'{{/pan}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tender'>Tender: </label><div class='col-sm-8'><input id='{{id}}_Tender' class='form-control' type='text'{{#Tender}} value='{{Tender}}'{{/Tender}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Card" };
-                super.submit (obj);
-                temp = document.getElementById ("accountHolderName").value; if ("" != temp) obj.accountHolderName = temp;
-                temp = document.getElementById ("cvNumber").value; if ("" != temp) obj.cvNumber = temp;
-                temp = document.getElementById ("expiryDate").value; if ("" != temp) obj.expiryDate = temp;
-                temp = document.getElementById ("pan").value; if ("" != temp) obj.pan = temp;
-                temp = document.getElementById ("Tender").value; if ("" != temp) obj.Tender = temp;
+                var obj = obj || { id: id, cls: "Card" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accountHolderName").value; if ("" != temp) obj.accountHolderName = temp;
+                temp = document.getElementById (id + "_cvNumber").value; if ("" != temp) obj.cvNumber = temp;
+                temp = document.getElementById (id + "_expiryDate").value; if ("" != temp) obj.expiryDate = temp;
+                temp = document.getElementById (id + "_pan").value; if ("" != temp) obj.pan = temp;
+                temp = document.getElementById (id + "_Tender").value; if ("" != temp) obj.Tender = temp;
 
                 return (obj);
             }
@@ -450,33 +450,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Due_collapse" aria-expanded="true" aria-controls="Due_collapse" style="margin-left: 10px;">Due</a></legend>
-                    <div id="Due_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Due_collapse" aria-expanded="true" aria-controls="{{id}}_Due_collapse" style="margin-left: 10px;">Due</a></legend>
+                    <div id="{{id}}_Due_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='arrears'>arrears: </label><div class='col-sm-8'><input id='arrears' class='form-control' type='text'{{#arrears}} value='{{arrears}}'{{/arrears}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='charges'>charges: </label><div class='col-sm-8'><input id='charges' class='form-control' type='text'{{#charges}} value='{{charges}}'{{/charges}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='current'>current: </label><div class='col-sm-8'><input id='current' class='form-control' type='text'{{#current}} value='{{current}}'{{/current}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='interest'>interest: </label><div class='col-sm-8'><input id='interest' class='form-control' type='text'{{#interest}} value='{{interest}}'{{/interest}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='principle'>principle: </label><div class='col-sm-8'><input id='principle' class='form-control' type='text'{{#principle}} value='{{principle}}'{{/principle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_arrears'>arrears: </label><div class='col-sm-8'><input id='{{id}}_arrears' class='form-control' type='text'{{#arrears}} value='{{arrears}}'{{/arrears}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_charges'>charges: </label><div class='col-sm-8'><input id='{{id}}_charges' class='form-control' type='text'{{#charges}} value='{{charges}}'{{/charges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_current'>current: </label><div class='col-sm-8'><input id='{{id}}_current' class='form-control' type='text'{{#current}} value='{{current}}'{{/current}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interest'>interest: </label><div class='col-sm-8'><input id='{{id}}_interest' class='form-control' type='text'{{#interest}} value='{{interest}}'{{/interest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_principle'>principle: </label><div class='col-sm-8'><input id='{{id}}_principle' class='form-control' type='text'{{#principle}} value='{{principle}}'{{/principle}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Due" };
-                super.submit (obj);
-                temp = document.getElementById ("arrears").value; if ("" != temp) obj.arrears = temp;
-                temp = document.getElementById ("charges").value; if ("" != temp) obj.charges = temp;
-                temp = document.getElementById ("current").value; if ("" != temp) obj.current = temp;
-                temp = document.getElementById ("interest").value; if ("" != temp) obj.interest = temp;
-                temp = document.getElementById ("principle").value; if ("" != temp) obj.principle = temp;
+                var obj = obj || { id: id, cls: "Due" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_arrears").value; if ("" != temp) obj.arrears = temp;
+                temp = document.getElementById (id + "_charges").value; if ("" != temp) obj.charges = temp;
+                temp = document.getElementById (id + "_current").value; if ("" != temp) obj.current = temp;
+                temp = document.getElementById (id + "_interest").value; if ("" != temp) obj.interest = temp;
+                temp = document.getElementById (id + "_principle").value; if ("" != temp) obj.principle = temp;
 
                 return (obj);
             }
@@ -595,37 +595,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Charge_collapse" aria-expanded="true" aria-controls="Charge_collapse" style="margin-left: 10px;">Charge</a></legend>
-                    <div id="Charge_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Charge_collapse" aria-expanded="true" aria-controls="{{id}}_Charge_collapse" style="margin-left: 10px;">Charge</a></legend>
+                    <div id="{{id}}_Charge_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fixedPortion'>fixedPortion: </label><div class='col-sm-8'><input id='fixedPortion' class='form-control' type='text'{{#fixedPortion}} value='{{fixedPortion}}'{{/fixedPortion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ChargeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChargeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='variablePortion'>variablePortion: </label><div class='col-sm-8'><input id='variablePortion' class='form-control' type='text'{{#variablePortion}} value='{{variablePortion}}'{{/variablePortion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AuxiliaryAccounts'>AuxiliaryAccounts: </label><div class='col-sm-8'><input id='AuxiliaryAccounts' class='form-control' type='text'{{#AuxiliaryAccounts}} value='{{AuxiliaryAccounts}}_string'{{/AuxiliaryAccounts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentCharge'>ParentCharge: </label><div class='col-sm-8'><input id='ParentCharge' class='form-control' type='text'{{#ParentCharge}} value='{{ParentCharge}}'{{/ParentCharge}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals}}_string'{{/TimeTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fixedPortion'>fixedPortion: </label><div class='col-sm-8'><input id='{{id}}_fixedPortion' class='form-control' type='text'{{#fixedPortion}} value='{{fixedPortion}}'{{/fixedPortion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#ChargeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChargeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_variablePortion'>variablePortion: </label><div class='col-sm-8'><input id='{{id}}_variablePortion' class='form-control' type='text'{{#variablePortion}} value='{{variablePortion}}'{{/variablePortion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAccounts'>AuxiliaryAccounts: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAccounts' class='form-control' type='text'{{#AuxiliaryAccounts}} value='{{AuxiliaryAccounts}}_string'{{/AuxiliaryAccounts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCharge'>ParentCharge: </label><div class='col-sm-8'><input id='{{id}}_ParentCharge' class='form-control' type='text'{{#ParentCharge}} value='{{ParentCharge}}'{{/ParentCharge}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals}}_string'{{/TimeTariffIntervals}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Charge" };
-                super.submit (obj);
-                temp = document.getElementById ("fixedPortion").value; if ("" != temp) obj.fixedPortion = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ChargeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ChargeKind." + temp; }
-                temp = document.getElementById ("variablePortion").value; if ("" != temp) obj.variablePortion = temp;
-                temp = document.getElementById ("AuxiliaryAccounts").value; if ("" != temp) obj.AuxiliaryAccounts = temp.split (",");
-                temp = document.getElementById ("ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
-                temp = document.getElementById ("ParentCharge").value; if ("" != temp) obj.ParentCharge = temp;
-                temp = document.getElementById ("TimeTariffIntervals").value; if ("" != temp) obj.TimeTariffIntervals = temp.split (",");
+                var obj = obj || { id: id, cls: "Charge" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_fixedPortion").value; if ("" != temp) obj.fixedPortion = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ChargeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ChargeKind." + temp; }
+                temp = document.getElementById (id + "_variablePortion").value; if ("" != temp) obj.variablePortion = temp;
+                temp = document.getElementById (id + "_AuxiliaryAccounts").value; if ("" != temp) obj.AuxiliaryAccounts = temp.split (",");
+                temp = document.getElementById (id + "_ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
+                temp = document.getElementById (id + "_ParentCharge").value; if ("" != temp) obj.ParentCharge = temp;
+                temp = document.getElementById (id + "_TimeTariffIntervals").value; if ("" != temp) obj.TimeTariffIntervals = temp.split (",");
 
                 return (obj);
             }
@@ -741,31 +741,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TariffProfile_collapse" aria-expanded="true" aria-controls="TariffProfile_collapse" style="margin-left: 10px;">TariffProfile</a></legend>
-                    <div id="TariffProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TariffProfile_collapse" aria-expanded="true" aria-controls="{{id}}_TariffProfile_collapse" style="margin-left: 10px;">TariffProfile</a></legend>
+                    <div id="{{id}}_TariffProfile_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tariffCycle'>tariffCycle: </label><div class='col-sm-8'><input id='tariffCycle' class='form-control' type='text'{{#tariffCycle}} value='{{tariffCycle}}'{{/tariffCycle}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals}}_string'{{/TimeTariffIntervals}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs}}_string'{{/Tariffs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tariffCycle'>tariffCycle: </label><div class='col-sm-8'><input id='{{id}}_tariffCycle' class='form-control' type='text'{{#tariffCycle}} value='{{tariffCycle}}'{{/tariffCycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeTariffIntervals'>TimeTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TimeTariffIntervals' class='form-control' type='text'{{#TimeTariffIntervals}} value='{{TimeTariffIntervals}}_string'{{/TimeTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tariffs'>Tariffs: </label><div class='col-sm-8'><input id='{{id}}_Tariffs' class='form-control' type='text'{{#Tariffs}} value='{{Tariffs}}_string'{{/Tariffs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TariffProfile" };
-                super.submit (obj);
-                temp = document.getElementById ("tariffCycle").value; if ("" != temp) obj.tariffCycle = temp;
-                temp = document.getElementById ("TimeTariffIntervals").value; if ("" != temp) obj.TimeTariffIntervals = temp.split (",");
-                temp = document.getElementById ("Tariffs").value; if ("" != temp) obj.Tariffs = temp.split (",");
-                temp = document.getElementById ("ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
+                var obj = obj || { id: id, cls: "TariffProfile" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tariffCycle").value; if ("" != temp) obj.tariffCycle = temp;
+                temp = document.getElementById (id + "_TimeTariffIntervals").value; if ("" != temp) obj.TimeTariffIntervals = temp.split (",");
+                temp = document.getElementById (id + "_Tariffs").value; if ("" != temp) obj.Tariffs = temp.split (",");
+                temp = document.getElementById (id + "_ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
 
                 return (obj);
             }
@@ -868,29 +868,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccountMovement_collapse" aria-expanded="true" aria-controls="AccountMovement_collapse" style="margin-left: 10px;">AccountMovement</a></legend>
-                    <div id="AccountMovement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AccountMovement_collapse" aria-expanded="true" aria-controls="{{id}}_AccountMovement_collapse" style="margin-left: 10px;">AccountMovement</a></legend>
+                    <div id="{{id}}_AccountMovement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dateTime'>dateTime: </label><div class='col-sm-8'><input id='dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reason'>reason: </label><div class='col-sm-8'><input id='reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dateTime'>dateTime: </label><div class='col-sm-8'><input id='{{id}}_dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reason'>reason: </label><div class='col-sm-8'><input id='{{id}}_reason' class='form-control' type='text'{{#reason}} value='{{reason}}'{{/reason}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AccountMovement" };
-                super.submit (obj);
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById ("dateTime").value; if ("" != temp) obj.dateTime = temp;
-                temp = document.getElementById ("reason").value; if ("" != temp) obj.reason = temp;
+                var obj = obj || { id: id, cls: "AccountMovement" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById (id + "_dateTime").value; if ("" != temp) obj.dateTime = temp;
+                temp = document.getElementById (id + "_reason").value; if ("" != temp) obj.reason = temp;
 
                 return (obj);
             }
@@ -996,33 +996,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConsumptionTariffInterval_collapse" aria-expanded="true" aria-controls="ConsumptionTariffInterval_collapse" style="margin-left: 10px;">ConsumptionTariffInterval</a></legend>
-                    <div id="ConsumptionTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConsumptionTariffInterval_collapse" aria-expanded="true" aria-controls="{{id}}_ConsumptionTariffInterval_collapse" style="margin-left: 10px;">ConsumptionTariffInterval</a></legend>
+                    <div id="{{id}}_ConsumptionTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startValue'>startValue: </label><div class='col-sm-8'><input id='startValue' class='form-control' type='text'{{#startValue}} value='{{startValue}}'{{/startValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Charges'>Charges: </label><div class='col-sm-8'><input id='Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TouTariffIntervals'>TouTariffIntervals: </label><div class='col-sm-8'><input id='TouTariffIntervals' class='form-control' type='text'{{#TouTariffIntervals}} value='{{TouTariffIntervals}}_string'{{/TouTariffIntervals}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles}}_string'{{/TariffProfiles}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startValue'>startValue: </label><div class='col-sm-8'><input id='{{id}}_startValue' class='form-control' type='text'{{#startValue}} value='{{startValue}}'{{/startValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TouTariffIntervals'>TouTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_TouTariffIntervals' class='form-control' type='text'{{#TouTariffIntervals}} value='{{TouTariffIntervals}}_string'{{/TouTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles}}_string'{{/TariffProfiles}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ConsumptionTariffInterval" };
-                super.submit (obj);
-                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = document.getElementById ("startValue").value; if ("" != temp) obj.startValue = temp;
-                temp = document.getElementById ("Charges").value; if ("" != temp) obj.Charges = temp.split (",");
-                temp = document.getElementById ("TouTariffIntervals").value; if ("" != temp) obj.TouTariffIntervals = temp.split (",");
-                temp = document.getElementById ("TariffProfiles").value; if ("" != temp) obj.TariffProfiles = temp.split (",");
+                var obj = obj || { id: id, cls: "ConsumptionTariffInterval" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById (id + "_startValue").value; if ("" != temp) obj.startValue = temp;
+                temp = document.getElementById (id + "_Charges").value; if ("" != temp) obj.Charges = temp.split (",");
+                temp = document.getElementById (id + "_TouTariffIntervals").value; if ("" != temp) obj.TouTariffIntervals = temp.split (",");
+                temp = document.getElementById (id + "_TariffProfiles").value; if ("" != temp) obj.TariffProfiles = temp.split (",");
 
                 return (obj);
             }
@@ -1139,33 +1139,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TimeTariffInterval_collapse" aria-expanded="true" aria-controls="TimeTariffInterval_collapse" style="margin-left: 10px;">TimeTariffInterval</a></legend>
-                    <div id="TimeTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TimeTariffInterval_collapse" aria-expanded="true" aria-controls="{{id}}_TimeTariffInterval_collapse" style="margin-left: 10px;">TimeTariffInterval</a></legend>
+                    <div id="{{id}}_TimeTariffInterval_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles}}_string'{{/TariffProfiles}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Charges'>Charges: </label><div class='col-sm-8'><input id='Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TariffProfiles'>TariffProfiles: </label><div class='col-sm-8'><input id='{{id}}_TariffProfiles' class='form-control' type='text'{{#TariffProfiles}} value='{{TariffProfiles}}_string'{{/TariffProfiles}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConsumptionTariffIntervals'>ConsumptionTariffIntervals: </label><div class='col-sm-8'><input id='{{id}}_ConsumptionTariffIntervals' class='form-control' type='text'{{#ConsumptionTariffIntervals}} value='{{ConsumptionTariffIntervals}}_string'{{/ConsumptionTariffIntervals}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TimeTariffInterval" };
-                super.submit (obj);
-                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById ("TariffProfiles").value; if ("" != temp) obj.TariffProfiles = temp.split (",");
-                temp = document.getElementById ("ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
-                temp = document.getElementById ("Charges").value; if ("" != temp) obj.Charges = temp.split (",");
+                var obj = obj || { id: id, cls: "TimeTariffInterval" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById (id + "_TariffProfiles").value; if ("" != temp) obj.TariffProfiles = temp.split (",");
+                temp = document.getElementById (id + "_ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
+                temp = document.getElementById (id + "_Charges").value; if ("" != temp) obj.Charges = temp.split (",");
 
                 return (obj);
             }
@@ -1296,43 +1296,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryAgreement_collapse" aria-expanded="true" aria-controls="AuxiliaryAgreement_collapse" style="margin-left: 10px;">AuxiliaryAgreement</a></legend>
-                    <div id="AuxiliaryAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryAgreement_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryAgreement_collapse" style="margin-left: 10px;">AuxiliaryAgreement</a></legend>
+                    <div id="{{id}}_AuxiliaryAgreement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='arrearsInterest'>arrearsInterest: </label><div class='col-sm-8'><input id='arrearsInterest' class='form-control' type='text'{{#arrearsInterest}} value='{{arrearsInterest}}'{{/arrearsInterest}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxCycle'>auxCycle: </label><div class='col-sm-8'><input id='auxCycle' class='form-control' type='text'{{#auxCycle}} value='{{auxCycle}}'{{/auxCycle}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPriorityCode'>auxPriorityCode: </label><div class='col-sm-8'><input id='auxPriorityCode' class='form-control' type='text'{{#auxPriorityCode}} value='{{auxPriorityCode}}'{{/auxPriorityCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fixedAmount'>fixedAmount: </label><div class='col-sm-8'><input id='fixedAmount' class='form-control' type='text'{{#fixedAmount}} value='{{fixedAmount}}'{{/fixedAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minAmount'>minAmount: </label><div class='col-sm-8'><input id='minAmount' class='form-control' type='text'{{#minAmount}} value='{{minAmount}}'{{/minAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='payCycle'>payCycle: </label><div class='col-sm-8'><input id='payCycle' class='form-control' type='text'{{#payCycle}} value='{{payCycle}}'{{/payCycle}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='subType'>subType: </label><div class='col-sm-8'><input id='subType' class='form-control' type='text'{{#subType}} value='{{subType}}'{{/subType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vendPortion'>vendPortion: </label><div class='col-sm-8'><input id='vendPortion' class='form-control' type='text'{{#vendPortion}} value='{{vendPortion}}'{{/vendPortion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vendPortionArrear'>vendPortionArrear: </label><div class='col-sm-8'><input id='vendPortionArrear' class='form-control' type='text'{{#vendPortionArrear}} value='{{vendPortionArrear}}'{{/vendPortionArrear}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_arrearsInterest'>arrearsInterest: </label><div class='col-sm-8'><input id='{{id}}_arrearsInterest' class='form-control' type='text'{{#arrearsInterest}} value='{{arrearsInterest}}'{{/arrearsInterest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxCycle'>auxCycle: </label><div class='col-sm-8'><input id='{{id}}_auxCycle' class='form-control' type='text'{{#auxCycle}} value='{{auxCycle}}'{{/auxCycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPriorityCode'>auxPriorityCode: </label><div class='col-sm-8'><input id='{{id}}_auxPriorityCode' class='form-control' type='text'{{#auxPriorityCode}} value='{{auxPriorityCode}}'{{/auxPriorityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fixedAmount'>fixedAmount: </label><div class='col-sm-8'><input id='{{id}}_fixedAmount' class='form-control' type='text'{{#fixedAmount}} value='{{fixedAmount}}'{{/fixedAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minAmount'>minAmount: </label><div class='col-sm-8'><input id='{{id}}_minAmount' class='form-control' type='text'{{#minAmount}} value='{{minAmount}}'{{/minAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_payCycle'>payCycle: </label><div class='col-sm-8'><input id='{{id}}_payCycle' class='form-control' type='text'{{#payCycle}} value='{{payCycle}}'{{/payCycle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subType'>subType: </label><div class='col-sm-8'><input id='{{id}}_subType' class='form-control' type='text'{{#subType}} value='{{subType}}'{{/subType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vendPortion'>vendPortion: </label><div class='col-sm-8'><input id='{{id}}_vendPortion' class='form-control' type='text'{{#vendPortion}} value='{{vendPortion}}'{{/vendPortion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vendPortionArrear'>vendPortionArrear: </label><div class='col-sm-8'><input id='{{id}}_vendPortionArrear' class='form-control' type='text'{{#vendPortionArrear}} value='{{vendPortionArrear}}'{{/vendPortionArrear}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAgreement'>CustomerAgreement: </label><div class='col-sm-8'><input id='{{id}}_CustomerAgreement' class='form-control' type='text'{{#CustomerAgreement}} value='{{CustomerAgreement}}'{{/CustomerAgreement}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AuxiliaryAgreement" };
-                super.submit (obj);
-                temp = document.getElementById ("arrearsInterest").value; if ("" != temp) obj.arrearsInterest = temp;
-                temp = document.getElementById ("auxCycle").value; if ("" != temp) obj.auxCycle = temp;
-                temp = document.getElementById ("auxPriorityCode").value; if ("" != temp) obj.auxPriorityCode = temp;
-                temp = document.getElementById ("fixedAmount").value; if ("" != temp) obj.fixedAmount = temp;
-                temp = document.getElementById ("minAmount").value; if ("" != temp) obj.minAmount = temp;
-                temp = document.getElementById ("payCycle").value; if ("" != temp) obj.payCycle = temp;
-                temp = document.getElementById ("subType").value; if ("" != temp) obj.subType = temp;
-                temp = document.getElementById ("vendPortion").value; if ("" != temp) obj.vendPortion = temp;
-                temp = document.getElementById ("vendPortionArrear").value; if ("" != temp) obj.vendPortionArrear = temp;
-                temp = document.getElementById ("CustomerAgreement").value; if ("" != temp) obj.CustomerAgreement = temp;
+                var obj = obj || { id: id, cls: "AuxiliaryAgreement" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_arrearsInterest").value; if ("" != temp) obj.arrearsInterest = temp;
+                temp = document.getElementById (id + "_auxCycle").value; if ("" != temp) obj.auxCycle = temp;
+                temp = document.getElementById (id + "_auxPriorityCode").value; if ("" != temp) obj.auxPriorityCode = temp;
+                temp = document.getElementById (id + "_fixedAmount").value; if ("" != temp) obj.fixedAmount = temp;
+                temp = document.getElementById (id + "_minAmount").value; if ("" != temp) obj.minAmount = temp;
+                temp = document.getElementById (id + "_payCycle").value; if ("" != temp) obj.payCycle = temp;
+                temp = document.getElementById (id + "_subType").value; if ("" != temp) obj.subType = temp;
+                temp = document.getElementById (id + "_vendPortion").value; if ("" != temp) obj.vendPortion = temp;
+                temp = document.getElementById (id + "_vendPortionArrear").value; if ("" != temp) obj.vendPortionArrear = temp;
+                temp = document.getElementById (id + "_CustomerAgreement").value; if ("" != temp) obj.CustomerAgreement = temp;
 
                 return (obj);
             }
@@ -1432,8 +1432,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Vendor_collapse" aria-expanded="true" aria-controls="Vendor_collapse" style="margin-left: 10px;">Vendor</a></legend>
-                    <div id="Vendor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Vendor_collapse" aria-expanded="true" aria-controls="{{id}}_Vendor_collapse" style="margin-left: 10px;">Vendor</a></legend>
+                    <div id="{{id}}_Vendor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1443,10 +1443,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "Vendor" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "Vendor" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1553,33 +1553,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BankAccountDetail_collapse" aria-expanded="true" aria-controls="BankAccountDetail_collapse" style="margin-left: 10px;">BankAccountDetail</a></legend>
-                    <div id="BankAccountDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BankAccountDetail_collapse" aria-expanded="true" aria-controls="{{id}}_BankAccountDetail_collapse" style="margin-left: 10px;">BankAccountDetail</a></legend>
+                    <div id="{{id}}_BankAccountDetail_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountNumber'>accountNumber: </label><div class='col-sm-8'><input id='accountNumber' class='form-control' type='text'{{#accountNumber}} value='{{accountNumber}}'{{/accountNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bankName'>bankName: </label><div class='col-sm-8'><input id='bankName' class='form-control' type='text'{{#bankName}} value='{{bankName}}'{{/bankName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='branchCode'>branchCode: </label><div class='col-sm-8'><input id='branchCode' class='form-control' type='text'{{#branchCode}} value='{{branchCode}}'{{/branchCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='holderID'>holderID: </label><div class='col-sm-8'><input id='holderID' class='form-control' type='text'{{#holderID}} value='{{holderID}}'{{/holderID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='holderName'>holderName: </label><div class='col-sm-8'><input id='holderName' class='form-control' type='text'{{#holderName}} value='{{holderName}}'{{/holderName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountNumber'>accountNumber: </label><div class='col-sm-8'><input id='{{id}}_accountNumber' class='form-control' type='text'{{#accountNumber}} value='{{accountNumber}}'{{/accountNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bankName'>bankName: </label><div class='col-sm-8'><input id='{{id}}_bankName' class='form-control' type='text'{{#bankName}} value='{{bankName}}'{{/bankName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_branchCode'>branchCode: </label><div class='col-sm-8'><input id='{{id}}_branchCode' class='form-control' type='text'{{#branchCode}} value='{{branchCode}}'{{/branchCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_holderID'>holderID: </label><div class='col-sm-8'><input id='{{id}}_holderID' class='form-control' type='text'{{#holderID}} value='{{holderID}}'{{/holderID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_holderName'>holderName: </label><div class='col-sm-8'><input id='{{id}}_holderName' class='form-control' type='text'{{#holderName}} value='{{holderName}}'{{/holderName}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BankAccountDetail" };
-                super.submit (obj);
-                temp = document.getElementById ("accountNumber").value; if ("" != temp) obj.accountNumber = temp;
-                temp = document.getElementById ("bankName").value; if ("" != temp) obj.bankName = temp;
-                temp = document.getElementById ("branchCode").value; if ("" != temp) obj.branchCode = temp;
-                temp = document.getElementById ("holderID").value; if ("" != temp) obj.holderID = temp;
-                temp = document.getElementById ("holderName").value; if ("" != temp) obj.holderName = temp;
+                var obj = obj || { id: id, cls: "BankAccountDetail" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accountNumber").value; if ("" != temp) obj.accountNumber = temp;
+                temp = document.getElementById (id + "_bankName").value; if ("" != temp) obj.bankName = temp;
+                temp = document.getElementById (id + "_branchCode").value; if ("" != temp) obj.branchCode = temp;
+                temp = document.getElementById (id + "_holderID").value; if ("" != temp) obj.holderID = temp;
+                temp = document.getElementById (id + "_holderName").value; if ("" != temp) obj.holderName = temp;
 
                 return (obj);
             }
@@ -1670,25 +1670,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PointOfSale_collapse" aria-expanded="true" aria-controls="PointOfSale_collapse" style="margin-left: 10px;">PointOfSale</a></legend>
-                    <div id="PointOfSale_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PointOfSale_collapse" aria-expanded="true" aria-controls="{{id}}_PointOfSale_collapse" style="margin-left: 10px;">PointOfSale</a></legend>
+                    <div id="{{id}}_PointOfSale_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='location'>location: </label><div class='col-sm-8'><input id='location' class='form-control' type='text'{{#location}} value='{{location}}'{{/location}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_location'>location: </label><div class='col-sm-8'><input id='{{id}}_location' class='form-control' type='text'{{#location}} value='{{location}}'{{/location}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PointOfSale" };
-                super.submit (obj);
-                temp = document.getElementById ("location").value; if ("" != temp) obj.location = temp;
+                var obj = obj || { id: id, cls: "PointOfSale" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_location").value; if ("" != temp) obj.location = temp;
 
                 return (obj);
             }
@@ -1800,35 +1800,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Shift_collapse" aria-expanded="true" aria-controls="Shift_collapse" style="margin-left: 10px;">Shift</a></legend>
-                    <div id="Shift_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Shift_collapse" aria-expanded="true" aria-controls="{{id}}_Shift_collapse" style="margin-left: 10px;">Shift</a></legend>
+                    <div id="{{id}}_Shift_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityInterval'>activityInterval: </label><div class='col-sm-8'><input id='activityInterval' class='form-control' type='text'{{#activityInterval}} value='{{activityInterval}}'{{/activityInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiptsGrandTotalBankable'>receiptsGrandTotalBankable: </label><div class='col-sm-8'><input id='receiptsGrandTotalBankable' class='form-control' type='text'{{#receiptsGrandTotalBankable}} value='{{receiptsGrandTotalBankable}}'{{/receiptsGrandTotalBankable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiptsGrandTotalNonBankable'>receiptsGrandTotalNonBankable: </label><div class='col-sm-8'><input id='receiptsGrandTotalNonBankable' class='form-control' type='text'{{#receiptsGrandTotalNonBankable}} value='{{receiptsGrandTotalNonBankable}}'{{/receiptsGrandTotalNonBankable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiptsGrandTotalRounding'>receiptsGrandTotalRounding: </label><div class='col-sm-8'><input id='receiptsGrandTotalRounding' class='form-control' type='text'{{#receiptsGrandTotalRounding}} value='{{receiptsGrandTotalRounding}}'{{/receiptsGrandTotalRounding}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionsGrandTotal'>transactionsGrandTotal: </label><div class='col-sm-8'><input id='transactionsGrandTotal' class='form-control' type='text'{{#transactionsGrandTotal}} value='{{transactionsGrandTotal}}'{{/transactionsGrandTotal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionsGrandTotalRounding'>transactionsGrandTotalRounding: </label><div class='col-sm-8'><input id='transactionsGrandTotalRounding' class='form-control' type='text'{{#transactionsGrandTotalRounding}} value='{{transactionsGrandTotalRounding}}'{{/transactionsGrandTotalRounding}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityInterval'>activityInterval: </label><div class='col-sm-8'><input id='{{id}}_activityInterval' class='form-control' type='text'{{#activityInterval}} value='{{activityInterval}}'{{/activityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiptsGrandTotalBankable'>receiptsGrandTotalBankable: </label><div class='col-sm-8'><input id='{{id}}_receiptsGrandTotalBankable' class='form-control' type='text'{{#receiptsGrandTotalBankable}} value='{{receiptsGrandTotalBankable}}'{{/receiptsGrandTotalBankable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiptsGrandTotalNonBankable'>receiptsGrandTotalNonBankable: </label><div class='col-sm-8'><input id='{{id}}_receiptsGrandTotalNonBankable' class='form-control' type='text'{{#receiptsGrandTotalNonBankable}} value='{{receiptsGrandTotalNonBankable}}'{{/receiptsGrandTotalNonBankable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiptsGrandTotalRounding'>receiptsGrandTotalRounding: </label><div class='col-sm-8'><input id='{{id}}_receiptsGrandTotalRounding' class='form-control' type='text'{{#receiptsGrandTotalRounding}} value='{{receiptsGrandTotalRounding}}'{{/receiptsGrandTotalRounding}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionsGrandTotal'>transactionsGrandTotal: </label><div class='col-sm-8'><input id='{{id}}_transactionsGrandTotal' class='form-control' type='text'{{#transactionsGrandTotal}} value='{{transactionsGrandTotal}}'{{/transactionsGrandTotal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionsGrandTotalRounding'>transactionsGrandTotalRounding: </label><div class='col-sm-8'><input id='{{id}}_transactionsGrandTotalRounding' class='form-control' type='text'{{#transactionsGrandTotalRounding}} value='{{transactionsGrandTotalRounding}}'{{/transactionsGrandTotalRounding}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Shift" };
-                super.submit (obj);
-                temp = document.getElementById ("activityInterval").value; if ("" != temp) obj.activityInterval = temp;
-                temp = document.getElementById ("receiptsGrandTotalBankable").value; if ("" != temp) obj.receiptsGrandTotalBankable = temp;
-                temp = document.getElementById ("receiptsGrandTotalNonBankable").value; if ("" != temp) obj.receiptsGrandTotalNonBankable = temp;
-                temp = document.getElementById ("receiptsGrandTotalRounding").value; if ("" != temp) obj.receiptsGrandTotalRounding = temp;
-                temp = document.getElementById ("transactionsGrandTotal").value; if ("" != temp) obj.transactionsGrandTotal = temp;
-                temp = document.getElementById ("transactionsGrandTotalRounding").value; if ("" != temp) obj.transactionsGrandTotalRounding = temp;
+                var obj = obj || { id: id, cls: "Shift" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_activityInterval").value; if ("" != temp) obj.activityInterval = temp;
+                temp = document.getElementById (id + "_receiptsGrandTotalBankable").value; if ("" != temp) obj.receiptsGrandTotalBankable = temp;
+                temp = document.getElementById (id + "_receiptsGrandTotalNonBankable").value; if ("" != temp) obj.receiptsGrandTotalNonBankable = temp;
+                temp = document.getElementById (id + "_receiptsGrandTotalRounding").value; if ("" != temp) obj.receiptsGrandTotalRounding = temp;
+                temp = document.getElementById (id + "_transactionsGrandTotal").value; if ("" != temp) obj.transactionsGrandTotal = temp;
+                temp = document.getElementById (id + "_transactionsGrandTotalRounding").value; if ("" != temp) obj.transactionsGrandTotalRounding = temp;
 
                 return (obj);
             }
@@ -1923,31 +1923,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LineDetail_collapse" aria-expanded="true" aria-controls="LineDetail_collapse" style="margin-left: 10px;">LineDetail</a></legend>
-                    <div id="LineDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LineDetail_collapse" aria-expanded="true" aria-controls="{{id}}_LineDetail_collapse" style="margin-left: 10px;">LineDetail</a></legend>
+                    <div id="{{id}}_LineDetail_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dateTime'>dateTime: </label><div class='col-sm-8'><input id='dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='note'>note: </label><div class='col-sm-8'><input id='note' class='form-control' type='text'{{#note}} value='{{note}}'{{/note}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rounding'>rounding: </label><div class='col-sm-8'><input id='rounding' class='form-control' type='text'{{#rounding}} value='{{rounding}}'{{/rounding}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dateTime'>dateTime: </label><div class='col-sm-8'><input id='{{id}}_dateTime' class='form-control' type='text'{{#dateTime}} value='{{dateTime}}'{{/dateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_note'>note: </label><div class='col-sm-8'><input id='{{id}}_note' class='form-control' type='text'{{#note}} value='{{note}}'{{/note}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rounding'>rounding: </label><div class='col-sm-8'><input id='{{id}}_rounding' class='form-control' type='text'{{#rounding}} value='{{rounding}}'{{/rounding}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LineDetail" };
-                super.submit (obj);
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById ("dateTime").value; if ("" != temp) obj.dateTime = temp;
-                temp = document.getElementById ("note").value; if ("" != temp) obj.note = temp;
-                temp = document.getElementById ("rounding").value; if ("" != temp) obj.rounding = temp;
+                var obj = obj || { id: id, cls: "LineDetail" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById (id + "_dateTime").value; if ("" != temp) obj.dateTime = temp;
+                temp = document.getElementById (id + "_note").value; if ("" != temp) obj.note = temp;
+                temp = document.getElementById (id + "_rounding").value; if ("" != temp) obj.rounding = temp;
 
                 return (obj);
             }
@@ -2040,25 +2040,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cashier_collapse" aria-expanded="true" aria-controls="Cashier_collapse" style="margin-left: 10px;">Cashier</a></legend>
-                    <div id="Cashier_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Cashier_collapse" aria-expanded="true" aria-controls="{{id}}_Cashier_collapse" style="margin-left: 10px;">Cashier</a></legend>
+                    <div id="{{id}}_Cashier_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddress'>electronicAddress: </label><div class='col-sm-8'><input id='{{id}}_electronicAddress' class='form-control' type='text'{{#electronicAddress}} value='{{electronicAddress}}'{{/electronicAddress}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Cashier" };
-                super.submit (obj);
-                temp = document.getElementById ("electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
+                var obj = obj || { id: id, cls: "Cashier" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_electronicAddress").value; if ("" != temp) obj.electronicAddress = temp;
 
                 return (obj);
             }
@@ -2173,27 +2173,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceSupplier_collapse" aria-expanded="true" aria-controls="ServiceSupplier_collapse" style="margin-left: 10px;">ServiceSupplier</a></legend>
-                    <div id="ServiceSupplier_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ServiceSupplier_collapse" aria-expanded="true" aria-controls="{{id}}_ServiceSupplier_collapse" style="margin-left: 10px;">ServiceSupplier</a></legend>
+                    <div id="{{id}}_ServiceSupplier_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='issuerIdentificationNumber'>issuerIdentificationNumber: </label><div class='col-sm-8'><input id='issuerIdentificationNumber' class='form-control' type='text'{{#issuerIdentificationNumber}} value='{{issuerIdentificationNumber}}'{{/issuerIdentificationNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#SupplierKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SupplierKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issuerIdentificationNumber'>issuerIdentificationNumber: </label><div class='col-sm-8'><input id='{{id}}_issuerIdentificationNumber' class='form-control' type='text'{{#issuerIdentificationNumber}} value='{{issuerIdentificationNumber}}'{{/issuerIdentificationNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#SupplierKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SupplierKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ServiceSupplier" };
-                super.submit (obj);
-                temp = document.getElementById ("issuerIdentificationNumber").value; if ("" != temp) obj.issuerIdentificationNumber = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = SupplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SupplierKind." + temp; }
+                var obj = obj || { id: id, cls: "ServiceSupplier" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_issuerIdentificationNumber").value; if ("" != temp) obj.issuerIdentificationNumber = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SupplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SupplierKind." + temp; }
 
                 return (obj);
             }
@@ -2307,35 +2307,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Cheque_collapse" aria-expanded="true" aria-controls="Cheque_collapse" style="margin-left: 10px;">Cheque</a></legend>
-                    <div id="Cheque_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Cheque_collapse" aria-expanded="true" aria-controls="{{id}}_Cheque_collapse" style="margin-left: 10px;">Cheque</a></legend>
+                    <div id="{{id}}_Cheque_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bankAccountDetail'>bankAccountDetail: </label><div class='col-sm-8'><input id='bankAccountDetail' class='form-control' type='text'{{#bankAccountDetail}} value='{{bankAccountDetail}}'{{/bankAccountDetail}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='chequeNumber'>chequeNumber: </label><div class='col-sm-8'><input id='chequeNumber' class='form-control' type='text'{{#chequeNumber}} value='{{chequeNumber}}'{{/chequeNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='date'>date: </label><div class='col-sm-8'><input id='date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ChequeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChequeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='micrNumber'>micrNumber: </label><div class='col-sm-8'><input id='micrNumber' class='form-control' type='text'{{#micrNumber}} value='{{micrNumber}}'{{/micrNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Tender'>Tender: </label><div class='col-sm-8'><input id='Tender' class='form-control' type='text'{{#Tender}} value='{{Tender}}'{{/Tender}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bankAccountDetail'>bankAccountDetail: </label><div class='col-sm-8'><input id='{{id}}_bankAccountDetail' class='form-control' type='text'{{#bankAccountDetail}} value='{{bankAccountDetail}}'{{/bankAccountDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chequeNumber'>chequeNumber: </label><div class='col-sm-8'><input id='{{id}}_chequeNumber' class='form-control' type='text'{{#chequeNumber}} value='{{chequeNumber}}'{{/chequeNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_date'>date: </label><div class='col-sm-8'><input id='{{id}}_date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#ChequeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ChequeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_micrNumber'>micrNumber: </label><div class='col-sm-8'><input id='{{id}}_micrNumber' class='form-control' type='text'{{#micrNumber}} value='{{micrNumber}}'{{/micrNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Tender'>Tender: </label><div class='col-sm-8'><input id='{{id}}_Tender' class='form-control' type='text'{{#Tender}} value='{{Tender}}'{{/Tender}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Cheque" };
-                super.submit (obj);
-                temp = document.getElementById ("bankAccountDetail").value; if ("" != temp) obj.bankAccountDetail = temp;
-                temp = document.getElementById ("chequeNumber").value; if ("" != temp) obj.chequeNumber = temp;
-                temp = document.getElementById ("date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ChequeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ChequeKind." + temp; }
-                temp = document.getElementById ("micrNumber").value; if ("" != temp) obj.micrNumber = temp;
-                temp = document.getElementById ("Tender").value; if ("" != temp) obj.Tender = temp;
+                var obj = obj || { id: id, cls: "Cheque" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_bankAccountDetail").value; if ("" != temp) obj.bankAccountDetail = temp;
+                temp = document.getElementById (id + "_chequeNumber").value; if ("" != temp) obj.chequeNumber = temp;
+                temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ChequeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ChequeKind." + temp; }
+                temp = document.getElementById (id + "_micrNumber").value; if ("" != temp) obj.micrNumber = temp;
+                temp = document.getElementById (id + "_Tender").value; if ("" != temp) obj.Tender = temp;
 
                 return (obj);
             }
@@ -2449,35 +2449,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Tender_collapse" aria-expanded="true" aria-controls="Tender_collapse" style="margin-left: 10px;">Tender</a></legend>
-                    <div id="Tender_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Tender_collapse" aria-expanded="true" aria-controls="{{id}}_Tender_collapse" style="margin-left: 10px;">Tender</a></legend>
+                    <div id="{{id}}_Tender_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='change'>change: </label><div class='col-sm-8'><input id='change' class='form-control' type='text'{{#change}} value='{{change}}'{{/change}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TenderKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TenderKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Cheque'>Cheque: </label><div class='col-sm-8'><input id='Cheque' class='form-control' type='text'{{#Cheque}} value='{{Cheque}}'{{/Cheque}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Card'>Card: </label><div class='col-sm-8'><input id='Card' class='form-control' type='text'{{#Card}} value='{{Card}}'{{/Card}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Receipt'>Receipt: </label><div class='col-sm-8'><input id='Receipt' class='form-control' type='text'{{#Receipt}} value='{{Receipt}}'{{/Receipt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_change'>change: </label><div class='col-sm-8'><input id='{{id}}_change' class='form-control' type='text'{{#change}} value='{{change}}'{{/change}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#TenderKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TenderKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Cheque'>Cheque: </label><div class='col-sm-8'><input id='{{id}}_Cheque' class='form-control' type='text'{{#Cheque}} value='{{Cheque}}'{{/Cheque}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Card'>Card: </label><div class='col-sm-8'><input id='{{id}}_Card' class='form-control' type='text'{{#Card}} value='{{Card}}'{{/Card}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Receipt'>Receipt: </label><div class='col-sm-8'><input id='{{id}}_Receipt' class='form-control' type='text'{{#Receipt}} value='{{Receipt}}'{{/Receipt}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Tender" };
-                super.submit (obj);
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById ("change").value; if ("" != temp) obj.change = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TenderKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TenderKind." + temp; }
-                temp = document.getElementById ("Cheque").value; if ("" != temp) obj.Cheque = temp;
-                temp = document.getElementById ("Card").value; if ("" != temp) obj.Card = temp;
-                temp = document.getElementById ("Receipt").value; if ("" != temp) obj.Receipt = temp;
+                var obj = obj || { id: id, cls: "Tender" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById (id + "_change").value; if ("" != temp) obj.change = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TenderKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TenderKind." + temp; }
+                temp = document.getElementById (id + "_Cheque").value; if ("" != temp) obj.Cheque = temp;
+                temp = document.getElementById (id + "_Card").value; if ("" != temp) obj.Card = temp;
+                temp = document.getElementById (id + "_Receipt").value; if ("" != temp) obj.Receipt = temp;
 
                 return (obj);
             }
@@ -2576,25 +2576,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Transactor_collapse" aria-expanded="true" aria-controls="Transactor_collapse" style="margin-left: 10px;">Transactor</a></legend>
-                    <div id="Transactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Transactor_collapse" aria-expanded="true" aria-controls="{{id}}_Transactor_collapse" style="margin-left: 10px;">Transactor</a></legend>
+                    <div id="{{id}}_Transactor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MerchantAccounts'>MerchantAccounts: </label><div class='col-sm-8'><input id='MerchantAccounts' class='form-control' type='text'{{#MerchantAccounts}} value='{{MerchantAccounts}}_string'{{/MerchantAccounts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAccounts'>MerchantAccounts: </label><div class='col-sm-8'><input id='{{id}}_MerchantAccounts' class='form-control' type='text'{{#MerchantAccounts}} value='{{MerchantAccounts}}_string'{{/MerchantAccounts}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Transactor" };
-                super.submit (obj);
-                temp = document.getElementById ("MerchantAccounts").value; if ("" != temp) obj.MerchantAccounts = temp.split (",");
+                var obj = obj || { id: id, cls: "Transactor" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_MerchantAccounts").value; if ("" != temp) obj.MerchantAccounts = temp.split (",");
 
                 return (obj);
             }
@@ -2714,37 +2714,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryAccount_collapse" aria-expanded="true" aria-controls="AuxiliaryAccount_collapse" style="margin-left: 10px;">AuxiliaryAccount</a></legend>
-                    <div id="AuxiliaryAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryAccount_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryAccount_collapse" style="margin-left: 10px;">AuxiliaryAccount</a></legend>
+                    <div id="{{id}}_AuxiliaryAccount_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='balance'>balance: </label><div class='col-sm-8'><input id='balance' class='form-control' type='text'{{#balance}} value='{{balance}}'{{/balance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='due'>due: </label><div class='col-sm-8'><input id='due' class='form-control' type='text'{{#due}} value='{{due}}'{{/due}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastCredit'>lastCredit: </label><div class='col-sm-8'><input id='lastCredit' class='form-control' type='text'{{#lastCredit}} value='{{lastCredit}}'{{/lastCredit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastDebit'>lastDebit: </label><div class='col-sm-8'><input id='lastDebit' class='form-control' type='text'{{#lastDebit}} value='{{lastDebit}}'{{/lastDebit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='principleAmount'>principleAmount: </label><div class='col-sm-8'><input id='principleAmount' class='form-control' type='text'{{#principleAmount}} value='{{principleAmount}}'{{/principleAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Charges'>Charges: </label><div class='col-sm-8'><input id='Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AuxiliaryAgreement'>AuxiliaryAgreement: </label><div class='col-sm-8'><input id='AuxiliaryAgreement' class='form-control' type='text'{{#AuxiliaryAgreement}} value='{{AuxiliaryAgreement}}'{{/AuxiliaryAgreement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_balance'>balance: </label><div class='col-sm-8'><input id='{{id}}_balance' class='form-control' type='text'{{#balance}} value='{{balance}}'{{/balance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_due'>due: </label><div class='col-sm-8'><input id='{{id}}_due' class='form-control' type='text'{{#due}} value='{{due}}'{{/due}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastCredit'>lastCredit: </label><div class='col-sm-8'><input id='{{id}}_lastCredit' class='form-control' type='text'{{#lastCredit}} value='{{lastCredit}}'{{/lastCredit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastDebit'>lastDebit: </label><div class='col-sm-8'><input id='{{id}}_lastDebit' class='form-control' type='text'{{#lastDebit}} value='{{lastDebit}}'{{/lastDebit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_principleAmount'>principleAmount: </label><div class='col-sm-8'><input id='{{id}}_principleAmount' class='form-control' type='text'{{#principleAmount}} value='{{principleAmount}}'{{/principleAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Charges'>Charges: </label><div class='col-sm-8'><input id='{{id}}_Charges' class='form-control' type='text'{{#Charges}} value='{{Charges}}_string'{{/Charges}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAgreement'>AuxiliaryAgreement: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAgreement' class='form-control' type='text'{{#AuxiliaryAgreement}} value='{{AuxiliaryAgreement}}'{{/AuxiliaryAgreement}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AuxiliaryAccount" };
-                super.submit (obj);
-                temp = document.getElementById ("balance").value; if ("" != temp) obj.balance = temp;
-                temp = document.getElementById ("due").value; if ("" != temp) obj.due = temp;
-                temp = document.getElementById ("lastCredit").value; if ("" != temp) obj.lastCredit = temp;
-                temp = document.getElementById ("lastDebit").value; if ("" != temp) obj.lastDebit = temp;
-                temp = document.getElementById ("principleAmount").value; if ("" != temp) obj.principleAmount = temp;
-                temp = document.getElementById ("Charges").value; if ("" != temp) obj.Charges = temp.split (",");
-                temp = document.getElementById ("AuxiliaryAgreement").value; if ("" != temp) obj.AuxiliaryAgreement = temp;
+                var obj = obj || { id: id, cls: "AuxiliaryAccount" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_balance").value; if ("" != temp) obj.balance = temp;
+                temp = document.getElementById (id + "_due").value; if ("" != temp) obj.due = temp;
+                temp = document.getElementById (id + "_lastCredit").value; if ("" != temp) obj.lastCredit = temp;
+                temp = document.getElementById (id + "_lastDebit").value; if ("" != temp) obj.lastDebit = temp;
+                temp = document.getElementById (id + "_principleAmount").value; if ("" != temp) obj.principleAmount = temp;
+                temp = document.getElementById (id + "_Charges").value; if ("" != temp) obj.Charges = temp.split (",");
+                temp = document.getElementById (id + "_AuxiliaryAgreement").value; if ("" != temp) obj.AuxiliaryAgreement = temp;
 
                 return (obj);
             }
@@ -2850,31 +2850,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccountingUnit_collapse" aria-expanded="true" aria-controls="AccountingUnit_collapse" style="margin-left: 10px;">AccountingUnit</a></legend>
-                    <div id="AccountingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AccountingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_AccountingUnit_collapse" style="margin-left: 10px;">AccountingUnit</a></legend>
+                    <div id="{{id}}_AccountingUnit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyUnit'>energyUnit: </label><div class='col-sm-8'><input id='energyUnit' class='form-control' type='text'{{#energyUnit}} value='{{energyUnit}}'{{/energyUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='monetaryUnit'>monetaryUnit: </label><div class='col-sm-8'><input id='monetaryUnit' class='form-control' type='text'{{#monetaryUnit}} value='{{monetaryUnit}}'{{/monetaryUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyUnit'>energyUnit: </label><div class='col-sm-8'><input id='{{id}}_energyUnit' class='form-control' type='text'{{#energyUnit}} value='{{energyUnit}}'{{/energyUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_monetaryUnit'>monetaryUnit: </label><div class='col-sm-8'><input id='{{id}}_monetaryUnit' class='form-control' type='text'{{#monetaryUnit}} value='{{monetaryUnit}}'{{/monetaryUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AccountingUnit" };
-                super.submit (obj);
-                temp = document.getElementById ("energyUnit").value; if ("" != temp) obj.energyUnit = temp;
-                temp = document.getElementById ("monetaryUnit").value; if ("" != temp) obj.monetaryUnit = temp;
-                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "AccountingUnit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_energyUnit").value; if ("" != temp) obj.energyUnit = temp;
+                temp = document.getElementById (id + "_monetaryUnit").value; if ("" != temp) obj.monetaryUnit = temp;
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -2964,8 +2964,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MerchantAgreement_collapse" aria-expanded="true" aria-controls="MerchantAgreement_collapse" style="margin-left: 10px;">MerchantAgreement</a></legend>
-                    <div id="MerchantAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MerchantAgreement_collapse" aria-expanded="true" aria-controls="{{id}}_MerchantAgreement_collapse" style="margin-left: 10px;">MerchantAgreement</a></legend>
+                    <div id="{{id}}_MerchantAgreement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
@@ -2975,10 +2975,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "MerchantAgreement" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "MerchantAgreement" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -3122,53 +3122,53 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Transaction_collapse" aria-expanded="true" aria-controls="Transaction_collapse" style="margin-left: 10px;">Transaction</a></legend>
-                    <div id="Transaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Transaction_collapse" aria-expanded="true" aria-controls="{{id}}_Transaction_collapse" style="margin-left: 10px;">Transaction</a></legend>
+                    <div id="{{id}}_Transaction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diverseReference'>diverseReference: </label><div class='col-sm-8'><input id='diverseReference' class='form-control' type='text'{{#diverseReference}} value='{{diverseReference}}'{{/diverseReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='donorReference'>donorReference: </label><div class='col-sm-8'><input id='donorReference' class='form-control' type='text'{{#donorReference}} value='{{donorReference}}'{{/donorReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TransactionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransactionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='line'>line: </label><div class='col-sm-8'><input id='line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receiverReference'>receiverReference: </label><div class='col-sm-8'><input id='receiverReference' class='form-control' type='text'{{#receiverReference}} value='{{receiverReference}}'{{/receiverReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reversedId'>reversedId: </label><div class='col-sm-8'><input id='reversedId' class='form-control' type='text'{{#reversedId}} value='{{reversedId}}'{{/reversedId}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='serviceUnitsEnergy'>serviceUnitsEnergy: </label><div class='col-sm-8'><input id='serviceUnitsEnergy' class='form-control' type='text'{{#serviceUnitsEnergy}} value='{{serviceUnitsEnergy}}'{{/serviceUnitsEnergy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='serviceUnitsError'>serviceUnitsError: </label><div class='col-sm-8'><input id='serviceUnitsError' class='form-control' type='text'{{#serviceUnitsError}} value='{{serviceUnitsError}}'{{/serviceUnitsError}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PricingStructure'>PricingStructure: </label><div class='col-sm-8'><input id='PricingStructure' class='form-control' type='text'{{#PricingStructure}} value='{{PricingStructure}}'{{/PricingStructure}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AuxiliaryAccount'>AuxiliaryAccount: </label><div class='col-sm-8'><input id='AuxiliaryAccount' class='form-control' type='text'{{#AuxiliaryAccount}} value='{{AuxiliaryAccount}}'{{/AuxiliaryAccount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Receipt'>Receipt: </label><div class='col-sm-8'><input id='Receipt' class='form-control' type='text'{{#Receipt}} value='{{Receipt}}'{{/Receipt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VendorShift'>VendorShift: </label><div class='col-sm-8'><input id='VendorShift' class='form-control' type='text'{{#VendorShift}} value='{{VendorShift}}'{{/VendorShift}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CashierShift'>CashierShift: </label><div class='col-sm-8'><input id='CashierShift' class='form-control' type='text'{{#CashierShift}} value='{{CashierShift}}'{{/CashierShift}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Meter'>Meter: </label><div class='col-sm-8'><input id='Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diverseReference'>diverseReference: </label><div class='col-sm-8'><input id='{{id}}_diverseReference' class='form-control' type='text'{{#diverseReference}} value='{{diverseReference}}'{{/diverseReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_donorReference'>donorReference: </label><div class='col-sm-8'><input id='{{id}}_donorReference' class='form-control' type='text'{{#donorReference}} value='{{donorReference}}'{{/donorReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#TransactionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransactionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_line'>line: </label><div class='col-sm-8'><input id='{{id}}_line' class='form-control' type='text'{{#line}} value='{{line}}'{{/line}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receiverReference'>receiverReference: </label><div class='col-sm-8'><input id='{{id}}_receiverReference' class='form-control' type='text'{{#receiverReference}} value='{{receiverReference}}'{{/receiverReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reversedId'>reversedId: </label><div class='col-sm-8'><input id='{{id}}_reversedId' class='form-control' type='text'{{#reversedId}} value='{{reversedId}}'{{/reversedId}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceUnitsEnergy'>serviceUnitsEnergy: </label><div class='col-sm-8'><input id='{{id}}_serviceUnitsEnergy' class='form-control' type='text'{{#serviceUnitsEnergy}} value='{{serviceUnitsEnergy}}'{{/serviceUnitsEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceUnitsError'>serviceUnitsError: </label><div class='col-sm-8'><input id='{{id}}_serviceUnitsError' class='form-control' type='text'{{#serviceUnitsError}} value='{{serviceUnitsError}}'{{/serviceUnitsError}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PricingStructure'>PricingStructure: </label><div class='col-sm-8'><input id='{{id}}_PricingStructure' class='form-control' type='text'{{#PricingStructure}} value='{{PricingStructure}}'{{/PricingStructure}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxiliaryAccount'>AuxiliaryAccount: </label><div class='col-sm-8'><input id='{{id}}_AuxiliaryAccount' class='form-control' type='text'{{#AuxiliaryAccount}} value='{{AuxiliaryAccount}}'{{/AuxiliaryAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Receipt'>Receipt: </label><div class='col-sm-8'><input id='{{id}}_Receipt' class='form-control' type='text'{{#Receipt}} value='{{Receipt}}'{{/Receipt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VendorShift'>VendorShift: </label><div class='col-sm-8'><input id='{{id}}_VendorShift' class='form-control' type='text'{{#VendorShift}} value='{{VendorShift}}'{{/VendorShift}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CashierShift'>CashierShift: </label><div class='col-sm-8'><input id='{{id}}_CashierShift' class='form-control' type='text'{{#CashierShift}} value='{{CashierShift}}'{{/CashierShift}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Meter'>Meter: </label><div class='col-sm-8'><input id='{{id}}_Meter' class='form-control' type='text'{{#Meter}} value='{{Meter}}'{{/Meter}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Transaction" };
-                super.submit (obj);
-                temp = document.getElementById ("diverseReference").value; if ("" != temp) obj.diverseReference = temp;
-                temp = document.getElementById ("donorReference").value; if ("" != temp) obj.donorReference = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TransactionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransactionKind." + temp; }
-                temp = document.getElementById ("line").value; if ("" != temp) obj.line = temp;
-                temp = document.getElementById ("receiverReference").value; if ("" != temp) obj.receiverReference = temp;
-                temp = document.getElementById ("reversedId").value; if ("" != temp) obj.reversedId = temp;
-                temp = document.getElementById ("serviceUnitsEnergy").value; if ("" != temp) obj.serviceUnitsEnergy = temp;
-                temp = document.getElementById ("serviceUnitsError").value; if ("" != temp) obj.serviceUnitsError = temp;
-                temp = document.getElementById ("PricingStructure").value; if ("" != temp) obj.PricingStructure = temp;
-                temp = document.getElementById ("AuxiliaryAccount").value; if ("" != temp) obj.AuxiliaryAccount = temp;
-                temp = document.getElementById ("Receipt").value; if ("" != temp) obj.Receipt = temp;
-                temp = document.getElementById ("VendorShift").value; if ("" != temp) obj.VendorShift = temp;
-                temp = document.getElementById ("CashierShift").value; if ("" != temp) obj.CashierShift = temp;
-                temp = document.getElementById ("Meter").value; if ("" != temp) obj.Meter = temp;
-                temp = document.getElementById ("CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
+                var obj = obj || { id: id, cls: "Transaction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_diverseReference").value; if ("" != temp) obj.diverseReference = temp;
+                temp = document.getElementById (id + "_donorReference").value; if ("" != temp) obj.donorReference = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TransactionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransactionKind." + temp; }
+                temp = document.getElementById (id + "_line").value; if ("" != temp) obj.line = temp;
+                temp = document.getElementById (id + "_receiverReference").value; if ("" != temp) obj.receiverReference = temp;
+                temp = document.getElementById (id + "_reversedId").value; if ("" != temp) obj.reversedId = temp;
+                temp = document.getElementById (id + "_serviceUnitsEnergy").value; if ("" != temp) obj.serviceUnitsEnergy = temp;
+                temp = document.getElementById (id + "_serviceUnitsError").value; if ("" != temp) obj.serviceUnitsError = temp;
+                temp = document.getElementById (id + "_PricingStructure").value; if ("" != temp) obj.PricingStructure = temp;
+                temp = document.getElementById (id + "_AuxiliaryAccount").value; if ("" != temp) obj.AuxiliaryAccount = temp;
+                temp = document.getElementById (id + "_Receipt").value; if ("" != temp) obj.Receipt = temp;
+                temp = document.getElementById (id + "_VendorShift").value; if ("" != temp) obj.VendorShift = temp;
+                temp = document.getElementById (id + "_CashierShift").value; if ("" != temp) obj.CashierShift = temp;
+                temp = document.getElementById (id + "_Meter").value; if ("" != temp) obj.Meter = temp;
+                temp = document.getElementById (id + "_CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
 
                 return (obj);
             }
@@ -3288,31 +3288,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MerchantAccount_collapse" aria-expanded="true" aria-controls="MerchantAccount_collapse" style="margin-left: 10px;">MerchantAccount</a></legend>
-                    <div id="MerchantAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MerchantAccount_collapse" aria-expanded="true" aria-controls="{{id}}_MerchantAccount_collapse" style="margin-left: 10px;">MerchantAccount</a></legend>
+                    <div id="{{id}}_MerchantAccount_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentBalance'>currentBalance: </label><div class='col-sm-8'><input id='currentBalance' class='form-control' type='text'{{#currentBalance}} value='{{currentBalance}}'{{/currentBalance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='provisionalBalance'>provisionalBalance: </label><div class='col-sm-8'><input id='provisionalBalance' class='form-control' type='text'{{#provisionalBalance}} value='{{provisionalBalance}}'{{/provisionalBalance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Transactors'>Transactors: </label><div class='col-sm-8'><input id='Transactors' class='form-control' type='text'{{#Transactors}} value='{{Transactors}}_string'{{/Transactors}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MerchantAgreement'>MerchantAgreement: </label><div class='col-sm-8'><input id='MerchantAgreement' class='form-control' type='text'{{#MerchantAgreement}} value='{{MerchantAgreement}}'{{/MerchantAgreement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currentBalance'>currentBalance: </label><div class='col-sm-8'><input id='{{id}}_currentBalance' class='form-control' type='text'{{#currentBalance}} value='{{currentBalance}}'{{/currentBalance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_provisionalBalance'>provisionalBalance: </label><div class='col-sm-8'><input id='{{id}}_provisionalBalance' class='form-control' type='text'{{#provisionalBalance}} value='{{provisionalBalance}}'{{/provisionalBalance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Transactors'>Transactors: </label><div class='col-sm-8'><input id='{{id}}_Transactors' class='form-control' type='text'{{#Transactors}} value='{{Transactors}}_string'{{/Transactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAgreement'>MerchantAgreement: </label><div class='col-sm-8'><input id='{{id}}_MerchantAgreement' class='form-control' type='text'{{#MerchantAgreement}} value='{{MerchantAgreement}}'{{/MerchantAgreement}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MerchantAccount" };
-                super.submit (obj);
-                temp = document.getElementById ("currentBalance").value; if ("" != temp) obj.currentBalance = temp;
-                temp = document.getElementById ("provisionalBalance").value; if ("" != temp) obj.provisionalBalance = temp;
-                temp = document.getElementById ("Transactors").value; if ("" != temp) obj.Transactors = temp.split (",");
-                temp = document.getElementById ("MerchantAgreement").value; if ("" != temp) obj.MerchantAgreement = temp;
+                var obj = obj || { id: id, cls: "MerchantAccount" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_currentBalance").value; if ("" != temp) obj.currentBalance = temp;
+                temp = document.getElementById (id + "_provisionalBalance").value; if ("" != temp) obj.provisionalBalance = temp;
+                temp = document.getElementById (id + "_Transactors").value; if ("" != temp) obj.Transactors = temp.split (",");
+                temp = document.getElementById (id + "_MerchantAgreement").value; if ("" != temp) obj.MerchantAgreement = temp;
 
                 return (obj);
             }
@@ -3425,29 +3425,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CashierShift_collapse" aria-expanded="true" aria-controls="CashierShift_collapse" style="margin-left: 10px;">CashierShift</a></legend>
-                    <div id="CashierShift_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CashierShift_collapse" aria-expanded="true" aria-controls="{{id}}_CashierShift_collapse" style="margin-left: 10px;">CashierShift</a></legend>
+                    <div id="{{id}}_CashierShift_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Shift.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cashFloat'>cashFloat: </label><div class='col-sm-8'><input id='cashFloat' class='form-control' type='text'{{#cashFloat}} value='{{cashFloat}}'{{/cashFloat}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Cashier'>Cashier: </label><div class='col-sm-8'><input id='Cashier' class='form-control' type='text'{{#Cashier}} value='{{Cashier}}'{{/Cashier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PointOfSale'>PointOfSale: </label><div class='col-sm-8'><input id='PointOfSale' class='form-control' type='text'{{#PointOfSale}} value='{{PointOfSale}}'{{/PointOfSale}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cashFloat'>cashFloat: </label><div class='col-sm-8'><input id='{{id}}_cashFloat' class='form-control' type='text'{{#cashFloat}} value='{{cashFloat}}'{{/cashFloat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Cashier'>Cashier: </label><div class='col-sm-8'><input id='{{id}}_Cashier' class='form-control' type='text'{{#Cashier}} value='{{Cashier}}'{{/Cashier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PointOfSale'>PointOfSale: </label><div class='col-sm-8'><input id='{{id}}_PointOfSale' class='form-control' type='text'{{#PointOfSale}} value='{{PointOfSale}}'{{/PointOfSale}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CashierShift" };
-                super.submit (obj);
-                temp = document.getElementById ("cashFloat").value; if ("" != temp) obj.cashFloat = temp;
-                temp = document.getElementById ("Cashier").value; if ("" != temp) obj.Cashier = temp;
-                temp = document.getElementById ("PointOfSale").value; if ("" != temp) obj.PointOfSale = temp;
+                var obj = obj || { id: id, cls: "CashierShift" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_cashFloat").value; if ("" != temp) obj.cashFloat = temp;
+                temp = document.getElementById (id + "_Cashier").value; if ("" != temp) obj.Cashier = temp;
+                temp = document.getElementById (id + "_PointOfSale").value; if ("" != temp) obj.PointOfSale = temp;
 
                 return (obj);
             }
@@ -3566,31 +3566,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VendorShift_collapse" aria-expanded="true" aria-controls="VendorShift_collapse" style="margin-left: 10px;">VendorShift</a></legend>
-                    <div id="VendorShift_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VendorShift_collapse" aria-expanded="true" aria-controls="{{id}}_VendorShift_collapse" style="margin-left: 10px;">VendorShift</a></legend>
+                    <div id="{{id}}_VendorShift_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Shift.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='merchantDebitAmount'>merchantDebitAmount: </label><div class='col-sm-8'><input id='merchantDebitAmount' class='form-control' type='text'{{#merchantDebitAmount}} value='{{merchantDebitAmount}}'{{/merchantDebitAmount}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='posted'>posted: </label><div class='col-sm-8'><input id='posted' class='form-check-input' type='checkbox'{{#posted}} checked{{/posted}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Vendor'>Vendor: </label><div class='col-sm-8'><input id='Vendor' class='form-control' type='text'{{#Vendor}} value='{{Vendor}}'{{/Vendor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MerchantAccount'>MerchantAccount: </label><div class='col-sm-8'><input id='MerchantAccount' class='form-control' type='text'{{#MerchantAccount}} value='{{MerchantAccount}}'{{/MerchantAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_merchantDebitAmount'>merchantDebitAmount: </label><div class='col-sm-8'><input id='{{id}}_merchantDebitAmount' class='form-control' type='text'{{#merchantDebitAmount}} value='{{merchantDebitAmount}}'{{/merchantDebitAmount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_posted'>posted: </label><div class='col-sm-8'><input id='{{id}}_posted' class='form-check-input' type='checkbox'{{#posted}} checked{{/posted}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Vendor'>Vendor: </label><div class='col-sm-8'><input id='{{id}}_Vendor' class='form-control' type='text'{{#Vendor}} value='{{Vendor}}'{{/Vendor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MerchantAccount'>MerchantAccount: </label><div class='col-sm-8'><input id='{{id}}_MerchantAccount' class='form-control' type='text'{{#MerchantAccount}} value='{{MerchantAccount}}'{{/MerchantAccount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VendorShift" };
-                super.submit (obj);
-                temp = document.getElementById ("merchantDebitAmount").value; if ("" != temp) obj.merchantDebitAmount = temp;
-                temp = document.getElementById ("posted").checked; if (temp) obj.posted = true;
-                temp = document.getElementById ("Vendor").value; if ("" != temp) obj.Vendor = temp;
-                temp = document.getElementById ("MerchantAccount").value; if ("" != temp) obj.MerchantAccount = temp;
+                var obj = obj || { id: id, cls: "VendorShift" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_merchantDebitAmount").value; if ("" != temp) obj.merchantDebitAmount = temp;
+                temp = document.getElementById (id + "_posted").checked; if (temp) obj.posted = true;
+                temp = document.getElementById (id + "_Vendor").value; if ("" != temp) obj.Vendor = temp;
+                temp = document.getElementById (id + "_MerchantAccount").value; if ("" != temp) obj.MerchantAccount = temp;
 
                 return (obj);
             }

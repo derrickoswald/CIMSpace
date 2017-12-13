@@ -140,7 +140,7 @@ define
                 );
                 if ((null != features) && (0 != features.length))
                 {
-                    var mrid = this._current_feature.mRID;
+                    var mrid = this._elements[0].mRID;
                     var best_lnglat = null;
                     var best_feature = null;
                     var dist = this.distance.bind (this);
@@ -324,9 +324,8 @@ define
                     digitize_line = true;
                 else if (this._features.PowerSystemResource)
                     digitize_point = true;
-                this.edit (obj);
+                this.edit (obj, true);
 
-                this._new_elements = [ obj ];
                 if (this._features.Conductor)
                     this.digitize_line (obj, this.make_cable.bind (this));
                 else if (this._features.ConductingEquipment)
@@ -345,56 +344,11 @@ define
 
             create_new ()
             {
-                if (null != this._current_feature)
-                {
-                    var proto = JSON.parse (JSON.stringify (this._current_feature));
-                    proto.id = proto.cls + (~~(1e6 * Math.random ())).toString ();
-                    delete proto.aliasName;
-                    delete proto.length;
-                    this.create_from (proto);
-                }
-            }
-
-            make_psr (feature)
-            {
-                var point = this._current_feature;
-                var id = point.id;
-
-                // create the location
-                var location =
-                {
-                    EditDisposition: "new",
-                    cls: "Location",
-                    id: id + "_location",
-                    mRID: id + "_location",
-                    CoordinateSystem: "wgs84",
-                    type: "geographic"
-                };
-                this._new_elements.push (new Common.Location (location, this._features));
-
-                // set the position points
-                var pp =
-                {
-                    EditDisposition: "new",
-                    Location: location.id,
-                    cls: "PositionPoint",
-                    id: id + "_location_p",
-                    sequenceNumber: 1,
-                    xPosition: feature.geometry.coordinates[0].toString (),
-                    yPosition: feature.geometry.coordinates[1].toString ()
-                };
-                this._new_elements.push (new Common.PositionPoint (pp, this._features));
-
-                // add the location to the PSR object
-                point.Location = location.id;
-                var cls = cim.class_map (point);
-                point = new cls (point, this._features);
-
-                // update the form
-                document.getElementById ("Location").value = location.id;
-
-                // update the display
-                this.refresh ();
+                var proto = JSON.parse (JSON.stringify (this._elements[0]));
+                proto.id = proto.cls + (~~(1e6 * Math.random ())).toString ();
+                delete proto.aliasName;
+                delete proto.length;
+                this.create_from (proto);
             }
 
             get_connectivity_for_equipment (equipment, point)
@@ -463,7 +417,7 @@ define
                 var ret = {};
 
                 function eq (equipment) { return (this.get_connectivity_for_equipment (equipment, point)); }
-                var list = equipments.map (eq.bind (this));
+                var list = equipments.map (eq.bind (this)).filter (function (connectivity) { return (connectivity.ConnectivityNode); });
                 if (0 == list.length)
                     // no ConnectivityNode just pick the first new one
                     ret = list[0];
@@ -476,7 +430,7 @@ define
                         ret = list[0];
                     else
                     {
-                        console.log ("too many ConnectivityNode found, using " + list[0].ConnectivityNode + " for " + equipment.cls + ":" + equipment.id + " from " + JSON.stringify (list, null, 4));
+                        console.log ("too many ConnectivityNode found, using " + list[0].ConnectivityNode + " from " + JSON.stringify (list, null, 4));
                         ret = list[0];
                     }
 
@@ -571,7 +525,6 @@ define
 
             new_connectivity (name)
             {
-
                 return (
                     {
                         EditDisposition: "new",
@@ -582,17 +535,58 @@ define
                 );
             }
 
+            make_psr (feature)
+            {
+                var psr = this._elements[0];
+                var id = psr.id;
+
+                // create the location
+                var location =
+                {
+                    EditDisposition: "new",
+                    cls: "Location",
+                    id: id + "_location",
+                    mRID: id + "_location",
+                    CoordinateSystem: "wgs84",
+                    type: "geographic"
+                };
+                this.edit (new Common.Location (location, this._features));
+
+                // set the position points
+                var pp =
+                {
+                    EditDisposition: "new",
+                    Location: location.id,
+                    cls: "PositionPoint",
+                    id: id + "_location_p",
+                    sequenceNumber: 1,
+                    xPosition: feature.geometry.coordinates[0].toString (),
+                    yPosition: feature.geometry.coordinates[1].toString ()
+                };
+                this.edit (new Common.PositionPoint (pp, this._features));
+
+                // add the location to the PSR object
+                psr.Location = location.id;
+                var cls = cim.class_map (psr);
+                psr = new cls (psr, this._features);
+
+                // update the form
+                document.getElementById (id + "_Location").value = location.id;
+
+                // update the display
+                this.refresh ();
+            }
 
             make_equipment (feature)
             {
-                var point = this._current_feature;
-                var id = point.id;
+                var equipment = this._elements[0];
+                var id = equipment.id;
 
                 var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
                 if (null == connectivity) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (id + "_node");
-                    this._new_elements.push (new Core.ConnectivityNode (node, this._features));
+                    this.edit (new Core.ConnectivityNode (node, this._features));
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
@@ -612,14 +606,14 @@ define
                 };
                 if (connectivity.TopologicalNode)
                     terminal.TopologicalNode = connectivity.TopologicalNode;
-                this._new_elements.push (new Core.Terminal (terminal, this._features));
+                this.edit (new Core.Terminal (terminal, this._features));
 
                 this.make_psr (feature);
             }
 
             make_cable (feature)
             {
-                var line = this._current_feature;
+                var line = this._elements[0];
                 var id = line.id;
 
                 // create the location
@@ -632,13 +626,13 @@ define
                     mRID: id + "_location",
                     type: "geographic"
                 };
-                this._new_elements.push (new Common.Location (location, this._features));
+                this.edit (new Common.Location (location, this._features));
 
                 // set the position points
                 for (var i = 0; i < feature.geometry.coordinates.length; i++)
                 {
                     var lnglat = feature.geometry.coordinates[i];
-                    this._new_elements.push (
+                    this.edit (
                         new Common.PositionPoint (
                             {
                                 EditDisposition: "new",
@@ -658,7 +652,7 @@ define
                 if (null == connectivity1) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (id + "_node_1");
-                    this._new_elements.push (new Core.ConnectivityNode (node, this._features));
+                    this.edit (new Core.ConnectivityNode (node, this._features));
                     console.log ("no connectivity found at end 1, created ConnectivityNode " + node.id);
                     connectivity1 = { ConnectivityNode: node.id };
                 }
@@ -684,7 +678,7 @@ define
                 if (null == connectivity2) // invent a new node if there are none
                 {
                     var node = this.new_connectivity (id + "_node_2");
-                    this._new_elements.push (new Core.ConnectivityNode (node, this._features));
+                    this.edit (new Core.ConnectivityNode (node, this._features));
                     console.log ("no connectivity found at end 2, created ConnectivityNode " + node.id);
                     connectivity2 = { ConnectivityNode: node.id };
                 }
@@ -704,8 +698,8 @@ define
                 if (connectivity2.TopologicalNode)
                     terminal2.TopologicalNode = connectivity2.TopologicalNode;
 
-                this._new_elements.push (new Core.Terminal (terminal1, this._features));
-                this._new_elements.push (new Core.Terminal (terminal2, this._features));
+                this.edit (new Core.Terminal (terminal1, this._features));
+                this.edit (new Core.Terminal (terminal2, this._features));
 
                 // add the location to the Cable object
                 line.Location = location.id;
@@ -713,7 +707,7 @@ define
                 line = new cls (line, this._features);
 
                 // update the form
-                document.getElementById ("Location").value = location.id;
+                document.getElementById (id + "_Location").value = location.id;
 
                 // update the display
                 this.refresh ();
@@ -781,32 +775,34 @@ define
                     guts.style.maxHeight = (max_height - this._frame_height).toString () + "px";
             }
 
-            edit (feature)
+            edit (element, top_level)
             {
-                var buttons =
-                text = text + buttons;
+                if (top_level)
+                {
+                    var frame =
+                        "<div id='edit_frame' class='well'>\n" +
+                        "  <h3>Edit</h3>\n" +
+                        "  <div id='edit_contents'></div>\n" +
+                        "  <div>\n" +
+                        "    <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
+                        "    <button id='delete' type='button' class='btn btn-danger' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().del ();})'>Delete</button>\n" +
+                        "    <button id='cancel' type='button' class='btn btn-success' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().cancel ();})'>Cancel</button>\n" +
+                        "    <button id='create_new' type='button' class='btn btn-info' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().create_new ();})'>Create new</button>\n" +
+                        "  </div>\n" +
+                        "</div>\n";
+                    this._container.innerHTML = frame;
+                    this._frame_height = document.getElementById ("edit_frame").clientHeight; // frame height with no edit template contents
 
-                var frame =
-                    "<div id='edit_frame' class='well'>\n" +
-                    "  <h3>Edit</h3>\n" +
-                    "  <div id='edit_contents'></div>\n" +
-                    "  <div>\n" +
-                    "    <button id='submit' type='button' class='btn btn-primary' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().save ();})'>Save</button>\n" +
-                    "    <button id='delete' type='button' class='btn btn-danger' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().del ();})'>Delete</button>\n" +
-                    "    <button id='cancel' type='button' class='btn btn-success' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().cancel ();})'>Cancel</button>\n" +
-                    "    <button id='create_new' type='button' class='btn btn-info' onclick='require([\"cimmap\"], function(cimmap) { cimmap.get_editor ().create_new ();})'>Create new</button>\n" +
-                    "  </div>\n" +
-                    "</div>\n";
-                this._container.innerHTML = frame;
-                this._frame_height = document.getElementById ("edit_frame").clientHeight; // frame height with no edit template contents
-
-                this._current_feature = feature;
-                var cls = cim.class_map (feature);
-                cls.prototype.condition (feature);
+                    this._elements = [ element ];
+                }
+                else
+                    this._elements.push (element);
+                var cls = cim.class_map (element);
+                cls.prototype.condition (element);
                 var template = cls.prototype.edit_template ();
-                var text = mustache.render (template, feature);
-                cls.prototype.uncondition (feature);
-                document.getElementById ("edit_contents").innerHTML = text;
+                var text = mustache.render (template, element);
+                cls.prototype.uncondition (element);
+                document.getElementById ("edit_contents").innerHTML = document.getElementById ("edit_contents").innerHTML + text;
                 this.on_map_resize ();
             }
 
@@ -876,81 +872,76 @@ define
 
             save ()
             {
-                if (null != this._current_feature)
+                if (!this._features)
                 {
-                    if (!this._features)
-                    {
-                        // editing an existing object
-                        var old_obj = this._current_feature;
-                        var cls = cim.class_map (old_obj);
-                        var version = this.next_version (old_obj);
-                        cls.prototype.remove (old_obj, this._cimmap.get_data ());
-                        old_obj.id = version;
-                        old_obj.mRID = version;
-                        old_obj.EditDisposition = "delete";
-                        var deleted = new cls (old_obj, this._cimmap.get_data ());
-                        var obj = cls.prototype.submit ();
-                        obj.id = obj.mRID;
-                        obj.cls = old_obj.cls;
-                        obj.EditDisposition = "edit";
-                        // console.log (JSON.stringify (obj, null, 4));
-                        this._current_feature = new cls (obj, this._cimmap.get_data ());
-                    }
-                    else
-                    {
-                        // saving a new set of objects
-                        var id = this._current_feature.id;
-                        for (var i = 0; i < this._new_elements.length; i++)
-                        {
-                            var feature = this._new_elements[i];
-                            var obj = this._features[feature.cls][feature.id];
-                            var cls = cim.class_map (obj);
-                            if (id == obj.id)
-                                obj = Object.assign (obj, cls.prototype.submit ());
-                            var created = new cls (obj, this._cimmap.get_data ());
-                            if (id == created.id)
-                                this._current_feature = created;
-                        }
-                        delete this._new_elements;
-                        delete this._features;
-                    }
-                    // remove features from edit layers
-                    this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
-                    this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
-                    // regenerate the map
-                    this.regen ();
+                    // editing an existing object
+                    var old_obj = this._elements[0];
+                    var original_id = old_obj.id;
+                    var cls = cim.class_map (old_obj);
+                    var version = this.next_version (old_obj);
+                    cls.prototype.remove (old_obj, this._cimmap.get_data ());
+                    old_obj.id = version;
+                    old_obj.mRID = version;
+                    old_obj.EditDisposition = "delete";
+                    var deleted = new cls (old_obj, this._cimmap.get_data ());
+                    var obj = cls.prototype.submit (original_id);
+                    obj.id = obj.mRID;
+                    obj.cls = old_obj.cls;
+                    obj.EditDisposition = "edit";
+                    // console.log (JSON.stringify (obj, null, 4));
+                    this._elements[0] = new cls (obj, this._cimmap.get_data ());
                 }
+                else
+                {
+                    // saving a new set of objects
+                    var id = this._elements[0].id;
+                    for (var i = 0; i < this._elements.length; i++)
+                    {
+                        var feature = this._elements[i];
+                        var obj = this._features[feature.cls][feature.id];
+                        var cls = cim.class_map (obj);
+                        if (id == obj.id)
+                            obj = Object.assign (obj, cls.prototype.submit (id));
+                        var created = new cls (obj, this._cimmap.get_data ());
+                        if (id == created.id)
+                            this._elements[0] = created;
+                    }
+                    delete this._elements;
+                    delete this._features;
+                }
+                // remove features from edit layers
+                this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
+                this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
+                // regenerate the map
+                this.regen ();
             }
 
             del ()
             {
-                if (null != this._current_feature)
+                if (!this._features)
                 {
-                    if (!this._features)
-                    {
-                        // delete existing feature
-                        var old_obj = this._current_feature;
-                        var cls = cim.class_map (old_obj);
-                        cls.prototype.remove (old_obj, this._cimmap.get_data ());
-                        old_obj.EditDisposition = "delete";
-                        old_obj.id = this.next_version (old_obj);
-                        old_obj.mRID = old_obj.id;
-                        this._current_feature = new cls (old_obj, this._cimmap.get_data ());
-                    }
-                    else
-                    {
-                        delete this._new_elements;
-                        delete this._features;
-                        this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
-                        this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
-                    }
-                    this.regen ();
+                    // delete existing feature
+                    var old_obj = this._elements[0];
+                    var cls = cim.class_map (old_obj);
+                    cls.prototype.remove (old_obj, this._cimmap.get_data ());
+                    old_obj.EditDisposition = "delete";
+                    old_obj.id = this.next_version (old_obj);
+                    old_obj.mRID = old_obj.id;
+                    this._elements[0] = new cls (old_obj, this._cimmap.get_data ());
                 }
+                else
+                {
+                    delete this._elements;
+                    delete this._features;
+                    this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
+                    this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
+                }
+                this.regen ();
             }
 
             cancel ()
             {
-                delete this._new_elements;
+                delete this._elements;
                 delete this._features;
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                 this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });

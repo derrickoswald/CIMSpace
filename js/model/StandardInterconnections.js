@@ -137,43 +137,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteInputSignal_collapse" aria-expanded="true" aria-controls="RemoteInputSignal_collapse" style="margin-left: 10px;">RemoteInputSignal</a></legend>
-                    <div id="RemoteInputSignal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteInputSignal_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteInputSignal_collapse" style="margin-left: 10px;">RemoteInputSignal</a></legend>
+                    <div id="{{id}}_RemoteInputSignal_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='remoteSignalType'>remoteSignalType: </label><div class='col-sm-8'><select id='remoteSignalType' class='form-control'>{{#RemoteSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageCompensatorDynamics'>VoltageCompensatorDynamics: </label><div class='col-sm-8'><input id='VoltageCompensatorDynamics' class='form-control' type='text'{{#VoltageCompensatorDynamics}} value='{{VoltageCompensatorDynamics}}'{{/VoltageCompensatorDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantDynamics'>WindPlantDynamics: </label><div class='col-sm-8'><input id='WindPlantDynamics' class='form-control' type='text'{{#WindPlantDynamics}} value='{{WindPlantDynamics}}'{{/WindPlantDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemStabilizerDynamics'>PowerSystemStabilizerDynamics: </label><div class='col-sm-8'><input id='PowerSystemStabilizerDynamics' class='form-control' type='text'{{#PowerSystemStabilizerDynamics}} value='{{PowerSystemStabilizerDynamics}}'{{/PowerSystemStabilizerDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4Dynamics'>WindTurbineType3or4Dynamics: </label><div class='col-sm-8'><input id='WindTurbineType3or4Dynamics' class='form-control' type='text'{{#WindTurbineType3or4Dynamics}} value='{{WindTurbineType3or4Dynamics}}'{{/WindTurbineType3or4Dynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UnderexcitationLimiterDynamics'>UnderexcitationLimiterDynamics: </label><div class='col-sm-8'><input id='UnderexcitationLimiterDynamics' class='form-control' type='text'{{#UnderexcitationLimiterDynamics}} value='{{UnderexcitationLimiterDynamics}}'{{/UnderexcitationLimiterDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType1or2Dynamics'>WindTurbineType1or2Dynamics: </label><div class='col-sm-8'><input id='WindTurbineType1or2Dynamics' class='form-control' type='text'{{#WindTurbineType1or2Dynamics}} value='{{WindTurbineType1or2Dynamics}}'{{/WindTurbineType1or2Dynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiscontinuousExcitationControlDynamics'>DiscontinuousExcitationControlDynamics: </label><div class='col-sm-8'><input id='DiscontinuousExcitationControlDynamics' class='form-control' type='text'{{#DiscontinuousExcitationControlDynamics}} value='{{DiscontinuousExcitationControlDynamics}}'{{/DiscontinuousExcitationControlDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteSignalType'>remoteSignalType: </label><div class='col-sm-8'><select id='{{id}}_remoteSignalType' class='form-control'>{{#RemoteSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageCompensatorDynamics'>VoltageCompensatorDynamics: </label><div class='col-sm-8'><input id='{{id}}_VoltageCompensatorDynamics' class='form-control' type='text'{{#VoltageCompensatorDynamics}} value='{{VoltageCompensatorDynamics}}'{{/VoltageCompensatorDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantDynamics'>WindPlantDynamics: </label><div class='col-sm-8'><input id='{{id}}_WindPlantDynamics' class='form-control' type='text'{{#WindPlantDynamics}} value='{{WindPlantDynamics}}'{{/WindPlantDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemStabilizerDynamics'>PowerSystemStabilizerDynamics: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemStabilizerDynamics' class='form-control' type='text'{{#PowerSystemStabilizerDynamics}} value='{{PowerSystemStabilizerDynamics}}'{{/PowerSystemStabilizerDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4Dynamics'>WindTurbineType3or4Dynamics: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4Dynamics' class='form-control' type='text'{{#WindTurbineType3or4Dynamics}} value='{{WindTurbineType3or4Dynamics}}'{{/WindTurbineType3or4Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UnderexcitationLimiterDynamics'>UnderexcitationLimiterDynamics: </label><div class='col-sm-8'><input id='{{id}}_UnderexcitationLimiterDynamics' class='form-control' type='text'{{#UnderexcitationLimiterDynamics}} value='{{UnderexcitationLimiterDynamics}}'{{/UnderexcitationLimiterDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType1or2Dynamics'>WindTurbineType1or2Dynamics: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType1or2Dynamics' class='form-control' type='text'{{#WindTurbineType1or2Dynamics}} value='{{WindTurbineType1or2Dynamics}}'{{/WindTurbineType1or2Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiscontinuousExcitationControlDynamics'>DiscontinuousExcitationControlDynamics: </label><div class='col-sm-8'><input id='{{id}}_DiscontinuousExcitationControlDynamics' class='form-control' type='text'{{#DiscontinuousExcitationControlDynamics}} value='{{DiscontinuousExcitationControlDynamics}}'{{/DiscontinuousExcitationControlDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RemoteInputSignal" };
-                super.submit (obj);
-                temp = document.getElementById ("remoteSignalType").value; if ("" != temp) { temp = RemoteSignalKind[temp]; if ("undefined" != typeof (temp)) obj.remoteSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; }
-                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
-                temp = document.getElementById ("VoltageCompensatorDynamics").value; if ("" != temp) obj.VoltageCompensatorDynamics = temp;
-                temp = document.getElementById ("WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;
-                temp = document.getElementById ("PowerSystemStabilizerDynamics").value; if ("" != temp) obj.PowerSystemStabilizerDynamics = temp;
-                temp = document.getElementById ("WindTurbineType3or4Dynamics").value; if ("" != temp) obj.WindTurbineType3or4Dynamics = temp;
-                temp = document.getElementById ("UnderexcitationLimiterDynamics").value; if ("" != temp) obj.UnderexcitationLimiterDynamics = temp;
-                temp = document.getElementById ("WindTurbineType1or2Dynamics").value; if ("" != temp) obj.WindTurbineType1or2Dynamics = temp;
-                temp = document.getElementById ("PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
-                temp = document.getElementById ("DiscontinuousExcitationControlDynamics").value; if ("" != temp) obj.DiscontinuousExcitationControlDynamics = temp;
+                var obj = obj || { id: id, cls: "RemoteInputSignal" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_remoteSignalType").value; if ("" != temp) { temp = RemoteSignalKind[temp]; if ("undefined" != typeof (temp)) obj.remoteSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; }
+                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
+                temp = document.getElementById (id + "_VoltageCompensatorDynamics").value; if ("" != temp) obj.VoltageCompensatorDynamics = temp;
+                temp = document.getElementById (id + "_WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;
+                temp = document.getElementById (id + "_PowerSystemStabilizerDynamics").value; if ("" != temp) obj.PowerSystemStabilizerDynamics = temp;
+                temp = document.getElementById (id + "_WindTurbineType3or4Dynamics").value; if ("" != temp) obj.WindTurbineType3or4Dynamics = temp;
+                temp = document.getElementById (id + "_UnderexcitationLimiterDynamics").value; if ("" != temp) obj.UnderexcitationLimiterDynamics = temp;
+                temp = document.getElementById (id + "_WindTurbineType1or2Dynamics").value; if ("" != temp) obj.WindTurbineType1or2Dynamics = temp;
+                temp = document.getElementById (id + "_PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
+                temp = document.getElementById (id + "_DiscontinuousExcitationControlDynamics").value; if ("" != temp) obj.DiscontinuousExcitationControlDynamics = temp;
 
                 return (obj);
             }

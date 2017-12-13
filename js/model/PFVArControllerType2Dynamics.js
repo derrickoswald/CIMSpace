@@ -93,25 +93,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType2Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType2Dynamics</a></legend>
-                    <div id="PFVArControllerType2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArControllerType2Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArControllerType2Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType2Dynamics</a></legend>
+                    <div id="{{id}}_PFVArControllerType2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArControllerType2Dynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                var obj = obj || { id: id, cls: "PFVArControllerType2Dynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
 
                 return (obj);
             }
@@ -220,33 +220,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2Common1_collapse" aria-expanded="true" aria-controls="PFVArType2Common1_collapse" style="margin-left: 10px;">PFVArType2Common1</a></legend>
-                    <div id="PFVArType2Common1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2Common1_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2Common1_collapse" style="margin-left: 10px;">PFVArType2Common1</a></legend>
+                    <div id="{{id}}_PFVArType2Common1_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='j'>j: </label><div class='col-sm-8'><input id='j' class='form-check-input' type='checkbox'{{#j}} checked{{/j}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='max'>max: </label><div class='col-sm-8'><input id='max' class='form-control' type='text'{{#max}} value='{{max}}'{{/max}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ref'>ref: </label><div class='col-sm-8'><input id='ref' class='form-control' type='text'{{#ref}} value='{{ref}}'{{/ref}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_j'>j: </label><div class='col-sm-8'><input id='{{id}}_j' class='form-check-input' type='checkbox'{{#j}} checked{{/j}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_max'>max: </label><div class='col-sm-8'><input id='{{id}}_max' class='form-control' type='text'{{#max}} value='{{max}}'{{/max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ref'>ref: </label><div class='col-sm-8'><input id='{{id}}_ref' class='form-control' type='text'{{#ref}} value='{{ref}}'{{/ref}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArType2Common1" };
-                super.submit (obj);
-                temp = document.getElementById ("j").checked; if (temp) obj.j = true;
-                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
-                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
-                temp = document.getElementById ("max").value; if ("" != temp) obj.max = temp;
-                temp = document.getElementById ("ref").value; if ("" != temp) obj.ref = temp;
+                var obj = obj || { id: id, cls: "PFVArType2Common1" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_j").checked; if (temp) obj.j = true;
+                temp = document.getElementById (id + "_ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById (id + "_kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById (id + "_max").value; if ("" != temp) obj.max = temp;
+                temp = document.getElementById (id + "_ref").value; if ("" != temp) obj.ref = temp;
 
                 return (obj);
             }
@@ -352,37 +352,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEVArController_collapse" style="margin-left: 10px;">PFVArType2IEEEVArController</a></legend>
-                    <div id="PFVArType2IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2IEEEVArController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2IEEEVArController_collapse" style="margin-left: 10px;">PFVArType2IEEEVArController</a></legend>
+                    <div id="{{id}}_PFVArType2IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exlon'>exlon: </label><div class='col-sm-8'><input id='exlon' class='form-check-input' type='checkbox'{{#exlon}} checked{{/exlon}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qref'>qref: </label><div class='col-sm-8'><input id='qref' class='form-control' type='text'{{#qref}} value='{{qref}}'{{/qref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vclmt'>vclmt: </label><div class='col-sm-8'><input id='vclmt' class='form-control' type='text'{{#vclmt}} value='{{vclmt}}'{{/vclmt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vref'>vref: </label><div class='col-sm-8'><input id='vref' class='form-control' type='text'{{#vref}} value='{{vref}}'{{/vref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vs'>vs: </label><div class='col-sm-8'><input id='vs' class='form-control' type='text'{{#vs}} value='{{vs}}'{{/vs}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exlon'>exlon: </label><div class='col-sm-8'><input id='{{id}}_exlon' class='form-check-input' type='checkbox'{{#exlon}} checked{{/exlon}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qref'>qref: </label><div class='col-sm-8'><input id='{{id}}_qref' class='form-control' type='text'{{#qref}} value='{{qref}}'{{/qref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vclmt'>vclmt: </label><div class='col-sm-8'><input id='{{id}}_vclmt' class='form-control' type='text'{{#vclmt}} value='{{vclmt}}'{{/vclmt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vref'>vref: </label><div class='col-sm-8'><input id='{{id}}_vref' class='form-control' type='text'{{#vref}} value='{{vref}}'{{/vref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vs'>vs: </label><div class='col-sm-8'><input id='{{id}}_vs' class='form-control' type='text'{{#vs}} value='{{vs}}'{{/vs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArType2IEEEVArController" };
-                super.submit (obj);
-                temp = document.getElementById ("exlon").checked; if (temp) obj.exlon = true;
-                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
-                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
-                temp = document.getElementById ("qref").value; if ("" != temp) obj.qref = temp;
-                temp = document.getElementById ("vclmt").value; if ("" != temp) obj.vclmt = temp;
-                temp = document.getElementById ("vref").value; if ("" != temp) obj.vref = temp;
-                temp = document.getElementById ("vs").value; if ("" != temp) obj.vs = temp;
+                var obj = obj || { id: id, cls: "PFVArType2IEEEVArController" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_exlon").checked; if (temp) obj.exlon = true;
+                temp = document.getElementById (id + "_ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById (id + "_kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById (id + "_qref").value; if ("" != temp) obj.qref = temp;
+                temp = document.getElementById (id + "_vclmt").value; if ("" != temp) obj.vclmt = temp;
+                temp = document.getElementById (id + "_vref").value; if ("" != temp) obj.vref = temp;
+                temp = document.getElementById (id + "_vs").value; if ("" != temp) obj.vs = temp;
 
                 return (obj);
             }
@@ -488,37 +488,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType2IEEEPFController_collapse" style="margin-left: 10px;">PFVArType2IEEEPFController</a></legend>
-                    <div id="PFVArType2IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType2IEEEPFController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType2IEEEPFController_collapse" style="margin-left: 10px;">PFVArType2IEEEPFController</a></legend>
+                    <div id="{{id}}_PFVArType2IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exlon'>exlon: </label><div class='col-sm-8'><input id='exlon' class='form-check-input' type='checkbox'{{#exlon}} checked{{/exlon}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp'>kp: </label><div class='col-sm-8'><input id='kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pfref'>pfref: </label><div class='col-sm-8'><input id='pfref' class='form-control' type='text'{{#pfref}} value='{{pfref}}'{{/pfref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vclmt'>vclmt: </label><div class='col-sm-8'><input id='vclmt' class='form-control' type='text'{{#vclmt}} value='{{vclmt}}'{{/vclmt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vref'>vref: </label><div class='col-sm-8'><input id='vref' class='form-control' type='text'{{#vref}} value='{{vref}}'{{/vref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vs'>vs: </label><div class='col-sm-8'><input id='vs' class='form-control' type='text'{{#vs}} value='{{vs}}'{{/vs}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exlon'>exlon: </label><div class='col-sm-8'><input id='{{id}}_exlon' class='form-check-input' type='checkbox'{{#exlon}} checked{{/exlon}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp'>kp: </label><div class='col-sm-8'><input id='{{id}}_kp' class='form-control' type='text'{{#kp}} value='{{kp}}'{{/kp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfref'>pfref: </label><div class='col-sm-8'><input id='{{id}}_pfref' class='form-control' type='text'{{#pfref}} value='{{pfref}}'{{/pfref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vclmt'>vclmt: </label><div class='col-sm-8'><input id='{{id}}_vclmt' class='form-control' type='text'{{#vclmt}} value='{{vclmt}}'{{/vclmt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vref'>vref: </label><div class='col-sm-8'><input id='{{id}}_vref' class='form-control' type='text'{{#vref}} value='{{vref}}'{{/vref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vs'>vs: </label><div class='col-sm-8'><input id='{{id}}_vs' class='form-control' type='text'{{#vs}} value='{{vs}}'{{/vs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArType2IEEEPFController" };
-                super.submit (obj);
-                temp = document.getElementById ("exlon").checked; if (temp) obj.exlon = true;
-                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
-                temp = document.getElementById ("kp").value; if ("" != temp) obj.kp = temp;
-                temp = document.getElementById ("pfref").value; if ("" != temp) obj.pfref = temp;
-                temp = document.getElementById ("vclmt").value; if ("" != temp) obj.vclmt = temp;
-                temp = document.getElementById ("vref").value; if ("" != temp) obj.vref = temp;
-                temp = document.getElementById ("vs").value; if ("" != temp) obj.vs = temp;
+                var obj = obj || { id: id, cls: "PFVArType2IEEEPFController" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_exlon").checked; if (temp) obj.exlon = true;
+                temp = document.getElementById (id + "_ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById (id + "_kp").value; if ("" != temp) obj.kp = temp;
+                temp = document.getElementById (id + "_pfref").value; if ("" != temp) obj.pfref = temp;
+                temp = document.getElementById (id + "_vclmt").value; if ("" != temp) obj.vclmt = temp;
+                temp = document.getElementById (id + "_vref").value; if ("" != temp) obj.vref = temp;
+                temp = document.getElementById (id + "_vs").value; if ("" != temp) obj.vs = temp;
 
                 return (obj);
             }

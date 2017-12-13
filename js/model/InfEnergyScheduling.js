@@ -100,33 +100,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TieLine_collapse" aria-expanded="true" aria-controls="TieLine_collapse" style="margin-left: 10px;">TieLine</a></legend>
-                    <div id="TieLine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TieLine_collapse" aria-expanded="true" aria-controls="{{id}}_TieLine_collapse" style="margin-left: 10px;">TieLine</a></legend>
+                    <div id="{{id}}_TieLine_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SideA_SubControlArea'>SideA_SubControlArea: </label><div class='col-sm-8'><input id='SideA_SubControlArea' class='form-control' type='text'{{#SideA_SubControlArea}} value='{{SideA_SubControlArea}}'{{/SideA_SubControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentOfA'>ParentOfA: </label><div class='col-sm-8'><input id='ParentOfA' class='form-control' type='text'{{#ParentOfA}} value='{{ParentOfA}}_string'{{/ParentOfA}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentOfB'>ParentOfB: </label><div class='col-sm-8'><input id='ParentOfB' class='form-control' type='text'{{#ParentOfB}} value='{{ParentOfB}}'{{/ParentOfB}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SideB_SubControlArea'>SideB_SubControlArea: </label><div class='col-sm-8'><input id='SideB_SubControlArea' class='form-control' type='text'{{#SideB_SubControlArea}} value='{{SideB_SubControlArea}}'{{/SideB_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SideA_SubControlArea'>SideA_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SideA_SubControlArea' class='form-control' type='text'{{#SideA_SubControlArea}} value='{{SideA_SubControlArea}}'{{/SideA_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentOfA'>ParentOfA: </label><div class='col-sm-8'><input id='{{id}}_ParentOfA' class='form-control' type='text'{{#ParentOfA}} value='{{ParentOfA}}_string'{{/ParentOfA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentOfB'>ParentOfB: </label><div class='col-sm-8'><input id='{{id}}_ParentOfB' class='form-control' type='text'{{#ParentOfB}} value='{{ParentOfB}}'{{/ParentOfB}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SideB_SubControlArea'>SideB_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SideB_SubControlArea' class='form-control' type='text'{{#SideB_SubControlArea}} value='{{SideB_SubControlArea}}'{{/SideB_SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TieLine" };
-                super.submit (obj);
-                temp = document.getElementById ("SideA_SubControlArea").value; if ("" != temp) obj.SideA_SubControlArea = temp;
-                temp = document.getElementById ("EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
-                temp = document.getElementById ("ParentOfA").value; if ("" != temp) obj.ParentOfA = temp.split (",");
-                temp = document.getElementById ("ParentOfB").value; if ("" != temp) obj.ParentOfB = temp;
-                temp = document.getElementById ("SideB_SubControlArea").value; if ("" != temp) obj.SideB_SubControlArea = temp;
+                var obj = obj || { id: id, cls: "TieLine" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_SideA_SubControlArea").value; if ("" != temp) obj.SideA_SubControlArea = temp;
+                temp = document.getElementById (id + "_EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
+                temp = document.getElementById (id + "_ParentOfA").value; if ("" != temp) obj.ParentOfA = temp.split (",");
+                temp = document.getElementById (id + "_ParentOfB").value; if ("" != temp) obj.ParentOfB = temp;
+                temp = document.getElementById (id + "_SideB_SubControlArea").value; if ("" != temp) obj.SideB_SubControlArea = temp;
 
                 return (obj);
             }
@@ -227,25 +227,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurtailmentProfile_collapse" aria-expanded="true" aria-controls="CurtailmentProfile_collapse" style="margin-left: 10px;">CurtailmentProfile</a></legend>
-                    <div id="CurtailmentProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurtailmentProfile_collapse" aria-expanded="true" aria-controls="{{id}}_CurtailmentProfile_collapse" style="margin-left: 10px;">CurtailmentProfile</a></legend>
+                    <div id="{{id}}_CurtailmentProfile_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ExternalInputs.Profile.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CurtailmentProfile" };
-                super.submit (obj);
-                temp = document.getElementById ("EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
+                var obj = obj || { id: id, cls: "CurtailmentProfile" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
 
                 return (obj);
             }
@@ -347,8 +347,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionCorridor_collapse" aria-expanded="true" aria-controls="TransmissionCorridor_collapse" style="margin-left: 10px;">TransmissionCorridor</a></legend>
-                    <div id="TransmissionCorridor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransmissionCorridor_collapse" aria-expanded="true" aria-controls="{{id}}_TransmissionCorridor_collapse" style="margin-left: 10px;">TransmissionCorridor</a></legend>
+                    <div id="{{id}}_TransmissionCorridor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
@@ -358,10 +358,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "TransmissionCorridor" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "TransmissionCorridor" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -459,25 +459,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InadvertentAccount_collapse" aria-expanded="true" aria-controls="InadvertentAccount_collapse" style="margin-left: 10px;">InadvertentAccount</a></legend>
-                    <div id="InadvertentAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InadvertentAccount_collapse" aria-expanded="true" aria-controls="{{id}}_InadvertentAccount_collapse" style="margin-left: 10px;">InadvertentAccount</a></legend>
+                    <div id="{{id}}_InadvertentAccount_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "InadvertentAccount" };
-                super.submit (obj);
-                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
+                var obj = obj || { id: id, cls: "InadvertentAccount" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
 
                 return (obj);
             }
@@ -575,27 +575,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LossProfile_collapse" aria-expanded="true" aria-controls="LossProfile_collapse" style="margin-left: 10px;">LossProfile</a></legend>
-                    <div id="LossProfile_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LossProfile_collapse" aria-expanded="true" aria-controls="{{id}}_LossProfile_collapse" style="margin-left: 10px;">LossProfile</a></legend>
+                    <div id="{{id}}_LossProfile_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ExternalInputs.Profile.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HasLoss_'>HasLoss_: </label><div class='col-sm-8'><input id='HasLoss_' class='form-control' type='text'{{#HasLoss_}} value='{{HasLoss_}}'{{/HasLoss_}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HasLoss_'>HasLoss_: </label><div class='col-sm-8'><input id='{{id}}_HasLoss_' class='form-control' type='text'{{#HasLoss_}} value='{{HasLoss_}}'{{/HasLoss_}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransaction'>EnergyTransaction: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransaction' class='form-control' type='text'{{#EnergyTransaction}} value='{{EnergyTransaction}}'{{/EnergyTransaction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LossProfile" };
-                super.submit (obj);
-                temp = document.getElementById ("HasLoss_").value; if ("" != temp) obj.HasLoss_ = temp;
-                temp = document.getElementById ("EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
+                var obj = obj || { id: id, cls: "LossProfile" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_HasLoss_").value; if ("" != temp) obj.HasLoss_ = temp;
+                temp = document.getElementById (id + "_EnergyTransaction").value; if ("" != temp) obj.EnergyTransaction = temp;
 
                 return (obj);
             }
@@ -697,29 +697,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentScheduledInterchange_collapse" style="margin-left: 10px;">CurrentScheduledInterchange</a></legend>
-                    <div id="CurrentScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentScheduledInterchange_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentScheduledInterchange_collapse" style="margin-left: 10px;">CurrentScheduledInterchange</a></legend>
+                    <div id="{{id}}_CurrentScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentNetTieMW'>currentNetTieMW: </label><div class='col-sm-8'><input id='currentNetTieMW' class='form-control' type='text'{{#currentNetTieMW}} value='{{currentNetTieMW}}'{{/currentNetTieMW}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='useEmergencySchedule'>useEmergencySchedule: </label><div class='col-sm-8'><input id='useEmergencySchedule' class='form-check-input' type='checkbox'{{#useEmergencySchedule}} checked{{/useEmergencySchedule}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InternalControlArea'>InternalControlArea: </label><div class='col-sm-8'><input id='InternalControlArea' class='form-control' type='text'{{#InternalControlArea}} value='{{InternalControlArea}}'{{/InternalControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currentNetTieMW'>currentNetTieMW: </label><div class='col-sm-8'><input id='{{id}}_currentNetTieMW' class='form-control' type='text'{{#currentNetTieMW}} value='{{currentNetTieMW}}'{{/currentNetTieMW}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_useEmergencySchedule'>useEmergencySchedule: </label><div class='col-sm-8'><input id='{{id}}_useEmergencySchedule' class='form-check-input' type='checkbox'{{#useEmergencySchedule}} checked{{/useEmergencySchedule}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InternalControlArea'>InternalControlArea: </label><div class='col-sm-8'><input id='{{id}}_InternalControlArea' class='form-control' type='text'{{#InternalControlArea}} value='{{InternalControlArea}}'{{/InternalControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CurrentScheduledInterchange" };
-                super.submit (obj);
-                temp = document.getElementById ("currentNetTieMW").value; if ("" != temp) obj.currentNetTieMW = temp;
-                temp = document.getElementById ("useEmergencySchedule").checked; if (temp) obj.useEmergencySchedule = true;
-                temp = document.getElementById ("InternalControlArea").value; if ("" != temp) obj.InternalControlArea = temp;
+                var obj = obj || { id: id, cls: "CurrentScheduledInterchange" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_currentNetTieMW").value; if ("" != temp) obj.currentNetTieMW = temp;
+                temp = document.getElementById (id + "_useEmergencySchedule").checked; if (temp) obj.useEmergencySchedule = true;
+                temp = document.getElementById (id + "_InternalControlArea").value; if ("" != temp) obj.InternalControlArea = temp;
 
                 return (obj);
             }
@@ -823,31 +823,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentEmergencyScheduledInterchange_collapse" aria-expanded="true" aria-controls="CurrentEmergencyScheduledInterchange_collapse" style="margin-left: 10px;">CurrentEmergencyScheduledInterchange</a></legend>
-                    <div id="CurrentEmergencyScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentEmergencyScheduledInterchange_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentEmergencyScheduledInterchange_collapse" style="margin-left: 10px;">CurrentEmergencyScheduledInterchange</a></legend>
+                    <div id="{{id}}_CurrentEmergencyScheduledInterchange_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyScheduleMW'>emergencyScheduleMW: </label><div class='col-sm-8'><input id='emergencyScheduleMW' class='form-control' type='text'{{#emergencyScheduleMW}} value='{{emergencyScheduleMW}}'{{/emergencyScheduleMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyScheduleStartTime'>emergencyScheduleStartTime: </label><div class='col-sm-8'><input id='emergencyScheduleStartTime' class='form-control' type='text'{{#emergencyScheduleStartTime}} value='{{emergencyScheduleStartTime}}'{{/emergencyScheduleStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyScheduleRampTime'>emergencyScheduleRampTime: </label><div class='col-sm-8'><input id='emergencyScheduleRampTime' class='form-control' type='text'{{#emergencyScheduleRampTime}} value='{{emergencyScheduleRampTime}}'{{/emergencyScheduleRampTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InternalControlArea'>InternalControlArea: </label><div class='col-sm-8'><input id='InternalControlArea' class='form-control' type='text'{{#InternalControlArea}} value='{{InternalControlArea}}'{{/InternalControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emergencyScheduleMW'>emergencyScheduleMW: </label><div class='col-sm-8'><input id='{{id}}_emergencyScheduleMW' class='form-control' type='text'{{#emergencyScheduleMW}} value='{{emergencyScheduleMW}}'{{/emergencyScheduleMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emergencyScheduleStartTime'>emergencyScheduleStartTime: </label><div class='col-sm-8'><input id='{{id}}_emergencyScheduleStartTime' class='form-control' type='text'{{#emergencyScheduleStartTime}} value='{{emergencyScheduleStartTime}}'{{/emergencyScheduleStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emergencyScheduleRampTime'>emergencyScheduleRampTime: </label><div class='col-sm-8'><input id='{{id}}_emergencyScheduleRampTime' class='form-control' type='text'{{#emergencyScheduleRampTime}} value='{{emergencyScheduleRampTime}}'{{/emergencyScheduleRampTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InternalControlArea'>InternalControlArea: </label><div class='col-sm-8'><input id='{{id}}_InternalControlArea' class='form-control' type='text'{{#InternalControlArea}} value='{{InternalControlArea}}'{{/InternalControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CurrentEmergencyScheduledInterchange" };
-                super.submit (obj);
-                temp = document.getElementById ("emergencyScheduleMW").value; if ("" != temp) obj.emergencyScheduleMW = temp;
-                temp = document.getElementById ("emergencyScheduleStartTime").value; if ("" != temp) obj.emergencyScheduleStartTime = temp;
-                temp = document.getElementById ("emergencyScheduleRampTime").value; if ("" != temp) obj.emergencyScheduleRampTime = temp;
-                temp = document.getElementById ("InternalControlArea").value; if ("" != temp) obj.InternalControlArea = temp;
+                var obj = obj || { id: id, cls: "CurrentEmergencyScheduledInterchange" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_emergencyScheduleMW").value; if ("" != temp) obj.emergencyScheduleMW = temp;
+                temp = document.getElementById (id + "_emergencyScheduleStartTime").value; if ("" != temp) obj.emergencyScheduleStartTime = temp;
+                temp = document.getElementById (id + "_emergencyScheduleRampTime").value; if ("" != temp) obj.emergencyScheduleRampTime = temp;
+                temp = document.getElementById (id + "_InternalControlArea").value; if ("" != temp) obj.InternalControlArea = temp;
 
                 return (obj);
             }
@@ -962,35 +962,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AreaReserveSpec_collapse" aria-expanded="true" aria-controls="AreaReserveSpec_collapse" style="margin-left: 10px;">AreaReserveSpec</a></legend>
-                    <div id="AreaReserveSpec_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AreaReserveSpec_collapse" aria-expanded="true" aria-controls="{{id}}_AreaReserveSpec_collapse" style="margin-left: 10px;">AreaReserveSpec</a></legend>
+                    <div id="{{id}}_AreaReserveSpec_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Description'>Description: </label><div class='col-sm-8'><input id='Description' class='form-control' type='text'{{#Description}} value='{{Description}}'{{/Description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowerRegMarginReqt'>lowerRegMarginReqt: </label><div class='col-sm-8'><input id='lowerRegMarginReqt' class='form-control' type='text'{{#lowerRegMarginReqt}} value='{{lowerRegMarginReqt}}'{{/lowerRegMarginReqt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='opReserveReqt'>opReserveReqt: </label><div class='col-sm-8'><input id='opReserveReqt' class='form-control' type='text'{{#opReserveReqt}} value='{{opReserveReqt}}'{{/opReserveReqt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryReserveReqt'>primaryReserveReqt: </label><div class='col-sm-8'><input id='primaryReserveReqt' class='form-control' type='text'{{#primaryReserveReqt}} value='{{primaryReserveReqt}}'{{/primaryReserveReqt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='raiseRegMarginReqt'>raiseRegMarginReqt: </label><div class='col-sm-8'><input id='raiseRegMarginReqt' class='form-control' type='text'{{#raiseRegMarginReqt}} value='{{raiseRegMarginReqt}}'{{/raiseRegMarginReqt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spinningReserveReqt'>spinningReserveReqt: </label><div class='col-sm-8'><input id='spinningReserveReqt' class='form-control' type='text'{{#spinningReserveReqt}} value='{{spinningReserveReqt}}'{{/spinningReserveReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Description'>Description: </label><div class='col-sm-8'><input id='{{id}}_Description' class='form-control' type='text'{{#Description}} value='{{Description}}'{{/Description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerRegMarginReqt'>lowerRegMarginReqt: </label><div class='col-sm-8'><input id='{{id}}_lowerRegMarginReqt' class='form-control' type='text'{{#lowerRegMarginReqt}} value='{{lowerRegMarginReqt}}'{{/lowerRegMarginReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_opReserveReqt'>opReserveReqt: </label><div class='col-sm-8'><input id='{{id}}_opReserveReqt' class='form-control' type='text'{{#opReserveReqt}} value='{{opReserveReqt}}'{{/opReserveReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryReserveReqt'>primaryReserveReqt: </label><div class='col-sm-8'><input id='{{id}}_primaryReserveReqt' class='form-control' type='text'{{#primaryReserveReqt}} value='{{primaryReserveReqt}}'{{/primaryReserveReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_raiseRegMarginReqt'>raiseRegMarginReqt: </label><div class='col-sm-8'><input id='{{id}}_raiseRegMarginReqt' class='form-control' type='text'{{#raiseRegMarginReqt}} value='{{raiseRegMarginReqt}}'{{/raiseRegMarginReqt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_spinningReserveReqt'>spinningReserveReqt: </label><div class='col-sm-8'><input id='{{id}}_spinningReserveReqt' class='form-control' type='text'{{#spinningReserveReqt}} value='{{spinningReserveReqt}}'{{/spinningReserveReqt}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AreaReserveSpec" };
-                super.submit (obj);
-                temp = document.getElementById ("Description").value; if ("" != temp) obj.Description = temp;
-                temp = document.getElementById ("lowerRegMarginReqt").value; if ("" != temp) obj.lowerRegMarginReqt = temp;
-                temp = document.getElementById ("opReserveReqt").value; if ("" != temp) obj.opReserveReqt = temp;
-                temp = document.getElementById ("primaryReserveReqt").value; if ("" != temp) obj.primaryReserveReqt = temp;
-                temp = document.getElementById ("raiseRegMarginReqt").value; if ("" != temp) obj.raiseRegMarginReqt = temp;
-                temp = document.getElementById ("spinningReserveReqt").value; if ("" != temp) obj.spinningReserveReqt = temp;
+                var obj = obj || { id: id, cls: "AreaReserveSpec" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Description").value; if ("" != temp) obj.Description = temp;
+                temp = document.getElementById (id + "_lowerRegMarginReqt").value; if ("" != temp) obj.lowerRegMarginReqt = temp;
+                temp = document.getElementById (id + "_opReserveReqt").value; if ("" != temp) obj.opReserveReqt = temp;
+                temp = document.getElementById (id + "_primaryReserveReqt").value; if ("" != temp) obj.primaryReserveReqt = temp;
+                temp = document.getElementById (id + "_raiseRegMarginReqt").value; if ("" != temp) obj.raiseRegMarginReqt = temp;
+                temp = document.getElementById (id + "_spinningReserveReqt").value; if ("" != temp) obj.spinningReserveReqt = temp;
 
                 return (obj);
             }
@@ -1099,33 +1099,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DynamicSchedule_collapse" aria-expanded="true" aria-controls="DynamicSchedule_collapse" style="margin-left: 10px;">DynamicSchedule</a></legend>
-                    <div id="DynamicSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DynamicSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_DynamicSchedule_collapse" style="margin-left: 10px;">DynamicSchedule</a></legend>
+                    <div id="{{id}}_DynamicSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.BasicIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='dynSchedSignRev'>dynSchedSignRev: </label><div class='col-sm-8'><input id='dynSchedSignRev' class='form-check-input' type='checkbox'{{#dynSchedSignRev}} checked{{/dynSchedSignRev}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dynSchedStatus'>dynSchedStatus: </label><div class='col-sm-8'><input id='dynSchedStatus' class='form-control' type='text'{{#dynSchedStatus}} value='{{dynSchedStatus}}'{{/dynSchedStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Receive_SubControlArea'>Receive_SubControlArea: </label><div class='col-sm-8'><input id='Receive_SubControlArea' class='form-control' type='text'{{#Receive_SubControlArea}} value='{{Receive_SubControlArea}}'{{/Receive_SubControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Send_SubControlArea'>Send_SubControlArea: </label><div class='col-sm-8'><input id='Send_SubControlArea' class='form-control' type='text'{{#Send_SubControlArea}} value='{{Send_SubControlArea}}'{{/Send_SubControlArea}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_dynSchedSignRev'>dynSchedSignRev: </label><div class='col-sm-8'><input id='{{id}}_dynSchedSignRev' class='form-check-input' type='checkbox'{{#dynSchedSignRev}} checked{{/dynSchedSignRev}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynSchedStatus'>dynSchedStatus: </label><div class='col-sm-8'><input id='{{id}}_dynSchedStatus' class='form-control' type='text'{{#dynSchedStatus}} value='{{dynSchedStatus}}'{{/dynSchedStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktMeasurement'>MktMeasurement: </label><div class='col-sm-8'><input id='{{id}}_MktMeasurement' class='form-control' type='text'{{#MktMeasurement}} value='{{MktMeasurement}}'{{/MktMeasurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Receive_SubControlArea'>Receive_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_Receive_SubControlArea' class='form-control' type='text'{{#Receive_SubControlArea}} value='{{Receive_SubControlArea}}'{{/Receive_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Send_SubControlArea'>Send_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_Send_SubControlArea' class='form-control' type='text'{{#Send_SubControlArea}} value='{{Send_SubControlArea}}'{{/Send_SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DynamicSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("dynSchedSignRev").checked; if (temp) obj.dynSchedSignRev = true;
-                temp = document.getElementById ("dynSchedStatus").value; if ("" != temp) obj.dynSchedStatus = temp;
-                temp = document.getElementById ("MktMeasurement").value; if ("" != temp) obj.MktMeasurement = temp;
-                temp = document.getElementById ("Receive_SubControlArea").value; if ("" != temp) obj.Receive_SubControlArea = temp;
-                temp = document.getElementById ("Send_SubControlArea").value; if ("" != temp) obj.Send_SubControlArea = temp;
+                var obj = obj || { id: id, cls: "DynamicSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dynSchedSignRev").checked; if (temp) obj.dynSchedSignRev = true;
+                temp = document.getElementById (id + "_dynSchedStatus").value; if ("" != temp) obj.dynSchedStatus = temp;
+                temp = document.getElementById (id + "_MktMeasurement").value; if ("" != temp) obj.MktMeasurement = temp;
+                temp = document.getElementById (id + "_Receive_SubControlArea").value; if ("" != temp) obj.Receive_SubControlArea = temp;
+                temp = document.getElementById (id + "_Send_SubControlArea").value; if ("" != temp) obj.Send_SubControlArea = temp;
 
                 return (obj);
             }
@@ -1235,29 +1235,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyProduct_collapse" aria-expanded="true" aria-controls="EnergyProduct_collapse" style="margin-left: 10px;">EnergyProduct</a></legend>
-                    <div id="EnergyProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyProduct_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyProduct_collapse" style="margin-left: 10px;">EnergyProduct</a></legend>
+                    <div id="{{id}}_EnergyProduct_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResoldBy_Marketer'>ResoldBy_Marketer: </label><div class='col-sm-8'><input id='ResoldBy_Marketer' class='form-control' type='text'{{#ResoldBy_Marketer}} value='{{ResoldBy_Marketer}}_string'{{/ResoldBy_Marketer}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenerationProvider'>GenerationProvider: </label><div class='col-sm-8'><input id='GenerationProvider' class='form-control' type='text'{{#GenerationProvider}} value='{{GenerationProvider}}'{{/GenerationProvider}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TitleHeldBy_Marketer'>TitleHeldBy_Marketer: </label><div class='col-sm-8'><input id='TitleHeldBy_Marketer' class='form-control' type='text'{{#TitleHeldBy_Marketer}} value='{{TitleHeldBy_Marketer}}'{{/TitleHeldBy_Marketer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResoldBy_Marketer'>ResoldBy_Marketer: </label><div class='col-sm-8'><input id='{{id}}_ResoldBy_Marketer' class='form-control' type='text'{{#ResoldBy_Marketer}} value='{{ResoldBy_Marketer}}_string'{{/ResoldBy_Marketer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenerationProvider'>GenerationProvider: </label><div class='col-sm-8'><input id='{{id}}_GenerationProvider' class='form-control' type='text'{{#GenerationProvider}} value='{{GenerationProvider}}'{{/GenerationProvider}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TitleHeldBy_Marketer'>TitleHeldBy_Marketer: </label><div class='col-sm-8'><input id='{{id}}_TitleHeldBy_Marketer' class='form-control' type='text'{{#TitleHeldBy_Marketer}} value='{{TitleHeldBy_Marketer}}'{{/TitleHeldBy_Marketer}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EnergyProduct" };
-                super.submit (obj);
-                temp = document.getElementById ("ResoldBy_Marketer").value; if ("" != temp) obj.ResoldBy_Marketer = temp.split (",");
-                temp = document.getElementById ("GenerationProvider").value; if ("" != temp) obj.GenerationProvider = temp;
-                temp = document.getElementById ("TitleHeldBy_Marketer").value; if ("" != temp) obj.TitleHeldBy_Marketer = temp;
+                var obj = obj || { id: id, cls: "EnergyProduct" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ResoldBy_Marketer").value; if ("" != temp) obj.ResoldBy_Marketer = temp.split (",");
+                temp = document.getElementById (id + "_GenerationProvider").value; if ("" != temp) obj.GenerationProvider = temp;
+                temp = document.getElementById (id + "_TitleHeldBy_Marketer").value; if ("" != temp) obj.TitleHeldBy_Marketer = temp;
 
                 return (obj);
             }
@@ -1360,25 +1360,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionRightOfWay_collapse" aria-expanded="true" aria-controls="TransmissionRightOfWay_collapse" style="margin-left: 10px;">TransmissionRightOfWay</a></legend>
-                    <div id="TransmissionRightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransmissionRightOfWay_collapse" aria-expanded="true" aria-controls="{{id}}_TransmissionRightOfWay_collapse" style="margin-left: 10px;">TransmissionRightOfWay</a></legend>
+                    <div id="{{id}}_TransmissionRightOfWay_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionCorridor'>TransmissionCorridor: </label><div class='col-sm-8'><input id='TransmissionCorridor' class='form-control' type='text'{{#TransmissionCorridor}} value='{{TransmissionCorridor}}'{{/TransmissionCorridor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionCorridor'>TransmissionCorridor: </label><div class='col-sm-8'><input id='{{id}}_TransmissionCorridor' class='form-control' type='text'{{#TransmissionCorridor}} value='{{TransmissionCorridor}}'{{/TransmissionCorridor}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TransmissionRightOfWay" };
-                super.submit (obj);
-                temp = document.getElementById ("TransmissionCorridor").value; if ("" != temp) obj.TransmissionCorridor = temp;
+                var obj = obj || { id: id, cls: "TransmissionRightOfWay" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_TransmissionCorridor").value; if ("" != temp) obj.TransmissionCorridor = temp;
 
                 return (obj);
             }
@@ -1481,25 +1481,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InternalControlArea_collapse" aria-expanded="true" aria-controls="InternalControlArea_collapse" style="margin-left: 10px;">InternalControlArea</a></legend>
-                    <div id="InternalControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InternalControlArea_collapse" aria-expanded="true" aria-controls="{{id}}_InternalControlArea_collapse" style="margin-left: 10px;">InternalControlArea</a></legend>
+                    <div id="{{id}}_InternalControlArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CurrentScheduledInterchange'>CurrentScheduledInterchange: </label><div class='col-sm-8'><input id='CurrentScheduledInterchange' class='form-control' type='text'{{#CurrentScheduledInterchange}} value='{{CurrentScheduledInterchange}}'{{/CurrentScheduledInterchange}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CurrentScheduledInterchange'>CurrentScheduledInterchange: </label><div class='col-sm-8'><input id='{{id}}_CurrentScheduledInterchange' class='form-control' type='text'{{#CurrentScheduledInterchange}} value='{{CurrentScheduledInterchange}}'{{/CurrentScheduledInterchange}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "InternalControlArea" };
-                super.submit (obj);
-                temp = document.getElementById ("CurrentScheduledInterchange").value; if ("" != temp) obj.CurrentScheduledInterchange = temp;
+                var obj = obj || { id: id, cls: "InternalControlArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_CurrentScheduledInterchange").value; if ("" != temp) obj.CurrentScheduledInterchange = temp;
 
                 return (obj);
             }

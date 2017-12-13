@@ -186,45 +186,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPitchAngleIEC_collapse" aria-expanded="true" aria-controls="WindContPitchAngleIEC_collapse" style="margin-left: 10px;">WindContPitchAngleIEC</a></legend>
-                    <div id="WindContPitchAngleIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContPitchAngleIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContPitchAngleIEC_collapse" style="margin-left: 10px;">WindContPitchAngleIEC</a></legend>
+                    <div id="{{id}}_WindContPitchAngleIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dthetamax'>dthetamax: </label><div class='col-sm-8'><input id='dthetamax' class='form-control' type='text'{{#dthetamax}} value='{{dthetamax}}'{{/dthetamax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dthetamin'>dthetamin: </label><div class='col-sm-8'><input id='dthetamin' class='form-control' type='text'{{#dthetamin}} value='{{dthetamin}}'{{/dthetamin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kic'>kic: </label><div class='col-sm-8'><input id='kic' class='form-control' type='text'{{#kic}} value='{{kic}}'{{/kic}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiomega'>kiomega: </label><div class='col-sm-8'><input id='kiomega' class='form-control' type='text'{{#kiomega}} value='{{kiomega}}'{{/kiomega}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpc'>kpc: </label><div class='col-sm-8'><input id='kpc' class='form-control' type='text'{{#kpc}} value='{{kpc}}'{{/kpc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpomega'>kpomega: </label><div class='col-sm-8'><input id='kpomega' class='form-control' type='text'{{#kpomega}} value='{{kpomega}}'{{/kpomega}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpx'>kpx: </label><div class='col-sm-8'><input id='kpx' class='form-control' type='text'{{#kpx}} value='{{kpx}}'{{/kpx}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetamax'>thetamax: </label><div class='col-sm-8'><input id='thetamax' class='form-control' type='text'{{#thetamax}} value='{{thetamax}}'{{/thetamax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetamin'>thetamin: </label><div class='col-sm-8'><input id='thetamin' class='form-control' type='text'{{#thetamin}} value='{{thetamin}}'{{/thetamin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ttheta'>ttheta: </label><div class='col-sm-8'><input id='ttheta' class='form-control' type='text'{{#ttheta}} value='{{ttheta}}'{{/ttheta}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dthetamax'>dthetamax: </label><div class='col-sm-8'><input id='{{id}}_dthetamax' class='form-control' type='text'{{#dthetamax}} value='{{dthetamax}}'{{/dthetamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dthetamin'>dthetamin: </label><div class='col-sm-8'><input id='{{id}}_dthetamin' class='form-control' type='text'{{#dthetamin}} value='{{dthetamin}}'{{/dthetamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kic'>kic: </label><div class='col-sm-8'><input id='{{id}}_kic' class='form-control' type='text'{{#kic}} value='{{kic}}'{{/kic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiomega'>kiomega: </label><div class='col-sm-8'><input id='{{id}}_kiomega' class='form-control' type='text'{{#kiomega}} value='{{kiomega}}'{{/kiomega}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpc'>kpc: </label><div class='col-sm-8'><input id='{{id}}_kpc' class='form-control' type='text'{{#kpc}} value='{{kpc}}'{{/kpc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpomega'>kpomega: </label><div class='col-sm-8'><input id='{{id}}_kpomega' class='form-control' type='text'{{#kpomega}} value='{{kpomega}}'{{/kpomega}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpx'>kpx: </label><div class='col-sm-8'><input id='{{id}}_kpx' class='form-control' type='text'{{#kpx}} value='{{kpx}}'{{/kpx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetamax'>thetamax: </label><div class='col-sm-8'><input id='{{id}}_thetamax' class='form-control' type='text'{{#thetamax}} value='{{thetamax}}'{{/thetamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetamin'>thetamin: </label><div class='col-sm-8'><input id='{{id}}_thetamin' class='form-control' type='text'{{#thetamin}} value='{{thetamin}}'{{/thetamin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ttheta'>ttheta: </label><div class='col-sm-8'><input id='{{id}}_ttheta' class='form-control' type='text'{{#ttheta}} value='{{ttheta}}'{{/ttheta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContPitchAngleIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dthetamax").value; if ("" != temp) obj.dthetamax = temp;
-                temp = document.getElementById ("dthetamin").value; if ("" != temp) obj.dthetamin = temp;
-                temp = document.getElementById ("kic").value; if ("" != temp) obj.kic = temp;
-                temp = document.getElementById ("kiomega").value; if ("" != temp) obj.kiomega = temp;
-                temp = document.getElementById ("kpc").value; if ("" != temp) obj.kpc = temp;
-                temp = document.getElementById ("kpomega").value; if ("" != temp) obj.kpomega = temp;
-                temp = document.getElementById ("kpx").value; if ("" != temp) obj.kpx = temp;
-                temp = document.getElementById ("thetamax").value; if ("" != temp) obj.thetamax = temp;
-                temp = document.getElementById ("thetamin").value; if ("" != temp) obj.thetamin = temp;
-                temp = document.getElementById ("ttheta").value; if ("" != temp) obj.ttheta = temp;
-                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+                var obj = obj || { id: id, cls: "WindContPitchAngleIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dthetamax").value; if ("" != temp) obj.dthetamax = temp;
+                temp = document.getElementById (id + "_dthetamin").value; if ("" != temp) obj.dthetamin = temp;
+                temp = document.getElementById (id + "_kic").value; if ("" != temp) obj.kic = temp;
+                temp = document.getElementById (id + "_kiomega").value; if ("" != temp) obj.kiomega = temp;
+                temp = document.getElementById (id + "_kpc").value; if ("" != temp) obj.kpc = temp;
+                temp = document.getElementById (id + "_kpomega").value; if ("" != temp) obj.kpomega = temp;
+                temp = document.getElementById (id + "_kpx").value; if ("" != temp) obj.kpx = temp;
+                temp = document.getElementById (id + "_thetamax").value; if ("" != temp) obj.thetamax = temp;
+                temp = document.getElementById (id + "_thetamin").value; if ("" != temp) obj.thetamin = temp;
+                temp = document.getElementById (id + "_ttheta").value; if ("" != temp) obj.ttheta = temp;
+                temp = document.getElementById (id + "_WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
 
                 return (obj);
             }
@@ -350,41 +350,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPitchContPowerIEC_collapse" aria-expanded="true" aria-controls="WindPitchContPowerIEC_collapse" style="margin-left: 10px;">WindPitchContPowerIEC</a></legend>
-                    <div id="WindPitchContPowerIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPitchContPowerIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindPitchContPowerIEC_collapse" style="margin-left: 10px;">WindPitchContPowerIEC</a></legend>
+                    <div id="{{id}}_WindPitchContPowerIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmax'>dpmax: </label><div class='col-sm-8'><input id='dpmax' class='form-control' type='text'{{#dpmax}} value='{{dpmax}}'{{/dpmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmin'>dpmin: </label><div class='col-sm-8'><input id='dpmin' class='form-control' type='text'{{#dpmin}} value='{{dpmin}}'{{/dpmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pset'>pset: </label><div class='col-sm-8'><input id='pset' class='form-control' type='text'{{#pset}} value='{{pset}}'{{/pset}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uuvrt'>uuvrt: </label><div class='col-sm-8'><input id='uuvrt' class='form-control' type='text'{{#uuvrt}} value='{{uuvrt}}'{{/uuvrt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenTurbineType1bIEC'>WindGenTurbineType1bIEC: </label><div class='col-sm-8'><input id='WindGenTurbineType1bIEC' class='form-control' type='text'{{#WindGenTurbineType1bIEC}} value='{{WindGenTurbineType1bIEC}}'{{/WindGenTurbineType1bIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenTurbineType2IEC'>WindGenTurbineType2IEC: </label><div class='col-sm-8'><input id='WindGenTurbineType2IEC' class='form-control' type='text'{{#WindGenTurbineType2IEC}} value='{{WindGenTurbineType2IEC}}'{{/WindGenTurbineType2IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpmax'>dpmax: </label><div class='col-sm-8'><input id='{{id}}_dpmax' class='form-control' type='text'{{#dpmax}} value='{{dpmax}}'{{/dpmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpmin'>dpmin: </label><div class='col-sm-8'><input id='{{id}}_dpmin' class='form-control' type='text'{{#dpmin}} value='{{dpmin}}'{{/dpmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmin'>pmin: </label><div class='col-sm-8'><input id='{{id}}_pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pset'>pset: </label><div class='col-sm-8'><input id='{{id}}_pset' class='form-control' type='text'{{#pset}} value='{{pset}}'{{/pset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tr'>tr: </label><div class='col-sm-8'><input id='{{id}}_tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uuvrt'>uuvrt: </label><div class='col-sm-8'><input id='{{id}}_uuvrt' class='form-control' type='text'{{#uuvrt}} value='{{uuvrt}}'{{/uuvrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenTurbineType1bIEC'>WindGenTurbineType1bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenTurbineType1bIEC' class='form-control' type='text'{{#WindGenTurbineType1bIEC}} value='{{WindGenTurbineType1bIEC}}'{{/WindGenTurbineType1bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenTurbineType2IEC'>WindGenTurbineType2IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenTurbineType2IEC' class='form-control' type='text'{{#WindGenTurbineType2IEC}} value='{{WindGenTurbineType2IEC}}'{{/WindGenTurbineType2IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindPitchContPowerIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dpmax").value; if ("" != temp) obj.dpmax = temp;
-                temp = document.getElementById ("dpmin").value; if ("" != temp) obj.dpmin = temp;
-                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
-                temp = document.getElementById ("pset").value; if ("" != temp) obj.pset = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
-                temp = document.getElementById ("uuvrt").value; if ("" != temp) obj.uuvrt = temp;
-                temp = document.getElementById ("WindGenTurbineType1bIEC").value; if ("" != temp) obj.WindGenTurbineType1bIEC = temp;
-                temp = document.getElementById ("WindGenTurbineType2IEC").value; if ("" != temp) obj.WindGenTurbineType2IEC = temp;
+                var obj = obj || { id: id, cls: "WindPitchContPowerIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dpmax").value; if ("" != temp) obj.dpmax = temp;
+                temp = document.getElementById (id + "_dpmin").value; if ("" != temp) obj.dpmin = temp;
+                temp = document.getElementById (id + "_pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById (id + "_pset").value; if ("" != temp) obj.pset = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById (id + "_uuvrt").value; if ("" != temp) obj.uuvrt = temp;
+                temp = document.getElementById (id + "_WindGenTurbineType1bIEC").value; if ("" != temp) obj.WindGenTurbineType1bIEC = temp;
+                temp = document.getElementById (id + "_WindGenTurbineType2IEC").value; if ("" != temp) obj.WindGenTurbineType2IEC = temp;
 
                 return (obj);
             }
@@ -498,35 +498,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType4IEC_collapse" aria-expanded="true" aria-controls="WindGenType4IEC_collapse" style="margin-left: 10px;">WindGenType4IEC</a></legend>
-                    <div id="WindGenType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenType4IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenType4IEC_collapse" style="margin-left: 10px;">WindGenType4IEC</a></legend>
+                    <div id="{{id}}_WindGenType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dipmax'>dipmax: </label><div class='col-sm-8'><input id='dipmax' class='form-control' type='text'{{#dipmax}} value='{{dipmax}}'{{/dipmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diqmax'>diqmax: </label><div class='col-sm-8'><input id='diqmax' class='form-control' type='text'{{#diqmax}} value='{{diqmax}}'{{/diqmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diqmin'>diqmin: </label><div class='col-sm-8'><input id='diqmin' class='form-control' type='text'{{#diqmin}} value='{{diqmin}}'{{/diqmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4aIEC'>WindTurbineType4aIEC: </label><div class='col-sm-8'><input id='WindTurbineType4aIEC' class='form-control' type='text'{{#WindTurbineType4aIEC}} value='{{WindTurbineType4aIEC}}'{{/WindTurbineType4aIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dipmax'>dipmax: </label><div class='col-sm-8'><input id='{{id}}_dipmax' class='form-control' type='text'{{#dipmax}} value='{{dipmax}}'{{/dipmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diqmax'>diqmax: </label><div class='col-sm-8'><input id='{{id}}_diqmax' class='form-control' type='text'{{#diqmax}} value='{{diqmax}}'{{/diqmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diqmin'>diqmin: </label><div class='col-sm-8'><input id='{{id}}_diqmin' class='form-control' type='text'{{#diqmin}} value='{{diqmin}}'{{/diqmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tg'>tg: </label><div class='col-sm-8'><input id='{{id}}_tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4aIEC'>WindTurbineType4aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4aIEC' class='form-control' type='text'{{#WindTurbineType4aIEC}} value='{{WindTurbineType4aIEC}}'{{/WindTurbineType4aIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindGenType4IEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dipmax").value; if ("" != temp) obj.dipmax = temp;
-                temp = document.getElementById ("diqmax").value; if ("" != temp) obj.diqmax = temp;
-                temp = document.getElementById ("diqmin").value; if ("" != temp) obj.diqmin = temp;
-                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
-                temp = document.getElementById ("WindTurbineType4aIEC").value; if ("" != temp) obj.WindTurbineType4aIEC = temp;
-                temp = document.getElementById ("WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
+                var obj = obj || { id: id, cls: "WindGenType4IEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dipmax").value; if ("" != temp) obj.dipmax = temp;
+                temp = document.getElementById (id + "_diqmax").value; if ("" != temp) obj.diqmax = temp;
+                temp = document.getElementById (id + "_diqmin").value; if ("" != temp) obj.diqmin = temp;
+                temp = document.getElementById (id + "_tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById (id + "_WindTurbineType4aIEC").value; if ("" != temp) obj.WindTurbineType4aIEC = temp;
+                temp = document.getElementById (id + "_WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
 
                 return (obj);
             }
@@ -685,61 +685,61 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantReactiveControlIEC_collapse" aria-expanded="true" aria-controls="WindPlantReactiveControlIEC_collapse" style="margin-left: 10px;">WindPlantReactiveControlIEC</a></legend>
-                    <div id="WindPlantReactiveControlIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantReactiveControlIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantReactiveControlIEC_collapse" style="margin-left: 10px;">WindPlantReactiveControlIEC</a></legend>
+                    <div id="{{id}}_WindPlantReactiveControlIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dxrefmax'>dxrefmax: </label><div class='col-sm-8'><input id='dxrefmax' class='form-control' type='text'{{#dxrefmax}} value='{{dxrefmax}}'{{/dxrefmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dxrefmin'>dxrefmin: </label><div class='col-sm-8'><input id='dxrefmin' class='form-control' type='text'{{#dxrefmin}} value='{{dxrefmin}}'{{/dxrefmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwpx'>kiwpx: </label><div class='col-sm-8'><input id='kiwpx' class='form-control' type='text'{{#kiwpx}} value='{{kiwpx}}'{{/kiwpx}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwpxmax'>kiwpxmax: </label><div class='col-sm-8'><input id='kiwpxmax' class='form-control' type='text'{{#kiwpxmax}} value='{{kiwpxmax}}'{{/kiwpxmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwpxmin'>kiwpxmin: </label><div class='col-sm-8'><input id='kiwpxmin' class='form-control' type='text'{{#kiwpxmin}} value='{{kiwpxmin}}'{{/kiwpxmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpwpx'>kpwpx: </label><div class='col-sm-8'><input id='kpwpx' class='form-control' type='text'{{#kpwpx}} value='{{kpwpx}}'{{/kpwpx}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kwpqref'>kwpqref: </label><div class='col-sm-8'><input id='kwpqref' class='form-control' type='text'{{#kwpqref}} value='{{kwpqref}}'{{/kwpqref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kwpqu'>kwpqu: </label><div class='col-sm-8'><input id='kwpqu' class='form-control' type='text'{{#kwpqu}} value='{{kwpqu}}'{{/kwpqu}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tuqfilt'>tuqfilt: </label><div class='col-sm-8'><input id='tuqfilt' class='form-control' type='text'{{#tuqfilt}} value='{{tuqfilt}}'{{/tuqfilt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twppfiltq'>twppfiltq: </label><div class='col-sm-8'><input id='twppfiltq' class='form-control' type='text'{{#twppfiltq}} value='{{twppfiltq}}'{{/twppfiltq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twpqfiltq'>twpqfiltq: </label><div class='col-sm-8'><input id='twpqfiltq' class='form-control' type='text'{{#twpqfiltq}} value='{{twpqfiltq}}'{{/twpqfiltq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twpufiltq'>twpufiltq: </label><div class='col-sm-8'><input id='twpufiltq' class='form-control' type='text'{{#twpufiltq}} value='{{twpufiltq}}'{{/twpufiltq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='txft'>txft: </label><div class='col-sm-8'><input id='txft' class='form-control' type='text'{{#txft}} value='{{txft}}'{{/txft}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='txfv'>txfv: </label><div class='col-sm-8'><input id='txfv' class='form-control' type='text'{{#txfv}} value='{{txfv}}'{{/txfv}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uwpqdip'>uwpqdip: </label><div class='col-sm-8'><input id='uwpqdip' class='form-control' type='text'{{#uwpqdip}} value='{{uwpqdip}}'{{/uwpqdip}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windPlantQcontrolModesType'>windPlantQcontrolModesType: </label><div class='col-sm-8'><select id='windPlantQcontrolModesType' class='form-control'>{{#WindPlantQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindPlantQcontrolModeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xrefmax'>xrefmax: </label><div class='col-sm-8'><input id='xrefmax' class='form-control' type='text'{{#xrefmax}} value='{{xrefmax}}'{{/xrefmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xrefmin'>xrefmin: </label><div class='col-sm-8'><input id='xrefmin' class='form-control' type='text'{{#xrefmin}} value='{{xrefmin}}'{{/xrefmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dxrefmax'>dxrefmax: </label><div class='col-sm-8'><input id='{{id}}_dxrefmax' class='form-control' type='text'{{#dxrefmax}} value='{{dxrefmax}}'{{/dxrefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dxrefmin'>dxrefmin: </label><div class='col-sm-8'><input id='{{id}}_dxrefmin' class='form-control' type='text'{{#dxrefmin}} value='{{dxrefmin}}'{{/dxrefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiwpx'>kiwpx: </label><div class='col-sm-8'><input id='{{id}}_kiwpx' class='form-control' type='text'{{#kiwpx}} value='{{kiwpx}}'{{/kiwpx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiwpxmax'>kiwpxmax: </label><div class='col-sm-8'><input id='{{id}}_kiwpxmax' class='form-control' type='text'{{#kiwpxmax}} value='{{kiwpxmax}}'{{/kiwpxmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiwpxmin'>kiwpxmin: </label><div class='col-sm-8'><input id='{{id}}_kiwpxmin' class='form-control' type='text'{{#kiwpxmin}} value='{{kiwpxmin}}'{{/kiwpxmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpwpx'>kpwpx: </label><div class='col-sm-8'><input id='{{id}}_kpwpx' class='form-control' type='text'{{#kpwpx}} value='{{kpwpx}}'{{/kpwpx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kwpqref'>kwpqref: </label><div class='col-sm-8'><input id='{{id}}_kwpqref' class='form-control' type='text'{{#kwpqref}} value='{{kwpqref}}'{{/kwpqref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kwpqu'>kwpqu: </label><div class='col-sm-8'><input id='{{id}}_kwpqu' class='form-control' type='text'{{#kwpqu}} value='{{kwpqu}}'{{/kwpqu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tuqfilt'>tuqfilt: </label><div class='col-sm-8'><input id='{{id}}_tuqfilt' class='form-control' type='text'{{#tuqfilt}} value='{{tuqfilt}}'{{/tuqfilt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_twppfiltq'>twppfiltq: </label><div class='col-sm-8'><input id='{{id}}_twppfiltq' class='form-control' type='text'{{#twppfiltq}} value='{{twppfiltq}}'{{/twppfiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_twpqfiltq'>twpqfiltq: </label><div class='col-sm-8'><input id='{{id}}_twpqfiltq' class='form-control' type='text'{{#twpqfiltq}} value='{{twpqfiltq}}'{{/twpqfiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_twpufiltq'>twpufiltq: </label><div class='col-sm-8'><input id='{{id}}_twpufiltq' class='form-control' type='text'{{#twpufiltq}} value='{{twpufiltq}}'{{/twpufiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_txft'>txft: </label><div class='col-sm-8'><input id='{{id}}_txft' class='form-control' type='text'{{#txft}} value='{{txft}}'{{/txft}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_txfv'>txfv: </label><div class='col-sm-8'><input id='{{id}}_txfv' class='form-control' type='text'{{#txfv}} value='{{txfv}}'{{/txfv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uwpqdip'>uwpqdip: </label><div class='col-sm-8'><input id='{{id}}_uwpqdip' class='form-control' type='text'{{#uwpqdip}} value='{{uwpqdip}}'{{/uwpqdip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windPlantQcontrolModesType'>windPlantQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windPlantQcontrolModesType' class='form-control'>{{#WindPlantQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindPlantQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xrefmax'>xrefmax: </label><div class='col-sm-8'><input id='{{id}}_xrefmax' class='form-control' type='text'{{#xrefmax}} value='{{xrefmax}}'{{/xrefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xrefmin'>xrefmin: </label><div class='col-sm-8'><input id='{{id}}_xrefmin' class='form-control' type='text'{{#xrefmin}} value='{{xrefmin}}'{{/xrefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindPlantReactiveControlIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dxrefmax").value; if ("" != temp) obj.dxrefmax = temp;
-                temp = document.getElementById ("dxrefmin").value; if ("" != temp) obj.dxrefmin = temp;
-                temp = document.getElementById ("kiwpx").value; if ("" != temp) obj.kiwpx = temp;
-                temp = document.getElementById ("kiwpxmax").value; if ("" != temp) obj.kiwpxmax = temp;
-                temp = document.getElementById ("kiwpxmin").value; if ("" != temp) obj.kiwpxmin = temp;
-                temp = document.getElementById ("kpwpx").value; if ("" != temp) obj.kpwpx = temp;
-                temp = document.getElementById ("kwpqref").value; if ("" != temp) obj.kwpqref = temp;
-                temp = document.getElementById ("kwpqu").value; if ("" != temp) obj.kwpqu = temp;
-                temp = document.getElementById ("tuqfilt").value; if ("" != temp) obj.tuqfilt = temp;
-                temp = document.getElementById ("twppfiltq").value; if ("" != temp) obj.twppfiltq = temp;
-                temp = document.getElementById ("twpqfiltq").value; if ("" != temp) obj.twpqfiltq = temp;
-                temp = document.getElementById ("twpufiltq").value; if ("" != temp) obj.twpufiltq = temp;
-                temp = document.getElementById ("txft").value; if ("" != temp) obj.txft = temp;
-                temp = document.getElementById ("txfv").value; if ("" != temp) obj.txfv = temp;
-                temp = document.getElementById ("uwpqdip").value; if ("" != temp) obj.uwpqdip = temp;
-                temp = document.getElementById ("windPlantQcontrolModesType").value; if ("" != temp) { temp = WindPlantQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windPlantQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindPlantQcontrolModeKind." + temp; }
-                temp = document.getElementById ("xrefmax").value; if ("" != temp) obj.xrefmax = temp;
-                temp = document.getElementById ("xrefmin").value; if ("" != temp) obj.xrefmin = temp;
-                temp = document.getElementById ("WindPlantIEC").value; if ("" != temp) obj.WindPlantIEC = temp;
+                var obj = obj || { id: id, cls: "WindPlantReactiveControlIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dxrefmax").value; if ("" != temp) obj.dxrefmax = temp;
+                temp = document.getElementById (id + "_dxrefmin").value; if ("" != temp) obj.dxrefmin = temp;
+                temp = document.getElementById (id + "_kiwpx").value; if ("" != temp) obj.kiwpx = temp;
+                temp = document.getElementById (id + "_kiwpxmax").value; if ("" != temp) obj.kiwpxmax = temp;
+                temp = document.getElementById (id + "_kiwpxmin").value; if ("" != temp) obj.kiwpxmin = temp;
+                temp = document.getElementById (id + "_kpwpx").value; if ("" != temp) obj.kpwpx = temp;
+                temp = document.getElementById (id + "_kwpqref").value; if ("" != temp) obj.kwpqref = temp;
+                temp = document.getElementById (id + "_kwpqu").value; if ("" != temp) obj.kwpqu = temp;
+                temp = document.getElementById (id + "_tuqfilt").value; if ("" != temp) obj.tuqfilt = temp;
+                temp = document.getElementById (id + "_twppfiltq").value; if ("" != temp) obj.twppfiltq = temp;
+                temp = document.getElementById (id + "_twpqfiltq").value; if ("" != temp) obj.twpqfiltq = temp;
+                temp = document.getElementById (id + "_twpufiltq").value; if ("" != temp) obj.twpufiltq = temp;
+                temp = document.getElementById (id + "_txft").value; if ("" != temp) obj.txft = temp;
+                temp = document.getElementById (id + "_txfv").value; if ("" != temp) obj.txfv = temp;
+                temp = document.getElementById (id + "_uwpqdip").value; if ("" != temp) obj.uwpqdip = temp;
+                temp = document.getElementById (id + "_windPlantQcontrolModesType").value; if ("" != temp) { temp = WindPlantQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windPlantQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindPlantQcontrolModeKind." + temp; }
+                temp = document.getElementById (id + "_xrefmax").value; if ("" != temp) obj.xrefmax = temp;
+                temp = document.getElementById (id + "_xrefmin").value; if ("" != temp) obj.xrefmin = temp;
+                temp = document.getElementById (id + "_WindPlantIEC").value; if ("" != temp) obj.WindPlantIEC = temp;
 
                 return (obj);
             }
@@ -911,71 +911,71 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType3IEC_collapse" aria-expanded="true" aria-controls="WindContPType3IEC_collapse" style="margin-left: 10px;">WindContPType3IEC</a></legend>
-                    <div id="WindContPType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContPType3IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContPType3IEC_collapse" style="margin-left: 10px;">WindContPType3IEC</a></legend>
+                    <div id="{{id}}_WindContPType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmax'>dpmax: </label><div class='col-sm-8'><input id='dpmax' class='form-control' type='text'{{#dpmax}} value='{{dpmax}}'{{/dpmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dprefmax'>dprefmax: </label><div class='col-sm-8'><input id='dprefmax' class='form-control' type='text'{{#dprefmax}} value='{{dprefmax}}'{{/dprefmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dprefmin'>dprefmin: </label><div class='col-sm-8'><input id='dprefmin' class='form-control' type='text'{{#dprefmin}} value='{{dprefmin}}'{{/dprefmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dthetamax'>dthetamax: </label><div class='col-sm-8'><input id='dthetamax' class='form-control' type='text'{{#dthetamax}} value='{{dthetamax}}'{{/dthetamax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dthetamaxuvrt'>dthetamaxuvrt: </label><div class='col-sm-8'><input id='dthetamaxuvrt' class='form-control' type='text'{{#dthetamaxuvrt}} value='{{dthetamaxuvrt}}'{{/dthetamaxuvrt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdtd'>kdtd: </label><div class='col-sm-8'><input id='kdtd' class='form-control' type='text'{{#kdtd}} value='{{kdtd}}'{{/kdtd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kip'>kip: </label><div class='col-sm-8'><input id='kip' class='form-control' type='text'{{#kip}} value='{{kip}}'{{/kip}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpp'>kpp: </label><div class='col-sm-8'><input id='kpp' class='form-control' type='text'{{#kpp}} value='{{kpp}}'{{/kpp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mpuvrt'>mpuvrt: </label><div class='col-sm-8'><input id='mpuvrt' class='form-check-input' type='checkbox'{{#mpuvrt}} checked{{/mpuvrt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omegaoffset'>omegaoffset: </label><div class='col-sm-8'><input id='omegaoffset' class='form-control' type='text'{{#omegaoffset}} value='{{omegaoffset}}'{{/omegaoffset}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pdtdmax'>pdtdmax: </label><div class='col-sm-8'><input id='pdtdmax' class='form-control' type='text'{{#pdtdmax}} value='{{pdtdmax}}'{{/pdtdmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdvs'>tdvs: </label><div class='col-sm-8'><input id='tdvs' class='form-control' type='text'{{#tdvs}} value='{{tdvs}}'{{/tdvs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetaemin'>thetaemin: </label><div class='col-sm-8'><input id='thetaemin' class='form-control' type='text'{{#thetaemin}} value='{{thetaemin}}'{{/thetaemin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetauscale'>thetauscale: </label><div class='col-sm-8'><input id='thetauscale' class='form-control' type='text'{{#thetauscale}} value='{{thetauscale}}'{{/thetauscale}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tomegafiltp3'>tomegafiltp3: </label><div class='col-sm-8'><input id='tomegafiltp3' class='form-control' type='text'{{#tomegafiltp3}} value='{{tomegafiltp3}}'{{/tomegafiltp3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfiltp3'>tpfiltp3: </label><div class='col-sm-8'><input id='tpfiltp3' class='form-control' type='text'{{#tpfiltp3}} value='{{tpfiltp3}}'{{/tpfiltp3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpord'>tpord: </label><div class='col-sm-8'><input id='tpord' class='form-control' type='text'{{#tpord}} value='{{tpord}}'{{/tpord}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltp3'>tufiltp3: </label><div class='col-sm-8'><input id='tufiltp3' class='form-control' type='text'{{#tufiltp3}} value='{{tufiltp3}}'{{/tufiltp3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twref'>twref: </label><div class='col-sm-8'><input id='twref' class='form-control' type='text'{{#twref}} value='{{twref}}'{{/twref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='udvs'>udvs: </label><div class='col-sm-8'><input id='udvs' class='form-control' type='text'{{#udvs}} value='{{udvs}}'{{/udvs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updip'>updip: </label><div class='col-sm-8'><input id='updip' class='form-control' type='text'{{#updip}} value='{{updip}}'{{/updip}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wdtd'>wdtd: </label><div class='col-sm-8'><input id='wdtd' class='form-control' type='text'{{#wdtd}} value='{{wdtd}}'{{/wdtd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeta'>zeta: </label><div class='col-sm-8'><input id='zeta' class='form-control' type='text'{{#zeta}} value='{{zeta}}'{{/zeta}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpmax'>dpmax: </label><div class='col-sm-8'><input id='{{id}}_dpmax' class='form-control' type='text'{{#dpmax}} value='{{dpmax}}'{{/dpmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dprefmax'>dprefmax: </label><div class='col-sm-8'><input id='{{id}}_dprefmax' class='form-control' type='text'{{#dprefmax}} value='{{dprefmax}}'{{/dprefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dprefmin'>dprefmin: </label><div class='col-sm-8'><input id='{{id}}_dprefmin' class='form-control' type='text'{{#dprefmin}} value='{{dprefmin}}'{{/dprefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dthetamax'>dthetamax: </label><div class='col-sm-8'><input id='{{id}}_dthetamax' class='form-control' type='text'{{#dthetamax}} value='{{dthetamax}}'{{/dthetamax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dthetamaxuvrt'>dthetamaxuvrt: </label><div class='col-sm-8'><input id='{{id}}_dthetamaxuvrt' class='form-control' type='text'{{#dthetamaxuvrt}} value='{{dthetamaxuvrt}}'{{/dthetamaxuvrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kdtd'>kdtd: </label><div class='col-sm-8'><input id='{{id}}_kdtd' class='form-control' type='text'{{#kdtd}} value='{{kdtd}}'{{/kdtd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kip'>kip: </label><div class='col-sm-8'><input id='{{id}}_kip' class='form-control' type='text'{{#kip}} value='{{kip}}'{{/kip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpp'>kpp: </label><div class='col-sm-8'><input id='{{id}}_kpp' class='form-control' type='text'{{#kpp}} value='{{kpp}}'{{/kpp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mpuvrt'>mpuvrt: </label><div class='col-sm-8'><input id='{{id}}_mpuvrt' class='form-check-input' type='checkbox'{{#mpuvrt}} checked{{/mpuvrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omegaoffset'>omegaoffset: </label><div class='col-sm-8'><input id='{{id}}_omegaoffset' class='form-control' type='text'{{#omegaoffset}} value='{{omegaoffset}}'{{/omegaoffset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pdtdmax'>pdtdmax: </label><div class='col-sm-8'><input id='{{id}}_pdtdmax' class='form-control' type='text'{{#pdtdmax}} value='{{pdtdmax}}'{{/pdtdmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tdvs'>tdvs: </label><div class='col-sm-8'><input id='{{id}}_tdvs' class='form-control' type='text'{{#tdvs}} value='{{tdvs}}'{{/tdvs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetaemin'>thetaemin: </label><div class='col-sm-8'><input id='{{id}}_thetaemin' class='form-control' type='text'{{#thetaemin}} value='{{thetaemin}}'{{/thetaemin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetauscale'>thetauscale: </label><div class='col-sm-8'><input id='{{id}}_thetauscale' class='form-control' type='text'{{#thetauscale}} value='{{thetauscale}}'{{/thetauscale}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tomegafiltp3'>tomegafiltp3: </label><div class='col-sm-8'><input id='{{id}}_tomegafiltp3' class='form-control' type='text'{{#tomegafiltp3}} value='{{tomegafiltp3}}'{{/tomegafiltp3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpfiltp3'>tpfiltp3: </label><div class='col-sm-8'><input id='{{id}}_tpfiltp3' class='form-control' type='text'{{#tpfiltp3}} value='{{tpfiltp3}}'{{/tpfiltp3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpord'>tpord: </label><div class='col-sm-8'><input id='{{id}}_tpord' class='form-control' type='text'{{#tpord}} value='{{tpord}}'{{/tpord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltp3'>tufiltp3: </label><div class='col-sm-8'><input id='{{id}}_tufiltp3' class='form-control' type='text'{{#tufiltp3}} value='{{tufiltp3}}'{{/tufiltp3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_twref'>twref: </label><div class='col-sm-8'><input id='{{id}}_twref' class='form-control' type='text'{{#twref}} value='{{twref}}'{{/twref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_udvs'>udvs: </label><div class='col-sm-8'><input id='{{id}}_udvs' class='form-control' type='text'{{#udvs}} value='{{udvs}}'{{/udvs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updip'>updip: </label><div class='col-sm-8'><input id='{{id}}_updip' class='form-control' type='text'{{#updip}} value='{{updip}}'{{/updip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wdtd'>wdtd: </label><div class='col-sm-8'><input id='{{id}}_wdtd' class='form-control' type='text'{{#wdtd}} value='{{wdtd}}'{{/wdtd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zeta'>zeta: </label><div class='col-sm-8'><input id='{{id}}_zeta' class='form-control' type='text'{{#zeta}} value='{{zeta}}'{{/zeta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContPType3IEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dpmax").value; if ("" != temp) obj.dpmax = temp;
-                temp = document.getElementById ("dprefmax").value; if ("" != temp) obj.dprefmax = temp;
-                temp = document.getElementById ("dprefmin").value; if ("" != temp) obj.dprefmin = temp;
-                temp = document.getElementById ("dthetamax").value; if ("" != temp) obj.dthetamax = temp;
-                temp = document.getElementById ("dthetamaxuvrt").value; if ("" != temp) obj.dthetamaxuvrt = temp;
-                temp = document.getElementById ("kdtd").value; if ("" != temp) obj.kdtd = temp;
-                temp = document.getElementById ("kip").value; if ("" != temp) obj.kip = temp;
-                temp = document.getElementById ("kpp").value; if ("" != temp) obj.kpp = temp;
-                temp = document.getElementById ("mpuvrt").checked; if (temp) obj.mpuvrt = true;
-                temp = document.getElementById ("omegaoffset").value; if ("" != temp) obj.omegaoffset = temp;
-                temp = document.getElementById ("pdtdmax").value; if ("" != temp) obj.pdtdmax = temp;
-                temp = document.getElementById ("tdvs").value; if ("" != temp) obj.tdvs = temp;
-                temp = document.getElementById ("thetaemin").value; if ("" != temp) obj.thetaemin = temp;
-                temp = document.getElementById ("thetauscale").value; if ("" != temp) obj.thetauscale = temp;
-                temp = document.getElementById ("tomegafiltp3").value; if ("" != temp) obj.tomegafiltp3 = temp;
-                temp = document.getElementById ("tpfiltp3").value; if ("" != temp) obj.tpfiltp3 = temp;
-                temp = document.getElementById ("tpord").value; if ("" != temp) obj.tpord = temp;
-                temp = document.getElementById ("tufiltp3").value; if ("" != temp) obj.tufiltp3 = temp;
-                temp = document.getElementById ("twref").value; if ("" != temp) obj.twref = temp;
-                temp = document.getElementById ("udvs").value; if ("" != temp) obj.udvs = temp;
-                temp = document.getElementById ("updip").value; if ("" != temp) obj.updip = temp;
-                temp = document.getElementById ("wdtd").value; if ("" != temp) obj.wdtd = temp;
-                temp = document.getElementById ("zeta").value; if ("" != temp) obj.zeta = temp;
-                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+                var obj = obj || { id: id, cls: "WindContPType3IEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dpmax").value; if ("" != temp) obj.dpmax = temp;
+                temp = document.getElementById (id + "_dprefmax").value; if ("" != temp) obj.dprefmax = temp;
+                temp = document.getElementById (id + "_dprefmin").value; if ("" != temp) obj.dprefmin = temp;
+                temp = document.getElementById (id + "_dthetamax").value; if ("" != temp) obj.dthetamax = temp;
+                temp = document.getElementById (id + "_dthetamaxuvrt").value; if ("" != temp) obj.dthetamaxuvrt = temp;
+                temp = document.getElementById (id + "_kdtd").value; if ("" != temp) obj.kdtd = temp;
+                temp = document.getElementById (id + "_kip").value; if ("" != temp) obj.kip = temp;
+                temp = document.getElementById (id + "_kpp").value; if ("" != temp) obj.kpp = temp;
+                temp = document.getElementById (id + "_mpuvrt").checked; if (temp) obj.mpuvrt = true;
+                temp = document.getElementById (id + "_omegaoffset").value; if ("" != temp) obj.omegaoffset = temp;
+                temp = document.getElementById (id + "_pdtdmax").value; if ("" != temp) obj.pdtdmax = temp;
+                temp = document.getElementById (id + "_tdvs").value; if ("" != temp) obj.tdvs = temp;
+                temp = document.getElementById (id + "_thetaemin").value; if ("" != temp) obj.thetaemin = temp;
+                temp = document.getElementById (id + "_thetauscale").value; if ("" != temp) obj.thetauscale = temp;
+                temp = document.getElementById (id + "_tomegafiltp3").value; if ("" != temp) obj.tomegafiltp3 = temp;
+                temp = document.getElementById (id + "_tpfiltp3").value; if ("" != temp) obj.tpfiltp3 = temp;
+                temp = document.getElementById (id + "_tpord").value; if ("" != temp) obj.tpord = temp;
+                temp = document.getElementById (id + "_tufiltp3").value; if ("" != temp) obj.tufiltp3 = temp;
+                temp = document.getElementById (id + "_twref").value; if ("" != temp) obj.twref = temp;
+                temp = document.getElementById (id + "_udvs").value; if ("" != temp) obj.udvs = temp;
+                temp = document.getElementById (id + "_updip").value; if ("" != temp) obj.updip = temp;
+                temp = document.getElementById (id + "_wdtd").value; if ("" != temp) obj.wdtd = temp;
+                temp = document.getElementById (id + "_zeta").value; if ("" != temp) obj.zeta = temp;
+                temp = document.getElementById (id + "_WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
 
                 return (obj);
             }
@@ -1146,71 +1146,71 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQIEC_collapse" aria-expanded="true" aria-controls="WindContQIEC_collapse" style="margin-left: 10px;">WindContQIEC</a></legend>
-                    <div id="WindContQIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContQIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContQIEC_collapse" style="margin-left: 10px;">WindContQIEC</a></legend>
+                    <div id="{{id}}_WindContQIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iqh1'>iqh1: </label><div class='col-sm-8'><input id='iqh1' class='form-control' type='text'{{#iqh1}} value='{{iqh1}}'{{/iqh1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iqmax'>iqmax: </label><div class='col-sm-8'><input id='iqmax' class='form-control' type='text'{{#iqmax}} value='{{iqmax}}'{{/iqmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iqmin'>iqmin: </label><div class='col-sm-8'><input id='iqmin' class='form-control' type='text'{{#iqmin}} value='{{iqmin}}'{{/iqmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='iqpost'>iqpost: </label><div class='col-sm-8'><input id='iqpost' class='form-control' type='text'{{#iqpost}} value='{{iqpost}}'{{/iqpost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiq'>kiq: </label><div class='col-sm-8'><input id='kiq' class='form-control' type='text'{{#kiq}} value='{{kiq}}'{{/kiq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiu'>kiu: </label><div class='col-sm-8'><input id='kiu' class='form-control' type='text'{{#kiu}} value='{{kiu}}'{{/kiu}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpq'>kpq: </label><div class='col-sm-8'><input id='kpq' class='form-control' type='text'{{#kpq}} value='{{kpq}}'{{/kpq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpu'>kpu: </label><div class='col-sm-8'><input id='kpu' class='form-control' type='text'{{#kpu}} value='{{kpu}}'{{/kpu}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kqv'>kqv: </label><div class='col-sm-8'><input id='kqv' class='form-control' type='text'{{#kqv}} value='{{kqv}}'{{/kqv}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rdroop'>rdroop: </label><div class='col-sm-8'><input id='rdroop' class='form-control' type='text'{{#rdroop}} value='{{rdroop}}'{{/rdroop}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfiltq'>tpfiltq: </label><div class='col-sm-8'><input id='tpfiltq' class='form-control' type='text'{{#tpfiltq}} value='{{tpfiltq}}'{{/tpfiltq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpost'>tpost: </label><div class='col-sm-8'><input id='tpost' class='form-control' type='text'{{#tpost}} value='{{tpost}}'{{/tpost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tqord'>tqord: </label><div class='col-sm-8'><input id='tqord' class='form-control' type='text'{{#tqord}} value='{{tqord}}'{{/tqord}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltq'>tufiltq: </label><div class='col-sm-8'><input id='tufiltq' class='form-control' type='text'{{#tufiltq}} value='{{tufiltq}}'{{/tufiltq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='udb1'>udb1: </label><div class='col-sm-8'><input id='udb1' class='form-control' type='text'{{#udb1}} value='{{udb1}}'{{/udb1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='udb2'>udb2: </label><div class='col-sm-8'><input id='udb2' class='form-control' type='text'{{#udb2}} value='{{udb2}}'{{/udb2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='umax'>umax: </label><div class='col-sm-8'><input id='umax' class='form-control' type='text'{{#umax}} value='{{umax}}'{{/umax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='umin'>umin: </label><div class='col-sm-8'><input id='umin' class='form-control' type='text'{{#umin}} value='{{umin}}'{{/umin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uqdip'>uqdip: </label><div class='col-sm-8'><input id='uqdip' class='form-control' type='text'{{#uqdip}} value='{{uqdip}}'{{/uqdip}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uref0'>uref0: </label><div class='col-sm-8'><input id='uref0' class='form-control' type='text'{{#uref0}} value='{{uref0}}'{{/uref0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windQcontrolModesType'>windQcontrolModesType: </label><div class='col-sm-8'><select id='windQcontrolModesType' class='form-control'>{{#WindQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindQcontrolModeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windUVRTQcontrolModesType'>windUVRTQcontrolModesType: </label><div class='col-sm-8'><select id='windUVRTQcontrolModesType' class='form-control'>{{#WindUVRTQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindUVRTQcontrolModeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xdroop'>xdroop: </label><div class='col-sm-8'><input id='xdroop' class='form-control' type='text'{{#xdroop}} value='{{xdroop}}'{{/xdroop}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iqh1'>iqh1: </label><div class='col-sm-8'><input id='{{id}}_iqh1' class='form-control' type='text'{{#iqh1}} value='{{iqh1}}'{{/iqh1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iqmax'>iqmax: </label><div class='col-sm-8'><input id='{{id}}_iqmax' class='form-control' type='text'{{#iqmax}} value='{{iqmax}}'{{/iqmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iqmin'>iqmin: </label><div class='col-sm-8'><input id='{{id}}_iqmin' class='form-control' type='text'{{#iqmin}} value='{{iqmin}}'{{/iqmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_iqpost'>iqpost: </label><div class='col-sm-8'><input id='{{id}}_iqpost' class='form-control' type='text'{{#iqpost}} value='{{iqpost}}'{{/iqpost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiq'>kiq: </label><div class='col-sm-8'><input id='{{id}}_kiq' class='form-control' type='text'{{#kiq}} value='{{kiq}}'{{/kiq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiu'>kiu: </label><div class='col-sm-8'><input id='{{id}}_kiu' class='form-control' type='text'{{#kiu}} value='{{kiu}}'{{/kiu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpq'>kpq: </label><div class='col-sm-8'><input id='{{id}}_kpq' class='form-control' type='text'{{#kpq}} value='{{kpq}}'{{/kpq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpu'>kpu: </label><div class='col-sm-8'><input id='{{id}}_kpu' class='form-control' type='text'{{#kpu}} value='{{kpu}}'{{/kpu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kqv'>kqv: </label><div class='col-sm-8'><input id='{{id}}_kqv' class='form-control' type='text'{{#kqv}} value='{{kqv}}'{{/kqv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rdroop'>rdroop: </label><div class='col-sm-8'><input id='{{id}}_rdroop' class='form-control' type='text'{{#rdroop}} value='{{rdroop}}'{{/rdroop}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpfiltq'>tpfiltq: </label><div class='col-sm-8'><input id='{{id}}_tpfiltq' class='form-control' type='text'{{#tpfiltq}} value='{{tpfiltq}}'{{/tpfiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpost'>tpost: </label><div class='col-sm-8'><input id='{{id}}_tpost' class='form-control' type='text'{{#tpost}} value='{{tpost}}'{{/tpost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tqord'>tqord: </label><div class='col-sm-8'><input id='{{id}}_tqord' class='form-control' type='text'{{#tqord}} value='{{tqord}}'{{/tqord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltq'>tufiltq: </label><div class='col-sm-8'><input id='{{id}}_tufiltq' class='form-control' type='text'{{#tufiltq}} value='{{tufiltq}}'{{/tufiltq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_udb1'>udb1: </label><div class='col-sm-8'><input id='{{id}}_udb1' class='form-control' type='text'{{#udb1}} value='{{udb1}}'{{/udb1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_udb2'>udb2: </label><div class='col-sm-8'><input id='{{id}}_udb2' class='form-control' type='text'{{#udb2}} value='{{udb2}}'{{/udb2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_umax'>umax: </label><div class='col-sm-8'><input id='{{id}}_umax' class='form-control' type='text'{{#umax}} value='{{umax}}'{{/umax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_umin'>umin: </label><div class='col-sm-8'><input id='{{id}}_umin' class='form-control' type='text'{{#umin}} value='{{umin}}'{{/umin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uqdip'>uqdip: </label><div class='col-sm-8'><input id='{{id}}_uqdip' class='form-control' type='text'{{#uqdip}} value='{{uqdip}}'{{/uqdip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uref0'>uref0: </label><div class='col-sm-8'><input id='{{id}}_uref0' class='form-control' type='text'{{#uref0}} value='{{uref0}}'{{/uref0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windQcontrolModesType'>windQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windQcontrolModesType' class='form-control'>{{#WindQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windUVRTQcontrolModesType'>windUVRTQcontrolModesType: </label><div class='col-sm-8'><select id='{{id}}_windUVRTQcontrolModesType' class='form-control'>{{#WindUVRTQcontrolModeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindUVRTQcontrolModeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xdroop'>xdroop: </label><div class='col-sm-8'><input id='{{id}}_xdroop' class='form-control' type='text'{{#xdroop}} value='{{xdroop}}'{{/xdroop}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContQIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("iqh1").value; if ("" != temp) obj.iqh1 = temp;
-                temp = document.getElementById ("iqmax").value; if ("" != temp) obj.iqmax = temp;
-                temp = document.getElementById ("iqmin").value; if ("" != temp) obj.iqmin = temp;
-                temp = document.getElementById ("iqpost").value; if ("" != temp) obj.iqpost = temp;
-                temp = document.getElementById ("kiq").value; if ("" != temp) obj.kiq = temp;
-                temp = document.getElementById ("kiu").value; if ("" != temp) obj.kiu = temp;
-                temp = document.getElementById ("kpq").value; if ("" != temp) obj.kpq = temp;
-                temp = document.getElementById ("kpu").value; if ("" != temp) obj.kpu = temp;
-                temp = document.getElementById ("kqv").value; if ("" != temp) obj.kqv = temp;
-                temp = document.getElementById ("rdroop").value; if ("" != temp) obj.rdroop = temp;
-                temp = document.getElementById ("tpfiltq").value; if ("" != temp) obj.tpfiltq = temp;
-                temp = document.getElementById ("tpost").value; if ("" != temp) obj.tpost = temp;
-                temp = document.getElementById ("tqord").value; if ("" != temp) obj.tqord = temp;
-                temp = document.getElementById ("tufiltq").value; if ("" != temp) obj.tufiltq = temp;
-                temp = document.getElementById ("udb1").value; if ("" != temp) obj.udb1 = temp;
-                temp = document.getElementById ("udb2").value; if ("" != temp) obj.udb2 = temp;
-                temp = document.getElementById ("umax").value; if ("" != temp) obj.umax = temp;
-                temp = document.getElementById ("umin").value; if ("" != temp) obj.umin = temp;
-                temp = document.getElementById ("uqdip").value; if ("" != temp) obj.uqdip = temp;
-                temp = document.getElementById ("uref0").value; if ("" != temp) obj.uref0 = temp;
-                temp = document.getElementById ("windQcontrolModesType").value; if ("" != temp) { temp = WindQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindQcontrolModeKind." + temp; }
-                temp = document.getElementById ("windUVRTQcontrolModesType").value; if ("" != temp) { temp = WindUVRTQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windUVRTQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindUVRTQcontrolModeKind." + temp; }
-                temp = document.getElementById ("xdroop").value; if ("" != temp) obj.xdroop = temp;
-                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+                var obj = obj || { id: id, cls: "WindContQIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_iqh1").value; if ("" != temp) obj.iqh1 = temp;
+                temp = document.getElementById (id + "_iqmax").value; if ("" != temp) obj.iqmax = temp;
+                temp = document.getElementById (id + "_iqmin").value; if ("" != temp) obj.iqmin = temp;
+                temp = document.getElementById (id + "_iqpost").value; if ("" != temp) obj.iqpost = temp;
+                temp = document.getElementById (id + "_kiq").value; if ("" != temp) obj.kiq = temp;
+                temp = document.getElementById (id + "_kiu").value; if ("" != temp) obj.kiu = temp;
+                temp = document.getElementById (id + "_kpq").value; if ("" != temp) obj.kpq = temp;
+                temp = document.getElementById (id + "_kpu").value; if ("" != temp) obj.kpu = temp;
+                temp = document.getElementById (id + "_kqv").value; if ("" != temp) obj.kqv = temp;
+                temp = document.getElementById (id + "_rdroop").value; if ("" != temp) obj.rdroop = temp;
+                temp = document.getElementById (id + "_tpfiltq").value; if ("" != temp) obj.tpfiltq = temp;
+                temp = document.getElementById (id + "_tpost").value; if ("" != temp) obj.tpost = temp;
+                temp = document.getElementById (id + "_tqord").value; if ("" != temp) obj.tqord = temp;
+                temp = document.getElementById (id + "_tufiltq").value; if ("" != temp) obj.tufiltq = temp;
+                temp = document.getElementById (id + "_udb1").value; if ("" != temp) obj.udb1 = temp;
+                temp = document.getElementById (id + "_udb2").value; if ("" != temp) obj.udb2 = temp;
+                temp = document.getElementById (id + "_umax").value; if ("" != temp) obj.umax = temp;
+                temp = document.getElementById (id + "_umin").value; if ("" != temp) obj.umin = temp;
+                temp = document.getElementById (id + "_uqdip").value; if ("" != temp) obj.uqdip = temp;
+                temp = document.getElementById (id + "_uref0").value; if ("" != temp) obj.uref0 = temp;
+                temp = document.getElementById (id + "_windQcontrolModesType").value; if ("" != temp) { temp = WindQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindQcontrolModeKind." + temp; }
+                temp = document.getElementById (id + "_windUVRTQcontrolModesType").value; if ("" != temp) { temp = WindUVRTQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windUVRTQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindUVRTQcontrolModeKind." + temp; }
+                temp = document.getElementById (id + "_xdroop").value; if ("" != temp) obj.xdroop = temp;
+                temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
 
                 return (obj);
             }
@@ -1307,25 +1307,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroConstIEC_collapse" aria-expanded="true" aria-controls="WindAeroConstIEC_collapse" style="margin-left: 10px;">WindAeroConstIEC</a></legend>
-                    <div id="WindAeroConstIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindAeroConstIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindAeroConstIEC_collapse" style="margin-left: 10px;">WindAeroConstIEC</a></legend>
+                    <div id="{{id}}_WindAeroConstIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenTurbineType1aIEC'>WindGenTurbineType1aIEC: </label><div class='col-sm-8'><input id='WindGenTurbineType1aIEC' class='form-control' type='text'{{#WindGenTurbineType1aIEC}} value='{{WindGenTurbineType1aIEC}}'{{/WindGenTurbineType1aIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenTurbineType1aIEC'>WindGenTurbineType1aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenTurbineType1aIEC' class='form-control' type='text'{{#WindGenTurbineType1aIEC}} value='{{WindGenTurbineType1aIEC}}'{{/WindGenTurbineType1aIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindAeroConstIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindGenTurbineType1aIEC").value; if ("" != temp) obj.WindGenTurbineType1aIEC = temp;
+                var obj = obj || { id: id, cls: "WindAeroConstIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindGenTurbineType1aIEC").value; if ("" != temp) obj.WindGenTurbineType1aIEC = temp;
 
                 return (obj);
             }
@@ -1426,29 +1426,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3or4Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4Dynamics_collapse" style="margin-left: 10px;">WindTurbineType3or4Dynamics</a></legend>
-                    <div id="WindTurbineType3or4Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType3or4Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType3or4Dynamics_collapse" style="margin-left: 10px;">WindTurbineType3or4Dynamics</a></legend>
+                    <div id="{{id}}_WindTurbineType3or4Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergySource'>EnergySource: </label><div class='col-sm-8'><input id='EnergySource' class='form-control' type='text'{{#EnergySource}} value='{{EnergySource}}'{{/EnergySource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantDynamics'>WindPlantDynamics: </label><div class='col-sm-8'><input id='WindPlantDynamics' class='form-control' type='text'{{#WindPlantDynamics}} value='{{WindPlantDynamics}}'{{/WindPlantDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergySource'>EnergySource: </label><div class='col-sm-8'><input id='{{id}}_EnergySource' class='form-control' type='text'{{#EnergySource}} value='{{EnergySource}}'{{/EnergySource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantDynamics'>WindPlantDynamics: </label><div class='col-sm-8'><input id='{{id}}_WindPlantDynamics' class='form-control' type='text'{{#WindPlantDynamics}} value='{{WindPlantDynamics}}'{{/WindPlantDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindTurbineType3or4Dynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("EnergySource").value; if ("" != temp) obj.EnergySource = temp;
-                temp = document.getElementById ("WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;
-                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                var obj = obj || { id: id, cls: "WindTurbineType3or4Dynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_EnergySource").value; if ("" != temp) obj.EnergySource = temp;
+                temp = document.getElementById (id + "_WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;
+                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
 
                 return (obj);
             }
@@ -1558,29 +1558,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQPQULimIEC_collapse" aria-expanded="true" aria-controls="WindContQPQULimIEC_collapse" style="margin-left: 10px;">WindContQPQULimIEC</a></legend>
-                    <div id="WindContQPQULimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContQPQULimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContQPQULimIEC_collapse" style="margin-left: 10px;">WindContQPQULimIEC</a></legend>
+                    <div id="{{id}}_WindContQPQULimIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfiltql'>tpfiltql: </label><div class='col-sm-8'><input id='tpfiltql' class='form-control' type='text'{{#tpfiltql}} value='{{tpfiltql}}'{{/tpfiltql}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltql'>tufiltql: </label><div class='col-sm-8'><input id='tufiltql' class='form-control' type='text'{{#tufiltql}} value='{{tufiltql}}'{{/tufiltql}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpfiltql'>tpfiltql: </label><div class='col-sm-8'><input id='{{id}}_tpfiltql' class='form-control' type='text'{{#tpfiltql}} value='{{tpfiltql}}'{{/tpfiltql}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltql'>tufiltql: </label><div class='col-sm-8'><input id='{{id}}_tufiltql' class='form-control' type='text'{{#tufiltql}} value='{{tufiltql}}'{{/tufiltql}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContQPQULimIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("tpfiltql").value; if ("" != temp) obj.tpfiltql = temp;
-                temp = document.getElementById ("tufiltql").value; if ("" != temp) obj.tufiltql = temp;
-                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+                var obj = obj || { id: id, cls: "WindContQPQULimIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tpfiltql").value; if ("" != temp) obj.tpfiltql = temp;
+                temp = document.getElementById (id + "_tufiltql").value; if ("" != temp) obj.tufiltql = temp;
+                temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
 
                 return (obj);
             }
@@ -1696,37 +1696,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindMechIEC_collapse" aria-expanded="true" aria-controls="WindMechIEC_collapse" style="margin-left: 10px;">WindMechIEC</a></legend>
-                    <div id="WindMechIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindMechIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindMechIEC_collapse" style="margin-left: 10px;">WindMechIEC</a></legend>
+                    <div id="{{id}}_WindMechIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cdrt'>cdrt: </label><div class='col-sm-8'><input id='cdrt' class='form-control' type='text'{{#cdrt}} value='{{cdrt}}'{{/cdrt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hgen'>hgen: </label><div class='col-sm-8'><input id='hgen' class='form-control' type='text'{{#hgen}} value='{{hgen}}'{{/hgen}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hwtr'>hwtr: </label><div class='col-sm-8'><input id='hwtr' class='form-control' type='text'{{#hwtr}} value='{{hwtr}}'{{/hwtr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kdrt'>kdrt: </label><div class='col-sm-8'><input id='kdrt' class='form-control' type='text'{{#kdrt}} value='{{kdrt}}'{{/kdrt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType1or2IEC'>WindTurbineType1or2IEC: </label><div class='col-sm-8'><input id='WindTurbineType1or2IEC' class='form-control' type='text'{{#WindTurbineType1or2IEC}} value='{{WindTurbineType1or2IEC}}'{{/WindTurbineType1or2IEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cdrt'>cdrt: </label><div class='col-sm-8'><input id='{{id}}_cdrt' class='form-control' type='text'{{#cdrt}} value='{{cdrt}}'{{/cdrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hgen'>hgen: </label><div class='col-sm-8'><input id='{{id}}_hgen' class='form-control' type='text'{{#hgen}} value='{{hgen}}'{{/hgen}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hwtr'>hwtr: </label><div class='col-sm-8'><input id='{{id}}_hwtr' class='form-control' type='text'{{#hwtr}} value='{{hwtr}}'{{/hwtr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kdrt'>kdrt: </label><div class='col-sm-8'><input id='{{id}}_kdrt' class='form-control' type='text'{{#kdrt}} value='{{kdrt}}'{{/kdrt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType1or2IEC'>WindTurbineType1or2IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType1or2IEC' class='form-control' type='text'{{#WindTurbineType1or2IEC}} value='{{WindTurbineType1or2IEC}}'{{/WindTurbineType1or2IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindMechIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("cdrt").value; if ("" != temp) obj.cdrt = temp;
-                temp = document.getElementById ("hgen").value; if ("" != temp) obj.hgen = temp;
-                temp = document.getElementById ("hwtr").value; if ("" != temp) obj.hwtr = temp;
-                temp = document.getElementById ("kdrt").value; if ("" != temp) obj.kdrt = temp;
-                temp = document.getElementById ("WindTurbineType1or2IEC").value; if ("" != temp) obj.WindTurbineType1or2IEC = temp;
-                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
-                temp = document.getElementById ("WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
+                var obj = obj || { id: id, cls: "WindMechIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_cdrt").value; if ("" != temp) obj.cdrt = temp;
+                temp = document.getElementById (id + "_hgen").value; if ("" != temp) obj.hgen = temp;
+                temp = document.getElementById (id + "_hwtr").value; if ("" != temp) obj.hwtr = temp;
+                temp = document.getElementById (id + "_kdrt").value; if ("" != temp) obj.kdrt = temp;
+                temp = document.getElementById (id + "_WindTurbineType1or2IEC").value; if ("" != temp) obj.WindTurbineType1or2IEC = temp;
+                temp = document.getElementById (id + "_WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+                temp = document.getElementById (id + "_WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
 
                 return (obj);
             }
@@ -1846,39 +1846,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroTwoDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroTwoDimIEC_collapse" style="margin-left: 10px;">WindAeroTwoDimIEC</a></legend>
-                    <div id="WindAeroTwoDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindAeroTwoDimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindAeroTwoDimIEC_collapse" style="margin-left: 10px;">WindAeroTwoDimIEC</a></legend>
+                    <div id="{{id}}_WindAeroTwoDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpomega'>dpomega: </label><div class='col-sm-8'><input id='dpomega' class='form-control' type='text'{{#dpomega}} value='{{dpomega}}'{{/dpomega}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dptheta'>dptheta: </label><div class='col-sm-8'><input id='dptheta' class='form-control' type='text'{{#dptheta}} value='{{dptheta}}'{{/dptheta}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpv1'>dpv1: </label><div class='col-sm-8'><input id='dpv1' class='form-control' type='text'{{#dpv1}} value='{{dpv1}}'{{/dpv1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omegazero'>omegazero: </label><div class='col-sm-8'><input id='omegazero' class='form-control' type='text'{{#omegazero}} value='{{omegazero}}'{{/omegazero}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pavail'>pavail: </label><div class='col-sm-8'><input id='pavail' class='form-control' type='text'{{#pavail}} value='{{pavail}}'{{/pavail}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetav2'>thetav2: </label><div class='col-sm-8'><input id='thetav2' class='form-control' type='text'{{#thetav2}} value='{{thetav2}}'{{/thetav2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetazero'>thetazero: </label><div class='col-sm-8'><input id='thetazero' class='form-control' type='text'{{#thetazero}} value='{{thetazero}}'{{/thetazero}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpomega'>dpomega: </label><div class='col-sm-8'><input id='{{id}}_dpomega' class='form-control' type='text'{{#dpomega}} value='{{dpomega}}'{{/dpomega}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dptheta'>dptheta: </label><div class='col-sm-8'><input id='{{id}}_dptheta' class='form-control' type='text'{{#dptheta}} value='{{dptheta}}'{{/dptheta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpv1'>dpv1: </label><div class='col-sm-8'><input id='{{id}}_dpv1' class='form-control' type='text'{{#dpv1}} value='{{dpv1}}'{{/dpv1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omegazero'>omegazero: </label><div class='col-sm-8'><input id='{{id}}_omegazero' class='form-control' type='text'{{#omegazero}} value='{{omegazero}}'{{/omegazero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pavail'>pavail: </label><div class='col-sm-8'><input id='{{id}}_pavail' class='form-control' type='text'{{#pavail}} value='{{pavail}}'{{/pavail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetav2'>thetav2: </label><div class='col-sm-8'><input id='{{id}}_thetav2' class='form-control' type='text'{{#thetav2}} value='{{thetav2}}'{{/thetav2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetazero'>thetazero: </label><div class='col-sm-8'><input id='{{id}}_thetazero' class='form-control' type='text'{{#thetazero}} value='{{thetazero}}'{{/thetazero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindAeroTwoDimIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dpomega").value; if ("" != temp) obj.dpomega = temp;
-                temp = document.getElementById ("dptheta").value; if ("" != temp) obj.dptheta = temp;
-                temp = document.getElementById ("dpv1").value; if ("" != temp) obj.dpv1 = temp;
-                temp = document.getElementById ("omegazero").value; if ("" != temp) obj.omegazero = temp;
-                temp = document.getElementById ("pavail").value; if ("" != temp) obj.pavail = temp;
-                temp = document.getElementById ("thetav2").value; if ("" != temp) obj.thetav2 = temp;
-                temp = document.getElementById ("thetazero").value; if ("" != temp) obj.thetazero = temp;
-                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+                var obj = obj || { id: id, cls: "WindAeroTwoDimIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dpomega").value; if ("" != temp) obj.dpomega = temp;
+                temp = document.getElementById (id + "_dptheta").value; if ("" != temp) obj.dptheta = temp;
+                temp = document.getElementById (id + "_dpv1").value; if ("" != temp) obj.dpv1 = temp;
+                temp = document.getElementById (id + "_omegazero").value; if ("" != temp) obj.omegazero = temp;
+                temp = document.getElementById (id + "_pavail").value; if ("" != temp) obj.pavail = temp;
+                temp = document.getElementById (id + "_thetav2").value; if ("" != temp) obj.thetav2 = temp;
+                temp = document.getElementById (id + "_thetazero").value; if ("" != temp) obj.thetazero = temp;
+                temp = document.getElementById (id + "_WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
 
                 return (obj);
             }
@@ -1981,29 +1981,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContQLimIEC_collapse" aria-expanded="true" aria-controls="WindContQLimIEC_collapse" style="margin-left: 10px;">WindContQLimIEC</a></legend>
-                    <div id="WindContQLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContQLimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContQLimIEC_collapse" style="margin-left: 10px;">WindContQLimIEC</a></legend>
+                    <div id="{{id}}_WindContQLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qmax'>qmax: </label><div class='col-sm-8'><input id='qmax' class='form-control' type='text'{{#qmax}} value='{{qmax}}'{{/qmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qmin'>qmin: </label><div class='col-sm-8'><input id='qmin' class='form-control' type='text'{{#qmin}} value='{{qmin}}'{{/qmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qmax'>qmax: </label><div class='col-sm-8'><input id='{{id}}_qmax' class='form-control' type='text'{{#qmax}} value='{{qmax}}'{{/qmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qmin'>qmin: </label><div class='col-sm-8'><input id='{{id}}_qmin' class='form-control' type='text'{{#qmin}} value='{{qmin}}'{{/qmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContQLimIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("qmax").value; if ("" != temp) obj.qmax = temp;
-                temp = document.getElementById ("qmin").value; if ("" != temp) obj.qmin = temp;
-                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+                var obj = obj || { id: id, cls: "WindContQLimIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_qmax").value; if ("" != temp) obj.qmax = temp;
+                temp = document.getElementById (id + "_qmin").value; if ("" != temp) obj.qmin = temp;
+                temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
 
                 return (obj);
             }
@@ -2107,31 +2107,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3IEC_collapse" aria-expanded="true" aria-controls="WindGenType3IEC_collapse" style="margin-left: 10px;">WindGenType3IEC</a></legend>
-                    <div id="WindGenType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenType3IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenType3IEC_collapse" style="margin-left: 10px;">WindGenType3IEC</a></legend>
+                    <div id="{{id}}_WindGenType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dipmax'>dipmax: </label><div class='col-sm-8'><input id='dipmax' class='form-control' type='text'{{#dipmax}} value='{{dipmax}}'{{/dipmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diqmax'>diqmax: </label><div class='col-sm-8'><input id='diqmax' class='form-control' type='text'{{#diqmax}} value='{{diqmax}}'{{/diqmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xs'>xs: </label><div class='col-sm-8'><input id='xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dipmax'>dipmax: </label><div class='col-sm-8'><input id='{{id}}_dipmax' class='form-control' type='text'{{#dipmax}} value='{{dipmax}}'{{/dipmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diqmax'>diqmax: </label><div class='col-sm-8'><input id='{{id}}_diqmax' class='form-control' type='text'{{#diqmax}} value='{{diqmax}}'{{/diqmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xs'>xs: </label><div class='col-sm-8'><input id='{{id}}_xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindGenType3IEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dipmax").value; if ("" != temp) obj.dipmax = temp;
-                temp = document.getElementById ("diqmax").value; if ("" != temp) obj.diqmax = temp;
-                temp = document.getElementById ("xs").value; if ("" != temp) obj.xs = temp;
-                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+                var obj = obj || { id: id, cls: "WindGenType3IEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dipmax").value; if ("" != temp) obj.dipmax = temp;
+                temp = document.getElementById (id + "_diqmax").value; if ("" != temp) obj.diqmax = temp;
+                temp = document.getElementById (id + "_xs").value; if ("" != temp) obj.xs = temp;
+                temp = document.getElementById (id + "_WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
 
                 return (obj);
             }
@@ -2257,41 +2257,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindProtectionIEC_collapse" aria-expanded="true" aria-controls="WindProtectionIEC_collapse" style="margin-left: 10px;">WindProtectionIEC</a></legend>
-                    <div id="WindProtectionIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindProtectionIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindProtectionIEC_collapse" style="margin-left: 10px;">WindProtectionIEC</a></legend>
+                    <div id="{{id}}_WindProtectionIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dfimax'>dfimax: </label><div class='col-sm-8'><input id='dfimax' class='form-control' type='text'{{#dfimax}} value='{{dfimax}}'{{/dfimax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fover'>fover: </label><div class='col-sm-8'><input id='fover' class='form-control' type='text'{{#fover}} value='{{fover}}'{{/fover}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='funder'>funder: </label><div class='col-sm-8'><input id='funder' class='form-control' type='text'{{#funder}} value='{{funder}}'{{/funder}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mzc'>mzc: </label><div class='col-sm-8'><input id='mzc' class='form-check-input' type='checkbox'{{#mzc}} checked{{/mzc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tfma'>tfma: </label><div class='col-sm-8'><input id='tfma' class='form-control' type='text'{{#tfma}} value='{{tfma}}'{{/tfma}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uover'>uover: </label><div class='col-sm-8'><input id='uover' class='form-control' type='text'{{#uover}} value='{{uover}}'{{/uover}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uunder'>uunder: </label><div class='col-sm-8'><input id='uunder' class='form-control' type='text'{{#uunder}} value='{{uunder}}'{{/uunder}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType1or2IEC'>WindTurbineType1or2IEC: </label><div class='col-sm-8'><input id='WindTurbineType1or2IEC' class='form-control' type='text'{{#WindTurbineType1or2IEC}} value='{{WindTurbineType1or2IEC}}'{{/WindTurbineType1or2IEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dfimax'>dfimax: </label><div class='col-sm-8'><input id='{{id}}_dfimax' class='form-control' type='text'{{#dfimax}} value='{{dfimax}}'{{/dfimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fover'>fover: </label><div class='col-sm-8'><input id='{{id}}_fover' class='form-control' type='text'{{#fover}} value='{{fover}}'{{/fover}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_funder'>funder: </label><div class='col-sm-8'><input id='{{id}}_funder' class='form-control' type='text'{{#funder}} value='{{funder}}'{{/funder}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mzc'>mzc: </label><div class='col-sm-8'><input id='{{id}}_mzc' class='form-check-input' type='checkbox'{{#mzc}} checked{{/mzc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tfma'>tfma: </label><div class='col-sm-8'><input id='{{id}}_tfma' class='form-control' type='text'{{#tfma}} value='{{tfma}}'{{/tfma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uover'>uover: </label><div class='col-sm-8'><input id='{{id}}_uover' class='form-control' type='text'{{#uover}} value='{{uover}}'{{/uover}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uunder'>uunder: </label><div class='col-sm-8'><input id='{{id}}_uunder' class='form-control' type='text'{{#uunder}} value='{{uunder}}'{{/uunder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType1or2IEC'>WindTurbineType1or2IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType1or2IEC' class='form-control' type='text'{{#WindTurbineType1or2IEC}} value='{{WindTurbineType1or2IEC}}'{{/WindTurbineType1or2IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindProtectionIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dfimax").value; if ("" != temp) obj.dfimax = temp;
-                temp = document.getElementById ("fover").value; if ("" != temp) obj.fover = temp;
-                temp = document.getElementById ("funder").value; if ("" != temp) obj.funder = temp;
-                temp = document.getElementById ("mzc").checked; if (temp) obj.mzc = true;
-                temp = document.getElementById ("tfma").value; if ("" != temp) obj.tfma = temp;
-                temp = document.getElementById ("uover").value; if ("" != temp) obj.uover = temp;
-                temp = document.getElementById ("uunder").value; if ("" != temp) obj.uunder = temp;
-                temp = document.getElementById ("WindTurbineType1or2IEC").value; if ("" != temp) obj.WindTurbineType1or2IEC = temp;
-                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+                var obj = obj || { id: id, cls: "WindProtectionIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dfimax").value; if ("" != temp) obj.dfimax = temp;
+                temp = document.getElementById (id + "_fover").value; if ("" != temp) obj.fover = temp;
+                temp = document.getElementById (id + "_funder").value; if ("" != temp) obj.funder = temp;
+                temp = document.getElementById (id + "_mzc").checked; if (temp) obj.mzc = true;
+                temp = document.getElementById (id + "_tfma").value; if ("" != temp) obj.tfma = temp;
+                temp = document.getElementById (id + "_uover").value; if ("" != temp) obj.uover = temp;
+                temp = document.getElementById (id + "_uunder").value; if ("" != temp) obj.uunder = temp;
+                temp = document.getElementById (id + "_WindTurbineType1or2IEC").value; if ("" != temp) obj.WindTurbineType1or2IEC = temp;
+                temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
 
                 return (obj);
             }
@@ -2419,41 +2419,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContRotorRIEC_collapse" aria-expanded="true" aria-controls="WindContRotorRIEC_collapse" style="margin-left: 10px;">WindContRotorRIEC</a></legend>
-                    <div id="WindContRotorRIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContRotorRIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContRotorRIEC_collapse" style="margin-left: 10px;">WindContRotorRIEC</a></legend>
+                    <div id="{{id}}_WindContRotorRIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kirr'>kirr: </label><div class='col-sm-8'><input id='kirr' class='form-control' type='text'{{#kirr}} value='{{kirr}}'{{/kirr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='komegafilt'>komegafilt: </label><div class='col-sm-8'><input id='komegafilt' class='form-control' type='text'{{#komegafilt}} value='{{komegafilt}}'{{/komegafilt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpfilt'>kpfilt: </label><div class='col-sm-8'><input id='kpfilt' class='form-control' type='text'{{#kpfilt}} value='{{kpfilt}}'{{/kpfilt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kprr'>kprr: </label><div class='col-sm-8'><input id='kprr' class='form-control' type='text'{{#kprr}} value='{{kprr}}'{{/kprr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rmax'>rmax: </label><div class='col-sm-8'><input id='rmax' class='form-control' type='text'{{#rmax}} value='{{rmax}}'{{/rmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rmin'>rmin: </label><div class='col-sm-8'><input id='rmin' class='form-control' type='text'{{#rmin}} value='{{rmin}}'{{/rmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tomegafiltrr'>tomegafiltrr: </label><div class='col-sm-8'><input id='tomegafiltrr' class='form-control' type='text'{{#tomegafiltrr}} value='{{tomegafiltrr}}'{{/tomegafiltrr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfiltrr'>tpfiltrr: </label><div class='col-sm-8'><input id='tpfiltrr' class='form-control' type='text'{{#tpfiltrr}} value='{{tpfiltrr}}'{{/tpfiltrr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenTurbineType2IEC'>WindGenTurbineType2IEC: </label><div class='col-sm-8'><input id='WindGenTurbineType2IEC' class='form-control' type='text'{{#WindGenTurbineType2IEC}} value='{{WindGenTurbineType2IEC}}'{{/WindGenTurbineType2IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kirr'>kirr: </label><div class='col-sm-8'><input id='{{id}}_kirr' class='form-control' type='text'{{#kirr}} value='{{kirr}}'{{/kirr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_komegafilt'>komegafilt: </label><div class='col-sm-8'><input id='{{id}}_komegafilt' class='form-control' type='text'{{#komegafilt}} value='{{komegafilt}}'{{/komegafilt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpfilt'>kpfilt: </label><div class='col-sm-8'><input id='{{id}}_kpfilt' class='form-control' type='text'{{#kpfilt}} value='{{kpfilt}}'{{/kpfilt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kprr'>kprr: </label><div class='col-sm-8'><input id='{{id}}_kprr' class='form-control' type='text'{{#kprr}} value='{{kprr}}'{{/kprr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rmax'>rmax: </label><div class='col-sm-8'><input id='{{id}}_rmax' class='form-control' type='text'{{#rmax}} value='{{rmax}}'{{/rmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rmin'>rmin: </label><div class='col-sm-8'><input id='{{id}}_rmin' class='form-control' type='text'{{#rmin}} value='{{rmin}}'{{/rmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tomegafiltrr'>tomegafiltrr: </label><div class='col-sm-8'><input id='{{id}}_tomegafiltrr' class='form-control' type='text'{{#tomegafiltrr}} value='{{tomegafiltrr}}'{{/tomegafiltrr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpfiltrr'>tpfiltrr: </label><div class='col-sm-8'><input id='{{id}}_tpfiltrr' class='form-control' type='text'{{#tpfiltrr}} value='{{tpfiltrr}}'{{/tpfiltrr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenTurbineType2IEC'>WindGenTurbineType2IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenTurbineType2IEC' class='form-control' type='text'{{#WindGenTurbineType2IEC}} value='{{WindGenTurbineType2IEC}}'{{/WindGenTurbineType2IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContRotorRIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("kirr").value; if ("" != temp) obj.kirr = temp;
-                temp = document.getElementById ("komegafilt").value; if ("" != temp) obj.komegafilt = temp;
-                temp = document.getElementById ("kpfilt").value; if ("" != temp) obj.kpfilt = temp;
-                temp = document.getElementById ("kprr").value; if ("" != temp) obj.kprr = temp;
-                temp = document.getElementById ("rmax").value; if ("" != temp) obj.rmax = temp;
-                temp = document.getElementById ("rmin").value; if ("" != temp) obj.rmin = temp;
-                temp = document.getElementById ("tomegafiltrr").value; if ("" != temp) obj.tomegafiltrr = temp;
-                temp = document.getElementById ("tpfiltrr").value; if ("" != temp) obj.tpfiltrr = temp;
-                temp = document.getElementById ("WindGenTurbineType2IEC").value; if ("" != temp) obj.WindGenTurbineType2IEC = temp;
+                var obj = obj || { id: id, cls: "WindContRotorRIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kirr").value; if ("" != temp) obj.kirr = temp;
+                temp = document.getElementById (id + "_komegafilt").value; if ("" != temp) obj.komegafilt = temp;
+                temp = document.getElementById (id + "_kpfilt").value; if ("" != temp) obj.kpfilt = temp;
+                temp = document.getElementById (id + "_kprr").value; if ("" != temp) obj.kprr = temp;
+                temp = document.getElementById (id + "_rmax").value; if ("" != temp) obj.rmax = temp;
+                temp = document.getElementById (id + "_rmin").value; if ("" != temp) obj.rmin = temp;
+                temp = document.getElementById (id + "_tomegafiltrr").value; if ("" != temp) obj.tomegafiltrr = temp;
+                temp = document.getElementById (id + "_tpfiltrr").value; if ("" != temp) obj.tpfiltrr = temp;
+                temp = document.getElementById (id + "_WindGenTurbineType2IEC").value; if ("" != temp) obj.WindGenTurbineType2IEC = temp;
 
                 return (obj);
             }
@@ -2563,33 +2563,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType4bIEC_collapse" aria-expanded="true" aria-controls="WindContPType4bIEC_collapse" style="margin-left: 10px;">WindContPType4bIEC</a></legend>
-                    <div id="WindContPType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContPType4bIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContPType4bIEC_collapse" style="margin-left: 10px;">WindContPType4bIEC</a></legend>
+                    <div id="{{id}}_WindContPType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmaxp4b'>dpmaxp4b: </label><div class='col-sm-8'><input id='dpmaxp4b' class='form-control' type='text'{{#dpmaxp4b}} value='{{dpmaxp4b}}'{{/dpmaxp4b}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpaero'>tpaero: </label><div class='col-sm-8'><input id='tpaero' class='form-control' type='text'{{#tpaero}} value='{{tpaero}}'{{/tpaero}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpordp4b'>tpordp4b: </label><div class='col-sm-8'><input id='tpordp4b' class='form-control' type='text'{{#tpordp4b}} value='{{tpordp4b}}'{{/tpordp4b}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltp4b'>tufiltp4b: </label><div class='col-sm-8'><input id='tufiltp4b' class='form-control' type='text'{{#tufiltp4b}} value='{{tufiltp4b}}'{{/tufiltp4b}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpmaxp4b'>dpmaxp4b: </label><div class='col-sm-8'><input id='{{id}}_dpmaxp4b' class='form-control' type='text'{{#dpmaxp4b}} value='{{dpmaxp4b}}'{{/dpmaxp4b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpaero'>tpaero: </label><div class='col-sm-8'><input id='{{id}}_tpaero' class='form-control' type='text'{{#tpaero}} value='{{tpaero}}'{{/tpaero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpordp4b'>tpordp4b: </label><div class='col-sm-8'><input id='{{id}}_tpordp4b' class='form-control' type='text'{{#tpordp4b}} value='{{tpordp4b}}'{{/tpordp4b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltp4b'>tufiltp4b: </label><div class='col-sm-8'><input id='{{id}}_tufiltp4b' class='form-control' type='text'{{#tufiltp4b}} value='{{tufiltp4b}}'{{/tufiltp4b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4bIEC'>WindTurbineType4bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4bIEC' class='form-control' type='text'{{#WindTurbineType4bIEC}} value='{{WindTurbineType4bIEC}}'{{/WindTurbineType4bIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContPType4bIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dpmaxp4b").value; if ("" != temp) obj.dpmaxp4b = temp;
-                temp = document.getElementById ("tpaero").value; if ("" != temp) obj.tpaero = temp;
-                temp = document.getElementById ("tpordp4b").value; if ("" != temp) obj.tpordp4b = temp;
-                temp = document.getElementById ("tufiltp4b").value; if ("" != temp) obj.tufiltp4b = temp;
-                temp = document.getElementById ("WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
+                var obj = obj || { id: id, cls: "WindContPType4bIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dpmaxp4b").value; if ("" != temp) obj.dpmaxp4b = temp;
+                temp = document.getElementById (id + "_tpaero").value; if ("" != temp) obj.tpaero = temp;
+                temp = document.getElementById (id + "_tpordp4b").value; if ("" != temp) obj.tpordp4b = temp;
+                temp = document.getElementById (id + "_tufiltp4b").value; if ("" != temp) obj.tufiltp4b = temp;
+                temp = document.getElementById (id + "_WindTurbineType4bIEC").value; if ("" != temp) obj.WindTurbineType4bIEC = temp;
 
                 return (obj);
             }
@@ -2695,31 +2695,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindRefFrameRotIEC_collapse" aria-expanded="true" aria-controls="WindRefFrameRotIEC_collapse" style="margin-left: 10px;">WindRefFrameRotIEC</a></legend>
-                    <div id="WindRefFrameRotIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindRefFrameRotIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindRefFrameRotIEC_collapse" style="margin-left: 10px;">WindRefFrameRotIEC</a></legend>
+                    <div id="{{id}}_WindRefFrameRotIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpll'>tpll: </label><div class='col-sm-8'><input id='tpll' class='form-control' type='text'{{#tpll}} value='{{tpll}}'{{/tpll}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upll1'>upll1: </label><div class='col-sm-8'><input id='upll1' class='form-control' type='text'{{#upll1}} value='{{upll1}}'{{/upll1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upll2'>upll2: </label><div class='col-sm-8'><input id='upll2' class='form-control' type='text'{{#upll2}} value='{{upll2}}'{{/upll2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpll'>tpll: </label><div class='col-sm-8'><input id='{{id}}_tpll' class='form-control' type='text'{{#tpll}} value='{{tpll}}'{{/tpll}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upll1'>upll1: </label><div class='col-sm-8'><input id='{{id}}_upll1' class='form-control' type='text'{{#upll1}} value='{{upll1}}'{{/upll1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upll2'>upll2: </label><div class='col-sm-8'><input id='{{id}}_upll2' class='form-control' type='text'{{#upll2}} value='{{upll2}}'{{/upll2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindRefFrameRotIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("tpll").value; if ("" != temp) obj.tpll = temp;
-                temp = document.getElementById ("upll1").value; if ("" != temp) obj.upll1 = temp;
-                temp = document.getElementById ("upll2").value; if ("" != temp) obj.upll2 = temp;
-                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+                var obj = obj || { id: id, cls: "WindRefFrameRotIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tpll").value; if ("" != temp) obj.tpll = temp;
+                temp = document.getElementById (id + "_upll1").value; if ("" != temp) obj.upll1 = temp;
+                temp = document.getElementById (id + "_upll2").value; if ("" != temp) obj.upll2 = temp;
+                temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
 
                 return (obj);
             }
@@ -2852,49 +2852,49 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindDynamicsLookupTable_collapse" aria-expanded="true" aria-controls="WindDynamicsLookupTable_collapse" style="margin-left: 10px;">WindDynamicsLookupTable</a></legend>
-                    <div id="WindDynamicsLookupTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindDynamicsLookupTable_collapse" aria-expanded="true" aria-controls="{{id}}_WindDynamicsLookupTable_collapse" style="margin-left: 10px;">WindDynamicsLookupTable</a></legend>
+                    <div id="{{id}}_WindDynamicsLookupTable_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='input'>input: </label><div class='col-sm-8'><input id='input' class='form-control' type='text'{{#input}} value='{{input}}'{{/input}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lookupTableFunctionType'>lookupTableFunctionType: </label><div class='col-sm-8'><select id='lookupTableFunctionType' class='form-control'>{{#WindLookupTableFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindLookupTableFunctionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='output'>output: </label><div class='col-sm-8'><input id='output' class='form-control' type='text'{{#output}} value='{{output}}'{{/output}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequence'>sequence: </label><div class='col-sm-8'><input id='sequence' class='form-control' type='text'{{#sequence}} value='{{sequence}}'{{/sequence}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantFreqPcontrolIEC'>WindPlantFreqPcontrolIEC: </label><div class='col-sm-8'><input id='WindPlantFreqPcontrolIEC' class='form-control' type='text'{{#WindPlantFreqPcontrolIEC}} value='{{WindPlantFreqPcontrolIEC}}'{{/WindPlantFreqPcontrolIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContQPQULimIEC'>WindContQPQULimIEC: </label><div class='col-sm-8'><input id='WindContQPQULimIEC' class='form-control' type='text'{{#WindContQPQULimIEC}} value='{{WindContQPQULimIEC}}'{{/WindContQPQULimIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType3bIEC'>WindGenType3bIEC: </label><div class='col-sm-8'><input id='WindGenType3bIEC' class='form-control' type='text'{{#WindGenType3bIEC}} value='{{WindGenType3bIEC}}'{{/WindGenType3bIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPType3IEC'>WindContPType3IEC: </label><div class='col-sm-8'><input id='WindContPType3IEC' class='form-control' type='text'{{#WindContPType3IEC}} value='{{WindContPType3IEC}}'{{/WindContPType3IEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantReactiveControlIEC'>WindPlantReactiveControlIEC: </label><div class='col-sm-8'><input id='WindPlantReactiveControlIEC' class='form-control' type='text'{{#WindPlantReactiveControlIEC}} value='{{WindPlantReactiveControlIEC}}'{{/WindPlantReactiveControlIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContCurrLimIEC'>WindContCurrLimIEC: </label><div class='col-sm-8'><input id='WindContCurrLimIEC' class='form-control' type='text'{{#WindContCurrLimIEC}} value='{{WindContCurrLimIEC}}'{{/WindContCurrLimIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContRotorRIEC'>WindContRotorRIEC: </label><div class='col-sm-8'><input id='WindContRotorRIEC' class='form-control' type='text'{{#WindContRotorRIEC}} value='{{WindContRotorRIEC}}'{{/WindContRotorRIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_input'>input: </label><div class='col-sm-8'><input id='{{id}}_input' class='form-control' type='text'{{#input}} value='{{input}}'{{/input}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lookupTableFunctionType'>lookupTableFunctionType: </label><div class='col-sm-8'><select id='{{id}}_lookupTableFunctionType' class='form-control'>{{#WindLookupTableFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindLookupTableFunctionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_output'>output: </label><div class='col-sm-8'><input id='{{id}}_output' class='form-control' type='text'{{#output}} value='{{output}}'{{/output}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequence'>sequence: </label><div class='col-sm-8'><input id='{{id}}_sequence' class='form-control' type='text'{{#sequence}} value='{{sequence}}'{{/sequence}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantFreqPcontrolIEC'>WindPlantFreqPcontrolIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantFreqPcontrolIEC' class='form-control' type='text'{{#WindPlantFreqPcontrolIEC}} value='{{WindPlantFreqPcontrolIEC}}'{{/WindPlantFreqPcontrolIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContQPQULimIEC'>WindContQPQULimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContQPQULimIEC' class='form-control' type='text'{{#WindContQPQULimIEC}} value='{{WindContQPQULimIEC}}'{{/WindContQPQULimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenType3bIEC'>WindGenType3bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenType3bIEC' class='form-control' type='text'{{#WindGenType3bIEC}} value='{{WindGenType3bIEC}}'{{/WindGenType3bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContPType3IEC'>WindContPType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindContPType3IEC' class='form-control' type='text'{{#WindContPType3IEC}} value='{{WindContPType3IEC}}'{{/WindContPType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantReactiveControlIEC'>WindPlantReactiveControlIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantReactiveControlIEC' class='form-control' type='text'{{#WindPlantReactiveControlIEC}} value='{{WindPlantReactiveControlIEC}}'{{/WindPlantReactiveControlIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='{{id}}_WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContCurrLimIEC'>WindContCurrLimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContCurrLimIEC' class='form-control' type='text'{{#WindContCurrLimIEC}} value='{{WindContCurrLimIEC}}'{{/WindContCurrLimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContRotorRIEC'>WindContRotorRIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContRotorRIEC' class='form-control' type='text'{{#WindContRotorRIEC}} value='{{WindContRotorRIEC}}'{{/WindContRotorRIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindDynamicsLookupTable" };
-                super.submit (obj);
-                temp = document.getElementById ("input").value; if ("" != temp) obj.input = temp;
-                temp = document.getElementById ("lookupTableFunctionType").value; if ("" != temp) { temp = WindLookupTableFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.lookupTableFunctionType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindLookupTableFunctionKind." + temp; }
-                temp = document.getElementById ("output").value; if ("" != temp) obj.output = temp;
-                temp = document.getElementById ("sequence").value; if ("" != temp) obj.sequence = temp;
-                temp = document.getElementById ("WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
-                temp = document.getElementById ("WindPlantFreqPcontrolIEC").value; if ("" != temp) obj.WindPlantFreqPcontrolIEC = temp;
-                temp = document.getElementById ("WindContQPQULimIEC").value; if ("" != temp) obj.WindContQPQULimIEC = temp;
-                temp = document.getElementById ("WindGenType3bIEC").value; if ("" != temp) obj.WindGenType3bIEC = temp;
-                temp = document.getElementById ("WindContPType3IEC").value; if ("" != temp) obj.WindContPType3IEC = temp;
-                temp = document.getElementById ("WindPlantReactiveControlIEC").value; if ("" != temp) obj.WindPlantReactiveControlIEC = temp;
-                temp = document.getElementById ("WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
-                temp = document.getElementById ("WindContCurrLimIEC").value; if ("" != temp) obj.WindContCurrLimIEC = temp;
-                temp = document.getElementById ("WindContRotorRIEC").value; if ("" != temp) obj.WindContRotorRIEC = temp;
+                var obj = obj || { id: id, cls: "WindDynamicsLookupTable" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_input").value; if ("" != temp) obj.input = temp;
+                temp = document.getElementById (id + "_lookupTableFunctionType").value; if ("" != temp) { temp = WindLookupTableFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.lookupTableFunctionType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindLookupTableFunctionKind." + temp; }
+                temp = document.getElementById (id + "_output").value; if ("" != temp) obj.output = temp;
+                temp = document.getElementById (id + "_sequence").value; if ("" != temp) obj.sequence = temp;
+                temp = document.getElementById (id + "_WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
+                temp = document.getElementById (id + "_WindPlantFreqPcontrolIEC").value; if ("" != temp) obj.WindPlantFreqPcontrolIEC = temp;
+                temp = document.getElementById (id + "_WindContQPQULimIEC").value; if ("" != temp) obj.WindContQPQULimIEC = temp;
+                temp = document.getElementById (id + "_WindGenType3bIEC").value; if ("" != temp) obj.WindGenType3bIEC = temp;
+                temp = document.getElementById (id + "_WindContPType3IEC").value; if ("" != temp) obj.WindContPType3IEC = temp;
+                temp = document.getElementById (id + "_WindPlantReactiveControlIEC").value; if ("" != temp) obj.WindPlantReactiveControlIEC = temp;
+                temp = document.getElementById (id + "_WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
+                temp = document.getElementById (id + "_WindContCurrLimIEC").value; if ("" != temp) obj.WindContCurrLimIEC = temp;
+                temp = document.getElementById (id + "_WindContRotorRIEC").value; if ("" != temp) obj.WindContRotorRIEC = temp;
 
                 return (obj);
             }
@@ -3000,27 +3000,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType1or2Dynamics_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2Dynamics_collapse" style="margin-left: 10px;">WindTurbineType1or2Dynamics</a></legend>
-                    <div id="WindTurbineType1or2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType1or2Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType1or2Dynamics_collapse" style="margin-left: 10px;">WindTurbineType1or2Dynamics</a></legend>
+                    <div id="{{id}}_WindTurbineType1or2Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AsynchronousMachineDynamics'>AsynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_AsynchronousMachineDynamics' class='form-control' type='text'{{#AsynchronousMachineDynamics}} value='{{AsynchronousMachineDynamics}}'{{/AsynchronousMachineDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindTurbineType1or2Dynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
-                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                var obj = obj || { id: id, cls: "WindTurbineType1or2Dynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
+                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
 
                 return (obj);
             }
@@ -3168,55 +3168,55 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantFreqPcontrolIEC_collapse" aria-expanded="true" aria-controls="WindPlantFreqPcontrolIEC_collapse" style="margin-left: 10px;">WindPlantFreqPcontrolIEC</a></legend>
-                    <div id="WindPlantFreqPcontrolIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantFreqPcontrolIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantFreqPcontrolIEC_collapse" style="margin-left: 10px;">WindPlantFreqPcontrolIEC</a></legend>
+                    <div id="{{id}}_WindPlantFreqPcontrolIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dprefmax'>dprefmax: </label><div class='col-sm-8'><input id='dprefmax' class='form-control' type='text'{{#dprefmax}} value='{{dprefmax}}'{{/dprefmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dprefmin'>dprefmin: </label><div class='col-sm-8'><input id='dprefmin' class='form-control' type='text'{{#dprefmin}} value='{{dprefmin}}'{{/dprefmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpwprefmax'>dpwprefmax: </label><div class='col-sm-8'><input id='dpwprefmax' class='form-control' type='text'{{#dpwprefmax}} value='{{dpwprefmax}}'{{/dpwprefmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpwprefmin'>dpwprefmin: </label><div class='col-sm-8'><input id='dpwprefmin' class='form-control' type='text'{{#dpwprefmin}} value='{{dpwprefmin}}'{{/dpwprefmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwpp'>kiwpp: </label><div class='col-sm-8'><input id='kiwpp' class='form-control' type='text'{{#kiwpp}} value='{{kiwpp}}'{{/kiwpp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwppmax'>kiwppmax: </label><div class='col-sm-8'><input id='kiwppmax' class='form-control' type='text'{{#kiwppmax}} value='{{kiwppmax}}'{{/kiwppmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kiwppmin'>kiwppmin: </label><div class='col-sm-8'><input id='kiwppmin' class='form-control' type='text'{{#kiwppmin}} value='{{kiwppmin}}'{{/kiwppmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpwpp'>kpwpp: </label><div class='col-sm-8'><input id='kpwpp' class='form-control' type='text'{{#kpwpp}} value='{{kpwpp}}'{{/kpwpp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kwppref'>kwppref: </label><div class='col-sm-8'><input id='kwppref' class='form-control' type='text'{{#kwppref}} value='{{kwppref}}'{{/kwppref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prefmax'>prefmax: </label><div class='col-sm-8'><input id='prefmax' class='form-control' type='text'{{#prefmax}} value='{{prefmax}}'{{/prefmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prefmin'>prefmin: </label><div class='col-sm-8'><input id='prefmin' class='form-control' type='text'{{#prefmin}} value='{{prefmin}}'{{/prefmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpft'>tpft: </label><div class='col-sm-8'><input id='tpft' class='form-control' type='text'{{#tpft}} value='{{tpft}}'{{/tpft}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfv'>tpfv: </label><div class='col-sm-8'><input id='tpfv' class='form-control' type='text'{{#tpfv}} value='{{tpfv}}'{{/tpfv}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twpffiltp'>twpffiltp: </label><div class='col-sm-8'><input id='twpffiltp' class='form-control' type='text'{{#twpffiltp}} value='{{twpffiltp}}'{{/twpffiltp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='twppfiltp'>twppfiltp: </label><div class='col-sm-8'><input id='twppfiltp' class='form-control' type='text'{{#twppfiltp}} value='{{twppfiltp}}'{{/twppfiltp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dprefmax'>dprefmax: </label><div class='col-sm-8'><input id='{{id}}_dprefmax' class='form-control' type='text'{{#dprefmax}} value='{{dprefmax}}'{{/dprefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dprefmin'>dprefmin: </label><div class='col-sm-8'><input id='{{id}}_dprefmin' class='form-control' type='text'{{#dprefmin}} value='{{dprefmin}}'{{/dprefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpwprefmax'>dpwprefmax: </label><div class='col-sm-8'><input id='{{id}}_dpwprefmax' class='form-control' type='text'{{#dpwprefmax}} value='{{dpwprefmax}}'{{/dpwprefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpwprefmin'>dpwprefmin: </label><div class='col-sm-8'><input id='{{id}}_dpwprefmin' class='form-control' type='text'{{#dpwprefmin}} value='{{dpwprefmin}}'{{/dpwprefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiwpp'>kiwpp: </label><div class='col-sm-8'><input id='{{id}}_kiwpp' class='form-control' type='text'{{#kiwpp}} value='{{kiwpp}}'{{/kiwpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiwppmax'>kiwppmax: </label><div class='col-sm-8'><input id='{{id}}_kiwppmax' class='form-control' type='text'{{#kiwppmax}} value='{{kiwppmax}}'{{/kiwppmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kiwppmin'>kiwppmin: </label><div class='col-sm-8'><input id='{{id}}_kiwppmin' class='form-control' type='text'{{#kiwppmin}} value='{{kiwppmin}}'{{/kiwppmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpwpp'>kpwpp: </label><div class='col-sm-8'><input id='{{id}}_kpwpp' class='form-control' type='text'{{#kpwpp}} value='{{kpwpp}}'{{/kpwpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kwppref'>kwppref: </label><div class='col-sm-8'><input id='{{id}}_kwppref' class='form-control' type='text'{{#kwppref}} value='{{kwppref}}'{{/kwppref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_prefmax'>prefmax: </label><div class='col-sm-8'><input id='{{id}}_prefmax' class='form-control' type='text'{{#prefmax}} value='{{prefmax}}'{{/prefmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_prefmin'>prefmin: </label><div class='col-sm-8'><input id='{{id}}_prefmin' class='form-control' type='text'{{#prefmin}} value='{{prefmin}}'{{/prefmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpft'>tpft: </label><div class='col-sm-8'><input id='{{id}}_tpft' class='form-control' type='text'{{#tpft}} value='{{tpft}}'{{/tpft}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpfv'>tpfv: </label><div class='col-sm-8'><input id='{{id}}_tpfv' class='form-control' type='text'{{#tpfv}} value='{{tpfv}}'{{/tpfv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_twpffiltp'>twpffiltp: </label><div class='col-sm-8'><input id='{{id}}_twpffiltp' class='form-control' type='text'{{#twpffiltp}} value='{{twpffiltp}}'{{/twpffiltp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_twppfiltp'>twppfiltp: </label><div class='col-sm-8'><input id='{{id}}_twppfiltp' class='form-control' type='text'{{#twppfiltp}} value='{{twppfiltp}}'{{/twppfiltp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantIEC'>WindPlantIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantIEC' class='form-control' type='text'{{#WindPlantIEC}} value='{{WindPlantIEC}}'{{/WindPlantIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindPlantFreqPcontrolIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dprefmax").value; if ("" != temp) obj.dprefmax = temp;
-                temp = document.getElementById ("dprefmin").value; if ("" != temp) obj.dprefmin = temp;
-                temp = document.getElementById ("dpwprefmax").value; if ("" != temp) obj.dpwprefmax = temp;
-                temp = document.getElementById ("dpwprefmin").value; if ("" != temp) obj.dpwprefmin = temp;
-                temp = document.getElementById ("kiwpp").value; if ("" != temp) obj.kiwpp = temp;
-                temp = document.getElementById ("kiwppmax").value; if ("" != temp) obj.kiwppmax = temp;
-                temp = document.getElementById ("kiwppmin").value; if ("" != temp) obj.kiwppmin = temp;
-                temp = document.getElementById ("kpwpp").value; if ("" != temp) obj.kpwpp = temp;
-                temp = document.getElementById ("kwppref").value; if ("" != temp) obj.kwppref = temp;
-                temp = document.getElementById ("prefmax").value; if ("" != temp) obj.prefmax = temp;
-                temp = document.getElementById ("prefmin").value; if ("" != temp) obj.prefmin = temp;
-                temp = document.getElementById ("tpft").value; if ("" != temp) obj.tpft = temp;
-                temp = document.getElementById ("tpfv").value; if ("" != temp) obj.tpfv = temp;
-                temp = document.getElementById ("twpffiltp").value; if ("" != temp) obj.twpffiltp = temp;
-                temp = document.getElementById ("twppfiltp").value; if ("" != temp) obj.twppfiltp = temp;
-                temp = document.getElementById ("WindPlantIEC").value; if ("" != temp) obj.WindPlantIEC = temp;
+                var obj = obj || { id: id, cls: "WindPlantFreqPcontrolIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dprefmax").value; if ("" != temp) obj.dprefmax = temp;
+                temp = document.getElementById (id + "_dprefmin").value; if ("" != temp) obj.dprefmin = temp;
+                temp = document.getElementById (id + "_dpwprefmax").value; if ("" != temp) obj.dpwprefmax = temp;
+                temp = document.getElementById (id + "_dpwprefmin").value; if ("" != temp) obj.dpwprefmin = temp;
+                temp = document.getElementById (id + "_kiwpp").value; if ("" != temp) obj.kiwpp = temp;
+                temp = document.getElementById (id + "_kiwppmax").value; if ("" != temp) obj.kiwppmax = temp;
+                temp = document.getElementById (id + "_kiwppmin").value; if ("" != temp) obj.kiwppmin = temp;
+                temp = document.getElementById (id + "_kpwpp").value; if ("" != temp) obj.kpwpp = temp;
+                temp = document.getElementById (id + "_kwppref").value; if ("" != temp) obj.kwppref = temp;
+                temp = document.getElementById (id + "_prefmax").value; if ("" != temp) obj.prefmax = temp;
+                temp = document.getElementById (id + "_prefmin").value; if ("" != temp) obj.prefmin = temp;
+                temp = document.getElementById (id + "_tpft").value; if ("" != temp) obj.tpft = temp;
+                temp = document.getElementById (id + "_tpfv").value; if ("" != temp) obj.tpfv = temp;
+                temp = document.getElementById (id + "_twpffiltp").value; if ("" != temp) obj.twpffiltp = temp;
+                temp = document.getElementById (id + "_twppfiltp").value; if ("" != temp) obj.twppfiltp = temp;
+                temp = document.getElementById (id + "_WindPlantIEC").value; if ("" != temp) obj.WindPlantIEC = temp;
 
                 return (obj);
             }
@@ -3323,31 +3323,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContPType4aIEC_collapse" aria-expanded="true" aria-controls="WindContPType4aIEC_collapse" style="margin-left: 10px;">WindContPType4aIEC</a></legend>
-                    <div id="WindContPType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContPType4aIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContPType4aIEC_collapse" style="margin-left: 10px;">WindContPType4aIEC</a></legend>
+                    <div id="{{id}}_WindContPType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dpmaxp4a'>dpmaxp4a: </label><div class='col-sm-8'><input id='dpmaxp4a' class='form-control' type='text'{{#dpmaxp4a}} value='{{dpmaxp4a}}'{{/dpmaxp4a}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpordp4a'>tpordp4a: </label><div class='col-sm-8'><input id='tpordp4a' class='form-control' type='text'{{#tpordp4a}} value='{{tpordp4a}}'{{/tpordp4a}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltp4a'>tufiltp4a: </label><div class='col-sm-8'><input id='tufiltp4a' class='form-control' type='text'{{#tufiltp4a}} value='{{tufiltp4a}}'{{/tufiltp4a}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4aIEC'>WindTurbineType4aIEC: </label><div class='col-sm-8'><input id='WindTurbineType4aIEC' class='form-control' type='text'{{#WindTurbineType4aIEC}} value='{{WindTurbineType4aIEC}}'{{/WindTurbineType4aIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dpmaxp4a'>dpmaxp4a: </label><div class='col-sm-8'><input id='{{id}}_dpmaxp4a' class='form-control' type='text'{{#dpmaxp4a}} value='{{dpmaxp4a}}'{{/dpmaxp4a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpordp4a'>tpordp4a: </label><div class='col-sm-8'><input id='{{id}}_tpordp4a' class='form-control' type='text'{{#tpordp4a}} value='{{tpordp4a}}'{{/tpordp4a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltp4a'>tufiltp4a: </label><div class='col-sm-8'><input id='{{id}}_tufiltp4a' class='form-control' type='text'{{#tufiltp4a}} value='{{tufiltp4a}}'{{/tufiltp4a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4aIEC'>WindTurbineType4aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4aIEC' class='form-control' type='text'{{#WindTurbineType4aIEC}} value='{{WindTurbineType4aIEC}}'{{/WindTurbineType4aIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContPType4aIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("dpmaxp4a").value; if ("" != temp) obj.dpmaxp4a = temp;
-                temp = document.getElementById ("tpordp4a").value; if ("" != temp) obj.tpordp4a = temp;
-                temp = document.getElementById ("tufiltp4a").value; if ("" != temp) obj.tufiltp4a = temp;
-                temp = document.getElementById ("WindTurbineType4aIEC").value; if ("" != temp) obj.WindTurbineType4aIEC = temp;
+                var obj = obj || { id: id, cls: "WindContPType4aIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dpmaxp4a").value; if ("" != temp) obj.dpmaxp4a = temp;
+                temp = document.getElementById (id + "_tpordp4a").value; if ("" != temp) obj.tpordp4a = temp;
+                temp = document.getElementById (id + "_tufiltp4a").value; if ("" != temp) obj.tufiltp4a = temp;
+                temp = document.getElementById (id + "_WindTurbineType4aIEC").value; if ("" != temp) obj.WindTurbineType4aIEC = temp;
 
                 return (obj);
             }
@@ -3470,39 +3470,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindContCurrLimIEC_collapse" aria-expanded="true" aria-controls="WindContCurrLimIEC_collapse" style="margin-left: 10px;">WindContCurrLimIEC</a></legend>
-                    <div id="WindContCurrLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindContCurrLimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindContCurrLimIEC_collapse" style="margin-left: 10px;">WindContCurrLimIEC</a></legend>
+                    <div id="{{id}}_WindContCurrLimIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='imax'>imax: </label><div class='col-sm-8'><input id='imax' class='form-control' type='text'{{#imax}} value='{{imax}}'{{/imax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='imaxdip'>imaxdip: </label><div class='col-sm-8'><input id='imaxdip' class='form-control' type='text'{{#imaxdip}} value='{{imaxdip}}'{{/imaxdip}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpqu'>kpqu: </label><div class='col-sm-8'><input id='kpqu' class='form-control' type='text'{{#kpqu}} value='{{kpqu}}'{{/kpqu}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mdfslim'>mdfslim: </label><div class='col-sm-8'><input id='mdfslim' class='form-check-input' type='checkbox'{{#mdfslim}} checked{{/mdfslim}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mqpri'>mqpri: </label><div class='col-sm-8'><input id='mqpri' class='form-check-input' type='checkbox'{{#mqpri}} checked{{/mqpri}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tufiltcl'>tufiltcl: </label><div class='col-sm-8'><input id='tufiltcl' class='form-control' type='text'{{#tufiltcl}} value='{{tufiltcl}}'{{/tufiltcl}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upqumax'>upqumax: </label><div class='col-sm-8'><input id='upqumax' class='form-control' type='text'{{#upqumax}} value='{{upqumax}}'{{/upqumax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_imax'>imax: </label><div class='col-sm-8'><input id='{{id}}_imax' class='form-control' type='text'{{#imax}} value='{{imax}}'{{/imax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_imaxdip'>imaxdip: </label><div class='col-sm-8'><input id='{{id}}_imaxdip' class='form-control' type='text'{{#imaxdip}} value='{{imaxdip}}'{{/imaxdip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpqu'>kpqu: </label><div class='col-sm-8'><input id='{{id}}_kpqu' class='form-control' type='text'{{#kpqu}} value='{{kpqu}}'{{/kpqu}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mdfslim'>mdfslim: </label><div class='col-sm-8'><input id='{{id}}_mdfslim' class='form-check-input' type='checkbox'{{#mdfslim}} checked{{/mdfslim}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mqpri'>mqpri: </label><div class='col-sm-8'><input id='{{id}}_mqpri' class='form-check-input' type='checkbox'{{#mqpri}} checked{{/mqpri}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tufiltcl'>tufiltcl: </label><div class='col-sm-8'><input id='{{id}}_tufiltcl' class='form-control' type='text'{{#tufiltcl}} value='{{tufiltcl}}'{{/tufiltcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upqumax'>upqumax: </label><div class='col-sm-8'><input id='{{id}}_upqumax' class='form-control' type='text'{{#upqumax}} value='{{upqumax}}'{{/upqumax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3or4IEC'>WindTurbineType3or4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3or4IEC' class='form-control' type='text'{{#WindTurbineType3or4IEC}} value='{{WindTurbineType3or4IEC}}'{{/WindTurbineType3or4IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindContCurrLimIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("imax").value; if ("" != temp) obj.imax = temp;
-                temp = document.getElementById ("imaxdip").value; if ("" != temp) obj.imaxdip = temp;
-                temp = document.getElementById ("kpqu").value; if ("" != temp) obj.kpqu = temp;
-                temp = document.getElementById ("mdfslim").checked; if (temp) obj.mdfslim = true;
-                temp = document.getElementById ("mqpri").checked; if (temp) obj.mqpri = true;
-                temp = document.getElementById ("tufiltcl").value; if ("" != temp) obj.tufiltcl = temp;
-                temp = document.getElementById ("upqumax").value; if ("" != temp) obj.upqumax = temp;
-                temp = document.getElementById ("WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
+                var obj = obj || { id: id, cls: "WindContCurrLimIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_imax").value; if ("" != temp) obj.imax = temp;
+                temp = document.getElementById (id + "_imaxdip").value; if ("" != temp) obj.imaxdip = temp;
+                temp = document.getElementById (id + "_kpqu").value; if ("" != temp) obj.kpqu = temp;
+                temp = document.getElementById (id + "_mdfslim").checked; if (temp) obj.mdfslim = true;
+                temp = document.getElementById (id + "_mqpri").checked; if (temp) obj.mqpri = true;
+                temp = document.getElementById (id + "_tufiltcl").value; if ("" != temp) obj.tufiltcl = temp;
+                temp = document.getElementById (id + "_upqumax").value; if ("" != temp) obj.upqumax = temp;
+                temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
 
                 return (obj);
             }
@@ -3606,29 +3606,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindAeroOneDimIEC_collapse" aria-expanded="true" aria-controls="WindAeroOneDimIEC_collapse" style="margin-left: 10px;">WindAeroOneDimIEC</a></legend>
-                    <div id="WindAeroOneDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindAeroOneDimIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindAeroOneDimIEC_collapse" style="margin-left: 10px;">WindAeroOneDimIEC</a></legend>
+                    <div id="{{id}}_WindAeroOneDimIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ka'>ka: </label><div class='col-sm-8'><input id='ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thetaomega'>thetaomega: </label><div class='col-sm-8'><input id='thetaomega' class='form-control' type='text'{{#thetaomega}} value='{{thetaomega}}'{{/thetaomega}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ka'>ka: </label><div class='col-sm-8'><input id='{{id}}_ka' class='form-control' type='text'{{#ka}} value='{{ka}}'{{/ka}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thetaomega'>thetaomega: </label><div class='col-sm-8'><input id='{{id}}_thetaomega' class='form-control' type='text'{{#thetaomega}} value='{{thetaomega}}'{{/thetaomega}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType3IEC'>WindTurbineType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType3IEC' class='form-control' type='text'{{#WindTurbineType3IEC}} value='{{WindTurbineType3IEC}}'{{/WindTurbineType3IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindAeroOneDimIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("ka").value; if ("" != temp) obj.ka = temp;
-                temp = document.getElementById ("thetaomega").value; if ("" != temp) obj.thetaomega = temp;
-                temp = document.getElementById ("WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
+                var obj = obj || { id: id, cls: "WindAeroOneDimIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ka").value; if ("" != temp) obj.ka = temp;
+                temp = document.getElementById (id + "_thetaomega").value; if ("" != temp) obj.thetaomega = temp;
+                temp = document.getElementById (id + "_WindTurbineType3IEC").value; if ("" != temp) obj.WindTurbineType3IEC = temp;
 
                 return (obj);
             }
@@ -3728,25 +3728,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantDynamics_collapse" aria-expanded="true" aria-controls="WindPlantDynamics_collapse" style="margin-left: 10px;">WindPlantDynamics</a></legend>
-                    <div id="WindPlantDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantDynamics_collapse" style="margin-left: 10px;">WindPlantDynamics</a></legend>
+                    <div id="{{id}}_WindPlantDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindPlantDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                var obj = obj || { id: id, cls: "WindPlantDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
 
                 return (obj);
             }
@@ -3857,35 +3857,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3or4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3or4IEC_collapse" style="margin-left: 10px;">WindTurbineType3or4IEC</a></legend>
-                    <div id="WindTurbineType3or4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType3or4IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType3or4IEC_collapse" style="margin-left: 10px;">WindTurbineType3or4IEC</a></legend>
+                    <div id="{{id}}_WindTurbineType3or4IEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindRefFrameRotIEC'>WindRefFrameRotIEC: </label><div class='col-sm-8'><input id='WindRefFrameRotIEC' class='form-control' type='text'{{#WindRefFrameRotIEC}} value='{{WindRefFrameRotIEC}}'{{/WindRefFrameRotIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContQPQULimIEC'>WindContQPQULimIEC: </label><div class='col-sm-8'><input id='WindContQPQULimIEC' class='form-control' type='text'{{#WindContQPQULimIEC}} value='{{WindContQPQULimIEC}}'{{/WindContQPQULimIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContCurrLimIEC'>WindContCurrLimIEC: </label><div class='col-sm-8'><input id='WindContCurrLimIEC' class='form-control' type='text'{{#WindContCurrLimIEC}} value='{{WindContCurrLimIEC}}'{{/WindContCurrLimIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WIndContQIEC'>WIndContQIEC: </label><div class='col-sm-8'><input id='WIndContQIEC' class='form-control' type='text'{{#WIndContQIEC}} value='{{WIndContQIEC}}'{{/WIndContQIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContQLimIEC'>WindContQLimIEC: </label><div class='col-sm-8'><input id='WindContQLimIEC' class='form-control' type='text'{{#WindContQLimIEC}} value='{{WindContQLimIEC}}'{{/WindContQLimIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindRefFrameRotIEC'>WindRefFrameRotIEC: </label><div class='col-sm-8'><input id='{{id}}_WindRefFrameRotIEC' class='form-control' type='text'{{#WindRefFrameRotIEC}} value='{{WindRefFrameRotIEC}}'{{/WindRefFrameRotIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContQPQULimIEC'>WindContQPQULimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContQPQULimIEC' class='form-control' type='text'{{#WindContQPQULimIEC}} value='{{WindContQPQULimIEC}}'{{/WindContQPQULimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContCurrLimIEC'>WindContCurrLimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContCurrLimIEC' class='form-control' type='text'{{#WindContCurrLimIEC}} value='{{WindContCurrLimIEC}}'{{/WindContCurrLimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WIndContQIEC'>WIndContQIEC: </label><div class='col-sm-8'><input id='{{id}}_WIndContQIEC' class='form-control' type='text'{{#WIndContQIEC}} value='{{WIndContQIEC}}'{{/WIndContQIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContQLimIEC'>WindContQLimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContQLimIEC' class='form-control' type='text'{{#WindContQLimIEC}} value='{{WindContQLimIEC}}'{{/WindContQLimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='{{id}}_WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindTurbineType3or4IEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindRefFrameRotIEC").value; if ("" != temp) obj.WindRefFrameRotIEC = temp;
-                temp = document.getElementById ("WindContQPQULimIEC").value; if ("" != temp) obj.WindContQPQULimIEC = temp;
-                temp = document.getElementById ("WindContCurrLimIEC").value; if ("" != temp) obj.WindContCurrLimIEC = temp;
-                temp = document.getElementById ("WIndContQIEC").value; if ("" != temp) obj.WIndContQIEC = temp;
-                temp = document.getElementById ("WindContQLimIEC").value; if ("" != temp) obj.WindContQLimIEC = temp;
-                temp = document.getElementById ("WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
+                var obj = obj || { id: id, cls: "WindTurbineType3or4IEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindRefFrameRotIEC").value; if ("" != temp) obj.WindRefFrameRotIEC = temp;
+                temp = document.getElementById (id + "_WindContQPQULimIEC").value; if ("" != temp) obj.WindContQPQULimIEC = temp;
+                temp = document.getElementById (id + "_WindContCurrLimIEC").value; if ("" != temp) obj.WindContCurrLimIEC = temp;
+                temp = document.getElementById (id + "_WIndContQIEC").value; if ("" != temp) obj.WIndContQIEC = temp;
+                temp = document.getElementById (id + "_WindContQLimIEC").value; if ("" != temp) obj.WindContQLimIEC = temp;
+                temp = document.getElementById (id + "_WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
 
                 return (obj);
             }
@@ -3985,25 +3985,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4IEC_collapse" style="margin-left: 10px;">WindTurbineType4IEC</a></legend>
-                    <div id="WindTurbineType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType4IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType4IEC_collapse" style="margin-left: 10px;">WindTurbineType4IEC</a></legend>
+                    <div id="{{id}}_WindTurbineType4IEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType3aIEC'>WindGenType3aIEC: </label><div class='col-sm-8'><input id='WindGenType3aIEC' class='form-control' type='text'{{#WindGenType3aIEC}} value='{{WindGenType3aIEC}}'{{/WindGenType3aIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenType3aIEC'>WindGenType3aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenType3aIEC' class='form-control' type='text'{{#WindGenType3aIEC}} value='{{WindGenType3aIEC}}'{{/WindGenType3aIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindTurbineType4IEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindGenType3aIEC").value; if ("" != temp) obj.WindGenType3aIEC = temp;
+                var obj = obj || { id: id, cls: "WindTurbineType4IEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindGenType3aIEC").value; if ("" != temp) obj.WindGenType3aIEC = temp;
 
                 return (obj);
             }
@@ -4113,35 +4113,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType3IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType3IEC_collapse" style="margin-left: 10px;">WindTurbineType3IEC</a></legend>
-                    <div id="WindTurbineType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType3IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType3IEC_collapse" style="margin-left: 10px;">WindTurbineType3IEC</a></legend>
+                    <div id="{{id}}_WindTurbineType3IEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType3or4IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType3IEC'>WindGenType3IEC: </label><div class='col-sm-8'><input id='WindGenType3IEC' class='form-control' type='text'{{#WindGenType3IEC}} value='{{WindGenType3IEC}}'{{/WindGenType3IEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPitchAngleIEC'>WindContPitchAngleIEC: </label><div class='col-sm-8'><input id='WindContPitchAngleIEC' class='form-control' type='text'{{#WindContPitchAngleIEC}} value='{{WindContPitchAngleIEC}}'{{/WindContPitchAngleIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPType3IEC'>WindContPType3IEC: </label><div class='col-sm-8'><input id='WindContPType3IEC' class='form-control' type='text'{{#WindContPType3IEC}} value='{{WindContPType3IEC}}'{{/WindContPType3IEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindAeroTwoDimIEC'>WindAeroTwoDimIEC: </label><div class='col-sm-8'><input id='WindAeroTwoDimIEC' class='form-control' type='text'{{#WindAeroTwoDimIEC}} value='{{WindAeroTwoDimIEC}}'{{/WindAeroTwoDimIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindAeroOneDimIEC'>WindAeroOneDimIEC: </label><div class='col-sm-8'><input id='WindAeroOneDimIEC' class='form-control' type='text'{{#WindAeroOneDimIEC}} value='{{WindAeroOneDimIEC}}'{{/WindAeroOneDimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenType3IEC'>WindGenType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenType3IEC' class='form-control' type='text'{{#WindGenType3IEC}} value='{{WindGenType3IEC}}'{{/WindGenType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContPitchAngleIEC'>WindContPitchAngleIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContPitchAngleIEC' class='form-control' type='text'{{#WindContPitchAngleIEC}} value='{{WindContPitchAngleIEC}}'{{/WindContPitchAngleIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContPType3IEC'>WindContPType3IEC: </label><div class='col-sm-8'><input id='{{id}}_WindContPType3IEC' class='form-control' type='text'{{#WindContPType3IEC}} value='{{WindContPType3IEC}}'{{/WindContPType3IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindAeroTwoDimIEC'>WindAeroTwoDimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindAeroTwoDimIEC' class='form-control' type='text'{{#WindAeroTwoDimIEC}} value='{{WindAeroTwoDimIEC}}'{{/WindAeroTwoDimIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='{{id}}_WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindAeroOneDimIEC'>WindAeroOneDimIEC: </label><div class='col-sm-8'><input id='{{id}}_WindAeroOneDimIEC' class='form-control' type='text'{{#WindAeroOneDimIEC}} value='{{WindAeroOneDimIEC}}'{{/WindAeroOneDimIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindTurbineType3IEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindGenType3IEC").value; if ("" != temp) obj.WindGenType3IEC = temp;
-                temp = document.getElementById ("WindContPitchAngleIEC").value; if ("" != temp) obj.WindContPitchAngleIEC = temp;
-                temp = document.getElementById ("WindContPType3IEC").value; if ("" != temp) obj.WindContPType3IEC = temp;
-                temp = document.getElementById ("WindAeroTwoDimIEC").value; if ("" != temp) obj.WindAeroTwoDimIEC = temp;
-                temp = document.getElementById ("WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
-                temp = document.getElementById ("WindAeroOneDimIEC").value; if ("" != temp) obj.WindAeroOneDimIEC = temp;
+                var obj = obj || { id: id, cls: "WindTurbineType3IEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindGenType3IEC").value; if ("" != temp) obj.WindGenType3IEC = temp;
+                temp = document.getElementById (id + "_WindContPitchAngleIEC").value; if ("" != temp) obj.WindContPitchAngleIEC = temp;
+                temp = document.getElementById (id + "_WindContPType3IEC").value; if ("" != temp) obj.WindContPType3IEC = temp;
+                temp = document.getElementById (id + "_WindAeroTwoDimIEC").value; if ("" != temp) obj.WindAeroTwoDimIEC = temp;
+                temp = document.getElementById (id + "_WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
+                temp = document.getElementById (id + "_WindAeroOneDimIEC").value; if ("" != temp) obj.WindAeroOneDimIEC = temp;
 
                 return (obj);
             }
@@ -4246,27 +4246,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4aIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4aIEC_collapse" style="margin-left: 10px;">WindTurbineType4aIEC</a></legend>
-                    <div id="WindTurbineType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType4aIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType4aIEC_collapse" style="margin-left: 10px;">WindTurbineType4aIEC</a></legend>
+                    <div id="{{id}}_WindTurbineType4aIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType4IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType4IEC'>WindGenType4IEC: </label><div class='col-sm-8'><input id='WindGenType4IEC' class='form-control' type='text'{{#WindGenType4IEC}} value='{{WindGenType4IEC}}'{{/WindGenType4IEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPType4aIEC'>WindContPType4aIEC: </label><div class='col-sm-8'><input id='WindContPType4aIEC' class='form-control' type='text'{{#WindContPType4aIEC}} value='{{WindContPType4aIEC}}'{{/WindContPType4aIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenType4IEC'>WindGenType4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenType4IEC' class='form-control' type='text'{{#WindGenType4IEC}} value='{{WindGenType4IEC}}'{{/WindGenType4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContPType4aIEC'>WindContPType4aIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContPType4aIEC' class='form-control' type='text'{{#WindContPType4aIEC}} value='{{WindContPType4aIEC}}'{{/WindContPType4aIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindTurbineType4aIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindGenType4IEC").value; if ("" != temp) obj.WindGenType4IEC = temp;
-                temp = document.getElementById ("WindContPType4aIEC").value; if ("" != temp) obj.WindContPType4aIEC = temp;
+                var obj = obj || { id: id, cls: "WindTurbineType4aIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindGenType4IEC").value; if ("" != temp) obj.WindGenType4IEC = temp;
+                temp = document.getElementById (id + "_WindContPType4aIEC").value; if ("" != temp) obj.WindContPType4aIEC = temp;
 
                 return (obj);
             }
@@ -4370,29 +4370,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType4bIEC_collapse" aria-expanded="true" aria-controls="WindTurbineType4bIEC_collapse" style="margin-left: 10px;">WindTurbineType4bIEC</a></legend>
-                    <div id="WindTurbineType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType4bIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType4bIEC_collapse" style="margin-left: 10px;">WindTurbineType4bIEC</a></legend>
+                    <div id="{{id}}_WindTurbineType4bIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType4IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContPType4bIEC'>WindContPType4bIEC: </label><div class='col-sm-8'><input id='WindContPType4bIEC' class='form-control' type='text'{{#WindContPType4bIEC}} value='{{WindContPType4bIEC}}'{{/WindContPType4bIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindGenType4IEC'>WindGenType4IEC: </label><div class='col-sm-8'><input id='WindGenType4IEC' class='form-control' type='text'{{#WindGenType4IEC}} value='{{WindGenType4IEC}}'{{/WindGenType4IEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContPType4bIEC'>WindContPType4bIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContPType4bIEC' class='form-control' type='text'{{#WindContPType4bIEC}} value='{{WindContPType4bIEC}}'{{/WindContPType4bIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindGenType4IEC'>WindGenType4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindGenType4IEC' class='form-control' type='text'{{#WindGenType4IEC}} value='{{WindGenType4IEC}}'{{/WindGenType4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='{{id}}_WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindTurbineType4bIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindContPType4bIEC").value; if ("" != temp) obj.WindContPType4bIEC = temp;
-                temp = document.getElementById ("WindGenType4IEC").value; if ("" != temp) obj.WindGenType4IEC = temp;
-                temp = document.getElementById ("WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
+                var obj = obj || { id: id, cls: "WindTurbineType4bIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindContPType4bIEC").value; if ("" != temp) obj.WindContPType4bIEC = temp;
+                temp = document.getElementById (id + "_WindGenType4IEC").value; if ("" != temp) obj.WindGenType4IEC = temp;
+                temp = document.getElementById (id + "_WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
 
                 return (obj);
             }
@@ -4497,29 +4497,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3aIEC_collapse" aria-expanded="true" aria-controls="WindGenType3aIEC_collapse" style="margin-left: 10px;">WindGenType3aIEC</a></legend>
-                    <div id="WindGenType3aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenType3aIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenType3aIEC_collapse" style="margin-left: 10px;">WindGenType3aIEC</a></legend>
+                    <div id="{{id}}_WindGenType3aIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindGenType3IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpc'>kpc: </label><div class='col-sm-8'><input id='kpc' class='form-control' type='text'{{#kpc}} value='{{kpc}}'{{/kpc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tic'>tic: </label><div class='col-sm-8'><input id='tic' class='form-control' type='text'{{#tic}} value='{{tic}}'{{/tic}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType4IEC'>WindTurbineType4IEC: </label><div class='col-sm-8'><input id='WindTurbineType4IEC' class='form-control' type='text'{{#WindTurbineType4IEC}} value='{{WindTurbineType4IEC}}'{{/WindTurbineType4IEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpc'>kpc: </label><div class='col-sm-8'><input id='{{id}}_kpc' class='form-control' type='text'{{#kpc}} value='{{kpc}}'{{/kpc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tic'>tic: </label><div class='col-sm-8'><input id='{{id}}_tic' class='form-control' type='text'{{#tic}} value='{{tic}}'{{/tic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType4IEC'>WindTurbineType4IEC: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType4IEC' class='form-control' type='text'{{#WindTurbineType4IEC}} value='{{WindTurbineType4IEC}}'{{/WindTurbineType4IEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindGenType3aIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("kpc").value; if ("" != temp) obj.kpc = temp;
-                temp = document.getElementById ("tic").value; if ("" != temp) obj.tic = temp;
-                temp = document.getElementById ("WindTurbineType4IEC").value; if ("" != temp) obj.WindTurbineType4IEC = temp;
+                var obj = obj || { id: id, cls: "WindGenType3aIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kpc").value; if ("" != temp) obj.kpc = temp;
+                temp = document.getElementById (id + "_tic").value; if ("" != temp) obj.tic = temp;
+                temp = document.getElementById (id + "_WindTurbineType4IEC").value; if ("" != temp) obj.WindTurbineType4IEC = temp;
 
                 return (obj);
             }
@@ -4627,29 +4627,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenType3bIEC_collapse" aria-expanded="true" aria-controls="WindGenType3bIEC_collapse" style="margin-left: 10px;">WindGenType3bIEC</a></legend>
-                    <div id="WindGenType3bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenType3bIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenType3bIEC_collapse" style="margin-left: 10px;">WindGenType3bIEC</a></legend>
+                    <div id="{{id}}_WindGenType3bIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindGenType3IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mwtcwp'>mwtcwp: </label><div class='col-sm-8'><input id='mwtcwp' class='form-check-input' type='checkbox'{{#mwtcwp}} checked{{/mwtcwp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tg'>tg: </label><div class='col-sm-8'><input id='tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='two'>two: </label><div class='col-sm-8'><input id='two' class='form-control' type='text'{{#two}} value='{{two}}'{{/two}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mwtcwp'>mwtcwp: </label><div class='col-sm-8'><input id='{{id}}_mwtcwp' class='form-check-input' type='checkbox'{{#mwtcwp}} checked{{/mwtcwp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tg'>tg: </label><div class='col-sm-8'><input id='{{id}}_tg' class='form-control' type='text'{{#tg}} value='{{tg}}'{{/tg}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_two'>two: </label><div class='col-sm-8'><input id='{{id}}_two' class='form-control' type='text'{{#two}} value='{{two}}'{{/two}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindGenType3bIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("mwtcwp").checked; if (temp) obj.mwtcwp = true;
-                temp = document.getElementById ("tg").value; if ("" != temp) obj.tg = temp;
-                temp = document.getElementById ("two").value; if ("" != temp) obj.two = temp;
+                var obj = obj || { id: id, cls: "WindGenType3bIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_mwtcwp").checked; if (temp) obj.mwtcwp = true;
+                temp = document.getElementById (id + "_tg").value; if ("" != temp) obj.tg = temp;
+                temp = document.getElementById (id + "_two").value; if ("" != temp) obj.two = temp;
 
                 return (obj);
             }
@@ -4749,27 +4749,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindTurbineType1or2IEC_collapse" aria-expanded="true" aria-controls="WindTurbineType1or2IEC_collapse" style="margin-left: 10px;">WindTurbineType1or2IEC</a></legend>
-                    <div id="WindTurbineType1or2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindTurbineType1or2IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindTurbineType1or2IEC_collapse" style="margin-left: 10px;">WindTurbineType1or2IEC</a></legend>
+                    <div id="{{id}}_WindTurbineType1or2IEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindProtectionIEC'>WindProtectionIEC: </label><div class='col-sm-8'><input id='{{id}}_WindProtectionIEC' class='form-control' type='text'{{#WindProtectionIEC}} value='{{WindProtectionIEC}}'{{/WindProtectionIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindMechIEC'>WindMechIEC: </label><div class='col-sm-8'><input id='{{id}}_WindMechIEC' class='form-control' type='text'{{#WindMechIEC}} value='{{WindMechIEC}}'{{/WindMechIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindTurbineType1or2IEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
-                temp = document.getElementById ("WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
+                var obj = obj || { id: id, cls: "WindTurbineType1or2IEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindProtectionIEC").value; if ("" != temp) obj.WindProtectionIEC = temp;
+                temp = document.getElementById (id + "_WindMechIEC").value; if ("" != temp) obj.WindMechIEC = temp;
 
                 return (obj);
             }
@@ -4867,25 +4867,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType1bIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1bIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1bIEC</a></legend>
-                    <div id="WindGenTurbineType1bIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenTurbineType1bIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenTurbineType1bIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1bIEC</a></legend>
+                    <div id="{{id}}_WindGenTurbineType1bIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindGenTurbineType1bIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
+                var obj = obj || { id: id, cls: "WindGenTurbineType1bIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
 
                 return (obj);
             }
@@ -4982,25 +4982,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType1aIEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType1aIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1aIEC</a></legend>
-                    <div id="WindGenTurbineType1aIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenTurbineType1aIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenTurbineType1aIEC_collapse" style="margin-left: 10px;">WindGenTurbineType1aIEC</a></legend>
+                    <div id="{{id}}_WindGenTurbineType1aIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindAeroConstIEC'>WindAeroConstIEC: </label><div class='col-sm-8'><input id='WindAeroConstIEC' class='form-control' type='text'{{#WindAeroConstIEC}} value='{{WindAeroConstIEC}}'{{/WindAeroConstIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindAeroConstIEC'>WindAeroConstIEC: </label><div class='col-sm-8'><input id='{{id}}_WindAeroConstIEC' class='form-control' type='text'{{#WindAeroConstIEC}} value='{{WindAeroConstIEC}}'{{/WindAeroConstIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindGenTurbineType1aIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindAeroConstIEC").value; if ("" != temp) obj.WindAeroConstIEC = temp;
+                var obj = obj || { id: id, cls: "WindGenTurbineType1aIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindAeroConstIEC").value; if ("" != temp) obj.WindAeroConstIEC = temp;
 
                 return (obj);
             }
@@ -5100,27 +5100,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindGenTurbineType2IEC_collapse" aria-expanded="true" aria-controls="WindGenTurbineType2IEC_collapse" style="margin-left: 10px;">WindGenTurbineType2IEC</a></legend>
-                    <div id="WindGenTurbineType2IEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindGenTurbineType2IEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindGenTurbineType2IEC_collapse" style="margin-left: 10px;">WindGenTurbineType2IEC</a></legend>
+                    <div id="{{id}}_WindGenTurbineType2IEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindTurbineType1or2IEC.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindContRotorRIEC'>WindContRotorRIEC: </label><div class='col-sm-8'><input id='WindContRotorRIEC' class='form-control' type='text'{{#WindContRotorRIEC}} value='{{WindContRotorRIEC}}'{{/WindContRotorRIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindContRotorRIEC'>WindContRotorRIEC: </label><div class='col-sm-8'><input id='{{id}}_WindContRotorRIEC' class='form-control' type='text'{{#WindContRotorRIEC}} value='{{WindContRotorRIEC}}'{{/WindContRotorRIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPitchContPowerIEC'>WindPitchContPowerIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPitchContPowerIEC' class='form-control' type='text'{{#WindPitchContPowerIEC}} value='{{WindPitchContPowerIEC}}'{{/WindPitchContPowerIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindGenTurbineType2IEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindContRotorRIEC").value; if ("" != temp) obj.WindContRotorRIEC = temp;
-                temp = document.getElementById ("WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
+                var obj = obj || { id: id, cls: "WindGenTurbineType2IEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindContRotorRIEC").value; if ("" != temp) obj.WindContRotorRIEC = temp;
+                temp = document.getElementById (id + "_WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;
 
                 return (obj);
             }
@@ -5221,27 +5221,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantIEC_collapse" aria-expanded="true" aria-controls="WindPlantIEC_collapse" style="margin-left: 10px;">WindPlantIEC</a></legend>
-                    <div id="WindPlantIEC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantIEC_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantIEC_collapse" style="margin-left: 10px;">WindPlantIEC</a></legend>
+                    <div id="{{id}}_WindPlantIEC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindPlantDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantReactiveControlIEC'>WindPlantReactiveControlIEC: </label><div class='col-sm-8'><input id='WindPlantReactiveControlIEC' class='form-control' type='text'{{#WindPlantReactiveControlIEC}} value='{{WindPlantReactiveControlIEC}}'{{/WindPlantReactiveControlIEC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantFreqPcontrolIEC'>WindPlantFreqPcontrolIEC: </label><div class='col-sm-8'><input id='WindPlantFreqPcontrolIEC' class='form-control' type='text'{{#WindPlantFreqPcontrolIEC}} value='{{WindPlantFreqPcontrolIEC}}'{{/WindPlantFreqPcontrolIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantReactiveControlIEC'>WindPlantReactiveControlIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantReactiveControlIEC' class='form-control' type='text'{{#WindPlantReactiveControlIEC}} value='{{WindPlantReactiveControlIEC}}'{{/WindPlantReactiveControlIEC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantFreqPcontrolIEC'>WindPlantFreqPcontrolIEC: </label><div class='col-sm-8'><input id='{{id}}_WindPlantFreqPcontrolIEC' class='form-control' type='text'{{#WindPlantFreqPcontrolIEC}} value='{{WindPlantFreqPcontrolIEC}}'{{/WindPlantFreqPcontrolIEC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindPlantIEC" };
-                super.submit (obj);
-                temp = document.getElementById ("WindPlantReactiveControlIEC").value; if ("" != temp) obj.WindPlantReactiveControlIEC = temp;
-                temp = document.getElementById ("WindPlantFreqPcontrolIEC").value; if ("" != temp) obj.WindPlantFreqPcontrolIEC = temp;
+                var obj = obj || { id: id, cls: "WindPlantIEC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WindPlantReactiveControlIEC").value; if ("" != temp) obj.WindPlantReactiveControlIEC = temp;
+                temp = document.getElementById (id + "_WindPlantFreqPcontrolIEC").value; if ("" != temp) obj.WindPlantFreqPcontrolIEC = temp;
 
                 return (obj);
             }

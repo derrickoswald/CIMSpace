@@ -129,25 +129,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkStatusEntry_collapse" aria-expanded="true" aria-controls="WorkStatusEntry_collapse" style="margin-left: 10px;">WorkStatusEntry</a></legend>
-                    <div id="WorkStatusEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkStatusEntry_collapse" aria-expanded="true" aria-controls="{{id}}_WorkStatusEntry_collapse" style="margin-left: 10px;">WorkStatusEntry</a></legend>
+                    <div id="{{id}}_WorkStatusEntry_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='percentComplete'>percentComplete: </label><div class='col-sm-8'><input id='percentComplete' class='form-control' type='text'{{#percentComplete}} value='{{percentComplete}}'{{/percentComplete}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_percentComplete'>percentComplete: </label><div class='col-sm-8'><input id='{{id}}_percentComplete' class='form-control' type='text'{{#percentComplete}} value='{{percentComplete}}'{{/percentComplete}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WorkStatusEntry" };
-                super.submit (obj);
-                temp = document.getElementById ("percentComplete").value; if ("" != temp) obj.percentComplete = temp;
+                var obj = obj || { id: id, cls: "WorkStatusEntry" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_percentComplete").value; if ("" != temp) obj.percentComplete = temp;
 
                 return (obj);
             }
@@ -232,8 +232,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkDocument_collapse" aria-expanded="true" aria-controls="WorkDocument_collapse" style="margin-left: 10px;">WorkDocument</a></legend>
-                    <div id="WorkDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkDocument_collapse" aria-expanded="true" aria-controls="{{id}}_WorkDocument_collapse" style="margin-left: 10px;">WorkDocument</a></legend>
+                    <div id="{{id}}_WorkDocument_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -243,10 +243,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "WorkDocument" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "WorkDocument" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -331,8 +331,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkIdentifiedObject_collapse" aria-expanded="true" aria-controls="WorkIdentifiedObject_collapse" style="margin-left: 10px;">WorkIdentifiedObject</a></legend>
-                    <div id="WorkIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkIdentifiedObject_collapse" aria-expanded="true" aria-controls="{{id}}_WorkIdentifiedObject_collapse" style="margin-left: 10px;">WorkIdentifiedObject</a></legend>
+                    <div id="{{id}}_WorkIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -342,10 +342,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "WorkIdentifiedObject" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "WorkIdentifiedObject" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -477,35 +477,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldWorkTask_collapse" aria-expanded="true" aria-controls="OldWorkTask_collapse" style="margin-left: 10px;">OldWorkTask</a></legend>
-                    <div id="OldWorkTask_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OldWorkTask_collapse" aria-expanded="true" aria-controls="{{id}}_OldWorkTask_collapse" style="margin-left: 10px;">OldWorkTask</a></legend>
+                    <div id="{{id}}_OldWorkTask_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Work.WorkTask.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities}}_string'{{/Capabilities}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkFlowStep'>WorkFlowStep: </label><div class='col-sm-8'><input id='WorkFlowStep' class='form-control' type='text'{{#WorkFlowStep}} value='{{WorkFlowStep}}'{{/WorkFlowStep}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Design'>Design: </label><div class='col-sm-8'><input id='{{id}}_Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Capabilities'>Capabilities: </label><div class='col-sm-8'><input id='{{id}}_Capabilities' class='form-control' type='text'{{#Capabilities}} value='{{Capabilities}}_string'{{/Capabilities}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkFlowStep'>WorkFlowStep: </label><div class='col-sm-8'><input id='{{id}}_WorkFlowStep' class='form-control' type='text'{{#WorkFlowStep}} value='{{WorkFlowStep}}'{{/WorkFlowStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='{{id}}_OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OldWorkTask" };
-                super.submit (obj);
-                temp = document.getElementById ("QualificationRequirements").value; if ("" != temp) obj.QualificationRequirements = temp.split (",");
-                temp = document.getElementById ("Design").value; if ("" != temp) obj.Design = temp;
-                temp = document.getElementById ("Capabilities").value; if ("" != temp) obj.Capabilities = temp.split (",");
-                temp = document.getElementById ("WorkFlowStep").value; if ("" != temp) obj.WorkFlowStep = temp;
-                temp = document.getElementById ("OverheadCost").value; if ("" != temp) obj.OverheadCost = temp;
-                temp = document.getElementById ("DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
+                var obj = obj || { id: id, cls: "OldWorkTask" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_QualificationRequirements").value; if ("" != temp) obj.QualificationRequirements = temp.split (",");
+                temp = document.getElementById (id + "_Design").value; if ("" != temp) obj.Design = temp;
+                temp = document.getElementById (id + "_Capabilities").value; if ("" != temp) obj.Capabilities = temp.split (",");
+                temp = document.getElementById (id + "_WorkFlowStep").value; if ("" != temp) obj.WorkFlowStep = temp;
+                temp = document.getElementById (id + "_OverheadCost").value; if ("" != temp) obj.OverheadCost = temp;
+                temp = document.getElementById (id + "_DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
 
                 return (obj);
             }
@@ -620,25 +620,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusinessCase_collapse" aria-expanded="true" aria-controls="BusinessCase_collapse" style="margin-left: 10px;">BusinessCase</a></legend>
-                    <div id="BusinessCase_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusinessCase_collapse" aria-expanded="true" aria-controls="{{id}}_BusinessCase_collapse" style="margin-left: 10px;">BusinessCase</a></legend>
+                    <div id="{{id}}_BusinessCase_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='corporateCode'>corporateCode: </label><div class='col-sm-8'><input id='corporateCode' class='form-control' type='text'{{#corporateCode}} value='{{corporateCode}}'{{/corporateCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_corporateCode'>corporateCode: </label><div class='col-sm-8'><input id='{{id}}_corporateCode' class='form-control' type='text'{{#corporateCode}} value='{{corporateCode}}'{{/corporateCode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BusinessCase" };
-                super.submit (obj);
-                temp = document.getElementById ("corporateCode").value; if ("" != temp) obj.corporateCode = temp;
+                var obj = obj || { id: id, cls: "BusinessCase" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_corporateCode").value; if ("" != temp) obj.corporateCode = temp;
 
                 return (obj);
             }
@@ -736,25 +736,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Regulation_collapse" aria-expanded="true" aria-controls="Regulation_collapse" style="margin-left: 10px;">Regulation</a></legend>
-                    <div id="Regulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Regulation_collapse" aria-expanded="true" aria-controls="{{id}}_Regulation_collapse" style="margin-left: 10px;">Regulation</a></legend>
+                    <div id="{{id}}_Regulation_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='{{id}}_referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Regulation" };
-                super.submit (obj);
-                temp = document.getElementById ("referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
+                var obj = obj || { id: id, cls: "Regulation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
 
                 return (obj);
             }
@@ -847,27 +847,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Assignment_collapse" aria-expanded="true" aria-controls="Assignment_collapse" style="margin-left: 10px;">Assignment</a></legend>
-                    <div id="Assignment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Assignment_collapse" aria-expanded="true" aria-controls="{{id}}_Assignment_collapse" style="margin-left: 10px;">Assignment</a></legend>
+                    <div id="{{id}}_Assignment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectivePeriod'>effectivePeriod: </label><div class='col-sm-8'><input id='effectivePeriod' class='form-control' type='text'{{#effectivePeriod}} value='{{effectivePeriod}}'{{/effectivePeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crews'>Crews: </label><div class='col-sm-8'><input id='Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectivePeriod'>effectivePeriod: </label><div class='col-sm-8'><input id='{{id}}_effectivePeriod' class='form-control' type='text'{{#effectivePeriod}} value='{{effectivePeriod}}'{{/effectivePeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Assignment" };
-                super.submit (obj);
-                temp = document.getElementById ("effectivePeriod").value; if ("" != temp) obj.effectivePeriod = temp;
-                temp = document.getElementById ("Crews").value; if ("" != temp) obj.Crews = temp.split (",");
+                var obj = obj || { id: id, cls: "Assignment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_effectivePeriod").value; if ("" != temp) obj.effectivePeriod = temp;
+                temp = document.getElementById (id + "_Crews").value; if ("" != temp) obj.Crews = temp.split (",");
 
                 return (obj);
             }
@@ -983,31 +983,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Project_collapse" aria-expanded="true" aria-controls="Project_collapse" style="margin-left: 10px;">Project</a></legend>
-                    <div id="Project_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Project_collapse" aria-expanded="true" aria-controls="{{id}}_Project_collapse" style="margin-left: 10px;">Project</a></legend>
+                    <div id="{{id}}_Project_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='budget'>budget: </label><div class='col-sm-8'><input id='budget' class='form-control' type='text'{{#budget}} value='{{budget}}'{{/budget}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentProject'>ParentProject: </label><div class='col-sm-8'><input id='ParentProject' class='form-control' type='text'{{#ParentProject}} value='{{ParentProject}}'{{/ParentProject}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BusinessCase'>BusinessCase: </label><div class='col-sm-8'><input id='BusinessCase' class='form-control' type='text'{{#BusinessCase}} value='{{BusinessCase}}'{{/BusinessCase}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_budget'>budget: </label><div class='col-sm-8'><input id='{{id}}_budget' class='form-control' type='text'{{#budget}} value='{{budget}}'{{/budget}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentProject'>ParentProject: </label><div class='col-sm-8'><input id='{{id}}_ParentProject' class='form-control' type='text'{{#ParentProject}} value='{{ParentProject}}'{{/ParentProject}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BusinessCase'>BusinessCase: </label><div class='col-sm-8'><input id='{{id}}_BusinessCase' class='form-control' type='text'{{#BusinessCase}} value='{{BusinessCase}}'{{/BusinessCase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Project" };
-                super.submit (obj);
-                temp = document.getElementById ("budget").value; if ("" != temp) obj.budget = temp;
-                temp = document.getElementById ("ParentProject").value; if ("" != temp) obj.ParentProject = temp;
-                temp = document.getElementById ("BusinessCase").value; if ("" != temp) obj.BusinessCase = temp;
-                temp = document.getElementById ("ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
+                var obj = obj || { id: id, cls: "Project" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_budget").value; if ("" != temp) obj.budget = temp;
+                temp = document.getElementById (id + "_ParentProject").value; if ("" != temp) obj.ParentProject = temp;
+                temp = document.getElementById (id + "_BusinessCase").value; if ("" != temp) obj.BusinessCase = temp;
+                temp = document.getElementById (id + "_ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
 
                 return (obj);
             }
@@ -1108,25 +1108,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkCostSummary_collapse" aria-expanded="true" aria-controls="WorkCostSummary_collapse" style="margin-left: 10px;">WorkCostSummary</a></legend>
-                    <div id="WorkCostSummary_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkCostSummary_collapse" aria-expanded="true" aria-controls="{{id}}_WorkCostSummary_collapse" style="margin-left: 10px;">WorkCostSummary</a></legend>
+                    <div id="{{id}}_WorkCostSummary_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WorkCostSummary" };
-                super.submit (obj);
-                temp = document.getElementById ("WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
+                var obj = obj || { id: id, cls: "WorkCostSummary" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
 
                 return (obj);
             }
@@ -1270,45 +1270,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkCostDetail_collapse" aria-expanded="true" aria-controls="WorkCostDetail_collapse" style="margin-left: 10px;">WorkCostDetail</a></legend>
-                    <div id="WorkCostDetail_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkCostDetail_collapse" aria-expanded="true" aria-controls="{{id}}_WorkCostDetail_collapse" style="margin-left: 10px;">WorkCostDetail</a></legend>
+                    <div id="{{id}}_WorkCostDetail_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isDebit'>isDebit: </label><div class='col-sm-8'><input id='isDebit' class='form-check-input' type='checkbox'{{#isDebit}} checked{{/isDebit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CostType'>CostType: </label><div class='col-sm-8'><input id='CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Works'>Works: </label><div class='col-sm-8'><input id='Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostSummary'>WorkCostSummary: </label><div class='col-sm-8'><input id='WorkCostSummary' class='form-control' type='text'{{#WorkCostSummary}} value='{{WorkCostSummary}}'{{/WorkCostSummary}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits}}_string'{{/PropertyUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isDebit'>isDebit: </label><div class='col-sm-8'><input id='{{id}}_isDebit' class='form-check-input' type='checkbox'{{#isDebit}} checked{{/isDebit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CostType'>CostType: </label><div class='col-sm-8'><input id='{{id}}_CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OverheadCost'>OverheadCost: </label><div class='col-sm-8'><input id='{{id}}_OverheadCost' class='form-control' type='text'{{#OverheadCost}} value='{{OverheadCost}}'{{/OverheadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Design'>Design: </label><div class='col-sm-8'><input id='{{id}}_Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostSummary'>WorkCostSummary: </label><div class='col-sm-8'><input id='{{id}}_WorkCostSummary' class='form-control' type='text'{{#WorkCostSummary}} value='{{WorkCostSummary}}'{{/WorkCostSummary}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits}}_string'{{/PropertyUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WorkCostDetail" };
-                super.submit (obj);
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById ("isDebit").checked; if (temp) obj.isDebit = true;
-                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
-                temp = document.getElementById ("CostType").value; if ("" != temp) obj.CostType = temp;
-                temp = document.getElementById ("OverheadCost").value; if ("" != temp) obj.OverheadCost = temp;
-                temp = document.getElementById ("WorkTask").value; if ("" != temp) obj.WorkTask = temp;
-                temp = document.getElementById ("Design").value; if ("" != temp) obj.Design = temp;
-                temp = document.getElementById ("ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
-                temp = document.getElementById ("Works").value; if ("" != temp) obj.Works = temp.split (",");
-                temp = document.getElementById ("WorkCostSummary").value; if ("" != temp) obj.WorkCostSummary = temp;
-                temp = document.getElementById ("PropertyUnits").value; if ("" != temp) obj.PropertyUnits = temp.split (",");
+                var obj = obj || { id: id, cls: "WorkCostDetail" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById (id + "_isDebit").checked; if (temp) obj.isDebit = true;
+                temp = document.getElementById (id + "_transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById (id + "_CostType").value; if ("" != temp) obj.CostType = temp;
+                temp = document.getElementById (id + "_OverheadCost").value; if ("" != temp) obj.OverheadCost = temp;
+                temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
+                temp = document.getElementById (id + "_Design").value; if ("" != temp) obj.Design = temp;
+                temp = document.getElementById (id + "_ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
+                temp = document.getElementById (id + "_Works").value; if ("" != temp) obj.Works = temp.split (",");
+                temp = document.getElementById (id + "_WorkCostSummary").value; if ("" != temp) obj.WorkCostSummary = temp;
+                temp = document.getElementById (id + "_PropertyUnits").value; if ("" != temp) obj.PropertyUnits = temp.split (",");
 
                 return (obj);
             }
@@ -1463,49 +1463,49 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CompatibleUnit_collapse" aria-expanded="true" aria-controls="CompatibleUnit_collapse" style="margin-left: 10px;">CompatibleUnit</a></legend>
-                    <div id="CompatibleUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CompatibleUnit_collapse" aria-expanded="true" aria-controls="{{id}}_CompatibleUnit_collapse" style="margin-left: 10px;">CompatibleUnit</a></legend>
+                    <div id="{{id}}_CompatibleUnit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='estCost'>estCost: </label><div class='col-sm-8'><input id='estCost' class='form-control' type='text'{{#estCost}} value='{{estCost}}'{{/estCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUWorkEquipmentItems'>CUWorkEquipmentItems: </label><div class='col-sm-8'><input id='CUWorkEquipmentItems' class='form-control' type='text'{{#CUWorkEquipmentItems}} value='{{CUWorkEquipmentItems}}_string'{{/CUWorkEquipmentItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUAssets'>CUAssets: </label><div class='col-sm-8'><input id='CUAssets' class='form-control' type='text'{{#CUAssets}} value='{{CUAssets}}_string'{{/CUAssets}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUContractorItems'>CUContractorItems: </label><div class='col-sm-8'><input id='CUContractorItems' class='form-control' type='text'{{#CUContractorItems}} value='{{CUContractorItems}}_string'{{/CUContractorItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUGroup'>CUGroup: </label><div class='col-sm-8'><input id='CUGroup' class='form-control' type='text'{{#CUGroup}} value='{{CUGroup}}'{{/CUGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PropertyUnit'>PropertyUnit: </label><div class='col-sm-8'><input id='PropertyUnit' class='form-control' type='text'{{#PropertyUnit}} value='{{PropertyUnit}}'{{/PropertyUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems}}_string'{{/CULaborItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems}}_string'{{/CUMaterialItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Procedures'>Procedures: </label><div class='col-sm-8'><input id='Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures}}_string'{{/Procedures}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CostType'>CostType: </label><div class='col-sm-8'><input id='CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUAllowableAction'>CUAllowableAction: </label><div class='col-sm-8'><input id='CUAllowableAction' class='form-control' type='text'{{#CUAllowableAction}} value='{{CUAllowableAction}}'{{/CUAllowableAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estCost'>estCost: </label><div class='col-sm-8'><input id='{{id}}_estCost' class='form-control' type='text'{{#estCost}} value='{{estCost}}'{{/estCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUWorkEquipmentItems'>CUWorkEquipmentItems: </label><div class='col-sm-8'><input id='{{id}}_CUWorkEquipmentItems' class='form-control' type='text'{{#CUWorkEquipmentItems}} value='{{CUWorkEquipmentItems}}_string'{{/CUWorkEquipmentItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUAssets'>CUAssets: </label><div class='col-sm-8'><input id='{{id}}_CUAssets' class='form-control' type='text'{{#CUAssets}} value='{{CUAssets}}_string'{{/CUAssets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUContractorItems'>CUContractorItems: </label><div class='col-sm-8'><input id='{{id}}_CUContractorItems' class='form-control' type='text'{{#CUContractorItems}} value='{{CUContractorItems}}_string'{{/CUContractorItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUGroup'>CUGroup: </label><div class='col-sm-8'><input id='{{id}}_CUGroup' class='form-control' type='text'{{#CUGroup}} value='{{CUGroup}}'{{/CUGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnit'>PropertyUnit: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnit' class='form-control' type='text'{{#PropertyUnit}} value='{{PropertyUnit}}'{{/PropertyUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='{{id}}_CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems}}_string'{{/CULaborItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='{{id}}_CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems}}_string'{{/CUMaterialItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Procedures'>Procedures: </label><div class='col-sm-8'><input id='{{id}}_Procedures' class='form-control' type='text'{{#Procedures}} value='{{Procedures}}_string'{{/Procedures}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CostType'>CostType: </label><div class='col-sm-8'><input id='{{id}}_CostType' class='form-control' type='text'{{#CostType}} value='{{CostType}}'{{/CostType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUAllowableAction'>CUAllowableAction: </label><div class='col-sm-8'><input id='{{id}}_CUAllowableAction' class='form-control' type='text'{{#CUAllowableAction}} value='{{CUAllowableAction}}'{{/CUAllowableAction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CompatibleUnit" };
-                super.submit (obj);
-                temp = document.getElementById ("estCost").value; if ("" != temp) obj.estCost = temp;
-                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
-                temp = document.getElementById ("CUWorkEquipmentItems").value; if ("" != temp) obj.CUWorkEquipmentItems = temp.split (",");
-                temp = document.getElementById ("CUAssets").value; if ("" != temp) obj.CUAssets = temp.split (",");
-                temp = document.getElementById ("DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
-                temp = document.getElementById ("CUContractorItems").value; if ("" != temp) obj.CUContractorItems = temp.split (",");
-                temp = document.getElementById ("CUGroup").value; if ("" != temp) obj.CUGroup = temp;
-                temp = document.getElementById ("PropertyUnit").value; if ("" != temp) obj.PropertyUnit = temp;
-                temp = document.getElementById ("CULaborItems").value; if ("" != temp) obj.CULaborItems = temp.split (",");
-                temp = document.getElementById ("CUMaterialItems").value; if ("" != temp) obj.CUMaterialItems = temp.split (",");
-                temp = document.getElementById ("Procedures").value; if ("" != temp) obj.Procedures = temp.split (",");
-                temp = document.getElementById ("CostType").value; if ("" != temp) obj.CostType = temp;
-                temp = document.getElementById ("CUAllowableAction").value; if ("" != temp) obj.CUAllowableAction = temp;
+                var obj = obj || { id: id, cls: "CompatibleUnit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_estCost").value; if ("" != temp) obj.estCost = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_CUWorkEquipmentItems").value; if ("" != temp) obj.CUWorkEquipmentItems = temp.split (",");
+                temp = document.getElementById (id + "_CUAssets").value; if ("" != temp) obj.CUAssets = temp.split (",");
+                temp = document.getElementById (id + "_DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
+                temp = document.getElementById (id + "_CUContractorItems").value; if ("" != temp) obj.CUContractorItems = temp.split (",");
+                temp = document.getElementById (id + "_CUGroup").value; if ("" != temp) obj.CUGroup = temp;
+                temp = document.getElementById (id + "_PropertyUnit").value; if ("" != temp) obj.PropertyUnit = temp;
+                temp = document.getElementById (id + "_CULaborItems").value; if ("" != temp) obj.CULaborItems = temp.split (",");
+                temp = document.getElementById (id + "_CUMaterialItems").value; if ("" != temp) obj.CUMaterialItems = temp.split (",");
+                temp = document.getElementById (id + "_Procedures").value; if ("" != temp) obj.Procedures = temp.split (",");
+                temp = document.getElementById (id + "_CostType").value; if ("" != temp) obj.CostType = temp;
+                temp = document.getElementById (id + "_CUAllowableAction").value; if ("" != temp) obj.CUAllowableAction = temp;
 
                 return (obj);
             }
@@ -1630,37 +1630,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InfoQuestion_collapse" aria-expanded="true" aria-controls="InfoQuestion_collapse" style="margin-left: 10px;">InfoQuestion</a></legend>
-                    <div id="InfoQuestion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InfoQuestion_collapse" aria-expanded="true" aria-controls="{{id}}_InfoQuestion_collapse" style="margin-left: 10px;">InfoQuestion</a></legend>
+                    <div id="{{id}}_InfoQuestion_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='answer'>answer: </label><div class='col-sm-8'><input id='answer' class='form-control' type='text'{{#answer}} value='{{answer}}'{{/answer}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='answerDateTime'>answerDateTime: </label><div class='col-sm-8'><input id='answerDateTime' class='form-control' type='text'{{#answerDateTime}} value='{{answerDateTime}}'{{/answerDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='answerRemark'>answerRemark: </label><div class='col-sm-8'><input id='answerRemark' class='form-control' type='text'{{#answerRemark}} value='{{answerRemark}}'{{/answerRemark}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='questionCode'>questionCode: </label><div class='col-sm-8'><input id='questionCode' class='form-control' type='text'{{#questionCode}} value='{{questionCode}}'{{/questionCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='questionRemark'>questionRemark: </label><div class='col-sm-8'><input id='questionRemark' class='form-control' type='text'{{#questionRemark}} value='{{questionRemark}}'{{/questionRemark}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='questionText'>questionText: </label><div class='col-sm-8'><input id='questionText' class='form-control' type='text'{{#questionText}} value='{{questionText}}'{{/questionText}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='questionType'>questionType: </label><div class='col-sm-8'><input id='questionType' class='form-control' type='text'{{#questionType}} value='{{questionType}}'{{/questionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_answer'>answer: </label><div class='col-sm-8'><input id='{{id}}_answer' class='form-control' type='text'{{#answer}} value='{{answer}}'{{/answer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_answerDateTime'>answerDateTime: </label><div class='col-sm-8'><input id='{{id}}_answerDateTime' class='form-control' type='text'{{#answerDateTime}} value='{{answerDateTime}}'{{/answerDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_answerRemark'>answerRemark: </label><div class='col-sm-8'><input id='{{id}}_answerRemark' class='form-control' type='text'{{#answerRemark}} value='{{answerRemark}}'{{/answerRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_questionCode'>questionCode: </label><div class='col-sm-8'><input id='{{id}}_questionCode' class='form-control' type='text'{{#questionCode}} value='{{questionCode}}'{{/questionCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_questionRemark'>questionRemark: </label><div class='col-sm-8'><input id='{{id}}_questionRemark' class='form-control' type='text'{{#questionRemark}} value='{{questionRemark}}'{{/questionRemark}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_questionText'>questionText: </label><div class='col-sm-8'><input id='{{id}}_questionText' class='form-control' type='text'{{#questionText}} value='{{questionText}}'{{/questionText}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_questionType'>questionType: </label><div class='col-sm-8'><input id='{{id}}_questionType' class='form-control' type='text'{{#questionType}} value='{{questionType}}'{{/questionType}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "InfoQuestion" };
-                super.submit (obj);
-                temp = document.getElementById ("answer").value; if ("" != temp) obj.answer = temp;
-                temp = document.getElementById ("answerDateTime").value; if ("" != temp) obj.answerDateTime = temp;
-                temp = document.getElementById ("answerRemark").value; if ("" != temp) obj.answerRemark = temp;
-                temp = document.getElementById ("questionCode").value; if ("" != temp) obj.questionCode = temp;
-                temp = document.getElementById ("questionRemark").value; if ("" != temp) obj.questionRemark = temp;
-                temp = document.getElementById ("questionText").value; if ("" != temp) obj.questionText = temp;
-                temp = document.getElementById ("questionType").value; if ("" != temp) obj.questionType = temp;
+                var obj = obj || { id: id, cls: "InfoQuestion" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_answer").value; if ("" != temp) obj.answer = temp;
+                temp = document.getElementById (id + "_answerDateTime").value; if ("" != temp) obj.answerDateTime = temp;
+                temp = document.getElementById (id + "_answerRemark").value; if ("" != temp) obj.answerRemark = temp;
+                temp = document.getElementById (id + "_questionCode").value; if ("" != temp) obj.questionCode = temp;
+                temp = document.getElementById (id + "_questionRemark").value; if ("" != temp) obj.questionRemark = temp;
+                temp = document.getElementById (id + "_questionText").value; if ("" != temp) obj.questionText = temp;
+                temp = document.getElementById (id + "_questionType").value; if ("" != temp) obj.questionType = temp;
 
                 return (obj);
             }
@@ -1777,31 +1777,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TypeMaterial_collapse" aria-expanded="true" aria-controls="TypeMaterial_collapse" style="margin-left: 10px;">TypeMaterial</a></legend>
-                    <div id="TypeMaterial_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TypeMaterial_collapse" aria-expanded="true" aria-controls="{{id}}_TypeMaterial_collapse" style="margin-left: 10px;">TypeMaterial</a></legend>
+                    <div id="{{id}}_TypeMaterial_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costType'>costType: </label><div class='col-sm-8'><input id='costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='estUnitCost'>estUnitCost: </label><div class='col-sm-8'><input id='estUnitCost' class='form-control' type='text'{{#estUnitCost}} value='{{estUnitCost}}'{{/estUnitCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='stockItem'>stockItem: </label><div class='col-sm-8'><input id='stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costType'>costType: </label><div class='col-sm-8'><input id='{{id}}_costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estUnitCost'>estUnitCost: </label><div class='col-sm-8'><input id='{{id}}_estUnitCost' class='form-control' type='text'{{#estUnitCost}} value='{{estUnitCost}}'{{/estUnitCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_stockItem'>stockItem: </label><div class='col-sm-8'><input id='{{id}}_stockItem' class='form-check-input' type='checkbox'{{#stockItem}} checked{{/stockItem}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TypeMaterial" };
-                super.submit (obj);
-                temp = document.getElementById ("costType").value; if ("" != temp) obj.costType = temp;
-                temp = document.getElementById ("estUnitCost").value; if ("" != temp) obj.estUnitCost = temp;
-                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
-                temp = document.getElementById ("stockItem").checked; if (temp) obj.stockItem = true;
+                var obj = obj || { id: id, cls: "TypeMaterial" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_costType").value; if ("" != temp) obj.costType = temp;
+                temp = document.getElementById (id + "_estUnitCost").value; if ("" != temp) obj.estUnitCost = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_stockItem").checked; if (temp) obj.stockItem = true;
 
                 return (obj);
             }
@@ -1899,25 +1899,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonStandardItem_collapse" aria-expanded="true" aria-controls="NonStandardItem_collapse" style="margin-left: 10px;">NonStandardItem</a></legend>
-                    <div id="NonStandardItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonStandardItem_collapse" aria-expanded="true" aria-controls="{{id}}_NonStandardItem_collapse" style="margin-left: 10px;">NonStandardItem</a></legend>
+                    <div id="{{id}}_NonStandardItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "NonStandardItem" };
-                super.submit (obj);
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
+                var obj = obj || { id: id, cls: "NonStandardItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
 
                 return (obj);
             }
@@ -2017,33 +2017,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AccessPermit_collapse" aria-expanded="true" aria-controls="AccessPermit_collapse" style="margin-left: 10px;">AccessPermit</a></legend>
-                    <div id="AccessPermit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AccessPermit_collapse" aria-expanded="true" aria-controls="{{id}}_AccessPermit_collapse" style="margin-left: 10px;">AccessPermit</a></legend>
+                    <div id="{{id}}_AccessPermit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='applicationNumber'>applicationNumber: </label><div class='col-sm-8'><input id='applicationNumber' class='form-control' type='text'{{#applicationNumber}} value='{{applicationNumber}}'{{/applicationNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='expirationDate'>expirationDate: </label><div class='col-sm-8'><input id='expirationDate' class='form-control' type='text'{{#expirationDate}} value='{{expirationDate}}'{{/expirationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='payment'>payment: </label><div class='col-sm-8'><input id='payment' class='form-control' type='text'{{#payment}} value='{{payment}}'{{/payment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='permitID'>permitID: </label><div class='col-sm-8'><input id='permitID' class='form-control' type='text'{{#permitID}} value='{{permitID}}'{{/permitID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_applicationNumber'>applicationNumber: </label><div class='col-sm-8'><input id='{{id}}_applicationNumber' class='form-control' type='text'{{#applicationNumber}} value='{{applicationNumber}}'{{/applicationNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_expirationDate'>expirationDate: </label><div class='col-sm-8'><input id='{{id}}_expirationDate' class='form-control' type='text'{{#expirationDate}} value='{{expirationDate}}'{{/expirationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_payment'>payment: </label><div class='col-sm-8'><input id='{{id}}_payment' class='form-control' type='text'{{#payment}} value='{{payment}}'{{/payment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_permitID'>permitID: </label><div class='col-sm-8'><input id='{{id}}_permitID' class='form-control' type='text'{{#permitID}} value='{{permitID}}'{{/permitID}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AccessPermit" };
-                super.submit (obj);
-                temp = document.getElementById ("applicationNumber").value; if ("" != temp) obj.applicationNumber = temp;
-                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
-                temp = document.getElementById ("expirationDate").value; if ("" != temp) obj.expirationDate = temp;
-                temp = document.getElementById ("payment").value; if ("" != temp) obj.payment = temp;
-                temp = document.getElementById ("permitID").value; if ("" != temp) obj.permitID = temp;
+                var obj = obj || { id: id, cls: "AccessPermit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_applicationNumber").value; if ("" != temp) obj.applicationNumber = temp;
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById (id + "_expirationDate").value; if ("" != temp) obj.expirationDate = temp;
+                temp = document.getElementById (id + "_payment").value; if ("" != temp) obj.payment = temp;
+                temp = document.getElementById (id + "_permitID").value; if ("" != temp) obj.permitID = temp;
 
                 return (obj);
             }
@@ -2140,29 +2140,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OneCallRequest_collapse" aria-expanded="true" aria-controls="OneCallRequest_collapse" style="margin-left: 10px;">OneCallRequest</a></legend>
-                    <div id="OneCallRequest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OneCallRequest_collapse" aria-expanded="true" aria-controls="{{id}}_OneCallRequest_collapse" style="margin-left: 10px;">OneCallRequest</a></legend>
+                    <div id="{{id}}_OneCallRequest_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='explosivesUsed'>explosivesUsed: </label><div class='col-sm-8'><input id='explosivesUsed' class='form-check-input' type='checkbox'{{#explosivesUsed}} checked{{/explosivesUsed}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='markedIndicator'>markedIndicator: </label><div class='col-sm-8'><input id='markedIndicator' class='form-check-input' type='checkbox'{{#markedIndicator}} checked{{/markedIndicator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='markingInstruction'>markingInstruction: </label><div class='col-sm-8'><input id='markingInstruction' class='form-control' type='text'{{#markingInstruction}} value='{{markingInstruction}}'{{/markingInstruction}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_explosivesUsed'>explosivesUsed: </label><div class='col-sm-8'><input id='{{id}}_explosivesUsed' class='form-check-input' type='checkbox'{{#explosivesUsed}} checked{{/explosivesUsed}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_markedIndicator'>markedIndicator: </label><div class='col-sm-8'><input id='{{id}}_markedIndicator' class='form-check-input' type='checkbox'{{#markedIndicator}} checked{{/markedIndicator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_markingInstruction'>markingInstruction: </label><div class='col-sm-8'><input id='{{id}}_markingInstruction' class='form-control' type='text'{{#markingInstruction}} value='{{markingInstruction}}'{{/markingInstruction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OneCallRequest" };
-                super.submit (obj);
-                temp = document.getElementById ("explosivesUsed").checked; if (temp) obj.explosivesUsed = true;
-                temp = document.getElementById ("markedIndicator").checked; if (temp) obj.markedIndicator = true;
-                temp = document.getElementById ("markingInstruction").value; if ("" != temp) obj.markingInstruction = temp;
+                var obj = obj || { id: id, cls: "OneCallRequest" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_explosivesUsed").checked; if (temp) obj.explosivesUsed = true;
+                temp = document.getElementById (id + "_markedIndicator").checked; if (temp) obj.markedIndicator = true;
+                temp = document.getElementById (id + "_markingInstruction").value; if ("" != temp) obj.markingInstruction = temp;
 
                 return (obj);
             }
@@ -2303,39 +2303,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Design_collapse" aria-expanded="true" aria-controls="Design_collapse" style="margin-left: 10px;">Design</a></legend>
-                    <div id="Design_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Design_collapse" aria-expanded="true" aria-controls="{{id}}_Design_collapse" style="margin-left: 10px;">Design</a></legend>
+                    <div id="{{id}}_Design_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costEstimate'>costEstimate: </label><div class='col-sm-8'><input id='costEstimate' class='form-control' type='text'{{#costEstimate}} value='{{costEstimate}}'{{/costEstimate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#DesignKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DesignKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='price'>price: </label><div class='col-sm-8'><input id='price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Work'>Work: </label><div class='col-sm-8'><input id='Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationsCUs'>DesignLocationsCUs: </label><div class='col-sm-8'><input id='DesignLocationsCUs' class='form-control' type='text'{{#DesignLocationsCUs}} value='{{DesignLocationsCUs}}_string'{{/DesignLocationsCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costEstimate'>costEstimate: </label><div class='col-sm-8'><input id='{{id}}_costEstimate' class='form-control' type='text'{{#costEstimate}} value='{{costEstimate}}'{{/costEstimate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#DesignKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/DesignKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_price'>price: </label><div class='col-sm-8'><input id='{{id}}_price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Work'>Work: </label><div class='col-sm-8'><input id='{{id}}_Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationsCUs'>DesignLocationsCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationsCUs' class='form-control' type='text'{{#DesignLocationsCUs}} value='{{DesignLocationsCUs}}_string'{{/DesignLocationsCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Design" };
-                super.submit (obj);
-                temp = document.getElementById ("costEstimate").value; if ("" != temp) obj.costEstimate = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = DesignKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DesignKind." + temp; }
-                temp = document.getElementById ("price").value; if ("" != temp) obj.price = temp;
-                temp = document.getElementById ("Work").value; if ("" != temp) obj.Work = temp;
-                temp = document.getElementById ("ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
-                temp = document.getElementById ("ConditionFactors").value; if ("" != temp) obj.ConditionFactors = temp.split (",");
-                temp = document.getElementById ("DesignLocations").value; if ("" != temp) obj.DesignLocations = temp.split (",");
-                temp = document.getElementById ("DesignLocationsCUs").value; if ("" != temp) obj.DesignLocationsCUs = temp.split (",");
+                var obj = obj || { id: id, cls: "Design" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_costEstimate").value; if ("" != temp) obj.costEstimate = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = DesignKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DesignKind." + temp; }
+                temp = document.getElementById (id + "_price").value; if ("" != temp) obj.price = temp;
+                temp = document.getElementById (id + "_Work").value; if ("" != temp) obj.Work = temp;
+                temp = document.getElementById (id + "_ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
+                temp = document.getElementById (id + "_ConditionFactors").value; if ("" != temp) obj.ConditionFactors = temp.split (",");
+                temp = document.getElementById (id + "_DesignLocations").value; if ("" != temp) obj.DesignLocations = temp.split (",");
+                temp = document.getElementById (id + "_DesignLocationsCUs").value; if ("" != temp) obj.DesignLocationsCUs = temp.split (",");
 
                 return (obj);
             }
@@ -2460,39 +2460,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LaborItem_collapse" aria-expanded="true" aria-controls="LaborItem_collapse" style="margin-left: 10px;">LaborItem</a></legend>
-                    <div id="LaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LaborItem_collapse" aria-expanded="true" aria-controls="{{id}}_LaborItem_collapse" style="margin-left: 10px;">LaborItem</a></legend>
+                    <div id="{{id}}_LaborItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborRate'>laborRate: </label><div class='col-sm-8'><input id='laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons}}_string'{{/ErpPersons}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><input id='{{id}}_activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='{{id}}_laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborRate'>laborRate: </label><div class='col-sm-8'><input id='{{id}}_laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPersons'>ErpPersons: </label><div class='col-sm-8'><input id='{{id}}_ErpPersons' class='form-control' type='text'{{#ErpPersons}} value='{{ErpPersons}}_string'{{/ErpPersons}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LaborItem" };
-                super.submit (obj);
-                temp = document.getElementById ("activityCode").value; if ("" != temp) obj.activityCode = temp;
-                temp = document.getElementById ("cost").value; if ("" != temp) obj.cost = temp;
-                temp = document.getElementById ("laborDuration").value; if ("" != temp) obj.laborDuration = temp;
-                temp = document.getElementById ("laborRate").value; if ("" != temp) obj.laborRate = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
-                temp = document.getElementById ("WorkTask").value; if ("" != temp) obj.WorkTask = temp;
-                temp = document.getElementById ("ErpPersons").value; if ("" != temp) obj.ErpPersons = temp.split (",");
+                var obj = obj || { id: id, cls: "LaborItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_activityCode").value; if ("" != temp) obj.activityCode = temp;
+                temp = document.getElementById (id + "_cost").value; if ("" != temp) obj.cost = temp;
+                temp = document.getElementById (id + "_laborDuration").value; if ("" != temp) obj.laborDuration = temp;
+                temp = document.getElementById (id + "_laborRate").value; if ("" != temp) obj.laborRate = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
+                temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
+                temp = document.getElementById (id + "_ErpPersons").value; if ("" != temp) obj.ErpPersons = temp.split (",");
 
                 return (obj);
             }
@@ -2612,35 +2612,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConditionFactor_collapse" aria-expanded="true" aria-controls="ConditionFactor_collapse" style="margin-left: 10px;">ConditionFactor</a></legend>
-                    <div id="ConditionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConditionFactor_collapse" aria-expanded="true" aria-controls="{{id}}_ConditionFactor_collapse" style="margin-left: 10px;">ConditionFactor</a></legend>
+                    <div id="{{id}}_ConditionFactor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cfValue'>cfValue: </label><div class='col-sm-8'><input id='cfValue' class='form-control' type='text'{{#cfValue}} value='{{cfValue}}'{{/cfValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ConditionFactorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ConditionFactorKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Designs'>Designs: </label><div class='col-sm-8'><input id='Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cfValue'>cfValue: </label><div class='col-sm-8'><input id='{{id}}_cfValue' class='form-control' type='text'{{#cfValue}} value='{{cfValue}}'{{/cfValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#ConditionFactorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ConditionFactorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocations'>DesignLocations: </label><div class='col-sm-8'><input id='{{id}}_DesignLocations' class='form-control' type='text'{{#DesignLocations}} value='{{DesignLocations}}_string'{{/DesignLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ConditionFactor" };
-                super.submit (obj);
-                temp = document.getElementById ("cfValue").value; if ("" != temp) obj.cfValue = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ConditionFactorKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ConditionFactorKind." + temp; }
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("DesignLocations").value; if ("" != temp) obj.DesignLocations = temp.split (",");
-                temp = document.getElementById ("Designs").value; if ("" != temp) obj.Designs = temp.split (",");
-                temp = document.getElementById ("DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
+                var obj = obj || { id: id, cls: "ConditionFactor" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_cfValue").value; if ("" != temp) obj.cfValue = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ConditionFactorKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ConditionFactorKind." + temp; }
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_DesignLocations").value; if ("" != temp) obj.DesignLocations = temp.split (",");
+                temp = document.getElementById (id + "_Designs").value; if ("" != temp) obj.Designs = temp.split (",");
+                temp = document.getElementById (id + "_DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
 
                 return (obj);
             }
@@ -2742,27 +2742,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Usage_collapse" aria-expanded="true" aria-controls="Usage_collapse" style="margin-left: 10px;">Usage</a></legend>
-                    <div id="Usage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Usage_collapse" aria-expanded="true" aria-controls="{{id}}_Usage_collapse" style="margin-left: 10px;">Usage</a></legend>
+                    <div id="{{id}}_Usage_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Usage" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("WorkTask").value; if ("" != temp) obj.WorkTask = temp;
+                var obj = obj || { id: id, cls: "Usage" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
 
                 return (obj);
             }
@@ -2894,37 +2894,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CostType_collapse" aria-expanded="true" aria-controls="CostType_collapse" style="margin-left: 10px;">CostType</a></legend>
-                    <div id="CostType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CostType_collapse" aria-expanded="true" aria-controls="{{id}}_CostType_collapse" style="margin-left: 10px;">CostType</a></legend>
+                    <div id="{{id}}_CostType_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='amountAssignable'>amountAssignable: </label><div class='col-sm-8'><input id='amountAssignable' class='form-check-input' type='checkbox'{{#amountAssignable}} checked{{/amountAssignable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='level'>level: </label><div class='col-sm-8'><input id='level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stage'>stage: </label><div class='col-sm-8'><input id='stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentCostType'>ParentCostType: </label><div class='col-sm-8'><input id='ParentCostType' class='form-control' type='text'{{#ParentCostType}} value='{{ParentCostType}}'{{/ParentCostType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_amountAssignable'>amountAssignable: </label><div class='col-sm-8'><input id='{{id}}_amountAssignable' class='form-check-input' type='checkbox'{{#amountAssignable}} checked{{/amountAssignable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><input id='{{id}}_level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stage'>stage: </label><div class='col-sm-8'><input id='{{id}}_stage' class='form-control' type='text'{{#stage}} value='{{stage}}'{{/stage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCostType'>ParentCostType: </label><div class='col-sm-8'><input id='{{id}}_ParentCostType' class='form-control' type='text'{{#ParentCostType}} value='{{ParentCostType}}'{{/ParentCostType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CostType" };
-                super.submit (obj);
-                temp = document.getElementById ("amountAssignable").checked; if (temp) obj.amountAssignable = true;
-                temp = document.getElementById ("code").value; if ("" != temp) obj.code = temp;
-                temp = document.getElementById ("level").value; if ("" != temp) obj.level = temp;
-                temp = document.getElementById ("stage").value; if ("" != temp) obj.stage = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ParentCostType").value; if ("" != temp) obj.ParentCostType = temp;
-                temp = document.getElementById ("ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
+                var obj = obj || { id: id, cls: "CostType" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_amountAssignable").checked; if (temp) obj.amountAssignable = true;
+                temp = document.getElementById (id + "_code").value; if ("" != temp) obj.code = temp;
+                temp = document.getElementById (id + "_level").value; if ("" != temp) obj.level = temp;
+                temp = document.getElementById (id + "_stage").value; if ("" != temp) obj.stage = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ParentCostType").value; if ("" != temp) obj.ParentCostType = temp;
+                temp = document.getElementById (id + "_ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
 
                 return (obj);
             }
@@ -3031,27 +3031,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CULaborCode_collapse" aria-expanded="true" aria-controls="CULaborCode_collapse" style="margin-left: 10px;">CULaborCode</a></legend>
-                    <div id="CULaborCode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CULaborCode_collapse" aria-expanded="true" aria-controls="{{id}}_CULaborCode_collapse" style="margin-left: 10px;">CULaborCode</a></legend>
+                    <div id="{{id}}_CULaborCode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CULaborCode" };
-                super.submit (obj);
-                temp = document.getElementById ("code").value; if ("" != temp) obj.code = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                var obj = obj || { id: id, cls: "CULaborCode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_code").value; if ("" != temp) obj.code = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -3181,33 +3181,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DesignLocation_collapse" aria-expanded="true" aria-controls="DesignLocation_collapse" style="margin-left: 10px;">DesignLocation</a></legend>
-                    <div id="DesignLocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DesignLocation_collapse" aria-expanded="true" aria-controls="{{id}}_DesignLocation_collapse" style="margin-left: 10px;">DesignLocation</a></legend>
+                    <div id="{{id}}_DesignLocation_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spanLength'>spanLength: </label><div class='col-sm-8'><input id='spanLength' class='form-control' type='text'{{#spanLength}} value='{{spanLength}}'{{/spanLength}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkLocations'>WorkLocations: </label><div class='col-sm-8'><input id='WorkLocations' class='form-control' type='text'{{#WorkLocations}} value='{{WorkLocations}}_string'{{/WorkLocations}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Designs'>Designs: </label><div class='col-sm-8'><input id='Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_spanLength'>spanLength: </label><div class='col-sm-8'><input id='{{id}}_spanLength' class='form-control' type='text'{{#spanLength}} value='{{spanLength}}'{{/spanLength}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkLocations'>WorkLocations: </label><div class='col-sm-8'><input id='{{id}}_WorkLocations' class='form-control' type='text'{{#WorkLocations}} value='{{WorkLocations}}_string'{{/WorkLocations}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DesignLocation" };
-                super.submit (obj);
-                temp = document.getElementById ("spanLength").value; if ("" != temp) obj.spanLength = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ConditionFactors").value; if ("" != temp) obj.ConditionFactors = temp.split (",");
-                temp = document.getElementById ("WorkLocations").value; if ("" != temp) obj.WorkLocations = temp.split (",");
-                temp = document.getElementById ("Designs").value; if ("" != temp) obj.Designs = temp.split (",");
+                var obj = obj || { id: id, cls: "DesignLocation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_spanLength").value; if ("" != temp) obj.spanLength = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ConditionFactors").value; if ("" != temp) obj.ConditionFactors = temp.split (",");
+                temp = document.getElementById (id + "_WorkLocations").value; if ("" != temp) obj.WorkLocations = temp.split (",");
+                temp = document.getElementById (id + "_Designs").value; if ("" != temp) obj.Designs = temp.split (",");
 
                 return (obj);
             }
@@ -3321,33 +3321,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUWorkEquipmentItem_collapse" aria-expanded="true" aria-controls="CUWorkEquipmentItem_collapse" style="margin-left: 10px;">CUWorkEquipmentItem</a></legend>
-                    <div id="CUWorkEquipmentItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUWorkEquipmentItem_collapse" aria-expanded="true" aria-controls="{{id}}_CUWorkEquipmentItem_collapse" style="margin-left: 10px;">CUWorkEquipmentItem</a></legend>
+                    <div id="{{id}}_CUWorkEquipmentItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='equipCode'>equipCode: </label><div class='col-sm-8'><input id='equipCode' class='form-control' type='text'{{#equipCode}} value='{{equipCode}}'{{/equipCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rate'>rate: </label><div class='col-sm-8'><input id='rate' class='form-control' type='text'{{#rate}} value='{{rate}}'{{/rate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_equipCode'>equipCode: </label><div class='col-sm-8'><input id='{{id}}_equipCode' class='form-control' type='text'{{#equipCode}} value='{{equipCode}}'{{/equipCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rate'>rate: </label><div class='col-sm-8'><input id='{{id}}_rate' class='form-control' type='text'{{#rate}} value='{{rate}}'{{/rate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CUWorkEquipmentItem" };
-                super.submit (obj);
-                temp = document.getElementById ("equipCode").value; if ("" != temp) obj.equipCode = temp;
-                temp = document.getElementById ("rate").value; if ("" != temp) obj.rate = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
-                temp = document.getElementById ("TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
+                var obj = obj || { id: id, cls: "CUWorkEquipmentItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_equipCode").value; if ("" != temp) obj.equipCode = temp;
+                temp = document.getElementById (id + "_rate").value; if ("" != temp) obj.rate = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
+                temp = document.getElementById (id + "_TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
 
                 return (obj);
             }
@@ -3464,35 +3464,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUMaterialItem_collapse" aria-expanded="true" aria-controls="CUMaterialItem_collapse" style="margin-left: 10px;">CUMaterialItem</a></legend>
-                    <div id="CUMaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUMaterialItem_collapse" aria-expanded="true" aria-controls="{{id}}_CUMaterialItem_collapse" style="margin-left: 10px;">CUMaterialItem</a></legend>
+                    <div id="{{id}}_CUMaterialItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='corporateCode'>corporateCode: </label><div class='col-sm-8'><input id='corporateCode' class='form-control' type='text'{{#corporateCode}} value='{{corporateCode}}'{{/corporateCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits}}_string'{{/PropertyUnits}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_corporateCode'>corporateCode: </label><div class='col-sm-8'><input id='{{id}}_corporateCode' class='form-control' type='text'{{#corporateCode}} value='{{corporateCode}}'{{/corporateCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PropertyUnits'>PropertyUnits: </label><div class='col-sm-8'><input id='{{id}}_PropertyUnits' class='form-control' type='text'{{#PropertyUnits}} value='{{PropertyUnits}}_string'{{/PropertyUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CUMaterialItem" };
-                super.submit (obj);
-                temp = document.getElementById ("corporateCode").value; if ("" != temp) obj.corporateCode = temp;
-                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
-                temp = document.getElementById ("PropertyUnits").value; if ("" != temp) obj.PropertyUnits = temp.split (",");
-                temp = document.getElementById ("CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
+                var obj = obj || { id: id, cls: "CUMaterialItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_corporateCode").value; if ("" != temp) obj.corporateCode = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
+                temp = document.getElementById (id + "_PropertyUnits").value; if ("" != temp) obj.PropertyUnits = temp.split (",");
+                temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
 
                 return (obj);
             }
@@ -3605,29 +3605,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverheadCost_collapse" aria-expanded="true" aria-controls="OverheadCost_collapse" style="margin-left: 10px;">OverheadCost</a></legend>
-                    <div id="OverheadCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverheadCost_collapse" aria-expanded="true" aria-controls="{{id}}_OverheadCost_collapse" style="margin-left: 10px;">OverheadCost</a></legend>
+                    <div id="{{id}}_OverheadCost_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OverheadCost" };
-                super.submit (obj);
-                temp = document.getElementById ("code").value; if ("" != temp) obj.code = temp;
-                temp = document.getElementById ("cost").value; if ("" != temp) obj.cost = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                var obj = obj || { id: id, cls: "OverheadCost" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_code").value; if ("" != temp) obj.code = temp;
+                temp = document.getElementById (id + "_cost").value; if ("" != temp) obj.cost = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -3734,29 +3734,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkFlowStep_collapse" aria-expanded="true" aria-controls="WorkFlowStep_collapse" style="margin-left: 10px;">WorkFlowStep</a></legend>
-                    <div id="WorkFlowStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkFlowStep_collapse" aria-expanded="true" aria-controls="{{id}}_WorkFlowStep_collapse" style="margin-left: 10px;">WorkFlowStep</a></legend>
+                    <div id="{{id}}_WorkFlowStep_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Work'>Work: </label><div class='col-sm-8'><input id='Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Work'>Work: </label><div class='col-sm-8'><input id='{{id}}_Work' class='form-control' type='text'{{#Work}} value='{{Work}}'{{/Work}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WorkFlowStep" };
-                super.submit (obj);
-                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("Work").value; if ("" != temp) obj.Work = temp;
+                var obj = obj || { id: id, cls: "WorkFlowStep" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_Work").value; if ("" != temp) obj.Work = temp;
 
                 return (obj);
             }
@@ -3857,25 +3857,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUAllowableAction_collapse" aria-expanded="true" aria-controls="CUAllowableAction_collapse" style="margin-left: 10px;">CUAllowableAction</a></legend>
-                    <div id="CUAllowableAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUAllowableAction_collapse" aria-expanded="true" aria-controls="{{id}}_CUAllowableAction_collapse" style="margin-left: 10px;">CUAllowableAction</a></legend>
+                    <div id="{{id}}_CUAllowableAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CUAllowableAction" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                var obj = obj || { id: id, cls: "CUAllowableAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -3990,33 +3990,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#QualificationRequirement_collapse" aria-expanded="true" aria-controls="QualificationRequirement_collapse" style="margin-left: 10px;">QualificationRequirement</a></legend>
-                    <div id="QualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_QualificationRequirement_collapse" aria-expanded="true" aria-controls="{{id}}_QualificationRequirement_collapse" style="margin-left: 10px;">QualificationRequirement</a></legend>
+                    <div id="{{id}}_QualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Specifications'>Specifications: </label><div class='col-sm-8'><input id='Specifications' class='form-control' type='text'{{#Specifications}} value='{{Specifications}}_string'{{/Specifications}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems}}_string'{{/CULaborItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Skills'>Skills: </label><div class='col-sm-8'><input id='Skills' class='form-control' type='text'{{#Skills}} value='{{Skills}}_string'{{/Skills}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='{{id}}_qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Specifications'>Specifications: </label><div class='col-sm-8'><input id='{{id}}_Specifications' class='form-control' type='text'{{#Specifications}} value='{{Specifications}}_string'{{/Specifications}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborItems'>CULaborItems: </label><div class='col-sm-8'><input id='{{id}}_CULaborItems' class='form-control' type='text'{{#CULaborItems}} value='{{CULaborItems}}_string'{{/CULaborItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Skills'>Skills: </label><div class='col-sm-8'><input id='{{id}}_Skills' class='form-control' type='text'{{#Skills}} value='{{Skills}}_string'{{/Skills}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "QualificationRequirement" };
-                super.submit (obj);
-                temp = document.getElementById ("qualificationID").value; if ("" != temp) obj.qualificationID = temp;
-                temp = document.getElementById ("WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
-                temp = document.getElementById ("Specifications").value; if ("" != temp) obj.Specifications = temp.split (",");
-                temp = document.getElementById ("CULaborItems").value; if ("" != temp) obj.CULaborItems = temp.split (",");
-                temp = document.getElementById ("Skills").value; if ("" != temp) obj.Skills = temp.split (",");
+                var obj = obj || { id: id, cls: "QualificationRequirement" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_qualificationID").value; if ("" != temp) obj.qualificationID = temp;
+                temp = document.getElementById (id + "_WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
+                temp = document.getElementById (id + "_Specifications").value; if ("" != temp) obj.Specifications = temp.split (",");
+                temp = document.getElementById (id + "_CULaborItems").value; if ("" != temp) obj.CULaborItems = temp.split (",");
+                temp = document.getElementById (id + "_Skills").value; if ("" != temp) obj.Skills = temp.split (",");
 
                 return (obj);
             }
@@ -4134,37 +4134,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContractorItem_collapse" aria-expanded="true" aria-controls="ContractorItem_collapse" style="margin-left: 10px;">ContractorItem</a></legend>
-                    <div id="ContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContractorItem_collapse" aria-expanded="true" aria-controls="{{id}}_ContractorItem_collapse" style="margin-left: 10px;">ContractorItem</a></legend>
+                    <div id="{{id}}_ContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayables'>ErpPayables: </label><div class='col-sm-8'><input id='ErpPayables' class='form-control' type='text'{{#ErpPayables}} value='{{ErpPayables}}_string'{{/ErpPayables}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><input id='{{id}}_activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='{{id}}_bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayables'>ErpPayables: </label><div class='col-sm-8'><input id='{{id}}_ErpPayables' class='form-control' type='text'{{#ErpPayables}} value='{{ErpPayables}}_string'{{/ErpPayables}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ContractorItem" };
-                super.submit (obj);
-                temp = document.getElementById ("activityCode").value; if ("" != temp) obj.activityCode = temp;
-                temp = document.getElementById ("bidAmount").value; if ("" != temp) obj.bidAmount = temp;
-                temp = document.getElementById ("cost").value; if ("" != temp) obj.cost = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ErpPayables").value; if ("" != temp) obj.ErpPayables = temp.split (",");
-                temp = document.getElementById ("WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
-                temp = document.getElementById ("WorkTask").value; if ("" != temp) obj.WorkTask = temp;
+                var obj = obj || { id: id, cls: "ContractorItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_activityCode").value; if ("" != temp) obj.activityCode = temp;
+                temp = document.getElementById (id + "_bidAmount").value; if ("" != temp) obj.bidAmount = temp;
+                temp = document.getElementById (id + "_cost").value; if ("" != temp) obj.cost = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ErpPayables").value; if ("" != temp) obj.ErpPayables = temp.split (",");
+                temp = document.getElementById (id + "_WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
+                temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
 
                 return (obj);
             }
@@ -4281,31 +4281,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUGroup_collapse" aria-expanded="true" aria-controls="CUGroup_collapse" style="margin-left: 10px;">CUGroup</a></legend>
-                    <div id="CUGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUGroup_collapse" aria-expanded="true" aria-controls="{{id}}_CUGroup_collapse" style="margin-left: 10px;">CUGroup</a></legend>
+                    <div id="{{id}}_CUGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChildCUGroups'>ChildCUGroups: </label><div class='col-sm-8'><input id='ChildCUGroups' class='form-control' type='text'{{#ChildCUGroups}} value='{{ChildCUGroups}}_string'{{/ChildCUGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ParentCUGroups'>ParentCUGroups: </label><div class='col-sm-8'><input id='ParentCUGroups' class='form-control' type='text'{{#ParentCUGroups}} value='{{ParentCUGroups}}_string'{{/ParentCUGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChildCUGroups'>ChildCUGroups: </label><div class='col-sm-8'><input id='{{id}}_ChildCUGroups' class='form-control' type='text'{{#ChildCUGroups}} value='{{ChildCUGroups}}_string'{{/ChildCUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ParentCUGroups'>ParentCUGroups: </label><div class='col-sm-8'><input id='{{id}}_ParentCUGroups' class='form-control' type='text'{{#ParentCUGroups}} value='{{ParentCUGroups}}_string'{{/ParentCUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocationCUs'>DesignLocationCUs: </label><div class='col-sm-8'><input id='{{id}}_DesignLocationCUs' class='form-control' type='text'{{#DesignLocationCUs}} value='{{DesignLocationCUs}}_string'{{/DesignLocationCUs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CUGroup" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ChildCUGroups").value; if ("" != temp) obj.ChildCUGroups = temp.split (",");
-                temp = document.getElementById ("ParentCUGroups").value; if ("" != temp) obj.ParentCUGroups = temp.split (",");
-                temp = document.getElementById ("DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
+                var obj = obj || { id: id, cls: "CUGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ChildCUGroups").value; if ("" != temp) obj.ChildCUGroups = temp.split (",");
+                temp = document.getElementById (id + "_ParentCUGroups").value; if ("" != temp) obj.ParentCUGroups = temp.split (",");
+                temp = document.getElementById (id + "_DesignLocationCUs").value; if ("" != temp) obj.DesignLocationCUs = temp.split (",");
 
                 return (obj);
             }
@@ -4417,33 +4417,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShiftPattern_collapse" aria-expanded="true" aria-controls="ShiftPattern_collapse" style="margin-left: 10px;">ShiftPattern</a></legend>
-                    <div id="ShiftPattern_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShiftPattern_collapse" aria-expanded="true" aria-controls="{{id}}_ShiftPattern_collapse" style="margin-left: 10px;">ShiftPattern</a></legend>
+                    <div id="{{id}}_ShiftPattern_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='assignmentType'>assignmentType: </label><div class='col-sm-8'><input id='assignmentType' class='form-control' type='text'{{#assignmentType}} value='{{assignmentType}}'{{/assignmentType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cycleCount'>cycleCount: </label><div class='col-sm-8'><input id='cycleCount' class='form-control' type='text'{{#cycleCount}} value='{{cycleCount}}'{{/cycleCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crews'>Crews: </label><div class='col-sm-8'><input id='Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_assignmentType'>assignmentType: </label><div class='col-sm-8'><input id='{{id}}_assignmentType' class='form-control' type='text'{{#assignmentType}} value='{{assignmentType}}'{{/assignmentType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cycleCount'>cycleCount: </label><div class='col-sm-8'><input id='{{id}}_cycleCount' class='form-control' type='text'{{#cycleCount}} value='{{cycleCount}}'{{/cycleCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crews'>Crews: </label><div class='col-sm-8'><input id='{{id}}_Crews' class='form-control' type='text'{{#Crews}} value='{{Crews}}_string'{{/Crews}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ShiftPattern" };
-                super.submit (obj);
-                temp = document.getElementById ("assignmentType").value; if ("" != temp) obj.assignmentType = temp;
-                temp = document.getElementById ("cycleCount").value; if ("" != temp) obj.cycleCount = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("validityInterval").value; if ("" != temp) obj.validityInterval = temp;
-                temp = document.getElementById ("Crews").value; if ("" != temp) obj.Crews = temp.split (",");
+                var obj = obj || { id: id, cls: "ShiftPattern" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_assignmentType").value; if ("" != temp) obj.assignmentType = temp;
+                temp = document.getElementById (id + "_cycleCount").value; if ("" != temp) obj.cycleCount = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) obj.validityInterval = temp;
+                temp = document.getElementById (id + "_Crews").value; if ("" != temp) obj.Crews = temp.split (",");
 
                 return (obj);
             }
@@ -4560,37 +4560,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CULaborItem_collapse" aria-expanded="true" aria-controls="CULaborItem_collapse" style="margin-left: 10px;">CULaborItem</a></legend>
-                    <div id="CULaborItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CULaborItem_collapse" aria-expanded="true" aria-controls="{{id}}_CULaborItem_collapse" style="margin-left: 10px;">CULaborItem</a></legend>
+                    <div id="{{id}}_CULaborItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='laborRate'>laborRate: </label><div class='col-sm-8'><input id='laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CULaborCode'>CULaborCode: </label><div class='col-sm-8'><input id='CULaborCode' class='form-control' type='text'{{#CULaborCode}} value='{{CULaborCode}}'{{/CULaborCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><input id='{{id}}_activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborDuration'>laborDuration: </label><div class='col-sm-8'><input id='{{id}}_laborDuration' class='form-control' type='text'{{#laborDuration}} value='{{laborDuration}}'{{/laborDuration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_laborRate'>laborRate: </label><div class='col-sm-8'><input id='{{id}}_laborRate' class='form-control' type='text'{{#laborRate}} value='{{laborRate}}'{{/laborRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_QualificationRequirements'>QualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_QualificationRequirements' class='form-control' type='text'{{#QualificationRequirements}} value='{{QualificationRequirements}}_string'{{/QualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CULaborCode'>CULaborCode: </label><div class='col-sm-8'><input id='{{id}}_CULaborCode' class='form-control' type='text'{{#CULaborCode}} value='{{CULaborCode}}'{{/CULaborCode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CULaborItem" };
-                super.submit (obj);
-                temp = document.getElementById ("activityCode").value; if ("" != temp) obj.activityCode = temp;
-                temp = document.getElementById ("laborDuration").value; if ("" != temp) obj.laborDuration = temp;
-                temp = document.getElementById ("laborRate").value; if ("" != temp) obj.laborRate = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("QualificationRequirements").value; if ("" != temp) obj.QualificationRequirements = temp.split (",");
-                temp = document.getElementById ("CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
-                temp = document.getElementById ("CULaborCode").value; if ("" != temp) obj.CULaborCode = temp;
+                var obj = obj || { id: id, cls: "CULaborItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_activityCode").value; if ("" != temp) obj.activityCode = temp;
+                temp = document.getElementById (id + "_laborDuration").value; if ("" != temp) obj.laborDuration = temp;
+                temp = document.getElementById (id + "_laborRate").value; if ("" != temp) obj.laborRate = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_QualificationRequirements").value; if ("" != temp) obj.QualificationRequirements = temp.split (",");
+                temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
+                temp = document.getElementById (id + "_CULaborCode").value; if ("" != temp) obj.CULaborCode = temp;
 
                 return (obj);
             }
@@ -4713,35 +4713,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PropertyUnit_collapse" aria-expanded="true" aria-controls="PropertyUnit_collapse" style="margin-left: 10px;">PropertyUnit</a></legend>
-                    <div id="PropertyUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PropertyUnit_collapse" aria-expanded="true" aria-controls="{{id}}_PropertyUnit_collapse" style="margin-left: 10px;">PropertyUnit</a></legend>
+                    <div id="{{id}}_PropertyUnit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountingUsage'>accountingUsage: </label><div class='col-sm-8'><input id='accountingUsage' class='form-control' type='text'{{#accountingUsage}} value='{{accountingUsage}}'{{/accountingUsage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><select id='activityCode' class='form-control'>{{#WorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='propertyAccount'>propertyAccount: </label><div class='col-sm-8'><input id='propertyAccount' class='form-control' type='text'{{#propertyAccount}} value='{{propertyAccount}}'{{/propertyAccount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems}}_string'{{/CUMaterialItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails}}_string'{{/WorkCostDetails}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountingUsage'>accountingUsage: </label><div class='col-sm-8'><input id='{{id}}_accountingUsage' class='form-control' type='text'{{#accountingUsage}} value='{{accountingUsage}}'{{/accountingUsage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><select id='{{id}}_activityCode' class='form-control'>{{#WorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyAccount'>propertyAccount: </label><div class='col-sm-8'><input id='{{id}}_propertyAccount' class='form-control' type='text'{{#propertyAccount}} value='{{propertyAccount}}'{{/propertyAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUMaterialItems'>CUMaterialItems: </label><div class='col-sm-8'><input id='{{id}}_CUMaterialItems' class='form-control' type='text'{{#CUMaterialItems}} value='{{CUMaterialItems}}_string'{{/CUMaterialItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetails'>WorkCostDetails: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetails' class='form-control' type='text'{{#WorkCostDetails}} value='{{WorkCostDetails}}_string'{{/WorkCostDetails}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PropertyUnit" };
-                super.submit (obj);
-                temp = document.getElementById ("accountingUsage").value; if ("" != temp) obj.accountingUsage = temp;
-                temp = document.getElementById ("activityCode").value; if ("" != temp) { temp = WorkActionKind[temp]; if ("undefined" != typeof (temp)) obj.activityCode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; }
-                temp = document.getElementById ("propertyAccount").value; if ("" != temp) obj.propertyAccount = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("CUMaterialItems").value; if ("" != temp) obj.CUMaterialItems = temp.split (",");
-                temp = document.getElementById ("WorkCostDetails").value; if ("" != temp) obj.WorkCostDetails = temp.split (",");
+                var obj = obj || { id: id, cls: "PropertyUnit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accountingUsage").value; if ("" != temp) obj.accountingUsage = temp;
+                temp = document.getElementById (id + "_activityCode").value; if ("" != temp) { temp = WorkActionKind[temp]; if ("undefined" != typeof (temp)) obj.activityCode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; }
+                temp = document.getElementById (id + "_propertyAccount").value; if ("" != temp) obj.propertyAccount = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_CUMaterialItems").value; if ("" != temp) obj.CUMaterialItems = temp.split (",");
+                temp = document.getElementById (id + "_WorkCostDetails").value; if ("" != temp) obj.WorkCostDetails = temp.split (",");
 
                 return (obj);
             }
@@ -4860,37 +4860,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Capability_collapse" aria-expanded="true" aria-controls="Capability_collapse" style="margin-left: 10px;">Capability</a></legend>
-                    <div id="Capability_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Capability_collapse" aria-expanded="true" aria-controls="{{id}}_Capability_collapse" style="margin-left: 10px;">Capability</a></legend>
+                    <div id="{{id}}_Capability_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='performanceFactor'>performanceFactor: </label><div class='col-sm-8'><input id='performanceFactor' class='form-control' type='text'{{#performanceFactor}} value='{{performanceFactor}}'{{/performanceFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crafts'>Crafts: </label><div class='col-sm-8'><input id='Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts}}_string'{{/Crafts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Crew'>Crew: </label><div class='col-sm-8'><input id='Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_performanceFactor'>performanceFactor: </label><div class='col-sm-8'><input id='{{id}}_performanceFactor' class='form-control' type='text'{{#performanceFactor}} value='{{performanceFactor}}'{{/performanceFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_validityInterval'>validityInterval: </label><div class='col-sm-8'><input id='{{id}}_validityInterval' class='form-control' type='text'{{#validityInterval}} value='{{validityInterval}}'{{/validityInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crafts'>Crafts: </label><div class='col-sm-8'><input id='{{id}}_Crafts' class='form-control' type='text'{{#Crafts}} value='{{Crafts}}_string'{{/Crafts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Crew'>Crew: </label><div class='col-sm-8'><input id='{{id}}_Crew' class='form-control' type='text'{{#Crew}} value='{{Crew}}'{{/Crew}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Capability" };
-                super.submit (obj);
-                temp = document.getElementById ("performanceFactor").value; if ("" != temp) obj.performanceFactor = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById ("validityInterval").value; if ("" != temp) obj.validityInterval = temp;
-                temp = document.getElementById ("Crafts").value; if ("" != temp) obj.Crafts = temp.split (",");
-                temp = document.getElementById ("WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
-                temp = document.getElementById ("Crew").value; if ("" != temp) obj.Crew = temp;
+                var obj = obj || { id: id, cls: "Capability" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_performanceFactor").value; if ("" != temp) obj.performanceFactor = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_validityInterval").value; if ("" != temp) obj.validityInterval = temp;
+                temp = document.getElementById (id + "_Crafts").value; if ("" != temp) obj.Crafts = temp.split (",");
+                temp = document.getElementById (id + "_WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
+                temp = document.getElementById (id + "_Crew").value; if ("" != temp) obj.Crew = temp;
 
                 return (obj);
             }
@@ -5035,49 +5035,49 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DesignLocationCU_collapse" aria-expanded="true" aria-controls="DesignLocationCU_collapse" style="margin-left: 10px;">DesignLocationCU</a></legend>
-                    <div id="DesignLocationCU_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DesignLocationCU_collapse" aria-expanded="true" aria-controls="{{id}}_DesignLocationCU_collapse" style="margin-left: 10px;">DesignLocationCU</a></legend>
+                    <div id="{{id}}_DesignLocationCU_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cuAccount'>cuAccount: </label><div class='col-sm-8'><input id='cuAccount' class='form-control' type='text'{{#cuAccount}} value='{{cuAccount}}'{{/cuAccount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cuAction'>cuAction: </label><div class='col-sm-8'><select id='cuAction' class='form-control'>{{#WorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cuQuantity'>cuQuantity: </label><div class='col-sm-8'><input id='cuQuantity' class='form-control' type='text'{{#cuQuantity}} value='{{cuQuantity}}'{{/cuQuantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cuUsage'>cuUsage: </label><div class='col-sm-8'><input id='cuUsage' class='form-control' type='text'{{#cuUsage}} value='{{cuUsage}}'{{/cuUsage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='removalDate'>removalDate: </label><div class='col-sm-8'><input id='removalDate' class='form-control' type='text'{{#removalDate}} value='{{removalDate}}'{{/removalDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='toBeEnergised'>toBeEnergised: </label><div class='col-sm-8'><input id='toBeEnergised' class='form-check-input' type='checkbox'{{#toBeEnergised}} checked{{/toBeEnergised}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CUGroups'>CUGroups: </label><div class='col-sm-8'><input id='CUGroups' class='form-control' type='text'{{#CUGroups}} value='{{CUGroups}}_string'{{/CUGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Designs'>Designs: </label><div class='col-sm-8'><input id='Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuAccount'>cuAccount: </label><div class='col-sm-8'><input id='{{id}}_cuAccount' class='form-control' type='text'{{#cuAccount}} value='{{cuAccount}}'{{/cuAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuAction'>cuAction: </label><div class='col-sm-8'><select id='{{id}}_cuAction' class='form-control'>{{#WorkActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WorkActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuQuantity'>cuQuantity: </label><div class='col-sm-8'><input id='{{id}}_cuQuantity' class='form-control' type='text'{{#cuQuantity}} value='{{cuQuantity}}'{{/cuQuantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cuUsage'>cuUsage: </label><div class='col-sm-8'><input id='{{id}}_cuUsage' class='form-control' type='text'{{#cuUsage}} value='{{cuUsage}}'{{/cuUsage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_removalDate'>removalDate: </label><div class='col-sm-8'><input id='{{id}}_removalDate' class='form-control' type='text'{{#removalDate}} value='{{removalDate}}'{{/removalDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_toBeEnergised'>toBeEnergised: </label><div class='col-sm-8'><input id='{{id}}_toBeEnergised' class='form-check-input' type='checkbox'{{#toBeEnergised}} checked{{/toBeEnergised}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='{{id}}_DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CUGroups'>CUGroups: </label><div class='col-sm-8'><input id='{{id}}_CUGroups' class='form-control' type='text'{{#CUGroups}} value='{{CUGroups}}_string'{{/CUGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTasks'>WorkTasks: </label><div class='col-sm-8'><input id='{{id}}_WorkTasks' class='form-control' type='text'{{#WorkTasks}} value='{{WorkTasks}}_string'{{/WorkTasks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Designs'>Designs: </label><div class='col-sm-8'><input id='{{id}}_Designs' class='form-control' type='text'{{#Designs}} value='{{Designs}}_string'{{/Designs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConditionFactors'>ConditionFactors: </label><div class='col-sm-8'><input id='{{id}}_ConditionFactors' class='form-control' type='text'{{#ConditionFactors}} value='{{ConditionFactors}}_string'{{/ConditionFactors}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DesignLocationCU" };
-                super.submit (obj);
-                temp = document.getElementById ("cuAccount").value; if ("" != temp) obj.cuAccount = temp;
-                temp = document.getElementById ("cuAction").value; if ("" != temp) { temp = WorkActionKind[temp]; if ("undefined" != typeof (temp)) obj.cuAction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; }
-                temp = document.getElementById ("cuQuantity").value; if ("" != temp) obj.cuQuantity = temp;
-                temp = document.getElementById ("cuUsage").value; if ("" != temp) obj.cuUsage = temp;
-                temp = document.getElementById ("removalDate").value; if ("" != temp) obj.removalDate = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("toBeEnergised").checked; if (temp) obj.toBeEnergised = true;
-                temp = document.getElementById ("DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
-                temp = document.getElementById ("CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
-                temp = document.getElementById ("CUGroups").value; if ("" != temp) obj.CUGroups = temp.split (",");
-                temp = document.getElementById ("WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
-                temp = document.getElementById ("Designs").value; if ("" != temp) obj.Designs = temp.split (",");
-                temp = document.getElementById ("ConditionFactors").value; if ("" != temp) obj.ConditionFactors = temp.split (",");
+                var obj = obj || { id: id, cls: "DesignLocationCU" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_cuAccount").value; if ("" != temp) obj.cuAccount = temp;
+                temp = document.getElementById (id + "_cuAction").value; if ("" != temp) { temp = WorkActionKind[temp]; if ("undefined" != typeof (temp)) obj.cuAction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; }
+                temp = document.getElementById (id + "_cuQuantity").value; if ("" != temp) obj.cuQuantity = temp;
+                temp = document.getElementById (id + "_cuUsage").value; if ("" != temp) obj.cuUsage = temp;
+                temp = document.getElementById (id + "_removalDate").value; if ("" != temp) obj.removalDate = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_toBeEnergised").checked; if (temp) obj.toBeEnergised = true;
+                temp = document.getElementById (id + "_DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
+                temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
+                temp = document.getElementById (id + "_CUGroups").value; if ("" != temp) obj.CUGroups = temp.split (",");
+                temp = document.getElementById (id + "_WorkTasks").value; if ("" != temp) obj.WorkTasks = temp.split (",");
+                temp = document.getElementById (id + "_Designs").value; if ("" != temp) obj.Designs = temp.split (",");
+                temp = document.getElementById (id + "_ConditionFactors").value; if ("" != temp) obj.ConditionFactors = temp.split (",");
 
                 return (obj);
             }
@@ -5203,41 +5203,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MiscCostItem_collapse" aria-expanded="true" aria-controls="MiscCostItem_collapse" style="margin-left: 10px;">MiscCostItem</a></legend>
-                    <div id="MiscCostItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MiscCostItem_collapse" aria-expanded="true" aria-controls="{{id}}_MiscCostItem_collapse" style="margin-left: 10px;">MiscCostItem</a></legend>
+                    <div id="{{id}}_MiscCostItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='account'>account: </label><div class='col-sm-8'><input id='account' class='form-control' type='text'{{#account}} value='{{account}}'{{/account}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costPerUnit'>costPerUnit: </label><div class='col-sm-8'><input id='costPerUnit' class='form-control' type='text'{{#costPerUnit}} value='{{costPerUnit}}'{{/costPerUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costType'>costType: </label><div class='col-sm-8'><input id='costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='externalRefID'>externalRefID: </label><div class='col-sm-8'><input id='externalRefID' class='form-control' type='text'{{#externalRefID}} value='{{externalRefID}}'{{/externalRefID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_account'>account: </label><div class='col-sm-8'><input id='{{id}}_account' class='form-control' type='text'{{#account}} value='{{account}}'{{/account}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costPerUnit'>costPerUnit: </label><div class='col-sm-8'><input id='{{id}}_costPerUnit' class='form-control' type='text'{{#costPerUnit}} value='{{costPerUnit}}'{{/costPerUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costType'>costType: </label><div class='col-sm-8'><input id='{{id}}_costType' class='form-control' type='text'{{#costType}} value='{{costType}}'{{/costType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_externalRefID'>externalRefID: </label><div class='col-sm-8'><input id='{{id}}_externalRefID' class='form-control' type='text'{{#externalRefID}} value='{{externalRefID}}'{{/externalRefID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkTask'>WorkTask: </label><div class='col-sm-8'><input id='{{id}}_WorkTask' class='form-control' type='text'{{#WorkTask}} value='{{WorkTask}}'{{/WorkTask}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='{{id}}_DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkCostDetail'>WorkCostDetail: </label><div class='col-sm-8'><input id='{{id}}_WorkCostDetail' class='form-control' type='text'{{#WorkCostDetail}} value='{{WorkCostDetail}}'{{/WorkCostDetail}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MiscCostItem" };
-                super.submit (obj);
-                temp = document.getElementById ("account").value; if ("" != temp) obj.account = temp;
-                temp = document.getElementById ("costPerUnit").value; if ("" != temp) obj.costPerUnit = temp;
-                temp = document.getElementById ("costType").value; if ("" != temp) obj.costType = temp;
-                temp = document.getElementById ("externalRefID").value; if ("" != temp) obj.externalRefID = temp;
-                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("WorkTask").value; if ("" != temp) obj.WorkTask = temp;
-                temp = document.getElementById ("DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
-                temp = document.getElementById ("WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
+                var obj = obj || { id: id, cls: "MiscCostItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_account").value; if ("" != temp) obj.account = temp;
+                temp = document.getElementById (id + "_costPerUnit").value; if ("" != temp) obj.costPerUnit = temp;
+                temp = document.getElementById (id + "_costType").value; if ("" != temp) obj.costType = temp;
+                temp = document.getElementById (id + "_externalRefID").value; if ("" != temp) obj.externalRefID = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_WorkTask").value; if ("" != temp) obj.WorkTask = temp;
+                temp = document.getElementById (id + "_DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
+                temp = document.getElementById (id + "_WorkCostDetail").value; if ("" != temp) obj.WorkCostDetail = temp;
 
                 return (obj);
             }
@@ -5345,31 +5345,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUContractorItem_collapse" aria-expanded="true" aria-controls="CUContractorItem_collapse" style="margin-left: 10px;">CUContractorItem</a></legend>
-                    <div id="CUContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUContractorItem_collapse" aria-expanded="true" aria-controls="{{id}}_CUContractorItem_collapse" style="margin-left: 10px;">CUContractorItem</a></legend>
+                    <div id="{{id}}_CUContractorItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activityCode'>activityCode: </label><div class='col-sm-8'><input id='activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activityCode'>activityCode: </label><div class='col-sm-8'><input id='{{id}}_activityCode' class='form-control' type='text'{{#activityCode}} value='{{activityCode}}'{{/activityCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidAmount'>bidAmount: </label><div class='col-sm-8'><input id='{{id}}_bidAmount' class='form-control' type='text'{{#bidAmount}} value='{{bidAmount}}'{{/bidAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CUContractorItem" };
-                super.submit (obj);
-                temp = document.getElementById ("activityCode").value; if ("" != temp) obj.activityCode = temp;
-                temp = document.getElementById ("bidAmount").value; if ("" != temp) obj.bidAmount = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
+                var obj = obj || { id: id, cls: "CUContractorItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_activityCode").value; if ("" != temp) obj.activityCode = temp;
+                temp = document.getElementById (id + "_bidAmount").value; if ("" != temp) obj.bidAmount = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
 
                 return (obj);
             }
@@ -5478,33 +5478,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CUAsset_collapse" aria-expanded="true" aria-controls="CUAsset_collapse" style="margin-left: 10px;">CUAsset</a></legend>
-                    <div id="CUAsset_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CUAsset_collapse" aria-expanded="true" aria-controls="{{id}}_CUAsset_collapse" style="margin-left: 10px;">CUAsset</a></legend>
+                    <div id="{{id}}_CUAsset_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WorkIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='typeAssetCode'>typeAssetCode: </label><div class='col-sm-8'><input id='typeAssetCode' class='form-control' type='text'{{#typeAssetCode}} value='{{typeAssetCode}}'{{/typeAssetCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_typeAssetCode'>typeAssetCode: </label><div class='col-sm-8'><input id='{{id}}_typeAssetCode' class='form-control' type='text'{{#typeAssetCode}} value='{{typeAssetCode}}'{{/typeAssetCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CompatibleUnits'>CompatibleUnits: </label><div class='col-sm-8'><input id='{{id}}_CompatibleUnits' class='form-control' type='text'{{#CompatibleUnits}} value='{{CompatibleUnits}}_string'{{/CompatibleUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CUAsset" };
-                super.submit (obj);
-                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("typeAssetCode").value; if ("" != temp) obj.typeAssetCode = temp;
-                temp = document.getElementById ("CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
-                temp = document.getElementById ("TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
+                var obj = obj || { id: id, cls: "CUAsset" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_typeAssetCode").value; if ("" != temp) obj.typeAssetCode = temp;
+                temp = document.getElementById (id + "_CompatibleUnits").value; if ("" != temp) obj.CompatibleUnits = temp.split (",");
+                temp = document.getElementById (id + "_TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
 
                 return (obj);
             }

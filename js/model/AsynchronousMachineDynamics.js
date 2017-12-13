@@ -105,31 +105,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="AsynchronousMachineDynamics_collapse" style="margin-left: 10px;">AsynchronousMachineDynamics</a></legend>
-                    <div id="AsynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachineDynamics_collapse" style="margin-left: 10px;">AsynchronousMachineDynamics</a></legend>
+                    <div id="{{id}}_AsynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.RotatingMachineDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics}}'{{/TurbineGovernorDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachine'>AsynchronousMachine: </label><div class='col-sm-8'><input id='AsynchronousMachine' class='form-control' type='text'{{#AsynchronousMachine}} value='{{AsynchronousMachine}}'{{/AsynchronousMachine}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindTurbineType1or2Dynamics'>WindTurbineType1or2Dynamics: </label><div class='col-sm-8'><input id='WindTurbineType1or2Dynamics' class='form-control' type='text'{{#WindTurbineType1or2Dynamics}} value='{{WindTurbineType1or2Dynamics}}'{{/WindTurbineType1or2Dynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MechanicalLoadDynamics'>MechanicalLoadDynamics: </label><div class='col-sm-8'><input id='MechanicalLoadDynamics' class='form-control' type='text'{{#MechanicalLoadDynamics}} value='{{MechanicalLoadDynamics}}'{{/MechanicalLoadDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='{{id}}_TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics}}'{{/TurbineGovernorDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AsynchronousMachine'>AsynchronousMachine: </label><div class='col-sm-8'><input id='{{id}}_AsynchronousMachine' class='form-control' type='text'{{#AsynchronousMachine}} value='{{AsynchronousMachine}}'{{/AsynchronousMachine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindTurbineType1or2Dynamics'>WindTurbineType1or2Dynamics: </label><div class='col-sm-8'><input id='{{id}}_WindTurbineType1or2Dynamics' class='form-control' type='text'{{#WindTurbineType1or2Dynamics}} value='{{WindTurbineType1or2Dynamics}}'{{/WindTurbineType1or2Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MechanicalLoadDynamics'>MechanicalLoadDynamics: </label><div class='col-sm-8'><input id='{{id}}_MechanicalLoadDynamics' class='form-control' type='text'{{#MechanicalLoadDynamics}} value='{{MechanicalLoadDynamics}}'{{/MechanicalLoadDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AsynchronousMachineDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("TurbineGovernorDynamics").value; if ("" != temp) obj.TurbineGovernorDynamics = temp;
-                temp = document.getElementById ("AsynchronousMachine").value; if ("" != temp) obj.AsynchronousMachine = temp;
-                temp = document.getElementById ("WindTurbineType1or2Dynamics").value; if ("" != temp) obj.WindTurbineType1or2Dynamics = temp;
-                temp = document.getElementById ("MechanicalLoadDynamics").value; if ("" != temp) obj.MechanicalLoadDynamics = temp;
+                var obj = obj || { id: id, cls: "AsynchronousMachineDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_TurbineGovernorDynamics").value; if ("" != temp) obj.TurbineGovernorDynamics = temp;
+                temp = document.getElementById (id + "_AsynchronousMachine").value; if ("" != temp) obj.AsynchronousMachine = temp;
+                temp = document.getElementById (id + "_WindTurbineType1or2Dynamics").value; if ("" != temp) obj.WindTurbineType1or2Dynamics = temp;
+                temp = document.getElementById (id + "_MechanicalLoadDynamics").value; if ("" != temp) obj.MechanicalLoadDynamics = temp;
 
                 return (obj);
             }
@@ -254,33 +254,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="AsynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">AsynchronousMachineEquivalentCircuit</a></legend>
-                    <div id="AsynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">AsynchronousMachineEquivalentCircuit</a></legend>
+                    <div id="{{id}}_AsynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AsynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rr1'>rr1: </label><div class='col-sm-8'><input id='rr1' class='form-control' type='text'{{#rr1}} value='{{rr1}}'{{/rr1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rr2'>rr2: </label><div class='col-sm-8'><input id='rr2' class='form-control' type='text'{{#rr2}} value='{{rr2}}'{{/rr2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xlr1'>xlr1: </label><div class='col-sm-8'><input id='xlr1' class='form-control' type='text'{{#xlr1}} value='{{xlr1}}'{{/xlr1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xlr2'>xlr2: </label><div class='col-sm-8'><input id='xlr2' class='form-control' type='text'{{#xlr2}} value='{{xlr2}}'{{/xlr2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xm'>xm: </label><div class='col-sm-8'><input id='xm' class='form-control' type='text'{{#xm}} value='{{xm}}'{{/xm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rr1'>rr1: </label><div class='col-sm-8'><input id='{{id}}_rr1' class='form-control' type='text'{{#rr1}} value='{{rr1}}'{{/rr1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rr2'>rr2: </label><div class='col-sm-8'><input id='{{id}}_rr2' class='form-control' type='text'{{#rr2}} value='{{rr2}}'{{/rr2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xlr1'>xlr1: </label><div class='col-sm-8'><input id='{{id}}_xlr1' class='form-control' type='text'{{#xlr1}} value='{{xlr1}}'{{/xlr1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xlr2'>xlr2: </label><div class='col-sm-8'><input id='{{id}}_xlr2' class='form-control' type='text'{{#xlr2}} value='{{xlr2}}'{{/xlr2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xm'>xm: </label><div class='col-sm-8'><input id='{{id}}_xm' class='form-control' type='text'{{#xm}} value='{{xm}}'{{/xm}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AsynchronousMachineEquivalentCircuit" };
-                super.submit (obj);
-                temp = document.getElementById ("rr1").value; if ("" != temp) obj.rr1 = temp;
-                temp = document.getElementById ("rr2").value; if ("" != temp) obj.rr2 = temp;
-                temp = document.getElementById ("xlr1").value; if ("" != temp) obj.xlr1 = temp;
-                temp = document.getElementById ("xlr2").value; if ("" != temp) obj.xlr2 = temp;
-                temp = document.getElementById ("xm").value; if ("" != temp) obj.xm = temp;
+                var obj = obj || { id: id, cls: "AsynchronousMachineEquivalentCircuit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_rr1").value; if ("" != temp) obj.rr1 = temp;
+                temp = document.getElementById (id + "_rr2").value; if ("" != temp) obj.rr2 = temp;
+                temp = document.getElementById (id + "_xlr1").value; if ("" != temp) obj.xlr1 = temp;
+                temp = document.getElementById (id + "_xlr2").value; if ("" != temp) obj.xlr2 = temp;
+                temp = document.getElementById (id + "_xm").value; if ("" != temp) obj.xm = temp;
 
                 return (obj);
             }
@@ -399,33 +399,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="AsynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">AsynchronousMachineTimeConstantReactance</a></legend>
-                    <div id="AsynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">AsynchronousMachineTimeConstantReactance</a></legend>
+                    <div id="{{id}}_AsynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AsynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpo'>tpo: </label><div class='col-sm-8'><input id='tpo' class='form-control' type='text'{{#tpo}} value='{{tpo}}'{{/tpo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tppo'>tppo: </label><div class='col-sm-8'><input id='tppo' class='form-control' type='text'{{#tppo}} value='{{tppo}}'{{/tppo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xp'>xp: </label><div class='col-sm-8'><input id='xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xpp'>xpp: </label><div class='col-sm-8'><input id='xpp' class='form-control' type='text'{{#xpp}} value='{{xpp}}'{{/xpp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xs'>xs: </label><div class='col-sm-8'><input id='xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpo'>tpo: </label><div class='col-sm-8'><input id='{{id}}_tpo' class='form-control' type='text'{{#tpo}} value='{{tpo}}'{{/tpo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tppo'>tppo: </label><div class='col-sm-8'><input id='{{id}}_tppo' class='form-control' type='text'{{#tppo}} value='{{tppo}}'{{/tppo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xp'>xp: </label><div class='col-sm-8'><input id='{{id}}_xp' class='form-control' type='text'{{#xp}} value='{{xp}}'{{/xp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xpp'>xpp: </label><div class='col-sm-8'><input id='{{id}}_xpp' class='form-control' type='text'{{#xpp}} value='{{xpp}}'{{/xpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xs'>xs: </label><div class='col-sm-8'><input id='{{id}}_xs' class='form-control' type='text'{{#xs}} value='{{xs}}'{{/xs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AsynchronousMachineTimeConstantReactance" };
-                super.submit (obj);
-                temp = document.getElementById ("tpo").value; if ("" != temp) obj.tpo = temp;
-                temp = document.getElementById ("tppo").value; if ("" != temp) obj.tppo = temp;
-                temp = document.getElementById ("xp").value; if ("" != temp) obj.xp = temp;
-                temp = document.getElementById ("xpp").value; if ("" != temp) obj.xpp = temp;
-                temp = document.getElementById ("xs").value; if ("" != temp) obj.xs = temp;
+                var obj = obj || { id: id, cls: "AsynchronousMachineTimeConstantReactance" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tpo").value; if ("" != temp) obj.tpo = temp;
+                temp = document.getElementById (id + "_tppo").value; if ("" != temp) obj.tppo = temp;
+                temp = document.getElementById (id + "_xp").value; if ("" != temp) obj.xp = temp;
+                temp = document.getElementById (id + "_xpp").value; if ("" != temp) obj.xpp = temp;
+                temp = document.getElementById (id + "_xs").value; if ("" != temp) obj.xs = temp;
 
                 return (obj);
             }

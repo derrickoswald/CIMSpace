@@ -111,25 +111,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="CTTempActivePowerCurve_collapse" style="margin-left: 10px;">CTTempActivePowerCurve</a></legend>
-                    <div id="CTTempActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CTTempActivePowerCurve_collapse" aria-expanded="true" aria-controls="{{id}}_CTTempActivePowerCurve_collapse" style="margin-left: 10px;">CTTempActivePowerCurve</a></legend>
+                    <div id="{{id}}_CTTempActivePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CombustionTurbine'>CombustionTurbine: </label><div class='col-sm-8'><input id='CombustionTurbine' class='form-control' type='text'{{#CombustionTurbine}} value='{{CombustionTurbine}}'{{/CombustionTurbine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CombustionTurbine'>CombustionTurbine: </label><div class='col-sm-8'><input id='{{id}}_CombustionTurbine' class='form-control' type='text'{{#CombustionTurbine}} value='{{CombustionTurbine}}'{{/CombustionTurbine}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CTTempActivePowerCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("CombustionTurbine").value; if ("" != temp) obj.CombustionTurbine = temp;
+                var obj = obj || { id: id, cls: "CTTempActivePowerCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_CombustionTurbine").value; if ("" != temp) obj.CombustionTurbine = temp;
 
                 return (obj);
             }
@@ -229,27 +229,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamSupply_collapse" aria-expanded="true" aria-controls="SteamSupply_collapse" style="margin-left: 10px;">SteamSupply</a></legend>
-                    <div id="SteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_SteamSupply_collapse" style="margin-left: 10px;">SteamSupply</a></legend>
+                    <div id="{{id}}_SteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamSupplyRating'>steamSupplyRating: </label><div class='col-sm-8'><input id='steamSupplyRating' class='form-control' type='text'{{#steamSupplyRating}} value='{{steamSupplyRating}}'{{/steamSupplyRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SteamTurbines'>SteamTurbines: </label><div class='col-sm-8'><input id='SteamTurbines' class='form-control' type='text'{{#SteamTurbines}} value='{{SteamTurbines}}_string'{{/SteamTurbines}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamSupplyRating'>steamSupplyRating: </label><div class='col-sm-8'><input id='{{id}}_steamSupplyRating' class='form-control' type='text'{{#steamSupplyRating}} value='{{steamSupplyRating}}'{{/steamSupplyRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamTurbines'>SteamTurbines: </label><div class='col-sm-8'><input id='{{id}}_SteamTurbines' class='form-control' type='text'{{#SteamTurbines}} value='{{SteamTurbines}}_string'{{/SteamTurbines}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SteamSupply" };
-                super.submit (obj);
-                temp = document.getElementById ("steamSupplyRating").value; if ("" != temp) obj.steamSupplyRating = temp;
-                temp = document.getElementById ("SteamTurbines").value; if ("" != temp) obj.SteamTurbines = temp.split (",");
+                var obj = obj || { id: id, cls: "SteamSupply" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_steamSupplyRating").value; if ("" != temp) obj.steamSupplyRating = temp;
+                temp = document.getElementById (id + "_SteamTurbines").value; if ("" != temp) obj.SteamTurbines = temp.split (",");
 
                 return (obj);
             }
@@ -349,27 +349,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PrimeMover_collapse" aria-expanded="true" aria-controls="PrimeMover_collapse" style="margin-left: 10px;">PrimeMover</a></legend>
-                    <div id="PrimeMover_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PrimeMover_collapse" aria-expanded="true" aria-controls="{{id}}_PrimeMover_collapse" style="margin-left: 10px;">PrimeMover</a></legend>
+                    <div id="{{id}}_PrimeMover_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primeMoverRating'>primeMoverRating: </label><div class='col-sm-8'><input id='primeMoverRating' class='form-control' type='text'{{#primeMoverRating}} value='{{primeMoverRating}}'{{/primeMoverRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachines'>SynchronousMachines: </label><div class='col-sm-8'><input id='SynchronousMachines' class='form-control' type='text'{{#SynchronousMachines}} value='{{SynchronousMachines}}_string'{{/SynchronousMachines}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primeMoverRating'>primeMoverRating: </label><div class='col-sm-8'><input id='{{id}}_primeMoverRating' class='form-control' type='text'{{#primeMoverRating}} value='{{primeMoverRating}}'{{/primeMoverRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachines'>SynchronousMachines: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachines' class='form-control' type='text'{{#SynchronousMachines}} value='{{SynchronousMachines}}_string'{{/SynchronousMachines}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PrimeMover" };
-                super.submit (obj);
-                temp = document.getElementById ("primeMoverRating").value; if ("" != temp) obj.primeMoverRating = temp;
-                temp = document.getElementById ("SynchronousMachines").value; if ("" != temp) obj.SynchronousMachines = temp.split (",");
+                var obj = obj || { id: id, cls: "PrimeMover" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_primeMoverRating").value; if ("" != temp) obj.primeMoverRating = temp;
+                temp = document.getElementById (id + "_SynchronousMachines").value; if ("" != temp) obj.SynchronousMachines = temp.split (",");
 
                 return (obj);
             }
@@ -524,65 +524,65 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BWRSteamSupply_collapse" aria-expanded="true" aria-controls="BWRSteamSupply_collapse" style="margin-left: 10px;">BWRSteamSupply</a></legend>
-                    <div id="BWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BWRSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_BWRSteamSupply_collapse" style="margin-left: 10px;">BWRSteamSupply</a></legend>
+                    <div id="{{id}}_BWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highPowerLimit'>highPowerLimit: </label><div class='col-sm-8'><input id='highPowerLimit' class='form-control' type='text'{{#highPowerLimit}} value='{{highPowerLimit}}'{{/highPowerLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inCoreThermalTC'>inCoreThermalTC: </label><div class='col-sm-8'><input id='inCoreThermalTC' class='form-control' type='text'{{#inCoreThermalTC}} value='{{inCoreThermalTC}}'{{/inCoreThermalTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='integralGain'>integralGain: </label><div class='col-sm-8'><input id='integralGain' class='form-control' type='text'{{#integralGain}} value='{{integralGain}}'{{/integralGain}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowerLimit'>lowerLimit: </label><div class='col-sm-8'><input id='lowerLimit' class='form-control' type='text'{{#lowerLimit}} value='{{lowerLimit}}'{{/lowerLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowPowerLimit'>lowPowerLimit: </label><div class='col-sm-8'><input id='lowPowerLimit' class='form-control' type='text'{{#lowPowerLimit}} value='{{lowPowerLimit}}'{{/lowPowerLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureLimit'>pressureLimit: </label><div class='col-sm-8'><input id='pressureLimit' class='form-control' type='text'{{#pressureLimit}} value='{{pressureLimit}}'{{/pressureLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureSetpointGA'>pressureSetpointGA: </label><div class='col-sm-8'><input id='pressureSetpointGA' class='form-control' type='text'{{#pressureSetpointGA}} value='{{pressureSetpointGA}}'{{/pressureSetpointGA}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureSetpointTC1'>pressureSetpointTC1: </label><div class='col-sm-8'><input id='pressureSetpointTC1' class='form-control' type='text'{{#pressureSetpointTC1}} value='{{pressureSetpointTC1}}'{{/pressureSetpointTC1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureSetpointTC2'>pressureSetpointTC2: </label><div class='col-sm-8'><input id='pressureSetpointTC2' class='form-control' type='text'{{#pressureSetpointTC2}} value='{{pressureSetpointTC2}}'{{/pressureSetpointTC2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='proportionalGain'>proportionalGain: </label><div class='col-sm-8'><input id='proportionalGain' class='form-control' type='text'{{#proportionalGain}} value='{{proportionalGain}}'{{/proportionalGain}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux1'>rfAux1: </label><div class='col-sm-8'><input id='rfAux1' class='form-control' type='text'{{#rfAux1}} value='{{rfAux1}}'{{/rfAux1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux2'>rfAux2: </label><div class='col-sm-8'><input id='rfAux2' class='form-control' type='text'{{#rfAux2}} value='{{rfAux2}}'{{/rfAux2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux3'>rfAux3: </label><div class='col-sm-8'><input id='rfAux3' class='form-control' type='text'{{#rfAux3}} value='{{rfAux3}}'{{/rfAux3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux4'>rfAux4: </label><div class='col-sm-8'><input id='rfAux4' class='form-control' type='text'{{#rfAux4}} value='{{rfAux4}}'{{/rfAux4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux5'>rfAux5: </label><div class='col-sm-8'><input id='rfAux5' class='form-control' type='text'{{#rfAux5}} value='{{rfAux5}}'{{/rfAux5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux6'>rfAux6: </label><div class='col-sm-8'><input id='rfAux6' class='form-control' type='text'{{#rfAux6}} value='{{rfAux6}}'{{/rfAux6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux7'>rfAux7: </label><div class='col-sm-8'><input id='rfAux7' class='form-control' type='text'{{#rfAux7}} value='{{rfAux7}}'{{/rfAux7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfAux8'>rfAux8: </label><div class='col-sm-8'><input id='rfAux8' class='form-control' type='text'{{#rfAux8}} value='{{rfAux8}}'{{/rfAux8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rodPattern'>rodPattern: </label><div class='col-sm-8'><input id='rodPattern' class='form-control' type='text'{{#rodPattern}} value='{{rodPattern}}'{{/rodPattern}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rodPatternConstant'>rodPatternConstant: </label><div class='col-sm-8'><input id='rodPatternConstant' class='form-control' type='text'{{#rodPatternConstant}} value='{{rodPatternConstant}}'{{/rodPatternConstant}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upperLimit'>upperLimit: </label><div class='col-sm-8'><input id='upperLimit' class='form-control' type='text'{{#upperLimit}} value='{{upperLimit}}'{{/upperLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highPowerLimit'>highPowerLimit: </label><div class='col-sm-8'><input id='{{id}}_highPowerLimit' class='form-control' type='text'{{#highPowerLimit}} value='{{highPowerLimit}}'{{/highPowerLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inCoreThermalTC'>inCoreThermalTC: </label><div class='col-sm-8'><input id='{{id}}_inCoreThermalTC' class='form-control' type='text'{{#inCoreThermalTC}} value='{{inCoreThermalTC}}'{{/inCoreThermalTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_integralGain'>integralGain: </label><div class='col-sm-8'><input id='{{id}}_integralGain' class='form-control' type='text'{{#integralGain}} value='{{integralGain}}'{{/integralGain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerLimit'>lowerLimit: </label><div class='col-sm-8'><input id='{{id}}_lowerLimit' class='form-control' type='text'{{#lowerLimit}} value='{{lowerLimit}}'{{/lowerLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowPowerLimit'>lowPowerLimit: </label><div class='col-sm-8'><input id='{{id}}_lowPowerLimit' class='form-control' type='text'{{#lowPowerLimit}} value='{{lowPowerLimit}}'{{/lowPowerLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureLimit'>pressureLimit: </label><div class='col-sm-8'><input id='{{id}}_pressureLimit' class='form-control' type='text'{{#pressureLimit}} value='{{pressureLimit}}'{{/pressureLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureSetpointGA'>pressureSetpointGA: </label><div class='col-sm-8'><input id='{{id}}_pressureSetpointGA' class='form-control' type='text'{{#pressureSetpointGA}} value='{{pressureSetpointGA}}'{{/pressureSetpointGA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureSetpointTC1'>pressureSetpointTC1: </label><div class='col-sm-8'><input id='{{id}}_pressureSetpointTC1' class='form-control' type='text'{{#pressureSetpointTC1}} value='{{pressureSetpointTC1}}'{{/pressureSetpointTC1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureSetpointTC2'>pressureSetpointTC2: </label><div class='col-sm-8'><input id='{{id}}_pressureSetpointTC2' class='form-control' type='text'{{#pressureSetpointTC2}} value='{{pressureSetpointTC2}}'{{/pressureSetpointTC2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_proportionalGain'>proportionalGain: </label><div class='col-sm-8'><input id='{{id}}_proportionalGain' class='form-control' type='text'{{#proportionalGain}} value='{{proportionalGain}}'{{/proportionalGain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfAux1'>rfAux1: </label><div class='col-sm-8'><input id='{{id}}_rfAux1' class='form-control' type='text'{{#rfAux1}} value='{{rfAux1}}'{{/rfAux1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfAux2'>rfAux2: </label><div class='col-sm-8'><input id='{{id}}_rfAux2' class='form-control' type='text'{{#rfAux2}} value='{{rfAux2}}'{{/rfAux2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfAux3'>rfAux3: </label><div class='col-sm-8'><input id='{{id}}_rfAux3' class='form-control' type='text'{{#rfAux3}} value='{{rfAux3}}'{{/rfAux3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfAux4'>rfAux4: </label><div class='col-sm-8'><input id='{{id}}_rfAux4' class='form-control' type='text'{{#rfAux4}} value='{{rfAux4}}'{{/rfAux4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfAux5'>rfAux5: </label><div class='col-sm-8'><input id='{{id}}_rfAux5' class='form-control' type='text'{{#rfAux5}} value='{{rfAux5}}'{{/rfAux5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfAux6'>rfAux6: </label><div class='col-sm-8'><input id='{{id}}_rfAux6' class='form-control' type='text'{{#rfAux6}} value='{{rfAux6}}'{{/rfAux6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfAux7'>rfAux7: </label><div class='col-sm-8'><input id='{{id}}_rfAux7' class='form-control' type='text'{{#rfAux7}} value='{{rfAux7}}'{{/rfAux7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfAux8'>rfAux8: </label><div class='col-sm-8'><input id='{{id}}_rfAux8' class='form-control' type='text'{{#rfAux8}} value='{{rfAux8}}'{{/rfAux8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rodPattern'>rodPattern: </label><div class='col-sm-8'><input id='{{id}}_rodPattern' class='form-control' type='text'{{#rodPattern}} value='{{rodPattern}}'{{/rodPattern}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rodPatternConstant'>rodPatternConstant: </label><div class='col-sm-8'><input id='{{id}}_rodPatternConstant' class='form-control' type='text'{{#rodPatternConstant}} value='{{rodPatternConstant}}'{{/rodPatternConstant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upperLimit'>upperLimit: </label><div class='col-sm-8'><input id='{{id}}_upperLimit' class='form-control' type='text'{{#upperLimit}} value='{{upperLimit}}'{{/upperLimit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BWRSteamSupply" };
-                super.submit (obj);
-                temp = document.getElementById ("highPowerLimit").value; if ("" != temp) obj.highPowerLimit = temp;
-                temp = document.getElementById ("inCoreThermalTC").value; if ("" != temp) obj.inCoreThermalTC = temp;
-                temp = document.getElementById ("integralGain").value; if ("" != temp) obj.integralGain = temp;
-                temp = document.getElementById ("lowerLimit").value; if ("" != temp) obj.lowerLimit = temp;
-                temp = document.getElementById ("lowPowerLimit").value; if ("" != temp) obj.lowPowerLimit = temp;
-                temp = document.getElementById ("pressureLimit").value; if ("" != temp) obj.pressureLimit = temp;
-                temp = document.getElementById ("pressureSetpointGA").value; if ("" != temp) obj.pressureSetpointGA = temp;
-                temp = document.getElementById ("pressureSetpointTC1").value; if ("" != temp) obj.pressureSetpointTC1 = temp;
-                temp = document.getElementById ("pressureSetpointTC2").value; if ("" != temp) obj.pressureSetpointTC2 = temp;
-                temp = document.getElementById ("proportionalGain").value; if ("" != temp) obj.proportionalGain = temp;
-                temp = document.getElementById ("rfAux1").value; if ("" != temp) obj.rfAux1 = temp;
-                temp = document.getElementById ("rfAux2").value; if ("" != temp) obj.rfAux2 = temp;
-                temp = document.getElementById ("rfAux3").value; if ("" != temp) obj.rfAux3 = temp;
-                temp = document.getElementById ("rfAux4").value; if ("" != temp) obj.rfAux4 = temp;
-                temp = document.getElementById ("rfAux5").value; if ("" != temp) obj.rfAux5 = temp;
-                temp = document.getElementById ("rfAux6").value; if ("" != temp) obj.rfAux6 = temp;
-                temp = document.getElementById ("rfAux7").value; if ("" != temp) obj.rfAux7 = temp;
-                temp = document.getElementById ("rfAux8").value; if ("" != temp) obj.rfAux8 = temp;
-                temp = document.getElementById ("rodPattern").value; if ("" != temp) obj.rodPattern = temp;
-                temp = document.getElementById ("rodPatternConstant").value; if ("" != temp) obj.rodPatternConstant = temp;
-                temp = document.getElementById ("upperLimit").value; if ("" != temp) obj.upperLimit = temp;
+                var obj = obj || { id: id, cls: "BWRSteamSupply" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_highPowerLimit").value; if ("" != temp) obj.highPowerLimit = temp;
+                temp = document.getElementById (id + "_inCoreThermalTC").value; if ("" != temp) obj.inCoreThermalTC = temp;
+                temp = document.getElementById (id + "_integralGain").value; if ("" != temp) obj.integralGain = temp;
+                temp = document.getElementById (id + "_lowerLimit").value; if ("" != temp) obj.lowerLimit = temp;
+                temp = document.getElementById (id + "_lowPowerLimit").value; if ("" != temp) obj.lowPowerLimit = temp;
+                temp = document.getElementById (id + "_pressureLimit").value; if ("" != temp) obj.pressureLimit = temp;
+                temp = document.getElementById (id + "_pressureSetpointGA").value; if ("" != temp) obj.pressureSetpointGA = temp;
+                temp = document.getElementById (id + "_pressureSetpointTC1").value; if ("" != temp) obj.pressureSetpointTC1 = temp;
+                temp = document.getElementById (id + "_pressureSetpointTC2").value; if ("" != temp) obj.pressureSetpointTC2 = temp;
+                temp = document.getElementById (id + "_proportionalGain").value; if ("" != temp) obj.proportionalGain = temp;
+                temp = document.getElementById (id + "_rfAux1").value; if ("" != temp) obj.rfAux1 = temp;
+                temp = document.getElementById (id + "_rfAux2").value; if ("" != temp) obj.rfAux2 = temp;
+                temp = document.getElementById (id + "_rfAux3").value; if ("" != temp) obj.rfAux3 = temp;
+                temp = document.getElementById (id + "_rfAux4").value; if ("" != temp) obj.rfAux4 = temp;
+                temp = document.getElementById (id + "_rfAux5").value; if ("" != temp) obj.rfAux5 = temp;
+                temp = document.getElementById (id + "_rfAux6").value; if ("" != temp) obj.rfAux6 = temp;
+                temp = document.getElementById (id + "_rfAux7").value; if ("" != temp) obj.rfAux7 = temp;
+                temp = document.getElementById (id + "_rfAux8").value; if ("" != temp) obj.rfAux8 = temp;
+                temp = document.getElementById (id + "_rodPattern").value; if ("" != temp) obj.rodPattern = temp;
+                temp = document.getElementById (id + "_rodPatternConstant").value; if ("" != temp) obj.rodPatternConstant = temp;
+                temp = document.getElementById (id + "_upperLimit").value; if ("" != temp) obj.upperLimit = temp;
 
                 return (obj);
             }
@@ -745,75 +745,75 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FossilSteamSupply_collapse" aria-expanded="true" aria-controls="FossilSteamSupply_collapse" style="margin-left: 10px;">FossilSteamSupply</a></legend>
-                    <div id="FossilSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FossilSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_FossilSteamSupply_collapse" style="margin-left: 10px;">FossilSteamSupply</a></legend>
+                    <div id="{{id}}_FossilSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerVersusFrequency'>auxPowerVersusFrequency: </label><div class='col-sm-8'><input id='auxPowerVersusFrequency' class='form-control' type='text'{{#auxPowerVersusFrequency}} value='{{auxPowerVersusFrequency}}'{{/auxPowerVersusFrequency}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerVersusVoltage'>auxPowerVersusVoltage: </label><div class='col-sm-8'><input id='auxPowerVersusVoltage' class='form-control' type='text'{{#auxPowerVersusVoltage}} value='{{auxPowerVersusVoltage}}'{{/auxPowerVersusVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='boilerControlMode'>boilerControlMode: </label><div class='col-sm-8'><select id='boilerControlMode' class='form-control'>{{#BoilerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BoilerControlMode}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlErrorBiasP'>controlErrorBiasP: </label><div class='col-sm-8'><input id='controlErrorBiasP' class='form-control' type='text'{{#controlErrorBiasP}} value='{{controlErrorBiasP}}'{{/controlErrorBiasP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlIC'>controlIC: </label><div class='col-sm-8'><input id='controlIC' class='form-control' type='text'{{#controlIC}} value='{{controlIC}}'{{/controlIC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlPC'>controlPC: </label><div class='col-sm-8'><input id='controlPC' class='form-control' type='text'{{#controlPC}} value='{{controlPC}}'{{/controlPC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlPEB'>controlPEB: </label><div class='col-sm-8'><input id='controlPEB' class='form-control' type='text'{{#controlPEB}} value='{{controlPEB}}'{{/controlPEB}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlPED'>controlPED: </label><div class='col-sm-8'><input id='controlPED' class='form-control' type='text'{{#controlPED}} value='{{controlPED}}'{{/controlPED}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlTC'>controlTC: </label><div class='col-sm-8'><input id='controlTC' class='form-control' type='text'{{#controlTC}} value='{{controlTC}}'{{/controlTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='feedWaterIG'>feedWaterIG: </label><div class='col-sm-8'><input id='feedWaterIG' class='form-control' type='text'{{#feedWaterIG}} value='{{feedWaterIG}}'{{/feedWaterIG}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='feedWaterPG'>feedWaterPG: </label><div class='col-sm-8'><input id='feedWaterPG' class='form-control' type='text'{{#feedWaterPG}} value='{{feedWaterPG}}'{{/feedWaterPG}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='feedWaterTC'>feedWaterTC: </label><div class='col-sm-8'><input id='feedWaterTC' class='form-control' type='text'{{#feedWaterTC}} value='{{feedWaterTC}}'{{/feedWaterTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelDemandLimit'>fuelDemandLimit: </label><div class='col-sm-8'><input id='fuelDemandLimit' class='form-control' type='text'{{#fuelDemandLimit}} value='{{fuelDemandLimit}}'{{/fuelDemandLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelSupplyDelay'>fuelSupplyDelay: </label><div class='col-sm-8'><input id='fuelSupplyDelay' class='form-control' type='text'{{#fuelSupplyDelay}} value='{{fuelSupplyDelay}}'{{/fuelSupplyDelay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelSupplyTC'>fuelSupplyTC: </label><div class='col-sm-8'><input id='fuelSupplyTC' class='form-control' type='text'{{#fuelSupplyTC}} value='{{fuelSupplyTC}}'{{/fuelSupplyTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxErrorRateP'>maxErrorRateP: </label><div class='col-sm-8'><input id='maxErrorRateP' class='form-control' type='text'{{#maxErrorRateP}} value='{{maxErrorRateP}}'{{/maxErrorRateP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mechPowerSensorLag'>mechPowerSensorLag: </label><div class='col-sm-8'><input id='mechPowerSensorLag' class='form-control' type='text'{{#mechPowerSensorLag}} value='{{mechPowerSensorLag}}'{{/mechPowerSensorLag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minErrorRateP'>minErrorRateP: </label><div class='col-sm-8'><input id='minErrorRateP' class='form-control' type='text'{{#minErrorRateP}} value='{{minErrorRateP}}'{{/minErrorRateP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureCtrlDG'>pressureCtrlDG: </label><div class='col-sm-8'><input id='pressureCtrlDG' class='form-control' type='text'{{#pressureCtrlDG}} value='{{pressureCtrlDG}}'{{/pressureCtrlDG}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureCtrlIG'>pressureCtrlIG: </label><div class='col-sm-8'><input id='pressureCtrlIG' class='form-control' type='text'{{#pressureCtrlIG}} value='{{pressureCtrlIG}}'{{/pressureCtrlIG}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureCtrlPG'>pressureCtrlPG: </label><div class='col-sm-8'><input id='pressureCtrlPG' class='form-control' type='text'{{#pressureCtrlPG}} value='{{pressureCtrlPG}}'{{/pressureCtrlPG}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureFeedback'>pressureFeedback: </label><div class='col-sm-8'><input id='pressureFeedback' class='form-control' type='text'{{#pressureFeedback}} value='{{pressureFeedback}}'{{/pressureFeedback}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='superHeater1Capacity'>superHeater1Capacity: </label><div class='col-sm-8'><input id='superHeater1Capacity' class='form-control' type='text'{{#superHeater1Capacity}} value='{{superHeater1Capacity}}'{{/superHeater1Capacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='superHeater2Capacity'>superHeater2Capacity: </label><div class='col-sm-8'><input id='superHeater2Capacity' class='form-control' type='text'{{#superHeater2Capacity}} value='{{superHeater2Capacity}}'{{/superHeater2Capacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='superHeaterPipePD'>superHeaterPipePD: </label><div class='col-sm-8'><input id='superHeaterPipePD' class='form-control' type='text'{{#superHeaterPipePD}} value='{{superHeaterPipePD}}'{{/superHeaterPipePD}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='throttlePressureSP'>throttlePressureSP: </label><div class='col-sm-8'><input id='throttlePressureSP' class='form-control' type='text'{{#throttlePressureSP}} value='{{throttlePressureSP}}'{{/throttlePressureSP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerVersusFrequency'>auxPowerVersusFrequency: </label><div class='col-sm-8'><input id='{{id}}_auxPowerVersusFrequency' class='form-control' type='text'{{#auxPowerVersusFrequency}} value='{{auxPowerVersusFrequency}}'{{/auxPowerVersusFrequency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerVersusVoltage'>auxPowerVersusVoltage: </label><div class='col-sm-8'><input id='{{id}}_auxPowerVersusVoltage' class='form-control' type='text'{{#auxPowerVersusVoltage}} value='{{auxPowerVersusVoltage}}'{{/auxPowerVersusVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_boilerControlMode'>boilerControlMode: </label><div class='col-sm-8'><select id='{{id}}_boilerControlMode' class='form-control'>{{#BoilerControlMode}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BoilerControlMode}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlErrorBiasP'>controlErrorBiasP: </label><div class='col-sm-8'><input id='{{id}}_controlErrorBiasP' class='form-control' type='text'{{#controlErrorBiasP}} value='{{controlErrorBiasP}}'{{/controlErrorBiasP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlIC'>controlIC: </label><div class='col-sm-8'><input id='{{id}}_controlIC' class='form-control' type='text'{{#controlIC}} value='{{controlIC}}'{{/controlIC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlPC'>controlPC: </label><div class='col-sm-8'><input id='{{id}}_controlPC' class='form-control' type='text'{{#controlPC}} value='{{controlPC}}'{{/controlPC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlPEB'>controlPEB: </label><div class='col-sm-8'><input id='{{id}}_controlPEB' class='form-control' type='text'{{#controlPEB}} value='{{controlPEB}}'{{/controlPEB}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlPED'>controlPED: </label><div class='col-sm-8'><input id='{{id}}_controlPED' class='form-control' type='text'{{#controlPED}} value='{{controlPED}}'{{/controlPED}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlTC'>controlTC: </label><div class='col-sm-8'><input id='{{id}}_controlTC' class='form-control' type='text'{{#controlTC}} value='{{controlTC}}'{{/controlTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_feedWaterIG'>feedWaterIG: </label><div class='col-sm-8'><input id='{{id}}_feedWaterIG' class='form-control' type='text'{{#feedWaterIG}} value='{{feedWaterIG}}'{{/feedWaterIG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_feedWaterPG'>feedWaterPG: </label><div class='col-sm-8'><input id='{{id}}_feedWaterPG' class='form-control' type='text'{{#feedWaterPG}} value='{{feedWaterPG}}'{{/feedWaterPG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_feedWaterTC'>feedWaterTC: </label><div class='col-sm-8'><input id='{{id}}_feedWaterTC' class='form-control' type='text'{{#feedWaterTC}} value='{{feedWaterTC}}'{{/feedWaterTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelDemandLimit'>fuelDemandLimit: </label><div class='col-sm-8'><input id='{{id}}_fuelDemandLimit' class='form-control' type='text'{{#fuelDemandLimit}} value='{{fuelDemandLimit}}'{{/fuelDemandLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelSupplyDelay'>fuelSupplyDelay: </label><div class='col-sm-8'><input id='{{id}}_fuelSupplyDelay' class='form-control' type='text'{{#fuelSupplyDelay}} value='{{fuelSupplyDelay}}'{{/fuelSupplyDelay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelSupplyTC'>fuelSupplyTC: </label><div class='col-sm-8'><input id='{{id}}_fuelSupplyTC' class='form-control' type='text'{{#fuelSupplyTC}} value='{{fuelSupplyTC}}'{{/fuelSupplyTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxErrorRateP'>maxErrorRateP: </label><div class='col-sm-8'><input id='{{id}}_maxErrorRateP' class='form-control' type='text'{{#maxErrorRateP}} value='{{maxErrorRateP}}'{{/maxErrorRateP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mechPowerSensorLag'>mechPowerSensorLag: </label><div class='col-sm-8'><input id='{{id}}_mechPowerSensorLag' class='form-control' type='text'{{#mechPowerSensorLag}} value='{{mechPowerSensorLag}}'{{/mechPowerSensorLag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minErrorRateP'>minErrorRateP: </label><div class='col-sm-8'><input id='{{id}}_minErrorRateP' class='form-control' type='text'{{#minErrorRateP}} value='{{minErrorRateP}}'{{/minErrorRateP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureCtrlDG'>pressureCtrlDG: </label><div class='col-sm-8'><input id='{{id}}_pressureCtrlDG' class='form-control' type='text'{{#pressureCtrlDG}} value='{{pressureCtrlDG}}'{{/pressureCtrlDG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureCtrlIG'>pressureCtrlIG: </label><div class='col-sm-8'><input id='{{id}}_pressureCtrlIG' class='form-control' type='text'{{#pressureCtrlIG}} value='{{pressureCtrlIG}}'{{/pressureCtrlIG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureCtrlPG'>pressureCtrlPG: </label><div class='col-sm-8'><input id='{{id}}_pressureCtrlPG' class='form-control' type='text'{{#pressureCtrlPG}} value='{{pressureCtrlPG}}'{{/pressureCtrlPG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureFeedback'>pressureFeedback: </label><div class='col-sm-8'><input id='{{id}}_pressureFeedback' class='form-control' type='text'{{#pressureFeedback}} value='{{pressureFeedback}}'{{/pressureFeedback}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_superHeater1Capacity'>superHeater1Capacity: </label><div class='col-sm-8'><input id='{{id}}_superHeater1Capacity' class='form-control' type='text'{{#superHeater1Capacity}} value='{{superHeater1Capacity}}'{{/superHeater1Capacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_superHeater2Capacity'>superHeater2Capacity: </label><div class='col-sm-8'><input id='{{id}}_superHeater2Capacity' class='form-control' type='text'{{#superHeater2Capacity}} value='{{superHeater2Capacity}}'{{/superHeater2Capacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_superHeaterPipePD'>superHeaterPipePD: </label><div class='col-sm-8'><input id='{{id}}_superHeaterPipePD' class='form-control' type='text'{{#superHeaterPipePD}} value='{{superHeaterPipePD}}'{{/superHeaterPipePD}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_throttlePressureSP'>throttlePressureSP: </label><div class='col-sm-8'><input id='{{id}}_throttlePressureSP' class='form-control' type='text'{{#throttlePressureSP}} value='{{throttlePressureSP}}'{{/throttlePressureSP}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FossilSteamSupply" };
-                super.submit (obj);
-                temp = document.getElementById ("auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
-                temp = document.getElementById ("auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
-                temp = document.getElementById ("boilerControlMode").value; if ("" != temp) { temp = BoilerControlMode[temp]; if ("undefined" != typeof (temp)) obj.boilerControlMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; }
-                temp = document.getElementById ("controlErrorBiasP").value; if ("" != temp) obj.controlErrorBiasP = temp;
-                temp = document.getElementById ("controlIC").value; if ("" != temp) obj.controlIC = temp;
-                temp = document.getElementById ("controlPC").value; if ("" != temp) obj.controlPC = temp;
-                temp = document.getElementById ("controlPEB").value; if ("" != temp) obj.controlPEB = temp;
-                temp = document.getElementById ("controlPED").value; if ("" != temp) obj.controlPED = temp;
-                temp = document.getElementById ("controlTC").value; if ("" != temp) obj.controlTC = temp;
-                temp = document.getElementById ("feedWaterIG").value; if ("" != temp) obj.feedWaterIG = temp;
-                temp = document.getElementById ("feedWaterPG").value; if ("" != temp) obj.feedWaterPG = temp;
-                temp = document.getElementById ("feedWaterTC").value; if ("" != temp) obj.feedWaterTC = temp;
-                temp = document.getElementById ("fuelDemandLimit").value; if ("" != temp) obj.fuelDemandLimit = temp;
-                temp = document.getElementById ("fuelSupplyDelay").value; if ("" != temp) obj.fuelSupplyDelay = temp;
-                temp = document.getElementById ("fuelSupplyTC").value; if ("" != temp) obj.fuelSupplyTC = temp;
-                temp = document.getElementById ("maxErrorRateP").value; if ("" != temp) obj.maxErrorRateP = temp;
-                temp = document.getElementById ("mechPowerSensorLag").value; if ("" != temp) obj.mechPowerSensorLag = temp;
-                temp = document.getElementById ("minErrorRateP").value; if ("" != temp) obj.minErrorRateP = temp;
-                temp = document.getElementById ("pressureCtrlDG").value; if ("" != temp) obj.pressureCtrlDG = temp;
-                temp = document.getElementById ("pressureCtrlIG").value; if ("" != temp) obj.pressureCtrlIG = temp;
-                temp = document.getElementById ("pressureCtrlPG").value; if ("" != temp) obj.pressureCtrlPG = temp;
-                temp = document.getElementById ("pressureFeedback").value; if ("" != temp) obj.pressureFeedback = temp;
-                temp = document.getElementById ("superHeater1Capacity").value; if ("" != temp) obj.superHeater1Capacity = temp;
-                temp = document.getElementById ("superHeater2Capacity").value; if ("" != temp) obj.superHeater2Capacity = temp;
-                temp = document.getElementById ("superHeaterPipePD").value; if ("" != temp) obj.superHeaterPipePD = temp;
-                temp = document.getElementById ("throttlePressureSP").value; if ("" != temp) obj.throttlePressureSP = temp;
+                var obj = obj || { id: id, cls: "FossilSteamSupply" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
+                temp = document.getElementById (id + "_auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
+                temp = document.getElementById (id + "_boilerControlMode").value; if ("" != temp) { temp = BoilerControlMode[temp]; if ("undefined" != typeof (temp)) obj.boilerControlMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; }
+                temp = document.getElementById (id + "_controlErrorBiasP").value; if ("" != temp) obj.controlErrorBiasP = temp;
+                temp = document.getElementById (id + "_controlIC").value; if ("" != temp) obj.controlIC = temp;
+                temp = document.getElementById (id + "_controlPC").value; if ("" != temp) obj.controlPC = temp;
+                temp = document.getElementById (id + "_controlPEB").value; if ("" != temp) obj.controlPEB = temp;
+                temp = document.getElementById (id + "_controlPED").value; if ("" != temp) obj.controlPED = temp;
+                temp = document.getElementById (id + "_controlTC").value; if ("" != temp) obj.controlTC = temp;
+                temp = document.getElementById (id + "_feedWaterIG").value; if ("" != temp) obj.feedWaterIG = temp;
+                temp = document.getElementById (id + "_feedWaterPG").value; if ("" != temp) obj.feedWaterPG = temp;
+                temp = document.getElementById (id + "_feedWaterTC").value; if ("" != temp) obj.feedWaterTC = temp;
+                temp = document.getElementById (id + "_fuelDemandLimit").value; if ("" != temp) obj.fuelDemandLimit = temp;
+                temp = document.getElementById (id + "_fuelSupplyDelay").value; if ("" != temp) obj.fuelSupplyDelay = temp;
+                temp = document.getElementById (id + "_fuelSupplyTC").value; if ("" != temp) obj.fuelSupplyTC = temp;
+                temp = document.getElementById (id + "_maxErrorRateP").value; if ("" != temp) obj.maxErrorRateP = temp;
+                temp = document.getElementById (id + "_mechPowerSensorLag").value; if ("" != temp) obj.mechPowerSensorLag = temp;
+                temp = document.getElementById (id + "_minErrorRateP").value; if ("" != temp) obj.minErrorRateP = temp;
+                temp = document.getElementById (id + "_pressureCtrlDG").value; if ("" != temp) obj.pressureCtrlDG = temp;
+                temp = document.getElementById (id + "_pressureCtrlIG").value; if ("" != temp) obj.pressureCtrlIG = temp;
+                temp = document.getElementById (id + "_pressureCtrlPG").value; if ("" != temp) obj.pressureCtrlPG = temp;
+                temp = document.getElementById (id + "_pressureFeedback").value; if ("" != temp) obj.pressureFeedback = temp;
+                temp = document.getElementById (id + "_superHeater1Capacity").value; if ("" != temp) obj.superHeater1Capacity = temp;
+                temp = document.getElementById (id + "_superHeater2Capacity").value; if ("" != temp) obj.superHeater2Capacity = temp;
+                temp = document.getElementById (id + "_superHeaterPipePD").value; if ("" != temp) obj.superHeaterPipePD = temp;
+                temp = document.getElementById (id + "_throttlePressureSP").value; if ("" != temp) obj.throttlePressureSP = temp;
 
                 return (obj);
             }
@@ -896,8 +896,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Supercritical_collapse" aria-expanded="true" aria-controls="Supercritical_collapse" style="margin-left: 10px;">Supercritical</a></legend>
-                    <div id="Supercritical_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Supercritical_collapse" aria-expanded="true" aria-controls="{{id}}_Supercritical_collapse" style="margin-left: 10px;">Supercritical</a></legend>
+                    <div id="{{id}}_Supercritical_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.edit_template.call (this) +
                     `
@@ -907,10 +907,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "Supercritical" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "Supercritical" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1053,63 +1053,63 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PWRSteamSupply_collapse" aria-expanded="true" aria-controls="PWRSteamSupply_collapse" style="margin-left: 10px;">PWRSteamSupply</a></legend>
-                    <div id="PWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PWRSteamSupply_collapse" aria-expanded="true" aria-controls="{{id}}_PWRSteamSupply_collapse" style="margin-left: 10px;">PWRSteamSupply</a></legend>
+                    <div id="{{id}}_PWRSteamSupply_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SteamSupply.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFBLagTC'>coldLegFBLagTC: </label><div class='col-sm-8'><input id='coldLegFBLagTC' class='form-control' type='text'{{#coldLegFBLagTC}} value='{{coldLegFBLagTC}}'{{/coldLegFBLagTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFBLeadTC1'>coldLegFBLeadTC1: </label><div class='col-sm-8'><input id='coldLegFBLeadTC1' class='form-control' type='text'{{#coldLegFBLeadTC1}} value='{{coldLegFBLeadTC1}}'{{/coldLegFBLeadTC1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFBLeadTC2'>coldLegFBLeadTC2: </label><div class='col-sm-8'><input id='coldLegFBLeadTC2' class='form-control' type='text'{{#coldLegFBLeadTC2}} value='{{coldLegFBLeadTC2}}'{{/coldLegFBLeadTC2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFG1'>coldLegFG1: </label><div class='col-sm-8'><input id='coldLegFG1' class='form-control' type='text'{{#coldLegFG1}} value='{{coldLegFG1}}'{{/coldLegFG1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegFG2'>coldLegFG2: </label><div class='col-sm-8'><input id='coldLegFG2' class='form-control' type='text'{{#coldLegFG2}} value='{{coldLegFG2}}'{{/coldLegFG2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldLegLagTC'>coldLegLagTC: </label><div class='col-sm-8'><input id='coldLegLagTC' class='form-control' type='text'{{#coldLegLagTC}} value='{{coldLegLagTC}}'{{/coldLegLagTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreHTLagTC1'>coreHTLagTC1: </label><div class='col-sm-8'><input id='coreHTLagTC1' class='form-control' type='text'{{#coreHTLagTC1}} value='{{coreHTLagTC1}}'{{/coreHTLagTC1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreHTLagTC2'>coreHTLagTC2: </label><div class='col-sm-8'><input id='coreHTLagTC2' class='form-control' type='text'{{#coreHTLagTC2}} value='{{coreHTLagTC2}}'{{/coreHTLagTC2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreNeutronicsEffTC'>coreNeutronicsEffTC: </label><div class='col-sm-8'><input id='coreNeutronicsEffTC' class='form-control' type='text'{{#coreNeutronicsEffTC}} value='{{coreNeutronicsEffTC}}'{{/coreNeutronicsEffTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreNeutronicsHT'>coreNeutronicsHT: </label><div class='col-sm-8'><input id='coreNeutronicsHT' class='form-control' type='text'{{#coreNeutronicsHT}} value='{{coreNeutronicsHT}}'{{/coreNeutronicsHT}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='feedbackFactor'>feedbackFactor: </label><div class='col-sm-8'><input id='feedbackFactor' class='form-control' type='text'{{#feedbackFactor}} value='{{feedbackFactor}}'{{/feedbackFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotLegLagTC'>hotLegLagTC: </label><div class='col-sm-8'><input id='hotLegLagTC' class='form-control' type='text'{{#hotLegLagTC}} value='{{hotLegLagTC}}'{{/hotLegLagTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotLegSteamGain'>hotLegSteamGain: </label><div class='col-sm-8'><input id='hotLegSteamGain' class='form-control' type='text'{{#hotLegSteamGain}} value='{{hotLegSteamGain}}'{{/hotLegSteamGain}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotLegToColdLegGain'>hotLegToColdLegGain: </label><div class='col-sm-8'><input id='hotLegToColdLegGain' class='form-control' type='text'{{#hotLegToColdLegGain}} value='{{hotLegToColdLegGain}}'{{/hotLegToColdLegGain}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureCG'>pressureCG: </label><div class='col-sm-8'><input id='pressureCG' class='form-control' type='text'{{#pressureCG}} value='{{pressureCG}}'{{/pressureCG}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamFlowFG'>steamFlowFG: </label><div class='col-sm-8'><input id='steamFlowFG' class='form-control' type='text'{{#steamFlowFG}} value='{{steamFlowFG}}'{{/steamFlowFG}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamPressureDropLagTC'>steamPressureDropLagTC: </label><div class='col-sm-8'><input id='steamPressureDropLagTC' class='form-control' type='text'{{#steamPressureDropLagTC}} value='{{steamPressureDropLagTC}}'{{/steamPressureDropLagTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamPressureFG'>steamPressureFG: </label><div class='col-sm-8'><input id='steamPressureFG' class='form-control' type='text'{{#steamPressureFG}} value='{{steamPressureFG}}'{{/steamPressureFG}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='throttlePressureFactor'>throttlePressureFactor: </label><div class='col-sm-8'><input id='throttlePressureFactor' class='form-control' type='text'{{#throttlePressureFactor}} value='{{throttlePressureFactor}}'{{/throttlePressureFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='throttlePressureSP'>throttlePressureSP: </label><div class='col-sm-8'><input id='throttlePressureSP' class='form-control' type='text'{{#throttlePressureSP}} value='{{throttlePressureSP}}'{{/throttlePressureSP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldLegFBLagTC'>coldLegFBLagTC: </label><div class='col-sm-8'><input id='{{id}}_coldLegFBLagTC' class='form-control' type='text'{{#coldLegFBLagTC}} value='{{coldLegFBLagTC}}'{{/coldLegFBLagTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldLegFBLeadTC1'>coldLegFBLeadTC1: </label><div class='col-sm-8'><input id='{{id}}_coldLegFBLeadTC1' class='form-control' type='text'{{#coldLegFBLeadTC1}} value='{{coldLegFBLeadTC1}}'{{/coldLegFBLeadTC1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldLegFBLeadTC2'>coldLegFBLeadTC2: </label><div class='col-sm-8'><input id='{{id}}_coldLegFBLeadTC2' class='form-control' type='text'{{#coldLegFBLeadTC2}} value='{{coldLegFBLeadTC2}}'{{/coldLegFBLeadTC2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldLegFG1'>coldLegFG1: </label><div class='col-sm-8'><input id='{{id}}_coldLegFG1' class='form-control' type='text'{{#coldLegFG1}} value='{{coldLegFG1}}'{{/coldLegFG1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldLegFG2'>coldLegFG2: </label><div class='col-sm-8'><input id='{{id}}_coldLegFG2' class='form-control' type='text'{{#coldLegFG2}} value='{{coldLegFG2}}'{{/coldLegFG2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldLegLagTC'>coldLegLagTC: </label><div class='col-sm-8'><input id='{{id}}_coldLegLagTC' class='form-control' type='text'{{#coldLegLagTC}} value='{{coldLegLagTC}}'{{/coldLegLagTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreHTLagTC1'>coreHTLagTC1: </label><div class='col-sm-8'><input id='{{id}}_coreHTLagTC1' class='form-control' type='text'{{#coreHTLagTC1}} value='{{coreHTLagTC1}}'{{/coreHTLagTC1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreHTLagTC2'>coreHTLagTC2: </label><div class='col-sm-8'><input id='{{id}}_coreHTLagTC2' class='form-control' type='text'{{#coreHTLagTC2}} value='{{coreHTLagTC2}}'{{/coreHTLagTC2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreNeutronicsEffTC'>coreNeutronicsEffTC: </label><div class='col-sm-8'><input id='{{id}}_coreNeutronicsEffTC' class='form-control' type='text'{{#coreNeutronicsEffTC}} value='{{coreNeutronicsEffTC}}'{{/coreNeutronicsEffTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreNeutronicsHT'>coreNeutronicsHT: </label><div class='col-sm-8'><input id='{{id}}_coreNeutronicsHT' class='form-control' type='text'{{#coreNeutronicsHT}} value='{{coreNeutronicsHT}}'{{/coreNeutronicsHT}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_feedbackFactor'>feedbackFactor: </label><div class='col-sm-8'><input id='{{id}}_feedbackFactor' class='form-control' type='text'{{#feedbackFactor}} value='{{feedbackFactor}}'{{/feedbackFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotLegLagTC'>hotLegLagTC: </label><div class='col-sm-8'><input id='{{id}}_hotLegLagTC' class='form-control' type='text'{{#hotLegLagTC}} value='{{hotLegLagTC}}'{{/hotLegLagTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotLegSteamGain'>hotLegSteamGain: </label><div class='col-sm-8'><input id='{{id}}_hotLegSteamGain' class='form-control' type='text'{{#hotLegSteamGain}} value='{{hotLegSteamGain}}'{{/hotLegSteamGain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotLegToColdLegGain'>hotLegToColdLegGain: </label><div class='col-sm-8'><input id='{{id}}_hotLegToColdLegGain' class='form-control' type='text'{{#hotLegToColdLegGain}} value='{{hotLegToColdLegGain}}'{{/hotLegToColdLegGain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureCG'>pressureCG: </label><div class='col-sm-8'><input id='{{id}}_pressureCG' class='form-control' type='text'{{#pressureCG}} value='{{pressureCG}}'{{/pressureCG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamFlowFG'>steamFlowFG: </label><div class='col-sm-8'><input id='{{id}}_steamFlowFG' class='form-control' type='text'{{#steamFlowFG}} value='{{steamFlowFG}}'{{/steamFlowFG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamPressureDropLagTC'>steamPressureDropLagTC: </label><div class='col-sm-8'><input id='{{id}}_steamPressureDropLagTC' class='form-control' type='text'{{#steamPressureDropLagTC}} value='{{steamPressureDropLagTC}}'{{/steamPressureDropLagTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamPressureFG'>steamPressureFG: </label><div class='col-sm-8'><input id='{{id}}_steamPressureFG' class='form-control' type='text'{{#steamPressureFG}} value='{{steamPressureFG}}'{{/steamPressureFG}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_throttlePressureFactor'>throttlePressureFactor: </label><div class='col-sm-8'><input id='{{id}}_throttlePressureFactor' class='form-control' type='text'{{#throttlePressureFactor}} value='{{throttlePressureFactor}}'{{/throttlePressureFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_throttlePressureSP'>throttlePressureSP: </label><div class='col-sm-8'><input id='{{id}}_throttlePressureSP' class='form-control' type='text'{{#throttlePressureSP}} value='{{throttlePressureSP}}'{{/throttlePressureSP}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PWRSteamSupply" };
-                super.submit (obj);
-                temp = document.getElementById ("coldLegFBLagTC").value; if ("" != temp) obj.coldLegFBLagTC = temp;
-                temp = document.getElementById ("coldLegFBLeadTC1").value; if ("" != temp) obj.coldLegFBLeadTC1 = temp;
-                temp = document.getElementById ("coldLegFBLeadTC2").value; if ("" != temp) obj.coldLegFBLeadTC2 = temp;
-                temp = document.getElementById ("coldLegFG1").value; if ("" != temp) obj.coldLegFG1 = temp;
-                temp = document.getElementById ("coldLegFG2").value; if ("" != temp) obj.coldLegFG2 = temp;
-                temp = document.getElementById ("coldLegLagTC").value; if ("" != temp) obj.coldLegLagTC = temp;
-                temp = document.getElementById ("coreHTLagTC1").value; if ("" != temp) obj.coreHTLagTC1 = temp;
-                temp = document.getElementById ("coreHTLagTC2").value; if ("" != temp) obj.coreHTLagTC2 = temp;
-                temp = document.getElementById ("coreNeutronicsEffTC").value; if ("" != temp) obj.coreNeutronicsEffTC = temp;
-                temp = document.getElementById ("coreNeutronicsHT").value; if ("" != temp) obj.coreNeutronicsHT = temp;
-                temp = document.getElementById ("feedbackFactor").value; if ("" != temp) obj.feedbackFactor = temp;
-                temp = document.getElementById ("hotLegLagTC").value; if ("" != temp) obj.hotLegLagTC = temp;
-                temp = document.getElementById ("hotLegSteamGain").value; if ("" != temp) obj.hotLegSteamGain = temp;
-                temp = document.getElementById ("hotLegToColdLegGain").value; if ("" != temp) obj.hotLegToColdLegGain = temp;
-                temp = document.getElementById ("pressureCG").value; if ("" != temp) obj.pressureCG = temp;
-                temp = document.getElementById ("steamFlowFG").value; if ("" != temp) obj.steamFlowFG = temp;
-                temp = document.getElementById ("steamPressureDropLagTC").value; if ("" != temp) obj.steamPressureDropLagTC = temp;
-                temp = document.getElementById ("steamPressureFG").value; if ("" != temp) obj.steamPressureFG = temp;
-                temp = document.getElementById ("throttlePressureFactor").value; if ("" != temp) obj.throttlePressureFactor = temp;
-                temp = document.getElementById ("throttlePressureSP").value; if ("" != temp) obj.throttlePressureSP = temp;
+                var obj = obj || { id: id, cls: "PWRSteamSupply" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_coldLegFBLagTC").value; if ("" != temp) obj.coldLegFBLagTC = temp;
+                temp = document.getElementById (id + "_coldLegFBLeadTC1").value; if ("" != temp) obj.coldLegFBLeadTC1 = temp;
+                temp = document.getElementById (id + "_coldLegFBLeadTC2").value; if ("" != temp) obj.coldLegFBLeadTC2 = temp;
+                temp = document.getElementById (id + "_coldLegFG1").value; if ("" != temp) obj.coldLegFG1 = temp;
+                temp = document.getElementById (id + "_coldLegFG2").value; if ("" != temp) obj.coldLegFG2 = temp;
+                temp = document.getElementById (id + "_coldLegLagTC").value; if ("" != temp) obj.coldLegLagTC = temp;
+                temp = document.getElementById (id + "_coreHTLagTC1").value; if ("" != temp) obj.coreHTLagTC1 = temp;
+                temp = document.getElementById (id + "_coreHTLagTC2").value; if ("" != temp) obj.coreHTLagTC2 = temp;
+                temp = document.getElementById (id + "_coreNeutronicsEffTC").value; if ("" != temp) obj.coreNeutronicsEffTC = temp;
+                temp = document.getElementById (id + "_coreNeutronicsHT").value; if ("" != temp) obj.coreNeutronicsHT = temp;
+                temp = document.getElementById (id + "_feedbackFactor").value; if ("" != temp) obj.feedbackFactor = temp;
+                temp = document.getElementById (id + "_hotLegLagTC").value; if ("" != temp) obj.hotLegLagTC = temp;
+                temp = document.getElementById (id + "_hotLegSteamGain").value; if ("" != temp) obj.hotLegSteamGain = temp;
+                temp = document.getElementById (id + "_hotLegToColdLegGain").value; if ("" != temp) obj.hotLegToColdLegGain = temp;
+                temp = document.getElementById (id + "_pressureCG").value; if ("" != temp) obj.pressureCG = temp;
+                temp = document.getElementById (id + "_steamFlowFG").value; if ("" != temp) obj.steamFlowFG = temp;
+                temp = document.getElementById (id + "_steamPressureDropLagTC").value; if ("" != temp) obj.steamPressureDropLagTC = temp;
+                temp = document.getElementById (id + "_steamPressureFG").value; if ("" != temp) obj.steamPressureFG = temp;
+                temp = document.getElementById (id + "_throttlePressureFactor").value; if ("" != temp) obj.throttlePressureFactor = temp;
+                temp = document.getElementById (id + "_throttlePressureSP").value; if ("" != temp) obj.throttlePressureSP = temp;
 
                 return (obj);
             }
@@ -1200,25 +1200,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="HeatRecoveryBoiler_collapse" style="margin-left: 10px;">HeatRecoveryBoiler</a></legend>
-                    <div id="HeatRecoveryBoiler_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HeatRecoveryBoiler_collapse" aria-expanded="true" aria-controls="{{id}}_HeatRecoveryBoiler_collapse" style="margin-left: 10px;">HeatRecoveryBoiler</a></legend>
+                    <div id="{{id}}_HeatRecoveryBoiler_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamSupplyRating2'>steamSupplyRating2: </label><div class='col-sm-8'><input id='steamSupplyRating2' class='form-control' type='text'{{#steamSupplyRating2}} value='{{steamSupplyRating2}}'{{/steamSupplyRating2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamSupplyRating2'>steamSupplyRating2: </label><div class='col-sm-8'><input id='{{id}}_steamSupplyRating2' class='form-control' type='text'{{#steamSupplyRating2}} value='{{steamSupplyRating2}}'{{/steamSupplyRating2}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "HeatRecoveryBoiler" };
-                super.submit (obj);
-                temp = document.getElementById ("steamSupplyRating2").value; if ("" != temp) obj.steamSupplyRating2 = temp;
+                var obj = obj || { id: id, cls: "HeatRecoveryBoiler" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_steamSupplyRating2").value; if ("" != temp) obj.steamSupplyRating2 = temp;
 
                 return (obj);
             }
@@ -1313,25 +1313,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DrumBoiler_collapse" aria-expanded="true" aria-controls="DrumBoiler_collapse" style="margin-left: 10px;">DrumBoiler</a></legend>
-                    <div id="DrumBoiler_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DrumBoiler_collapse" aria-expanded="true" aria-controls="{{id}}_DrumBoiler_collapse" style="margin-left: 10px;">DrumBoiler</a></legend>
+                    <div id="{{id}}_DrumBoiler_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='drumBoilerRating'>drumBoilerRating: </label><div class='col-sm-8'><input id='drumBoilerRating' class='form-control' type='text'{{#drumBoilerRating}} value='{{drumBoilerRating}}'{{/drumBoilerRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_drumBoilerRating'>drumBoilerRating: </label><div class='col-sm-8'><input id='{{id}}_drumBoilerRating' class='form-control' type='text'{{#drumBoilerRating}} value='{{drumBoilerRating}}'{{/drumBoilerRating}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DrumBoiler" };
-                super.submit (obj);
-                temp = document.getElementById ("drumBoilerRating").value; if ("" != temp) obj.drumBoilerRating = temp;
+                var obj = obj || { id: id, cls: "DrumBoiler" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_drumBoilerRating").value; if ("" != temp) obj.drumBoilerRating = temp;
 
                 return (obj);
             }
@@ -1414,8 +1414,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Subcritical_collapse" aria-expanded="true" aria-controls="Subcritical_collapse" style="margin-left: 10px;">Subcritical</a></legend>
-                    <div id="Subcritical_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Subcritical_collapse" aria-expanded="true" aria-controls="{{id}}_Subcritical_collapse" style="margin-left: 10px;">Subcritical</a></legend>
+                    <div id="{{id}}_Subcritical_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + FossilSteamSupply.prototype.edit_template.call (this) +
                     `
@@ -1425,10 +1425,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "Subcritical" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "Subcritical" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1548,45 +1548,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HydroTurbine_collapse" aria-expanded="true" aria-controls="HydroTurbine_collapse" style="margin-left: 10px;">HydroTurbine</a></legend>
-                    <div id="HydroTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HydroTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_HydroTurbine_collapse" style="margin-left: 10px;">HydroTurbine</a></legend>
+                    <div id="{{id}}_HydroTurbine_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gateRateLimit'>gateRateLimit: </label><div class='col-sm-8'><input id='gateRateLimit' class='form-control' type='text'{{#gateRateLimit}} value='{{gateRateLimit}}'{{/gateRateLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gateUpperLimit'>gateUpperLimit: </label><div class='col-sm-8'><input id='gateUpperLimit' class='form-control' type='text'{{#gateUpperLimit}} value='{{gateUpperLimit}}'{{/gateUpperLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxHeadMaxP'>maxHeadMaxP: </label><div class='col-sm-8'><input id='maxHeadMaxP' class='form-control' type='text'{{#maxHeadMaxP}} value='{{maxHeadMaxP}}'{{/maxHeadMaxP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minHeadMaxP'>minHeadMaxP: </label><div class='col-sm-8'><input id='minHeadMaxP' class='form-control' type='text'{{#minHeadMaxP}} value='{{minHeadMaxP}}'{{/minHeadMaxP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='speedRating'>speedRating: </label><div class='col-sm-8'><input id='speedRating' class='form-control' type='text'{{#speedRating}} value='{{speedRating}}'{{/speedRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='speedRegulation'>speedRegulation: </label><div class='col-sm-8'><input id='speedRegulation' class='form-control' type='text'{{#speedRegulation}} value='{{speedRegulation}}'{{/speedRegulation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transientDroopTime'>transientDroopTime: </label><div class='col-sm-8'><input id='transientDroopTime' class='form-control' type='text'{{#transientDroopTime}} value='{{transientDroopTime}}'{{/transientDroopTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transientRegulation'>transientRegulation: </label><div class='col-sm-8'><input id='transientRegulation' class='form-control' type='text'{{#transientRegulation}} value='{{transientRegulation}}'{{/transientRegulation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='turbineRating'>turbineRating: </label><div class='col-sm-8'><input id='turbineRating' class='form-control' type='text'{{#turbineRating}} value='{{turbineRating}}'{{/turbineRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='turbineType'>turbineType: </label><div class='col-sm-8'><select id='turbineType' class='form-control'>{{#TurbineType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TurbineType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='waterStartingTime'>waterStartingTime: </label><div class='col-sm-8'><input id='waterStartingTime' class='form-control' type='text'{{#waterStartingTime}} value='{{waterStartingTime}}'{{/waterStartingTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gateRateLimit'>gateRateLimit: </label><div class='col-sm-8'><input id='{{id}}_gateRateLimit' class='form-control' type='text'{{#gateRateLimit}} value='{{gateRateLimit}}'{{/gateRateLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gateUpperLimit'>gateUpperLimit: </label><div class='col-sm-8'><input id='{{id}}_gateUpperLimit' class='form-control' type='text'{{#gateUpperLimit}} value='{{gateUpperLimit}}'{{/gateUpperLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxHeadMaxP'>maxHeadMaxP: </label><div class='col-sm-8'><input id='{{id}}_maxHeadMaxP' class='form-control' type='text'{{#maxHeadMaxP}} value='{{maxHeadMaxP}}'{{/maxHeadMaxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minHeadMaxP'>minHeadMaxP: </label><div class='col-sm-8'><input id='{{id}}_minHeadMaxP' class='form-control' type='text'{{#minHeadMaxP}} value='{{minHeadMaxP}}'{{/minHeadMaxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_speedRating'>speedRating: </label><div class='col-sm-8'><input id='{{id}}_speedRating' class='form-control' type='text'{{#speedRating}} value='{{speedRating}}'{{/speedRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_speedRegulation'>speedRegulation: </label><div class='col-sm-8'><input id='{{id}}_speedRegulation' class='form-control' type='text'{{#speedRegulation}} value='{{speedRegulation}}'{{/speedRegulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transientDroopTime'>transientDroopTime: </label><div class='col-sm-8'><input id='{{id}}_transientDroopTime' class='form-control' type='text'{{#transientDroopTime}} value='{{transientDroopTime}}'{{/transientDroopTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transientRegulation'>transientRegulation: </label><div class='col-sm-8'><input id='{{id}}_transientRegulation' class='form-control' type='text'{{#transientRegulation}} value='{{transientRegulation}}'{{/transientRegulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_turbineRating'>turbineRating: </label><div class='col-sm-8'><input id='{{id}}_turbineRating' class='form-control' type='text'{{#turbineRating}} value='{{turbineRating}}'{{/turbineRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_turbineType'>turbineType: </label><div class='col-sm-8'><select id='{{id}}_turbineType' class='form-control'>{{#TurbineType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TurbineType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_waterStartingTime'>waterStartingTime: </label><div class='col-sm-8'><input id='{{id}}_waterStartingTime' class='form-control' type='text'{{#waterStartingTime}} value='{{waterStartingTime}}'{{/waterStartingTime}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "HydroTurbine" };
-                super.submit (obj);
-                temp = document.getElementById ("gateRateLimit").value; if ("" != temp) obj.gateRateLimit = temp;
-                temp = document.getElementById ("gateUpperLimit").value; if ("" != temp) obj.gateUpperLimit = temp;
-                temp = document.getElementById ("maxHeadMaxP").value; if ("" != temp) obj.maxHeadMaxP = temp;
-                temp = document.getElementById ("minHeadMaxP").value; if ("" != temp) obj.minHeadMaxP = temp;
-                temp = document.getElementById ("speedRating").value; if ("" != temp) obj.speedRating = temp;
-                temp = document.getElementById ("speedRegulation").value; if ("" != temp) obj.speedRegulation = temp;
-                temp = document.getElementById ("transientDroopTime").value; if ("" != temp) obj.transientDroopTime = temp;
-                temp = document.getElementById ("transientRegulation").value; if ("" != temp) obj.transientRegulation = temp;
-                temp = document.getElementById ("turbineRating").value; if ("" != temp) obj.turbineRating = temp;
-                temp = document.getElementById ("turbineType").value; if ("" != temp) { temp = TurbineType[temp]; if ("undefined" != typeof (temp)) obj.turbineType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; }
-                temp = document.getElementById ("waterStartingTime").value; if ("" != temp) obj.waterStartingTime = temp;
+                var obj = obj || { id: id, cls: "HydroTurbine" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_gateRateLimit").value; if ("" != temp) obj.gateRateLimit = temp;
+                temp = document.getElementById (id + "_gateUpperLimit").value; if ("" != temp) obj.gateUpperLimit = temp;
+                temp = document.getElementById (id + "_maxHeadMaxP").value; if ("" != temp) obj.maxHeadMaxP = temp;
+                temp = document.getElementById (id + "_minHeadMaxP").value; if ("" != temp) obj.minHeadMaxP = temp;
+                temp = document.getElementById (id + "_speedRating").value; if ("" != temp) obj.speedRating = temp;
+                temp = document.getElementById (id + "_speedRegulation").value; if ("" != temp) obj.speedRegulation = temp;
+                temp = document.getElementById (id + "_transientDroopTime").value; if ("" != temp) obj.transientDroopTime = temp;
+                temp = document.getElementById (id + "_transientRegulation").value; if ("" != temp) obj.transientRegulation = temp;
+                temp = document.getElementById (id + "_turbineRating").value; if ("" != temp) obj.turbineRating = temp;
+                temp = document.getElementById (id + "_turbineType").value; if ("" != temp) { temp = TurbineType[temp]; if ("undefined" != typeof (temp)) obj.turbineType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; }
+                temp = document.getElementById (id + "_waterStartingTime").value; if ("" != temp) obj.waterStartingTime = temp;
 
                 return (obj);
             }
@@ -1710,49 +1710,49 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SteamTurbine_collapse" aria-expanded="true" aria-controls="SteamTurbine_collapse" style="margin-left: 10px;">SteamTurbine</a></legend>
-                    <div id="SteamTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SteamTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_SteamTurbine_collapse" style="margin-left: 10px;">SteamTurbine</a></legend>
+                    <div id="{{id}}_SteamTurbine_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='crossoverTC'>crossoverTC: </label><div class='col-sm-8'><input id='crossoverTC' class='form-control' type='text'{{#crossoverTC}} value='{{crossoverTC}}'{{/crossoverTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reheater1TC'>reheater1TC: </label><div class='col-sm-8'><input id='reheater1TC' class='form-control' type='text'{{#reheater1TC}} value='{{reheater1TC}}'{{/reheater1TC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reheater2TC'>reheater2TC: </label><div class='col-sm-8'><input id='reheater2TC' class='form-control' type='text'{{#reheater2TC}} value='{{reheater2TC}}'{{/reheater2TC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft1PowerHP'>shaft1PowerHP: </label><div class='col-sm-8'><input id='shaft1PowerHP' class='form-control' type='text'{{#shaft1PowerHP}} value='{{shaft1PowerHP}}'{{/shaft1PowerHP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft1PowerIP'>shaft1PowerIP: </label><div class='col-sm-8'><input id='shaft1PowerIP' class='form-control' type='text'{{#shaft1PowerIP}} value='{{shaft1PowerIP}}'{{/shaft1PowerIP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft1PowerLP1'>shaft1PowerLP1: </label><div class='col-sm-8'><input id='shaft1PowerLP1' class='form-control' type='text'{{#shaft1PowerLP1}} value='{{shaft1PowerLP1}}'{{/shaft1PowerLP1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft1PowerLP2'>shaft1PowerLP2: </label><div class='col-sm-8'><input id='shaft1PowerLP2' class='form-control' type='text'{{#shaft1PowerLP2}} value='{{shaft1PowerLP2}}'{{/shaft1PowerLP2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerHP'>shaft2PowerHP: </label><div class='col-sm-8'><input id='shaft2PowerHP' class='form-control' type='text'{{#shaft2PowerHP}} value='{{shaft2PowerHP}}'{{/shaft2PowerHP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerIP'>shaft2PowerIP: </label><div class='col-sm-8'><input id='shaft2PowerIP' class='form-control' type='text'{{#shaft2PowerIP}} value='{{shaft2PowerIP}}'{{/shaft2PowerIP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerLP1'>shaft2PowerLP1: </label><div class='col-sm-8'><input id='shaft2PowerLP1' class='form-control' type='text'{{#shaft2PowerLP1}} value='{{shaft2PowerLP1}}'{{/shaft2PowerLP1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shaft2PowerLP2'>shaft2PowerLP2: </label><div class='col-sm-8'><input id='shaft2PowerLP2' class='form-control' type='text'{{#shaft2PowerLP2}} value='{{shaft2PowerLP2}}'{{/shaft2PowerLP2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steamChestTC'>steamChestTC: </label><div class='col-sm-8'><input id='steamChestTC' class='form-control' type='text'{{#steamChestTC}} value='{{steamChestTC}}'{{/steamChestTC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SteamSupplys'>SteamSupplys: </label><div class='col-sm-8'><input id='SteamSupplys' class='form-control' type='text'{{#SteamSupplys}} value='{{SteamSupplys}}_string'{{/SteamSupplys}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_crossoverTC'>crossoverTC: </label><div class='col-sm-8'><input id='{{id}}_crossoverTC' class='form-control' type='text'{{#crossoverTC}} value='{{crossoverTC}}'{{/crossoverTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reheater1TC'>reheater1TC: </label><div class='col-sm-8'><input id='{{id}}_reheater1TC' class='form-control' type='text'{{#reheater1TC}} value='{{reheater1TC}}'{{/reheater1TC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reheater2TC'>reheater2TC: </label><div class='col-sm-8'><input id='{{id}}_reheater2TC' class='form-control' type='text'{{#reheater2TC}} value='{{reheater2TC}}'{{/reheater2TC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft1PowerHP'>shaft1PowerHP: </label><div class='col-sm-8'><input id='{{id}}_shaft1PowerHP' class='form-control' type='text'{{#shaft1PowerHP}} value='{{shaft1PowerHP}}'{{/shaft1PowerHP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft1PowerIP'>shaft1PowerIP: </label><div class='col-sm-8'><input id='{{id}}_shaft1PowerIP' class='form-control' type='text'{{#shaft1PowerIP}} value='{{shaft1PowerIP}}'{{/shaft1PowerIP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft1PowerLP1'>shaft1PowerLP1: </label><div class='col-sm-8'><input id='{{id}}_shaft1PowerLP1' class='form-control' type='text'{{#shaft1PowerLP1}} value='{{shaft1PowerLP1}}'{{/shaft1PowerLP1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft1PowerLP2'>shaft1PowerLP2: </label><div class='col-sm-8'><input id='{{id}}_shaft1PowerLP2' class='form-control' type='text'{{#shaft1PowerLP2}} value='{{shaft1PowerLP2}}'{{/shaft1PowerLP2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft2PowerHP'>shaft2PowerHP: </label><div class='col-sm-8'><input id='{{id}}_shaft2PowerHP' class='form-control' type='text'{{#shaft2PowerHP}} value='{{shaft2PowerHP}}'{{/shaft2PowerHP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft2PowerIP'>shaft2PowerIP: </label><div class='col-sm-8'><input id='{{id}}_shaft2PowerIP' class='form-control' type='text'{{#shaft2PowerIP}} value='{{shaft2PowerIP}}'{{/shaft2PowerIP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft2PowerLP1'>shaft2PowerLP1: </label><div class='col-sm-8'><input id='{{id}}_shaft2PowerLP1' class='form-control' type='text'{{#shaft2PowerLP1}} value='{{shaft2PowerLP1}}'{{/shaft2PowerLP1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shaft2PowerLP2'>shaft2PowerLP2: </label><div class='col-sm-8'><input id='{{id}}_shaft2PowerLP2' class='form-control' type='text'{{#shaft2PowerLP2}} value='{{shaft2PowerLP2}}'{{/shaft2PowerLP2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steamChestTC'>steamChestTC: </label><div class='col-sm-8'><input id='{{id}}_steamChestTC' class='form-control' type='text'{{#steamChestTC}} value='{{steamChestTC}}'{{/steamChestTC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SteamSupplys'>SteamSupplys: </label><div class='col-sm-8'><input id='{{id}}_SteamSupplys' class='form-control' type='text'{{#SteamSupplys}} value='{{SteamSupplys}}_string'{{/SteamSupplys}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SteamTurbine" };
-                super.submit (obj);
-                temp = document.getElementById ("crossoverTC").value; if ("" != temp) obj.crossoverTC = temp;
-                temp = document.getElementById ("reheater1TC").value; if ("" != temp) obj.reheater1TC = temp;
-                temp = document.getElementById ("reheater2TC").value; if ("" != temp) obj.reheater2TC = temp;
-                temp = document.getElementById ("shaft1PowerHP").value; if ("" != temp) obj.shaft1PowerHP = temp;
-                temp = document.getElementById ("shaft1PowerIP").value; if ("" != temp) obj.shaft1PowerIP = temp;
-                temp = document.getElementById ("shaft1PowerLP1").value; if ("" != temp) obj.shaft1PowerLP1 = temp;
-                temp = document.getElementById ("shaft1PowerLP2").value; if ("" != temp) obj.shaft1PowerLP2 = temp;
-                temp = document.getElementById ("shaft2PowerHP").value; if ("" != temp) obj.shaft2PowerHP = temp;
-                temp = document.getElementById ("shaft2PowerIP").value; if ("" != temp) obj.shaft2PowerIP = temp;
-                temp = document.getElementById ("shaft2PowerLP1").value; if ("" != temp) obj.shaft2PowerLP1 = temp;
-                temp = document.getElementById ("shaft2PowerLP2").value; if ("" != temp) obj.shaft2PowerLP2 = temp;
-                temp = document.getElementById ("steamChestTC").value; if ("" != temp) obj.steamChestTC = temp;
-                temp = document.getElementById ("SteamSupplys").value; if ("" != temp) obj.SteamSupplys = temp.split (",");
+                var obj = obj || { id: id, cls: "SteamTurbine" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_crossoverTC").value; if ("" != temp) obj.crossoverTC = temp;
+                temp = document.getElementById (id + "_reheater1TC").value; if ("" != temp) obj.reheater1TC = temp;
+                temp = document.getElementById (id + "_reheater2TC").value; if ("" != temp) obj.reheater2TC = temp;
+                temp = document.getElementById (id + "_shaft1PowerHP").value; if ("" != temp) obj.shaft1PowerHP = temp;
+                temp = document.getElementById (id + "_shaft1PowerIP").value; if ("" != temp) obj.shaft1PowerIP = temp;
+                temp = document.getElementById (id + "_shaft1PowerLP1").value; if ("" != temp) obj.shaft1PowerLP1 = temp;
+                temp = document.getElementById (id + "_shaft1PowerLP2").value; if ("" != temp) obj.shaft1PowerLP2 = temp;
+                temp = document.getElementById (id + "_shaft2PowerHP").value; if ("" != temp) obj.shaft2PowerHP = temp;
+                temp = document.getElementById (id + "_shaft2PowerIP").value; if ("" != temp) obj.shaft2PowerIP = temp;
+                temp = document.getElementById (id + "_shaft2PowerLP1").value; if ("" != temp) obj.shaft2PowerLP1 = temp;
+                temp = document.getElementById (id + "_shaft2PowerLP2").value; if ("" != temp) obj.shaft2PowerLP2 = temp;
+                temp = document.getElementById (id + "_steamChestTC").value; if ("" != temp) obj.steamChestTC = temp;
+                temp = document.getElementById (id + "_SteamSupplys").value; if ("" != temp) obj.SteamSupplys = temp.split (",");
 
                 return (obj);
             }
@@ -1877,45 +1877,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombustionTurbine_collapse" aria-expanded="true" aria-controls="CombustionTurbine_collapse" style="margin-left: 10px;">CombustionTurbine</a></legend>
-                    <div id="CombustionTurbine_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CombustionTurbine_collapse" aria-expanded="true" aria-controls="{{id}}_CombustionTurbine_collapse" style="margin-left: 10px;">CombustionTurbine</a></legend>
+                    <div id="{{id}}_CombustionTurbine_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PrimeMover.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ambientTemp'>ambientTemp: </label><div class='col-sm-8'><input id='ambientTemp' class='form-control' type='text'{{#ambientTemp}} value='{{ambientTemp}}'{{/ambientTemp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerVersusFrequency'>auxPowerVersusFrequency: </label><div class='col-sm-8'><input id='auxPowerVersusFrequency' class='form-control' type='text'{{#auxPowerVersusFrequency}} value='{{auxPowerVersusFrequency}}'{{/auxPowerVersusFrequency}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='auxPowerVersusVoltage'>auxPowerVersusVoltage: </label><div class='col-sm-8'><input id='auxPowerVersusVoltage' class='form-control' type='text'{{#auxPowerVersusVoltage}} value='{{auxPowerVersusVoltage}}'{{/auxPowerVersusVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capabilityVersusFrequency'>capabilityVersusFrequency: </label><div class='col-sm-8'><input id='capabilityVersusFrequency' class='form-control' type='text'{{#capabilityVersusFrequency}} value='{{capabilityVersusFrequency}}'{{/capabilityVersusFrequency}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='heatRecoveryFlag'>heatRecoveryFlag: </label><div class='col-sm-8'><input id='heatRecoveryFlag' class='form-check-input' type='checkbox'{{#heatRecoveryFlag}} checked{{/heatRecoveryFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='powerVariationByTemp'>powerVariationByTemp: </label><div class='col-sm-8'><input id='powerVariationByTemp' class='form-control' type='text'{{#powerVariationByTemp}} value='{{powerVariationByTemp}}'{{/powerVariationByTemp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='referenceTemp'>referenceTemp: </label><div class='col-sm-8'><input id='referenceTemp' class='form-control' type='text'{{#referenceTemp}} value='{{referenceTemp}}'{{/referenceTemp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeConstant'>timeConstant: </label><div class='col-sm-8'><input id='timeConstant' class='form-control' type='text'{{#timeConstant}} value='{{timeConstant}}'{{/timeConstant}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AirCompressor'>AirCompressor: </label><div class='col-sm-8'><input id='AirCompressor' class='form-control' type='text'{{#AirCompressor}} value='{{AirCompressor}}'{{/AirCompressor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HeatRecoveryBoiler'>HeatRecoveryBoiler: </label><div class='col-sm-8'><input id='HeatRecoveryBoiler' class='form-control' type='text'{{#HeatRecoveryBoiler}} value='{{HeatRecoveryBoiler}}'{{/HeatRecoveryBoiler}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CTTempActivePowerCurve'>CTTempActivePowerCurve: </label><div class='col-sm-8'><input id='CTTempActivePowerCurve' class='form-control' type='text'{{#CTTempActivePowerCurve}} value='{{CTTempActivePowerCurve}}'{{/CTTempActivePowerCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ambientTemp'>ambientTemp: </label><div class='col-sm-8'><input id='{{id}}_ambientTemp' class='form-control' type='text'{{#ambientTemp}} value='{{ambientTemp}}'{{/ambientTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerVersusFrequency'>auxPowerVersusFrequency: </label><div class='col-sm-8'><input id='{{id}}_auxPowerVersusFrequency' class='form-control' type='text'{{#auxPowerVersusFrequency}} value='{{auxPowerVersusFrequency}}'{{/auxPowerVersusFrequency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_auxPowerVersusVoltage'>auxPowerVersusVoltage: </label><div class='col-sm-8'><input id='{{id}}_auxPowerVersusVoltage' class='form-control' type='text'{{#auxPowerVersusVoltage}} value='{{auxPowerVersusVoltage}}'{{/auxPowerVersusVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capabilityVersusFrequency'>capabilityVersusFrequency: </label><div class='col-sm-8'><input id='{{id}}_capabilityVersusFrequency' class='form-control' type='text'{{#capabilityVersusFrequency}} value='{{capabilityVersusFrequency}}'{{/capabilityVersusFrequency}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_heatRecoveryFlag'>heatRecoveryFlag: </label><div class='col-sm-8'><input id='{{id}}_heatRecoveryFlag' class='form-check-input' type='checkbox'{{#heatRecoveryFlag}} checked{{/heatRecoveryFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_powerVariationByTemp'>powerVariationByTemp: </label><div class='col-sm-8'><input id='{{id}}_powerVariationByTemp' class='form-control' type='text'{{#powerVariationByTemp}} value='{{powerVariationByTemp}}'{{/powerVariationByTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceTemp'>referenceTemp: </label><div class='col-sm-8'><input id='{{id}}_referenceTemp' class='form-control' type='text'{{#referenceTemp}} value='{{referenceTemp}}'{{/referenceTemp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeConstant'>timeConstant: </label><div class='col-sm-8'><input id='{{id}}_timeConstant' class='form-control' type='text'{{#timeConstant}} value='{{timeConstant}}'{{/timeConstant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AirCompressor'>AirCompressor: </label><div class='col-sm-8'><input id='{{id}}_AirCompressor' class='form-control' type='text'{{#AirCompressor}} value='{{AirCompressor}}'{{/AirCompressor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HeatRecoveryBoiler'>HeatRecoveryBoiler: </label><div class='col-sm-8'><input id='{{id}}_HeatRecoveryBoiler' class='form-control' type='text'{{#HeatRecoveryBoiler}} value='{{HeatRecoveryBoiler}}'{{/HeatRecoveryBoiler}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CTTempActivePowerCurve'>CTTempActivePowerCurve: </label><div class='col-sm-8'><input id='{{id}}_CTTempActivePowerCurve' class='form-control' type='text'{{#CTTempActivePowerCurve}} value='{{CTTempActivePowerCurve}}'{{/CTTempActivePowerCurve}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CombustionTurbine" };
-                super.submit (obj);
-                temp = document.getElementById ("ambientTemp").value; if ("" != temp) obj.ambientTemp = temp;
-                temp = document.getElementById ("auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
-                temp = document.getElementById ("auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
-                temp = document.getElementById ("capabilityVersusFrequency").value; if ("" != temp) obj.capabilityVersusFrequency = temp;
-                temp = document.getElementById ("heatRecoveryFlag").checked; if (temp) obj.heatRecoveryFlag = true;
-                temp = document.getElementById ("powerVariationByTemp").value; if ("" != temp) obj.powerVariationByTemp = temp;
-                temp = document.getElementById ("referenceTemp").value; if ("" != temp) obj.referenceTemp = temp;
-                temp = document.getElementById ("timeConstant").value; if ("" != temp) obj.timeConstant = temp;
-                temp = document.getElementById ("AirCompressor").value; if ("" != temp) obj.AirCompressor = temp;
-                temp = document.getElementById ("HeatRecoveryBoiler").value; if ("" != temp) obj.HeatRecoveryBoiler = temp;
-                temp = document.getElementById ("CTTempActivePowerCurve").value; if ("" != temp) obj.CTTempActivePowerCurve = temp;
+                var obj = obj || { id: id, cls: "CombustionTurbine" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ambientTemp").value; if ("" != temp) obj.ambientTemp = temp;
+                temp = document.getElementById (id + "_auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
+                temp = document.getElementById (id + "_auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
+                temp = document.getElementById (id + "_capabilityVersusFrequency").value; if ("" != temp) obj.capabilityVersusFrequency = temp;
+                temp = document.getElementById (id + "_heatRecoveryFlag").checked; if (temp) obj.heatRecoveryFlag = true;
+                temp = document.getElementById (id + "_powerVariationByTemp").value; if ("" != temp) obj.powerVariationByTemp = temp;
+                temp = document.getElementById (id + "_referenceTemp").value; if ("" != temp) obj.referenceTemp = temp;
+                temp = document.getElementById (id + "_timeConstant").value; if ("" != temp) obj.timeConstant = temp;
+                temp = document.getElementById (id + "_AirCompressor").value; if ("" != temp) obj.AirCompressor = temp;
+                temp = document.getElementById (id + "_HeatRecoveryBoiler").value; if ("" != temp) obj.HeatRecoveryBoiler = temp;
+                temp = document.getElementById (id + "_CTTempActivePowerCurve").value; if ("" != temp) obj.CTTempActivePowerCurve = temp;
 
                 return (obj);
             }

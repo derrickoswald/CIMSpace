@@ -198,29 +198,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchingStepGroup_collapse" aria-expanded="true" aria-controls="SwitchingStepGroup_collapse" style="margin-left: 10px;">SwitchingStepGroup</a></legend>
-                    <div id="SwitchingStepGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchingStepGroup_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchingStepGroup_collapse" style="margin-left: 10px;">SwitchingStepGroup</a></legend>
+                    <div id="{{id}}_SwitchingStepGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isFreeSequence'>isFreeSequence: </label><div class='col-sm-8'><input id='isFreeSequence' class='form-check-input' type='checkbox'{{#isFreeSequence}} checked{{/isFreeSequence}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingPlan'>SwitchingPlan: </label><div class='col-sm-8'><input id='SwitchingPlan' class='form-control' type='text'{{#SwitchingPlan}} value='{{SwitchingPlan}}'{{/SwitchingPlan}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isFreeSequence'>isFreeSequence: </label><div class='col-sm-8'><input id='{{id}}_isFreeSequence' class='form-check-input' type='checkbox'{{#isFreeSequence}} checked{{/isFreeSequence}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingPlan'>SwitchingPlan: </label><div class='col-sm-8'><input id='{{id}}_SwitchingPlan' class='form-control' type='text'{{#SwitchingPlan}} value='{{SwitchingPlan}}'{{/SwitchingPlan}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SwitchingStepGroup" };
-                super.submit (obj);
-                temp = document.getElementById ("isFreeSequence").checked; if (temp) obj.isFreeSequence = true;
-                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = document.getElementById ("SwitchingPlan").value; if ("" != temp) obj.SwitchingPlan = temp;
+                var obj = obj || { id: id, cls: "SwitchingStepGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_isFreeSequence").checked; if (temp) obj.isFreeSequence = true;
+                temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById (id + "_SwitchingPlan").value; if ("" != temp) obj.SwitchingPlan = temp;
 
                 return (obj);
             }
@@ -325,29 +325,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationTag_collapse" aria-expanded="true" aria-controls="OperationTag_collapse" style="margin-left: 10px;">OperationTag</a></legend>
-                    <div id="OperationTag_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationTag_collapse" aria-expanded="true" aria-controls="{{id}}_OperationTag_collapse" style="margin-left: 10px;">OperationTag</a></legend>
+                    <div id="{{id}}_OperationTag_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TagAction'>TagAction: </label><div class='col-sm-8'><input id='TagAction' class='form-control' type='text'{{#TagAction}} value='{{TagAction}}'{{/TagAction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TagAction'>TagAction: </label><div class='col-sm-8'><input id='{{id}}_TagAction' class='form-control' type='text'{{#TagAction}} value='{{TagAction}}'{{/TagAction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OperationTag" };
-                super.submit (obj);
-                temp = document.getElementById ("Asset").value; if ("" != temp) obj.Asset = temp;
-                temp = document.getElementById ("TagAction").value; if ("" != temp) obj.TagAction = temp;
-                temp = document.getElementById ("PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
+                var obj = obj || { id: id, cls: "OperationTag" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Asset").value; if ("" != temp) obj.Asset = temp;
+                temp = document.getElementById (id + "_TagAction").value; if ("" != temp) obj.TagAction = temp;
+                temp = document.getElementById (id + "_PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
 
                 return (obj);
             }
@@ -449,27 +449,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PSREvent_collapse" aria-expanded="true" aria-controls="PSREvent_collapse" style="margin-left: 10px;">PSREvent</a></legend>
-                    <div id="PSREvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PSREvent_collapse" aria-expanded="true" aria-controls="{{id}}_PSREvent_collapse" style="margin-left: 10px;">PSREvent</a></legend>
+                    <div id="{{id}}_PSREvent_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#PSREventKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PSREventKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#PSREventKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PSREventKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemResource'>PowerSystemResource: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemResource' class='form-control' type='text'{{#PowerSystemResource}} value='{{PowerSystemResource}}'{{/PowerSystemResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PSREvent" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PSREventKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PSREventKind." + temp; }
-                temp = document.getElementById ("PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
+                var obj = obj || { id: id, cls: "PSREvent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PSREventKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PSREventKind." + temp; }
+                temp = document.getElementById (id + "_PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
 
                 return (obj);
             }
@@ -622,43 +622,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Outage_collapse" aria-expanded="true" aria-controls="Outage_collapse" style="margin-left: 10px;">Outage</a></legend>
-                    <div id="Outage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Outage_collapse" aria-expanded="true" aria-controls="{{id}}_Outage_collapse" style="margin-left: 10px;">Outage</a></legend>
+                    <div id="{{id}}_Outage_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cause'>cause: </label><div class='col-sm-8'><input id='cause' class='form-control' type='text'{{#cause}} value='{{cause}}'{{/cause}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='estimatedPeriod'>estimatedPeriod: </label><div class='col-sm-8'><input id='estimatedPeriod' class='form-control' type='text'{{#estimatedPeriod}} value='{{estimatedPeriod}}'{{/estimatedPeriod}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPlanned'>isPlanned: </label><div class='col-sm-8'><input id='isPlanned' class='form-check-input' type='checkbox'{{#isPlanned}} checked{{/isPlanned}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualPeriod'>actualPeriod: </label><div class='col-sm-8'><input id='actualPeriod' class='form-control' type='text'{{#actualPeriod}} value='{{actualPeriod}}'{{/actualPeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='summary'>summary: </label><div class='col-sm-8'><input id='summary' class='form-control' type='text'{{#summary}} value='{{summary}}'{{/summary}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cancelledDateTime'>cancelledDateTime: </label><div class='col-sm-8'><input id='cancelledDateTime' class='form-control' type='text'{{#cancelledDateTime}} value='{{cancelledDateTime}}'{{/cancelledDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OutageSchedule'>OutageSchedule: </label><div class='col-sm-8'><input id='OutageSchedule' class='form-control' type='text'{{#OutageSchedule}} value='{{OutageSchedule}}'{{/OutageSchedule}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipments'>Equipments: </label><div class='col-sm-8'><input id='Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Incident'>Incident: </label><div class='col-sm-8'><input id='Incident' class='form-control' type='text'{{#Incident}} value='{{Incident}}'{{/Incident}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cause'>cause: </label><div class='col-sm-8'><input id='{{id}}_cause' class='form-control' type='text'{{#cause}} value='{{cause}}'{{/cause}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_estimatedPeriod'>estimatedPeriod: </label><div class='col-sm-8'><input id='{{id}}_estimatedPeriod' class='form-control' type='text'{{#estimatedPeriod}} value='{{estimatedPeriod}}'{{/estimatedPeriod}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPlanned'>isPlanned: </label><div class='col-sm-8'><input id='{{id}}_isPlanned' class='form-check-input' type='checkbox'{{#isPlanned}} checked{{/isPlanned}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualPeriod'>actualPeriod: </label><div class='col-sm-8'><input id='{{id}}_actualPeriod' class='form-control' type='text'{{#actualPeriod}} value='{{actualPeriod}}'{{/actualPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_summary'>summary: </label><div class='col-sm-8'><input id='{{id}}_summary' class='form-control' type='text'{{#summary}} value='{{summary}}'{{/summary}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cancelledDateTime'>cancelledDateTime: </label><div class='col-sm-8'><input id='{{id}}_cancelledDateTime' class='form-control' type='text'{{#cancelledDateTime}} value='{{cancelledDateTime}}'{{/cancelledDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OutageSchedule'>OutageSchedule: </label><div class='col-sm-8'><input id='{{id}}_OutageSchedule' class='form-control' type='text'{{#OutageSchedule}} value='{{OutageSchedule}}'{{/OutageSchedule}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UsagePoints'>UsagePoints: </label><div class='col-sm-8'><input id='{{id}}_UsagePoints' class='form-control' type='text'{{#UsagePoints}} value='{{UsagePoints}}_string'{{/UsagePoints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Incident'>Incident: </label><div class='col-sm-8'><input id='{{id}}_Incident' class='form-control' type='text'{{#Incident}} value='{{Incident}}'{{/Incident}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Outage" };
-                super.submit (obj);
-                temp = document.getElementById ("cause").value; if ("" != temp) obj.cause = temp;
-                temp = document.getElementById ("estimatedPeriod").value; if ("" != temp) obj.estimatedPeriod = temp;
-                temp = document.getElementById ("isPlanned").checked; if (temp) obj.isPlanned = true;
-                temp = document.getElementById ("actualPeriod").value; if ("" != temp) obj.actualPeriod = temp;
-                temp = document.getElementById ("summary").value; if ("" != temp) obj.summary = temp;
-                temp = document.getElementById ("cancelledDateTime").value; if ("" != temp) obj.cancelledDateTime = temp;
-                temp = document.getElementById ("OutageSchedule").value; if ("" != temp) obj.OutageSchedule = temp;
-                temp = document.getElementById ("Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
-                temp = document.getElementById ("UsagePoints").value; if ("" != temp) obj.UsagePoints = temp.split (",");
-                temp = document.getElementById ("Incident").value; if ("" != temp) obj.Incident = temp;
+                var obj = obj || { id: id, cls: "Outage" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_cause").value; if ("" != temp) obj.cause = temp;
+                temp = document.getElementById (id + "_estimatedPeriod").value; if ("" != temp) obj.estimatedPeriod = temp;
+                temp = document.getElementById (id + "_isPlanned").checked; if (temp) obj.isPlanned = true;
+                temp = document.getElementById (id + "_actualPeriod").value; if ("" != temp) obj.actualPeriod = temp;
+                temp = document.getElementById (id + "_summary").value; if ("" != temp) obj.summary = temp;
+                temp = document.getElementById (id + "_cancelledDateTime").value; if ("" != temp) obj.cancelledDateTime = temp;
+                temp = document.getElementById (id + "_OutageSchedule").value; if ("" != temp) obj.OutageSchedule = temp;
+                temp = document.getElementById (id + "_Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
+                temp = document.getElementById (id + "_UsagePoints").value; if ("" != temp) obj.UsagePoints = temp.split (",");
+                temp = document.getElementById (id + "_Incident").value; if ("" != temp) obj.Incident = temp;
 
                 return (obj);
             }
@@ -789,31 +789,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Incident_collapse" aria-expanded="true" aria-controls="Incident_collapse" style="margin-left: 10px;">Incident</a></legend>
-                    <div id="Incident_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Incident_collapse" aria-expanded="true" aria-controls="{{id}}_Incident_collapse" style="margin-left: 10px;">Incident</a></legend>
+                    <div id="{{id}}_Incident_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cause'>cause: </label><div class='col-sm-8'><input id='cause' class='form-control' type='text'{{#cause}} value='{{cause}}'{{/cause}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Owner'>Owner: </label><div class='col-sm-8'><input id='Owner' class='form-control' type='text'{{#Owner}} value='{{Owner}}'{{/Owner}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Works'>Works: </label><div class='col-sm-8'><input id='Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Outage'>Outage: </label><div class='col-sm-8'><input id='Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cause'>cause: </label><div class='col-sm-8'><input id='{{id}}_cause' class='form-control' type='text'{{#cause}} value='{{cause}}'{{/cause}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Owner'>Owner: </label><div class='col-sm-8'><input id='{{id}}_Owner' class='form-control' type='text'{{#Owner}} value='{{Owner}}'{{/Owner}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Works'>Works: </label><div class='col-sm-8'><input id='{{id}}_Works' class='form-control' type='text'{{#Works}} value='{{Works}}_string'{{/Works}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Incident" };
-                super.submit (obj);
-                temp = document.getElementById ("cause").value; if ("" != temp) obj.cause = temp;
-                temp = document.getElementById ("Owner").value; if ("" != temp) obj.Owner = temp;
-                temp = document.getElementById ("Works").value; if ("" != temp) obj.Works = temp.split (",");
-                temp = document.getElementById ("Outage").value; if ("" != temp) obj.Outage = temp;
+                var obj = obj || { id: id, cls: "Incident" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_cause").value; if ("" != temp) obj.cause = temp;
+                temp = document.getElementById (id + "_Owner").value; if ("" != temp) obj.Owner = temp;
+                temp = document.getElementById (id + "_Works").value; if ("" != temp) obj.Works = temp.split (",");
+                temp = document.getElementById (id + "_Outage").value; if ("" != temp) obj.Outage = temp;
 
                 return (obj);
             }
@@ -926,31 +926,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalRestriction_collapse" aria-expanded="true" aria-controls="OperationalRestriction_collapse" style="margin-left: 10px;">OperationalRestriction</a></legend>
-                    <div id="OperationalRestriction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalRestriction_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalRestriction_collapse" style="margin-left: 10px;">OperationalRestriction</a></legend>
+                    <div id="{{id}}_OperationalRestriction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='activePeriod'>activePeriod: </label><div class='col-sm-8'><input id='activePeriod' class='form-control' type='text'{{#activePeriod}} value='{{activePeriod}}'{{/activePeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='restrictedValue'>restrictedValue: </label><div class='col-sm-8'><input id='restrictedValue' class='form-control' type='text'{{#restrictedValue}} value='{{restrictedValue}}'{{/restrictedValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipments'>Equipments: </label><div class='col-sm-8'><input id='Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProductAssetModel'>ProductAssetModel: </label><div class='col-sm-8'><input id='ProductAssetModel' class='form-control' type='text'{{#ProductAssetModel}} value='{{ProductAssetModel}}'{{/ProductAssetModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_activePeriod'>activePeriod: </label><div class='col-sm-8'><input id='{{id}}_activePeriod' class='form-control' type='text'{{#activePeriod}} value='{{activePeriod}}'{{/activePeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_restrictedValue'>restrictedValue: </label><div class='col-sm-8'><input id='{{id}}_restrictedValue' class='form-control' type='text'{{#restrictedValue}} value='{{restrictedValue}}'{{/restrictedValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipments'>Equipments: </label><div class='col-sm-8'><input id='{{id}}_Equipments' class='form-control' type='text'{{#Equipments}} value='{{Equipments}}_string'{{/Equipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductAssetModel'>ProductAssetModel: </label><div class='col-sm-8'><input id='{{id}}_ProductAssetModel' class='form-control' type='text'{{#ProductAssetModel}} value='{{ProductAssetModel}}'{{/ProductAssetModel}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OperationalRestriction" };
-                super.submit (obj);
-                temp = document.getElementById ("activePeriod").value; if ("" != temp) obj.activePeriod = temp;
-                temp = document.getElementById ("restrictedValue").value; if ("" != temp) obj.restrictedValue = temp;
-                temp = document.getElementById ("Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
-                temp = document.getElementById ("ProductAssetModel").value; if ("" != temp) obj.ProductAssetModel = temp;
+                var obj = obj || { id: id, cls: "OperationalRestriction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_activePeriod").value; if ("" != temp) obj.activePeriod = temp;
+                temp = document.getElementById (id + "_restrictedValue").value; if ("" != temp) obj.restrictedValue = temp;
+                temp = document.getElementById (id + "_Equipments").value; if ("" != temp) obj.Equipments = temp.split (",");
+                temp = document.getElementById (id + "_ProductAssetModel").value; if ("" != temp) obj.ProductAssetModel = temp;
 
                 return (obj);
             }
@@ -1046,25 +1046,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SafetyDocument_collapse" aria-expanded="true" aria-controls="SafetyDocument_collapse" style="margin-left: 10px;">SafetyDocument</a></legend>
-                    <div id="SafetyDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SafetyDocument_collapse" aria-expanded="true" aria-controls="{{id}}_SafetyDocument_collapse" style="margin-left: 10px;">SafetyDocument</a></legend>
+                    <div id="{{id}}_SafetyDocument_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingPlan'>SwitchingPlan: </label><div class='col-sm-8'><input id='SwitchingPlan' class='form-control' type='text'{{#SwitchingPlan}} value='{{SwitchingPlan}}'{{/SwitchingPlan}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingPlan'>SwitchingPlan: </label><div class='col-sm-8'><input id='{{id}}_SwitchingPlan' class='form-control' type='text'{{#SwitchingPlan}} value='{{SwitchingPlan}}'{{/SwitchingPlan}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SafetyDocument" };
-                super.submit (obj);
-                temp = document.getElementById ("SwitchingPlan").value; if ("" != temp) obj.SwitchingPlan = temp;
+                var obj = obj || { id: id, cls: "SafetyDocument" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_SwitchingPlan").value; if ("" != temp) obj.SwitchingPlan = temp;
 
                 return (obj);
             }
@@ -1164,27 +1164,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServicePointOutageSummary_collapse" aria-expanded="true" aria-controls="ServicePointOutageSummary_collapse" style="margin-left: 10px;">ServicePointOutageSummary</a></legend>
-                    <div id="ServicePointOutageSummary_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ServicePointOutageSummary_collapse" aria-expanded="true" aria-controls="{{id}}_ServicePointOutageSummary_collapse" style="margin-left: 10px;">ServicePointOutageSummary</a></legend>
+                    <div id="{{id}}_ServicePointOutageSummary_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='criticalCount'>criticalCount: </label><div class='col-sm-8'><input id='criticalCount' class='form-control' type='text'{{#criticalCount}} value='{{criticalCount}}'{{/criticalCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='totalCount'>totalCount: </label><div class='col-sm-8'><input id='totalCount' class='form-control' type='text'{{#totalCount}} value='{{totalCount}}'{{/totalCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_criticalCount'>criticalCount: </label><div class='col-sm-8'><input id='{{id}}_criticalCount' class='form-control' type='text'{{#criticalCount}} value='{{criticalCount}}'{{/criticalCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalCount'>totalCount: </label><div class='col-sm-8'><input id='{{id}}_totalCount' class='form-control' type='text'{{#totalCount}} value='{{totalCount}}'{{/totalCount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ServicePointOutageSummary" };
-                super.submit (obj);
-                temp = document.getElementById ("criticalCount").value; if ("" != temp) obj.criticalCount = temp;
-                temp = document.getElementById ("totalCount").value; if ("" != temp) obj.totalCount = temp;
+                var obj = obj || { id: id, cls: "ServicePointOutageSummary" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_criticalCount").value; if ("" != temp) obj.criticalCount = temp;
+                temp = document.getElementById (id + "_totalCount").value; if ("" != temp) obj.totalCount = temp;
 
                 return (obj);
             }
@@ -1274,8 +1274,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OutageSchedule_collapse" aria-expanded="true" aria-controls="OutageSchedule_collapse" style="margin-left: 10px;">OutageSchedule</a></legend>
-                    <div id="OutageSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OutageSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_OutageSchedule_collapse" style="margin-left: 10px;">OutageSchedule</a></legend>
+                    <div id="{{id}}_OutageSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -1285,10 +1285,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "OutageSchedule" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "OutageSchedule" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1401,37 +1401,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchingStep_collapse" aria-expanded="true" aria-controls="SwitchingStep_collapse" style="margin-left: 10px;">SwitchingStep</a></legend>
-                    <div id="SwitchingStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchingStep_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchingStep_collapse" style="margin-left: 10px;">SwitchingStep</a></legend>
+                    <div id="{{id}}_SwitchingStep_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='executedDateTime'>executedDateTime: </label><div class='col-sm-8'><input id='executedDateTime' class='form-control' type='text'{{#executedDateTime}} value='{{executedDateTime}}'{{/executedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='plannedDateTime'>plannedDateTime: </label><div class='col-sm-8'><input id='plannedDateTime' class='form-control' type='text'{{#plannedDateTime}} value='{{plannedDateTime}}'{{/plannedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isFreeSequence'>isFreeSequence: </label><div class='col-sm-8'><input id='isFreeSequence' class='form-check-input' type='checkbox'{{#isFreeSequence}} checked{{/isFreeSequence}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CrewMember'>CrewMember: </label><div class='col-sm-8'><input id='CrewMember' class='form-control' type='text'{{#CrewMember}} value='{{CrewMember}}'{{/CrewMember}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Operator'>Operator: </label><div class='col-sm-8'><input id='Operator' class='form-control' type='text'{{#Operator}} value='{{Operator}}'{{/Operator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_executedDateTime'>executedDateTime: </label><div class='col-sm-8'><input id='{{id}}_executedDateTime' class='form-control' type='text'{{#executedDateTime}} value='{{executedDateTime}}'{{/executedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_plannedDateTime'>plannedDateTime: </label><div class='col-sm-8'><input id='{{id}}_plannedDateTime' class='form-control' type='text'{{#plannedDateTime}} value='{{plannedDateTime}}'{{/plannedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isFreeSequence'>isFreeSequence: </label><div class='col-sm-8'><input id='{{id}}_isFreeSequence' class='form-check-input' type='checkbox'{{#isFreeSequence}} checked{{/isFreeSequence}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CrewMember'>CrewMember: </label><div class='col-sm-8'><input id='{{id}}_CrewMember' class='form-control' type='text'{{#CrewMember}} value='{{CrewMember}}'{{/CrewMember}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Operator'>Operator: </label><div class='col-sm-8'><input id='{{id}}_Operator' class='form-control' type='text'{{#Operator}} value='{{Operator}}'{{/Operator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SwitchingStep" };
-                super.submit (obj);
-                temp = document.getElementById ("executedDateTime").value; if ("" != temp) obj.executedDateTime = temp;
-                temp = document.getElementById ("plannedDateTime").value; if ("" != temp) obj.plannedDateTime = temp;
-                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
-                temp = document.getElementById ("isFreeSequence").checked; if (temp) obj.isFreeSequence = true;
-                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = document.getElementById ("CrewMember").value; if ("" != temp) obj.CrewMember = temp;
-                temp = document.getElementById ("Operator").value; if ("" != temp) obj.Operator = temp;
+                var obj = obj || { id: id, cls: "SwitchingStep" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_executedDateTime").value; if ("" != temp) obj.executedDateTime = temp;
+                temp = document.getElementById (id + "_plannedDateTime").value; if ("" != temp) obj.plannedDateTime = temp;
+                temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById (id + "_isFreeSequence").checked; if (temp) obj.isFreeSequence = true;
+                temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById (id + "_CrewMember").value; if ("" != temp) obj.CrewMember = temp;
+                temp = document.getElementById (id + "_Operator").value; if ("" != temp) obj.Operator = temp;
 
                 return (obj);
             }
@@ -1551,29 +1551,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchingPlan_collapse" aria-expanded="true" aria-controls="SwitchingPlan_collapse" style="margin-left: 10px;">SwitchingPlan</a></legend>
-                    <div id="SwitchingPlan_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchingPlan_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchingPlan_collapse" style="margin-left: 10px;">SwitchingPlan</a></legend>
+                    <div id="{{id}}_SwitchingPlan_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStepGroup.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rank'>rank: </label><div class='col-sm-8'><input id='rank' class='form-control' type='text'{{#rank}} value='{{rank}}'{{/rank}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='purpose'>purpose: </label><div class='col-sm-8'><input id='purpose' class='form-control' type='text'{{#purpose}} value='{{purpose}}'{{/purpose}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Outage'>Outage: </label><div class='col-sm-8'><input id='Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rank'>rank: </label><div class='col-sm-8'><input id='{{id}}_rank' class='form-control' type='text'{{#rank}} value='{{rank}}'{{/rank}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purpose'>purpose: </label><div class='col-sm-8'><input id='{{id}}_purpose' class='form-control' type='text'{{#purpose}} value='{{purpose}}'{{/purpose}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SwitchingPlan" };
-                super.submit (obj);
-                temp = document.getElementById ("rank").value; if ("" != temp) obj.rank = temp;
-                temp = document.getElementById ("purpose").value; if ("" != temp) obj.purpose = temp;
-                temp = document.getElementById ("Outage").value; if ("" != temp) obj.Outage = temp;
+                var obj = obj || { id: id, cls: "SwitchingPlan" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_rank").value; if ("" != temp) obj.rank = temp;
+                temp = document.getElementById (id + "_purpose").value; if ("" != temp) obj.purpose = temp;
+                temp = document.getElementById (id + "_Outage").value; if ("" != temp) obj.Outage = temp;
 
                 return (obj);
             }
@@ -1674,27 +1674,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalUpdatedRating_collapse" aria-expanded="true" aria-controls="OperationalUpdatedRating_collapse" style="margin-left: 10px;">OperationalUpdatedRating</a></legend>
-                    <div id="OperationalUpdatedRating_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalUpdatedRating_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalUpdatedRating_collapse" style="margin-left: 10px;">OperationalUpdatedRating</a></legend>
+                    <div id="{{id}}_OperationalUpdatedRating_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + OperationalRestriction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='changeType'>changeType: </label><div class='col-sm-8'><input id='changeType' class='form-control' type='text'{{#changeType}} value='{{changeType}}'{{/changeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PlannedOutage'>PlannedOutage: </label><div class='col-sm-8'><input id='PlannedOutage' class='form-control' type='text'{{#PlannedOutage}} value='{{PlannedOutage}}'{{/PlannedOutage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_changeType'>changeType: </label><div class='col-sm-8'><input id='{{id}}_changeType' class='form-control' type='text'{{#changeType}} value='{{changeType}}'{{/changeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedOutage'>PlannedOutage: </label><div class='col-sm-8'><input id='{{id}}_PlannedOutage' class='form-control' type='text'{{#PlannedOutage}} value='{{PlannedOutage}}'{{/PlannedOutage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OperationalUpdatedRating" };
-                super.submit (obj);
-                temp = document.getElementById ("changeType").value; if ("" != temp) obj.changeType = temp;
-                temp = document.getElementById ("PlannedOutage").value; if ("" != temp) obj.PlannedOutage = temp;
+                var obj = obj || { id: id, cls: "OperationalUpdatedRating" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_changeType").value; if ("" != temp) obj.changeType = temp;
+                temp = document.getElementById (id + "_PlannedOutage").value; if ("" != temp) obj.PlannedOutage = temp;
 
                 return (obj);
             }
@@ -1802,31 +1802,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ClearanceDocument_collapse" aria-expanded="true" aria-controls="ClearanceDocument_collapse" style="margin-left: 10px;">ClearanceDocument</a></legend>
-                    <div id="ClearanceDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ClearanceDocument_collapse" aria-expanded="true" aria-controls="{{id}}_ClearanceDocument_collapse" style="margin-left: 10px;">ClearanceDocument</a></legend>
+                    <div id="{{id}}_ClearanceDocument_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SafetyDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mustBeDeenergised'>mustBeDeenergised: </label><div class='col-sm-8'><input id='mustBeDeenergised' class='form-check-input' type='checkbox'{{#mustBeDeenergised}} checked{{/mustBeDeenergised}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mustBeGrounded'>mustBeGrounded: </label><div class='col-sm-8'><input id='mustBeGrounded' class='form-check-input' type='checkbox'{{#mustBeGrounded}} checked{{/mustBeGrounded}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TaggedPSRs'>TaggedPSRs: </label><div class='col-sm-8'><input id='TaggedPSRs' class='form-control' type='text'{{#TaggedPSRs}} value='{{TaggedPSRs}}_string'{{/TaggedPSRs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ClearanceAction'>ClearanceAction: </label><div class='col-sm-8'><input id='ClearanceAction' class='form-control' type='text'{{#ClearanceAction}} value='{{ClearanceAction}}'{{/ClearanceAction}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mustBeDeenergised'>mustBeDeenergised: </label><div class='col-sm-8'><input id='{{id}}_mustBeDeenergised' class='form-check-input' type='checkbox'{{#mustBeDeenergised}} checked{{/mustBeDeenergised}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mustBeGrounded'>mustBeGrounded: </label><div class='col-sm-8'><input id='{{id}}_mustBeGrounded' class='form-check-input' type='checkbox'{{#mustBeGrounded}} checked{{/mustBeGrounded}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TaggedPSRs'>TaggedPSRs: </label><div class='col-sm-8'><input id='{{id}}_TaggedPSRs' class='form-control' type='text'{{#TaggedPSRs}} value='{{TaggedPSRs}}_string'{{/TaggedPSRs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ClearanceAction'>ClearanceAction: </label><div class='col-sm-8'><input id='{{id}}_ClearanceAction' class='form-control' type='text'{{#ClearanceAction}} value='{{ClearanceAction}}'{{/ClearanceAction}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ClearanceDocument" };
-                super.submit (obj);
-                temp = document.getElementById ("mustBeDeenergised").checked; if (temp) obj.mustBeDeenergised = true;
-                temp = document.getElementById ("mustBeGrounded").checked; if (temp) obj.mustBeGrounded = true;
-                temp = document.getElementById ("TaggedPSRs").value; if ("" != temp) obj.TaggedPSRs = temp.split (",");
-                temp = document.getElementById ("ClearanceAction").value; if ("" != temp) obj.ClearanceAction = temp;
+                var obj = obj || { id: id, cls: "ClearanceDocument" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_mustBeDeenergised").checked; if (temp) obj.mustBeDeenergised = true;
+                temp = document.getElementById (id + "_mustBeGrounded").checked; if (temp) obj.mustBeGrounded = true;
+                temp = document.getElementById (id + "_TaggedPSRs").value; if ("" != temp) obj.TaggedPSRs = temp.split (",");
+                temp = document.getElementById (id + "_ClearanceAction").value; if ("" != temp) obj.ClearanceAction = temp;
 
                 return (obj);
             }
@@ -1922,25 +1922,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenericAction_collapse" aria-expanded="true" aria-controls="GenericAction_collapse" style="margin-left: 10px;">GenericAction</a></legend>
-                    <div id="GenericAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GenericAction_collapse" aria-expanded="true" aria-controls="{{id}}_GenericAction_collapse" style="margin-left: 10px;">GenericAction</a></legend>
+                    <div id="{{id}}_GenericAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStep.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='{{id}}_SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "GenericAction" };
-                super.submit (obj);
-                temp = document.getElementById ("SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
+                var obj = obj || { id: id, cls: "GenericAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
                 return (obj);
             }
@@ -2043,29 +2043,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ClearanceAction_collapse" aria-expanded="true" aria-controls="ClearanceAction_collapse" style="margin-left: 10px;">ClearanceAction</a></legend>
-                    <div id="ClearanceAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ClearanceAction_collapse" aria-expanded="true" aria-controls="{{id}}_ClearanceAction_collapse" style="margin-left: 10px;">ClearanceAction</a></legend>
+                    <div id="{{id}}_ClearanceAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStep.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ClearanceActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ClearanceActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Clearance'>Clearance: </label><div class='col-sm-8'><input id='Clearance' class='form-control' type='text'{{#Clearance}} value='{{Clearance}}'{{/Clearance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#ClearanceActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ClearanceActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Clearance'>Clearance: </label><div class='col-sm-8'><input id='{{id}}_Clearance' class='form-control' type='text'{{#Clearance}} value='{{Clearance}}'{{/Clearance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='{{id}}_SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ClearanceAction" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ClearanceActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ClearanceActionKind." + temp; }
-                temp = document.getElementById ("Clearance").value; if ("" != temp) obj.Clearance = temp;
-                temp = document.getElementById ("SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
+                var obj = obj || { id: id, cls: "ClearanceAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ClearanceActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ClearanceActionKind." + temp; }
+                temp = document.getElementById (id + "_Clearance").value; if ("" != temp) obj.Clearance = temp;
+                temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
                 return (obj);
             }
@@ -2175,33 +2175,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GroundAction_collapse" aria-expanded="true" aria-controls="GroundAction_collapse" style="margin-left: 10px;">GroundAction</a></legend>
-                    <div id="GroundAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GroundAction_collapse" aria-expanded="true" aria-controls="{{id}}_GroundAction_collapse" style="margin-left: 10px;">GroundAction</a></legend>
+                    <div id="{{id}}_GroundAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStep.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TempEquipActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TempEquipActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Ground'>Ground: </label><div class='col-sm-8'><input id='Ground' class='form-control' type='text'{{#Ground}} value='{{Ground}}'{{/Ground}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AlongACLineSegment'>AlongACLineSegment: </label><div class='col-sm-8'><input id='AlongACLineSegment' class='form-control' type='text'{{#AlongACLineSegment}} value='{{AlongACLineSegment}}'{{/AlongACLineSegment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GroundedEquipment'>GroundedEquipment: </label><div class='col-sm-8'><input id='GroundedEquipment' class='form-control' type='text'{{#GroundedEquipment}} value='{{GroundedEquipment}}'{{/GroundedEquipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#TempEquipActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TempEquipActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Ground'>Ground: </label><div class='col-sm-8'><input id='{{id}}_Ground' class='form-control' type='text'{{#Ground}} value='{{Ground}}'{{/Ground}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AlongACLineSegment'>AlongACLineSegment: </label><div class='col-sm-8'><input id='{{id}}_AlongACLineSegment' class='form-control' type='text'{{#AlongACLineSegment}} value='{{AlongACLineSegment}}'{{/AlongACLineSegment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GroundedEquipment'>GroundedEquipment: </label><div class='col-sm-8'><input id='{{id}}_GroundedEquipment' class='form-control' type='text'{{#GroundedEquipment}} value='{{GroundedEquipment}}'{{/GroundedEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='{{id}}_SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "GroundAction" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
-                temp = document.getElementById ("Ground").value; if ("" != temp) obj.Ground = temp;
-                temp = document.getElementById ("AlongACLineSegment").value; if ("" != temp) obj.AlongACLineSegment = temp;
-                temp = document.getElementById ("GroundedEquipment").value; if ("" != temp) obj.GroundedEquipment = temp;
-                temp = document.getElementById ("SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
+                var obj = obj || { id: id, cls: "GroundAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
+                temp = document.getElementById (id + "_Ground").value; if ("" != temp) obj.Ground = temp;
+                temp = document.getElementById (id + "_AlongACLineSegment").value; if ("" != temp) obj.AlongACLineSegment = temp;
+                temp = document.getElementById (id + "_GroundedEquipment").value; if ("" != temp) obj.GroundedEquipment = temp;
+                temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
                 return (obj);
             }
@@ -2307,29 +2307,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CutAction_collapse" aria-expanded="true" aria-controls="CutAction_collapse" style="margin-left: 10px;">CutAction</a></legend>
-                    <div id="CutAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CutAction_collapse" aria-expanded="true" aria-controls="{{id}}_CutAction_collapse" style="margin-left: 10px;">CutAction</a></legend>
+                    <div id="{{id}}_CutAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStep.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TempEquipActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TempEquipActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Cut'>Cut: </label><div class='col-sm-8'><input id='Cut' class='form-control' type='text'{{#Cut}} value='{{Cut}}'{{/Cut}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#TempEquipActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TempEquipActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='{{id}}_SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Cut'>Cut: </label><div class='col-sm-8'><input id='{{id}}_Cut' class='form-control' type='text'{{#Cut}} value='{{Cut}}'{{/Cut}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CutAction" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
-                temp = document.getElementById ("SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
-                temp = document.getElementById ("Cut").value; if ("" != temp) obj.Cut = temp;
+                var obj = obj || { id: id, cls: "CutAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
+                temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
+                temp = document.getElementById (id + "_Cut").value; if ("" != temp) obj.Cut = temp;
 
                 return (obj);
             }
@@ -2436,31 +2436,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchAction_collapse" aria-expanded="true" aria-controls="SwitchAction_collapse" style="margin-left: 10px;">SwitchAction</a></legend>
-                    <div id="SwitchAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchAction_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchAction_collapse" style="margin-left: 10px;">SwitchAction</a></legend>
+                    <div id="{{id}}_SwitchAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStep.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#SwitchActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SwitchActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PlannedOutage'>PlannedOutage: </label><div class='col-sm-8'><input id='PlannedOutage' class='form-control' type='text'{{#PlannedOutage}} value='{{PlannedOutage}}'{{/PlannedOutage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperatedSwitch'>OperatedSwitch: </label><div class='col-sm-8'><input id='OperatedSwitch' class='form-control' type='text'{{#OperatedSwitch}} value='{{OperatedSwitch}}'{{/OperatedSwitch}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#SwitchActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SwitchActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PlannedOutage'>PlannedOutage: </label><div class='col-sm-8'><input id='{{id}}_PlannedOutage' class='form-control' type='text'{{#PlannedOutage}} value='{{PlannedOutage}}'{{/PlannedOutage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperatedSwitch'>OperatedSwitch: </label><div class='col-sm-8'><input id='{{id}}_OperatedSwitch' class='form-control' type='text'{{#OperatedSwitch}} value='{{OperatedSwitch}}'{{/OperatedSwitch}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='{{id}}_SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SwitchAction" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = SwitchActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SwitchActionKind." + temp; }
-                temp = document.getElementById ("PlannedOutage").value; if ("" != temp) obj.PlannedOutage = temp;
-                temp = document.getElementById ("OperatedSwitch").value; if ("" != temp) obj.OperatedSwitch = temp;
-                temp = document.getElementById ("SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
+                var obj = obj || { id: id, cls: "SwitchAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SwitchActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SwitchActionKind." + temp; }
+                temp = document.getElementById (id + "_PlannedOutage").value; if ("" != temp) obj.PlannedOutage = temp;
+                temp = document.getElementById (id + "_OperatedSwitch").value; if ("" != temp) obj.OperatedSwitch = temp;
+                temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
                 return (obj);
             }
@@ -2575,29 +2575,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#JumperAction_collapse" aria-expanded="true" aria-controls="JumperAction_collapse" style="margin-left: 10px;">JumperAction</a></legend>
-                    <div id="JumperAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_JumperAction_collapse" aria-expanded="true" aria-controls="{{id}}_JumperAction_collapse" style="margin-left: 10px;">JumperAction</a></legend>
+                    <div id="{{id}}_JumperAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStep.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TempEquipActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TempEquipActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Jumper'>Jumper: </label><div class='col-sm-8'><input id='Jumper' class='form-control' type='text'{{#Jumper}} value='{{Jumper}}'{{/Jumper}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#TempEquipActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TempEquipActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Jumper'>Jumper: </label><div class='col-sm-8'><input id='{{id}}_Jumper' class='form-control' type='text'{{#Jumper}} value='{{Jumper}}'{{/Jumper}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='{{id}}_SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "JumperAction" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
-                temp = document.getElementById ("Jumper").value; if ("" != temp) obj.Jumper = temp;
-                temp = document.getElementById ("SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
+                var obj = obj || { id: id, cls: "JumperAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
+                temp = document.getElementById (id + "_Jumper").value; if ("" != temp) obj.Jumper = temp;
+                temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
                 return (obj);
             }
@@ -2703,29 +2703,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TagAction_collapse" aria-expanded="true" aria-controls="TagAction_collapse" style="margin-left: 10px;">TagAction</a></legend>
-                    <div id="TagAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TagAction_collapse" aria-expanded="true" aria-controls="{{id}}_TagAction_collapse" style="margin-left: 10px;">TagAction</a></legend>
+                    <div id="{{id}}_TagAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStep.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TagActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TagActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperationTag'>OperationTag: </label><div class='col-sm-8'><input id='OperationTag' class='form-control' type='text'{{#OperationTag}} value='{{OperationTag}}'{{/OperationTag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#TagActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TagActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationTag'>OperationTag: </label><div class='col-sm-8'><input id='{{id}}_OperationTag' class='form-control' type='text'{{#OperationTag}} value='{{OperationTag}}'{{/OperationTag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='{{id}}_SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TagAction" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TagActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TagActionKind." + temp; }
-                temp = document.getElementById ("OperationTag").value; if ("" != temp) obj.OperationTag = temp;
-                temp = document.getElementById ("SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
+                var obj = obj || { id: id, cls: "TagAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TagActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TagActionKind." + temp; }
+                temp = document.getElementById (id + "_OperationTag").value; if ("" != temp) obj.OperationTag = temp;
+                temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
                 return (obj);
             }
@@ -2829,29 +2829,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergySourceAction_collapse" aria-expanded="true" aria-controls="EnergySourceAction_collapse" style="margin-left: 10px;">EnergySourceAction</a></legend>
-                    <div id="EnergySourceAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergySourceAction_collapse" aria-expanded="true" aria-controls="{{id}}_EnergySourceAction_collapse" style="margin-left: 10px;">EnergySourceAction</a></legend>
+                    <div id="{{id}}_EnergySourceAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SwitchingStep.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#TempEquipActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TempEquipActionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergySource'>EnergySource: </label><div class='col-sm-8'><input id='EnergySource' class='form-control' type='text'{{#EnergySource}} value='{{EnergySource}}'{{/EnergySource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#TempEquipActionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TempEquipActionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergySource'>EnergySource: </label><div class='col-sm-8'><input id='{{id}}_EnergySource' class='form-control' type='text'{{#EnergySource}} value='{{EnergySource}}'{{/EnergySource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SwitchingStepGroup'>SwitchingStepGroup: </label><div class='col-sm-8'><input id='{{id}}_SwitchingStepGroup' class='form-control' type='text'{{#SwitchingStepGroup}} value='{{SwitchingStepGroup}}'{{/SwitchingStepGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EnergySourceAction" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
-                temp = document.getElementById ("EnergySource").value; if ("" != temp) obj.EnergySource = temp;
-                temp = document.getElementById ("SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
+                var obj = obj || { id: id, cls: "EnergySourceAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
+                temp = document.getElementById (id + "_EnergySource").value; if ("" != temp) obj.EnergySource = temp;
+                temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
                 return (obj);
             }

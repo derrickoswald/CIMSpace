@@ -220,37 +220,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GateInputPin_collapse" aria-expanded="true" aria-controls="GateInputPin_collapse" style="margin-left: 10px;">GateInputPin</a></legend>
-                    <div id="GateInputPin_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GateInputPin_collapse" aria-expanded="true" aria-controls="{{id}}_GateInputPin_collapse" style="margin-left: 10px;">GateInputPin</a></legend>
+                    <div id="{{id}}_GateInputPin_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='absoluteValue'>absoluteValue: </label><div class='col-sm-8'><input id='absoluteValue' class='form-check-input' type='checkbox'{{#absoluteValue}} checked{{/absoluteValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aDLogicKind'>aDLogicKind: </label><div class='col-sm-8'><select id='aDLogicKind' class='form-control'>{{#AnalogToDigitalLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AnalogToDigitalLogicKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='duration'>duration: </label><div class='col-sm-8'><input id='duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='negate'>negate: </label><div class='col-sm-8'><input id='negate' class='form-check-input' type='checkbox'{{#negate}} checked{{/negate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thresholdPercentage'>thresholdPercentage: </label><div class='col-sm-8'><input id='thresholdPercentage' class='form-control' type='text'{{#thresholdPercentage}} value='{{thresholdPercentage}}'{{/thresholdPercentage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='thresholdValue'>thresholdValue: </label><div class='col-sm-8'><input id='thresholdValue' class='form-control' type='text'{{#thresholdValue}} value='{{thresholdValue}}'{{/thresholdValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Gate'>Gate: </label><div class='col-sm-8'><input id='Gate' class='form-control' type='text'{{#Gate}} value='{{Gate}}'{{/Gate}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_absoluteValue'>absoluteValue: </label><div class='col-sm-8'><input id='{{id}}_absoluteValue' class='form-check-input' type='checkbox'{{#absoluteValue}} checked{{/absoluteValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aDLogicKind'>aDLogicKind: </label><div class='col-sm-8'><select id='{{id}}_aDLogicKind' class='form-control'>{{#AnalogToDigitalLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/AnalogToDigitalLogicKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_negate'>negate: </label><div class='col-sm-8'><input id='{{id}}_negate' class='form-check-input' type='checkbox'{{#negate}} checked{{/negate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thresholdPercentage'>thresholdPercentage: </label><div class='col-sm-8'><input id='{{id}}_thresholdPercentage' class='form-control' type='text'{{#thresholdPercentage}} value='{{thresholdPercentage}}'{{/thresholdPercentage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_thresholdValue'>thresholdValue: </label><div class='col-sm-8'><input id='{{id}}_thresholdValue' class='form-control' type='text'{{#thresholdValue}} value='{{thresholdValue}}'{{/thresholdValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Gate'>Gate: </label><div class='col-sm-8'><input id='{{id}}_Gate' class='form-control' type='text'{{#Gate}} value='{{Gate}}'{{/Gate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "GateInputPin" };
-                super.submit (obj);
-                temp = document.getElementById ("absoluteValue").checked; if (temp) obj.absoluteValue = true;
-                temp = document.getElementById ("aDLogicKind").value; if ("" != temp) { temp = AnalogToDigitalLogicKind[temp]; if ("undefined" != typeof (temp)) obj.aDLogicKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; }
-                temp = document.getElementById ("duration").value; if ("" != temp) obj.duration = temp;
-                temp = document.getElementById ("negate").checked; if (temp) obj.negate = true;
-                temp = document.getElementById ("thresholdPercentage").value; if ("" != temp) obj.thresholdPercentage = temp;
-                temp = document.getElementById ("thresholdValue").value; if ("" != temp) obj.thresholdValue = temp;
-                temp = document.getElementById ("Gate").value; if ("" != temp) obj.Gate = temp;
+                var obj = obj || { id: id, cls: "GateInputPin" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj.absoluteValue = true;
+                temp = document.getElementById (id + "_aDLogicKind").value; if ("" != temp) { temp = AnalogToDigitalLogicKind[temp]; if ("undefined" != typeof (temp)) obj.aDLogicKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; }
+                temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
+                temp = document.getElementById (id + "_negate").checked; if (temp) obj.negate = true;
+                temp = document.getElementById (id + "_thresholdPercentage").value; if ("" != temp) obj.thresholdPercentage = temp;
+                temp = document.getElementById (id + "_thresholdValue").value; if ("" != temp) obj.thresholdValue = temp;
+                temp = document.getElementById (id + "_Gate").value; if ("" != temp) obj.Gate = temp;
 
                 return (obj);
             }
@@ -366,31 +366,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemedialActionScheme_collapse" aria-expanded="true" aria-controls="RemedialActionScheme_collapse" style="margin-left: 10px;">RemedialActionScheme</a></legend>
-                    <div id="RemedialActionScheme_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemedialActionScheme_collapse" aria-expanded="true" aria-controls="{{id}}_RemedialActionScheme_collapse" style="margin-left: 10px;">RemedialActionScheme</a></legend>
+                    <div id="{{id}}_RemedialActionScheme_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='armed'>armed: </label><div class='col-sm-8'><input id='armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#RemedialActionSchemeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemedialActionSchemeKind}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='normalArmed'>normalArmed: </label><div class='col-sm-8'><input id='normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_armed'>armed: </label><div class='col-sm-8'><input id='{{id}}_armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#RemedialActionSchemeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemedialActionSchemeKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_normalArmed'>normalArmed: </label><div class='col-sm-8'><input id='{{id}}_normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='{{id}}_GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RemedialActionScheme" };
-                super.submit (obj);
-                temp = document.getElementById ("armed").checked; if (temp) obj.armed = true;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = RemedialActionSchemeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; }
-                temp = document.getElementById ("normalArmed").checked; if (temp) obj.normalArmed = true;
-                temp = document.getElementById ("GateArmed").value; if ("" != temp) obj.GateArmed = temp;
+                var obj = obj || { id: id, cls: "RemedialActionScheme" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_armed").checked; if (temp) obj.armed = true;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = RemedialActionSchemeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; }
+                temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj.normalArmed = true;
+                temp = document.getElementById (id + "_GateArmed").value; if ("" != temp) obj.GateArmed = temp;
 
                 return (obj);
             }
@@ -508,39 +508,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StageTrigger_collapse" aria-expanded="true" aria-controls="StageTrigger_collapse" style="margin-left: 10px;">StageTrigger</a></legend>
-                    <div id="StageTrigger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StageTrigger_collapse" aria-expanded="true" aria-controls="{{id}}_StageTrigger_collapse" style="margin-left: 10px;">StageTrigger</a></legend>
+                    <div id="{{id}}_StageTrigger_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='armed'>armed: </label><div class='col-sm-8'><input id='armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='normalArmed'>normalArmed: </label><div class='col-sm-8'><input id='normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Stage'>Stage: </label><div class='col-sm-8'><input id='Stage' class='form-control' type='text'{{#Stage}} value='{{Stage}}'{{/Stage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GateTrigger'>GateTrigger: </label><div class='col-sm-8'><input id='GateTrigger' class='form-control' type='text'{{#GateTrigger}} value='{{GateTrigger}}'{{/GateTrigger}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProtectiveActionCollection'>ProtectiveActionCollection: </label><div class='col-sm-8'><input id='ProtectiveActionCollection' class='form-control' type='text'{{#ProtectiveActionCollection}} value='{{ProtectiveActionCollection}}'{{/ProtectiveActionCollection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GateComCondition'>GateComCondition: </label><div class='col-sm-8'><input id='GateComCondition' class='form-control' type='text'{{#GateComCondition}} value='{{GateComCondition}}'{{/GateComCondition}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_armed'>armed: </label><div class='col-sm-8'><input id='{{id}}_armed' class='form-check-input' type='checkbox'{{#armed}} checked{{/armed}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_normalArmed'>normalArmed: </label><div class='col-sm-8'><input id='{{id}}_normalArmed' class='form-check-input' type='checkbox'{{#normalArmed}} checked{{/normalArmed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Stage'>Stage: </label><div class='col-sm-8'><input id='{{id}}_Stage' class='form-control' type='text'{{#Stage}} value='{{Stage}}'{{/Stage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateTrigger'>GateTrigger: </label><div class='col-sm-8'><input id='{{id}}_GateTrigger' class='form-control' type='text'{{#GateTrigger}} value='{{GateTrigger}}'{{/GateTrigger}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateArmed'>GateArmed: </label><div class='col-sm-8'><input id='{{id}}_GateArmed' class='form-control' type='text'{{#GateArmed}} value='{{GateArmed}}'{{/GateArmed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectiveActionCollection'>ProtectiveActionCollection: </label><div class='col-sm-8'><input id='{{id}}_ProtectiveActionCollection' class='form-control' type='text'{{#ProtectiveActionCollection}} value='{{ProtectiveActionCollection}}'{{/ProtectiveActionCollection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateComCondition'>GateComCondition: </label><div class='col-sm-8'><input id='{{id}}_GateComCondition' class='form-control' type='text'{{#GateComCondition}} value='{{GateComCondition}}'{{/GateComCondition}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "StageTrigger" };
-                super.submit (obj);
-                temp = document.getElementById ("armed").checked; if (temp) obj.armed = true;
-                temp = document.getElementById ("normalArmed").checked; if (temp) obj.normalArmed = true;
-                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById ("Stage").value; if ("" != temp) obj.Stage = temp;
-                temp = document.getElementById ("GateTrigger").value; if ("" != temp) obj.GateTrigger = temp;
-                temp = document.getElementById ("GateArmed").value; if ("" != temp) obj.GateArmed = temp;
-                temp = document.getElementById ("ProtectiveActionCollection").value; if ("" != temp) obj.ProtectiveActionCollection = temp;
-                temp = document.getElementById ("GateComCondition").value; if ("" != temp) obj.GateComCondition = temp;
+                var obj = obj || { id: id, cls: "StageTrigger" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_armed").checked; if (temp) obj.armed = true;
+                temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj.normalArmed = true;
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById (id + "_Stage").value; if ("" != temp) obj.Stage = temp;
+                temp = document.getElementById (id + "_GateTrigger").value; if ("" != temp) obj.GateTrigger = temp;
+                temp = document.getElementById (id + "_GateArmed").value; if ("" != temp) obj.GateArmed = temp;
+                temp = document.getElementById (id + "_ProtectiveActionCollection").value; if ("" != temp) obj.ProtectiveActionCollection = temp;
+                temp = document.getElementById (id + "_GateComCondition").value; if ("" != temp) obj.GateComCondition = temp;
 
                 return (obj);
             }
@@ -654,35 +654,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectiveAction_collapse" aria-expanded="true" aria-controls="ProtectiveAction_collapse" style="margin-left: 10px;">ProtectiveAction</a></legend>
-                    <div id="ProtectiveAction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectiveAction_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveAction_collapse" style="margin-left: 10px;">ProtectiveAction</a></legend>
+                    <div id="{{id}}_ProtectiveAction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='enabled'>enabled: </label><div class='col-sm-8'><input id='enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='normalEnabled'>normalEnabled: </label><div class='col-sm-8'><input id='normalEnabled' class='form-check-input' type='checkbox'{{#normalEnabled}} checked{{/normalEnabled}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProtectionEquipment'>ProtectionEquipment: </label><div class='col-sm-8'><input id='ProtectionEquipment' class='form-control' type='text'{{#ProtectionEquipment}} value='{{ProtectionEquipment}}'{{/ProtectionEquipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GateComCondition'>GateComCondition: </label><div class='col-sm-8'><input id='GateComCondition' class='form-control' type='text'{{#GateComCondition}} value='{{GateComCondition}}'{{/GateComCondition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProtectiveActionCollection'>ProtectiveActionCollection: </label><div class='col-sm-8'><input id='ProtectiveActionCollection' class='form-control' type='text'{{#ProtectiveActionCollection}} value='{{ProtectiveActionCollection}}'{{/ProtectiveActionCollection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GateEnabledCondition'>GateEnabledCondition: </label><div class='col-sm-8'><input id='GateEnabledCondition' class='form-control' type='text'{{#GateEnabledCondition}} value='{{GateEnabledCondition}}'{{/GateEnabledCondition}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_enabled'>enabled: </label><div class='col-sm-8'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_normalEnabled'>normalEnabled: </label><div class='col-sm-8'><input id='{{id}}_normalEnabled' class='form-check-input' type='checkbox'{{#normalEnabled}} checked{{/normalEnabled}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectionEquipment'>ProtectionEquipment: </label><div class='col-sm-8'><input id='{{id}}_ProtectionEquipment' class='form-control' type='text'{{#ProtectionEquipment}} value='{{ProtectionEquipment}}'{{/ProtectionEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateComCondition'>GateComCondition: </label><div class='col-sm-8'><input id='{{id}}_GateComCondition' class='form-control' type='text'{{#GateComCondition}} value='{{GateComCondition}}'{{/GateComCondition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectiveActionCollection'>ProtectiveActionCollection: </label><div class='col-sm-8'><input id='{{id}}_ProtectiveActionCollection' class='form-control' type='text'{{#ProtectiveActionCollection}} value='{{ProtectiveActionCollection}}'{{/ProtectiveActionCollection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateEnabledCondition'>GateEnabledCondition: </label><div class='col-sm-8'><input id='{{id}}_GateEnabledCondition' class='form-control' type='text'{{#GateEnabledCondition}} value='{{GateEnabledCondition}}'{{/GateEnabledCondition}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProtectiveAction" };
-                super.submit (obj);
-                temp = document.getElementById ("enabled").checked; if (temp) obj.enabled = true;
-                temp = document.getElementById ("normalEnabled").checked; if (temp) obj.normalEnabled = true;
-                temp = document.getElementById ("ProtectionEquipment").value; if ("" != temp) obj.ProtectionEquipment = temp;
-                temp = document.getElementById ("GateComCondition").value; if ("" != temp) obj.GateComCondition = temp;
-                temp = document.getElementById ("ProtectiveActionCollection").value; if ("" != temp) obj.ProtectiveActionCollection = temp;
-                temp = document.getElementById ("GateEnabledCondition").value; if ("" != temp) obj.GateEnabledCondition = temp;
+                var obj = obj || { id: id, cls: "ProtectiveAction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_enabled").checked; if (temp) obj.enabled = true;
+                temp = document.getElementById (id + "_normalEnabled").checked; if (temp) obj.normalEnabled = true;
+                temp = document.getElementById (id + "_ProtectionEquipment").value; if ("" != temp) obj.ProtectionEquipment = temp;
+                temp = document.getElementById (id + "_GateComCondition").value; if ("" != temp) obj.GateComCondition = temp;
+                temp = document.getElementById (id + "_ProtectiveActionCollection").value; if ("" != temp) obj.ProtectiveActionCollection = temp;
+                temp = document.getElementById (id + "_GateEnabledCondition").value; if ("" != temp) obj.GateEnabledCondition = temp;
 
                 return (obj);
             }
@@ -791,31 +791,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementCalculatorInput_collapse" aria-expanded="true" aria-controls="MeasurementCalculatorInput_collapse" style="margin-left: 10px;">MeasurementCalculatorInput</a></legend>
-                    <div id="MeasurementCalculatorInput_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeasurementCalculatorInput_collapse" aria-expanded="true" aria-controls="{{id}}_MeasurementCalculatorInput_collapse" style="margin-left: 10px;">MeasurementCalculatorInput</a></legend>
+                    <div id="{{id}}_MeasurementCalculatorInput_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='absoluteValue'>absoluteValue: </label><div class='col-sm-8'><input id='absoluteValue' class='form-check-input' type='checkbox'{{#absoluteValue}} checked{{/absoluteValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='order'>order: </label><div class='col-sm-8'><input id='order' class='form-control' type='text'{{#order}} value='{{order}}'{{/order}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementCalculator'>MeasurementCalculator: </label><div class='col-sm-8'><input id='MeasurementCalculator' class='form-control' type='text'{{#MeasurementCalculator}} value='{{MeasurementCalculator}}'{{/MeasurementCalculator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Measurement'>Measurement: </label><div class='col-sm-8'><input id='Measurement' class='form-control' type='text'{{#Measurement}} value='{{Measurement}}'{{/Measurement}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_absoluteValue'>absoluteValue: </label><div class='col-sm-8'><input id='{{id}}_absoluteValue' class='form-check-input' type='checkbox'{{#absoluteValue}} checked{{/absoluteValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_order'>order: </label><div class='col-sm-8'><input id='{{id}}_order' class='form-control' type='text'{{#order}} value='{{order}}'{{/order}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementCalculator'>MeasurementCalculator: </label><div class='col-sm-8'><input id='{{id}}_MeasurementCalculator' class='form-control' type='text'{{#MeasurementCalculator}} value='{{MeasurementCalculator}}'{{/MeasurementCalculator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurement'>Measurement: </label><div class='col-sm-8'><input id='{{id}}_Measurement' class='form-control' type='text'{{#Measurement}} value='{{Measurement}}'{{/Measurement}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MeasurementCalculatorInput" };
-                super.submit (obj);
-                temp = document.getElementById ("absoluteValue").checked; if (temp) obj.absoluteValue = true;
-                temp = document.getElementById ("order").value; if ("" != temp) obj.order = temp;
-                temp = document.getElementById ("MeasurementCalculator").value; if ("" != temp) obj.MeasurementCalculator = temp;
-                temp = document.getElementById ("Measurement").value; if ("" != temp) obj.Measurement = temp;
+                var obj = obj || { id: id, cls: "MeasurementCalculatorInput" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj.absoluteValue = true;
+                temp = document.getElementById (id + "_order").value; if ("" != temp) obj.order = temp;
+                temp = document.getElementById (id + "_MeasurementCalculator").value; if ("" != temp) obj.MeasurementCalculator = temp;
+                temp = document.getElementById (id + "_Measurement").value; if ("" != temp) obj.Measurement = temp;
 
                 return (obj);
             }
@@ -958,25 +958,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Gate_collapse" aria-expanded="true" aria-controls="Gate_collapse" style="margin-left: 10px;">Gate</a></legend>
-                    <div id="Gate_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Gate_collapse" aria-expanded="true" aria-controls="{{id}}_Gate_collapse" style="margin-left: 10px;">Gate</a></legend>
+                    <div id="{{id}}_Gate_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#GateLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GateLogicKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#GateLogicKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GateLogicKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Gate" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = GateLogicKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; }
+                var obj = obj || { id: id, cls: "Gate" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = GateLogicKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; }
 
                 return (obj);
             }
@@ -1087,27 +1087,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Stage_collapse" aria-expanded="true" aria-controls="Stage_collapse" style="margin-left: 10px;">Stage</a></legend>
-                    <div id="Stage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Stage_collapse" aria-expanded="true" aria-controls="{{id}}_Stage_collapse" style="margin-left: 10px;">Stage</a></legend>
+                    <div id="{{id}}_Stage_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemedialActionScheme'>RemedialActionScheme: </label><div class='col-sm-8'><input id='RemedialActionScheme' class='form-control' type='text'{{#RemedialActionScheme}} value='{{RemedialActionScheme}}'{{/RemedialActionScheme}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemedialActionScheme'>RemedialActionScheme: </label><div class='col-sm-8'><input id='{{id}}_RemedialActionScheme' class='form-control' type='text'{{#RemedialActionScheme}} value='{{RemedialActionScheme}}'{{/RemedialActionScheme}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Stage" };
-                super.submit (obj);
-                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById ("RemedialActionScheme").value; if ("" != temp) obj.RemedialActionScheme = temp;
+                var obj = obj || { id: id, cls: "Stage" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById (id + "_RemedialActionScheme").value; if ("" != temp) obj.RemedialActionScheme = temp;
 
                 return (obj);
             }
@@ -1215,25 +1215,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeasurementCalculator_collapse" aria-expanded="true" aria-controls="MeasurementCalculator_collapse" style="margin-left: 10px;">MeasurementCalculator</a></legend>
-                    <div id="MeasurementCalculator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeasurementCalculator_collapse" aria-expanded="true" aria-controls="{{id}}_MeasurementCalculator_collapse" style="margin-left: 10px;">MeasurementCalculator</a></legend>
+                    <div id="{{id}}_MeasurementCalculator_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#CalculationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CalculationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#CalculationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CalculationKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MeasurementCalculator" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = CalculationKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; }
+                var obj = obj || { id: id, cls: "MeasurementCalculator" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CalculationKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; }
 
                 return (obj);
             }
@@ -1332,27 +1332,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TriggerCondition_collapse" aria-expanded="true" aria-controls="TriggerCondition_collapse" style="margin-left: 10px;">TriggerCondition</a></legend>
-                    <div id="TriggerCondition_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TriggerCondition_collapse" aria-expanded="true" aria-controls="{{id}}_TriggerCondition_collapse" style="margin-left: 10px;">TriggerCondition</a></legend>
+                    <div id="{{id}}_TriggerCondition_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemedialActionScheme'>RemedialActionScheme: </label><div class='col-sm-8'><input id='RemedialActionScheme' class='form-control' type='text'{{#RemedialActionScheme}} value='{{RemedialActionScheme}}'{{/RemedialActionScheme}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GateTrigger'>GateTrigger: </label><div class='col-sm-8'><input id='GateTrigger' class='form-control' type='text'{{#GateTrigger}} value='{{GateTrigger}}'{{/GateTrigger}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemedialActionScheme'>RemedialActionScheme: </label><div class='col-sm-8'><input id='{{id}}_RemedialActionScheme' class='form-control' type='text'{{#RemedialActionScheme}} value='{{RemedialActionScheme}}'{{/RemedialActionScheme}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateTrigger'>GateTrigger: </label><div class='col-sm-8'><input id='{{id}}_GateTrigger' class='form-control' type='text'{{#GateTrigger}} value='{{GateTrigger}}'{{/GateTrigger}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TriggerCondition" };
-                super.submit (obj);
-                temp = document.getElementById ("RemedialActionScheme").value; if ("" != temp) obj.RemedialActionScheme = temp;
-                temp = document.getElementById ("GateTrigger").value; if ("" != temp) obj.GateTrigger = temp;
+                var obj = obj || { id: id, cls: "TriggerCondition" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RemedialActionScheme").value; if ("" != temp) obj.RemedialActionScheme = temp;
+                temp = document.getElementById (id + "_GateTrigger").value; if ("" != temp) obj.GateTrigger = temp;
 
                 return (obj);
             }
@@ -1455,8 +1455,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectiveActionCollection_collapse" aria-expanded="true" aria-controls="ProtectiveActionCollection_collapse" style="margin-left: 10px;">ProtectiveActionCollection</a></legend>
-                    <div id="ProtectiveActionCollection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectiveActionCollection_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveActionCollection_collapse" style="margin-left: 10px;">ProtectiveActionCollection</a></legend>
+                    <div id="{{id}}_ProtectiveActionCollection_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -1466,10 +1466,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ProtectiveActionCollection" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ProtectiveActionCollection" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1570,27 +1570,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PinEquipment_collapse" aria-expanded="true" aria-controls="PinEquipment_collapse" style="margin-left: 10px;">PinEquipment</a></legend>
-                    <div id="PinEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PinEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_PinEquipment_collapse" style="margin-left: 10px;">PinEquipment</a></legend>
+                    <div id="{{id}}_PinEquipment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + GateInputPin.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#PinEquipmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinEquipmentKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#PinEquipmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinEquipmentKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PinEquipment" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PinEquipmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; }
-                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+                var obj = obj || { id: id, cls: "PinEquipment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinEquipmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; }
+                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);
             }
@@ -1685,25 +1685,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PinGate_collapse" aria-expanded="true" aria-controls="PinGate_collapse" style="margin-left: 10px;">PinGate</a></legend>
-                    <div id="PinGate_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PinGate_collapse" aria-expanded="true" aria-controls="{{id}}_PinGate_collapse" style="margin-left: 10px;">PinGate</a></legend>
+                    <div id="{{id}}_PinGate_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + GateInputPin.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GateOutput'>GateOutput: </label><div class='col-sm-8'><input id='GateOutput' class='form-control' type='text'{{#GateOutput}} value='{{GateOutput}}'{{/GateOutput}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GateOutput'>GateOutput: </label><div class='col-sm-8'><input id='{{id}}_GateOutput' class='form-control' type='text'{{#GateOutput}} value='{{GateOutput}}'{{/GateOutput}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PinGate" };
-                super.submit (obj);
-                temp = document.getElementById ("GateOutput").value; if ("" != temp) obj.GateOutput = temp;
+                var obj = obj || { id: id, cls: "PinGate" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_GateOutput").value; if ("" != temp) obj.GateOutput = temp;
 
                 return (obj);
             }
@@ -1803,27 +1803,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PinTerminal_collapse" aria-expanded="true" aria-controls="PinTerminal_collapse" style="margin-left: 10px;">PinTerminal</a></legend>
-                    <div id="PinTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PinTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_PinTerminal_collapse" style="margin-left: 10px;">PinTerminal</a></legend>
+                    <div id="{{id}}_PinTerminal_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + GateInputPin.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#PinTerminalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinTerminalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#PinTerminalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinTerminalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PinTerminal" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PinTerminalKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; }
-                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                var obj = obj || { id: id, cls: "PinTerminal" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinTerminalKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; }
+                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
                 return (obj);
             }
@@ -1923,27 +1923,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PinBranchGroup_collapse" aria-expanded="true" aria-controls="PinBranchGroup_collapse" style="margin-left: 10px;">PinBranchGroup</a></legend>
-                    <div id="PinBranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PinBranchGroup_collapse" aria-expanded="true" aria-controls="{{id}}_PinBranchGroup_collapse" style="margin-left: 10px;">PinBranchGroup</a></legend>
+                    <div id="{{id}}_PinBranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + GateInputPin.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#PinBranchGroupKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinBranchGroupKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BranchGroup'>BranchGroup: </label><div class='col-sm-8'><input id='BranchGroup' class='form-control' type='text'{{#BranchGroup}} value='{{BranchGroup}}'{{/BranchGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#PinBranchGroupKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PinBranchGroupKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BranchGroup'>BranchGroup: </label><div class='col-sm-8'><input id='{{id}}_BranchGroup' class='form-control' type='text'{{#BranchGroup}} value='{{BranchGroup}}'{{/BranchGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PinBranchGroup" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PinBranchGroupKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; }
-                temp = document.getElementById ("BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
+                var obj = obj || { id: id, cls: "PinBranchGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinBranchGroupKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; }
+                temp = document.getElementById (id + "_BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
 
                 return (obj);
             }
@@ -2041,27 +2041,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PinMeasurement_collapse" aria-expanded="true" aria-controls="PinMeasurement_collapse" style="margin-left: 10px;">PinMeasurement</a></legend>
-                    <div id="PinMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PinMeasurement_collapse" aria-expanded="true" aria-controls="{{id}}_PinMeasurement_collapse" style="margin-left: 10px;">PinMeasurement</a></legend>
+                    <div id="{{id}}_PinMeasurement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + GateInputPin.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Measurement'>Measurement: </label><div class='col-sm-8'><input id='Measurement' class='form-control' type='text'{{#Measurement}} value='{{Measurement}}'{{/Measurement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementCalculator'>MeasurementCalculator: </label><div class='col-sm-8'><input id='MeasurementCalculator' class='form-control' type='text'{{#MeasurementCalculator}} value='{{MeasurementCalculator}}'{{/MeasurementCalculator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurement'>Measurement: </label><div class='col-sm-8'><input id='{{id}}_Measurement' class='form-control' type='text'{{#Measurement}} value='{{Measurement}}'{{/Measurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementCalculator'>MeasurementCalculator: </label><div class='col-sm-8'><input id='{{id}}_MeasurementCalculator' class='form-control' type='text'{{#MeasurementCalculator}} value='{{MeasurementCalculator}}'{{/MeasurementCalculator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PinMeasurement" };
-                super.submit (obj);
-                temp = document.getElementById ("Measurement").value; if ("" != temp) obj.Measurement = temp;
-                temp = document.getElementById ("MeasurementCalculator").value; if ("" != temp) obj.MeasurementCalculator = temp;
+                var obj = obj || { id: id, cls: "PinMeasurement" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Measurement").value; if ("" != temp) obj.Measurement = temp;
+                temp = document.getElementById (id + "_MeasurementCalculator").value; if ("" != temp) obj.MeasurementCalculator = temp;
 
                 return (obj);
             }
@@ -2163,29 +2163,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectiveActionRegulation_collapse" aria-expanded="true" aria-controls="ProtectiveActionRegulation_collapse" style="margin-left: 10px;">ProtectiveActionRegulation</a></legend>
-                    <div id="ProtectiveActionRegulation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectiveActionRegulation_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveActionRegulation_collapse" style="margin-left: 10px;">ProtectiveActionRegulation</a></legend>
+                    <div id="{{id}}_ProtectiveActionRegulation_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ProtectiveAction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isRegulating'>isRegulating: </label><div class='col-sm-8'><input id='isRegulating' class='form-check-input' type='checkbox'{{#isRegulating}} checked{{/isRegulating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='targetValue'>targetValue: </label><div class='col-sm-8'><input id='targetValue' class='form-control' type='text'{{#targetValue}} value='{{targetValue}}'{{/targetValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegulatingControl'>RegulatingControl: </label><div class='col-sm-8'><input id='RegulatingControl' class='form-control' type='text'{{#RegulatingControl}} value='{{RegulatingControl}}'{{/RegulatingControl}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isRegulating'>isRegulating: </label><div class='col-sm-8'><input id='{{id}}_isRegulating' class='form-check-input' type='checkbox'{{#isRegulating}} checked{{/isRegulating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_targetValue'>targetValue: </label><div class='col-sm-8'><input id='{{id}}_targetValue' class='form-control' type='text'{{#targetValue}} value='{{targetValue}}'{{/targetValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegulatingControl'>RegulatingControl: </label><div class='col-sm-8'><input id='{{id}}_RegulatingControl' class='form-control' type='text'{{#RegulatingControl}} value='{{RegulatingControl}}'{{/RegulatingControl}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProtectiveActionRegulation" };
-                super.submit (obj);
-                temp = document.getElementById ("isRegulating").checked; if (temp) obj.isRegulating = true;
-                temp = document.getElementById ("targetValue").value; if ("" != temp) obj.targetValue = temp;
-                temp = document.getElementById ("RegulatingControl").value; if ("" != temp) obj.RegulatingControl = temp;
+                var obj = obj || { id: id, cls: "ProtectiveActionRegulation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_isRegulating").checked; if (temp) obj.isRegulating = true;
+                temp = document.getElementById (id + "_targetValue").value; if ("" != temp) obj.targetValue = temp;
+                temp = document.getElementById (id + "_RegulatingControl").value; if ("" != temp) obj.RegulatingControl = temp;
 
                 return (obj);
             }
@@ -2305,39 +2305,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectiveActionAdjustment_collapse" aria-expanded="true" aria-controls="ProtectiveActionAdjustment_collapse" style="margin-left: 10px;">ProtectiveActionAdjustment</a></legend>
-                    <div id="ProtectiveActionAdjustment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectiveActionAdjustment_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveActionAdjustment_collapse" style="margin-left: 10px;">ProtectiveActionAdjustment</a></legend>
+                    <div id="{{id}}_ProtectiveActionAdjustment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ProtectiveAction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='byPercentage'>byPercentage: </label><div class='col-sm-8'><input id='byPercentage' class='form-control' type='text'{{#byPercentage}} value='{{byPercentage}}'{{/byPercentage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='byValue'>byValue: </label><div class='col-sm-8'><input id='byValue' class='form-control' type='text'{{#byValue}} value='{{byValue}}'{{/byValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ProtectiveActionAdjustmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProtectiveActionAdjustmentKind}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='reduce'>reduce: </label><div class='col-sm-8'><input id='reduce' class='form-check-input' type='checkbox'{{#reduce}} checked{{/reduce}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='setValue'>setValue: </label><div class='col-sm-8'><input id='setValue' class='form-control' type='text'{{#setValue}} value='{{setValue}}'{{/setValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Measurement'>Measurement: </label><div class='col-sm-8'><input id='Measurement' class='form-control' type='text'{{#Measurement}} value='{{Measurement}}'{{/Measurement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_byPercentage'>byPercentage: </label><div class='col-sm-8'><input id='{{id}}_byPercentage' class='form-control' type='text'{{#byPercentage}} value='{{byPercentage}}'{{/byPercentage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_byValue'>byValue: </label><div class='col-sm-8'><input id='{{id}}_byValue' class='form-control' type='text'{{#byValue}} value='{{byValue}}'{{/byValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#ProtectiveActionAdjustmentKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProtectiveActionAdjustmentKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_reduce'>reduce: </label><div class='col-sm-8'><input id='{{id}}_reduce' class='form-check-input' type='checkbox'{{#reduce}} checked{{/reduce}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_setValue'>setValue: </label><div class='col-sm-8'><input id='{{id}}_setValue' class='form-control' type='text'{{#setValue}} value='{{setValue}}'{{/setValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Measurement'>Measurement: </label><div class='col-sm-8'><input id='{{id}}_Measurement' class='form-control' type='text'{{#Measurement}} value='{{Measurement}}'{{/Measurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCConductingEquipment'>DCConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_DCConductingEquipment' class='form-control' type='text'{{#DCConductingEquipment}} value='{{DCConductingEquipment}}'{{/DCConductingEquipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProtectiveActionAdjustment" };
-                super.submit (obj);
-                temp = document.getElementById ("byPercentage").value; if ("" != temp) obj.byPercentage = temp;
-                temp = document.getElementById ("byValue").value; if ("" != temp) obj.byValue = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ProtectiveActionAdjustmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; }
-                temp = document.getElementById ("reduce").checked; if (temp) obj.reduce = true;
-                temp = document.getElementById ("setValue").value; if ("" != temp) obj.setValue = temp;
-                temp = document.getElementById ("Measurement").value; if ("" != temp) obj.Measurement = temp;
-                temp = document.getElementById ("ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
-                temp = document.getElementById ("DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
+                var obj = obj || { id: id, cls: "ProtectiveActionAdjustment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_byPercentage").value; if ("" != temp) obj.byPercentage = temp;
+                temp = document.getElementById (id + "_byValue").value; if ("" != temp) obj.byValue = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ProtectiveActionAdjustmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; }
+                temp = document.getElementById (id + "_reduce").checked; if (temp) obj.reduce = true;
+                temp = document.getElementById (id + "_setValue").value; if ("" != temp) obj.setValue = temp;
+                temp = document.getElementById (id + "_Measurement").value; if ("" != temp) obj.Measurement = temp;
+                temp = document.getElementById (id + "_ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
+                temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
 
                 return (obj);
             }
@@ -2437,27 +2437,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectiveActionEquipment_collapse" aria-expanded="true" aria-controls="ProtectiveActionEquipment_collapse" style="margin-left: 10px;">ProtectiveActionEquipment</a></legend>
-                    <div id="ProtectiveActionEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectiveActionEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectiveActionEquipment_collapse" style="margin-left: 10px;">ProtectiveActionEquipment</a></legend>
+                    <div id="{{id}}_ProtectiveActionEquipment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ProtectiveAction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inService'>inService: </label><div class='col-sm-8'><input id='inService' class='form-check-input' type='checkbox'{{#inService}} checked{{/inService}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_inService'>inService: </label><div class='col-sm-8'><input id='{{id}}_inService' class='form-check-input' type='checkbox'{{#inService}} checked{{/inService}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProtectiveActionEquipment" };
-                super.submit (obj);
-                temp = document.getElementById ("inService").checked; if (temp) obj.inService = true;
-                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+                var obj = obj || { id: id, cls: "ProtectiveActionEquipment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_inService").checked; if (temp) obj.inService = true;
+                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);
             }

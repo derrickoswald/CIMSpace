@@ -117,39 +117,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRRSegment_collapse" aria-expanded="true" aria-controls="CRRSegment_collapse" style="margin-left: 10px;">CRRSegment</a></legend>
-                    <div id="CRRSegment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CRRSegment_collapse" aria-expanded="true" aria-controls="{{id}}_CRRSegment_collapse" style="margin-left: 10px;">CRRSegment</a></legend>
+                    <div id="{{id}}_CRRSegment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='clearingPrice'>clearingPrice: </label><div class='col-sm-8'><input id='clearingPrice' class='form-control' type='text'{{#clearingPrice}} value='{{clearingPrice}}'{{/clearingPrice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endDateTime'>endDateTime: </label><div class='col-sm-8'><input id='endDateTime' class='form-control' type='text'{{#endDateTime}} value='{{endDateTime}}'{{/endDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDateTime'>startDateTime: </label><div class='col-sm-8'><input id='startDateTime' class='form-control' type='text'{{#startDateTime}} value='{{startDateTime}}'{{/startDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Source'>Source: </label><div class='col-sm-8'><input id='Source' class='form-control' type='text'{{#Source}} value='{{Source}}_string'{{/Source}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Sink'>Sink: </label><div class='col-sm-8'><input id='Sink' class='form-control' type='text'{{#Sink}} value='{{Sink}}_string'{{/Sink}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRR'>CRR: </label><div class='col-sm-8'><input id='CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearingPrice'>clearingPrice: </label><div class='col-sm-8'><input id='{{id}}_clearingPrice' class='form-control' type='text'{{#clearingPrice}} value='{{clearingPrice}}'{{/clearingPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endDateTime'>endDateTime: </label><div class='col-sm-8'><input id='{{id}}_endDateTime' class='form-control' type='text'{{#endDateTime}} value='{{endDateTime}}'{{/endDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startDateTime'>startDateTime: </label><div class='col-sm-8'><input id='{{id}}_startDateTime' class='form-control' type='text'{{#startDateTime}} value='{{startDateTime}}'{{/startDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Source'>Source: </label><div class='col-sm-8'><input id='{{id}}_Source' class='form-control' type='text'{{#Source}} value='{{Source}}_string'{{/Source}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Sink'>Sink: </label><div class='col-sm-8'><input id='{{id}}_Sink' class='form-control' type='text'{{#Sink}} value='{{Sink}}_string'{{/Sink}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CRR'>CRR: </label><div class='col-sm-8'><input id='{{id}}_CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CRRSegment" };
-                super.submit (obj);
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById ("clearingPrice").value; if ("" != temp) obj.clearingPrice = temp;
-                temp = document.getElementById ("endDateTime").value; if ("" != temp) obj.endDateTime = temp;
-                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
-                temp = document.getElementById ("startDateTime").value; if ("" != temp) obj.startDateTime = temp;
-                temp = document.getElementById ("Source").value; if ("" != temp) obj.Source = temp.split (",");
-                temp = document.getElementById ("Sink").value; if ("" != temp) obj.Sink = temp.split (",");
-                temp = document.getElementById ("CRR").value; if ("" != temp) obj.CRR = temp;
+                var obj = obj || { id: id, cls: "CRRSegment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById (id + "_clearingPrice").value; if ("" != temp) obj.clearingPrice = temp;
+                temp = document.getElementById (id + "_endDateTime").value; if ("" != temp) obj.endDateTime = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_startDateTime").value; if ("" != temp) obj.startDateTime = temp;
+                temp = document.getElementById (id + "_Source").value; if ("" != temp) obj.Source = temp.split (",");
+                temp = document.getElementById (id + "_Sink").value; if ("" != temp) obj.Sink = temp.split (",");
+                temp = document.getElementById (id + "_CRR").value; if ("" != temp) obj.CRR = temp;
 
                 return (obj);
             }
@@ -276,37 +276,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRR_collapse" aria-expanded="true" aria-controls="CRR_collapse" style="margin-left: 10px;">CRR</a></legend>
-                    <div id="CRR_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CRR_collapse" aria-expanded="true" aria-controls="{{id}}_CRR_collapse" style="margin-left: 10px;">CRR</a></legend>
+                    <div id="{{id}}_CRR_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cRRcategory'>cRRcategory: </label><div class='col-sm-8'><input id='cRRcategory' class='form-control' type='text'{{#cRRcategory}} value='{{cRRcategory}}'{{/cRRcategory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cRRtype'>cRRtype: </label><div class='col-sm-8'><input id='cRRtype' class='form-control' type='text'{{#cRRtype}} value='{{cRRtype}}'{{/cRRtype}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hedgeType'>hedgeType: </label><div class='col-sm-8'><input id='hedgeType' class='form-control' type='text'{{#hedgeType}} value='{{hedgeType}}'{{/hedgeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeOfUse'>timeOfUse: </label><div class='col-sm-8'><input id='timeOfUse' class='form-control' type='text'{{#timeOfUse}} value='{{timeOfUse}}'{{/timeOfUse}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradeSliceID'>tradeSliceID: </label><div class='col-sm-8'><input id='tradeSliceID' class='form-control' type='text'{{#tradeSliceID}} value='{{tradeSliceID}}'{{/tradeSliceID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRRMarket'>CRRMarket: </label><div class='col-sm-8'><input id='CRRMarket' class='form-control' type='text'{{#CRRMarket}} value='{{CRRMarket}}'{{/CRRMarket}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cRRcategory'>cRRcategory: </label><div class='col-sm-8'><input id='{{id}}_cRRcategory' class='form-control' type='text'{{#cRRcategory}} value='{{cRRcategory}}'{{/cRRcategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cRRtype'>cRRtype: </label><div class='col-sm-8'><input id='{{id}}_cRRtype' class='form-control' type='text'{{#cRRtype}} value='{{cRRtype}}'{{/cRRtype}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hedgeType'>hedgeType: </label><div class='col-sm-8'><input id='{{id}}_hedgeType' class='form-control' type='text'{{#hedgeType}} value='{{hedgeType}}'{{/hedgeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeOfUse'>timeOfUse: </label><div class='col-sm-8'><input id='{{id}}_timeOfUse' class='form-control' type='text'{{#timeOfUse}} value='{{timeOfUse}}'{{/timeOfUse}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeSliceID'>tradeSliceID: </label><div class='col-sm-8'><input id='{{id}}_tradeSliceID' class='form-control' type='text'{{#tradeSliceID}} value='{{tradeSliceID}}'{{/tradeSliceID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CRRMarket'>CRRMarket: </label><div class='col-sm-8'><input id='{{id}}_CRRMarket' class='form-control' type='text'{{#CRRMarket}} value='{{CRRMarket}}'{{/CRRMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CRR" };
-                super.submit (obj);
-                temp = document.getElementById ("cRRcategory").value; if ("" != temp) obj.cRRcategory = temp;
-                temp = document.getElementById ("cRRtype").value; if ("" != temp) obj.cRRtype = temp;
-                temp = document.getElementById ("hedgeType").value; if ("" != temp) obj.hedgeType = temp;
-                temp = document.getElementById ("timeOfUse").value; if ("" != temp) obj.timeOfUse = temp;
-                temp = document.getElementById ("tradeSliceID").value; if ("" != temp) obj.tradeSliceID = temp;
-                temp = document.getElementById ("CRRMarket").value; if ("" != temp) obj.CRRMarket = temp;
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                var obj = obj || { id: id, cls: "CRR" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_cRRcategory").value; if ("" != temp) obj.cRRcategory = temp;
+                temp = document.getElementById (id + "_cRRtype").value; if ("" != temp) obj.cRRtype = temp;
+                temp = document.getElementById (id + "_hedgeType").value; if ("" != temp) obj.hedgeType = temp;
+                temp = document.getElementById (id + "_timeOfUse").value; if ("" != temp) obj.timeOfUse = temp;
+                temp = document.getElementById (id + "_tradeSliceID").value; if ("" != temp) obj.tradeSliceID = temp;
+                temp = document.getElementById (id + "_CRRMarket").value; if ("" != temp) obj.CRRMarket = temp;
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
 
                 return (obj);
             }
@@ -413,31 +413,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CRROrgRole_collapse" aria-expanded="true" aria-controls="CRROrgRole_collapse" style="margin-left: 10px;">CRROrgRole</a></legend>
-                    <div id="CRROrgRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CRROrgRole_collapse" aria-expanded="true" aria-controls="{{id}}_CRROrgRole_collapse" style="margin-left: 10px;">CRROrgRole</a></legend>
+                    <div id="{{id}}_CRROrgRole_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.OrganisationRole.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><input id='kind' class='form-control' type='text'{{#kind}} value='{{kind}}'{{/kind}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRR'>CRR: </label><div class='col-sm-8'><input id='CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><input id='{{id}}_kind' class='form-control' type='text'{{#kind}} value='{{kind}}'{{/kind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CRR'>CRR: </label><div class='col-sm-8'><input id='{{id}}_CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CRROrgRole" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) obj.kind = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("CRR").value; if ("" != temp) obj.CRR = temp;
-                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
+                var obj = obj || { id: id, cls: "CRROrgRole" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) obj.kind = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_CRR").value; if ("" != temp) obj.CRR = temp;
+                temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
 
                 return (obj);
             }

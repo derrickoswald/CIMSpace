@@ -104,33 +104,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceCapacity_collapse" aria-expanded="true" aria-controls="ResourceCapacity_collapse" style="margin-left: 10px;">ResourceCapacity</a></legend>
-                    <div id="ResourceCapacity_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceCapacity_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceCapacity_collapse" style="margin-left: 10px;">ResourceCapacity</a></legend>
+                    <div id="{{id}}_ResourceCapacity_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacityType'>capacityType: </label><div class='col-sm-8'><input id='capacityType' class='form-control' type='text'{{#capacityType}} value='{{capacityType}}'{{/capacityType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumCapacity'>maximumCapacity: </label><div class='col-sm-8'><input id='maximumCapacity' class='form-control' type='text'{{#maximumCapacity}} value='{{maximumCapacity}}'{{/maximumCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumCapacity'>minimumCapacity: </label><div class='col-sm-8'><input id='minimumCapacity' class='form-control' type='text'{{#minimumCapacity}} value='{{minimumCapacity}}'{{/minimumCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='defaultCapacity'>defaultCapacity: </label><div class='col-sm-8'><input id='defaultCapacity' class='form-control' type='text'{{#defaultCapacity}} value='{{defaultCapacity}}'{{/defaultCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacityType'>capacityType: </label><div class='col-sm-8'><input id='{{id}}_capacityType' class='form-control' type='text'{{#capacityType}} value='{{capacityType}}'{{/capacityType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumCapacity'>maximumCapacity: </label><div class='col-sm-8'><input id='{{id}}_maximumCapacity' class='form-control' type='text'{{#maximumCapacity}} value='{{maximumCapacity}}'{{/maximumCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumCapacity'>minimumCapacity: </label><div class='col-sm-8'><input id='{{id}}_minimumCapacity' class='form-control' type='text'{{#minimumCapacity}} value='{{minimumCapacity}}'{{/minimumCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultCapacity'>defaultCapacity: </label><div class='col-sm-8'><input id='{{id}}_defaultCapacity' class='form-control' type='text'{{#defaultCapacity}} value='{{defaultCapacity}}'{{/defaultCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceCapacity" };
-                super.submit (obj);
-                temp = document.getElementById ("capacityType").value; if ("" != temp) obj.capacityType = temp;
-                temp = document.getElementById ("maximumCapacity").value; if ("" != temp) obj.maximumCapacity = temp;
-                temp = document.getElementById ("minimumCapacity").value; if ("" != temp) obj.minimumCapacity = temp;
-                temp = document.getElementById ("defaultCapacity").value; if ("" != temp) obj.defaultCapacity = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                var obj = obj || { id: id, cls: "ResourceCapacity" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_capacityType").value; if ("" != temp) obj.capacityType = temp;
+                temp = document.getElementById (id + "_maximumCapacity").value; if ("" != temp) obj.maximumCapacity = temp;
+                temp = document.getElementById (id + "_minimumCapacity").value; if ("" != temp) obj.minimumCapacity = temp;
+                temp = document.getElementById (id + "_defaultCapacity").value; if ("" != temp) obj.defaultCapacity = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
 
                 return (obj);
             }
@@ -243,37 +243,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceAncillaryServiceQualification_collapse" aria-expanded="true" aria-controls="ResourceAncillaryServiceQualification_collapse" style="margin-left: 10px;">ResourceAncillaryServiceQualification</a></legend>
-                    <div id="ResourceAncillaryServiceQualification_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceAncillaryServiceQualification_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceAncillaryServiceQualification_collapse" style="margin-left: 10px;">ResourceAncillaryServiceQualification</a></legend>
+                    <div id="{{id}}_ResourceAncillaryServiceQualification_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedCapacity'>certifiedCapacity: </label><div class='col-sm-8'><input id='certifiedCapacity' class='form-control' type='text'{{#certifiedCapacity}} value='{{certifiedCapacity}}'{{/certifiedCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='market'>market: </label><div class='col-sm-8'><input id='market' class='form-control' type='text'{{#market}} value='{{market}}'{{/market}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualificationFlag'>qualificationFlag: </label><div class='col-sm-8'><input id='qualificationFlag' class='form-control' type='text'{{#qualificationFlag}} value='{{qualificationFlag}}'{{/qualificationFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedCapacity'>certifiedCapacity: </label><div class='col-sm-8'><input id='{{id}}_certifiedCapacity' class='form-control' type='text'{{#certifiedCapacity}} value='{{certifiedCapacity}}'{{/certifiedCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_market'>market: </label><div class='col-sm-8'><input id='{{id}}_market' class='form-control' type='text'{{#market}} value='{{market}}'{{/market}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationFlag'>qualificationFlag: </label><div class='col-sm-8'><input id='{{id}}_qualificationFlag' class='form-control' type='text'{{#qualificationFlag}} value='{{qualificationFlag}}'{{/qualificationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceAncillaryServiceQualification" };
-                super.submit (obj);
-                temp = document.getElementById ("certifiedCapacity").value; if ("" != temp) obj.certifiedCapacity = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("market").value; if ("" != temp) obj.market = temp;
-                temp = document.getElementById ("qualificationFlag").value; if ("" != temp) obj.qualificationFlag = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                var obj = obj || { id: id, cls: "ResourceAncillaryServiceQualification" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_certifiedCapacity").value; if ("" != temp) obj.certifiedCapacity = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_market").value; if ("" != temp) obj.market = temp;
+                temp = document.getElementById (id + "_qualificationFlag").value; if ("" != temp) obj.qualificationFlag = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
             }
@@ -393,35 +393,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktContingency_collapse" aria-expanded="true" aria-controls="MktContingency_collapse" style="margin-left: 10px;">MktContingency</a></legend>
-                    <div id="MktContingency_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktContingency_collapse" aria-expanded="true" aria-controls="{{id}}_MktContingency_collapse" style="margin-left: 10px;">MktContingency</a></legend>
+                    <div id="{{id}}_MktContingency_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Contingency.Contingency.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='loadRolloverFlag'>loadRolloverFlag: </label><div class='col-sm-8'><input id='loadRolloverFlag' class='form-check-input' type='checkbox'{{#loadRolloverFlag}} checked{{/loadRolloverFlag}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='ltcControlFlag'>ltcControlFlag: </label><div class='col-sm-8'><input id='ltcControlFlag' class='form-check-input' type='checkbox'{{#ltcControlFlag}} checked{{/ltcControlFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='participationFactorSet'>participationFactorSet: </label><div class='col-sm-8'><input id='participationFactorSet' class='form-control' type='text'{{#participationFactorSet}} value='{{participationFactorSet}}'{{/participationFactorSet}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='screeningFlag'>screeningFlag: </label><div class='col-sm-8'><input id='screeningFlag' class='form-check-input' type='checkbox'{{#screeningFlag}} checked{{/screeningFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransferInterfaceSolutionB'>TransferInterfaceSolutionB: </label><div class='col-sm-8'><input id='TransferInterfaceSolutionB' class='form-control' type='text'{{#TransferInterfaceSolutionB}} value='{{TransferInterfaceSolutionB}}'{{/TransferInterfaceSolutionB}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransferInterfaceSolutionA'>TransferInterfaceSolutionA: </label><div class='col-sm-8'><input id='TransferInterfaceSolutionA' class='form-control' type='text'{{#TransferInterfaceSolutionA}} value='{{TransferInterfaceSolutionA}}'{{/TransferInterfaceSolutionA}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_loadRolloverFlag'>loadRolloverFlag: </label><div class='col-sm-8'><input id='{{id}}_loadRolloverFlag' class='form-check-input' type='checkbox'{{#loadRolloverFlag}} checked{{/loadRolloverFlag}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_ltcControlFlag'>ltcControlFlag: </label><div class='col-sm-8'><input id='{{id}}_ltcControlFlag' class='form-check-input' type='checkbox'{{#ltcControlFlag}} checked{{/ltcControlFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participationFactorSet'>participationFactorSet: </label><div class='col-sm-8'><input id='{{id}}_participationFactorSet' class='form-control' type='text'{{#participationFactorSet}} value='{{participationFactorSet}}'{{/participationFactorSet}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_screeningFlag'>screeningFlag: </label><div class='col-sm-8'><input id='{{id}}_screeningFlag' class='form-check-input' type='checkbox'{{#screeningFlag}} checked{{/screeningFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransferInterfaceSolutionB'>TransferInterfaceSolutionB: </label><div class='col-sm-8'><input id='{{id}}_TransferInterfaceSolutionB' class='form-control' type='text'{{#TransferInterfaceSolutionB}} value='{{TransferInterfaceSolutionB}}'{{/TransferInterfaceSolutionB}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransferInterfaceSolutionA'>TransferInterfaceSolutionA: </label><div class='col-sm-8'><input id='{{id}}_TransferInterfaceSolutionA' class='form-control' type='text'{{#TransferInterfaceSolutionA}} value='{{TransferInterfaceSolutionA}}'{{/TransferInterfaceSolutionA}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MktContingency" };
-                super.submit (obj);
-                temp = document.getElementById ("loadRolloverFlag").checked; if (temp) obj.loadRolloverFlag = true;
-                temp = document.getElementById ("ltcControlFlag").checked; if (temp) obj.ltcControlFlag = true;
-                temp = document.getElementById ("participationFactorSet").value; if ("" != temp) obj.participationFactorSet = temp;
-                temp = document.getElementById ("screeningFlag").checked; if (temp) obj.screeningFlag = true;
-                temp = document.getElementById ("TransferInterfaceSolutionB").value; if ("" != temp) obj.TransferInterfaceSolutionB = temp;
-                temp = document.getElementById ("TransferInterfaceSolutionA").value; if ("" != temp) obj.TransferInterfaceSolutionA = temp;
+                var obj = obj || { id: id, cls: "MktContingency" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_loadRolloverFlag").checked; if (temp) obj.loadRolloverFlag = true;
+                temp = document.getElementById (id + "_ltcControlFlag").checked; if (temp) obj.ltcControlFlag = true;
+                temp = document.getElementById (id + "_participationFactorSet").value; if ("" != temp) obj.participationFactorSet = temp;
+                temp = document.getElementById (id + "_screeningFlag").checked; if (temp) obj.screeningFlag = true;
+                temp = document.getElementById (id + "_TransferInterfaceSolutionB").value; if ("" != temp) obj.TransferInterfaceSolutionB = temp;
+                temp = document.getElementById (id + "_TransferInterfaceSolutionA").value; if ("" != temp) obj.TransferInterfaceSolutionA = temp;
 
                 return (obj);
             }
@@ -519,25 +519,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RMRStartUpCostCurve_collapse" aria-expanded="true" aria-controls="RMRStartUpCostCurve_collapse" style="margin-left: 10px;">RMRStartUpCostCurve</a></legend>
-                    <div id="RMRStartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RMRStartUpCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RMRStartUpCostCurve_collapse" style="margin-left: 10px;">RMRStartUpCostCurve</a></legend>
+                    <div id="{{id}}_RMRStartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RMRStartUpCostCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "RMRStartUpCostCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -652,35 +652,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PnodeDistributionFactor_collapse" aria-expanded="true" aria-controls="PnodeDistributionFactor_collapse" style="margin-left: 10px;">PnodeDistributionFactor</a></legend>
-                    <div id="PnodeDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PnodeDistributionFactor_collapse" aria-expanded="true" aria-controls="{{id}}_PnodeDistributionFactor_collapse" style="margin-left: 10px;">PnodeDistributionFactor</a></legend>
+                    <div id="{{id}}_PnodeDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='offPeak'>offPeak: </label><div class='col-sm-8'><input id='offPeak' class='form-control' type='text'{{#offPeak}} value='{{offPeak}}'{{/offPeak}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='onPeak'>onPeak: </label><div class='col-sm-8'><input id='onPeak' class='form-control' type='text'{{#onPeak}} value='{{onPeak}}'{{/onPeak}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='podLossFactor'>podLossFactor: </label><div class='col-sm-8'><input id='podLossFactor' class='form-control' type='text'{{#podLossFactor}} value='{{podLossFactor}}'{{/podLossFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}'{{/IndividualPnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BidDistributionFactor'>BidDistributionFactor: </label><div class='col-sm-8'><input id='BidDistributionFactor' class='form-control' type='text'{{#BidDistributionFactor}} value='{{BidDistributionFactor}}'{{/BidDistributionFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offPeak'>offPeak: </label><div class='col-sm-8'><input id='{{id}}_offPeak' class='form-control' type='text'{{#offPeak}} value='{{offPeak}}'{{/offPeak}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_onPeak'>onPeak: </label><div class='col-sm-8'><input id='{{id}}_onPeak' class='form-control' type='text'{{#onPeak}} value='{{onPeak}}'{{/onPeak}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_podLossFactor'>podLossFactor: </label><div class='col-sm-8'><input id='{{id}}_podLossFactor' class='form-control' type='text'{{#podLossFactor}} value='{{podLossFactor}}'{{/podLossFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='{{id}}_IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}'{{/IndividualPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidDistributionFactor'>BidDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_BidDistributionFactor' class='form-control' type='text'{{#BidDistributionFactor}} value='{{BidDistributionFactor}}'{{/BidDistributionFactor}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PnodeDistributionFactor" };
-                super.submit (obj);
-                temp = document.getElementById ("factor").value; if ("" != temp) obj.factor = temp;
-                temp = document.getElementById ("offPeak").value; if ("" != temp) obj.offPeak = temp;
-                temp = document.getElementById ("onPeak").value; if ("" != temp) obj.onPeak = temp;
-                temp = document.getElementById ("podLossFactor").value; if ("" != temp) obj.podLossFactor = temp;
-                temp = document.getElementById ("IndividualPnode").value; if ("" != temp) obj.IndividualPnode = temp;
-                temp = document.getElementById ("BidDistributionFactor").value; if ("" != temp) obj.BidDistributionFactor = temp;
+                var obj = obj || { id: id, cls: "PnodeDistributionFactor" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
+                temp = document.getElementById (id + "_offPeak").value; if ("" != temp) obj.offPeak = temp;
+                temp = document.getElementById (id + "_onPeak").value; if ("" != temp) obj.onPeak = temp;
+                temp = document.getElementById (id + "_podLossFactor").value; if ("" != temp) obj.podLossFactor = temp;
+                temp = document.getElementById (id + "_IndividualPnode").value; if ("" != temp) obj.IndividualPnode = temp;
+                temp = document.getElementById (id + "_BidDistributionFactor").value; if ("" != temp) obj.BidDistributionFactor = temp;
 
                 return (obj);
             }
@@ -849,25 +849,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RTO_collapse" aria-expanded="true" aria-controls="RTO_collapse" style="margin-left: 10px;">RTO</a></legend>
-                    <div id="RTO_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RTO_collapse" aria-expanded="true" aria-controls="{{id}}_RTO_collapse" style="margin-left: 10px;">RTO</a></legend>
+                    <div id="{{id}}_RTO_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MarketOpCommon.MktOrganisation.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceGroupReqs'>ResourceGroupReqs: </label><div class='col-sm-8'><input id='ResourceGroupReqs' class='form-control' type='text'{{#ResourceGroupReqs}} value='{{ResourceGroupReqs}}_string'{{/ResourceGroupReqs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceGroupReqs'>ResourceGroupReqs: </label><div class='col-sm-8'><input id='{{id}}_ResourceGroupReqs' class='form-control' type='text'{{#ResourceGroupReqs}} value='{{ResourceGroupReqs}}_string'{{/ResourceGroupReqs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RTO" };
-                super.submit (obj);
-                temp = document.getElementById ("ResourceGroupReqs").value; if ("" != temp) obj.ResourceGroupReqs = temp.split (",");
+                var obj = obj || { id: id, cls: "RTO" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ResourceGroupReqs").value; if ("" != temp) obj.ResourceGroupReqs = temp.split (",");
 
                 return (obj);
             }
@@ -985,31 +985,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SchedulingCoordinatorUser_collapse" aria-expanded="true" aria-controls="SchedulingCoordinatorUser_collapse" style="margin-left: 10px;">SchedulingCoordinatorUser</a></legend>
-                    <div id="SchedulingCoordinatorUser_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SchedulingCoordinatorUser_collapse" aria-expanded="true" aria-controls="{{id}}_SchedulingCoordinatorUser_collapse" style="margin-left: 10px;">SchedulingCoordinatorUser</a></legend>
+                    <div id="{{id}}_SchedulingCoordinatorUser_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loginID'>loginID: </label><div class='col-sm-8'><input id='loginID' class='form-control' type='text'{{#loginID}} value='{{loginID}}'{{/loginID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loginRole'>loginRole: </label><div class='col-sm-8'><input id='loginRole' class='form-control' type='text'{{#loginRole}} value='{{loginRole}}'{{/loginRole}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loginID'>loginID: </label><div class='col-sm-8'><input id='{{id}}_loginID' class='form-control' type='text'{{#loginID}} value='{{loginID}}'{{/loginID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loginRole'>loginRole: </label><div class='col-sm-8'><input id='{{id}}_loginRole' class='form-control' type='text'{{#loginRole}} value='{{loginRole}}'{{/loginRole}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SchedulingCoordinatorUser" };
-                super.submit (obj);
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("loginID").value; if ("" != temp) obj.loginID = temp;
-                temp = document.getElementById ("loginRole").value; if ("" != temp) obj.loginRole = temp;
+                var obj = obj || { id: id, cls: "SchedulingCoordinatorUser" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_loginID").value; if ("" != temp) obj.loginID = temp;
+                temp = document.getElementById (id + "_loginRole").value; if ("" != temp) obj.loginRole = temp;
 
                 return (obj);
             }
@@ -1116,39 +1116,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FlowgateValue_collapse" aria-expanded="true" aria-controls="FlowgateValue_collapse" style="margin-left: 10px;">FlowgateValue</a></legend>
-                    <div id="FlowgateValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FlowgateValue_collapse" aria-expanded="true" aria-controls="{{id}}_FlowgateValue_collapse" style="margin-left: 10px;">FlowgateValue</a></legend>
+                    <div id="{{id}}_FlowgateValue_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='economicDispatchLimit'>economicDispatchLimit: </label><div class='col-sm-8'><input id='economicDispatchLimit' class='form-control' type='text'{{#economicDispatchLimit}} value='{{economicDispatchLimit}}'{{/economicDispatchLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='firmNetworkLimit'>firmNetworkLimit: </label><div class='col-sm-8'><input id='firmNetworkLimit' class='form-control' type='text'{{#firmNetworkLimit}} value='{{firmNetworkLimit}}'{{/firmNetworkLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flowDirectionFlag'>flowDirectionFlag: </label><div class='col-sm-8'><input id='flowDirectionFlag' class='form-control' type='text'{{#flowDirectionFlag}} value='{{flowDirectionFlag}}'{{/flowDirectionFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mktFlow'>mktFlow: </label><div class='col-sm-8'><input id='mktFlow' class='form-control' type='text'{{#mktFlow}} value='{{mktFlow}}'{{/mktFlow}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='netFirmNetworkLimit'>netFirmNetworkLimit: </label><div class='col-sm-8'><input id='netFirmNetworkLimit' class='form-control' type='text'{{#netFirmNetworkLimit}} value='{{netFirmNetworkLimit}}'{{/netFirmNetworkLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FlowgatePartner'>FlowgatePartner: </label><div class='col-sm-8'><input id='FlowgatePartner' class='form-control' type='text'{{#FlowgatePartner}} value='{{FlowgatePartner}}'{{/FlowgatePartner}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_economicDispatchLimit'>economicDispatchLimit: </label><div class='col-sm-8'><input id='{{id}}_economicDispatchLimit' class='form-control' type='text'{{#economicDispatchLimit}} value='{{economicDispatchLimit}}'{{/economicDispatchLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_firmNetworkLimit'>firmNetworkLimit: </label><div class='col-sm-8'><input id='{{id}}_firmNetworkLimit' class='form-control' type='text'{{#firmNetworkLimit}} value='{{firmNetworkLimit}}'{{/firmNetworkLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flowDirectionFlag'>flowDirectionFlag: </label><div class='col-sm-8'><input id='{{id}}_flowDirectionFlag' class='form-control' type='text'{{#flowDirectionFlag}} value='{{flowDirectionFlag}}'{{/flowDirectionFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mktFlow'>mktFlow: </label><div class='col-sm-8'><input id='{{id}}_mktFlow' class='form-control' type='text'{{#mktFlow}} value='{{mktFlow}}'{{/mktFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_netFirmNetworkLimit'>netFirmNetworkLimit: </label><div class='col-sm-8'><input id='{{id}}_netFirmNetworkLimit' class='form-control' type='text'{{#netFirmNetworkLimit}} value='{{netFirmNetworkLimit}}'{{/netFirmNetworkLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FlowgatePartner'>FlowgatePartner: </label><div class='col-sm-8'><input id='{{id}}_FlowgatePartner' class='form-control' type='text'{{#FlowgatePartner}} value='{{FlowgatePartner}}'{{/FlowgatePartner}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FlowgateValue" };
-                super.submit (obj);
-                temp = document.getElementById ("economicDispatchLimit").value; if ("" != temp) obj.economicDispatchLimit = temp;
-                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
-                temp = document.getElementById ("firmNetworkLimit").value; if ("" != temp) obj.firmNetworkLimit = temp;
-                temp = document.getElementById ("flowDirectionFlag").value; if ("" != temp) obj.flowDirectionFlag = temp;
-                temp = document.getElementById ("mktFlow").value; if ("" != temp) obj.mktFlow = temp;
-                temp = document.getElementById ("netFirmNetworkLimit").value; if ("" != temp) obj.netFirmNetworkLimit = temp;
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
-                temp = document.getElementById ("FlowgatePartner").value; if ("" != temp) obj.FlowgatePartner = temp;
+                var obj = obj || { id: id, cls: "FlowgateValue" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_economicDispatchLimit").value; if ("" != temp) obj.economicDispatchLimit = temp;
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById (id + "_firmNetworkLimit").value; if ("" != temp) obj.firmNetworkLimit = temp;
+                temp = document.getElementById (id + "_flowDirectionFlag").value; if ("" != temp) obj.flowDirectionFlag = temp;
+                temp = document.getElementById (id + "_mktFlow").value; if ("" != temp) obj.mktFlow = temp;
+                temp = document.getElementById (id + "_netFirmNetworkLimit").value; if ("" != temp) obj.netFirmNetworkLimit = temp;
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                temp = document.getElementById (id + "_FlowgatePartner").value; if ("" != temp) obj.FlowgatePartner = temp;
 
                 return (obj);
             }
@@ -1255,29 +1255,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceVerifiableCosts_collapse" aria-expanded="true" aria-controls="ResourceVerifiableCosts_collapse" style="margin-left: 10px;">ResourceVerifiableCosts</a></legend>
-                    <div id="ResourceVerifiableCosts_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceVerifiableCosts_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceVerifiableCosts_collapse" style="margin-left: 10px;">ResourceVerifiableCosts</a></legend>
+                    <div id="{{id}}_ResourceVerifiableCosts_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceOperationMaintenanceCost'>ResourceOperationMaintenanceCost: </label><div class='col-sm-8'><input id='ResourceOperationMaintenanceCost' class='form-control' type='text'{{#ResourceOperationMaintenanceCost}} value='{{ResourceOperationMaintenanceCost}}'{{/ResourceOperationMaintenanceCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktHeatRateCurve'>MktHeatRateCurve: </label><div class='col-sm-8'><input id='MktHeatRateCurve' class='form-control' type='text'{{#MktHeatRateCurve}} value='{{MktHeatRateCurve}}'{{/MktHeatRateCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceOperationMaintenanceCost'>ResourceOperationMaintenanceCost: </label><div class='col-sm-8'><input id='{{id}}_ResourceOperationMaintenanceCost' class='form-control' type='text'{{#ResourceOperationMaintenanceCost}} value='{{ResourceOperationMaintenanceCost}}'{{/ResourceOperationMaintenanceCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktHeatRateCurve'>MktHeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_MktHeatRateCurve' class='form-control' type='text'{{#MktHeatRateCurve}} value='{{MktHeatRateCurve}}'{{/MktHeatRateCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceVerifiableCosts" };
-                super.submit (obj);
-                temp = document.getElementById ("ResourceOperationMaintenanceCost").value; if ("" != temp) obj.ResourceOperationMaintenanceCost = temp;
-                temp = document.getElementById ("MktHeatRateCurve").value; if ("" != temp) obj.MktHeatRateCurve = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                var obj = obj || { id: id, cls: "ResourceVerifiableCosts" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ResourceOperationMaintenanceCost").value; if ("" != temp) obj.ResourceOperationMaintenanceCost = temp;
+                temp = document.getElementById (id + "_MktHeatRateCurve").value; if ("" != temp) obj.MktHeatRateCurve = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
             }
@@ -1375,25 +1375,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartUpFuelCurve_collapse" aria-expanded="true" aria-controls="StartUpFuelCurve_collapse" style="margin-left: 10px;">StartUpFuelCurve</a></legend>
-                    <div id="StartUpFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartUpFuelCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpFuelCurve_collapse" style="margin-left: 10px;">StartUpFuelCurve</a></legend>
+                    <div id="{{id}}_StartUpFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "StartUpFuelCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "StartUpFuelCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -1502,33 +1502,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketSkill_collapse" aria-expanded="true" aria-controls="MarketSkill_collapse" style="margin-left: 10px;">MarketSkill</a></legend>
-                    <div id="MarketSkill_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketSkill_collapse" aria-expanded="true" aria-controls="{{id}}_MarketSkill_collapse" style="margin-left: 10px;">MarketSkill</a></legend>
+                    <div id="{{id}}_MarketSkill_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='level'>level: </label><div class='col-sm-8'><input id='level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketQualificationRequirements'>MarketQualificationRequirements: </label><div class='col-sm-8'><input id='MarketQualificationRequirements' class='form-control' type='text'{{#MarketQualificationRequirements}} value='{{MarketQualificationRequirements}}_string'{{/MarketQualificationRequirements}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketPerson'>MarketPerson: </label><div class='col-sm-8'><input id='MarketPerson' class='form-control' type='text'{{#MarketPerson}} value='{{MarketPerson}}'{{/MarketPerson}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationPeriod'>certificationPeriod: </label><div class='col-sm-8'><input id='{{id}}_certificationPeriod' class='form-control' type='text'{{#certificationPeriod}} value='{{certificationPeriod}}'{{/certificationPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDateTime'>effectiveDateTime: </label><div class='col-sm-8'><input id='{{id}}_effectiveDateTime' class='form-control' type='text'{{#effectiveDateTime}} value='{{effectiveDateTime}}'{{/effectiveDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_level'>level: </label><div class='col-sm-8'><input id='{{id}}_level' class='form-control' type='text'{{#level}} value='{{level}}'{{/level}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketQualificationRequirements'>MarketQualificationRequirements: </label><div class='col-sm-8'><input id='{{id}}_MarketQualificationRequirements' class='form-control' type='text'{{#MarketQualificationRequirements}} value='{{MarketQualificationRequirements}}_string'{{/MarketQualificationRequirements}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketPerson'>MarketPerson: </label><div class='col-sm-8'><input id='{{id}}_MarketPerson' class='form-control' type='text'{{#MarketPerson}} value='{{MarketPerson}}'{{/MarketPerson}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketSkill" };
-                super.submit (obj);
-                temp = document.getElementById ("certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
-                temp = document.getElementById ("effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
-                temp = document.getElementById ("level").value; if ("" != temp) obj.level = temp;
-                temp = document.getElementById ("MarketQualificationRequirements").value; if ("" != temp) obj.MarketQualificationRequirements = temp.split (",");
-                temp = document.getElementById ("MarketPerson").value; if ("" != temp) obj.MarketPerson = temp;
+                var obj = obj || { id: id, cls: "MarketSkill" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
+                temp = document.getElementById (id + "_effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
+                temp = document.getElementById (id + "_level").value; if ("" != temp) obj.level = temp;
+                temp = document.getElementById (id + "_MarketQualificationRequirements").value; if ("" != temp) obj.MarketQualificationRequirements = temp.split (",");
+                temp = document.getElementById (id + "_MarketPerson").value; if ("" != temp) obj.MarketPerson = temp;
 
                 return (obj);
             }
@@ -1629,25 +1629,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MeteredSubSystem_collapse" aria-expanded="true" aria-controls="MeteredSubSystem_collapse" style="margin-left: 10px;">MeteredSubSystem</a></legend>
-                    <div id="MeteredSubSystem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MeteredSubSystem_collapse" aria-expanded="true" aria-controls="{{id}}_MeteredSubSystem_collapse" style="margin-left: 10px;">MeteredSubSystem</a></legend>
+                    <div id="{{id}}_MeteredSubSystem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MSSAggregation'>MSSAggregation: </label><div class='col-sm-8'><input id='MSSAggregation' class='form-control' type='text'{{#MSSAggregation}} value='{{MSSAggregation}}'{{/MSSAggregation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MSSAggregation'>MSSAggregation: </label><div class='col-sm-8'><input id='{{id}}_MSSAggregation' class='form-control' type='text'{{#MSSAggregation}} value='{{MSSAggregation}}'{{/MSSAggregation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MeteredSubSystem" };
-                super.submit (obj);
-                temp = document.getElementById ("MSSAggregation").value; if ("" != temp) obj.MSSAggregation = temp;
+                var obj = obj || { id: id, cls: "MeteredSubSystem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_MSSAggregation").value; if ("" != temp) obj.MSSAggregation = temp;
 
                 return (obj);
             }
@@ -1745,8 +1745,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="MktThermalGeneratingUnit_collapse" style="margin-left: 10px;">MktThermalGeneratingUnit</a></legend>
-                    <div id="MktThermalGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktThermalGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_MktThermalGeneratingUnit_collapse" style="margin-left: 10px;">MktThermalGeneratingUnit</a></legend>
+                    <div id="{{id}}_MktThermalGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Production.ThermalGeneratingUnit.prototype.edit_template.call (this) +
                     `
@@ -1756,10 +1756,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "MktThermalGeneratingUnit" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "MktThermalGeneratingUnit" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1877,37 +1877,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FuelRegion_collapse" aria-expanded="true" aria-controls="FuelRegion_collapse" style="margin-left: 10px;">FuelRegion</a></legend>
-                    <div id="FuelRegion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FuelRegion_collapse" aria-expanded="true" aria-controls="{{id}}_FuelRegion_collapse" style="margin-left: 10px;">FuelRegion</a></legend>
+                    <div id="{{id}}_FuelRegion_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelRegionType'>fuelRegionType: </label><div class='col-sm-8'><input id='fuelRegionType' class='form-control' type='text'{{#fuelRegionType}} value='{{fuelRegionType}}'{{/fuelRegionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastModified'>lastModified: </label><div class='col-sm-8'><input id='lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GasPrice'>GasPrice: </label><div class='col-sm-8'><input id='GasPrice' class='form-control' type='text'{{#GasPrice}} value='{{GasPrice}}'{{/GasPrice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OilPrice'>OilPrice: </label><div class='col-sm-8'><input id='OilPrice' class='form-control' type='text'{{#OilPrice}} value='{{OilPrice}}'{{/OilPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelRegionType'>fuelRegionType: </label><div class='col-sm-8'><input id='{{id}}_fuelRegionType' class='form-control' type='text'{{#fuelRegionType}} value='{{fuelRegionType}}'{{/fuelRegionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastModified'>lastModified: </label><div class='col-sm-8'><input id='{{id}}_lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GasPrice'>GasPrice: </label><div class='col-sm-8'><input id='{{id}}_GasPrice' class='form-control' type='text'{{#GasPrice}} value='{{GasPrice}}'{{/GasPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OilPrice'>OilPrice: </label><div class='col-sm-8'><input id='{{id}}_OilPrice' class='form-control' type='text'{{#OilPrice}} value='{{OilPrice}}'{{/OilPrice}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FuelRegion" };
-                super.submit (obj);
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("fuelRegionType").value; if ("" != temp) obj.fuelRegionType = temp;
-                temp = document.getElementById ("lastModified").value; if ("" != temp) obj.lastModified = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
-                temp = document.getElementById ("GasPrice").value; if ("" != temp) obj.GasPrice = temp;
-                temp = document.getElementById ("OilPrice").value; if ("" != temp) obj.OilPrice = temp;
+                var obj = obj || { id: id, cls: "FuelRegion" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_fuelRegionType").value; if ("" != temp) obj.fuelRegionType = temp;
+                temp = document.getElementById (id + "_lastModified").value; if ("" != temp) obj.lastModified = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
+                temp = document.getElementById (id + "_GasPrice").value; if ("" != temp) obj.GasPrice = temp;
+                temp = document.getElementById (id + "_OilPrice").value; if ("" != temp) obj.OilPrice = temp;
 
                 return (obj);
             }
@@ -2005,25 +2005,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RMRHeatRateCurve_collapse" aria-expanded="true" aria-controls="RMRHeatRateCurve_collapse" style="margin-left: 10px;">RMRHeatRateCurve</a></legend>
-                    <div id="RMRHeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RMRHeatRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RMRHeatRateCurve_collapse" style="margin-left: 10px;">RMRHeatRateCurve</a></legend>
+                    <div id="{{id}}_RMRHeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RMRHeatRateCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "RMRHeatRateCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -2147,41 +2147,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MSSAggregation_collapse" aria-expanded="true" aria-controls="MSSAggregation_collapse" style="margin-left: 10px;">MSSAggregation</a></legend>
-                    <div id="MSSAggregation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MSSAggregation_collapse" aria-expanded="true" aria-controls="{{id}}_MSSAggregation_collapse" style="margin-left: 10px;">MSSAggregation</a></legend>
+                    <div id="{{id}}_MSSAggregation_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costRecovery'>costRecovery: </label><div class='col-sm-8'><input id='costRecovery' class='form-control' type='text'{{#costRecovery}} value='{{costRecovery}}'{{/costRecovery}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='grossSettlement'>grossSettlement: </label><div class='col-sm-8'><input id='grossSettlement' class='form-control' type='text'{{#grossSettlement}} value='{{grossSettlement}}'{{/grossSettlement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><input id='ignoreLosses' class='form-control' type='text'{{#ignoreLosses}} value='{{ignoreLosses}}'{{/ignoreLosses}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ignoreMarginalLosses'>ignoreMarginalLosses: </label><div class='col-sm-8'><input id='ignoreMarginalLosses' class='form-control' type='text'{{#ignoreMarginalLosses}} value='{{ignoreMarginalLosses}}'{{/ignoreMarginalLosses}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadFollowing'>loadFollowing: </label><div class='col-sm-8'><input id='loadFollowing' class='form-control' type='text'{{#loadFollowing}} value='{{loadFollowing}}'{{/loadFollowing}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rucProcurement'>rucProcurement: </label><div class='col-sm-8'><input id='rucProcurement' class='form-control' type='text'{{#rucProcurement}} value='{{rucProcurement}}'{{/rucProcurement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costRecovery'>costRecovery: </label><div class='col-sm-8'><input id='{{id}}_costRecovery' class='form-control' type='text'{{#costRecovery}} value='{{costRecovery}}'{{/costRecovery}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_grossSettlement'>grossSettlement: </label><div class='col-sm-8'><input id='{{id}}_grossSettlement' class='form-control' type='text'{{#grossSettlement}} value='{{grossSettlement}}'{{/grossSettlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreLosses' class='form-control' type='text'{{#ignoreLosses}} value='{{ignoreLosses}}'{{/ignoreLosses}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreMarginalLosses'>ignoreMarginalLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreMarginalLosses' class='form-control' type='text'{{#ignoreMarginalLosses}} value='{{ignoreMarginalLosses}}'{{/ignoreMarginalLosses}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowing'>loadFollowing: </label><div class='col-sm-8'><input id='{{id}}_loadFollowing' class='form-control' type='text'{{#loadFollowing}} value='{{loadFollowing}}'{{/loadFollowing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucProcurement'>rucProcurement: </label><div class='col-sm-8'><input id='{{id}}_rucProcurement' class='form-control' type='text'{{#rucProcurement}} value='{{rucProcurement}}'{{/rucProcurement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MSSAggregation" };
-                super.submit (obj);
-                temp = document.getElementById ("costRecovery").value; if ("" != temp) obj.costRecovery = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("grossSettlement").value; if ("" != temp) obj.grossSettlement = temp;
-                temp = document.getElementById ("ignoreLosses").value; if ("" != temp) obj.ignoreLosses = temp;
-                temp = document.getElementById ("ignoreMarginalLosses").value; if ("" != temp) obj.ignoreMarginalLosses = temp;
-                temp = document.getElementById ("loadFollowing").value; if ("" != temp) obj.loadFollowing = temp;
-                temp = document.getElementById ("rucProcurement").value; if ("" != temp) obj.rucProcurement = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
+                var obj = obj || { id: id, cls: "MSSAggregation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_costRecovery").value; if ("" != temp) obj.costRecovery = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_grossSettlement").value; if ("" != temp) obj.grossSettlement = temp;
+                temp = document.getElementById (id + "_ignoreLosses").value; if ("" != temp) obj.ignoreLosses = temp;
+                temp = document.getElementById (id + "_ignoreMarginalLosses").value; if ("" != temp) obj.ignoreMarginalLosses = temp;
+                temp = document.getElementById (id + "_loadFollowing").value; if ("" != temp) obj.loadFollowing = temp;
+                temp = document.getElementById (id + "_rucProcurement").value; if ("" != temp) obj.rucProcurement = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
 
                 return (obj);
             }
@@ -2296,35 +2296,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MPMTestThreshold_collapse" aria-expanded="true" aria-controls="MPMTestThreshold_collapse" style="margin-left: 10px;">MPMTestThreshold</a></legend>
-                    <div id="MPMTestThreshold_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MPMTestThreshold_collapse" aria-expanded="true" aria-controls="{{id}}_MPMTestThreshold_collapse" style="margin-left: 10px;">MPMTestThreshold</a></legend>
+                    <div id="{{id}}_MPMTestThreshold_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='price'>price: </label><div class='col-sm-8'><input id='price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='percent'>percent: </label><div class='col-sm-8'><input id='percent' class='form-control' type='text'{{#percent}} value='{{percent}}'{{/percent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MPMTestCategory'>MPMTestCategory: </label><div class='col-sm-8'><input id='MPMTestCategory' class='form-control' type='text'{{#MPMTestCategory}} value='{{MPMTestCategory}}'{{/MPMTestCategory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}_string'{{/AggregatedPnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_price'>price: </label><div class='col-sm-8'><input id='{{id}}_price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_percent'>percent: </label><div class='col-sm-8'><input id='{{id}}_percent' class='form-control' type='text'{{#percent}} value='{{percent}}'{{/percent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestCategory'>MPMTestCategory: </label><div class='col-sm-8'><input id='{{id}}_MPMTestCategory' class='form-control' type='text'{{#MPMTestCategory}} value='{{MPMTestCategory}}'{{/MPMTestCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}_string'{{/AggregatedPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MPMTestThreshold" };
-                super.submit (obj);
-                temp = document.getElementById ("price").value; if ("" != temp) obj.price = temp;
-                temp = document.getElementById ("percent").value; if ("" != temp) obj.percent = temp;
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("MPMTestCategory").value; if ("" != temp) obj.MPMTestCategory = temp;
-                temp = document.getElementById ("AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp.split (",");
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                var obj = obj || { id: id, cls: "MPMTestThreshold" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_price").value; if ("" != temp) obj.price = temp;
+                temp = document.getElementById (id + "_percent").value; if ("" != temp) obj.percent = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_MPMTestCategory").value; if ("" != temp) obj.MPMTestCategory = temp;
+                temp = document.getElementById (id + "_AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp.split (",");
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
 
                 return (obj);
             }
@@ -2423,25 +2423,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FormerReference_collapse" aria-expanded="true" aria-controls="FormerReference_collapse" style="margin-left: 10px;">FormerReference</a></legend>
-                    <div id="FormerReference_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FormerReference_collapse" aria-expanded="true" aria-controls="{{id}}_FormerReference_collapse" style="margin-left: 10px;">FormerReference</a></legend>
+                    <div id="{{id}}_FormerReference_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FormerReference" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                var obj = obj || { id: id, cls: "FormerReference" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
             }
@@ -2585,53 +2585,53 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketPerson_collapse" aria-expanded="true" aria-controls="MarketPerson_collapse" style="margin-left: 10px;">MarketPerson</a></legend>
-                    <div id="MarketPerson_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketPerson_collapse" aria-expanded="true" aria-controls="{{id}}_MarketPerson_collapse" style="margin-left: 10px;">MarketPerson</a></legend>
+                    <div id="{{id}}_MarketPerson_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='category'>category: </label><div class='col-sm-8'><input id='category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='electronicAddressAlternate'>electronicAddressAlternate: </label><div class='col-sm-8'><input id='electronicAddressAlternate' class='form-control' type='text'{{#electronicAddressAlternate}} value='{{electronicAddressAlternate}}'{{/electronicAddressAlternate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='electronicAddressPrimary'>electronicAddressPrimary: </label><div class='col-sm-8'><input id='electronicAddressPrimary' class='form-control' type='text'{{#electronicAddressPrimary}} value='{{electronicAddressPrimary}}'{{/electronicAddressPrimary}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='firstName'>firstName: </label><div class='col-sm-8'><input id='firstName' class='form-control' type='text'{{#firstName}} value='{{firstName}}'{{/firstName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='governmentID'>governmentID: </label><div class='col-sm-8'><input id='governmentID' class='form-control' type='text'{{#governmentID}} value='{{governmentID}}'{{/governmentID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='landlinePhone'>landlinePhone: </label><div class='col-sm-8'><input id='landlinePhone' class='form-control' type='text'{{#landlinePhone}} value='{{landlinePhone}}'{{/landlinePhone}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastName'>lastName: </label><div class='col-sm-8'><input id='lastName' class='form-control' type='text'{{#lastName}} value='{{lastName}}'{{/lastName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mName'>mName: </label><div class='col-sm-8'><input id='mName' class='form-control' type='text'{{#mName}} value='{{mName}}'{{/mName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mobilePhone'>mobilePhone: </label><div class='col-sm-8'><input id='mobilePhone' class='form-control' type='text'{{#mobilePhone}} value='{{mobilePhone}}'{{/mobilePhone}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='prefix'>prefix: </label><div class='col-sm-8'><input id='prefix' class='form-control' type='text'{{#prefix}} value='{{prefix}}'{{/prefix}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='suffix'>suffix: </label><div class='col-sm-8'><input id='suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='userID'>userID: </label><div class='col-sm-8'><input id='userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_category'>category: </label><div class='col-sm-8'><input id='{{id}}_category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressAlternate'>electronicAddressAlternate: </label><div class='col-sm-8'><input id='{{id}}_electronicAddressAlternate' class='form-control' type='text'{{#electronicAddressAlternate}} value='{{electronicAddressAlternate}}'{{/electronicAddressAlternate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_electronicAddressPrimary'>electronicAddressPrimary: </label><div class='col-sm-8'><input id='{{id}}_electronicAddressPrimary' class='form-control' type='text'{{#electronicAddressPrimary}} value='{{electronicAddressPrimary}}'{{/electronicAddressPrimary}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_firstName'>firstName: </label><div class='col-sm-8'><input id='{{id}}_firstName' class='form-control' type='text'{{#firstName}} value='{{firstName}}'{{/firstName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_governmentID'>governmentID: </label><div class='col-sm-8'><input id='{{id}}_governmentID' class='form-control' type='text'{{#governmentID}} value='{{governmentID}}'{{/governmentID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_landlinePhone'>landlinePhone: </label><div class='col-sm-8'><input id='{{id}}_landlinePhone' class='form-control' type='text'{{#landlinePhone}} value='{{landlinePhone}}'{{/landlinePhone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastName'>lastName: </label><div class='col-sm-8'><input id='{{id}}_lastName' class='form-control' type='text'{{#lastName}} value='{{lastName}}'{{/lastName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mName'>mName: </label><div class='col-sm-8'><input id='{{id}}_mName' class='form-control' type='text'{{#mName}} value='{{mName}}'{{/mName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mobilePhone'>mobilePhone: </label><div class='col-sm-8'><input id='{{id}}_mobilePhone' class='form-control' type='text'{{#mobilePhone}} value='{{mobilePhone}}'{{/mobilePhone}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_prefix'>prefix: </label><div class='col-sm-8'><input id='{{id}}_prefix' class='form-control' type='text'{{#prefix}} value='{{prefix}}'{{/prefix}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_specialNeed'>specialNeed: </label><div class='col-sm-8'><input id='{{id}}_specialNeed' class='form-control' type='text'{{#specialNeed}} value='{{specialNeed}}'{{/specialNeed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_suffix'>suffix: </label><div class='col-sm-8'><input id='{{id}}_suffix' class='form-control' type='text'{{#suffix}} value='{{suffix}}'{{/suffix}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_userID'>userID: </label><div class='col-sm-8'><input id='{{id}}_userID' class='form-control' type='text'{{#userID}} value='{{userID}}'{{/userID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketPerson" };
-                super.submit (obj);
-                temp = document.getElementById ("category").value; if ("" != temp) obj.category = temp;
-                temp = document.getElementById ("electronicAddressAlternate").value; if ("" != temp) obj.electronicAddressAlternate = temp;
-                temp = document.getElementById ("electronicAddressPrimary").value; if ("" != temp) obj.electronicAddressPrimary = temp;
-                temp = document.getElementById ("firstName").value; if ("" != temp) obj.firstName = temp;
-                temp = document.getElementById ("governmentID").value; if ("" != temp) obj.governmentID = temp;
-                temp = document.getElementById ("landlinePhone").value; if ("" != temp) obj.landlinePhone = temp;
-                temp = document.getElementById ("lastName").value; if ("" != temp) obj.lastName = temp;
-                temp = document.getElementById ("mName").value; if ("" != temp) obj.mName = temp;
-                temp = document.getElementById ("mobilePhone").value; if ("" != temp) obj.mobilePhone = temp;
-                temp = document.getElementById ("prefix").value; if ("" != temp) obj.prefix = temp;
-                temp = document.getElementById ("specialNeed").value; if ("" != temp) obj.specialNeed = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("suffix").value; if ("" != temp) obj.suffix = temp;
-                temp = document.getElementById ("userID").value; if ("" != temp) obj.userID = temp;
-                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
+                var obj = obj || { id: id, cls: "MarketPerson" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_category").value; if ("" != temp) obj.category = temp;
+                temp = document.getElementById (id + "_electronicAddressAlternate").value; if ("" != temp) obj.electronicAddressAlternate = temp;
+                temp = document.getElementById (id + "_electronicAddressPrimary").value; if ("" != temp) obj.electronicAddressPrimary = temp;
+                temp = document.getElementById (id + "_firstName").value; if ("" != temp) obj.firstName = temp;
+                temp = document.getElementById (id + "_governmentID").value; if ("" != temp) obj.governmentID = temp;
+                temp = document.getElementById (id + "_landlinePhone").value; if ("" != temp) obj.landlinePhone = temp;
+                temp = document.getElementById (id + "_lastName").value; if ("" != temp) obj.lastName = temp;
+                temp = document.getElementById (id + "_mName").value; if ("" != temp) obj.mName = temp;
+                temp = document.getElementById (id + "_mobilePhone").value; if ("" != temp) obj.mobilePhone = temp;
+                temp = document.getElementById (id + "_prefix").value; if ("" != temp) obj.prefix = temp;
+                temp = document.getElementById (id + "_specialNeed").value; if ("" != temp) obj.specialNeed = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_suffix").value; if ("" != temp) obj.suffix = temp;
+                temp = document.getElementById (id + "_userID").value; if ("" != temp) obj.userID = temp;
+                temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
 
                 return (obj);
             }
@@ -2743,31 +2743,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionRightChain_collapse" aria-expanded="true" aria-controls="TransmissionRightChain_collapse" style="margin-left: 10px;">TransmissionRightChain</a></legend>
-                    <div id="TransmissionRightChain_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransmissionRightChain_collapse" aria-expanded="true" aria-controls="{{id}}_TransmissionRightChain_collapse" style="margin-left: 10px;">TransmissionRightChain</a></legend>
+                    <div id="{{id}}_TransmissionRightChain_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Chain_ContractRight'>Chain_ContractRight: </label><div class='col-sm-8'><input id='Chain_ContractRight' class='form-control' type='text'{{#Chain_ContractRight}} value='{{Chain_ContractRight}}'{{/Chain_ContractRight}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Chain_ContractRight'>Chain_ContractRight: </label><div class='col-sm-8'><input id='{{id}}_Chain_ContractRight' class='form-control' type='text'{{#Chain_ContractRight}} value='{{Chain_ContractRight}}'{{/Chain_ContractRight}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TransmissionRightChain" };
-                super.submit (obj);
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
-                temp = document.getElementById ("Chain_ContractRight").value; if ("" != temp) obj.Chain_ContractRight = temp;
+                var obj = obj || { id: id, cls: "TransmissionRightChain" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
+                temp = document.getElementById (id + "_Chain_ContractRight").value; if ("" != temp) obj.Chain_ContractRight = temp;
 
                 return (obj);
             }
@@ -2902,29 +2902,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SchedulingCoordinator_collapse" aria-expanded="true" aria-controls="SchedulingCoordinator_collapse" style="margin-left: 10px;">SchedulingCoordinator</a></legend>
-                    <div id="SchedulingCoordinator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SchedulingCoordinator_collapse" aria-expanded="true" aria-controls="{{id}}_SchedulingCoordinator_collapse" style="margin-left: 10px;">SchedulingCoordinator</a></legend>
+                    <div id="{{id}}_SchedulingCoordinator_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MarketOpCommon.MktOrganisation.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scid'>scid: </label><div class='col-sm-8'><input id='scid' class='form-control' type='text'{{#scid}} value='{{scid}}'{{/scid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadRatio'>LoadRatio: </label><div class='col-sm-8'><input id='LoadRatio' class='form-control' type='text'{{#LoadRatio}} value='{{LoadRatio}}'{{/LoadRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrgansation'>MktOrgansation: </label><div class='col-sm-8'><input id='MktOrgansation' class='form-control' type='text'{{#MktOrgansation}} value='{{MktOrgansation}}'{{/MktOrgansation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scid'>scid: </label><div class='col-sm-8'><input id='{{id}}_scid' class='form-control' type='text'{{#scid}} value='{{scid}}'{{/scid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadRatio'>LoadRatio: </label><div class='col-sm-8'><input id='{{id}}_LoadRatio' class='form-control' type='text'{{#LoadRatio}} value='{{LoadRatio}}'{{/LoadRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrgansation'>MktOrgansation: </label><div class='col-sm-8'><input id='{{id}}_MktOrgansation' class='form-control' type='text'{{#MktOrgansation}} value='{{MktOrgansation}}'{{/MktOrgansation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SchedulingCoordinator" };
-                super.submit (obj);
-                temp = document.getElementById ("scid").value; if ("" != temp) obj.scid = temp;
-                temp = document.getElementById ("LoadRatio").value; if ("" != temp) obj.LoadRatio = temp;
-                temp = document.getElementById ("MktOrgansation").value; if ("" != temp) obj.MktOrgansation = temp;
+                var obj = obj || { id: id, cls: "SchedulingCoordinator" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_scid").value; if ("" != temp) obj.scid = temp;
+                temp = document.getElementById (id + "_LoadRatio").value; if ("" != temp) obj.LoadRatio = temp;
+                temp = document.getElementById (id + "_MktOrgansation").value; if ("" != temp) obj.MktOrgansation = temp;
 
                 return (obj);
             }
@@ -3278,175 +3278,175 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegisteredGenerator_collapse" aria-expanded="true" aria-controls="RegisteredGenerator_collapse" style="margin-left: 10px;">RegisteredGenerator</a></legend>
-                    <div id="RegisteredGenerator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegisteredGenerator_collapse" aria-expanded="true" aria-controls="{{id}}_RegisteredGenerator_collapse" style="margin-left: 10px;">RegisteredGenerator</a></legend>
+                    <div id="{{id}}_RegisteredGenerator_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MarketCommon.RegisteredResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacityFactor'>capacityFactor: </label><div class='col-sm-8'><input id='capacityFactor' class='form-control' type='text'{{#capacityFactor}} value='{{capacityFactor}}'{{/capacityFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coldStartTime'>coldStartTime: </label><div class='col-sm-8'><input id='coldStartTime' class='form-control' type='text'{{#coldStartTime}} value='{{coldStartTime}}'{{/coldStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='combinedCyclePlantName'>combinedCyclePlantName: </label><div class='col-sm-8'><input id='combinedCyclePlantName' class='form-control' type='text'{{#combinedCyclePlantName}} value='{{combinedCyclePlantName}}'{{/combinedCyclePlantName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='commericialOperationDate'>commericialOperationDate: </label><div class='col-sm-8'><input id='commericialOperationDate' class='form-control' type='text'{{#commericialOperationDate}} value='{{commericialOperationDate}}'{{/commericialOperationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='constrainedOutputFlag'>constrainedOutputFlag: </label><div class='col-sm-8'><input id='constrainedOutputFlag' class='form-control' type='text'{{#constrainedOutputFlag}} value='{{constrainedOutputFlag}}'{{/constrainedOutputFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costBasis'>costBasis: </label><div class='col-sm-8'><input id='costBasis' class='form-control' type='text'{{#costBasis}} value='{{costBasis}}'{{/costBasis}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='extremeLongStart'>extremeLongStart: </label><div class='col-sm-8'><input id='extremeLongStart' class='form-control' type='text'{{#extremeLongStart}} value='{{extremeLongStart}}'{{/extremeLongStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelSource'>fuelSource: </label><div class='col-sm-8'><input id='fuelSource' class='form-control' type='text'{{#fuelSource}} value='{{fuelSource}}'{{/fuelSource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highControlLimit'>highControlLimit: </label><div class='col-sm-8'><input id='highControlLimit' class='form-control' type='text'{{#highControlLimit}} value='{{highControlLimit}}'{{/highControlLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotIntTime'>hotIntTime: </label><div class='col-sm-8'><input id='hotIntTime' class='form-control' type='text'{{#hotIntTime}} value='{{hotIntTime}}'{{/hotIntTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hotStartTime'>hotStartTime: </label><div class='col-sm-8'><input id='hotStartTime' class='form-control' type='text'{{#hotStartTime}} value='{{hotStartTime}}'{{/hotStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intColdTime'>intColdTime: </label><div class='col-sm-8'><input id='intColdTime' class='form-control' type='text'{{#intColdTime}} value='{{intColdTime}}'{{/intColdTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intendedPIRP'>intendedPIRP: </label><div class='col-sm-8'><input id='intendedPIRP' class='form-control' type='text'{{#intendedPIRP}} value='{{intendedPIRP}}'{{/intendedPIRP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intStartTime'>intStartTime: </label><div class='col-sm-8'><input id='intStartTime' class='form-control' type='text'{{#intStartTime}} value='{{intStartTime}}'{{/intStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadFollowingDownMSS'>loadFollowingDownMSS: </label><div class='col-sm-8'><input id='loadFollowingDownMSS' class='form-control' type='text'{{#loadFollowingDownMSS}} value='{{loadFollowingDownMSS}}'{{/loadFollowingDownMSS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadFollowingUpMSS'>loadFollowingUpMSS: </label><div class='col-sm-8'><input id='loadFollowingUpMSS' class='form-control' type='text'{{#loadFollowingUpMSS}} value='{{loadFollowingUpMSS}}'{{/loadFollowingUpMSS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowControlLImit'>lowControlLImit: </label><div class='col-sm-8'><input id='lowControlLImit' class='form-control' type='text'{{#lowControlLImit}} value='{{lowControlLImit}}'{{/lowControlLImit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowerControlRate'>lowerControlRate: </label><div class='col-sm-8'><input id='lowerControlRate' class='form-control' type='text'{{#lowerControlRate}} value='{{lowerControlRate}}'{{/lowerControlRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowerRampRate'>lowerRampRate: </label><div class='col-sm-8'><input id='lowerRampRate' class='form-control' type='text'{{#lowerRampRate}} value='{{lowerRampRate}}'{{/lowerRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxDependableCap'>maxDependableCap: </label><div class='col-sm-8'><input id='maxDependableCap' class='form-control' type='text'{{#maxDependableCap}} value='{{maxDependableCap}}'{{/maxDependableCap}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumAllowableSpinningReserve'>maximumAllowableSpinningReserve: </label><div class='col-sm-8'><input id='maximumAllowableSpinningReserve' class='form-control' type='text'{{#maximumAllowableSpinningReserve}} value='{{maximumAllowableSpinningReserve}}'{{/maximumAllowableSpinningReserve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumOperatingMW'>maximumOperatingMW: </label><div class='col-sm-8'><input id='maximumOperatingMW' class='form-control' type='text'{{#maximumOperatingMW}} value='{{maximumOperatingMW}}'{{/maximumOperatingMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxLayOffSelfSchedQty'>maxLayOffSelfSchedQty: </label><div class='col-sm-8'><input id='maxLayOffSelfSchedQty' class='form-control' type='text'{{#maxLayOffSelfSchedQty}} value='{{maxLayOffSelfSchedQty}}'{{/maxLayOffSelfSchedQty}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxMinLoadCost'>maxMinLoadCost: </label><div class='col-sm-8'><input id='maxMinLoadCost' class='form-control' type='text'{{#maxMinLoadCost}} value='{{maxMinLoadCost}}'{{/maxMinLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxPumpingLevel'>maxPumpingLevel: </label><div class='col-sm-8'><input id='maxPumpingLevel' class='form-control' type='text'{{#maxPumpingLevel}} value='{{maxPumpingLevel}}'{{/maxPumpingLevel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxShutdownTime'>maxShutdownTime: </label><div class='col-sm-8'><input id='maxShutdownTime' class='form-control' type='text'{{#maxShutdownTime}} value='{{maxShutdownTime}}'{{/maxShutdownTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxStartUpsPerDay'>maxStartUpsPerDay: </label><div class='col-sm-8'><input id='maxStartUpsPerDay' class='form-control' type='text'{{#maxStartUpsPerDay}} value='{{maxStartUpsPerDay}}'{{/maxStartUpsPerDay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxWeeklyEnergy'>maxWeeklyEnergy: </label><div class='col-sm-8'><input id='maxWeeklyEnergy' class='form-control' type='text'{{#maxWeeklyEnergy}} value='{{maxWeeklyEnergy}}'{{/maxWeeklyEnergy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxWeeklyStarts'>maxWeeklyStarts: </label><div class='col-sm-8'><input id='maxWeeklyStarts' class='form-control' type='text'{{#maxWeeklyStarts}} value='{{maxWeeklyStarts}}'{{/maxWeeklyStarts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumLoadFuelCost'>minimumLoadFuelCost: </label><div class='col-sm-8'><input id='minimumLoadFuelCost' class='form-control' type='text'{{#minimumLoadFuelCost}} value='{{minimumLoadFuelCost}}'{{/minimumLoadFuelCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumOperatingMW'>minimumOperatingMW: </label><div class='col-sm-8'><input id='minimumOperatingMW' class='form-control' type='text'{{#minimumOperatingMW}} value='{{minimumOperatingMW}}'{{/minimumOperatingMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoadCost'>minLoadCost: </label><div class='col-sm-8'><input id='minLoadCost' class='form-control' type='text'{{#minLoadCost}} value='{{minLoadCost}}'{{/minLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mustOfferRA'>mustOfferRA: </label><div class='col-sm-8'><input id='mustOfferRA' class='form-control' type='text'{{#mustOfferRA}} value='{{mustOfferRA}}'{{/mustOfferRA}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nameplateCapacity'>nameplateCapacity: </label><div class='col-sm-8'><input id='nameplateCapacity' class='form-control' type='text'{{#nameplateCapacity}} value='{{nameplateCapacity}}'{{/nameplateCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operatingMaintenanceCost'>operatingMaintenanceCost: </label><div class='col-sm-8'><input id='operatingMaintenanceCost' class='form-control' type='text'{{#operatingMaintenanceCost}} value='{{operatingMaintenanceCost}}'{{/operatingMaintenanceCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operatingMode'>operatingMode: </label><div class='col-sm-8'><input id='operatingMode' class='form-control' type='text'{{#operatingMode}} value='{{operatingMode}}'{{/operatingMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='proxyFlag'>proxyFlag: </label><div class='col-sm-8'><input id='proxyFlag' class='form-control' type='text'{{#proxyFlag}} value='{{proxyFlag}}'{{/proxyFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpingCost'>pumpingCost: </label><div class='col-sm-8'><input id='pumpingCost' class='form-control' type='text'{{#pumpingCost}} value='{{pumpingCost}}'{{/pumpingCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpingFactor'>pumpingFactor: </label><div class='col-sm-8'><input id='pumpingFactor' class='form-control' type='text'{{#pumpingFactor}} value='{{pumpingFactor}}'{{/pumpingFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpMinDownTime'>pumpMinDownTime: </label><div class='col-sm-8'><input id='pumpMinDownTime' class='form-control' type='text'{{#pumpMinDownTime}} value='{{pumpMinDownTime}}'{{/pumpMinDownTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpMinUpTime'>pumpMinUpTime: </label><div class='col-sm-8'><input id='pumpMinUpTime' class='form-control' type='text'{{#pumpMinUpTime}} value='{{pumpMinUpTime}}'{{/pumpMinUpTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpShutdownCost'>pumpShutdownCost: </label><div class='col-sm-8'><input id='pumpShutdownCost' class='form-control' type='text'{{#pumpShutdownCost}} value='{{pumpShutdownCost}}'{{/pumpShutdownCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpShutdownTime'>pumpShutdownTime: </label><div class='col-sm-8'><input id='pumpShutdownTime' class='form-control' type='text'{{#pumpShutdownTime}} value='{{pumpShutdownTime}}'{{/pumpShutdownTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualifyingFacilityOwner'>qualifyingFacilityOwner: </label><div class='col-sm-8'><input id='qualifyingFacilityOwner' class='form-control' type='text'{{#qualifyingFacilityOwner}} value='{{qualifyingFacilityOwner}}'{{/qualifyingFacilityOwner}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quickStartFlag'>quickStartFlag: </label><div class='col-sm-8'><input id='quickStartFlag' class='form-control' type='text'{{#quickStartFlag}} value='{{quickStartFlag}}'{{/quickStartFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='raiseControlRate'>raiseControlRate: </label><div class='col-sm-8'><input id='raiseControlRate' class='form-control' type='text'{{#raiseControlRate}} value='{{raiseControlRate}}'{{/raiseControlRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='raiseRampRate'>raiseRampRate: </label><div class='col-sm-8'><input id='raiseRampRate' class='form-control' type='text'{{#raiseRampRate}} value='{{raiseRampRate}}'{{/raiseRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rampCurveType'>rampCurveType: </label><div class='col-sm-8'><input id='rampCurveType' class='form-control' type='text'{{#rampCurveType}} value='{{rampCurveType}}'{{/rampCurveType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rampMode'>rampMode: </label><div class='col-sm-8'><input id='rampMode' class='form-control' type='text'{{#rampMode}} value='{{rampMode}}'{{/rampMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='regulationFlag'>regulationFlag: </label><div class='col-sm-8'><input id='regulationFlag' class='form-control' type='text'{{#regulationFlag}} value='{{regulationFlag}}'{{/regulationFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='regulationRampRate'>regulationRampRate: </label><div class='col-sm-8'><input id='regulationRampRate' class='form-control' type='text'{{#regulationRampRate}} value='{{regulationRampRate}}'{{/regulationRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='riverSystem'>riverSystem: </label><div class='col-sm-8'><input id='riverSystem' class='form-control' type='text'{{#riverSystem}} value='{{riverSystem}}'{{/riverSystem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMNRFlag'>RMNRFlag: </label><div class='col-sm-8'><input id='RMNRFlag' class='form-control' type='text'{{#RMNRFlag}} value='{{RMNRFlag}}'{{/RMNRFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRFlag'>RMRFlag: </label><div class='col-sm-8'><input id='RMRFlag' class='form-control' type='text'{{#RMRFlag}} value='{{RMRFlag}}'{{/RMRFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRManualIndicator'>RMRManualIndicator: </label><div class='col-sm-8'><input id='RMRManualIndicator' class='form-control' type='text'{{#RMRManualIndicator}} value='{{RMRManualIndicator}}'{{/RMRManualIndicator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMTFlag'>RMTFlag: </label><div class='col-sm-8'><input id='RMTFlag' class='form-control' type='text'{{#RMTFlag}} value='{{RMTFlag}}'{{/RMTFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='spinReserveRamp'>spinReserveRamp: </label><div class='col-sm-8'><input id='spinReserveRamp' class='form-control' type='text'{{#spinReserveRamp}} value='{{spinReserveRamp}}'{{/spinReserveRamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='syncCondCapable'>syncCondCapable: </label><div class='col-sm-8'><input id='syncCondCapable' class='form-control' type='text'{{#syncCondCapable}} value='{{syncCondCapable}}'{{/syncCondCapable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitType'>unitType: </label><div class='col-sm-8'><input id='unitType' class='form-control' type='text'{{#unitType}} value='{{unitType}}'{{/unitType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='useLimitFlag'>useLimitFlag: </label><div class='col-sm-8'><input id='useLimitFlag' class='form-control' type='text'{{#useLimitFlag}} value='{{useLimitFlag}}'{{/useLimitFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRHeatRateCurve'>RMRHeatRateCurve: </label><div class='col-sm-8'><input id='RMRHeatRateCurve' class='form-control' type='text'{{#RMRHeatRateCurve}} value='{{RMRHeatRateCurve}}'{{/RMRHeatRateCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartUpTimeCurve'>StartUpTimeCurve: </label><div class='col-sm-8'><input id='StartUpTimeCurve' class='form-control' type='text'{{#StartUpTimeCurve}} value='{{StartUpTimeCurve}}'{{/StartUpTimeCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FuelCostCurve'>FuelCostCurve: </label><div class='col-sm-8'><input id='FuelCostCurve' class='form-control' type='text'{{#FuelCostCurve}} value='{{FuelCostCurve}}'{{/FuelCostCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRStartUpCostCurve'>RMRStartUpCostCurve: </label><div class='col-sm-8'><input id='RMRStartUpCostCurve' class='form-control' type='text'{{#RMRStartUpCostCurve}} value='{{RMRStartUpCostCurve}}'{{/RMRStartUpCostCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRStartUpTimeCurve'>RMRStartUpTimeCurve: </label><div class='col-sm-8'><input id='RMRStartUpTimeCurve' class='form-control' type='text'{{#RMRStartUpTimeCurve}} value='{{RMRStartUpTimeCurve}}'{{/RMRStartUpTimeCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartUpFuelCurve'>StartUpFuelCurve: </label><div class='col-sm-8'><input id='StartUpFuelCurve' class='form-control' type='text'{{#StartUpFuelCurve}} value='{{StartUpFuelCurve}}'{{/StartUpFuelCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyPriceIndex'>EnergyPriceIndex: </label><div class='col-sm-8'><input id='EnergyPriceIndex' class='form-control' type='text'{{#EnergyPriceIndex}} value='{{EnergyPriceIndex}}'{{/EnergyPriceIndex}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRStartUpFuelCurve'>RMRStartUpFuelCurve: </label><div class='col-sm-8'><input id='RMRStartUpFuelCurve' class='form-control' type='text'{{#RMRStartUpFuelCurve}} value='{{RMRStartUpFuelCurve}}'{{/RMRStartUpFuelCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktHeatRateCurve'>MktHeatRateCurve: </label><div class='col-sm-8'><input id='MktHeatRateCurve' class='form-control' type='text'{{#MktHeatRateCurve}} value='{{MktHeatRateCurve}}'{{/MktHeatRateCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartUpCostCurves'>StartUpCostCurves: </label><div class='col-sm-8'><input id='StartUpCostCurves' class='form-control' type='text'{{#StartUpCostCurves}} value='{{StartUpCostCurves}}_string'{{/StartUpCostCurves}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LocalReliabilityArea'>LocalReliabilityArea: </label><div class='col-sm-8'><input id='LocalReliabilityArea' class='form-control' type='text'{{#LocalReliabilityArea}} value='{{LocalReliabilityArea}}'{{/LocalReliabilityArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RMRStartUpEnergyCurve'>RMRStartUpEnergyCurve: </label><div class='col-sm-8'><input id='RMRStartUpEnergyCurve' class='form-control' type='text'{{#RMRStartUpEnergyCurve}} value='{{RMRStartUpEnergyCurve}}'{{/RMRStartUpEnergyCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartUpEnergyCurve'>StartUpEnergyCurve: </label><div class='col-sm-8'><input id='StartUpEnergyCurve' class='form-control' type='text'{{#StartUpEnergyCurve}} value='{{StartUpEnergyCurve}}'{{/StartUpEnergyCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegulatingLimit'>RegulatingLimit: </label><div class='col-sm-8'><input id='RegulatingLimit' class='form-control' type='text'{{#RegulatingLimit}} value='{{RegulatingLimit}}'{{/RegulatingLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacityFactor'>capacityFactor: </label><div class='col-sm-8'><input id='{{id}}_capacityFactor' class='form-control' type='text'{{#capacityFactor}} value='{{capacityFactor}}'{{/capacityFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coldStartTime'>coldStartTime: </label><div class='col-sm-8'><input id='{{id}}_coldStartTime' class='form-control' type='text'{{#coldStartTime}} value='{{coldStartTime}}'{{/coldStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_combinedCyclePlantName'>combinedCyclePlantName: </label><div class='col-sm-8'><input id='{{id}}_combinedCyclePlantName' class='form-control' type='text'{{#combinedCyclePlantName}} value='{{combinedCyclePlantName}}'{{/combinedCyclePlantName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commericialOperationDate'>commericialOperationDate: </label><div class='col-sm-8'><input id='{{id}}_commericialOperationDate' class='form-control' type='text'{{#commericialOperationDate}} value='{{commericialOperationDate}}'{{/commericialOperationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constrainedOutputFlag'>constrainedOutputFlag: </label><div class='col-sm-8'><input id='{{id}}_constrainedOutputFlag' class='form-control' type='text'{{#constrainedOutputFlag}} value='{{constrainedOutputFlag}}'{{/constrainedOutputFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costBasis'>costBasis: </label><div class='col-sm-8'><input id='{{id}}_costBasis' class='form-control' type='text'{{#costBasis}} value='{{costBasis}}'{{/costBasis}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_extremeLongStart'>extremeLongStart: </label><div class='col-sm-8'><input id='{{id}}_extremeLongStart' class='form-control' type='text'{{#extremeLongStart}} value='{{extremeLongStart}}'{{/extremeLongStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelSource'>fuelSource: </label><div class='col-sm-8'><input id='{{id}}_fuelSource' class='form-control' type='text'{{#fuelSource}} value='{{fuelSource}}'{{/fuelSource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highControlLimit'>highControlLimit: </label><div class='col-sm-8'><input id='{{id}}_highControlLimit' class='form-control' type='text'{{#highControlLimit}} value='{{highControlLimit}}'{{/highControlLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotIntTime'>hotIntTime: </label><div class='col-sm-8'><input id='{{id}}_hotIntTime' class='form-control' type='text'{{#hotIntTime}} value='{{hotIntTime}}'{{/hotIntTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hotStartTime'>hotStartTime: </label><div class='col-sm-8'><input id='{{id}}_hotStartTime' class='form-control' type='text'{{#hotStartTime}} value='{{hotStartTime}}'{{/hotStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intColdTime'>intColdTime: </label><div class='col-sm-8'><input id='{{id}}_intColdTime' class='form-control' type='text'{{#intColdTime}} value='{{intColdTime}}'{{/intColdTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intendedPIRP'>intendedPIRP: </label><div class='col-sm-8'><input id='{{id}}_intendedPIRP' class='form-control' type='text'{{#intendedPIRP}} value='{{intendedPIRP}}'{{/intendedPIRP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intStartTime'>intStartTime: </label><div class='col-sm-8'><input id='{{id}}_intStartTime' class='form-control' type='text'{{#intStartTime}} value='{{intStartTime}}'{{/intStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingDownMSS'>loadFollowingDownMSS: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingDownMSS' class='form-control' type='text'{{#loadFollowingDownMSS}} value='{{loadFollowingDownMSS}}'{{/loadFollowingDownMSS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingUpMSS'>loadFollowingUpMSS: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingUpMSS' class='form-control' type='text'{{#loadFollowingUpMSS}} value='{{loadFollowingUpMSS}}'{{/loadFollowingUpMSS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowControlLImit'>lowControlLImit: </label><div class='col-sm-8'><input id='{{id}}_lowControlLImit' class='form-control' type='text'{{#lowControlLImit}} value='{{lowControlLImit}}'{{/lowControlLImit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerControlRate'>lowerControlRate: </label><div class='col-sm-8'><input id='{{id}}_lowerControlRate' class='form-control' type='text'{{#lowerControlRate}} value='{{lowerControlRate}}'{{/lowerControlRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerRampRate'>lowerRampRate: </label><div class='col-sm-8'><input id='{{id}}_lowerRampRate' class='form-control' type='text'{{#lowerRampRate}} value='{{lowerRampRate}}'{{/lowerRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxDependableCap'>maxDependableCap: </label><div class='col-sm-8'><input id='{{id}}_maxDependableCap' class='form-control' type='text'{{#maxDependableCap}} value='{{maxDependableCap}}'{{/maxDependableCap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumAllowableSpinningReserve'>maximumAllowableSpinningReserve: </label><div class='col-sm-8'><input id='{{id}}_maximumAllowableSpinningReserve' class='form-control' type='text'{{#maximumAllowableSpinningReserve}} value='{{maximumAllowableSpinningReserve}}'{{/maximumAllowableSpinningReserve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumOperatingMW'>maximumOperatingMW: </label><div class='col-sm-8'><input id='{{id}}_maximumOperatingMW' class='form-control' type='text'{{#maximumOperatingMW}} value='{{maximumOperatingMW}}'{{/maximumOperatingMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxLayOffSelfSchedQty'>maxLayOffSelfSchedQty: </label><div class='col-sm-8'><input id='{{id}}_maxLayOffSelfSchedQty' class='form-control' type='text'{{#maxLayOffSelfSchedQty}} value='{{maxLayOffSelfSchedQty}}'{{/maxLayOffSelfSchedQty}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxMinLoadCost'>maxMinLoadCost: </label><div class='col-sm-8'><input id='{{id}}_maxMinLoadCost' class='form-control' type='text'{{#maxMinLoadCost}} value='{{maxMinLoadCost}}'{{/maxMinLoadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxPumpingLevel'>maxPumpingLevel: </label><div class='col-sm-8'><input id='{{id}}_maxPumpingLevel' class='form-control' type='text'{{#maxPumpingLevel}} value='{{maxPumpingLevel}}'{{/maxPumpingLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxShutdownTime'>maxShutdownTime: </label><div class='col-sm-8'><input id='{{id}}_maxShutdownTime' class='form-control' type='text'{{#maxShutdownTime}} value='{{maxShutdownTime}}'{{/maxShutdownTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxStartUpsPerDay'>maxStartUpsPerDay: </label><div class='col-sm-8'><input id='{{id}}_maxStartUpsPerDay' class='form-control' type='text'{{#maxStartUpsPerDay}} value='{{maxStartUpsPerDay}}'{{/maxStartUpsPerDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxWeeklyEnergy'>maxWeeklyEnergy: </label><div class='col-sm-8'><input id='{{id}}_maxWeeklyEnergy' class='form-control' type='text'{{#maxWeeklyEnergy}} value='{{maxWeeklyEnergy}}'{{/maxWeeklyEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxWeeklyStarts'>maxWeeklyStarts: </label><div class='col-sm-8'><input id='{{id}}_maxWeeklyStarts' class='form-control' type='text'{{#maxWeeklyStarts}} value='{{maxWeeklyStarts}}'{{/maxWeeklyStarts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumLoadFuelCost'>minimumLoadFuelCost: </label><div class='col-sm-8'><input id='{{id}}_minimumLoadFuelCost' class='form-control' type='text'{{#minimumLoadFuelCost}} value='{{minimumLoadFuelCost}}'{{/minimumLoadFuelCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumOperatingMW'>minimumOperatingMW: </label><div class='col-sm-8'><input id='{{id}}_minimumOperatingMW' class='form-control' type='text'{{#minimumOperatingMW}} value='{{minimumOperatingMW}}'{{/minimumOperatingMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadCost'>minLoadCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadCost' class='form-control' type='text'{{#minLoadCost}} value='{{minLoadCost}}'{{/minLoadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mustOfferRA'>mustOfferRA: </label><div class='col-sm-8'><input id='{{id}}_mustOfferRA' class='form-control' type='text'{{#mustOfferRA}} value='{{mustOfferRA}}'{{/mustOfferRA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nameplateCapacity'>nameplateCapacity: </label><div class='col-sm-8'><input id='{{id}}_nameplateCapacity' class='form-control' type='text'{{#nameplateCapacity}} value='{{nameplateCapacity}}'{{/nameplateCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMaintenanceCost'>operatingMaintenanceCost: </label><div class='col-sm-8'><input id='{{id}}_operatingMaintenanceCost' class='form-control' type='text'{{#operatingMaintenanceCost}} value='{{operatingMaintenanceCost}}'{{/operatingMaintenanceCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><input id='{{id}}_operatingMode' class='form-control' type='text'{{#operatingMode}} value='{{operatingMode}}'{{/operatingMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_proxyFlag'>proxyFlag: </label><div class='col-sm-8'><input id='{{id}}_proxyFlag' class='form-control' type='text'{{#proxyFlag}} value='{{proxyFlag}}'{{/proxyFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpingCost'>pumpingCost: </label><div class='col-sm-8'><input id='{{id}}_pumpingCost' class='form-control' type='text'{{#pumpingCost}} value='{{pumpingCost}}'{{/pumpingCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpingFactor'>pumpingFactor: </label><div class='col-sm-8'><input id='{{id}}_pumpingFactor' class='form-control' type='text'{{#pumpingFactor}} value='{{pumpingFactor}}'{{/pumpingFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpMinDownTime'>pumpMinDownTime: </label><div class='col-sm-8'><input id='{{id}}_pumpMinDownTime' class='form-control' type='text'{{#pumpMinDownTime}} value='{{pumpMinDownTime}}'{{/pumpMinDownTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpMinUpTime'>pumpMinUpTime: </label><div class='col-sm-8'><input id='{{id}}_pumpMinUpTime' class='form-control' type='text'{{#pumpMinUpTime}} value='{{pumpMinUpTime}}'{{/pumpMinUpTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpShutdownCost'>pumpShutdownCost: </label><div class='col-sm-8'><input id='{{id}}_pumpShutdownCost' class='form-control' type='text'{{#pumpShutdownCost}} value='{{pumpShutdownCost}}'{{/pumpShutdownCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpShutdownTime'>pumpShutdownTime: </label><div class='col-sm-8'><input id='{{id}}_pumpShutdownTime' class='form-control' type='text'{{#pumpShutdownTime}} value='{{pumpShutdownTime}}'{{/pumpShutdownTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualifyingFacilityOwner'>qualifyingFacilityOwner: </label><div class='col-sm-8'><input id='{{id}}_qualifyingFacilityOwner' class='form-control' type='text'{{#qualifyingFacilityOwner}} value='{{qualifyingFacilityOwner}}'{{/qualifyingFacilityOwner}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quickStartFlag'>quickStartFlag: </label><div class='col-sm-8'><input id='{{id}}_quickStartFlag' class='form-control' type='text'{{#quickStartFlag}} value='{{quickStartFlag}}'{{/quickStartFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_raiseControlRate'>raiseControlRate: </label><div class='col-sm-8'><input id='{{id}}_raiseControlRate' class='form-control' type='text'{{#raiseControlRate}} value='{{raiseControlRate}}'{{/raiseControlRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_raiseRampRate'>raiseRampRate: </label><div class='col-sm-8'><input id='{{id}}_raiseRampRate' class='form-control' type='text'{{#raiseRampRate}} value='{{raiseRampRate}}'{{/raiseRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampCurveType'>rampCurveType: </label><div class='col-sm-8'><input id='{{id}}_rampCurveType' class='form-control' type='text'{{#rampCurveType}} value='{{rampCurveType}}'{{/rampCurveType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampMode'>rampMode: </label><div class='col-sm-8'><input id='{{id}}_rampMode' class='form-control' type='text'{{#rampMode}} value='{{rampMode}}'{{/rampMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationFlag'>regulationFlag: </label><div class='col-sm-8'><input id='{{id}}_regulationFlag' class='form-control' type='text'{{#regulationFlag}} value='{{regulationFlag}}'{{/regulationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationRampRate'>regulationRampRate: </label><div class='col-sm-8'><input id='{{id}}_regulationRampRate' class='form-control' type='text'{{#regulationRampRate}} value='{{regulationRampRate}}'{{/regulationRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='{{id}}_resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_riverSystem'>riverSystem: </label><div class='col-sm-8'><input id='{{id}}_riverSystem' class='form-control' type='text'{{#riverSystem}} value='{{riverSystem}}'{{/riverSystem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMNRFlag'>RMNRFlag: </label><div class='col-sm-8'><input id='{{id}}_RMNRFlag' class='form-control' type='text'{{#RMNRFlag}} value='{{RMNRFlag}}'{{/RMNRFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRFlag'>RMRFlag: </label><div class='col-sm-8'><input id='{{id}}_RMRFlag' class='form-control' type='text'{{#RMRFlag}} value='{{RMRFlag}}'{{/RMRFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRManualIndicator'>RMRManualIndicator: </label><div class='col-sm-8'><input id='{{id}}_RMRManualIndicator' class='form-control' type='text'{{#RMRManualIndicator}} value='{{RMRManualIndicator}}'{{/RMRManualIndicator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMTFlag'>RMTFlag: </label><div class='col-sm-8'><input id='{{id}}_RMTFlag' class='form-control' type='text'{{#RMTFlag}} value='{{RMTFlag}}'{{/RMTFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_spinReserveRamp'>spinReserveRamp: </label><div class='col-sm-8'><input id='{{id}}_spinReserveRamp' class='form-control' type='text'{{#spinReserveRamp}} value='{{spinReserveRamp}}'{{/spinReserveRamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_syncCondCapable'>syncCondCapable: </label><div class='col-sm-8'><input id='{{id}}_syncCondCapable' class='form-control' type='text'{{#syncCondCapable}} value='{{syncCondCapable}}'{{/syncCondCapable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitType'>unitType: </label><div class='col-sm-8'><input id='{{id}}_unitType' class='form-control' type='text'{{#unitType}} value='{{unitType}}'{{/unitType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_useLimitFlag'>useLimitFlag: </label><div class='col-sm-8'><input id='{{id}}_useLimitFlag' class='form-control' type='text'{{#useLimitFlag}} value='{{useLimitFlag}}'{{/useLimitFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRHeatRateCurve'>RMRHeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRHeatRateCurve' class='form-control' type='text'{{#RMRHeatRateCurve}} value='{{RMRHeatRateCurve}}'{{/RMRHeatRateCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpTimeCurve'>StartUpTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_StartUpTimeCurve' class='form-control' type='text'{{#StartUpTimeCurve}} value='{{StartUpTimeCurve}}'{{/StartUpTimeCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelCostCurve'>FuelCostCurve: </label><div class='col-sm-8'><input id='{{id}}_FuelCostCurve' class='form-control' type='text'{{#FuelCostCurve}} value='{{FuelCostCurve}}'{{/FuelCostCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRStartUpCostCurve'>RMRStartUpCostCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRStartUpCostCurve' class='form-control' type='text'{{#RMRStartUpCostCurve}} value='{{RMRStartUpCostCurve}}'{{/RMRStartUpCostCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRStartUpTimeCurve'>RMRStartUpTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRStartUpTimeCurve' class='form-control' type='text'{{#RMRStartUpTimeCurve}} value='{{RMRStartUpTimeCurve}}'{{/RMRStartUpTimeCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpFuelCurve'>StartUpFuelCurve: </label><div class='col-sm-8'><input id='{{id}}_StartUpFuelCurve' class='form-control' type='text'{{#StartUpFuelCurve}} value='{{StartUpFuelCurve}}'{{/StartUpFuelCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyPriceIndex'>EnergyPriceIndex: </label><div class='col-sm-8'><input id='{{id}}_EnergyPriceIndex' class='form-control' type='text'{{#EnergyPriceIndex}} value='{{EnergyPriceIndex}}'{{/EnergyPriceIndex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRStartUpFuelCurve'>RMRStartUpFuelCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRStartUpFuelCurve' class='form-control' type='text'{{#RMRStartUpFuelCurve}} value='{{RMRStartUpFuelCurve}}'{{/RMRStartUpFuelCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktHeatRateCurve'>MktHeatRateCurve: </label><div class='col-sm-8'><input id='{{id}}_MktHeatRateCurve' class='form-control' type='text'{{#MktHeatRateCurve}} value='{{MktHeatRateCurve}}'{{/MktHeatRateCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpCostCurves'>StartUpCostCurves: </label><div class='col-sm-8'><input id='{{id}}_StartUpCostCurves' class='form-control' type='text'{{#StartUpCostCurves}} value='{{StartUpCostCurves}}_string'{{/StartUpCostCurves}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LocalReliabilityArea'>LocalReliabilityArea: </label><div class='col-sm-8'><input id='{{id}}_LocalReliabilityArea' class='form-control' type='text'{{#LocalReliabilityArea}} value='{{LocalReliabilityArea}}'{{/LocalReliabilityArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RMRStartUpEnergyCurve'>RMRStartUpEnergyCurve: </label><div class='col-sm-8'><input id='{{id}}_RMRStartUpEnergyCurve' class='form-control' type='text'{{#RMRStartUpEnergyCurve}} value='{{RMRStartUpEnergyCurve}}'{{/RMRStartUpEnergyCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='{{id}}_FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpEnergyCurve'>StartUpEnergyCurve: </label><div class='col-sm-8'><input id='{{id}}_StartUpEnergyCurve' class='form-control' type='text'{{#StartUpEnergyCurve}} value='{{StartUpEnergyCurve}}'{{/StartUpEnergyCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegulatingLimit'>RegulatingLimit: </label><div class='col-sm-8'><input id='{{id}}_RegulatingLimit' class='form-control' type='text'{{#RegulatingLimit}} value='{{RegulatingLimit}}'{{/RegulatingLimit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RegisteredGenerator" };
-                super.submit (obj);
-                temp = document.getElementById ("capacityFactor").value; if ("" != temp) obj.capacityFactor = temp;
-                temp = document.getElementById ("coldStartTime").value; if ("" != temp) obj.coldStartTime = temp;
-                temp = document.getElementById ("combinedCyclePlantName").value; if ("" != temp) obj.combinedCyclePlantName = temp;
-                temp = document.getElementById ("commericialOperationDate").value; if ("" != temp) obj.commericialOperationDate = temp;
-                temp = document.getElementById ("constrainedOutputFlag").value; if ("" != temp) obj.constrainedOutputFlag = temp;
-                temp = document.getElementById ("costBasis").value; if ("" != temp) obj.costBasis = temp;
-                temp = document.getElementById ("extremeLongStart").value; if ("" != temp) obj.extremeLongStart = temp;
-                temp = document.getElementById ("fuelSource").value; if ("" != temp) obj.fuelSource = temp;
-                temp = document.getElementById ("highControlLimit").value; if ("" != temp) obj.highControlLimit = temp;
-                temp = document.getElementById ("hotIntTime").value; if ("" != temp) obj.hotIntTime = temp;
-                temp = document.getElementById ("hotStartTime").value; if ("" != temp) obj.hotStartTime = temp;
-                temp = document.getElementById ("intColdTime").value; if ("" != temp) obj.intColdTime = temp;
-                temp = document.getElementById ("intendedPIRP").value; if ("" != temp) obj.intendedPIRP = temp;
-                temp = document.getElementById ("intStartTime").value; if ("" != temp) obj.intStartTime = temp;
-                temp = document.getElementById ("loadFollowingDownMSS").value; if ("" != temp) obj.loadFollowingDownMSS = temp;
-                temp = document.getElementById ("loadFollowingUpMSS").value; if ("" != temp) obj.loadFollowingUpMSS = temp;
-                temp = document.getElementById ("lowControlLImit").value; if ("" != temp) obj.lowControlLImit = temp;
-                temp = document.getElementById ("lowerControlRate").value; if ("" != temp) obj.lowerControlRate = temp;
-                temp = document.getElementById ("lowerRampRate").value; if ("" != temp) obj.lowerRampRate = temp;
-                temp = document.getElementById ("maxDependableCap").value; if ("" != temp) obj.maxDependableCap = temp;
-                temp = document.getElementById ("maximumAllowableSpinningReserve").value; if ("" != temp) obj.maximumAllowableSpinningReserve = temp;
-                temp = document.getElementById ("maximumOperatingMW").value; if ("" != temp) obj.maximumOperatingMW = temp;
-                temp = document.getElementById ("maxLayOffSelfSchedQty").value; if ("" != temp) obj.maxLayOffSelfSchedQty = temp;
-                temp = document.getElementById ("maxMinLoadCost").value; if ("" != temp) obj.maxMinLoadCost = temp;
-                temp = document.getElementById ("maxPumpingLevel").value; if ("" != temp) obj.maxPumpingLevel = temp;
-                temp = document.getElementById ("maxShutdownTime").value; if ("" != temp) obj.maxShutdownTime = temp;
-                temp = document.getElementById ("maxStartUpsPerDay").value; if ("" != temp) obj.maxStartUpsPerDay = temp;
-                temp = document.getElementById ("maxWeeklyEnergy").value; if ("" != temp) obj.maxWeeklyEnergy = temp;
-                temp = document.getElementById ("maxWeeklyStarts").value; if ("" != temp) obj.maxWeeklyStarts = temp;
-                temp = document.getElementById ("minimumLoadFuelCost").value; if ("" != temp) obj.minimumLoadFuelCost = temp;
-                temp = document.getElementById ("minimumOperatingMW").value; if ("" != temp) obj.minimumOperatingMW = temp;
-                temp = document.getElementById ("minLoadCost").value; if ("" != temp) obj.minLoadCost = temp;
-                temp = document.getElementById ("mustOfferRA").value; if ("" != temp) obj.mustOfferRA = temp;
-                temp = document.getElementById ("nameplateCapacity").value; if ("" != temp) obj.nameplateCapacity = temp;
-                temp = document.getElementById ("operatingMaintenanceCost").value; if ("" != temp) obj.operatingMaintenanceCost = temp;
-                temp = document.getElementById ("operatingMode").value; if ("" != temp) obj.operatingMode = temp;
-                temp = document.getElementById ("proxyFlag").value; if ("" != temp) obj.proxyFlag = temp;
-                temp = document.getElementById ("pumpingCost").value; if ("" != temp) obj.pumpingCost = temp;
-                temp = document.getElementById ("pumpingFactor").value; if ("" != temp) obj.pumpingFactor = temp;
-                temp = document.getElementById ("pumpMinDownTime").value; if ("" != temp) obj.pumpMinDownTime = temp;
-                temp = document.getElementById ("pumpMinUpTime").value; if ("" != temp) obj.pumpMinUpTime = temp;
-                temp = document.getElementById ("pumpShutdownCost").value; if ("" != temp) obj.pumpShutdownCost = temp;
-                temp = document.getElementById ("pumpShutdownTime").value; if ("" != temp) obj.pumpShutdownTime = temp;
-                temp = document.getElementById ("qualifyingFacilityOwner").value; if ("" != temp) obj.qualifyingFacilityOwner = temp;
-                temp = document.getElementById ("quickStartFlag").value; if ("" != temp) obj.quickStartFlag = temp;
-                temp = document.getElementById ("raiseControlRate").value; if ("" != temp) obj.raiseControlRate = temp;
-                temp = document.getElementById ("raiseRampRate").value; if ("" != temp) obj.raiseRampRate = temp;
-                temp = document.getElementById ("rampCurveType").value; if ("" != temp) obj.rampCurveType = temp;
-                temp = document.getElementById ("rampMode").value; if ("" != temp) obj.rampMode = temp;
-                temp = document.getElementById ("regulationFlag").value; if ("" != temp) obj.regulationFlag = temp;
-                temp = document.getElementById ("regulationRampRate").value; if ("" != temp) obj.regulationRampRate = temp;
-                temp = document.getElementById ("resourceSubType").value; if ("" != temp) obj.resourceSubType = temp;
-                temp = document.getElementById ("riverSystem").value; if ("" != temp) obj.riverSystem = temp;
-                temp = document.getElementById ("RMNRFlag").value; if ("" != temp) obj.RMNRFlag = temp;
-                temp = document.getElementById ("RMRFlag").value; if ("" != temp) obj.RMRFlag = temp;
-                temp = document.getElementById ("RMRManualIndicator").value; if ("" != temp) obj.RMRManualIndicator = temp;
-                temp = document.getElementById ("RMTFlag").value; if ("" != temp) obj.RMTFlag = temp;
-                temp = document.getElementById ("spinReserveRamp").value; if ("" != temp) obj.spinReserveRamp = temp;
-                temp = document.getElementById ("syncCondCapable").value; if ("" != temp) obj.syncCondCapable = temp;
-                temp = document.getElementById ("unitType").value; if ("" != temp) obj.unitType = temp;
-                temp = document.getElementById ("useLimitFlag").value; if ("" != temp) obj.useLimitFlag = temp;
-                temp = document.getElementById ("RMRHeatRateCurve").value; if ("" != temp) obj.RMRHeatRateCurve = temp;
-                temp = document.getElementById ("StartUpTimeCurve").value; if ("" != temp) obj.StartUpTimeCurve = temp;
-                temp = document.getElementById ("FuelCostCurve").value; if ("" != temp) obj.FuelCostCurve = temp;
-                temp = document.getElementById ("RMRStartUpCostCurve").value; if ("" != temp) obj.RMRStartUpCostCurve = temp;
-                temp = document.getElementById ("RMRStartUpTimeCurve").value; if ("" != temp) obj.RMRStartUpTimeCurve = temp;
-                temp = document.getElementById ("StartUpFuelCurve").value; if ("" != temp) obj.StartUpFuelCurve = temp;
-                temp = document.getElementById ("EnergyPriceIndex").value; if ("" != temp) obj.EnergyPriceIndex = temp;
-                temp = document.getElementById ("RMRStartUpFuelCurve").value; if ("" != temp) obj.RMRStartUpFuelCurve = temp;
-                temp = document.getElementById ("MktHeatRateCurve").value; if ("" != temp) obj.MktHeatRateCurve = temp;
-                temp = document.getElementById ("StartUpCostCurves").value; if ("" != temp) obj.StartUpCostCurves = temp.split (",");
-                temp = document.getElementById ("LocalReliabilityArea").value; if ("" != temp) obj.LocalReliabilityArea = temp;
-                temp = document.getElementById ("RMRStartUpEnergyCurve").value; if ("" != temp) obj.RMRStartUpEnergyCurve = temp;
-                temp = document.getElementById ("FuelRegion").value; if ("" != temp) obj.FuelRegion = temp;
-                temp = document.getElementById ("StartUpEnergyCurve").value; if ("" != temp) obj.StartUpEnergyCurve = temp;
-                temp = document.getElementById ("RegulatingLimit").value; if ("" != temp) obj.RegulatingLimit = temp;
+                var obj = obj || { id: id, cls: "RegisteredGenerator" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_capacityFactor").value; if ("" != temp) obj.capacityFactor = temp;
+                temp = document.getElementById (id + "_coldStartTime").value; if ("" != temp) obj.coldStartTime = temp;
+                temp = document.getElementById (id + "_combinedCyclePlantName").value; if ("" != temp) obj.combinedCyclePlantName = temp;
+                temp = document.getElementById (id + "_commericialOperationDate").value; if ("" != temp) obj.commericialOperationDate = temp;
+                temp = document.getElementById (id + "_constrainedOutputFlag").value; if ("" != temp) obj.constrainedOutputFlag = temp;
+                temp = document.getElementById (id + "_costBasis").value; if ("" != temp) obj.costBasis = temp;
+                temp = document.getElementById (id + "_extremeLongStart").value; if ("" != temp) obj.extremeLongStart = temp;
+                temp = document.getElementById (id + "_fuelSource").value; if ("" != temp) obj.fuelSource = temp;
+                temp = document.getElementById (id + "_highControlLimit").value; if ("" != temp) obj.highControlLimit = temp;
+                temp = document.getElementById (id + "_hotIntTime").value; if ("" != temp) obj.hotIntTime = temp;
+                temp = document.getElementById (id + "_hotStartTime").value; if ("" != temp) obj.hotStartTime = temp;
+                temp = document.getElementById (id + "_intColdTime").value; if ("" != temp) obj.intColdTime = temp;
+                temp = document.getElementById (id + "_intendedPIRP").value; if ("" != temp) obj.intendedPIRP = temp;
+                temp = document.getElementById (id + "_intStartTime").value; if ("" != temp) obj.intStartTime = temp;
+                temp = document.getElementById (id + "_loadFollowingDownMSS").value; if ("" != temp) obj.loadFollowingDownMSS = temp;
+                temp = document.getElementById (id + "_loadFollowingUpMSS").value; if ("" != temp) obj.loadFollowingUpMSS = temp;
+                temp = document.getElementById (id + "_lowControlLImit").value; if ("" != temp) obj.lowControlLImit = temp;
+                temp = document.getElementById (id + "_lowerControlRate").value; if ("" != temp) obj.lowerControlRate = temp;
+                temp = document.getElementById (id + "_lowerRampRate").value; if ("" != temp) obj.lowerRampRate = temp;
+                temp = document.getElementById (id + "_maxDependableCap").value; if ("" != temp) obj.maxDependableCap = temp;
+                temp = document.getElementById (id + "_maximumAllowableSpinningReserve").value; if ("" != temp) obj.maximumAllowableSpinningReserve = temp;
+                temp = document.getElementById (id + "_maximumOperatingMW").value; if ("" != temp) obj.maximumOperatingMW = temp;
+                temp = document.getElementById (id + "_maxLayOffSelfSchedQty").value; if ("" != temp) obj.maxLayOffSelfSchedQty = temp;
+                temp = document.getElementById (id + "_maxMinLoadCost").value; if ("" != temp) obj.maxMinLoadCost = temp;
+                temp = document.getElementById (id + "_maxPumpingLevel").value; if ("" != temp) obj.maxPumpingLevel = temp;
+                temp = document.getElementById (id + "_maxShutdownTime").value; if ("" != temp) obj.maxShutdownTime = temp;
+                temp = document.getElementById (id + "_maxStartUpsPerDay").value; if ("" != temp) obj.maxStartUpsPerDay = temp;
+                temp = document.getElementById (id + "_maxWeeklyEnergy").value; if ("" != temp) obj.maxWeeklyEnergy = temp;
+                temp = document.getElementById (id + "_maxWeeklyStarts").value; if ("" != temp) obj.maxWeeklyStarts = temp;
+                temp = document.getElementById (id + "_minimumLoadFuelCost").value; if ("" != temp) obj.minimumLoadFuelCost = temp;
+                temp = document.getElementById (id + "_minimumOperatingMW").value; if ("" != temp) obj.minimumOperatingMW = temp;
+                temp = document.getElementById (id + "_minLoadCost").value; if ("" != temp) obj.minLoadCost = temp;
+                temp = document.getElementById (id + "_mustOfferRA").value; if ("" != temp) obj.mustOfferRA = temp;
+                temp = document.getElementById (id + "_nameplateCapacity").value; if ("" != temp) obj.nameplateCapacity = temp;
+                temp = document.getElementById (id + "_operatingMaintenanceCost").value; if ("" != temp) obj.operatingMaintenanceCost = temp;
+                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) obj.operatingMode = temp;
+                temp = document.getElementById (id + "_proxyFlag").value; if ("" != temp) obj.proxyFlag = temp;
+                temp = document.getElementById (id + "_pumpingCost").value; if ("" != temp) obj.pumpingCost = temp;
+                temp = document.getElementById (id + "_pumpingFactor").value; if ("" != temp) obj.pumpingFactor = temp;
+                temp = document.getElementById (id + "_pumpMinDownTime").value; if ("" != temp) obj.pumpMinDownTime = temp;
+                temp = document.getElementById (id + "_pumpMinUpTime").value; if ("" != temp) obj.pumpMinUpTime = temp;
+                temp = document.getElementById (id + "_pumpShutdownCost").value; if ("" != temp) obj.pumpShutdownCost = temp;
+                temp = document.getElementById (id + "_pumpShutdownTime").value; if ("" != temp) obj.pumpShutdownTime = temp;
+                temp = document.getElementById (id + "_qualifyingFacilityOwner").value; if ("" != temp) obj.qualifyingFacilityOwner = temp;
+                temp = document.getElementById (id + "_quickStartFlag").value; if ("" != temp) obj.quickStartFlag = temp;
+                temp = document.getElementById (id + "_raiseControlRate").value; if ("" != temp) obj.raiseControlRate = temp;
+                temp = document.getElementById (id + "_raiseRampRate").value; if ("" != temp) obj.raiseRampRate = temp;
+                temp = document.getElementById (id + "_rampCurveType").value; if ("" != temp) obj.rampCurveType = temp;
+                temp = document.getElementById (id + "_rampMode").value; if ("" != temp) obj.rampMode = temp;
+                temp = document.getElementById (id + "_regulationFlag").value; if ("" != temp) obj.regulationFlag = temp;
+                temp = document.getElementById (id + "_regulationRampRate").value; if ("" != temp) obj.regulationRampRate = temp;
+                temp = document.getElementById (id + "_resourceSubType").value; if ("" != temp) obj.resourceSubType = temp;
+                temp = document.getElementById (id + "_riverSystem").value; if ("" != temp) obj.riverSystem = temp;
+                temp = document.getElementById (id + "_RMNRFlag").value; if ("" != temp) obj.RMNRFlag = temp;
+                temp = document.getElementById (id + "_RMRFlag").value; if ("" != temp) obj.RMRFlag = temp;
+                temp = document.getElementById (id + "_RMRManualIndicator").value; if ("" != temp) obj.RMRManualIndicator = temp;
+                temp = document.getElementById (id + "_RMTFlag").value; if ("" != temp) obj.RMTFlag = temp;
+                temp = document.getElementById (id + "_spinReserveRamp").value; if ("" != temp) obj.spinReserveRamp = temp;
+                temp = document.getElementById (id + "_syncCondCapable").value; if ("" != temp) obj.syncCondCapable = temp;
+                temp = document.getElementById (id + "_unitType").value; if ("" != temp) obj.unitType = temp;
+                temp = document.getElementById (id + "_useLimitFlag").value; if ("" != temp) obj.useLimitFlag = temp;
+                temp = document.getElementById (id + "_RMRHeatRateCurve").value; if ("" != temp) obj.RMRHeatRateCurve = temp;
+                temp = document.getElementById (id + "_StartUpTimeCurve").value; if ("" != temp) obj.StartUpTimeCurve = temp;
+                temp = document.getElementById (id + "_FuelCostCurve").value; if ("" != temp) obj.FuelCostCurve = temp;
+                temp = document.getElementById (id + "_RMRStartUpCostCurve").value; if ("" != temp) obj.RMRStartUpCostCurve = temp;
+                temp = document.getElementById (id + "_RMRStartUpTimeCurve").value; if ("" != temp) obj.RMRStartUpTimeCurve = temp;
+                temp = document.getElementById (id + "_StartUpFuelCurve").value; if ("" != temp) obj.StartUpFuelCurve = temp;
+                temp = document.getElementById (id + "_EnergyPriceIndex").value; if ("" != temp) obj.EnergyPriceIndex = temp;
+                temp = document.getElementById (id + "_RMRStartUpFuelCurve").value; if ("" != temp) obj.RMRStartUpFuelCurve = temp;
+                temp = document.getElementById (id + "_MktHeatRateCurve").value; if ("" != temp) obj.MktHeatRateCurve = temp;
+                temp = document.getElementById (id + "_StartUpCostCurves").value; if ("" != temp) obj.StartUpCostCurves = temp.split (",");
+                temp = document.getElementById (id + "_LocalReliabilityArea").value; if ("" != temp) obj.LocalReliabilityArea = temp;
+                temp = document.getElementById (id + "_RMRStartUpEnergyCurve").value; if ("" != temp) obj.RMRStartUpEnergyCurve = temp;
+                temp = document.getElementById (id + "_FuelRegion").value; if ("" != temp) obj.FuelRegion = temp;
+                temp = document.getElementById (id + "_StartUpEnergyCurve").value; if ("" != temp) obj.StartUpEnergyCurve = temp;
+                temp = document.getElementById (id + "_RegulatingLimit").value; if ("" != temp) obj.RegulatingLimit = temp;
 
                 return (obj);
             }
@@ -3665,49 +3665,49 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Flowgate_collapse" aria-expanded="true" aria-controls="Flowgate_collapse" style="margin-left: 10px;">Flowgate</a></legend>
-                    <div id="Flowgate_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Flowgate_collapse" aria-expanded="true" aria-controls="{{id}}_Flowgate_collapse" style="margin-left: 10px;">Flowgate</a></legend>
+                    <div id="{{id}}_Flowgate_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='direction'>direction: </label><div class='col-sm-8'><input id='direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='exportMWRating'>exportMWRating: </label><div class='col-sm-8'><input id='exportMWRating' class='form-control' type='text'{{#exportMWRating}} value='{{exportMWRating}}'{{/exportMWRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='importMWRating'>importMWRating: </label><div class='col-sm-8'><input id='importMWRating' class='form-control' type='text'{{#importMWRating}} value='{{importMWRating}}'{{/importMWRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='To_SubControlArea'>To_SubControlArea: </label><div class='col-sm-8'><input id='To_SubControlArea' class='form-control' type='text'{{#To_SubControlArea}} value='{{To_SubControlArea}}'{{/To_SubControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SecurityConstraints'>SecurityConstraints: </label><div class='col-sm-8'><input id='SecurityConstraints' class='form-control' type='text'{{#SecurityConstraints}} value='{{SecurityConstraints}}'{{/SecurityConstraints}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktPowerTransformer'>MktPowerTransformer: </label><div class='col-sm-8'><input id='MktPowerTransformer' class='form-control' type='text'{{#MktPowerTransformer}} value='{{MktPowerTransformer}}_string'{{/MktPowerTransformer}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CRR'>CRR: </label><div class='col-sm-8'><input id='CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktLine'>MktLine: </label><div class='col-sm-8'><input id='MktLine' class='form-control' type='text'{{#MktLine}} value='{{MktLine}}_string'{{/MktLine}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='From_SubControlArea'>From_SubControlArea: </label><div class='col-sm-8'><input id='From_SubControlArea' class='form-control' type='text'{{#From_SubControlArea}} value='{{From_SubControlArea}}'{{/From_SubControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenericConstraints'>GenericConstraints: </label><div class='col-sm-8'><input id='GenericConstraints' class='form-control' type='text'{{#GenericConstraints}} value='{{GenericConstraints}}'{{/GenericConstraints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><input id='{{id}}_direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_exportMWRating'>exportMWRating: </label><div class='col-sm-8'><input id='{{id}}_exportMWRating' class='form-control' type='text'{{#exportMWRating}} value='{{exportMWRating}}'{{/exportMWRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_importMWRating'>importMWRating: </label><div class='col-sm-8'><input id='{{id}}_importMWRating' class='form-control' type='text'{{#importMWRating}} value='{{importMWRating}}'{{/importMWRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_To_SubControlArea'>To_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_To_SubControlArea' class='form-control' type='text'{{#To_SubControlArea}} value='{{To_SubControlArea}}'{{/To_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SecurityConstraints'>SecurityConstraints: </label><div class='col-sm-8'><input id='{{id}}_SecurityConstraints' class='form-control' type='text'{{#SecurityConstraints}} value='{{SecurityConstraints}}'{{/SecurityConstraints}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktPowerTransformer'>MktPowerTransformer: </label><div class='col-sm-8'><input id='{{id}}_MktPowerTransformer' class='form-control' type='text'{{#MktPowerTransformer}} value='{{MktPowerTransformer}}_string'{{/MktPowerTransformer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CRR'>CRR: </label><div class='col-sm-8'><input id='{{id}}_CRR' class='form-control' type='text'{{#CRR}} value='{{CRR}}'{{/CRR}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktLine'>MktLine: </label><div class='col-sm-8'><input id='{{id}}_MktLine' class='form-control' type='text'{{#MktLine}} value='{{MktLine}}_string'{{/MktLine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_From_SubControlArea'>From_SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_From_SubControlArea' class='form-control' type='text'{{#From_SubControlArea}} value='{{From_SubControlArea}}'{{/From_SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenericConstraints'>GenericConstraints: </label><div class='col-sm-8'><input id='{{id}}_GenericConstraints' class='form-control' type='text'{{#GenericConstraints}} value='{{GenericConstraints}}'{{/GenericConstraints}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Flowgate" };
-                super.submit (obj);
-                temp = document.getElementById ("direction").value; if ("" != temp) obj.direction = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("exportMWRating").value; if ("" != temp) obj.exportMWRating = temp;
-                temp = document.getElementById ("importMWRating").value; if ("" != temp) obj.importMWRating = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("To_SubControlArea").value; if ("" != temp) obj.To_SubControlArea = temp;
-                temp = document.getElementById ("HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
-                temp = document.getElementById ("SecurityConstraints").value; if ("" != temp) obj.SecurityConstraints = temp;
-                temp = document.getElementById ("MktPowerTransformer").value; if ("" != temp) obj.MktPowerTransformer = temp.split (",");
-                temp = document.getElementById ("CRR").value; if ("" != temp) obj.CRR = temp;
-                temp = document.getElementById ("MktLine").value; if ("" != temp) obj.MktLine = temp.split (",");
-                temp = document.getElementById ("From_SubControlArea").value; if ("" != temp) obj.From_SubControlArea = temp;
-                temp = document.getElementById ("GenericConstraints").value; if ("" != temp) obj.GenericConstraints = temp;
+                var obj = obj || { id: id, cls: "Flowgate" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_direction").value; if ("" != temp) obj.direction = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_exportMWRating").value; if ("" != temp) obj.exportMWRating = temp;
+                temp = document.getElementById (id + "_importMWRating").value; if ("" != temp) obj.importMWRating = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_To_SubControlArea").value; if ("" != temp) obj.To_SubControlArea = temp;
+                temp = document.getElementById (id + "_HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
+                temp = document.getElementById (id + "_SecurityConstraints").value; if ("" != temp) obj.SecurityConstraints = temp;
+                temp = document.getElementById (id + "_MktPowerTransformer").value; if ("" != temp) obj.MktPowerTransformer = temp.split (",");
+                temp = document.getElementById (id + "_CRR").value; if ("" != temp) obj.CRR = temp;
+                temp = document.getElementById (id + "_MktLine").value; if ("" != temp) obj.MktLine = temp.split (",");
+                temp = document.getElementById (id + "_From_SubControlArea").value; if ("" != temp) obj.From_SubControlArea = temp;
+                temp = document.getElementById (id + "_GenericConstraints").value; if ("" != temp) obj.GenericConstraints = temp;
 
                 return (obj);
             }
@@ -3822,25 +3822,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FlowgatePartner_collapse" aria-expanded="true" aria-controls="FlowgatePartner_collapse" style="margin-left: 10px;">FlowgatePartner</a></legend>
-                    <div id="FlowgatePartner_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FlowgatePartner_collapse" aria-expanded="true" aria-controls="{{id}}_FlowgatePartner_collapse" style="margin-left: 10px;">FlowgatePartner</a></legend>
+                    <div id="{{id}}_FlowgatePartner_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FlowgateValue'>FlowgateValue: </label><div class='col-sm-8'><input id='FlowgateValue' class='form-control' type='text'{{#FlowgateValue}} value='{{FlowgateValue}}'{{/FlowgateValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FlowgateValue'>FlowgateValue: </label><div class='col-sm-8'><input id='{{id}}_FlowgateValue' class='form-control' type='text'{{#FlowgateValue}} value='{{FlowgateValue}}'{{/FlowgateValue}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FlowgatePartner" };
-                super.submit (obj);
-                temp = document.getElementById ("FlowgateValue").value; if ("" != temp) obj.FlowgateValue = temp;
+                var obj = obj || { id: id, cls: "FlowgatePartner" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_FlowgateValue").value; if ("" != temp) obj.FlowgateValue = temp;
 
                 return (obj);
             }
@@ -3983,57 +3983,57 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceStartupCost_collapse" aria-expanded="true" aria-controls="ResourceStartupCost_collapse" style="margin-left: 10px;">ResourceStartupCost</a></legend>
-                    <div id="ResourceStartupCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceStartupCost_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceStartupCost_collapse" style="margin-left: 10px;">ResourceStartupCost</a></legend>
+                    <div id="{{id}}_ResourceStartupCost_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelColdStartup'>fuelColdStartup: </label><div class='col-sm-8'><input id='fuelColdStartup' class='form-control' type='text'{{#fuelColdStartup}} value='{{fuelColdStartup}}'{{/fuelColdStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelHotStartup'>fuelHotStartup: </label><div class='col-sm-8'><input id='fuelHotStartup' class='form-control' type='text'{{#fuelHotStartup}} value='{{fuelHotStartup}}'{{/fuelHotStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelIntermediateStartup'>fuelIntermediateStartup: </label><div class='col-sm-8'><input id='fuelIntermediateStartup' class='form-control' type='text'{{#fuelIntermediateStartup}} value='{{fuelIntermediateStartup}}'{{/fuelIntermediateStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelLowSustainedLimit'>fuelLowSustainedLimit: </label><div class='col-sm-8'><input id='fuelLowSustainedLimit' class='form-control' type='text'{{#fuelLowSustainedLimit}} value='{{fuelLowSustainedLimit}}'{{/fuelLowSustainedLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gasPercentColdStartup'>gasPercentColdStartup: </label><div class='col-sm-8'><input id='gasPercentColdStartup' class='form-control' type='text'{{#gasPercentColdStartup}} value='{{gasPercentColdStartup}}'{{/gasPercentColdStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gasPercentHotStartup'>gasPercentHotStartup: </label><div class='col-sm-8'><input id='gasPercentHotStartup' class='form-control' type='text'{{#gasPercentHotStartup}} value='{{gasPercentHotStartup}}'{{/gasPercentHotStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gasPercentIntermediateStartup'>gasPercentIntermediateStartup: </label><div class='col-sm-8'><input id='gasPercentIntermediateStartup' class='form-control' type='text'{{#gasPercentIntermediateStartup}} value='{{gasPercentIntermediateStartup}}'{{/gasPercentIntermediateStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gasPercentLowSustainedLimit'>gasPercentLowSustainedLimit: </label><div class='col-sm-8'><input id='gasPercentLowSustainedLimit' class='form-control' type='text'{{#gasPercentLowSustainedLimit}} value='{{gasPercentLowSustainedLimit}}'{{/gasPercentLowSustainedLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilPercentColdStartup'>oilPercentColdStartup: </label><div class='col-sm-8'><input id='oilPercentColdStartup' class='form-control' type='text'{{#oilPercentColdStartup}} value='{{oilPercentColdStartup}}'{{/oilPercentColdStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilPercentHotStartup'>oilPercentHotStartup: </label><div class='col-sm-8'><input id='oilPercentHotStartup' class='form-control' type='text'{{#oilPercentHotStartup}} value='{{oilPercentHotStartup}}'{{/oilPercentHotStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilPercentIntermediateStartup'>oilPercentIntermediateStartup: </label><div class='col-sm-8'><input id='oilPercentIntermediateStartup' class='form-control' type='text'{{#oilPercentIntermediateStartup}} value='{{oilPercentIntermediateStartup}}'{{/oilPercentIntermediateStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilPercentLowSustainedLimit'>oilPercentLowSustainedLimit: </label><div class='col-sm-8'><input id='oilPercentLowSustainedLimit' class='form-control' type='text'{{#oilPercentLowSustainedLimit}} value='{{oilPercentLowSustainedLimit}}'{{/oilPercentLowSustainedLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solidfuelPercentColdStartup'>solidfuelPercentColdStartup: </label><div class='col-sm-8'><input id='solidfuelPercentColdStartup' class='form-control' type='text'{{#solidfuelPercentColdStartup}} value='{{solidfuelPercentColdStartup}}'{{/solidfuelPercentColdStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solidfuelPercentHotStartup'>solidfuelPercentHotStartup: </label><div class='col-sm-8'><input id='solidfuelPercentHotStartup' class='form-control' type='text'{{#solidfuelPercentHotStartup}} value='{{solidfuelPercentHotStartup}}'{{/solidfuelPercentHotStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solidfuelPercentIntermediateStartup'>solidfuelPercentIntermediateStartup: </label><div class='col-sm-8'><input id='solidfuelPercentIntermediateStartup' class='form-control' type='text'{{#solidfuelPercentIntermediateStartup}} value='{{solidfuelPercentIntermediateStartup}}'{{/solidfuelPercentIntermediateStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solidfuelPercentLowSustainedLimit'>solidfuelPercentLowSustainedLimit: </label><div class='col-sm-8'><input id='solidfuelPercentLowSustainedLimit' class='form-control' type='text'{{#solidfuelPercentLowSustainedLimit}} value='{{solidfuelPercentLowSustainedLimit}}'{{/solidfuelPercentLowSustainedLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelColdStartup'>fuelColdStartup: </label><div class='col-sm-8'><input id='{{id}}_fuelColdStartup' class='form-control' type='text'{{#fuelColdStartup}} value='{{fuelColdStartup}}'{{/fuelColdStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelHotStartup'>fuelHotStartup: </label><div class='col-sm-8'><input id='{{id}}_fuelHotStartup' class='form-control' type='text'{{#fuelHotStartup}} value='{{fuelHotStartup}}'{{/fuelHotStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelIntermediateStartup'>fuelIntermediateStartup: </label><div class='col-sm-8'><input id='{{id}}_fuelIntermediateStartup' class='form-control' type='text'{{#fuelIntermediateStartup}} value='{{fuelIntermediateStartup}}'{{/fuelIntermediateStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelLowSustainedLimit'>fuelLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_fuelLowSustainedLimit' class='form-control' type='text'{{#fuelLowSustainedLimit}} value='{{fuelLowSustainedLimit}}'{{/fuelLowSustainedLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gasPercentColdStartup'>gasPercentColdStartup: </label><div class='col-sm-8'><input id='{{id}}_gasPercentColdStartup' class='form-control' type='text'{{#gasPercentColdStartup}} value='{{gasPercentColdStartup}}'{{/gasPercentColdStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gasPercentHotStartup'>gasPercentHotStartup: </label><div class='col-sm-8'><input id='{{id}}_gasPercentHotStartup' class='form-control' type='text'{{#gasPercentHotStartup}} value='{{gasPercentHotStartup}}'{{/gasPercentHotStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gasPercentIntermediateStartup'>gasPercentIntermediateStartup: </label><div class='col-sm-8'><input id='{{id}}_gasPercentIntermediateStartup' class='form-control' type='text'{{#gasPercentIntermediateStartup}} value='{{gasPercentIntermediateStartup}}'{{/gasPercentIntermediateStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gasPercentLowSustainedLimit'>gasPercentLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_gasPercentLowSustainedLimit' class='form-control' type='text'{{#gasPercentLowSustainedLimit}} value='{{gasPercentLowSustainedLimit}}'{{/gasPercentLowSustainedLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPercentColdStartup'>oilPercentColdStartup: </label><div class='col-sm-8'><input id='{{id}}_oilPercentColdStartup' class='form-control' type='text'{{#oilPercentColdStartup}} value='{{oilPercentColdStartup}}'{{/oilPercentColdStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPercentHotStartup'>oilPercentHotStartup: </label><div class='col-sm-8'><input id='{{id}}_oilPercentHotStartup' class='form-control' type='text'{{#oilPercentHotStartup}} value='{{oilPercentHotStartup}}'{{/oilPercentHotStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPercentIntermediateStartup'>oilPercentIntermediateStartup: </label><div class='col-sm-8'><input id='{{id}}_oilPercentIntermediateStartup' class='form-control' type='text'{{#oilPercentIntermediateStartup}} value='{{oilPercentIntermediateStartup}}'{{/oilPercentIntermediateStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPercentLowSustainedLimit'>oilPercentLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_oilPercentLowSustainedLimit' class='form-control' type='text'{{#oilPercentLowSustainedLimit}} value='{{oilPercentLowSustainedLimit}}'{{/oilPercentLowSustainedLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidfuelPercentColdStartup'>solidfuelPercentColdStartup: </label><div class='col-sm-8'><input id='{{id}}_solidfuelPercentColdStartup' class='form-control' type='text'{{#solidfuelPercentColdStartup}} value='{{solidfuelPercentColdStartup}}'{{/solidfuelPercentColdStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidfuelPercentHotStartup'>solidfuelPercentHotStartup: </label><div class='col-sm-8'><input id='{{id}}_solidfuelPercentHotStartup' class='form-control' type='text'{{#solidfuelPercentHotStartup}} value='{{solidfuelPercentHotStartup}}'{{/solidfuelPercentHotStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidfuelPercentIntermediateStartup'>solidfuelPercentIntermediateStartup: </label><div class='col-sm-8'><input id='{{id}}_solidfuelPercentIntermediateStartup' class='form-control' type='text'{{#solidfuelPercentIntermediateStartup}} value='{{solidfuelPercentIntermediateStartup}}'{{/solidfuelPercentIntermediateStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidfuelPercentLowSustainedLimit'>solidfuelPercentLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_solidfuelPercentLowSustainedLimit' class='form-control' type='text'{{#solidfuelPercentLowSustainedLimit}} value='{{solidfuelPercentLowSustainedLimit}}'{{/solidfuelPercentLowSustainedLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='{{id}}_ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceStartupCost" };
-                super.submit (obj);
-                temp = document.getElementById ("fuelColdStartup").value; if ("" != temp) obj.fuelColdStartup = temp;
-                temp = document.getElementById ("fuelHotStartup").value; if ("" != temp) obj.fuelHotStartup = temp;
-                temp = document.getElementById ("fuelIntermediateStartup").value; if ("" != temp) obj.fuelIntermediateStartup = temp;
-                temp = document.getElementById ("fuelLowSustainedLimit").value; if ("" != temp) obj.fuelLowSustainedLimit = temp;
-                temp = document.getElementById ("gasPercentColdStartup").value; if ("" != temp) obj.gasPercentColdStartup = temp;
-                temp = document.getElementById ("gasPercentHotStartup").value; if ("" != temp) obj.gasPercentHotStartup = temp;
-                temp = document.getElementById ("gasPercentIntermediateStartup").value; if ("" != temp) obj.gasPercentIntermediateStartup = temp;
-                temp = document.getElementById ("gasPercentLowSustainedLimit").value; if ("" != temp) obj.gasPercentLowSustainedLimit = temp;
-                temp = document.getElementById ("oilPercentColdStartup").value; if ("" != temp) obj.oilPercentColdStartup = temp;
-                temp = document.getElementById ("oilPercentHotStartup").value; if ("" != temp) obj.oilPercentHotStartup = temp;
-                temp = document.getElementById ("oilPercentIntermediateStartup").value; if ("" != temp) obj.oilPercentIntermediateStartup = temp;
-                temp = document.getElementById ("oilPercentLowSustainedLimit").value; if ("" != temp) obj.oilPercentLowSustainedLimit = temp;
-                temp = document.getElementById ("solidfuelPercentColdStartup").value; if ("" != temp) obj.solidfuelPercentColdStartup = temp;
-                temp = document.getElementById ("solidfuelPercentHotStartup").value; if ("" != temp) obj.solidfuelPercentHotStartup = temp;
-                temp = document.getElementById ("solidfuelPercentIntermediateStartup").value; if ("" != temp) obj.solidfuelPercentIntermediateStartup = temp;
-                temp = document.getElementById ("solidfuelPercentLowSustainedLimit").value; if ("" != temp) obj.solidfuelPercentLowSustainedLimit = temp;
-                temp = document.getElementById ("ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
+                var obj = obj || { id: id, cls: "ResourceStartupCost" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_fuelColdStartup").value; if ("" != temp) obj.fuelColdStartup = temp;
+                temp = document.getElementById (id + "_fuelHotStartup").value; if ("" != temp) obj.fuelHotStartup = temp;
+                temp = document.getElementById (id + "_fuelIntermediateStartup").value; if ("" != temp) obj.fuelIntermediateStartup = temp;
+                temp = document.getElementById (id + "_fuelLowSustainedLimit").value; if ("" != temp) obj.fuelLowSustainedLimit = temp;
+                temp = document.getElementById (id + "_gasPercentColdStartup").value; if ("" != temp) obj.gasPercentColdStartup = temp;
+                temp = document.getElementById (id + "_gasPercentHotStartup").value; if ("" != temp) obj.gasPercentHotStartup = temp;
+                temp = document.getElementById (id + "_gasPercentIntermediateStartup").value; if ("" != temp) obj.gasPercentIntermediateStartup = temp;
+                temp = document.getElementById (id + "_gasPercentLowSustainedLimit").value; if ("" != temp) obj.gasPercentLowSustainedLimit = temp;
+                temp = document.getElementById (id + "_oilPercentColdStartup").value; if ("" != temp) obj.oilPercentColdStartup = temp;
+                temp = document.getElementById (id + "_oilPercentHotStartup").value; if ("" != temp) obj.oilPercentHotStartup = temp;
+                temp = document.getElementById (id + "_oilPercentIntermediateStartup").value; if ("" != temp) obj.oilPercentIntermediateStartup = temp;
+                temp = document.getElementById (id + "_oilPercentLowSustainedLimit").value; if ("" != temp) obj.oilPercentLowSustainedLimit = temp;
+                temp = document.getElementById (id + "_solidfuelPercentColdStartup").value; if ("" != temp) obj.solidfuelPercentColdStartup = temp;
+                temp = document.getElementById (id + "_solidfuelPercentHotStartup").value; if ("" != temp) obj.solidfuelPercentHotStartup = temp;
+                temp = document.getElementById (id + "_solidfuelPercentIntermediateStartup").value; if ("" != temp) obj.solidfuelPercentIntermediateStartup = temp;
+                temp = document.getElementById (id + "_solidfuelPercentLowSustainedLimit").value; if ("" != temp) obj.solidfuelPercentLowSustainedLimit = temp;
+                temp = document.getElementById (id + "_ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
 
                 return (obj);
             }
@@ -4131,27 +4131,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GasPrice_collapse" aria-expanded="true" aria-controls="GasPrice_collapse" style="margin-left: 10px;">GasPrice</a></legend>
-                    <div id="GasPrice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GasPrice_collapse" aria-expanded="true" aria-controls="{{id}}_GasPrice_collapse" style="margin-left: 10px;">GasPrice</a></legend>
+                    <div id="{{id}}_GasPrice_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gasPriceIndex'>gasPriceIndex: </label><div class='col-sm-8'><input id='gasPriceIndex' class='form-control' type='text'{{#gasPriceIndex}} value='{{gasPriceIndex}}'{{/gasPriceIndex}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gasPriceIndex'>gasPriceIndex: </label><div class='col-sm-8'><input id='{{id}}_gasPriceIndex' class='form-control' type='text'{{#gasPriceIndex}} value='{{gasPriceIndex}}'{{/gasPriceIndex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='{{id}}_FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "GasPrice" };
-                super.submit (obj);
-                temp = document.getElementById ("gasPriceIndex").value; if ("" != temp) obj.gasPriceIndex = temp;
-                temp = document.getElementById ("FuelRegion").value; if ("" != temp) obj.FuelRegion = temp;
+                var obj = obj || { id: id, cls: "GasPrice" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_gasPriceIndex").value; if ("" != temp) obj.gasPriceIndex = temp;
+                temp = document.getElementById (id + "_FuelRegion").value; if ("" != temp) obj.FuelRegion = temp;
 
                 return (obj);
             }
@@ -4255,31 +4255,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadRatio_collapse" aria-expanded="true" aria-controls="LoadRatio_collapse" style="margin-left: 10px;">LoadRatio</a></legend>
-                    <div id="LoadRatio_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadRatio_collapse" aria-expanded="true" aria-controls="{{id}}_LoadRatio_collapse" style="margin-left: 10px;">LoadRatio</a></legend>
+                    <div id="{{id}}_LoadRatio_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='share'>share: </label><div class='col-sm-8'><input id='share' class='form-control' type='text'{{#share}} value='{{share}}'{{/share}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalEndTime'>intervalEndTime: </label><div class='col-sm-8'><input id='{{id}}_intervalEndTime' class='form-control' type='text'{{#intervalEndTime}} value='{{intervalEndTime}}'{{/intervalEndTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_share'>share: </label><div class='col-sm-8'><input id='{{id}}_share' class='form-control' type='text'{{#share}} value='{{share}}'{{/share}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='{{id}}_SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadRatio" };
-                super.submit (obj);
-                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById ("intervalEndTime").value; if ("" != temp) obj.intervalEndTime = temp;
-                temp = document.getElementById ("share").value; if ("" != temp) obj.share = temp;
-                temp = document.getElementById ("SchedulingCoordinator").value; if ("" != temp) obj.SchedulingCoordinator = temp;
+                var obj = obj || { id: id, cls: "LoadRatio" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById (id + "_intervalEndTime").value; if ("" != temp) obj.intervalEndTime = temp;
+                temp = document.getElementById (id + "_share").value; if ("" != temp) obj.share = temp;
+                temp = document.getElementById (id + "_SchedulingCoordinator").value; if ("" != temp) obj.SchedulingCoordinator = temp;
 
                 return (obj);
             }
@@ -4407,39 +4407,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegisteredInterTie_collapse" aria-expanded="true" aria-controls="RegisteredInterTie_collapse" style="margin-left: 10px;">RegisteredInterTie</a></legend>
-                    <div id="RegisteredInterTie_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegisteredInterTie_collapse" aria-expanded="true" aria-controls="{{id}}_RegisteredInterTie_collapse" style="margin-left: 10px;">RegisteredInterTie</a></legend>
+                    <div id="{{id}}_RegisteredInterTie_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MarketCommon.RegisteredResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='direction'>direction: </label><div class='col-sm-8'><input id='direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyProductType'>energyProductType: </label><div class='col-sm-8'><input id='energyProductType' class='form-control' type='text'{{#energyProductType}} value='{{energyProductType}}'{{/energyProductType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='isDCTie'>isDCTie: </label><div class='col-sm-8'><input id='isDCTie' class='form-control' type='text'{{#isDCTie}} value='{{isDCTie}}'{{/isDCTie}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='isDynamicInterchange'>isDynamicInterchange: </label><div class='col-sm-8'><input id='isDynamicInterchange' class='form-control' type='text'{{#isDynamicInterchange}} value='{{isDynamicInterchange}}'{{/isDynamicInterchange}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minHourlyBlockLimit'>minHourlyBlockLimit: </label><div class='col-sm-8'><input id='minHourlyBlockLimit' class='form-control' type='text'{{#minHourlyBlockLimit}} value='{{minHourlyBlockLimit}}'{{/minHourlyBlockLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WheelingCounterParty'>WheelingCounterParty: </label><div class='col-sm-8'><input id='WheelingCounterParty' class='form-control' type='text'{{#WheelingCounterParty}} value='{{WheelingCounterParty}}_string'{{/WheelingCounterParty}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><input id='{{id}}_direction' class='form-control' type='text'{{#direction}} value='{{direction}}'{{/direction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyProductType'>energyProductType: </label><div class='col-sm-8'><input id='{{id}}_energyProductType' class='form-control' type='text'{{#energyProductType}} value='{{energyProductType}}'{{/energyProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDCTie'>isDCTie: </label><div class='col-sm-8'><input id='{{id}}_isDCTie' class='form-control' type='text'{{#isDCTie}} value='{{isDCTie}}'{{/isDCTie}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isDynamicInterchange'>isDynamicInterchange: </label><div class='col-sm-8'><input id='{{id}}_isDynamicInterchange' class='form-control' type='text'{{#isDynamicInterchange}} value='{{isDynamicInterchange}}'{{/isDynamicInterchange}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minHourlyBlockLimit'>minHourlyBlockLimit: </label><div class='col-sm-8'><input id='{{id}}_minHourlyBlockLimit' class='form-control' type='text'{{#minHourlyBlockLimit}} value='{{minHourlyBlockLimit}}'{{/minHourlyBlockLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WheelingCounterParty'>WheelingCounterParty: </label><div class='col-sm-8'><input id='{{id}}_WheelingCounterParty' class='form-control' type='text'{{#WheelingCounterParty}} value='{{WheelingCounterParty}}_string'{{/WheelingCounterParty}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='{{id}}_InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RegisteredInterTie" };
-                super.submit (obj);
-                temp = document.getElementById ("direction").value; if ("" != temp) obj.direction = temp;
-                temp = document.getElementById ("energyProductType").value; if ("" != temp) obj.energyProductType = temp;
-                temp = document.getElementById ("isDCTie").value; if ("" != temp) obj.isDCTie = temp;
-                temp = document.getElementById ("isDynamicInterchange").value; if ("" != temp) obj.isDynamicInterchange = temp;
-                temp = document.getElementById ("minHourlyBlockLimit").value; if ("" != temp) obj.minHourlyBlockLimit = temp;
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
-                temp = document.getElementById ("WheelingCounterParty").value; if ("" != temp) obj.WheelingCounterParty = temp.split (",");
-                temp = document.getElementById ("InterTieBid").value; if ("" != temp) obj.InterTieBid = temp;
+                var obj = obj || { id: id, cls: "RegisteredInterTie" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_direction").value; if ("" != temp) obj.direction = temp;
+                temp = document.getElementById (id + "_energyProductType").value; if ("" != temp) obj.energyProductType = temp;
+                temp = document.getElementById (id + "_isDCTie").value; if ("" != temp) obj.isDCTie = temp;
+                temp = document.getElementById (id + "_isDynamicInterchange").value; if ("" != temp) obj.isDynamicInterchange = temp;
+                temp = document.getElementById (id + "_minHourlyBlockLimit").value; if ("" != temp) obj.minHourlyBlockLimit = temp;
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                temp = document.getElementById (id + "_WheelingCounterParty").value; if ("" != temp) obj.WheelingCounterParty = temp.split (",");
+                temp = document.getElementById (id + "_InterTieBid").value; if ("" != temp) obj.InterTieBid = temp;
 
                 return (obj);
             }
@@ -4620,67 +4620,67 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegisteredLoad_collapse" aria-expanded="true" aria-controls="RegisteredLoad_collapse" style="margin-left: 10px;">RegisteredLoad</a></legend>
-                    <div id="RegisteredLoad_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegisteredLoad_collapse" aria-expanded="true" aria-controls="{{id}}_RegisteredLoad_collapse" style="margin-left: 10px;">RegisteredLoad</a></legend>
+                    <div id="{{id}}_RegisteredLoad_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MarketCommon.RegisteredResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='blockLoadTransferFlag'>blockLoadTransferFlag: </label><div class='col-sm-8'><input id='blockLoadTransferFlag' class='form-control' type='text'{{#blockLoadTransferFlag}} value='{{blockLoadTransferFlag}}'{{/blockLoadTransferFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dynamicallyScheduledLoadResourceFlag'>dynamicallyScheduledLoadResourceFlag: </label><div class='col-sm-8'><input id='dynamicallyScheduledLoadResourceFlag' class='form-control' type='text'{{#dynamicallyScheduledLoadResourceFlag}} value='{{dynamicallyScheduledLoadResourceFlag}}'{{/dynamicallyScheduledLoadResourceFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dynamicallyScheduledQualificationFlag'>dynamicallyScheduledQualificationFlag: </label><div class='col-sm-8'><input id='dynamicallyScheduledQualificationFlag' class='form-control' type='text'{{#dynamicallyScheduledQualificationFlag}} value='{{dynamicallyScheduledQualificationFlag}}'{{/dynamicallyScheduledQualificationFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadRegistryMSS'>loadRegistryMSS: </label><div class='col-sm-8'><input id='loadRegistryMSS' class='form-control' type='text'{{#loadRegistryMSS}} value='{{loadRegistryMSS}}'{{/loadRegistryMSS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxBaseLoad'>maxBaseLoad: </label><div class='col-sm-8'><input id='maxBaseLoad' class='form-control' type='text'{{#maxBaseLoad}} value='{{maxBaseLoad}}'{{/maxBaseLoad}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxDeploymentTime'>maxDeploymentTime: </label><div class='col-sm-8'><input id='maxDeploymentTime' class='form-control' type='text'{{#maxDeploymentTime}} value='{{maxDeploymentTime}}'{{/maxDeploymentTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxLoadRedTimesPerDay'>maxLoadRedTimesPerDay: </label><div class='col-sm-8'><input id='maxLoadRedTimesPerDay' class='form-control' type='text'{{#maxLoadRedTimesPerDay}} value='{{maxLoadRedTimesPerDay}}'{{/maxLoadRedTimesPerDay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxLoadReduction'>maxLoadReduction: </label><div class='col-sm-8'><input id='maxLoadReduction' class='form-control' type='text'{{#maxLoadReduction}} value='{{maxLoadReduction}}'{{/maxLoadReduction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxReductionTime'>maxReductionTime: </label><div class='col-sm-8'><input id='maxReductionTime' class='form-control' type='text'{{#maxReductionTime}} value='{{maxReductionTime}}'{{/maxReductionTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxWeeklyDeployment'>maxWeeklyDeployment: </label><div class='col-sm-8'><input id='maxWeeklyDeployment' class='form-control' type='text'{{#maxWeeklyDeployment}} value='{{maxWeeklyDeployment}}'{{/maxWeeklyDeployment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoadReduction'>minLoadReduction: </label><div class='col-sm-8'><input id='minLoadReduction' class='form-control' type='text'{{#minLoadReduction}} value='{{minLoadReduction}}'{{/minLoadReduction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoadReductionCost'>minLoadReductionCost: </label><div class='col-sm-8'><input id='minLoadReductionCost' class='form-control' type='text'{{#minLoadReductionCost}} value='{{minLoadReductionCost}}'{{/minLoadReductionCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minReductionTime'>minReductionTime: </label><div class='col-sm-8'><input id='minReductionTime' class='form-control' type='text'{{#minReductionTime}} value='{{minReductionTime}}'{{/minReductionTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='NPLCustomLoadAggregation'>NPLCustomLoadAggregation: </label><div class='col-sm-8'><input id='NPLCustomLoadAggregation' class='form-control' type='text'{{#NPLCustomLoadAggregation}} value='{{NPLCustomLoadAggregation}}'{{/NPLCustomLoadAggregation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='participatingLoad'>participatingLoad: </label><div class='col-sm-8'><input id='participatingLoad' class='form-control' type='text'{{#participatingLoad}} value='{{participatingLoad}}'{{/participatingLoad}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadReductionTimeCurve'>LoadReductionTimeCurve: </label><div class='col-sm-8'><input id='LoadReductionTimeCurve' class='form-control' type='text'{{#LoadReductionTimeCurve}} value='{{LoadReductionTimeCurve}}_string'{{/LoadReductionTimeCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktLoadArea'>MktLoadArea: </label><div class='col-sm-8'><input id='MktLoadArea' class='form-control' type='text'{{#MktLoadArea}} value='{{MktLoadArea}}'{{/MktLoadArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadReductionPriceCurve'>LoadReductionPriceCurve: </label><div class='col-sm-8'><input id='LoadReductionPriceCurve' class='form-control' type='text'{{#LoadReductionPriceCurve}} value='{{LoadReductionPriceCurve}}_string'{{/LoadReductionPriceCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_blockLoadTransferFlag'>blockLoadTransferFlag: </label><div class='col-sm-8'><input id='{{id}}_blockLoadTransferFlag' class='form-control' type='text'{{#blockLoadTransferFlag}} value='{{blockLoadTransferFlag}}'{{/blockLoadTransferFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledLoadResourceFlag'>dynamicallyScheduledLoadResourceFlag: </label><div class='col-sm-8'><input id='{{id}}_dynamicallyScheduledLoadResourceFlag' class='form-control' type='text'{{#dynamicallyScheduledLoadResourceFlag}} value='{{dynamicallyScheduledLoadResourceFlag}}'{{/dynamicallyScheduledLoadResourceFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dynamicallyScheduledQualificationFlag'>dynamicallyScheduledQualificationFlag: </label><div class='col-sm-8'><input id='{{id}}_dynamicallyScheduledQualificationFlag' class='form-control' type='text'{{#dynamicallyScheduledQualificationFlag}} value='{{dynamicallyScheduledQualificationFlag}}'{{/dynamicallyScheduledQualificationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRegistryMSS'>loadRegistryMSS: </label><div class='col-sm-8'><input id='{{id}}_loadRegistryMSS' class='form-control' type='text'{{#loadRegistryMSS}} value='{{loadRegistryMSS}}'{{/loadRegistryMSS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxBaseLoad'>maxBaseLoad: </label><div class='col-sm-8'><input id='{{id}}_maxBaseLoad' class='form-control' type='text'{{#maxBaseLoad}} value='{{maxBaseLoad}}'{{/maxBaseLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxDeploymentTime'>maxDeploymentTime: </label><div class='col-sm-8'><input id='{{id}}_maxDeploymentTime' class='form-control' type='text'{{#maxDeploymentTime}} value='{{maxDeploymentTime}}'{{/maxDeploymentTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxLoadRedTimesPerDay'>maxLoadRedTimesPerDay: </label><div class='col-sm-8'><input id='{{id}}_maxLoadRedTimesPerDay' class='form-control' type='text'{{#maxLoadRedTimesPerDay}} value='{{maxLoadRedTimesPerDay}}'{{/maxLoadRedTimesPerDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxLoadReduction'>maxLoadReduction: </label><div class='col-sm-8'><input id='{{id}}_maxLoadReduction' class='form-control' type='text'{{#maxLoadReduction}} value='{{maxLoadReduction}}'{{/maxLoadReduction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxReductionTime'>maxReductionTime: </label><div class='col-sm-8'><input id='{{id}}_maxReductionTime' class='form-control' type='text'{{#maxReductionTime}} value='{{maxReductionTime}}'{{/maxReductionTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxWeeklyDeployment'>maxWeeklyDeployment: </label><div class='col-sm-8'><input id='{{id}}_maxWeeklyDeployment' class='form-control' type='text'{{#maxWeeklyDeployment}} value='{{maxWeeklyDeployment}}'{{/maxWeeklyDeployment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReduction'>minLoadReduction: </label><div class='col-sm-8'><input id='{{id}}_minLoadReduction' class='form-control' type='text'{{#minLoadReduction}} value='{{minLoadReduction}}'{{/minLoadReduction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionCost'>minLoadReductionCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionCost' class='form-control' type='text'{{#minLoadReductionCost}} value='{{minLoadReductionCost}}'{{/minLoadReductionCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minReductionTime'>minReductionTime: </label><div class='col-sm-8'><input id='{{id}}_minReductionTime' class='form-control' type='text'{{#minReductionTime}} value='{{minReductionTime}}'{{/minReductionTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='{{id}}_minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NPLCustomLoadAggregation'>NPLCustomLoadAggregation: </label><div class='col-sm-8'><input id='{{id}}_NPLCustomLoadAggregation' class='form-control' type='text'{{#NPLCustomLoadAggregation}} value='{{NPLCustomLoadAggregation}}'{{/NPLCustomLoadAggregation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participatingLoad'>participatingLoad: </label><div class='col-sm-8'><input id='{{id}}_participatingLoad' class='form-control' type='text'{{#participatingLoad}} value='{{participatingLoad}}'{{/participatingLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='{{id}}_reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceSubType'>resourceSubType: </label><div class='col-sm-8'><input id='{{id}}_resourceSubType' class='form-control' type='text'{{#resourceSubType}} value='{{resourceSubType}}'{{/resourceSubType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionTimeCurve'>LoadReductionTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionTimeCurve' class='form-control' type='text'{{#LoadReductionTimeCurve}} value='{{LoadReductionTimeCurve}}_string'{{/LoadReductionTimeCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktLoadArea'>MktLoadArea: </label><div class='col-sm-8'><input id='{{id}}_MktLoadArea' class='form-control' type='text'{{#MktLoadArea}} value='{{MktLoadArea}}'{{/MktLoadArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadReductionPriceCurve'>LoadReductionPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_LoadReductionPriceCurve' class='form-control' type='text'{{#LoadReductionPriceCurve}} value='{{LoadReductionPriceCurve}}_string'{{/LoadReductionPriceCurve}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RegisteredLoad" };
-                super.submit (obj);
-                temp = document.getElementById ("blockLoadTransferFlag").value; if ("" != temp) obj.blockLoadTransferFlag = temp;
-                temp = document.getElementById ("dynamicallyScheduledLoadResourceFlag").value; if ("" != temp) obj.dynamicallyScheduledLoadResourceFlag = temp;
-                temp = document.getElementById ("dynamicallyScheduledQualificationFlag").value; if ("" != temp) obj.dynamicallyScheduledQualificationFlag = temp;
-                temp = document.getElementById ("loadRegistryMSS").value; if ("" != temp) obj.loadRegistryMSS = temp;
-                temp = document.getElementById ("maxBaseLoad").value; if ("" != temp) obj.maxBaseLoad = temp;
-                temp = document.getElementById ("maxDeploymentTime").value; if ("" != temp) obj.maxDeploymentTime = temp;
-                temp = document.getElementById ("maxLoadRedTimesPerDay").value; if ("" != temp) obj.maxLoadRedTimesPerDay = temp;
-                temp = document.getElementById ("maxLoadReduction").value; if ("" != temp) obj.maxLoadReduction = temp;
-                temp = document.getElementById ("maxReductionTime").value; if ("" != temp) obj.maxReductionTime = temp;
-                temp = document.getElementById ("maxWeeklyDeployment").value; if ("" != temp) obj.maxWeeklyDeployment = temp;
-                temp = document.getElementById ("minLoadReduction").value; if ("" != temp) obj.minLoadReduction = temp;
-                temp = document.getElementById ("minLoadReductionCost").value; if ("" != temp) obj.minLoadReductionCost = temp;
-                temp = document.getElementById ("minLoadReductionInterval").value; if ("" != temp) obj.minLoadReductionInterval = temp;
-                temp = document.getElementById ("minReductionTime").value; if ("" != temp) obj.minReductionTime = temp;
-                temp = document.getElementById ("minTimeBetLoadRed").value; if ("" != temp) obj.minTimeBetLoadRed = temp;
-                temp = document.getElementById ("NPLCustomLoadAggregation").value; if ("" != temp) obj.NPLCustomLoadAggregation = temp;
-                temp = document.getElementById ("participatingLoad").value; if ("" != temp) obj.participatingLoad = temp;
-                temp = document.getElementById ("reqNoticeTime").value; if ("" != temp) obj.reqNoticeTime = temp;
-                temp = document.getElementById ("resourceSubType").value; if ("" != temp) obj.resourceSubType = temp;
-                temp = document.getElementById ("LoadReductionTimeCurve").value; if ("" != temp) obj.LoadReductionTimeCurve = temp.split (",");
-                temp = document.getElementById ("MktLoadArea").value; if ("" != temp) obj.MktLoadArea = temp;
-                temp = document.getElementById ("LoadReductionPriceCurve").value; if ("" != temp) obj.LoadReductionPriceCurve = temp.split (",");
+                var obj = obj || { id: id, cls: "RegisteredLoad" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_blockLoadTransferFlag").value; if ("" != temp) obj.blockLoadTransferFlag = temp;
+                temp = document.getElementById (id + "_dynamicallyScheduledLoadResourceFlag").value; if ("" != temp) obj.dynamicallyScheduledLoadResourceFlag = temp;
+                temp = document.getElementById (id + "_dynamicallyScheduledQualificationFlag").value; if ("" != temp) obj.dynamicallyScheduledQualificationFlag = temp;
+                temp = document.getElementById (id + "_loadRegistryMSS").value; if ("" != temp) obj.loadRegistryMSS = temp;
+                temp = document.getElementById (id + "_maxBaseLoad").value; if ("" != temp) obj.maxBaseLoad = temp;
+                temp = document.getElementById (id + "_maxDeploymentTime").value; if ("" != temp) obj.maxDeploymentTime = temp;
+                temp = document.getElementById (id + "_maxLoadRedTimesPerDay").value; if ("" != temp) obj.maxLoadRedTimesPerDay = temp;
+                temp = document.getElementById (id + "_maxLoadReduction").value; if ("" != temp) obj.maxLoadReduction = temp;
+                temp = document.getElementById (id + "_maxReductionTime").value; if ("" != temp) obj.maxReductionTime = temp;
+                temp = document.getElementById (id + "_maxWeeklyDeployment").value; if ("" != temp) obj.maxWeeklyDeployment = temp;
+                temp = document.getElementById (id + "_minLoadReduction").value; if ("" != temp) obj.minLoadReduction = temp;
+                temp = document.getElementById (id + "_minLoadReductionCost").value; if ("" != temp) obj.minLoadReductionCost = temp;
+                temp = document.getElementById (id + "_minLoadReductionInterval").value; if ("" != temp) obj.minLoadReductionInterval = temp;
+                temp = document.getElementById (id + "_minReductionTime").value; if ("" != temp) obj.minReductionTime = temp;
+                temp = document.getElementById (id + "_minTimeBetLoadRed").value; if ("" != temp) obj.minTimeBetLoadRed = temp;
+                temp = document.getElementById (id + "_NPLCustomLoadAggregation").value; if ("" != temp) obj.NPLCustomLoadAggregation = temp;
+                temp = document.getElementById (id + "_participatingLoad").value; if ("" != temp) obj.participatingLoad = temp;
+                temp = document.getElementById (id + "_reqNoticeTime").value; if ("" != temp) obj.reqNoticeTime = temp;
+                temp = document.getElementById (id + "_resourceSubType").value; if ("" != temp) obj.resourceSubType = temp;
+                temp = document.getElementById (id + "_LoadReductionTimeCurve").value; if ("" != temp) obj.LoadReductionTimeCurve = temp.split (",");
+                temp = document.getElementById (id + "_MktLoadArea").value; if ("" != temp) obj.MktLoadArea = temp;
+                temp = document.getElementById (id + "_LoadReductionPriceCurve").value; if ("" != temp) obj.LoadReductionPriceCurve = temp.split (",");
 
                 return (obj);
             }
@@ -4819,39 +4819,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AggregateNode_collapse" aria-expanded="true" aria-controls="AggregateNode_collapse" style="margin-left: 10px;">AggregateNode</a></legend>
-                    <div id="AggregateNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AggregateNode_collapse" aria-expanded="true" aria-controls="{{id}}_AggregateNode_collapse" style="margin-left: 10px;">AggregateNode</a></legend>
+                    <div id="{{id}}_AggregateNode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='anodeType'>anodeType: </label><div class='col-sm-8'><input id='anodeType' class='form-control' type='text'{{#anodeType}} value='{{anodeType}}'{{/anodeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualifASOrder'>qualifASOrder: </label><div class='col-sm-8'><input id='qualifASOrder' class='form-control' type='text'{{#qualifASOrder}} value='{{qualifASOrder}}'{{/qualifASOrder}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pnode'>Pnode: </label><div class='col-sm-8'><input id='Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}_string'{{/Pnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_anodeType'>anodeType: </label><div class='col-sm-8'><input id='{{id}}_anodeType' class='form-control' type='text'{{#anodeType}} value='{{anodeType}}'{{/anodeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualifASOrder'>qualifASOrder: </label><div class='col-sm-8'><input id='{{id}}_qualifASOrder' class='form-control' type='text'{{#qualifASOrder}} value='{{qualifASOrder}}'{{/qualifASOrder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnode'>Pnode: </label><div class='col-sm-8'><input id='{{id}}_Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}_string'{{/Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AggregateNode" };
-                super.submit (obj);
-                temp = document.getElementById ("anodeType").value; if ("" != temp) obj.anodeType = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("qualifASOrder").value; if ("" != temp) obj.qualifASOrder = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("Pnode").value; if ("" != temp) obj.Pnode = temp.split (",");
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
-                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
+                var obj = obj || { id: id, cls: "AggregateNode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_anodeType").value; if ("" != temp) obj.anodeType = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_qualifASOrder").value; if ("" != temp) obj.qualifASOrder = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_Pnode").value; if ("" != temp) obj.Pnode = temp.split (",");
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
 
                 return (obj);
             }
@@ -4958,25 +4958,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktCombinedCyclePlant_collapse" aria-expanded="true" aria-controls="MktCombinedCyclePlant_collapse" style="margin-left: 10px;">MktCombinedCyclePlant</a></legend>
-                    <div id="MktCombinedCyclePlant_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktCombinedCyclePlant_collapse" aria-expanded="true" aria-controls="{{id}}_MktCombinedCyclePlant_collapse" style="margin-left: 10px;">MktCombinedCyclePlant</a></legend>
+                    <div id="{{id}}_MktCombinedCyclePlant_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Production.CombinedCyclePlant.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MktCombinedCyclePlant" };
-                super.submit (obj);
-                temp = document.getElementById ("AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp;
+                var obj = obj || { id: id, cls: "MktCombinedCyclePlant" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp;
 
                 return (obj);
             }
@@ -5079,25 +5079,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombinedCycleLogicalConfiguration_collapse" aria-expanded="true" aria-controls="CombinedCycleLogicalConfiguration_collapse" style="margin-left: 10px;">CombinedCycleLogicalConfiguration</a></legend>
-                    <div id="CombinedCycleLogicalConfiguration_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CombinedCycleLogicalConfiguration_collapse" aria-expanded="true" aria-controls="{{id}}_CombinedCycleLogicalConfiguration_collapse" style="margin-left: 10px;">CombinedCycleLogicalConfiguration</a></legend>
+                    <div id="{{id}}_CombinedCycleLogicalConfiguration_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktCombinedCyclePlant'>MktCombinedCyclePlant: </label><div class='col-sm-8'><input id='MktCombinedCyclePlant' class='form-control' type='text'{{#MktCombinedCyclePlant}} value='{{MktCombinedCyclePlant}}'{{/MktCombinedCyclePlant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktCombinedCyclePlant'>MktCombinedCyclePlant: </label><div class='col-sm-8'><input id='{{id}}_MktCombinedCyclePlant' class='form-control' type='text'{{#MktCombinedCyclePlant}} value='{{MktCombinedCyclePlant}}'{{/MktCombinedCyclePlant}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CombinedCycleLogicalConfiguration" };
-                super.submit (obj);
-                temp = document.getElementById ("MktCombinedCyclePlant").value; if ("" != temp) obj.MktCombinedCyclePlant = temp;
+                var obj = obj || { id: id, cls: "CombinedCycleLogicalConfiguration" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_MktCombinedCyclePlant").value; if ("" != temp) obj.MktCombinedCyclePlant = temp;
 
                 return (obj);
             }
@@ -5195,25 +5195,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WheelingCounterParty_collapse" aria-expanded="true" aria-controls="WheelingCounterParty_collapse" style="margin-left: 10px;">WheelingCounterParty</a></legend>
-                    <div id="WheelingCounterParty_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WheelingCounterParty_collapse" aria-expanded="true" aria-controls="{{id}}_WheelingCounterParty_collapse" style="margin-left: 10px;">WheelingCounterParty</a></legend>
+                    <div id="{{id}}_WheelingCounterParty_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}_string'{{/RegisteredInterTie}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}_string'{{/RegisteredInterTie}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WheelingCounterParty" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp.split (",");
+                var obj = obj || { id: id, cls: "WheelingCounterParty" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp.split (",");
 
                 return (obj);
             }
@@ -5314,29 +5314,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombinedCycleTransitionState_collapse" aria-expanded="true" aria-controls="CombinedCycleTransitionState_collapse" style="margin-left: 10px;">CombinedCycleTransitionState</a></legend>
-                    <div id="CombinedCycleTransitionState_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CombinedCycleTransitionState_collapse" aria-expanded="true" aria-controls="{{id}}_CombinedCycleTransitionState_collapse" style="margin-left: 10px;">CombinedCycleTransitionState</a></legend>
+                    <div id="{{id}}_CombinedCycleTransitionState_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='upTransition'>upTransition: </label><div class='col-sm-8'><input id='upTransition' class='form-check-input' type='checkbox'{{#upTransition}} checked{{/upTransition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FromConfiguration'>FromConfiguration: </label><div class='col-sm-8'><input id='FromConfiguration' class='form-control' type='text'{{#FromConfiguration}} value='{{FromConfiguration}}'{{/FromConfiguration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ToConfiguration'>ToConfiguration: </label><div class='col-sm-8'><input id='ToConfiguration' class='form-control' type='text'{{#ToConfiguration}} value='{{ToConfiguration}}'{{/ToConfiguration}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_upTransition'>upTransition: </label><div class='col-sm-8'><input id='{{id}}_upTransition' class='form-check-input' type='checkbox'{{#upTransition}} checked{{/upTransition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FromConfiguration'>FromConfiguration: </label><div class='col-sm-8'><input id='{{id}}_FromConfiguration' class='form-control' type='text'{{#FromConfiguration}} value='{{FromConfiguration}}'{{/FromConfiguration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ToConfiguration'>ToConfiguration: </label><div class='col-sm-8'><input id='{{id}}_ToConfiguration' class='form-control' type='text'{{#ToConfiguration}} value='{{ToConfiguration}}'{{/ToConfiguration}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CombinedCycleTransitionState" };
-                super.submit (obj);
-                temp = document.getElementById ("upTransition").checked; if (temp) obj.upTransition = true;
-                temp = document.getElementById ("FromConfiguration").value; if ("" != temp) obj.FromConfiguration = temp;
-                temp = document.getElementById ("ToConfiguration").value; if ("" != temp) obj.ToConfiguration = temp;
+                var obj = obj || { id: id, cls: "CombinedCycleTransitionState" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_upTransition").checked; if (temp) obj.upTransition = true;
+                temp = document.getElementById (id + "_FromConfiguration").value; if ("" != temp) obj.FromConfiguration = temp;
+                temp = document.getElementById (id + "_ToConfiguration").value; if ("" != temp) obj.ToConfiguration = temp;
 
                 return (obj);
             }
@@ -5450,37 +5450,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OrgResOwnership_collapse" aria-expanded="true" aria-controls="OrgResOwnership_collapse" style="margin-left: 10px;">OrgResOwnership</a></legend>
-                    <div id="OrgResOwnership_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OrgResOwnership_collapse" aria-expanded="true" aria-controls="{{id}}_OrgResOwnership_collapse" style="margin-left: 10px;">OrgResOwnership</a></legend>
+                    <div id="{{id}}_OrgResOwnership_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='asscType'>asscType: </label><div class='col-sm-8'><input id='asscType' class='form-control' type='text'{{#asscType}} value='{{asscType}}'{{/asscType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='masterSchedulingCoordinatorFlag'>masterSchedulingCoordinatorFlag: </label><div class='col-sm-8'><input id='masterSchedulingCoordinatorFlag' class='form-control' type='text'{{#masterSchedulingCoordinatorFlag}} value='{{masterSchedulingCoordinatorFlag}}'{{/masterSchedulingCoordinatorFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ownershipPercent'>ownershipPercent: </label><div class='col-sm-8'><input id='ownershipPercent' class='form-control' type='text'{{#ownershipPercent}} value='{{ownershipPercent}}'{{/ownershipPercent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_asscType'>asscType: </label><div class='col-sm-8'><input id='{{id}}_asscType' class='form-control' type='text'{{#asscType}} value='{{asscType}}'{{/asscType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_masterSchedulingCoordinatorFlag'>masterSchedulingCoordinatorFlag: </label><div class='col-sm-8'><input id='{{id}}_masterSchedulingCoordinatorFlag' class='form-control' type='text'{{#masterSchedulingCoordinatorFlag}} value='{{masterSchedulingCoordinatorFlag}}'{{/masterSchedulingCoordinatorFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ownershipPercent'>ownershipPercent: </label><div class='col-sm-8'><input id='{{id}}_ownershipPercent' class='form-control' type='text'{{#ownershipPercent}} value='{{ownershipPercent}}'{{/ownershipPercent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OrgResOwnership" };
-                super.submit (obj);
-                temp = document.getElementById ("asscType").value; if ("" != temp) obj.asscType = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("masterSchedulingCoordinatorFlag").value; if ("" != temp) obj.masterSchedulingCoordinatorFlag = temp;
-                temp = document.getElementById ("ownershipPercent").value; if ("" != temp) obj.ownershipPercent = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
-                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
+                var obj = obj || { id: id, cls: "OrgResOwnership" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_asscType").value; if ("" != temp) obj.asscType = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_masterSchedulingCoordinatorFlag").value; if ("" != temp) obj.masterSchedulingCoordinatorFlag = temp;
+                temp = document.getElementById (id + "_ownershipPercent").value; if ("" != temp) obj.ownershipPercent = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
 
                 return (obj);
             }
@@ -5684,79 +5684,79 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContractRight_collapse" aria-expanded="true" aria-controls="ContractRight_collapse" style="margin-left: 10px;">ContractRight</a></legend>
-                    <div id="ContractRight_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContractRight_collapse" aria-expanded="true" aria-controls="{{id}}_ContractRight_collapse" style="margin-left: 10px;">ContractRight</a></legend>
+                    <div id="{{id}}_ContractRight_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='chainOrder'>chainOrder: </label><div class='col-sm-8'><input id='chainOrder' class='form-control' type='text'{{#chainOrder}} value='{{chainOrder}}'{{/chainOrder}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contractMW'>contractMW: </label><div class='col-sm-8'><input id='contractMW' class='form-control' type='text'{{#contractMW}} value='{{contractMW}}'{{/contractMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contractPrice'>contractPrice: </label><div class='col-sm-8'><input id='contractPrice' class='form-control' type='text'{{#contractPrice}} value='{{contractPrice}}'{{/contractPrice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contractPriority'>contractPriority: </label><div class='col-sm-8'><input id='contractPriority' class='form-control' type='text'{{#contractPriority}} value='{{contractPriority}}'{{/contractPriority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contractStatus'>contractStatus: </label><div class='col-sm-8'><input id='contractStatus' class='form-control' type='text'{{#contractStatus}} value='{{contractStatus}}'{{/contractStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contractType'>contractType: </label><div class='col-sm-8'><input id='contractType' class='form-control' type='text'{{#contractType}} value='{{contractType}}'{{/contractType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='financialLocation'>financialLocation: </label><div class='col-sm-8'><input id='financialLocation' class='form-control' type='text'{{#financialLocation}} value='{{financialLocation}}'{{/financialLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='financialRightsDAM'>financialRightsDAM: </label><div class='col-sm-8'><input id='financialRightsDAM' class='form-control' type='text'{{#financialRightsDAM}} value='{{financialRightsDAM}}'{{/financialRightsDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='financialRightsRTM'>financialRightsRTM: </label><div class='col-sm-8'><input id='financialRightsRTM' class='form-control' type='text'{{#financialRightsRTM}} value='{{financialRightsRTM}}'{{/financialRightsRTM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='fuelAdder'>fuelAdder: </label><div class='col-sm-8'><input id='fuelAdder' class='form-control' type='text'{{#fuelAdder}} value='{{fuelAdder}}'{{/fuelAdder}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='latestSchedMinutes'>latestSchedMinutes: </label><div class='col-sm-8'><input id='latestSchedMinutes' class='form-control' type='text'{{#latestSchedMinutes}} value='{{latestSchedMinutes}}'{{/latestSchedMinutes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='latestSchedMktType'>latestSchedMktType: </label><div class='col-sm-8'><input id='latestSchedMktType' class='form-control' type='text'{{#latestSchedMktType}} value='{{latestSchedMktType}}'{{/latestSchedMktType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumScheduleQuantity'>maximumScheduleQuantity: </label><div class='col-sm-8'><input id='maximumScheduleQuantity' class='form-control' type='text'{{#maximumScheduleQuantity}} value='{{maximumScheduleQuantity}}'{{/maximumScheduleQuantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumServiceHours'>maximumServiceHours: </label><div class='col-sm-8'><input id='maximumServiceHours' class='form-control' type='text'{{#maximumServiceHours}} value='{{maximumServiceHours}}'{{/maximumServiceHours}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumStartups'>maximumStartups: </label><div class='col-sm-8'><input id='maximumStartups' class='form-control' type='text'{{#maximumStartups}} value='{{maximumStartups}}'{{/maximumStartups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxNetDependableCapacity'>maxNetDependableCapacity: </label><div class='col-sm-8'><input id='maxNetDependableCapacity' class='form-control' type='text'{{#maxNetDependableCapacity}} value='{{maxNetDependableCapacity}}'{{/maxNetDependableCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumLoad'>minimumLoad: </label><div class='col-sm-8'><input id='minimumLoad' class='form-control' type='text'{{#minimumLoad}} value='{{minimumLoad}}'{{/minimumLoad}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumScheduleQuantity'>minimumScheduleQuantity: </label><div class='col-sm-8'><input id='minimumScheduleQuantity' class='form-control' type='text'{{#minimumScheduleQuantity}} value='{{minimumScheduleQuantity}}'{{/minimumScheduleQuantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='physicalRightsDAM'>physicalRightsDAM: </label><div class='col-sm-8'><input id='physicalRightsDAM' class='form-control' type='text'{{#physicalRightsDAM}} value='{{physicalRightsDAM}}'{{/physicalRightsDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='physicalRightsRTM'>physicalRightsRTM: </label><div class='col-sm-8'><input id='physicalRightsRTM' class='form-control' type='text'{{#physicalRightsRTM}} value='{{physicalRightsRTM}}'{{/physicalRightsRTM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startupLeadTime'>startupLeadTime: </label><div class='col-sm-8'><input id='startupLeadTime' class='form-control' type='text'{{#startupLeadTime}} value='{{startupLeadTime}}'{{/startupLeadTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TRType'>TRType: </label><div class='col-sm-8'><input id='TRType' class='form-control' type='text'{{#TRType}} value='{{TRType}}'{{/TRType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Ind_TransmissionRightChain'>Ind_TransmissionRightChain: </label><div class='col-sm-8'><input id='Ind_TransmissionRightChain' class='form-control' type='text'{{#Ind_TransmissionRightChain}} value='{{Ind_TransmissionRightChain}}'{{/Ind_TransmissionRightChain}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Chain_TransmissionRightChain'>Chain_TransmissionRightChain: </label><div class='col-sm-8'><input id='Chain_TransmissionRightChain' class='form-control' type='text'{{#Chain_TransmissionRightChain}} value='{{Chain_TransmissionRightChain}}'{{/Chain_TransmissionRightChain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chainOrder'>chainOrder: </label><div class='col-sm-8'><input id='{{id}}_chainOrder' class='form-control' type='text'{{#chainOrder}} value='{{chainOrder}}'{{/chainOrder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractMW'>contractMW: </label><div class='col-sm-8'><input id='{{id}}_contractMW' class='form-control' type='text'{{#contractMW}} value='{{contractMW}}'{{/contractMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractPrice'>contractPrice: </label><div class='col-sm-8'><input id='{{id}}_contractPrice' class='form-control' type='text'{{#contractPrice}} value='{{contractPrice}}'{{/contractPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractPriority'>contractPriority: </label><div class='col-sm-8'><input id='{{id}}_contractPriority' class='form-control' type='text'{{#contractPriority}} value='{{contractPriority}}'{{/contractPriority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractStatus'>contractStatus: </label><div class='col-sm-8'><input id='{{id}}_contractStatus' class='form-control' type='text'{{#contractStatus}} value='{{contractStatus}}'{{/contractStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contractType'>contractType: </label><div class='col-sm-8'><input id='{{id}}_contractType' class='form-control' type='text'{{#contractType}} value='{{contractType}}'{{/contractType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialLocation'>financialLocation: </label><div class='col-sm-8'><input id='{{id}}_financialLocation' class='form-control' type='text'{{#financialLocation}} value='{{financialLocation}}'{{/financialLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsDAM'>financialRightsDAM: </label><div class='col-sm-8'><input id='{{id}}_financialRightsDAM' class='form-control' type='text'{{#financialRightsDAM}} value='{{financialRightsDAM}}'{{/financialRightsDAM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_financialRightsRTM'>financialRightsRTM: </label><div class='col-sm-8'><input id='{{id}}_financialRightsRTM' class='form-control' type='text'{{#financialRightsRTM}} value='{{financialRightsRTM}}'{{/financialRightsRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_fuelAdder'>fuelAdder: </label><div class='col-sm-8'><input id='{{id}}_fuelAdder' class='form-control' type='text'{{#fuelAdder}} value='{{fuelAdder}}'{{/fuelAdder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestSchedMinutes'>latestSchedMinutes: </label><div class='col-sm-8'><input id='{{id}}_latestSchedMinutes' class='form-control' type='text'{{#latestSchedMinutes}} value='{{latestSchedMinutes}}'{{/latestSchedMinutes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_latestSchedMktType'>latestSchedMktType: </label><div class='col-sm-8'><input id='{{id}}_latestSchedMktType' class='form-control' type='text'{{#latestSchedMktType}} value='{{latestSchedMktType}}'{{/latestSchedMktType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumScheduleQuantity'>maximumScheduleQuantity: </label><div class='col-sm-8'><input id='{{id}}_maximumScheduleQuantity' class='form-control' type='text'{{#maximumScheduleQuantity}} value='{{maximumScheduleQuantity}}'{{/maximumScheduleQuantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumServiceHours'>maximumServiceHours: </label><div class='col-sm-8'><input id='{{id}}_maximumServiceHours' class='form-control' type='text'{{#maximumServiceHours}} value='{{maximumServiceHours}}'{{/maximumServiceHours}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumStartups'>maximumStartups: </label><div class='col-sm-8'><input id='{{id}}_maximumStartups' class='form-control' type='text'{{#maximumStartups}} value='{{maximumStartups}}'{{/maximumStartups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxNetDependableCapacity'>maxNetDependableCapacity: </label><div class='col-sm-8'><input id='{{id}}_maxNetDependableCapacity' class='form-control' type='text'{{#maxNetDependableCapacity}} value='{{maxNetDependableCapacity}}'{{/maxNetDependableCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumLoad'>minimumLoad: </label><div class='col-sm-8'><input id='{{id}}_minimumLoad' class='form-control' type='text'{{#minimumLoad}} value='{{minimumLoad}}'{{/minimumLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumScheduleQuantity'>minimumScheduleQuantity: </label><div class='col-sm-8'><input id='{{id}}_minimumScheduleQuantity' class='form-control' type='text'{{#minimumScheduleQuantity}} value='{{minimumScheduleQuantity}}'{{/minimumScheduleQuantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsDAM'>physicalRightsDAM: </label><div class='col-sm-8'><input id='{{id}}_physicalRightsDAM' class='form-control' type='text'{{#physicalRightsDAM}} value='{{physicalRightsDAM}}'{{/physicalRightsDAM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_physicalRightsRTM'>physicalRightsRTM: </label><div class='col-sm-8'><input id='{{id}}_physicalRightsRTM' class='form-control' type='text'{{#physicalRightsRTM}} value='{{physicalRightsRTM}}'{{/physicalRightsRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startupLeadTime'>startupLeadTime: </label><div class='col-sm-8'><input id='{{id}}_startupLeadTime' class='form-control' type='text'{{#startupLeadTime}} value='{{startupLeadTime}}'{{/startupLeadTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TRType'>TRType: </label><div class='col-sm-8'><input id='{{id}}_TRType' class='form-control' type='text'{{#TRType}} value='{{TRType}}'{{/TRType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='{{id}}_SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Ind_TransmissionRightChain'>Ind_TransmissionRightChain: </label><div class='col-sm-8'><input id='{{id}}_Ind_TransmissionRightChain' class='form-control' type='text'{{#Ind_TransmissionRightChain}} value='{{Ind_TransmissionRightChain}}'{{/Ind_TransmissionRightChain}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Chain_TransmissionRightChain'>Chain_TransmissionRightChain: </label><div class='col-sm-8'><input id='{{id}}_Chain_TransmissionRightChain' class='form-control' type='text'{{#Chain_TransmissionRightChain}} value='{{Chain_TransmissionRightChain}}'{{/Chain_TransmissionRightChain}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ContractRight" };
-                super.submit (obj);
-                temp = document.getElementById ("chainOrder").value; if ("" != temp) obj.chainOrder = temp;
-                temp = document.getElementById ("contractMW").value; if ("" != temp) obj.contractMW = temp;
-                temp = document.getElementById ("contractPrice").value; if ("" != temp) obj.contractPrice = temp;
-                temp = document.getElementById ("contractPriority").value; if ("" != temp) obj.contractPriority = temp;
-                temp = document.getElementById ("contractStatus").value; if ("" != temp) obj.contractStatus = temp;
-                temp = document.getElementById ("contractType").value; if ("" != temp) obj.contractType = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("financialLocation").value; if ("" != temp) obj.financialLocation = temp;
-                temp = document.getElementById ("financialRightsDAM").value; if ("" != temp) obj.financialRightsDAM = temp;
-                temp = document.getElementById ("financialRightsRTM").value; if ("" != temp) obj.financialRightsRTM = temp;
-                temp = document.getElementById ("fuelAdder").value; if ("" != temp) obj.fuelAdder = temp;
-                temp = document.getElementById ("latestSchedMinutes").value; if ("" != temp) obj.latestSchedMinutes = temp;
-                temp = document.getElementById ("latestSchedMktType").value; if ("" != temp) obj.latestSchedMktType = temp;
-                temp = document.getElementById ("maximumScheduleQuantity").value; if ("" != temp) obj.maximumScheduleQuantity = temp;
-                temp = document.getElementById ("maximumServiceHours").value; if ("" != temp) obj.maximumServiceHours = temp;
-                temp = document.getElementById ("maximumStartups").value; if ("" != temp) obj.maximumStartups = temp;
-                temp = document.getElementById ("maxNetDependableCapacity").value; if ("" != temp) obj.maxNetDependableCapacity = temp;
-                temp = document.getElementById ("minimumLoad").value; if ("" != temp) obj.minimumLoad = temp;
-                temp = document.getElementById ("minimumScheduleQuantity").value; if ("" != temp) obj.minimumScheduleQuantity = temp;
-                temp = document.getElementById ("physicalRightsDAM").value; if ("" != temp) obj.physicalRightsDAM = temp;
-                temp = document.getElementById ("physicalRightsRTM").value; if ("" != temp) obj.physicalRightsRTM = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("startupLeadTime").value; if ("" != temp) obj.startupLeadTime = temp;
-                temp = document.getElementById ("TRType").value; if ("" != temp) obj.TRType = temp;
-                temp = document.getElementById ("SchedulingCoordinator").value; if ("" != temp) obj.SchedulingCoordinator = temp;
-                temp = document.getElementById ("Ind_TransmissionRightChain").value; if ("" != temp) obj.Ind_TransmissionRightChain = temp;
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
-                temp = document.getElementById ("Chain_TransmissionRightChain").value; if ("" != temp) obj.Chain_TransmissionRightChain = temp;
+                var obj = obj || { id: id, cls: "ContractRight" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_chainOrder").value; if ("" != temp) obj.chainOrder = temp;
+                temp = document.getElementById (id + "_contractMW").value; if ("" != temp) obj.contractMW = temp;
+                temp = document.getElementById (id + "_contractPrice").value; if ("" != temp) obj.contractPrice = temp;
+                temp = document.getElementById (id + "_contractPriority").value; if ("" != temp) obj.contractPriority = temp;
+                temp = document.getElementById (id + "_contractStatus").value; if ("" != temp) obj.contractStatus = temp;
+                temp = document.getElementById (id + "_contractType").value; if ("" != temp) obj.contractType = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_financialLocation").value; if ("" != temp) obj.financialLocation = temp;
+                temp = document.getElementById (id + "_financialRightsDAM").value; if ("" != temp) obj.financialRightsDAM = temp;
+                temp = document.getElementById (id + "_financialRightsRTM").value; if ("" != temp) obj.financialRightsRTM = temp;
+                temp = document.getElementById (id + "_fuelAdder").value; if ("" != temp) obj.fuelAdder = temp;
+                temp = document.getElementById (id + "_latestSchedMinutes").value; if ("" != temp) obj.latestSchedMinutes = temp;
+                temp = document.getElementById (id + "_latestSchedMktType").value; if ("" != temp) obj.latestSchedMktType = temp;
+                temp = document.getElementById (id + "_maximumScheduleQuantity").value; if ("" != temp) obj.maximumScheduleQuantity = temp;
+                temp = document.getElementById (id + "_maximumServiceHours").value; if ("" != temp) obj.maximumServiceHours = temp;
+                temp = document.getElementById (id + "_maximumStartups").value; if ("" != temp) obj.maximumStartups = temp;
+                temp = document.getElementById (id + "_maxNetDependableCapacity").value; if ("" != temp) obj.maxNetDependableCapacity = temp;
+                temp = document.getElementById (id + "_minimumLoad").value; if ("" != temp) obj.minimumLoad = temp;
+                temp = document.getElementById (id + "_minimumScheduleQuantity").value; if ("" != temp) obj.minimumScheduleQuantity = temp;
+                temp = document.getElementById (id + "_physicalRightsDAM").value; if ("" != temp) obj.physicalRightsDAM = temp;
+                temp = document.getElementById (id + "_physicalRightsRTM").value; if ("" != temp) obj.physicalRightsRTM = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_startupLeadTime").value; if ("" != temp) obj.startupLeadTime = temp;
+                temp = document.getElementById (id + "_TRType").value; if ("" != temp) obj.TRType = temp;
+                temp = document.getElementById (id + "_SchedulingCoordinator").value; if ("" != temp) obj.SchedulingCoordinator = temp;
+                temp = document.getElementById (id + "_Ind_TransmissionRightChain").value; if ("" != temp) obj.Ind_TransmissionRightChain = temp;
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
+                temp = document.getElementById (id + "_Chain_TransmissionRightChain").value; if ("" != temp) obj.Chain_TransmissionRightChain = temp;
 
                 return (obj);
             }
@@ -5886,33 +5886,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AdjacentCASet_collapse" aria-expanded="true" aria-controls="AdjacentCASet_collapse" style="margin-left: 10px;">AdjacentCASet</a></legend>
-                    <div id="AdjacentCASet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AdjacentCASet_collapse" aria-expanded="true" aria-controls="{{id}}_AdjacentCASet_collapse" style="margin-left: 10px;">AdjacentCASet</a></legend>
+                    <div id="{{id}}_AdjacentCASet_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossPercentage '>lossPercentage : </label><div class='col-sm-8'><input id='lossPercentage ' class='form-control' type='text'{{#lossPercentage }} value='{{lossPercentage }}'{{/lossPercentage }}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossPercentage '>lossPercentage : </label><div class='col-sm-8'><input id='{{id}}_lossPercentage ' class='form-control' type='text'{{#lossPercentage }} value='{{lossPercentage }}'{{/lossPercentage }}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AdjacentCASet" };
-                super.submit (obj);
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("lossPercentage ").value; if ("" != temp) obj.lossPercentage  = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
+                var obj = obj || { id: id, cls: "AdjacentCASet" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_lossPercentage ").value; if ("" != temp) obj.lossPercentage  = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
 
                 return (obj);
             }
@@ -6027,31 +6027,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SchedulingPoint_collapse" aria-expanded="true" aria-controls="SchedulingPoint_collapse" style="margin-left: 10px;">SchedulingPoint</a></legend>
-                    <div id="SchedulingPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SchedulingPoint_collapse" aria-expanded="true" aria-controls="{{id}}_SchedulingPoint_collapse" style="margin-left: 10px;">SchedulingPoint</a></legend>
+                    <div id="{{id}}_SchedulingPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SchedulingPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                var obj = obj || { id: id, cls: "SchedulingPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
 
                 return (obj);
             }
@@ -6160,33 +6160,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OrgPnodeAllocation_collapse" aria-expanded="true" aria-controls="OrgPnodeAllocation_collapse" style="margin-left: 10px;">OrgPnodeAllocation</a></legend>
-                    <div id="OrgPnodeAllocation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OrgPnodeAllocation_collapse" aria-expanded="true" aria-controls="{{id}}_OrgPnodeAllocation_collapse" style="margin-left: 10px;">OrgPnodeAllocation</a></legend>
+                    <div id="{{id}}_OrgPnodeAllocation_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxMWAllocation'>maxMWAllocation: </label><div class='col-sm-8'><input id='maxMWAllocation' class='form-control' type='text'{{#maxMWAllocation}} value='{{maxMWAllocation}}'{{/maxMWAllocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pnode'>Pnode: </label><div class='col-sm-8'><input id='Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxMWAllocation'>maxMWAllocation: </label><div class='col-sm-8'><input id='{{id}}_maxMWAllocation' class='form-control' type='text'{{#maxMWAllocation}} value='{{maxMWAllocation}}'{{/maxMWAllocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnode'>Pnode: </label><div class='col-sm-8'><input id='{{id}}_Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OrgPnodeAllocation" };
-                super.submit (obj);
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("maxMWAllocation").value; if ("" != temp) obj.maxMWAllocation = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("Pnode").value; if ("" != temp) obj.Pnode = temp;
-                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
+                var obj = obj || { id: id, cls: "OrgPnodeAllocation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_maxMWAllocation").value; if ("" != temp) obj.maxMWAllocation = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_Pnode").value; if ("" != temp) obj.Pnode = temp;
+                temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
 
                 return (obj);
             }
@@ -6303,39 +6303,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceOperationMaintenanceCost_collapse" aria-expanded="true" aria-controls="ResourceOperationMaintenanceCost_collapse" style="margin-left: 10px;">ResourceOperationMaintenanceCost</a></legend>
-                    <div id="ResourceOperationMaintenanceCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceOperationMaintenanceCost_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceOperationMaintenanceCost_collapse" style="margin-left: 10px;">ResourceOperationMaintenanceCost</a></legend>
+                    <div id="{{id}}_ResourceOperationMaintenanceCost_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gasPercentAboveLowSustainedLimit'>gasPercentAboveLowSustainedLimit: </label><div class='col-sm-8'><input id='gasPercentAboveLowSustainedLimit' class='form-control' type='text'{{#gasPercentAboveLowSustainedLimit}} value='{{gasPercentAboveLowSustainedLimit}}'{{/gasPercentAboveLowSustainedLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilPercentAboveLowSustainedLimit'>oilPercentAboveLowSustainedLimit: </label><div class='col-sm-8'><input id='oilPercentAboveLowSustainedLimit' class='form-control' type='text'{{#oilPercentAboveLowSustainedLimit}} value='{{oilPercentAboveLowSustainedLimit}}'{{/oilPercentAboveLowSustainedLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omCostColdStartup'>omCostColdStartup: </label><div class='col-sm-8'><input id='omCostColdStartup' class='form-control' type='text'{{#omCostColdStartup}} value='{{omCostColdStartup}}'{{/omCostColdStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omCostHotStartup'>omCostHotStartup: </label><div class='col-sm-8'><input id='omCostHotStartup' class='form-control' type='text'{{#omCostHotStartup}} value='{{omCostHotStartup}}'{{/omCostHotStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omCostIntermediateStartup'>omCostIntermediateStartup: </label><div class='col-sm-8'><input id='omCostIntermediateStartup' class='form-control' type='text'{{#omCostIntermediateStartup}} value='{{omCostIntermediateStartup}}'{{/omCostIntermediateStartup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omCostLowSustainedLimit'>omCostLowSustainedLimit: </label><div class='col-sm-8'><input id='omCostLowSustainedLimit' class='form-control' type='text'{{#omCostLowSustainedLimit}} value='{{omCostLowSustainedLimit}}'{{/omCostLowSustainedLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solidfuelPercentAboveLowSustainedLimit'>solidfuelPercentAboveLowSustainedLimit: </label><div class='col-sm-8'><input id='solidfuelPercentAboveLowSustainedLimit' class='form-control' type='text'{{#solidfuelPercentAboveLowSustainedLimit}} value='{{solidfuelPercentAboveLowSustainedLimit}}'{{/solidfuelPercentAboveLowSustainedLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gasPercentAboveLowSustainedLimit'>gasPercentAboveLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_gasPercentAboveLowSustainedLimit' class='form-control' type='text'{{#gasPercentAboveLowSustainedLimit}} value='{{gasPercentAboveLowSustainedLimit}}'{{/gasPercentAboveLowSustainedLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPercentAboveLowSustainedLimit'>oilPercentAboveLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_oilPercentAboveLowSustainedLimit' class='form-control' type='text'{{#oilPercentAboveLowSustainedLimit}} value='{{oilPercentAboveLowSustainedLimit}}'{{/oilPercentAboveLowSustainedLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omCostColdStartup'>omCostColdStartup: </label><div class='col-sm-8'><input id='{{id}}_omCostColdStartup' class='form-control' type='text'{{#omCostColdStartup}} value='{{omCostColdStartup}}'{{/omCostColdStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omCostHotStartup'>omCostHotStartup: </label><div class='col-sm-8'><input id='{{id}}_omCostHotStartup' class='form-control' type='text'{{#omCostHotStartup}} value='{{omCostHotStartup}}'{{/omCostHotStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omCostIntermediateStartup'>omCostIntermediateStartup: </label><div class='col-sm-8'><input id='{{id}}_omCostIntermediateStartup' class='form-control' type='text'{{#omCostIntermediateStartup}} value='{{omCostIntermediateStartup}}'{{/omCostIntermediateStartup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omCostLowSustainedLimit'>omCostLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_omCostLowSustainedLimit' class='form-control' type='text'{{#omCostLowSustainedLimit}} value='{{omCostLowSustainedLimit}}'{{/omCostLowSustainedLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidfuelPercentAboveLowSustainedLimit'>solidfuelPercentAboveLowSustainedLimit: </label><div class='col-sm-8'><input id='{{id}}_solidfuelPercentAboveLowSustainedLimit' class='form-control' type='text'{{#solidfuelPercentAboveLowSustainedLimit}} value='{{solidfuelPercentAboveLowSustainedLimit}}'{{/solidfuelPercentAboveLowSustainedLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='{{id}}_ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceOperationMaintenanceCost" };
-                super.submit (obj);
-                temp = document.getElementById ("gasPercentAboveLowSustainedLimit").value; if ("" != temp) obj.gasPercentAboveLowSustainedLimit = temp;
-                temp = document.getElementById ("oilPercentAboveLowSustainedLimit").value; if ("" != temp) obj.oilPercentAboveLowSustainedLimit = temp;
-                temp = document.getElementById ("omCostColdStartup").value; if ("" != temp) obj.omCostColdStartup = temp;
-                temp = document.getElementById ("omCostHotStartup").value; if ("" != temp) obj.omCostHotStartup = temp;
-                temp = document.getElementById ("omCostIntermediateStartup").value; if ("" != temp) obj.omCostIntermediateStartup = temp;
-                temp = document.getElementById ("omCostLowSustainedLimit").value; if ("" != temp) obj.omCostLowSustainedLimit = temp;
-                temp = document.getElementById ("solidfuelPercentAboveLowSustainedLimit").value; if ("" != temp) obj.solidfuelPercentAboveLowSustainedLimit = temp;
-                temp = document.getElementById ("ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
+                var obj = obj || { id: id, cls: "ResourceOperationMaintenanceCost" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_gasPercentAboveLowSustainedLimit").value; if ("" != temp) obj.gasPercentAboveLowSustainedLimit = temp;
+                temp = document.getElementById (id + "_oilPercentAboveLowSustainedLimit").value; if ("" != temp) obj.oilPercentAboveLowSustainedLimit = temp;
+                temp = document.getElementById (id + "_omCostColdStartup").value; if ("" != temp) obj.omCostColdStartup = temp;
+                temp = document.getElementById (id + "_omCostHotStartup").value; if ("" != temp) obj.omCostHotStartup = temp;
+                temp = document.getElementById (id + "_omCostIntermediateStartup").value; if ("" != temp) obj.omCostIntermediateStartup = temp;
+                temp = document.getElementById (id + "_omCostLowSustainedLimit").value; if ("" != temp) obj.omCostLowSustainedLimit = temp;
+                temp = document.getElementById (id + "_solidfuelPercentAboveLowSustainedLimit").value; if ("" != temp) obj.solidfuelPercentAboveLowSustainedLimit = temp;
+                temp = document.getElementById (id + "_ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
 
                 return (obj);
             }
@@ -6510,45 +6510,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pnode_collapse" aria-expanded="true" aria-controls="Pnode_collapse" style="margin-left: 10px;">Pnode</a></legend>
-                    <div id="Pnode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pnode_collapse" aria-expanded="true" aria-controls="{{id}}_Pnode_collapse" style="margin-left: 10px;">Pnode</a></legend>
+                    <div id="{{id}}_Pnode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPublic'>isPublic: </label><div class='col-sm-8'><input id='isPublic' class='form-check-input' type='checkbox'{{#isPublic}} checked{{/isPublic}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><input id='usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SinkCRRSegment'>SinkCRRSegment: </label><div class='col-sm-8'><input id='SinkCRRSegment' class='form-control' type='text'{{#SinkCRRSegment}} value='{{SinkCRRSegment}}_string'{{/SinkCRRSegment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FTRs'>FTRs: </label><div class='col-sm-8'><input id='FTRs' class='form-control' type='text'{{#FTRs}} value='{{FTRs}}_string'{{/FTRs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SourceCRRSegment'>SourceCRRSegment: </label><div class='col-sm-8'><input id='SourceCRRSegment' class='form-control' type='text'{{#SourceCRRSegment}} value='{{SourceCRRSegment}}_string'{{/SourceCRRSegment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPublic'>isPublic: </label><div class='col-sm-8'><input id='{{id}}_isPublic' class='form-check-input' type='checkbox'{{#isPublic}} checked{{/isPublic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SinkCRRSegment'>SinkCRRSegment: </label><div class='col-sm-8'><input id='{{id}}_SinkCRRSegment' class='form-control' type='text'{{#SinkCRRSegment}} value='{{SinkCRRSegment}}_string'{{/SinkCRRSegment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FTRs'>FTRs: </label><div class='col-sm-8'><input id='{{id}}_FTRs' class='form-control' type='text'{{#FTRs}} value='{{FTRs}}_string'{{/FTRs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SourceCRRSegment'>SourceCRRSegment: </label><div class='col-sm-8'><input id='{{id}}_SourceCRRSegment' class='form-control' type='text'{{#SourceCRRSegment}} value='{{SourceCRRSegment}}_string'{{/SourceCRRSegment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Pnode" };
-                super.submit (obj);
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("isPublic").checked; if (temp) obj.isPublic = true;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById ("usage").value; if ("" != temp) obj.usage = temp;
-                temp = document.getElementById ("SinkCRRSegment").value; if ("" != temp) obj.SinkCRRSegment = temp.split (",");
-                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
-                temp = document.getElementById ("FTRs").value; if ("" != temp) obj.FTRs = temp.split (",");
-                temp = document.getElementById ("AggregateNode").value; if ("" != temp) obj.AggregateNode = temp.split (",");
-                temp = document.getElementById ("SourceCRRSegment").value; if ("" != temp) obj.SourceCRRSegment = temp.split (",");
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
+                var obj = obj || { id: id, cls: "Pnode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_isPublic").checked; if (temp) obj.isPublic = true;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_usage").value; if ("" != temp) obj.usage = temp;
+                temp = document.getElementById (id + "_SinkCRRSegment").value; if ("" != temp) obj.SinkCRRSegment = temp.split (",");
+                temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
+                temp = document.getElementById (id + "_FTRs").value; if ("" != temp) obj.FTRs = temp.split (",");
+                temp = document.getElementById (id + "_AggregateNode").value; if ("" != temp) obj.AggregateNode = temp.split (",");
+                temp = document.getElementById (id + "_SourceCRRSegment").value; if ("" != temp) obj.SourceCRRSegment = temp.split (",");
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
 
                 return (obj);
             }
@@ -6658,25 +6658,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartUpEnergyCurve_collapse" aria-expanded="true" aria-controls="StartUpEnergyCurve_collapse" style="margin-left: 10px;">StartUpEnergyCurve</a></legend>
-                    <div id="StartUpEnergyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartUpEnergyCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpEnergyCurve_collapse" style="margin-left: 10px;">StartUpEnergyCurve</a></legend>
+                    <div id="{{id}}_StartUpEnergyCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "StartUpEnergyCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "StartUpEnergyCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -6778,27 +6778,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadReductionTimeCurve_collapse" aria-expanded="true" aria-controls="LoadReductionTimeCurve_collapse" style="margin-left: 10px;">LoadReductionTimeCurve</a></legend>
-                    <div id="LoadReductionTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadReductionTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LoadReductionTimeCurve_collapse" style="margin-left: 10px;">LoadReductionTimeCurve</a></legend>
+                    <div id="{{id}}_LoadReductionTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadReductionTimeCurveType'>loadReductionTimeCurveType: </label><div class='col-sm-8'><input id='loadReductionTimeCurveType' class='form-control' type='text'{{#loadReductionTimeCurveType}} value='{{loadReductionTimeCurveType}}'{{/loadReductionTimeCurveType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}_string'{{/RegisteredLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadReductionTimeCurveType'>loadReductionTimeCurveType: </label><div class='col-sm-8'><input id='{{id}}_loadReductionTimeCurveType' class='form-control' type='text'{{#loadReductionTimeCurveType}} value='{{loadReductionTimeCurveType}}'{{/loadReductionTimeCurveType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}_string'{{/RegisteredLoad}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadReductionTimeCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("loadReductionTimeCurveType").value; if ("" != temp) obj.loadReductionTimeCurveType = temp;
-                temp = document.getElementById ("RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp.split (",");
+                var obj = obj || { id: id, cls: "LoadReductionTimeCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_loadReductionTimeCurveType").value; if ("" != temp) obj.loadReductionTimeCurveType = temp;
+                temp = document.getElementById (id + "_RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp.split (",");
 
                 return (obj);
             }
@@ -6896,27 +6896,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktHeatRateCurve_collapse" aria-expanded="true" aria-controls="MktHeatRateCurve_collapse" style="margin-left: 10px;">MktHeatRateCurve</a></legend>
-                    <div id="MktHeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktHeatRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_MktHeatRateCurve_collapse" style="margin-left: 10px;">MktHeatRateCurve</a></legend>
+                    <div id="{{id}}_MktHeatRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Production.HeatRateCurve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='{{id}}_ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MktHeatRateCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "MktHeatRateCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -7075,39 +7075,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HostControlArea_collapse" aria-expanded="true" aria-controls="HostControlArea_collapse" style="margin-left: 10px;">HostControlArea</a></legend>
-                    <div id="HostControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HostControlArea_collapse" aria-expanded="true" aria-controls="{{id}}_HostControlArea_collapse" style="margin-left: 10px;">HostControlArea</a></legend>
+                    <div id="{{id}}_HostControlArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='areaControlMode'>areaControlMode: </label><div class='col-sm-8'><input id='areaControlMode' class='form-control' type='text'{{#areaControlMode}} value='{{areaControlMode}}'{{/areaControlMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='freqSetPoint'>freqSetPoint: </label><div class='col-sm-8'><input id='freqSetPoint' class='form-control' type='text'{{#freqSetPoint}} value='{{freqSetPoint}}'{{/freqSetPoint}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='frequencyBiasFactor'>frequencyBiasFactor: </label><div class='col-sm-8'><input id='frequencyBiasFactor' class='form-control' type='text'{{#frequencyBiasFactor}} value='{{frequencyBiasFactor}}'{{/frequencyBiasFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Controls'>Controls: </label><div class='col-sm-8'><input id='Controls' class='form-control' type='text'{{#Controls}} value='{{Controls}}'{{/Controls}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_areaControlMode'>areaControlMode: </label><div class='col-sm-8'><input id='{{id}}_areaControlMode' class='form-control' type='text'{{#areaControlMode}} value='{{areaControlMode}}'{{/areaControlMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_freqSetPoint'>freqSetPoint: </label><div class='col-sm-8'><input id='{{id}}_freqSetPoint' class='form-control' type='text'{{#freqSetPoint}} value='{{freqSetPoint}}'{{/freqSetPoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyBiasFactor'>frequencyBiasFactor: </label><div class='col-sm-8'><input id='{{id}}_frequencyBiasFactor' class='form-control' type='text'{{#frequencyBiasFactor}} value='{{frequencyBiasFactor}}'{{/frequencyBiasFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Controls'>Controls: </label><div class='col-sm-8'><input id='{{id}}_Controls' class='form-control' type='text'{{#Controls}} value='{{Controls}}'{{/Controls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='{{id}}_AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "HostControlArea" };
-                super.submit (obj);
-                temp = document.getElementById ("areaControlMode").value; if ("" != temp) obj.areaControlMode = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("freqSetPoint").value; if ("" != temp) obj.freqSetPoint = temp;
-                temp = document.getElementById ("frequencyBiasFactor").value; if ("" != temp) obj.frequencyBiasFactor = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("Controls").value; if ("" != temp) obj.Controls = temp;
-                temp = document.getElementById ("AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
+                var obj = obj || { id: id, cls: "HostControlArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_areaControlMode").value; if ("" != temp) obj.areaControlMode = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_freqSetPoint").value; if ("" != temp) obj.freqSetPoint = temp;
+                temp = document.getElementById (id + "_frequencyBiasFactor").value; if ("" != temp) obj.frequencyBiasFactor = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_Controls").value; if ("" != temp) obj.Controls = temp;
+                temp = document.getElementById (id + "_AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
 
                 return (obj);
             }
@@ -7212,25 +7212,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RMRStartUpEnergyCurve_collapse" aria-expanded="true" aria-controls="RMRStartUpEnergyCurve_collapse" style="margin-left: 10px;">RMRStartUpEnergyCurve</a></legend>
-                    <div id="RMRStartUpEnergyCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RMRStartUpEnergyCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RMRStartUpEnergyCurve_collapse" style="margin-left: 10px;">RMRStartUpEnergyCurve</a></legend>
+                    <div id="{{id}}_RMRStartUpEnergyCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RMRStartUpEnergyCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "RMRStartUpEnergyCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -7340,29 +7340,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TACArea_collapse" aria-expanded="true" aria-controls="TACArea_collapse" style="margin-left: 10px;">TACArea</a></legend>
-                    <div id="TACArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TACArea_collapse" aria-expanded="true" aria-controls="{{id}}_TACArea_collapse" style="margin-left: 10px;">TACArea</a></legend>
+                    <div id="{{id}}_TACArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}_string'{{/AggregatedPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}_string'{{/AggregatedPnode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TACArea" };
-                super.submit (obj);
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp.split (",");
+                var obj = obj || { id: id, cls: "TACArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp.split (",");
 
                 return (obj);
             }
@@ -7463,25 +7463,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LocalReliabilityArea_collapse" aria-expanded="true" aria-controls="LocalReliabilityArea_collapse" style="margin-left: 10px;">LocalReliabilityArea</a></legend>
-                    <div id="LocalReliabilityArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LocalReliabilityArea_collapse" aria-expanded="true" aria-controls="{{id}}_LocalReliabilityArea_collapse" style="margin-left: 10px;">LocalReliabilityArea</a></legend>
+                    <div id="{{id}}_LocalReliabilityArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LocalReliabilityArea" };
-                super.submit (obj);
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
+                var obj = obj || { id: id, cls: "LocalReliabilityArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
 
                 return (obj);
             }
@@ -7577,25 +7577,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RMRStartUpTimeCurve_collapse" aria-expanded="true" aria-controls="RMRStartUpTimeCurve_collapse" style="margin-left: 10px;">RMRStartUpTimeCurve</a></legend>
-                    <div id="RMRStartUpTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RMRStartUpTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RMRStartUpTimeCurve_collapse" style="margin-left: 10px;">RMRStartUpTimeCurve</a></legend>
+                    <div id="{{id}}_RMRStartUpTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RMRStartUpTimeCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "RMRStartUpTimeCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -7696,29 +7696,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegulatingLimit_collapse" aria-expanded="true" aria-controls="RegulatingLimit_collapse" style="margin-left: 10px;">RegulatingLimit</a></legend>
-                    <div id="RegulatingLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegulatingLimit_collapse" aria-expanded="true" aria-controls="{{id}}_RegulatingLimit_collapse" style="margin-left: 10px;">RegulatingLimit</a></legend>
+                    <div id="{{id}}_RegulatingLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highLimit'>highLimit: </label><div class='col-sm-8'><input id='highLimit' class='form-control' type='text'{{#highLimit}} value='{{highLimit}}'{{/highLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowLimit'>lowLimit: </label><div class='col-sm-8'><input id='lowLimit' class='form-control' type='text'{{#lowLimit}} value='{{lowLimit}}'{{/lowLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highLimit'>highLimit: </label><div class='col-sm-8'><input id='{{id}}_highLimit' class='form-control' type='text'{{#highLimit}} value='{{highLimit}}'{{/highLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowLimit'>lowLimit: </label><div class='col-sm-8'><input id='{{id}}_lowLimit' class='form-control' type='text'{{#lowLimit}} value='{{lowLimit}}'{{/lowLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RegulatingLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("highLimit").value; if ("" != temp) obj.highLimit = temp;
-                temp = document.getElementById ("lowLimit").value; if ("" != temp) obj.lowLimit = temp;
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "RegulatingLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_highLimit").value; if ("" != temp) obj.highLimit = temp;
+                temp = document.getElementById (id + "_lowLimit").value; if ("" != temp) obj.lowLimit = temp;
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -7826,31 +7826,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlAreaDesignation_collapse" aria-expanded="true" aria-controls="ControlAreaDesignation_collapse" style="margin-left: 10px;">ControlAreaDesignation</a></legend>
-                    <div id="ControlAreaDesignation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ControlAreaDesignation_collapse" aria-expanded="true" aria-controls="{{id}}_ControlAreaDesignation_collapse" style="margin-left: 10px;">ControlAreaDesignation</a></legend>
+                    <div id="{{id}}_ControlAreaDesignation_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='attained'>attained: </label><div class='col-sm-8'><input id='attained' class='form-control' type='text'{{#attained}} value='{{attained}}'{{/attained}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='native'>native: </label><div class='col-sm-8'><input id='native' class='form-control' type='text'{{#native}} value='{{native}}'{{/native}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_attained'>attained: </label><div class='col-sm-8'><input id='{{id}}_attained' class='form-control' type='text'{{#attained}} value='{{attained}}'{{/attained}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_native'>native: </label><div class='col-sm-8'><input id='{{id}}_native' class='form-control' type='text'{{#native}} value='{{native}}'{{/native}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ControlAreaDesignation" };
-                super.submit (obj);
-                temp = document.getElementById ("attained").value; if ("" != temp) obj.attained = temp;
-                temp = document.getElementById ("native").value; if ("" != temp) obj.native = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
-                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
+                var obj = obj || { id: id, cls: "ControlAreaDesignation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_attained").value; if ("" != temp) obj.attained = temp;
+                temp = document.getElementById (id + "_native").value; if ("" != temp) obj.native = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
 
                 return (obj);
             }
@@ -7945,8 +7945,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MaxStartUpCostCurve_collapse" aria-expanded="true" aria-controls="MaxStartUpCostCurve_collapse" style="margin-left: 10px;">MaxStartUpCostCurve</a></legend>
-                    <div id="MaxStartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MaxStartUpCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_MaxStartUpCostCurve_collapse" style="margin-left: 10px;">MaxStartUpCostCurve</a></legend>
+                    <div id="{{id}}_MaxStartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -7956,10 +7956,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "MaxStartUpCostCurve" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "MaxStartUpCostCurve" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -8062,35 +8062,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CnodeDistributionFactor_collapse" aria-expanded="true" aria-controls="CnodeDistributionFactor_collapse" style="margin-left: 10px;">CnodeDistributionFactor</a></legend>
-                    <div id="CnodeDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CnodeDistributionFactor_collapse" aria-expanded="true" aria-controls="{{id}}_CnodeDistributionFactor_collapse" style="margin-left: 10px;">CnodeDistributionFactor</a></legend>
+                    <div id="{{id}}_CnodeDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='podLossFactor'>podLossFactor: </label><div class='col-sm-8'><input id='podLossFactor' class='form-control' type='text'{{#podLossFactor}} value='{{podLossFactor}}'{{/podLossFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}'{{/AggregateNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_podLossFactor'>podLossFactor: </label><div class='col-sm-8'><input id='{{id}}_podLossFactor' class='form-control' type='text'{{#podLossFactor}} value='{{podLossFactor}}'{{/podLossFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}'{{/AggregateNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='{{id}}_MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CnodeDistributionFactor" };
-                super.submit (obj);
-                temp = document.getElementById ("factor").value; if ("" != temp) obj.factor = temp;
-                temp = document.getElementById ("podLossFactor").value; if ("" != temp) obj.podLossFactor = temp;
-                temp = document.getElementById ("AggregateNode").value; if ("" != temp) obj.AggregateNode = temp;
-                temp = document.getElementById ("MktConnectivityNode").value; if ("" != temp) obj.MktConnectivityNode = temp;
-                temp = document.getElementById ("HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
-                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
+                var obj = obj || { id: id, cls: "CnodeDistributionFactor" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
+                temp = document.getElementById (id + "_podLossFactor").value; if ("" != temp) obj.podLossFactor = temp;
+                temp = document.getElementById (id + "_AggregateNode").value; if ("" != temp) obj.AggregateNode = temp;
+                temp = document.getElementById (id + "_MktConnectivityNode").value; if ("" != temp) obj.MktConnectivityNode = temp;
+                temp = document.getElementById (id + "_HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
+                temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
 
                 return (obj);
             }
@@ -8211,29 +8211,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MPMTestCategory_collapse" aria-expanded="true" aria-controls="MPMTestCategory_collapse" style="margin-left: 10px;">MPMTestCategory</a></legend>
-                    <div id="MPMTestCategory_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MPMTestCategory_collapse" aria-expanded="true" aria-controls="{{id}}_MPMTestCategory_collapse" style="margin-left: 10px;">MPMTestCategory</a></legend>
+                    <div id="{{id}}_MPMTestCategory_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='testIdentifier'>testIdentifier: </label><div class='col-sm-8'><input id='testIdentifier' class='form-control' type='text'{{#testIdentifier}} value='{{testIdentifier}}'{{/testIdentifier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='testMethod'>testMethod: </label><div class='col-sm-8'><input id='testMethod' class='form-control' type='text'{{#testMethod}} value='{{testMethod}}'{{/testMethod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='purposeFlag'>purposeFlag: </label><div class='col-sm-8'><input id='purposeFlag' class='form-control' type='text'{{#purposeFlag}} value='{{purposeFlag}}'{{/purposeFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testIdentifier'>testIdentifier: </label><div class='col-sm-8'><input id='{{id}}_testIdentifier' class='form-control' type='text'{{#testIdentifier}} value='{{testIdentifier}}'{{/testIdentifier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_testMethod'>testMethod: </label><div class='col-sm-8'><input id='{{id}}_testMethod' class='form-control' type='text'{{#testMethod}} value='{{testMethod}}'{{/testMethod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purposeFlag'>purposeFlag: </label><div class='col-sm-8'><input id='{{id}}_purposeFlag' class='form-control' type='text'{{#purposeFlag}} value='{{purposeFlag}}'{{/purposeFlag}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MPMTestCategory" };
-                super.submit (obj);
-                temp = document.getElementById ("testIdentifier").value; if ("" != temp) obj.testIdentifier = temp;
-                temp = document.getElementById ("testMethod").value; if ("" != temp) obj.testMethod = temp;
-                temp = document.getElementById ("purposeFlag").value; if ("" != temp) obj.purposeFlag = temp;
+                var obj = obj || { id: id, cls: "MPMTestCategory" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_testIdentifier").value; if ("" != temp) obj.testIdentifier = temp;
+                temp = document.getElementById (id + "_testMethod").value; if ("" != temp) obj.testMethod = temp;
+                temp = document.getElementById (id + "_purposeFlag").value; if ("" != temp) obj.purposeFlag = temp;
 
                 return (obj);
             }
@@ -8333,27 +8333,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OilPrice_collapse" aria-expanded="true" aria-controls="OilPrice_collapse" style="margin-left: 10px;">OilPrice</a></legend>
-                    <div id="OilPrice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OilPrice_collapse" aria-expanded="true" aria-controls="{{id}}_OilPrice_collapse" style="margin-left: 10px;">OilPrice</a></legend>
+                    <div id="{{id}}_OilPrice_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilPriceIndex'>oilPriceIndex: </label><div class='col-sm-8'><input id='oilPriceIndex' class='form-control' type='text'{{#oilPriceIndex}} value='{{oilPriceIndex}}'{{/oilPriceIndex}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPriceIndex'>oilPriceIndex: </label><div class='col-sm-8'><input id='{{id}}_oilPriceIndex' class='form-control' type='text'{{#oilPriceIndex}} value='{{oilPriceIndex}}'{{/oilPriceIndex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FuelRegion'>FuelRegion: </label><div class='col-sm-8'><input id='{{id}}_FuelRegion' class='form-control' type='text'{{#FuelRegion}} value='{{FuelRegion}}'{{/FuelRegion}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OilPrice" };
-                super.submit (obj);
-                temp = document.getElementById ("oilPriceIndex").value; if ("" != temp) obj.oilPriceIndex = temp;
-                temp = document.getElementById ("FuelRegion").value; if ("" != temp) obj.FuelRegion = temp;
+                var obj = obj || { id: id, cls: "OilPrice" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_oilPriceIndex").value; if ("" != temp) obj.oilPriceIndex = temp;
+                temp = document.getElementById (id + "_FuelRegion").value; if ("" != temp) obj.FuelRegion = temp;
 
                 return (obj);
             }
@@ -8457,31 +8457,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombinedCycleConfigurationMember_collapse" aria-expanded="true" aria-controls="CombinedCycleConfigurationMember_collapse" style="margin-left: 10px;">CombinedCycleConfigurationMember</a></legend>
-                    <div id="CombinedCycleConfigurationMember_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CombinedCycleConfigurationMember_collapse" aria-expanded="true" aria-controls="{{id}}_CombinedCycleConfigurationMember_collapse" style="margin-left: 10px;">CombinedCycleConfigurationMember</a></legend>
+                    <div id="{{id}}_CombinedCycleConfigurationMember_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='primary'>primary: </label><div class='col-sm-8'><input id='primary' class='form-check-input' type='checkbox'{{#primary}} checked{{/primary}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='steam'>steam: </label><div class='col-sm-8'><input id='steam' class='form-check-input' type='checkbox'{{#steam}} checked{{/steam}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktThermalGeneratingUnit'>MktThermalGeneratingUnit: </label><div class='col-sm-8'><input id='MktThermalGeneratingUnit' class='form-control' type='text'{{#MktThermalGeneratingUnit}} value='{{MktThermalGeneratingUnit}}'{{/MktThermalGeneratingUnit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CombinedCycleConfiguration'>CombinedCycleConfiguration: </label><div class='col-sm-8'><input id='CombinedCycleConfiguration' class='form-control' type='text'{{#CombinedCycleConfiguration}} value='{{CombinedCycleConfiguration}}'{{/CombinedCycleConfiguration}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_primary'>primary: </label><div class='col-sm-8'><input id='{{id}}_primary' class='form-check-input' type='checkbox'{{#primary}} checked{{/primary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_steam'>steam: </label><div class='col-sm-8'><input id='{{id}}_steam' class='form-check-input' type='checkbox'{{#steam}} checked{{/steam}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktThermalGeneratingUnit'>MktThermalGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_MktThermalGeneratingUnit' class='form-control' type='text'{{#MktThermalGeneratingUnit}} value='{{MktThermalGeneratingUnit}}'{{/MktThermalGeneratingUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CombinedCycleConfiguration'>CombinedCycleConfiguration: </label><div class='col-sm-8'><input id='{{id}}_CombinedCycleConfiguration' class='form-control' type='text'{{#CombinedCycleConfiguration}} value='{{CombinedCycleConfiguration}}'{{/CombinedCycleConfiguration}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CombinedCycleConfigurationMember" };
-                super.submit (obj);
-                temp = document.getElementById ("primary").checked; if (temp) obj.primary = true;
-                temp = document.getElementById ("steam").checked; if (temp) obj.steam = true;
-                temp = document.getElementById ("MktThermalGeneratingUnit").value; if ("" != temp) obj.MktThermalGeneratingUnit = temp;
-                temp = document.getElementById ("CombinedCycleConfiguration").value; if ("" != temp) obj.CombinedCycleConfiguration = temp;
+                var obj = obj || { id: id, cls: "CombinedCycleConfigurationMember" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_primary").checked; if (temp) obj.primary = true;
+                temp = document.getElementById (id + "_steam").checked; if (temp) obj.steam = true;
+                temp = document.getElementById (id + "_MktThermalGeneratingUnit").value; if ("" != temp) obj.MktThermalGeneratingUnit = temp;
+                temp = document.getElementById (id + "_CombinedCycleConfiguration").value; if ("" != temp) obj.CombinedCycleConfiguration = temp;
 
                 return (obj);
             }
@@ -8595,37 +8595,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidPriceCap_collapse" aria-expanded="true" aria-controls="BidPriceCap_collapse" style="margin-left: 10px;">BidPriceCap</a></legend>
-                    <div id="BidPriceCap_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidPriceCap_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceCap_collapse" style="margin-left: 10px;">BidPriceCap</a></legend>
+                    <div id="{{id}}_BidPriceCap_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidFloor'>bidFloor: </label><div class='col-sm-8'><input id='bidFloor' class='form-control' type='text'{{#bidFloor}} value='{{bidFloor}}'{{/bidFloor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidCeiling'>bidCeiling: </label><div class='col-sm-8'><input id='bidCeiling' class='form-control' type='text'{{#bidCeiling}} value='{{bidCeiling}}'{{/bidCeiling}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='defaultPrice'>defaultPrice: </label><div class='col-sm-8'><input id='defaultPrice' class='form-control' type='text'{{#defaultPrice}} value='{{defaultPrice}}'{{/defaultPrice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidFloorAS'>bidFloorAS: </label><div class='col-sm-8'><input id='bidFloorAS' class='form-control' type='text'{{#bidFloorAS}} value='{{bidFloorAS}}'{{/bidFloorAS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidCeilingAS'>bidCeilingAS: </label><div class='col-sm-8'><input id='bidCeilingAS' class='form-control' type='text'{{#bidCeilingAS}} value='{{bidCeilingAS}}'{{/bidCeilingAS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidFloor'>bidFloor: </label><div class='col-sm-8'><input id='{{id}}_bidFloor' class='form-control' type='text'{{#bidFloor}} value='{{bidFloor}}'{{/bidFloor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidCeiling'>bidCeiling: </label><div class='col-sm-8'><input id='{{id}}_bidCeiling' class='form-control' type='text'{{#bidCeiling}} value='{{bidCeiling}}'{{/bidCeiling}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultPrice'>defaultPrice: </label><div class='col-sm-8'><input id='{{id}}_defaultPrice' class='form-control' type='text'{{#defaultPrice}} value='{{defaultPrice}}'{{/defaultPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidFloorAS'>bidFloorAS: </label><div class='col-sm-8'><input id='{{id}}_bidFloorAS' class='form-control' type='text'{{#bidFloorAS}} value='{{bidFloorAS}}'{{/bidFloorAS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidCeilingAS'>bidCeilingAS: </label><div class='col-sm-8'><input id='{{id}}_bidCeilingAS' class='form-control' type='text'{{#bidCeilingAS}} value='{{bidCeilingAS}}'{{/bidCeilingAS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BidPriceCap" };
-                super.submit (obj);
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("bidFloor").value; if ("" != temp) obj.bidFloor = temp;
-                temp = document.getElementById ("bidCeiling").value; if ("" != temp) obj.bidCeiling = temp;
-                temp = document.getElementById ("defaultPrice").value; if ("" != temp) obj.defaultPrice = temp;
-                temp = document.getElementById ("bidFloorAS").value; if ("" != temp) obj.bidFloorAS = temp;
-                temp = document.getElementById ("bidCeilingAS").value; if ("" != temp) obj.bidCeilingAS = temp;
-                temp = document.getElementById ("MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
+                var obj = obj || { id: id, cls: "BidPriceCap" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_bidFloor").value; if ("" != temp) obj.bidFloor = temp;
+                temp = document.getElementById (id + "_bidCeiling").value; if ("" != temp) obj.bidCeiling = temp;
+                temp = document.getElementById (id + "_defaultPrice").value; if ("" != temp) obj.defaultPrice = temp;
+                temp = document.getElementById (id + "_bidFloorAS").value; if ("" != temp) obj.bidFloorAS = temp;
+                temp = document.getElementById (id + "_bidCeilingAS").value; if ("" != temp) obj.bidCeilingAS = temp;
+                temp = document.getElementById (id + "_MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
 
                 return (obj);
             }
@@ -8729,31 +8729,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FlowgateRelief_collapse" aria-expanded="true" aria-controls="FlowgateRelief_collapse" style="margin-left: 10px;">FlowgateRelief</a></legend>
-                    <div id="FlowgateRelief_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FlowgateRelief_collapse" aria-expanded="true" aria-controls="{{id}}_FlowgateRelief_collapse" style="margin-left: 10px;">FlowgateRelief</a></legend>
+                    <div id="{{id}}_FlowgateRelief_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='terminateDate'>terminateDate: </label><div class='col-sm-8'><input id='terminateDate' class='form-control' type='text'{{#terminateDate}} value='{{terminateDate}}'{{/terminateDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='idcTargetMktFlow'>idcTargetMktFlow: </label><div class='col-sm-8'><input id='idcTargetMktFlow' class='form-control' type='text'{{#idcTargetMktFlow}} value='{{idcTargetMktFlow}}'{{/idcTargetMktFlow}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminateDate'>terminateDate: </label><div class='col-sm-8'><input id='{{id}}_terminateDate' class='form-control' type='text'{{#terminateDate}} value='{{terminateDate}}'{{/terminateDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_idcTargetMktFlow'>idcTargetMktFlow: </label><div class='col-sm-8'><input id='{{id}}_idcTargetMktFlow' class='form-control' type='text'{{#idcTargetMktFlow}} value='{{idcTargetMktFlow}}'{{/idcTargetMktFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FlowgateRelief" };
-                super.submit (obj);
-                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
-                temp = document.getElementById ("terminateDate").value; if ("" != temp) obj.terminateDate = temp;
-                temp = document.getElementById ("idcTargetMktFlow").value; if ("" != temp) obj.idcTargetMktFlow = temp;
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                var obj = obj || { id: id, cls: "FlowgateRelief" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById (id + "_terminateDate").value; if ("" != temp) obj.terminateDate = temp;
+                temp = document.getElementById (id + "_idcTargetMktFlow").value; if ("" != temp) obj.idcTargetMktFlow = temp;
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
 
                 return (obj);
             }
@@ -8864,33 +8864,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ForbiddenRegion_collapse" aria-expanded="true" aria-controls="ForbiddenRegion_collapse" style="margin-left: 10px;">ForbiddenRegion</a></legend>
-                    <div id="ForbiddenRegion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ForbiddenRegion_collapse" aria-expanded="true" aria-controls="{{id}}_ForbiddenRegion_collapse" style="margin-left: 10px;">ForbiddenRegion</a></legend>
+                    <div id="{{id}}_ForbiddenRegion_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='crossingCost'>crossingCost: </label><div class='col-sm-8'><input id='crossingCost' class='form-control' type='text'{{#crossingCost}} value='{{crossingCost}}'{{/crossingCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='crossTime'>crossTime: </label><div class='col-sm-8'><input id='crossTime' class='form-control' type='text'{{#crossTime}} value='{{crossTime}}'{{/crossTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highMW'>highMW: </label><div class='col-sm-8'><input id='highMW' class='form-control' type='text'{{#highMW}} value='{{highMW}}'{{/highMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowMW'>lowMW: </label><div class='col-sm-8'><input id='lowMW' class='form-control' type='text'{{#lowMW}} value='{{lowMW}}'{{/lowMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_crossingCost'>crossingCost: </label><div class='col-sm-8'><input id='{{id}}_crossingCost' class='form-control' type='text'{{#crossingCost}} value='{{crossingCost}}'{{/crossingCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_crossTime'>crossTime: </label><div class='col-sm-8'><input id='{{id}}_crossTime' class='form-control' type='text'{{#crossTime}} value='{{crossTime}}'{{/crossTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highMW'>highMW: </label><div class='col-sm-8'><input id='{{id}}_highMW' class='form-control' type='text'{{#highMW}} value='{{highMW}}'{{/highMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowMW'>lowMW: </label><div class='col-sm-8'><input id='{{id}}_lowMW' class='form-control' type='text'{{#lowMW}} value='{{lowMW}}'{{/lowMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ForbiddenRegion" };
-                super.submit (obj);
-                temp = document.getElementById ("crossingCost").value; if ("" != temp) obj.crossingCost = temp;
-                temp = document.getElementById ("crossTime").value; if ("" != temp) obj.crossTime = temp;
-                temp = document.getElementById ("highMW").value; if ("" != temp) obj.highMW = temp;
-                temp = document.getElementById ("lowMW").value; if ("" != temp) obj.lowMW = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                var obj = obj || { id: id, cls: "ForbiddenRegion" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_crossingCost").value; if ("" != temp) obj.crossingCost = temp;
+                temp = document.getElementById (id + "_crossTime").value; if ("" != temp) obj.crossTime = temp;
+                temp = document.getElementById (id + "_highMW").value; if ("" != temp) obj.highMW = temp;
+                temp = document.getElementById (id + "_lowMW").value; if ("" != temp) obj.lowMW = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
 
                 return (obj);
             }
@@ -9002,35 +9002,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketQualificationRequirement_collapse" aria-expanded="true" aria-controls="MarketQualificationRequirement_collapse" style="margin-left: 10px;">MarketQualificationRequirement</a></legend>
-                    <div id="MarketQualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketQualificationRequirement_collapse" aria-expanded="true" aria-controls="{{id}}_MarketQualificationRequirement_collapse" style="margin-left: 10px;">MarketQualificationRequirement</a></legend>
+                    <div id="{{id}}_MarketQualificationRequirement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='expirationDate'>expirationDate: </label><div class='col-sm-8'><input id='expirationDate' class='form-control' type='text'{{#expirationDate}} value='{{expirationDate}}'{{/expirationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='statusType'>statusType: </label><div class='col-sm-8'><input id='statusType' class='form-control' type='text'{{#statusType}} value='{{statusType}}'{{/statusType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketSkills'>MarketSkills: </label><div class='col-sm-8'><input id='MarketSkills' class='form-control' type='text'{{#MarketSkills}} value='{{MarketSkills}}_string'{{/MarketSkills}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_expirationDate'>expirationDate: </label><div class='col-sm-8'><input id='{{id}}_expirationDate' class='form-control' type='text'{{#expirationDate}} value='{{expirationDate}}'{{/expirationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qualificationID'>qualificationID: </label><div class='col-sm-8'><input id='{{id}}_qualificationID' class='form-control' type='text'{{#qualificationID}} value='{{qualificationID}}'{{/qualificationID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statusType'>statusType: </label><div class='col-sm-8'><input id='{{id}}_statusType' class='form-control' type='text'{{#statusType}} value='{{statusType}}'{{/statusType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketSkills'>MarketSkills: </label><div class='col-sm-8'><input id='{{id}}_MarketSkills' class='form-control' type='text'{{#MarketSkills}} value='{{MarketSkills}}_string'{{/MarketSkills}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketQualificationRequirement" };
-                super.submit (obj);
-                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
-                temp = document.getElementById ("expirationDate").value; if ("" != temp) obj.expirationDate = temp;
-                temp = document.getElementById ("qualificationID").value; if ("" != temp) obj.qualificationID = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("statusType").value; if ("" != temp) obj.statusType = temp;
-                temp = document.getElementById ("MarketSkills").value; if ("" != temp) obj.MarketSkills = temp.split (",");
+                var obj = obj || { id: id, cls: "MarketQualificationRequirement" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById (id + "_expirationDate").value; if ("" != temp) obj.expirationDate = temp;
+                temp = document.getElementById (id + "_qualificationID").value; if ("" != temp) obj.qualificationID = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_statusType").value; if ("" != temp) obj.statusType = temp;
+                temp = document.getElementById (id + "_MarketSkills").value; if ("" != temp) obj.MarketSkills = temp.split (",");
 
                 return (obj);
             }
@@ -9133,29 +9133,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubstitutionResourceList_collapse" aria-expanded="true" aria-controls="SubstitutionResourceList_collapse" style="margin-left: 10px;">SubstitutionResourceList</a></legend>
-                    <div id="SubstitutionResourceList_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SubstitutionResourceList_collapse" aria-expanded="true" aria-controls="{{id}}_SubstitutionResourceList_collapse" style="margin-left: 10px;">SubstitutionResourceList</a></legend>
+                    <div id="{{id}}_SubstitutionResourceList_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='precedence'>precedence: </label><div class='col-sm-8'><input id='precedence' class='form-control' type='text'{{#precedence}} value='{{precedence}}'{{/precedence}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_precedence'>precedence: </label><div class='col-sm-8'><input id='{{id}}_precedence' class='form-control' type='text'{{#precedence}} value='{{precedence}}'{{/precedence}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='{{id}}_TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SubstitutionResourceList" };
-                super.submit (obj);
-                temp = document.getElementById ("precedence").value; if ("" != temp) obj.precedence = temp;
-                temp = document.getElementById ("TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                var obj = obj || { id: id, cls: "SubstitutionResourceList" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_precedence").value; if ("" != temp) obj.precedence = temp;
+                temp = document.getElementById (id + "_TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
             }
@@ -9266,35 +9266,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContractDistributionFactor_collapse" aria-expanded="true" aria-controls="ContractDistributionFactor_collapse" style="margin-left: 10px;">ContractDistributionFactor</a></legend>
-                    <div id="ContractDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContractDistributionFactor_collapse" aria-expanded="true" aria-controls="{{id}}_ContractDistributionFactor_collapse" style="margin-left: 10px;">ContractDistributionFactor</a></legend>
+                    <div id="{{id}}_ContractDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sourceFlag'>sourceFlag: </label><div class='col-sm-8'><input id='sourceFlag' class='form-control' type='text'{{#sourceFlag}} value='{{sourceFlag}}'{{/sourceFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sinkFlag'>sinkFlag: </label><div class='col-sm-8'><input id='sinkFlag' class='form-control' type='text'{{#sinkFlag}} value='{{sinkFlag}}'{{/sinkFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sourceFlag'>sourceFlag: </label><div class='col-sm-8'><input id='{{id}}_sourceFlag' class='form-control' type='text'{{#sourceFlag}} value='{{sourceFlag}}'{{/sourceFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sinkFlag'>sinkFlag: </label><div class='col-sm-8'><input id='{{id}}_sinkFlag' class='form-control' type='text'{{#sinkFlag}} value='{{sinkFlag}}'{{/sinkFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='{{id}}_TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ContractDistributionFactor" };
-                super.submit (obj);
-                temp = document.getElementById ("factor").value; if ("" != temp) obj.factor = temp;
-                temp = document.getElementById ("sourceFlag").value; if ("" != temp) obj.sourceFlag = temp;
-                temp = document.getElementById ("sinkFlag").value; if ("" != temp) obj.sinkFlag = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
-                temp = document.getElementById ("TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
+                var obj = obj || { id: id, cls: "ContractDistributionFactor" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
+                temp = document.getElementById (id + "_sourceFlag").value; if ("" != temp) obj.sourceFlag = temp;
+                temp = document.getElementById (id + "_sinkFlag").value; if ("" != temp) obj.sinkFlag = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                temp = document.getElementById (id + "_TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
 
                 return (obj);
             }
@@ -9391,25 +9391,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RMRStartUpFuelCurve_collapse" aria-expanded="true" aria-controls="RMRStartUpFuelCurve_collapse" style="margin-left: 10px;">RMRStartUpFuelCurve</a></legend>
-                    <div id="RMRStartUpFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RMRStartUpFuelCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RMRStartUpFuelCurve_collapse" style="margin-left: 10px;">RMRStartUpFuelCurve</a></legend>
+                    <div id="{{id}}_RMRStartUpFuelCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RMRStartUpFuelCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "RMRStartUpFuelCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -9504,25 +9504,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FuelCostCurve_collapse" aria-expanded="true" aria-controls="FuelCostCurve_collapse" style="margin-left: 10px;">FuelCostCurve</a></legend>
-                    <div id="FuelCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FuelCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_FuelCostCurve_collapse" style="margin-left: 10px;">FuelCostCurve</a></legend>
+                    <div id="{{id}}_FuelCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FuelCostCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "FuelCostCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -9749,59 +9749,59 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubControlArea_collapse" aria-expanded="true" aria-controls="SubControlArea_collapse" style="margin-left: 10px;">SubControlArea</a></legend>
-                    <div id="SubControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SubControlArea_collapse" aria-expanded="true" aria-controls="{{id}}_SubControlArea_collapse" style="margin-left: 10px;">SubControlArea</a></legend>
+                    <div id="{{id}}_SubControlArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='areaShortName'>areaShortName: </label><div class='col-sm-8'><input id='areaShortName' class='form-control' type='text'{{#areaShortName}} value='{{areaShortName}}'{{/areaShortName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='constantCoefficient'>constantCoefficient: </label><div class='col-sm-8'><input id='constantCoefficient' class='form-control' type='text'{{#constantCoefficient}} value='{{constantCoefficient}}'{{/constantCoefficient}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='embeddedControlArea'>embeddedControlArea: </label><div class='col-sm-8'><input id='embeddedControlArea' class='form-control' type='text'{{#embeddedControlArea}} value='{{embeddedControlArea}}'{{/embeddedControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='internalCA'>internalCA: </label><div class='col-sm-8'><input id='internalCA' class='form-control' type='text'{{#internalCA}} value='{{internalCA}}'{{/internalCA}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='linearCoefficient'>linearCoefficient: </label><div class='col-sm-8'><input id='linearCoefficient' class='form-control' type='text'{{#linearCoefficient}} value='{{linearCoefficient}}'{{/linearCoefficient}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localCA'>localCA: </label><div class='col-sm-8'><input id='localCA' class='form-control' type='text'{{#localCA}} value='{{localCA}}'{{/localCA}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxSelfSchedMW'>maxSelfSchedMW: </label><div class='col-sm-8'><input id='maxSelfSchedMW' class='form-control' type='text'{{#maxSelfSchedMW}} value='{{maxSelfSchedMW}}'{{/maxSelfSchedMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minSelfSchedMW'>minSelfSchedMW: </label><div class='col-sm-8'><input id='minSelfSchedMW' class='form-control' type='text'{{#minSelfSchedMW}} value='{{minSelfSchedMW}}'{{/minSelfSchedMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quadraticCoefficient'>quadraticCoefficient: </label><div class='col-sm-8'><input id='quadraticCoefficient' class='form-control' type='text'{{#quadraticCoefficient}} value='{{quadraticCoefficient}}'{{/quadraticCoefficient}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AreaReserveSpecification'>AreaReserveSpecification: </label><div class='col-sm-8'><input id='AreaReserveSpecification' class='form-control' type='text'{{#AreaReserveSpecification}} value='{{AreaReserveSpecification}}'{{/AreaReserveSpecification}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTO'>RTO: </label><div class='col-sm-8'><input id='RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlAreaDesignation'>ControlAreaDesignation: </label><div class='col-sm-8'><input id='ControlAreaDesignation' class='form-control' type='text'{{#ControlAreaDesignation}} value='{{ControlAreaDesignation}}_string'{{/ControlAreaDesignation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_areaShortName'>areaShortName: </label><div class='col-sm-8'><input id='{{id}}_areaShortName' class='form-control' type='text'{{#areaShortName}} value='{{areaShortName}}'{{/areaShortName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constantCoefficient'>constantCoefficient: </label><div class='col-sm-8'><input id='{{id}}_constantCoefficient' class='form-control' type='text'{{#constantCoefficient}} value='{{constantCoefficient}}'{{/constantCoefficient}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_embeddedControlArea'>embeddedControlArea: </label><div class='col-sm-8'><input id='{{id}}_embeddedControlArea' class='form-control' type='text'{{#embeddedControlArea}} value='{{embeddedControlArea}}'{{/embeddedControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_internalCA'>internalCA: </label><div class='col-sm-8'><input id='{{id}}_internalCA' class='form-control' type='text'{{#internalCA}} value='{{internalCA}}'{{/internalCA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_linearCoefficient'>linearCoefficient: </label><div class='col-sm-8'><input id='{{id}}_linearCoefficient' class='form-control' type='text'{{#linearCoefficient}} value='{{linearCoefficient}}'{{/linearCoefficient}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localCA'>localCA: </label><div class='col-sm-8'><input id='{{id}}_localCA' class='form-control' type='text'{{#localCA}} value='{{localCA}}'{{/localCA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxSelfSchedMW'>maxSelfSchedMW: </label><div class='col-sm-8'><input id='{{id}}_maxSelfSchedMW' class='form-control' type='text'{{#maxSelfSchedMW}} value='{{maxSelfSchedMW}}'{{/maxSelfSchedMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minSelfSchedMW'>minSelfSchedMW: </label><div class='col-sm-8'><input id='{{id}}_minSelfSchedMW' class='form-control' type='text'{{#minSelfSchedMW}} value='{{minSelfSchedMW}}'{{/minSelfSchedMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quadraticCoefficient'>quadraticCoefficient: </label><div class='col-sm-8'><input id='{{id}}_quadraticCoefficient' class='form-control' type='text'{{#quadraticCoefficient}} value='{{quadraticCoefficient}}'{{/quadraticCoefficient}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='{{id}}_AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AreaReserveSpecification'>AreaReserveSpecification: </label><div class='col-sm-8'><input id='{{id}}_AreaReserveSpecification' class='form-control' type='text'{{#AreaReserveSpecification}} value='{{AreaReserveSpecification}}'{{/AreaReserveSpecification}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTO'>RTO: </label><div class='col-sm-8'><input id='{{id}}_RTO' class='form-control' type='text'{{#RTO}} value='{{RTO}}'{{/RTO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlAreaDesignation'>ControlAreaDesignation: </label><div class='col-sm-8'><input id='{{id}}_ControlAreaDesignation' class='form-control' type='text'{{#ControlAreaDesignation}} value='{{ControlAreaDesignation}}_string'{{/ControlAreaDesignation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SubControlArea" };
-                super.submit (obj);
-                temp = document.getElementById ("areaShortName").value; if ("" != temp) obj.areaShortName = temp;
-                temp = document.getElementById ("constantCoefficient").value; if ("" != temp) obj.constantCoefficient = temp;
-                temp = document.getElementById ("embeddedControlArea").value; if ("" != temp) obj.embeddedControlArea = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("internalCA").value; if ("" != temp) obj.internalCA = temp;
-                temp = document.getElementById ("linearCoefficient").value; if ("" != temp) obj.linearCoefficient = temp;
-                temp = document.getElementById ("localCA").value; if ("" != temp) obj.localCA = temp;
-                temp = document.getElementById ("maxSelfSchedMW").value; if ("" != temp) obj.maxSelfSchedMW = temp;
-                temp = document.getElementById ("minSelfSchedMW").value; if ("" != temp) obj.minSelfSchedMW = temp;
-                temp = document.getElementById ("quadraticCoefficient").value; if ("" != temp) obj.quadraticCoefficient = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
-                temp = document.getElementById ("AggregateNode").value; if ("" != temp) obj.AggregateNode = temp.split (",");
-                temp = document.getElementById ("AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
-                temp = document.getElementById ("AreaReserveSpecification").value; if ("" != temp) obj.AreaReserveSpecification = temp;
-                temp = document.getElementById ("RTO").value; if ("" != temp) obj.RTO = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
-                temp = document.getElementById ("ControlAreaDesignation").value; if ("" != temp) obj.ControlAreaDesignation = temp.split (",");
+                var obj = obj || { id: id, cls: "SubControlArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_areaShortName").value; if ("" != temp) obj.areaShortName = temp;
+                temp = document.getElementById (id + "_constantCoefficient").value; if ("" != temp) obj.constantCoefficient = temp;
+                temp = document.getElementById (id + "_embeddedControlArea").value; if ("" != temp) obj.embeddedControlArea = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_internalCA").value; if ("" != temp) obj.internalCA = temp;
+                temp = document.getElementById (id + "_linearCoefficient").value; if ("" != temp) obj.linearCoefficient = temp;
+                temp = document.getElementById (id + "_localCA").value; if ("" != temp) obj.localCA = temp;
+                temp = document.getElementById (id + "_maxSelfSchedMW").value; if ("" != temp) obj.maxSelfSchedMW = temp;
+                temp = document.getElementById (id + "_minSelfSchedMW").value; if ("" != temp) obj.minSelfSchedMW = temp;
+                temp = document.getElementById (id + "_quadraticCoefficient").value; if ("" != temp) obj.quadraticCoefficient = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
+                temp = document.getElementById (id + "_AggregateNode").value; if ("" != temp) obj.AggregateNode = temp.split (",");
+                temp = document.getElementById (id + "_AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
+                temp = document.getElementById (id + "_AreaReserveSpecification").value; if ("" != temp) obj.AreaReserveSpecification = temp;
+                temp = document.getElementById (id + "_RTO").value; if ("" != temp) obj.RTO = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                temp = document.getElementById (id + "_ControlAreaDesignation").value; if ("" != temp) obj.ControlAreaDesignation = temp.split (",");
 
                 return (obj);
             }
@@ -9914,8 +9914,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MktConductingEquipment_collapse" aria-expanded="true" aria-controls="MktConductingEquipment_collapse" style="margin-left: 10px;">MktConductingEquipment</a></legend>
-                    <div id="MktConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MktConductingEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_MktConductingEquipment_collapse" style="margin-left: 10px;">MktConductingEquipment</a></legend>
+                    <div id="{{id}}_MktConductingEquipment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
@@ -9925,10 +9925,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "MktConductingEquipment" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "MktConductingEquipment" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -10040,31 +10040,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CombinedCycleConfiguration_collapse" aria-expanded="true" aria-controls="CombinedCycleConfiguration_collapse" style="margin-left: 10px;">CombinedCycleConfiguration</a></legend>
-                    <div id="CombinedCycleConfiguration_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CombinedCycleConfiguration_collapse" aria-expanded="true" aria-controls="{{id}}_CombinedCycleConfiguration_collapse" style="margin-left: 10px;">CombinedCycleConfiguration</a></legend>
+                    <div id="{{id}}_CombinedCycleConfiguration_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + RegisteredGenerator.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='primaryConfiguration'>primaryConfiguration: </label><div class='col-sm-8'><input id='primaryConfiguration' class='form-check-input' type='checkbox'{{#primaryConfiguration}} checked{{/primaryConfiguration}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='ShutdownFlag'>ShutdownFlag: </label><div class='col-sm-8'><input id='ShutdownFlag' class='form-check-input' type='checkbox'{{#ShutdownFlag}} checked{{/ShutdownFlag}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='StartupFlag'>StartupFlag: </label><div class='col-sm-8'><input id='StartupFlag' class='form-check-input' type='checkbox'{{#StartupFlag}} checked{{/StartupFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CombinedCycleLogicalConfiguration'>CombinedCycleLogicalConfiguration: </label><div class='col-sm-8'><input id='CombinedCycleLogicalConfiguration' class='form-control' type='text'{{#CombinedCycleLogicalConfiguration}} value='{{CombinedCycleLogicalConfiguration}}'{{/CombinedCycleLogicalConfiguration}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_primaryConfiguration'>primaryConfiguration: </label><div class='col-sm-8'><input id='{{id}}_primaryConfiguration' class='form-check-input' type='checkbox'{{#primaryConfiguration}} checked{{/primaryConfiguration}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_ShutdownFlag'>ShutdownFlag: </label><div class='col-sm-8'><input id='{{id}}_ShutdownFlag' class='form-check-input' type='checkbox'{{#ShutdownFlag}} checked{{/ShutdownFlag}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_StartupFlag'>StartupFlag: </label><div class='col-sm-8'><input id='{{id}}_StartupFlag' class='form-check-input' type='checkbox'{{#StartupFlag}} checked{{/StartupFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CombinedCycleLogicalConfiguration'>CombinedCycleLogicalConfiguration: </label><div class='col-sm-8'><input id='{{id}}_CombinedCycleLogicalConfiguration' class='form-control' type='text'{{#CombinedCycleLogicalConfiguration}} value='{{CombinedCycleLogicalConfiguration}}'{{/CombinedCycleLogicalConfiguration}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CombinedCycleConfiguration" };
-                super.submit (obj);
-                temp = document.getElementById ("primaryConfiguration").checked; if (temp) obj.primaryConfiguration = true;
-                temp = document.getElementById ("ShutdownFlag").checked; if (temp) obj.ShutdownFlag = true;
-                temp = document.getElementById ("StartupFlag").checked; if (temp) obj.StartupFlag = true;
-                temp = document.getElementById ("CombinedCycleLogicalConfiguration").value; if ("" != temp) obj.CombinedCycleLogicalConfiguration = temp;
+                var obj = obj || { id: id, cls: "CombinedCycleConfiguration" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_primaryConfiguration").checked; if (temp) obj.primaryConfiguration = true;
+                temp = document.getElementById (id + "_ShutdownFlag").checked; if (temp) obj.ShutdownFlag = true;
+                temp = document.getElementById (id + "_StartupFlag").checked; if (temp) obj.StartupFlag = true;
+                temp = document.getElementById (id + "_CombinedCycleLogicalConfiguration").value; if ("" != temp) obj.CombinedCycleLogicalConfiguration = temp;
 
                 return (obj);
             }
@@ -10161,8 +10161,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadAggregationPoint_collapse" aria-expanded="true" aria-controls="LoadAggregationPoint_collapse" style="margin-left: 10px;">LoadAggregationPoint</a></legend>
-                    <div id="LoadAggregationPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadAggregationPoint_collapse" aria-expanded="true" aria-controls="{{id}}_LoadAggregationPoint_collapse" style="margin-left: 10px;">LoadAggregationPoint</a></legend>
+                    <div id="{{id}}_LoadAggregationPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
@@ -10172,10 +10172,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "LoadAggregationPoint" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "LoadAggregationPoint" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -10275,8 +10275,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRegion_collapse" aria-expanded="true" aria-controls="MarketRegion_collapse" style="margin-left: 10px;">MarketRegion</a></legend>
-                    <div id="MarketRegion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketRegion_collapse" aria-expanded="true" aria-controls="{{id}}_MarketRegion_collapse" style="margin-left: 10px;">MarketRegion</a></legend>
+                    <div id="{{id}}_MarketRegion_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
@@ -10286,10 +10286,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "MarketRegion" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "MarketRegion" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -10395,31 +10395,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MSSZone_collapse" aria-expanded="true" aria-controls="MSSZone_collapse" style="margin-left: 10px;">MSSZone</a></legend>
-                    <div id="MSSZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MSSZone_collapse" aria-expanded="true" aria-controls="{{id}}_MSSZone_collapse" style="margin-left: 10px;">MSSZone</a></legend>
+                    <div id="{{id}}_MSSZone_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><input id='ignoreLosses' class='form-control' type='text'{{#ignoreLosses}} value='{{ignoreLosses}}'{{/ignoreLosses}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossFactor'>lossFactor: </label><div class='col-sm-8'><input id='lossFactor' class='form-control' type='text'{{#lossFactor}} value='{{lossFactor}}'{{/lossFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rucGrossSettlement'>rucGrossSettlement: </label><div class='col-sm-8'><input id='rucGrossSettlement' class='form-control' type='text'{{#rucGrossSettlement}} value='{{rucGrossSettlement}}'{{/rucGrossSettlement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeteredSubSystem'>MeteredSubSystem: </label><div class='col-sm-8'><input id='MeteredSubSystem' class='form-control' type='text'{{#MeteredSubSystem}} value='{{MeteredSubSystem}}'{{/MeteredSubSystem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ignoreLosses'>ignoreLosses: </label><div class='col-sm-8'><input id='{{id}}_ignoreLosses' class='form-control' type='text'{{#ignoreLosses}} value='{{ignoreLosses}}'{{/ignoreLosses}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossFactor'>lossFactor: </label><div class='col-sm-8'><input id='{{id}}_lossFactor' class='form-control' type='text'{{#lossFactor}} value='{{lossFactor}}'{{/lossFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rucGrossSettlement'>rucGrossSettlement: </label><div class='col-sm-8'><input id='{{id}}_rucGrossSettlement' class='form-control' type='text'{{#rucGrossSettlement}} value='{{rucGrossSettlement}}'{{/rucGrossSettlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeteredSubSystem'>MeteredSubSystem: </label><div class='col-sm-8'><input id='{{id}}_MeteredSubSystem' class='form-control' type='text'{{#MeteredSubSystem}} value='{{MeteredSubSystem}}'{{/MeteredSubSystem}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MSSZone" };
-                super.submit (obj);
-                temp = document.getElementById ("ignoreLosses").value; if ("" != temp) obj.ignoreLosses = temp;
-                temp = document.getElementById ("lossFactor").value; if ("" != temp) obj.lossFactor = temp;
-                temp = document.getElementById ("rucGrossSettlement").value; if ("" != temp) obj.rucGrossSettlement = temp;
-                temp = document.getElementById ("MeteredSubSystem").value; if ("" != temp) obj.MeteredSubSystem = temp;
+                var obj = obj || { id: id, cls: "MSSZone" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ignoreLosses").value; if ("" != temp) obj.ignoreLosses = temp;
+                temp = document.getElementById (id + "_lossFactor").value; if ("" != temp) obj.lossFactor = temp;
+                temp = document.getElementById (id + "_rucGrossSettlement").value; if ("" != temp) obj.rucGrossSettlement = temp;
+                temp = document.getElementById (id + "_MeteredSubSystem").value; if ("" != temp) obj.MeteredSubSystem = temp;
 
                 return (obj);
             }
@@ -10518,8 +10518,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RUCZone_collapse" aria-expanded="true" aria-controls="RUCZone_collapse" style="margin-left: 10px;">RUCZone</a></legend>
-                    <div id="RUCZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RUCZone_collapse" aria-expanded="true" aria-controls="{{id}}_RUCZone_collapse" style="margin-left: 10px;">RUCZone</a></legend>
+                    <div id="{{id}}_RUCZone_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AggregateNode.prototype.edit_template.call (this) +
                     `
@@ -10529,10 +10529,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "RUCZone" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "RUCZone" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -10643,31 +10643,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IndividualPnode_collapse" aria-expanded="true" aria-controls="IndividualPnode_collapse" style="margin-left: 10px;">IndividualPnode</a></legend>
-                    <div id="IndividualPnode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IndividualPnode_collapse" aria-expanded="true" aria-controls="{{id}}_IndividualPnode_collapse" style="margin-left: 10px;">IndividualPnode</a></legend>
+                    <div id="{{id}}_IndividualPnode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Pnode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CongestionArea'>CongestionArea: </label><div class='col-sm-8'><input id='CongestionArea' class='form-control' type='text'{{#CongestionArea}} value='{{CongestionArea}}_string'{{/CongestionArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GenDistributionFactor'>GenDistributionFactor: </label><div class='col-sm-8'><input id='GenDistributionFactor' class='form-control' type='text'{{#GenDistributionFactor}} value='{{GenDistributionFactor}}'{{/GenDistributionFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadDistributionFactor'>LoadDistributionFactor: </label><div class='col-sm-8'><input id='LoadDistributionFactor' class='form-control' type='text'{{#LoadDistributionFactor}} value='{{LoadDistributionFactor}}'{{/LoadDistributionFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CongestionArea'>CongestionArea: </label><div class='col-sm-8'><input id='{{id}}_CongestionArea' class='form-control' type='text'{{#CongestionArea}} value='{{CongestionArea}}_string'{{/CongestionArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='{{id}}_MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GenDistributionFactor'>GenDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_GenDistributionFactor' class='form-control' type='text'{{#GenDistributionFactor}} value='{{GenDistributionFactor}}'{{/GenDistributionFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadDistributionFactor'>LoadDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_LoadDistributionFactor' class='form-control' type='text'{{#LoadDistributionFactor}} value='{{LoadDistributionFactor}}'{{/LoadDistributionFactor}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "IndividualPnode" };
-                super.submit (obj);
-                temp = document.getElementById ("CongestionArea").value; if ("" != temp) obj.CongestionArea = temp.split (",");
-                temp = document.getElementById ("MktConnectivityNode").value; if ("" != temp) obj.MktConnectivityNode = temp;
-                temp = document.getElementById ("GenDistributionFactor").value; if ("" != temp) obj.GenDistributionFactor = temp;
-                temp = document.getElementById ("LoadDistributionFactor").value; if ("" != temp) obj.LoadDistributionFactor = temp;
+                var obj = obj || { id: id, cls: "IndividualPnode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_CongestionArea").value; if ("" != temp) obj.CongestionArea = temp.split (",");
+                temp = document.getElementById (id + "_MktConnectivityNode").value; if ("" != temp) obj.MktConnectivityNode = temp;
+                temp = document.getElementById (id + "_GenDistributionFactor").value; if ("" != temp) obj.GenDistributionFactor = temp;
+                temp = document.getElementById (id + "_LoadDistributionFactor").value; if ("" != temp) obj.LoadDistributionFactor = temp;
 
                 return (obj);
             }
@@ -10807,33 +10807,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AggregatedPnode_collapse" aria-expanded="true" aria-controls="AggregatedPnode_collapse" style="margin-left: 10px;">AggregatedPnode</a></legend>
-                    <div id="AggregatedPnode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AggregatedPnode_collapse" aria-expanded="true" aria-controls="{{id}}_AggregatedPnode_collapse" style="margin-left: 10px;">AggregatedPnode</a></legend>
+                    <div id="{{id}}_AggregatedPnode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Pnode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='apnodeType'>apnodeType: </label><div class='col-sm-8'><input id='apnodeType' class='form-control' type='text'{{#apnodeType}} value='{{apnodeType}}'{{/apnodeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='participationCategory'>participationCategory: </label><div class='col-sm-8'><input id='participationCategory' class='form-control' type='text'{{#participationCategory}} value='{{participationCategory}}'{{/participationCategory}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold}}_string'{{/MPMTestThreshold}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TACArea'>TACArea: </label><div class='col-sm-8'><input id='TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea}}_string'{{/TACArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PnodeDistributionFactor'>PnodeDistributionFactor: </label><div class='col-sm-8'><input id='PnodeDistributionFactor' class='form-control' type='text'{{#PnodeDistributionFactor}} value='{{PnodeDistributionFactor}}'{{/PnodeDistributionFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_apnodeType'>apnodeType: </label><div class='col-sm-8'><input id='{{id}}_apnodeType' class='form-control' type='text'{{#apnodeType}} value='{{apnodeType}}'{{/apnodeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_participationCategory'>participationCategory: </label><div class='col-sm-8'><input id='{{id}}_participationCategory' class='form-control' type='text'{{#participationCategory}} value='{{participationCategory}}'{{/participationCategory}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='{{id}}_MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold}}_string'{{/MPMTestThreshold}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TACArea'>TACArea: </label><div class='col-sm-8'><input id='{{id}}_TACArea' class='form-control' type='text'{{#TACArea}} value='{{TACArea}}_string'{{/TACArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PnodeDistributionFactor'>PnodeDistributionFactor: </label><div class='col-sm-8'><input id='{{id}}_PnodeDistributionFactor' class='form-control' type='text'{{#PnodeDistributionFactor}} value='{{PnodeDistributionFactor}}'{{/PnodeDistributionFactor}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AggregatedPnode" };
-                super.submit (obj);
-                temp = document.getElementById ("apnodeType").value; if ("" != temp) obj.apnodeType = temp;
-                temp = document.getElementById ("participationCategory").value; if ("" != temp) obj.participationCategory = temp;
-                temp = document.getElementById ("MPMTestThreshold").value; if ("" != temp) obj.MPMTestThreshold = temp.split (",");
-                temp = document.getElementById ("TACArea").value; if ("" != temp) obj.TACArea = temp.split (",");
-                temp = document.getElementById ("PnodeDistributionFactor").value; if ("" != temp) obj.PnodeDistributionFactor = temp;
+                var obj = obj || { id: id, cls: "AggregatedPnode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_apnodeType").value; if ("" != temp) obj.apnodeType = temp;
+                temp = document.getElementById (id + "_participationCategory").value; if ("" != temp) obj.participationCategory = temp;
+                temp = document.getElementById (id + "_MPMTestThreshold").value; if ("" != temp) obj.MPMTestThreshold = temp.split (",");
+                temp = document.getElementById (id + "_TACArea").value; if ("" != temp) obj.TACArea = temp.split (",");
+                temp = document.getElementById (id + "_PnodeDistributionFactor").value; if ("" != temp) obj.PnodeDistributionFactor = temp;
 
                 return (obj);
             }
@@ -10937,25 +10937,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CongestionArea_collapse" aria-expanded="true" aria-controls="CongestionArea_collapse" style="margin-left: 10px;">CongestionArea</a></legend>
-                    <div id="CongestionArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CongestionArea_collapse" aria-expanded="true" aria-controls="{{id}}_CongestionArea_collapse" style="margin-left: 10px;">CongestionArea</a></legend>
+                    <div id="{{id}}_CongestionArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AggregatedPnode.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}_string'{{/IndividualPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IndividualPnode'>IndividualPnode: </label><div class='col-sm-8'><input id='{{id}}_IndividualPnode' class='form-control' type='text'{{#IndividualPnode}} value='{{IndividualPnode}}_string'{{/IndividualPnode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CongestionArea" };
-                super.submit (obj);
-                temp = document.getElementById ("IndividualPnode").value; if ("" != temp) obj.IndividualPnode = temp.split (",");
+                var obj = obj || { id: id, cls: "CongestionArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_IndividualPnode").value; if ("" != temp) obj.IndividualPnode = temp.split (",");
 
                 return (obj);
             }

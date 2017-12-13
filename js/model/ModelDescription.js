@@ -85,8 +85,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#URI_collapse" aria-expanded="true" aria-controls="URI_collapse" style="margin-left: 10px;">URI</a></legend>
-                    <div id="URI_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_URI_collapse" aria-expanded="true" aria-controls="{{id}}_URI_collapse" style="margin-left: 10px;">URI</a></legend>
+                    <div id="{{id}}_URI_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -96,10 +96,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "URI" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "URI" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -184,27 +184,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ModelDescriptionCIMVersion_collapse" aria-expanded="true" aria-controls="ModelDescriptionCIMVersion_collapse" style="margin-left: 10px;">ModelDescriptionCIMVersion</a></legend>
-                    <div id="ModelDescriptionCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ModelDescriptionCIMVersion_collapse" aria-expanded="true" aria-controls="{{id}}_ModelDescriptionCIMVersion_collapse" style="margin-left: 10px;">ModelDescriptionCIMVersion</a></legend>
+                    <div id="{{id}}_ModelDescriptionCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='date'>date: </label><div class='col-sm-8'><input id='date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_date'>date: </label><div class='col-sm-8'><input id='{{id}}_date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ModelDescriptionCIMVersion" };
-                super.submit (obj);
-                temp = document.getElementById ("date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+                var obj = obj || { id: id, cls: "ModelDescriptionCIMVersion" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
+                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
 
                 return (obj);
             }
@@ -283,8 +283,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FullModelDocumentElement_collapse" aria-expanded="true" aria-controls="FullModelDocumentElement_collapse" style="margin-left: 10px;">FullModelDocumentElement</a></legend>
-                    <div id="FullModelDocumentElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FullModelDocumentElement_collapse" aria-expanded="true" aria-controls="{{id}}_FullModelDocumentElement_collapse" style="margin-left: 10px;">FullModelDocumentElement</a></legend>
+                    <div id="{{id}}_FullModelDocumentElement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -294,10 +294,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "FullModelDocumentElement" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "FullModelDocumentElement" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -389,29 +389,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Description_collapse" aria-expanded="true" aria-controls="Description_collapse" style="margin-left: 10px;">Description</a></legend>
-                    <div id="Description_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Description_collapse" aria-expanded="true" aria-controls="{{id}}_Description_collapse" style="margin-left: 10px;">Description</a></legend>
+                    <div id="{{id}}_Description_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_name'>name: </label><div class='col-sm-8'><input id='{{id}}_name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Description" };
-                super.submit (obj);
-                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
-                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
-                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+                var obj = obj || { id: id, cls: "Description" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById (id + "_name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
 
                 return (obj);
             }
@@ -528,43 +528,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Model_collapse" aria-expanded="true" aria-controls="Model_collapse" style="margin-left: 10px;">Model</a></legend>
-                    <div id="Model_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Model_collapse" aria-expanded="true" aria-controls="{{id}}_Model_collapse" style="margin-left: 10px;">Model</a></legend>
+                    <div id="{{id}}_Model_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='created'>created: </label><div class='col-sm-8'><input id='created' class='form-control' type='text'{{#created}} value='{{created}}'{{/created}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scenarioTime'>scenarioTime: </label><div class='col-sm-8'><input id='scenarioTime' class='form-control' type='text'{{#scenarioTime}} value='{{scenarioTime}}'{{/scenarioTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='modelingAuthoritySet'>modelingAuthoritySet: </label><div class='col-sm-8'><input id='modelingAuthoritySet' class='form-control' type='text'{{#modelingAuthoritySet}} value='{{modelingAuthoritySet}}'{{/modelingAuthoritySet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='profile'>profile: </label><div class='col-sm-8'><input id='profile' class='form-control' type='text'{{#profile}} value='{{profile}}'{{/profile}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Supersedes'>Supersedes: </label><div class='col-sm-8'><input id='Supersedes' class='form-control' type='text'{{#Supersedes}} value='{{Supersedes}}_string'{{/Supersedes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SupersededBy'>SupersededBy: </label><div class='col-sm-8'><input id='SupersededBy' class='form-control' type='text'{{#SupersededBy}} value='{{SupersededBy}}_string'{{/SupersededBy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DependentOn'>DependentOn: </label><div class='col-sm-8'><input id='DependentOn' class='form-control' type='text'{{#DependentOn}} value='{{DependentOn}}_string'{{/DependentOn}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Depending'>Depending: </label><div class='col-sm-8'><input id='Depending' class='form-control' type='text'{{#Depending}} value='{{Depending}}_string'{{/Depending}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_created'>created: </label><div class='col-sm-8'><input id='{{id}}_created' class='form-control' type='text'{{#created}} value='{{created}}'{{/created}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scenarioTime'>scenarioTime: </label><div class='col-sm-8'><input id='{{id}}_scenarioTime' class='form-control' type='text'{{#scenarioTime}} value='{{scenarioTime}}'{{/scenarioTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelingAuthoritySet'>modelingAuthoritySet: </label><div class='col-sm-8'><input id='{{id}}_modelingAuthoritySet' class='form-control' type='text'{{#modelingAuthoritySet}} value='{{modelingAuthoritySet}}'{{/modelingAuthoritySet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_profile'>profile: </label><div class='col-sm-8'><input id='{{id}}_profile' class='form-control' type='text'{{#profile}} value='{{profile}}'{{/profile}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Supersedes'>Supersedes: </label><div class='col-sm-8'><input id='{{id}}_Supersedes' class='form-control' type='text'{{#Supersedes}} value='{{Supersedes}}_string'{{/Supersedes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SupersededBy'>SupersededBy: </label><div class='col-sm-8'><input id='{{id}}_SupersededBy' class='form-control' type='text'{{#SupersededBy}} value='{{SupersededBy}}_string'{{/SupersededBy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DependentOn'>DependentOn: </label><div class='col-sm-8'><input id='{{id}}_DependentOn' class='form-control' type='text'{{#DependentOn}} value='{{DependentOn}}_string'{{/DependentOn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Depending'>Depending: </label><div class='col-sm-8'><input id='{{id}}_Depending' class='form-control' type='text'{{#Depending}} value='{{Depending}}_string'{{/Depending}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Model" };
-                super.submit (obj);
-                temp = document.getElementById ("created").value; if ("" != temp) obj.created = temp;
-                temp = document.getElementById ("scenarioTime").value; if ("" != temp) obj.scenarioTime = temp;
-                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
-                temp = document.getElementById ("modelingAuthoritySet").value; if ("" != temp) obj.modelingAuthoritySet = temp;
-                temp = document.getElementById ("profile").value; if ("" != temp) obj.profile = temp;
-                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
-                temp = document.getElementById ("Supersedes").value; if ("" != temp) obj.Supersedes = temp.split (",");
-                temp = document.getElementById ("SupersededBy").value; if ("" != temp) obj.SupersededBy = temp.split (",");
-                temp = document.getElementById ("DependentOn").value; if ("" != temp) obj.DependentOn = temp.split (",");
-                temp = document.getElementById ("Depending").value; if ("" != temp) obj.Depending = temp.split (",");
+                var obj = obj || { id: id, cls: "Model" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_created").value; if ("" != temp) obj.created = temp;
+                temp = document.getElementById (id + "_scenarioTime").value; if ("" != temp) obj.scenarioTime = temp;
+                temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById (id + "_modelingAuthoritySet").value; if ("" != temp) obj.modelingAuthoritySet = temp;
+                temp = document.getElementById (id + "_profile").value; if ("" != temp) obj.profile = temp;
+                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
+                temp = document.getElementById (id + "_Supersedes").value; if ("" != temp) obj.Supersedes = temp.split (",");
+                temp = document.getElementById (id + "_SupersededBy").value; if ("" != temp) obj.SupersededBy = temp.split (",");
+                temp = document.getElementById (id + "_DependentOn").value; if ("" != temp) obj.DependentOn = temp.split (",");
+                temp = document.getElementById (id + "_Depending").value; if ("" != temp) obj.Depending = temp.split (",");
 
                 return (obj);
             }
@@ -655,8 +655,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FullModel_collapse" aria-expanded="true" aria-controls="FullModel_collapse" style="margin-left: 10px;">FullModel</a></legend>
-                    <div id="FullModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FullModel_collapse" aria-expanded="true" aria-controls="{{id}}_FullModel_collapse" style="margin-left: 10px;">FullModel</a></legend>
+                    <div id="{{id}}_FullModel_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + FullModelDocumentElement.prototype.edit_template.call (this) +
                     `
@@ -666,10 +666,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "FullModel" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "FullModel" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -748,8 +748,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Statements_collapse" aria-expanded="true" aria-controls="Statements_collapse" style="margin-left: 10px;">Statements</a></legend>
-                    <div id="Statements_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Statements_collapse" aria-expanded="true" aria-controls="{{id}}_Statements_collapse" style="margin-left: 10px;">Statements</a></legend>
+                    <div id="{{id}}_Statements_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + FullModelDocumentElement.prototype.edit_template.call (this) +
                     `
@@ -759,10 +759,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "Statements" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "Statements" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -844,25 +844,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DescriptionID_collapse" aria-expanded="true" aria-controls="DescriptionID_collapse" style="margin-left: 10px;">DescriptionID</a></legend>
-                    <div id="DescriptionID_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DescriptionID_collapse" aria-expanded="true" aria-controls="{{id}}_DescriptionID_collapse" style="margin-left: 10px;">DescriptionID</a></legend>
+                    <div id="{{id}}_DescriptionID_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Description.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='uri'>uri: </label><div class='col-sm-8'><input id='uri' class='form-control' type='text'{{#uri}} value='{{uri}}'{{/uri}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_uri'>uri: </label><div class='col-sm-8'><input id='{{id}}_uri' class='form-control' type='text'{{#uri}} value='{{uri}}'{{/uri}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DescriptionID" };
-                super.submit (obj);
-                temp = document.getElementById ("uri").value; if ("" != temp) obj.uri = temp;
+                var obj = obj || { id: id, cls: "DescriptionID" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_uri").value; if ("" != temp) obj.uri = temp;
 
                 return (obj);
             }
@@ -947,27 +947,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DifferenceModel_collapse" aria-expanded="true" aria-controls="DifferenceModel_collapse" style="margin-left: 10px;">DifferenceModel</a></legend>
-                    <div id="DifferenceModel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DifferenceModel_collapse" aria-expanded="true" aria-controls="{{id}}_DifferenceModel_collapse" style="margin-left: 10px;">DifferenceModel</a></legend>
+                    <div id="{{id}}_DifferenceModel_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Model.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='forwardDifferences'>forwardDifferences: </label><div class='col-sm-8'><input id='forwardDifferences' class='form-control' type='text'{{#forwardDifferences}} value='{{forwardDifferences}}'{{/forwardDifferences}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reverseDifferences'>reverseDifferences: </label><div class='col-sm-8'><input id='reverseDifferences' class='form-control' type='text'{{#reverseDifferences}} value='{{reverseDifferences}}'{{/reverseDifferences}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_forwardDifferences'>forwardDifferences: </label><div class='col-sm-8'><input id='{{id}}_forwardDifferences' class='form-control' type='text'{{#forwardDifferences}} value='{{forwardDifferences}}'{{/forwardDifferences}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reverseDifferences'>reverseDifferences: </label><div class='col-sm-8'><input id='{{id}}_reverseDifferences' class='form-control' type='text'{{#reverseDifferences}} value='{{reverseDifferences}}'{{/reverseDifferences}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DifferenceModel" };
-                super.submit (obj);
-                temp = document.getElementById ("forwardDifferences").value; if ("" != temp) obj.forwardDifferences = temp;
-                temp = document.getElementById ("reverseDifferences").value; if ("" != temp) obj.reverseDifferences = temp;
+                var obj = obj || { id: id, cls: "DifferenceModel" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_forwardDifferences").value; if ("" != temp) obj.forwardDifferences = temp;
+                temp = document.getElementById (id + "_reverseDifferences").value; if ("" != temp) obj.reverseDifferences = temp;
 
                 return (obj);
             }

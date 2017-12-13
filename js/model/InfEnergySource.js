@@ -86,8 +86,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergySchedulingType_collapse" aria-expanded="true" aria-controls="EnergySchedulingType_collapse" style="margin-left: 10px;">EnergySchedulingType</a></legend>
-                    <div id="EnergySchedulingType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergySchedulingType_collapse" aria-expanded="true" aria-controls="{{id}}_EnergySchedulingType_collapse" style="margin-left: 10px;">EnergySchedulingType</a></legend>
+                    <div id="{{id}}_EnergySchedulingType_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -97,10 +97,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "EnergySchedulingType" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "EnergySchedulingType" };
+                super.submit (id, obj);
 
                 return (obj);
             }

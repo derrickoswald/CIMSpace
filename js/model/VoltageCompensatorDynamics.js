@@ -99,31 +99,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="GenICompensationForGenJ_collapse" style="margin-left: 10px;">GenICompensationForGenJ</a></legend>
-                    <div id="GenICompensationForGenJ_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GenICompensationForGenJ_collapse" aria-expanded="true" aria-controls="{{id}}_GenICompensationForGenJ_collapse" style="margin-left: 10px;">GenICompensationForGenJ</a></legend>
+                    <div id="{{id}}_GenICompensationForGenJ_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rcij'>rcij: </label><div class='col-sm-8'><input id='rcij' class='form-control' type='text'{{#rcij}} value='{{rcij}}'{{/rcij}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xcij'>xcij: </label><div class='col-sm-8'><input id='xcij' class='form-control' type='text'{{#xcij}} value='{{xcij}}'{{/xcij}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VcompIEEEType2'>VcompIEEEType2: </label><div class='col-sm-8'><input id='VcompIEEEType2' class='form-control' type='text'{{#VcompIEEEType2}} value='{{VcompIEEEType2}}'{{/VcompIEEEType2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}'{{/SynchronousMachineDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcij'>rcij: </label><div class='col-sm-8'><input id='{{id}}_rcij' class='form-control' type='text'{{#rcij}} value='{{rcij}}'{{/rcij}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xcij'>xcij: </label><div class='col-sm-8'><input id='{{id}}_xcij' class='form-control' type='text'{{#xcij}} value='{{xcij}}'{{/xcij}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VcompIEEEType2'>VcompIEEEType2: </label><div class='col-sm-8'><input id='{{id}}_VcompIEEEType2' class='form-control' type='text'{{#VcompIEEEType2}} value='{{VcompIEEEType2}}'{{/VcompIEEEType2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachineDynamics'>SynchronousMachineDynamics: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachineDynamics' class='form-control' type='text'{{#SynchronousMachineDynamics}} value='{{SynchronousMachineDynamics}}'{{/SynchronousMachineDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "GenICompensationForGenJ" };
-                super.submit (obj);
-                temp = document.getElementById ("rcij").value; if ("" != temp) obj.rcij = temp;
-                temp = document.getElementById ("xcij").value; if ("" != temp) obj.xcij = temp;
-                temp = document.getElementById ("VcompIEEEType2").value; if ("" != temp) obj.VcompIEEEType2 = temp;
-                temp = document.getElementById ("SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp;
+                var obj = obj || { id: id, cls: "GenICompensationForGenJ" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_rcij").value; if ("" != temp) obj.rcij = temp;
+                temp = document.getElementById (id + "_xcij").value; if ("" != temp) obj.xcij = temp;
+                temp = document.getElementById (id + "_VcompIEEEType2").value; if ("" != temp) obj.VcompIEEEType2 = temp;
+                temp = document.getElementById (id + "_SynchronousMachineDynamics").value; if ("" != temp) obj.SynchronousMachineDynamics = temp;
 
                 return (obj);
             }
@@ -222,27 +222,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="VoltageCompensatorDynamics_collapse" style="margin-left: 10px;">VoltageCompensatorDynamics</a></legend>
-                    <div id="VoltageCompensatorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageCompensatorDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageCompensatorDynamics_collapse" style="margin-left: 10px;">VoltageCompensatorDynamics</a></legend>
+                    <div id="{{id}}_VoltageCompensatorDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VoltageCompensatorDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
-                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                var obj = obj || { id: id, cls: "VoltageCompensatorDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
 
                 return (obj);
             }
@@ -345,25 +345,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VCompIEEEType2_collapse" aria-expanded="true" aria-controls="VCompIEEEType2_collapse" style="margin-left: 10px;">VCompIEEEType2</a></legend>
-                    <div id="VCompIEEEType2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VCompIEEEType2_collapse" aria-expanded="true" aria-controls="{{id}}_VCompIEEEType2_collapse" style="margin-left: 10px;">VCompIEEEType2</a></legend>
+                    <div id="{{id}}_VCompIEEEType2_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + VoltageCompensatorDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tr'>tr: </label><div class='col-sm-8'><input id='{{id}}_tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VCompIEEEType2" };
-                super.submit (obj);
-                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
+                var obj = obj || { id: id, cls: "VCompIEEEType2" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tr").value; if ("" != temp) obj.tr = temp;
 
                 return (obj);
             }
@@ -466,29 +466,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VCompIEEEType1_collapse" aria-expanded="true" aria-controls="VCompIEEEType1_collapse" style="margin-left: 10px;">VCompIEEEType1</a></legend>
-                    <div id="VCompIEEEType1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VCompIEEEType1_collapse" aria-expanded="true" aria-controls="{{id}}_VCompIEEEType1_collapse" style="margin-left: 10px;">VCompIEEEType1</a></legend>
+                    <div id="{{id}}_VCompIEEEType1_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + VoltageCompensatorDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rc'>rc: </label><div class='col-sm-8'><input id='rc' class='form-control' type='text'{{#rc}} value='{{rc}}'{{/rc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tr'>tr: </label><div class='col-sm-8'><input id='tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xc'>xc: </label><div class='col-sm-8'><input id='xc' class='form-control' type='text'{{#xc}} value='{{xc}}'{{/xc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rc'>rc: </label><div class='col-sm-8'><input id='{{id}}_rc' class='form-control' type='text'{{#rc}} value='{{rc}}'{{/rc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tr'>tr: </label><div class='col-sm-8'><input id='{{id}}_tr' class='form-control' type='text'{{#tr}} value='{{tr}}'{{/tr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xc'>xc: </label><div class='col-sm-8'><input id='{{id}}_xc' class='form-control' type='text'{{#xc}} value='{{xc}}'{{/xc}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VCompIEEEType1" };
-                super.submit (obj);
-                temp = document.getElementById ("rc").value; if ("" != temp) obj.rc = temp;
-                temp = document.getElementById ("tr").value; if ("" != temp) obj.tr = temp;
-                temp = document.getElementById ("xc").value; if ("" != temp) obj.xc = temp;
+                var obj = obj || { id: id, cls: "VCompIEEEType1" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_rc").value; if ("" != temp) obj.rc = temp;
+                temp = document.getElementById (id + "_tr").value; if ("" != temp) obj.tr = temp;
+                temp = document.getElementById (id + "_xc").value; if ("" != temp) obj.xc = temp;
 
                 return (obj);
             }

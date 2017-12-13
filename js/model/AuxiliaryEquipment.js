@@ -103,25 +103,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="AuxiliaryEquipment_collapse" style="margin-left: 10px;">AuxiliaryEquipment</a></legend>
-                    <div id="AuxiliaryEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryEquipment_collapse" style="margin-left: 10px;">AuxiliaryEquipment</a></legend>
+                    <div id="{{id}}_AuxiliaryEquipment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AuxiliaryEquipment" };
-                super.submit (obj);
-                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                var obj = obj || { id: id, cls: "AuxiliaryEquipment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
                 return (obj);
             }
@@ -213,8 +213,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Sensor_collapse" aria-expanded="true" aria-controls="Sensor_collapse" style="margin-left: 10px;">Sensor</a></legend>
-                    <div id="Sensor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Sensor_collapse" aria-expanded="true" aria-controls="{{id}}_Sensor_collapse" style="margin-left: 10px;">Sensor</a></legend>
+                    <div id="{{id}}_Sensor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
                     `
@@ -224,10 +224,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "Sensor" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "Sensor" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -310,8 +310,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WaveTrap_collapse" aria-expanded="true" aria-controls="WaveTrap_collapse" style="margin-left: 10px;">WaveTrap</a></legend>
-                    <div id="WaveTrap_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WaveTrap_collapse" aria-expanded="true" aria-controls="{{id}}_WaveTrap_collapse" style="margin-left: 10px;">WaveTrap</a></legend>
+                    <div id="{{id}}_WaveTrap_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
                     `
@@ -321,10 +321,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "WaveTrap" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "WaveTrap" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -423,31 +423,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PotentialTransformer_collapse" aria-expanded="true" aria-controls="PotentialTransformer_collapse" style="margin-left: 10px;">PotentialTransformer</a></legend>
-                    <div id="PotentialTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PotentialTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_PotentialTransformer_collapse" style="margin-left: 10px;">PotentialTransformer</a></legend>
+                    <div id="{{id}}_PotentialTransformer_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ptClass'>ptClass: </label><div class='col-sm-8'><input id='ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#PotentialTransformerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PotentialTransformerKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='{{id}}_nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ptClass'>ptClass: </label><div class='col-sm-8'><input id='{{id}}_ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control'>{{#PotentialTransformerKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PotentialTransformerKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PotentialTransformer" };
-                super.submit (obj);
-                temp = document.getElementById ("accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
-                temp = document.getElementById ("nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
-                temp = document.getElementById ("ptClass").value; if ("" != temp) obj.ptClass = temp;
-                temp = document.getElementById ("type").value; if ("" != temp) { temp = PotentialTransformerKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PotentialTransformerKind." + temp; }
+                var obj = obj || { id: id, cls: "PotentialTransformer" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
+                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
+                temp = document.getElementById (id + "_ptClass").value; if ("" != temp) obj.ptClass = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = PotentialTransformerKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PotentialTransformerKind." + temp; }
 
                 return (obj);
             }
@@ -532,8 +532,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultIndicator_collapse" aria-expanded="true" aria-controls="FaultIndicator_collapse" style="margin-left: 10px;">FaultIndicator</a></legend>
-                    <div id="FaultIndicator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FaultIndicator_collapse" aria-expanded="true" aria-controls="{{id}}_FaultIndicator_collapse" style="margin-left: 10px;">FaultIndicator</a></legend>
+                    <div id="{{id}}_FaultIndicator_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
                     `
@@ -543,10 +543,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "FaultIndicator" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "FaultIndicator" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -646,33 +646,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentTransformer_collapse" aria-expanded="true" aria-controls="CurrentTransformer_collapse" style="margin-left: 10px;">CurrentTransformer</a></legend>
-                    <div id="CurrentTransformer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentTransformer_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentTransformer_collapse" style="margin-left: 10px;">CurrentTransformer</a></legend>
+                    <div id="{{id}}_CurrentTransformer_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyLimit'>accuracyLimit: </label><div class='col-sm-8'><input id='accuracyLimit' class='form-control' type='text'{{#accuracyLimit}} value='{{accuracyLimit}}'{{/accuracyLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ctClass'>ctClass: </label><div class='col-sm-8'><input id='ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><input id='usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreBurden'>coreBurden: </label><div class='col-sm-8'><input id='coreBurden' class='form-control' type='text'{{#coreBurden}} value='{{coreBurden}}'{{/coreBurden}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyLimit'>accuracyLimit: </label><div class='col-sm-8'><input id='{{id}}_accuracyLimit' class='form-control' type='text'{{#accuracyLimit}} value='{{accuracyLimit}}'{{/accuracyLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ctClass'>ctClass: </label><div class='col-sm-8'><input id='{{id}}_ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreBurden'>coreBurden: </label><div class='col-sm-8'><input id='{{id}}_coreBurden' class='form-control' type='text'{{#coreBurden}} value='{{coreBurden}}'{{/coreBurden}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CurrentTransformer" };
-                super.submit (obj);
-                temp = document.getElementById ("accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
-                temp = document.getElementById ("accuracyLimit").value; if ("" != temp) obj.accuracyLimit = temp;
-                temp = document.getElementById ("ctClass").value; if ("" != temp) obj.ctClass = temp;
-                temp = document.getElementById ("usage").value; if ("" != temp) obj.usage = temp;
-                temp = document.getElementById ("coreBurden").value; if ("" != temp) obj.coreBurden = temp;
+                var obj = obj || { id: id, cls: "CurrentTransformer" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
+                temp = document.getElementById (id + "_accuracyLimit").value; if ("" != temp) obj.accuracyLimit = temp;
+                temp = document.getElementById (id + "_ctClass").value; if ("" != temp) obj.ctClass = temp;
+                temp = document.getElementById (id + "_usage").value; if ("" != temp) obj.usage = temp;
+                temp = document.getElementById (id + "_coreBurden").value; if ("" != temp) obj.coreBurden = temp;
 
                 return (obj);
             }
@@ -755,8 +755,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PostLineSensor_collapse" aria-expanded="true" aria-controls="PostLineSensor_collapse" style="margin-left: 10px;">PostLineSensor</a></legend>
-                    <div id="PostLineSensor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PostLineSensor_collapse" aria-expanded="true" aria-controls="{{id}}_PostLineSensor_collapse" style="margin-left: 10px;">PostLineSensor</a></legend>
+                    <div id="{{id}}_PostLineSensor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Sensor.prototype.edit_template.call (this) +
                     `
@@ -766,10 +766,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "PostLineSensor" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "PostLineSensor" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -852,8 +852,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SurgeArrester_collapse" aria-expanded="true" aria-controls="SurgeArrester_collapse" style="margin-left: 10px;">SurgeArrester</a></legend>
-                    <div id="SurgeArrester_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SurgeArrester_collapse" aria-expanded="true" aria-controls="{{id}}_SurgeArrester_collapse" style="margin-left: 10px;">SurgeArrester</a></legend>
+                    <div id="{{id}}_SurgeArrester_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AuxiliaryEquipment.prototype.edit_template.call (this) +
                     `
@@ -863,10 +863,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "SurgeArrester" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "SurgeArrester" };
+                super.submit (id, obj);
 
                 return (obj);
             }

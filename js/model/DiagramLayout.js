@@ -118,35 +118,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectPoint_collapse" aria-expanded="true" aria-controls="DiagramObjectPoint_collapse" style="margin-left: 10px;">DiagramObjectPoint</a></legend>
-                    <div id="DiagramObjectPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramObjectPoint_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramObjectPoint_collapse" style="margin-left: 10px;">DiagramObjectPoint</a></legend>
+                    <div id="{{id}}_DiagramObjectPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xPosition'>xPosition: </label><div class='col-sm-8'><input id='xPosition' class='form-control' type='text'{{#xPosition}} value='{{xPosition}}'{{/xPosition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='yPosition'>yPosition: </label><div class='col-sm-8'><input id='yPosition' class='form-control' type='text'{{#yPosition}} value='{{yPosition}}'{{/yPosition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zPosition'>zPosition: </label><div class='col-sm-8'><input id='zPosition' class='form-control' type='text'{{#zPosition}} value='{{zPosition}}'{{/zPosition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiagramObject'>DiagramObject: </label><div class='col-sm-8'><input id='DiagramObject' class='form-control' type='text'{{#DiagramObject}} value='{{DiagramObject}}'{{/DiagramObject}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiagramObjectGluePoint'>DiagramObjectGluePoint: </label><div class='col-sm-8'><input id='DiagramObjectGluePoint' class='form-control' type='text'{{#DiagramObjectGluePoint}} value='{{DiagramObjectGluePoint}}'{{/DiagramObjectGluePoint}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequenceNumber'>sequenceNumber: </label><div class='col-sm-8'><input id='{{id}}_sequenceNumber' class='form-control' type='text'{{#sequenceNumber}} value='{{sequenceNumber}}'{{/sequenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xPosition'>xPosition: </label><div class='col-sm-8'><input id='{{id}}_xPosition' class='form-control' type='text'{{#xPosition}} value='{{xPosition}}'{{/xPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_yPosition'>yPosition: </label><div class='col-sm-8'><input id='{{id}}_yPosition' class='form-control' type='text'{{#yPosition}} value='{{yPosition}}'{{/yPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zPosition'>zPosition: </label><div class='col-sm-8'><input id='{{id}}_zPosition' class='form-control' type='text'{{#zPosition}} value='{{zPosition}}'{{/zPosition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiagramObject'>DiagramObject: </label><div class='col-sm-8'><input id='{{id}}_DiagramObject' class='form-control' type='text'{{#DiagramObject}} value='{{DiagramObject}}'{{/DiagramObject}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiagramObjectGluePoint'>DiagramObjectGluePoint: </label><div class='col-sm-8'><input id='{{id}}_DiagramObjectGluePoint' class='form-control' type='text'{{#DiagramObjectGluePoint}} value='{{DiagramObjectGluePoint}}'{{/DiagramObjectGluePoint}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DiagramObjectPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
-                temp = document.getElementById ("xPosition").value; if ("" != temp) obj.xPosition = temp;
-                temp = document.getElementById ("yPosition").value; if ("" != temp) obj.yPosition = temp;
-                temp = document.getElementById ("zPosition").value; if ("" != temp) obj.zPosition = temp;
-                temp = document.getElementById ("DiagramObject").value; if ("" != temp) obj.DiagramObject = temp;
-                temp = document.getElementById ("DiagramObjectGluePoint").value; if ("" != temp) obj.DiagramObjectGluePoint = temp;
+                var obj = obj || { id: id, cls: "DiagramObjectPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
+                temp = document.getElementById (id + "_xPosition").value; if ("" != temp) obj.xPosition = temp;
+                temp = document.getElementById (id + "_yPosition").value; if ("" != temp) obj.yPosition = temp;
+                temp = document.getElementById (id + "_zPosition").value; if ("" != temp) obj.zPosition = temp;
+                temp = document.getElementById (id + "_DiagramObject").value; if ("" != temp) obj.DiagramObject = temp;
+                temp = document.getElementById (id + "_DiagramObjectGluePoint").value; if ("" != temp) obj.DiagramObjectGluePoint = temp;
 
                 return (obj);
             }
@@ -246,8 +246,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectStyle_collapse" aria-expanded="true" aria-controls="DiagramObjectStyle_collapse" style="margin-left: 10px;">DiagramObjectStyle</a></legend>
-                    <div id="DiagramObjectStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramObjectStyle_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramObjectStyle_collapse" style="margin-left: 10px;">DiagramObjectStyle</a></legend>
+                    <div id="{{id}}_DiagramObjectStyle_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -257,10 +257,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DiagramObjectStyle" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DiagramObjectStyle" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -357,8 +357,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObjectGluePoint_collapse" aria-expanded="true" aria-controls="DiagramObjectGluePoint_collapse" style="margin-left: 10px;">DiagramObjectGluePoint</a></legend>
-                    <div id="DiagramObjectGluePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramObjectGluePoint_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramObjectGluePoint_collapse" style="margin-left: 10px;">DiagramObjectGluePoint</a></legend>
+                    <div id="{{id}}_DiagramObjectGluePoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -368,10 +368,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DiagramObjectGluePoint" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DiagramObjectGluePoint" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -490,35 +490,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Diagram_collapse" aria-expanded="true" aria-controls="Diagram_collapse" style="margin-left: 10px;">Diagram</a></legend>
-                    <div id="Diagram_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Diagram_collapse" aria-expanded="true" aria-controls="{{id}}_Diagram_collapse" style="margin-left: 10px;">Diagram</a></legend>
+                    <div id="{{id}}_Diagram_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='orientation'>orientation: </label><div class='col-sm-8'><select id='orientation' class='form-control'>{{#OrientationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OrientationKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x1InitialView'>x1InitialView: </label><div class='col-sm-8'><input id='x1InitialView' class='form-control' type='text'{{#x1InitialView}} value='{{x1InitialView}}'{{/x1InitialView}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x2InitialView'>x2InitialView: </label><div class='col-sm-8'><input id='x2InitialView' class='form-control' type='text'{{#x2InitialView}} value='{{x2InitialView}}'{{/x2InitialView}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y1InitialView'>y1InitialView: </label><div class='col-sm-8'><input id='y1InitialView' class='form-control' type='text'{{#y1InitialView}} value='{{y1InitialView}}'{{/y1InitialView}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='y2InitialView'>y2InitialView: </label><div class='col-sm-8'><input id='y2InitialView' class='form-control' type='text'{{#y2InitialView}} value='{{y2InitialView}}'{{/y2InitialView}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiagramStyle'>DiagramStyle: </label><div class='col-sm-8'><input id='DiagramStyle' class='form-control' type='text'{{#DiagramStyle}} value='{{DiagramStyle}}'{{/DiagramStyle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_orientation'>orientation: </label><div class='col-sm-8'><select id='{{id}}_orientation' class='form-control'>{{#OrientationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OrientationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x1InitialView'>x1InitialView: </label><div class='col-sm-8'><input id='{{id}}_x1InitialView' class='form-control' type='text'{{#x1InitialView}} value='{{x1InitialView}}'{{/x1InitialView}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x2InitialView'>x2InitialView: </label><div class='col-sm-8'><input id='{{id}}_x2InitialView' class='form-control' type='text'{{#x2InitialView}} value='{{x2InitialView}}'{{/x2InitialView}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y1InitialView'>y1InitialView: </label><div class='col-sm-8'><input id='{{id}}_y1InitialView' class='form-control' type='text'{{#y1InitialView}} value='{{y1InitialView}}'{{/y1InitialView}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_y2InitialView'>y2InitialView: </label><div class='col-sm-8'><input id='{{id}}_y2InitialView' class='form-control' type='text'{{#y2InitialView}} value='{{y2InitialView}}'{{/y2InitialView}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiagramStyle'>DiagramStyle: </label><div class='col-sm-8'><input id='{{id}}_DiagramStyle' class='form-control' type='text'{{#DiagramStyle}} value='{{DiagramStyle}}'{{/DiagramStyle}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Diagram" };
-                super.submit (obj);
-                temp = document.getElementById ("orientation").value; if ("" != temp) { temp = OrientationKind[temp]; if ("undefined" != typeof (temp)) obj.orientation = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind." + temp; }
-                temp = document.getElementById ("x1InitialView").value; if ("" != temp) obj.x1InitialView = temp;
-                temp = document.getElementById ("x2InitialView").value; if ("" != temp) obj.x2InitialView = temp;
-                temp = document.getElementById ("y1InitialView").value; if ("" != temp) obj.y1InitialView = temp;
-                temp = document.getElementById ("y2InitialView").value; if ("" != temp) obj.y2InitialView = temp;
-                temp = document.getElementById ("DiagramStyle").value; if ("" != temp) obj.DiagramStyle = temp;
+                var obj = obj || { id: id, cls: "Diagram" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_orientation").value; if ("" != temp) { temp = OrientationKind[temp]; if ("undefined" != typeof (temp)) obj.orientation = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind." + temp; }
+                temp = document.getElementById (id + "_x1InitialView").value; if ("" != temp) obj.x1InitialView = temp;
+                temp = document.getElementById (id + "_x2InitialView").value; if ("" != temp) obj.x2InitialView = temp;
+                temp = document.getElementById (id + "_y1InitialView").value; if ("" != temp) obj.y1InitialView = temp;
+                temp = document.getElementById (id + "_y2InitialView").value; if ("" != temp) obj.y2InitialView = temp;
+                temp = document.getElementById (id + "_DiagramStyle").value; if ("" != temp) obj.DiagramStyle = temp;
 
                 return (obj);
             }
@@ -621,27 +621,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VisibilityLayer_collapse" aria-expanded="true" aria-controls="VisibilityLayer_collapse" style="margin-left: 10px;">VisibilityLayer</a></legend>
-                    <div id="VisibilityLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VisibilityLayer_collapse" aria-expanded="true" aria-controls="{{id}}_VisibilityLayer_collapse" style="margin-left: 10px;">VisibilityLayer</a></legend>
+                    <div id="{{id}}_VisibilityLayer_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VisibleObjects'>VisibleObjects: </label><div class='col-sm-8'><input id='VisibleObjects' class='form-control' type='text'{{#VisibleObjects}} value='{{VisibleObjects}}_string'{{/VisibleObjects}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='{{id}}_drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VisibleObjects'>VisibleObjects: </label><div class='col-sm-8'><input id='{{id}}_VisibleObjects' class='form-control' type='text'{{#VisibleObjects}} value='{{VisibleObjects}}_string'{{/VisibleObjects}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VisibilityLayer" };
-                super.submit (obj);
-                temp = document.getElementById ("drawingOrder").value; if ("" != temp) obj.drawingOrder = temp;
-                temp = document.getElementById ("VisibleObjects").value; if ("" != temp) obj.VisibleObjects = temp.split (",");
+                var obj = obj || { id: id, cls: "VisibilityLayer" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_drawingOrder").value; if ("" != temp) obj.drawingOrder = temp;
+                temp = document.getElementById (id + "_VisibleObjects").value; if ("" != temp) obj.VisibleObjects = temp.split (",");
 
                 return (obj);
             }
@@ -769,41 +769,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramObject_collapse" aria-expanded="true" aria-controls="DiagramObject_collapse" style="margin-left: 10px;">DiagramObject</a></legend>
-                    <div id="DiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramObject_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramObject_collapse" style="margin-left: 10px;">DiagramObject</a></legend>
+                    <div id="{{id}}_DiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPolygon'>isPolygon: </label><div class='col-sm-8'><input id='isPolygon' class='form-check-input' type='checkbox'{{#isPolygon}} checked{{/isPolygon}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='offsetX'>offsetX: </label><div class='col-sm-8'><input id='offsetX' class='form-control' type='text'{{#offsetX}} value='{{offsetX}}'{{/offsetX}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='offsetY'>offsetY: </label><div class='col-sm-8'><input id='offsetY' class='form-control' type='text'{{#offsetY}} value='{{offsetY}}'{{/offsetY}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rotation'>rotation: </label><div class='col-sm-8'><input id='rotation' class='form-control' type='text'{{#rotation}} value='{{rotation}}'{{/rotation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Diagram'>Diagram: </label><div class='col-sm-8'><input id='Diagram' class='form-control' type='text'{{#Diagram}} value='{{Diagram}}'{{/Diagram}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiagramObjectStyle'>DiagramObjectStyle: </label><div class='col-sm-8'><input id='DiagramObjectStyle' class='form-control' type='text'{{#DiagramObjectStyle}} value='{{DiagramObjectStyle}}'{{/DiagramObjectStyle}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='IdentifiedObject'>IdentifiedObject: </label><div class='col-sm-8'><input id='IdentifiedObject' class='form-control' type='text'{{#IdentifiedObject}} value='{{IdentifiedObject}}'{{/IdentifiedObject}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VisibilityLayers'>VisibilityLayers: </label><div class='col-sm-8'><input id='VisibilityLayers' class='form-control' type='text'{{#VisibilityLayers}} value='{{VisibilityLayers}}_string'{{/VisibilityLayers}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_drawingOrder'>drawingOrder: </label><div class='col-sm-8'><input id='{{id}}_drawingOrder' class='form-control' type='text'{{#drawingOrder}} value='{{drawingOrder}}'{{/drawingOrder}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPolygon'>isPolygon: </label><div class='col-sm-8'><input id='{{id}}_isPolygon' class='form-check-input' type='checkbox'{{#isPolygon}} checked{{/isPolygon}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offsetX'>offsetX: </label><div class='col-sm-8'><input id='{{id}}_offsetX' class='form-control' type='text'{{#offsetX}} value='{{offsetX}}'{{/offsetX}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_offsetY'>offsetY: </label><div class='col-sm-8'><input id='{{id}}_offsetY' class='form-control' type='text'{{#offsetY}} value='{{offsetY}}'{{/offsetY}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rotation'>rotation: </label><div class='col-sm-8'><input id='{{id}}_rotation' class='form-control' type='text'{{#rotation}} value='{{rotation}}'{{/rotation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Diagram'>Diagram: </label><div class='col-sm-8'><input id='{{id}}_Diagram' class='form-control' type='text'{{#Diagram}} value='{{Diagram}}'{{/Diagram}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiagramObjectStyle'>DiagramObjectStyle: </label><div class='col-sm-8'><input id='{{id}}_DiagramObjectStyle' class='form-control' type='text'{{#DiagramObjectStyle}} value='{{DiagramObjectStyle}}'{{/DiagramObjectStyle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_IdentifiedObject'>IdentifiedObject: </label><div class='col-sm-8'><input id='{{id}}_IdentifiedObject' class='form-control' type='text'{{#IdentifiedObject}} value='{{IdentifiedObject}}'{{/IdentifiedObject}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VisibilityLayers'>VisibilityLayers: </label><div class='col-sm-8'><input id='{{id}}_VisibilityLayers' class='form-control' type='text'{{#VisibilityLayers}} value='{{VisibilityLayers}}_string'{{/VisibilityLayers}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DiagramObject" };
-                super.submit (obj);
-                temp = document.getElementById ("drawingOrder").value; if ("" != temp) obj.drawingOrder = temp;
-                temp = document.getElementById ("isPolygon").checked; if (temp) obj.isPolygon = true;
-                temp = document.getElementById ("offsetX").value; if ("" != temp) obj.offsetX = temp;
-                temp = document.getElementById ("offsetY").value; if ("" != temp) obj.offsetY = temp;
-                temp = document.getElementById ("rotation").value; if ("" != temp) obj.rotation = temp;
-                temp = document.getElementById ("Diagram").value; if ("" != temp) obj.Diagram = temp;
-                temp = document.getElementById ("DiagramObjectStyle").value; if ("" != temp) obj.DiagramObjectStyle = temp;
-                temp = document.getElementById ("IdentifiedObject").value; if ("" != temp) obj.IdentifiedObject = temp;
-                temp = document.getElementById ("VisibilityLayers").value; if ("" != temp) obj.VisibilityLayers = temp.split (",");
+                var obj = obj || { id: id, cls: "DiagramObject" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_drawingOrder").value; if ("" != temp) obj.drawingOrder = temp;
+                temp = document.getElementById (id + "_isPolygon").checked; if (temp) obj.isPolygon = true;
+                temp = document.getElementById (id + "_offsetX").value; if ("" != temp) obj.offsetX = temp;
+                temp = document.getElementById (id + "_offsetY").value; if ("" != temp) obj.offsetY = temp;
+                temp = document.getElementById (id + "_rotation").value; if ("" != temp) obj.rotation = temp;
+                temp = document.getElementById (id + "_Diagram").value; if ("" != temp) obj.Diagram = temp;
+                temp = document.getElementById (id + "_DiagramObjectStyle").value; if ("" != temp) obj.DiagramObjectStyle = temp;
+                temp = document.getElementById (id + "_IdentifiedObject").value; if ("" != temp) obj.IdentifiedObject = temp;
+                temp = document.getElementById (id + "_VisibilityLayers").value; if ("" != temp) obj.VisibilityLayers = temp.split (",");
 
                 return (obj);
             }
@@ -906,8 +906,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiagramStyle_collapse" aria-expanded="true" aria-controls="DiagramStyle_collapse" style="margin-left: 10px;">DiagramStyle</a></legend>
-                    <div id="DiagramStyle_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiagramStyle_collapse" aria-expanded="true" aria-controls="{{id}}_DiagramStyle_collapse" style="margin-left: 10px;">DiagramStyle</a></legend>
+                    <div id="{{id}}_DiagramStyle_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -917,10 +917,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DiagramStyle" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DiagramStyle" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1015,25 +1015,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TextDiagramObject_collapse" aria-expanded="true" aria-controls="TextDiagramObject_collapse" style="margin-left: 10px;">TextDiagramObject</a></legend>
-                    <div id="TextDiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TextDiagramObject_collapse" aria-expanded="true" aria-controls="{{id}}_TextDiagramObject_collapse" style="margin-left: 10px;">TextDiagramObject</a></legend>
+                    <div id="{{id}}_TextDiagramObject_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DiagramObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='text'>text: </label><div class='col-sm-8'><input id='text' class='form-control' type='text'{{#text}} value='{{text}}'{{/text}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_text'>text: </label><div class='col-sm-8'><input id='{{id}}_text' class='form-control' type='text'{{#text}} value='{{text}}'{{/text}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TextDiagramObject" };
-                super.submit (obj);
-                temp = document.getElementById ("text").value; if ("" != temp) obj.text = temp;
+                var obj = obj || { id: id, cls: "TextDiagramObject" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_text").value; if ("" != temp) obj.text = temp;
 
                 return (obj);
             }

@@ -103,27 +103,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Season_collapse" aria-expanded="true" aria-controls="Season_collapse" style="margin-left: 10px;">Season</a></legend>
-                    <div id="Season_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Season_collapse" aria-expanded="true" aria-controls="{{id}}_Season_collapse" style="margin-left: 10px;">Season</a></legend>
+                    <div id="{{id}}_Season_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endDate'>endDate: </label><div class='col-sm-8'><input id='endDate' class='form-control' type='text'{{#endDate}} value='{{endDate}}'{{/endDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startDate'>startDate: </label><div class='col-sm-8'><input id='startDate' class='form-control' type='text'{{#startDate}} value='{{startDate}}'{{/startDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endDate'>endDate: </label><div class='col-sm-8'><input id='{{id}}_endDate' class='form-control' type='text'{{#endDate}} value='{{endDate}}'{{/endDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startDate'>startDate: </label><div class='col-sm-8'><input id='{{id}}_startDate' class='form-control' type='text'{{#startDate}} value='{{startDate}}'{{/startDate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Season" };
-                super.submit (obj);
-                temp = document.getElementById ("endDate").value; if ("" != temp) obj.endDate = temp;
-                temp = document.getElementById ("startDate").value; if ("" != temp) obj.startDate = temp;
+                var obj = obj || { id: id, cls: "Season" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_endDate").value; if ("" != temp) obj.endDate = temp;
+                temp = document.getElementById (id + "_startDate").value; if ("" != temp) obj.startDate = temp;
 
                 return (obj);
             }
@@ -222,27 +222,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SeasonDayTypeSchedule_collapse" aria-expanded="true" aria-controls="SeasonDayTypeSchedule_collapse" style="margin-left: 10px;">SeasonDayTypeSchedule</a></legend>
-                    <div id="SeasonDayTypeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SeasonDayTypeSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_SeasonDayTypeSchedule_collapse" style="margin-left: 10px;">SeasonDayTypeSchedule</a></legend>
+                    <div id="{{id}}_SeasonDayTypeSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Season'>Season: </label><div class='col-sm-8'><input id='Season' class='form-control' type='text'{{#Season}} value='{{Season}}'{{/Season}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DayType'>DayType: </label><div class='col-sm-8'><input id='DayType' class='form-control' type='text'{{#DayType}} value='{{DayType}}'{{/DayType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Season'>Season: </label><div class='col-sm-8'><input id='{{id}}_Season' class='form-control' type='text'{{#Season}} value='{{Season}}'{{/Season}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DayType'>DayType: </label><div class='col-sm-8'><input id='{{id}}_DayType' class='form-control' type='text'{{#DayType}} value='{{DayType}}'{{/DayType}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SeasonDayTypeSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("Season").value; if ("" != temp) obj.Season = temp;
-                temp = document.getElementById ("DayType").value; if ("" != temp) obj.DayType = temp;
+                var obj = obj || { id: id, cls: "SeasonDayTypeSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Season").value; if ("" != temp) obj.Season = temp;
+                temp = document.getElementById (id + "_DayType").value; if ("" != temp) obj.DayType = temp;
 
                 return (obj);
             }
@@ -338,25 +338,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadGroup_collapse" aria-expanded="true" aria-controls="LoadGroup_collapse" style="margin-left: 10px;">LoadGroup</a></legend>
-                    <div id="LoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadGroup_collapse" aria-expanded="true" aria-controls="{{id}}_LoadGroup_collapse" style="margin-left: 10px;">LoadGroup</a></legend>
+                    <div id="{{id}}_LoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubLoadArea'>SubLoadArea: </label><div class='col-sm-8'><input id='SubLoadArea' class='form-control' type='text'{{#SubLoadArea}} value='{{SubLoadArea}}'{{/SubLoadArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubLoadArea'>SubLoadArea: </label><div class='col-sm-8'><input id='{{id}}_SubLoadArea' class='form-control' type='text'{{#SubLoadArea}} value='{{SubLoadArea}}'{{/SubLoadArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadGroup" };
-                super.submit (obj);
-                temp = document.getElementById ("SubLoadArea").value; if ("" != temp) obj.SubLoadArea = temp;
+                var obj = obj || { id: id, cls: "LoadGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_SubLoadArea").value; if ("" != temp) obj.SubLoadArea = temp;
 
                 return (obj);
             }
@@ -453,25 +453,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyArea_collapse" aria-expanded="true" aria-controls="EnergyArea_collapse" style="margin-left: 10px;">EnergyArea</a></legend>
-                    <div id="EnergyArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyArea_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyArea_collapse" style="margin-left: 10px;">EnergyArea</a></legend>
+                    <div id="{{id}}_EnergyArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='{{id}}_ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EnergyArea" };
-                super.submit (obj);
-                temp = document.getElementById ("ControlArea").value; if ("" != temp) obj.ControlArea = temp;
+                var obj = obj || { id: id, cls: "EnergyArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ControlArea").value; if ("" != temp) obj.ControlArea = temp;
 
                 return (obj);
             }
@@ -570,8 +570,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DayType_collapse" aria-expanded="true" aria-controls="DayType_collapse" style="margin-left: 10px;">DayType</a></legend>
-                    <div id="DayType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DayType_collapse" aria-expanded="true" aria-controls="{{id}}_DayType_collapse" style="margin-left: 10px;">DayType</a></legend>
+                    <div id="{{id}}_DayType_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -581,10 +581,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "DayType" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "DayType" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -716,45 +716,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadResponseCharacteristic_collapse" aria-expanded="true" aria-controls="LoadResponseCharacteristic_collapse" style="margin-left: 10px;">LoadResponseCharacteristic</a></legend>
-                    <div id="LoadResponseCharacteristic_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadResponseCharacteristic_collapse" aria-expanded="true" aria-controls="{{id}}_LoadResponseCharacteristic_collapse" style="margin-left: 10px;">LoadResponseCharacteristic</a></legend>
+                    <div id="{{id}}_LoadResponseCharacteristic_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='exponentModel'>exponentModel: </label><div class='col-sm-8'><input id='exponentModel' class='form-check-input' type='checkbox'{{#exponentModel}} checked{{/exponentModel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pConstantCurrent'>pConstantCurrent: </label><div class='col-sm-8'><input id='pConstantCurrent' class='form-control' type='text'{{#pConstantCurrent}} value='{{pConstantCurrent}}'{{/pConstantCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pConstantImpedance'>pConstantImpedance: </label><div class='col-sm-8'><input id='pConstantImpedance' class='form-control' type='text'{{#pConstantImpedance}} value='{{pConstantImpedance}}'{{/pConstantImpedance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pConstantPower'>pConstantPower: </label><div class='col-sm-8'><input id='pConstantPower' class='form-control' type='text'{{#pConstantPower}} value='{{pConstantPower}}'{{/pConstantPower}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pFrequencyExponent'>pFrequencyExponent: </label><div class='col-sm-8'><input id='pFrequencyExponent' class='form-control' type='text'{{#pFrequencyExponent}} value='{{pFrequencyExponent}}'{{/pFrequencyExponent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pVoltageExponent'>pVoltageExponent: </label><div class='col-sm-8'><input id='pVoltageExponent' class='form-control' type='text'{{#pVoltageExponent}} value='{{pVoltageExponent}}'{{/pVoltageExponent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qConstantCurrent'>qConstantCurrent: </label><div class='col-sm-8'><input id='qConstantCurrent' class='form-control' type='text'{{#qConstantCurrent}} value='{{qConstantCurrent}}'{{/qConstantCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qConstantImpedance'>qConstantImpedance: </label><div class='col-sm-8'><input id='qConstantImpedance' class='form-control' type='text'{{#qConstantImpedance}} value='{{qConstantImpedance}}'{{/qConstantImpedance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qConstantPower'>qConstantPower: </label><div class='col-sm-8'><input id='qConstantPower' class='form-control' type='text'{{#qConstantPower}} value='{{qConstantPower}}'{{/qConstantPower}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qFrequencyExponent'>qFrequencyExponent: </label><div class='col-sm-8'><input id='qFrequencyExponent' class='form-control' type='text'{{#qFrequencyExponent}} value='{{qFrequencyExponent}}'{{/qFrequencyExponent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qVoltageExponent'>qVoltageExponent: </label><div class='col-sm-8'><input id='qVoltageExponent' class='form-control' type='text'{{#qVoltageExponent}} value='{{qVoltageExponent}}'{{/qVoltageExponent}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_exponentModel'>exponentModel: </label><div class='col-sm-8'><input id='{{id}}_exponentModel' class='form-check-input' type='checkbox'{{#exponentModel}} checked{{/exponentModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pConstantCurrent'>pConstantCurrent: </label><div class='col-sm-8'><input id='{{id}}_pConstantCurrent' class='form-control' type='text'{{#pConstantCurrent}} value='{{pConstantCurrent}}'{{/pConstantCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pConstantImpedance'>pConstantImpedance: </label><div class='col-sm-8'><input id='{{id}}_pConstantImpedance' class='form-control' type='text'{{#pConstantImpedance}} value='{{pConstantImpedance}}'{{/pConstantImpedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pConstantPower'>pConstantPower: </label><div class='col-sm-8'><input id='{{id}}_pConstantPower' class='form-control' type='text'{{#pConstantPower}} value='{{pConstantPower}}'{{/pConstantPower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pFrequencyExponent'>pFrequencyExponent: </label><div class='col-sm-8'><input id='{{id}}_pFrequencyExponent' class='form-control' type='text'{{#pFrequencyExponent}} value='{{pFrequencyExponent}}'{{/pFrequencyExponent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pVoltageExponent'>pVoltageExponent: </label><div class='col-sm-8'><input id='{{id}}_pVoltageExponent' class='form-control' type='text'{{#pVoltageExponent}} value='{{pVoltageExponent}}'{{/pVoltageExponent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qConstantCurrent'>qConstantCurrent: </label><div class='col-sm-8'><input id='{{id}}_qConstantCurrent' class='form-control' type='text'{{#qConstantCurrent}} value='{{qConstantCurrent}}'{{/qConstantCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qConstantImpedance'>qConstantImpedance: </label><div class='col-sm-8'><input id='{{id}}_qConstantImpedance' class='form-control' type='text'{{#qConstantImpedance}} value='{{qConstantImpedance}}'{{/qConstantImpedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qConstantPower'>qConstantPower: </label><div class='col-sm-8'><input id='{{id}}_qConstantPower' class='form-control' type='text'{{#qConstantPower}} value='{{qConstantPower}}'{{/qConstantPower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qFrequencyExponent'>qFrequencyExponent: </label><div class='col-sm-8'><input id='{{id}}_qFrequencyExponent' class='form-control' type='text'{{#qFrequencyExponent}} value='{{qFrequencyExponent}}'{{/qFrequencyExponent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qVoltageExponent'>qVoltageExponent: </label><div class='col-sm-8'><input id='{{id}}_qVoltageExponent' class='form-control' type='text'{{#qVoltageExponent}} value='{{qVoltageExponent}}'{{/qVoltageExponent}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadResponseCharacteristic" };
-                super.submit (obj);
-                temp = document.getElementById ("exponentModel").checked; if (temp) obj.exponentModel = true;
-                temp = document.getElementById ("pConstantCurrent").value; if ("" != temp) obj.pConstantCurrent = temp;
-                temp = document.getElementById ("pConstantImpedance").value; if ("" != temp) obj.pConstantImpedance = temp;
-                temp = document.getElementById ("pConstantPower").value; if ("" != temp) obj.pConstantPower = temp;
-                temp = document.getElementById ("pFrequencyExponent").value; if ("" != temp) obj.pFrequencyExponent = temp;
-                temp = document.getElementById ("pVoltageExponent").value; if ("" != temp) obj.pVoltageExponent = temp;
-                temp = document.getElementById ("qConstantCurrent").value; if ("" != temp) obj.qConstantCurrent = temp;
-                temp = document.getElementById ("qConstantImpedance").value; if ("" != temp) obj.qConstantImpedance = temp;
-                temp = document.getElementById ("qConstantPower").value; if ("" != temp) obj.qConstantPower = temp;
-                temp = document.getElementById ("qFrequencyExponent").value; if ("" != temp) obj.qFrequencyExponent = temp;
-                temp = document.getElementById ("qVoltageExponent").value; if ("" != temp) obj.qVoltageExponent = temp;
+                var obj = obj || { id: id, cls: "LoadResponseCharacteristic" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_exponentModel").checked; if (temp) obj.exponentModel = true;
+                temp = document.getElementById (id + "_pConstantCurrent").value; if ("" != temp) obj.pConstantCurrent = temp;
+                temp = document.getElementById (id + "_pConstantImpedance").value; if ("" != temp) obj.pConstantImpedance = temp;
+                temp = document.getElementById (id + "_pConstantPower").value; if ("" != temp) obj.pConstantPower = temp;
+                temp = document.getElementById (id + "_pFrequencyExponent").value; if ("" != temp) obj.pFrequencyExponent = temp;
+                temp = document.getElementById (id + "_pVoltageExponent").value; if ("" != temp) obj.pVoltageExponent = temp;
+                temp = document.getElementById (id + "_qConstantCurrent").value; if ("" != temp) obj.qConstantCurrent = temp;
+                temp = document.getElementById (id + "_qConstantImpedance").value; if ("" != temp) obj.qConstantImpedance = temp;
+                temp = document.getElementById (id + "_qConstantPower").value; if ("" != temp) obj.qConstantPower = temp;
+                temp = document.getElementById (id + "_qFrequencyExponent").value; if ("" != temp) obj.qFrequencyExponent = temp;
+                temp = document.getElementById (id + "_qVoltageExponent").value; if ("" != temp) obj.qVoltageExponent = temp;
 
                 return (obj);
             }
@@ -857,27 +857,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerCutZone_collapse" aria-expanded="true" aria-controls="PowerCutZone_collapse" style="margin-left: 10px;">PowerCutZone</a></legend>
-                    <div id="PowerCutZone_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerCutZone_collapse" aria-expanded="true" aria-controls="{{id}}_PowerCutZone_collapse" style="margin-left: 10px;">PowerCutZone</a></legend>
+                    <div id="{{id}}_PowerCutZone_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cutLevel1'>cutLevel1: </label><div class='col-sm-8'><input id='cutLevel1' class='form-control' type='text'{{#cutLevel1}} value='{{cutLevel1}}'{{/cutLevel1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cutLevel2'>cutLevel2: </label><div class='col-sm-8'><input id='cutLevel2' class='form-control' type='text'{{#cutLevel2}} value='{{cutLevel2}}'{{/cutLevel2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cutLevel1'>cutLevel1: </label><div class='col-sm-8'><input id='{{id}}_cutLevel1' class='form-control' type='text'{{#cutLevel1}} value='{{cutLevel1}}'{{/cutLevel1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cutLevel2'>cutLevel2: </label><div class='col-sm-8'><input id='{{id}}_cutLevel2' class='form-control' type='text'{{#cutLevel2}} value='{{cutLevel2}}'{{/cutLevel2}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PowerCutZone" };
-                super.submit (obj);
-                temp = document.getElementById ("cutLevel1").value; if ("" != temp) obj.cutLevel1 = temp;
-                temp = document.getElementById ("cutLevel2").value; if ("" != temp) obj.cutLevel2 = temp;
+                var obj = obj || { id: id, cls: "PowerCutZone" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_cutLevel1").value; if ("" != temp) obj.cutLevel1 = temp;
+                temp = document.getElementById (id + "_cutLevel2").value; if ("" != temp) obj.cutLevel2 = temp;
 
                 return (obj);
             }
@@ -972,25 +972,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoadSchedule_collapse" aria-expanded="true" aria-controls="NonConformLoadSchedule_collapse" style="margin-left: 10px;">NonConformLoadSchedule</a></legend>
-                    <div id="NonConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonConformLoadSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_NonConformLoadSchedule_collapse" style="margin-left: 10px;">NonConformLoadSchedule</a></legend>
+                    <div id="{{id}}_NonConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SeasonDayTypeSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='NonConformLoadGroup'>NonConformLoadGroup: </label><div class='col-sm-8'><input id='NonConformLoadGroup' class='form-control' type='text'{{#NonConformLoadGroup}} value='{{NonConformLoadGroup}}'{{/NonConformLoadGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NonConformLoadGroup'>NonConformLoadGroup: </label><div class='col-sm-8'><input id='{{id}}_NonConformLoadGroup' class='form-control' type='text'{{#NonConformLoadGroup}} value='{{NonConformLoadGroup}}'{{/NonConformLoadGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "NonConformLoadSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("NonConformLoadGroup").value; if ("" != temp) obj.NonConformLoadGroup = temp;
+                var obj = obj || { id: id, cls: "NonConformLoadSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_NonConformLoadGroup").value; if ("" != temp) obj.NonConformLoadGroup = temp;
 
                 return (obj);
             }
@@ -1087,25 +1087,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoadSchedule_collapse" aria-expanded="true" aria-controls="ConformLoadSchedule_collapse" style="margin-left: 10px;">ConformLoadSchedule</a></legend>
-                    <div id="ConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConformLoadSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_ConformLoadSchedule_collapse" style="margin-left: 10px;">ConformLoadSchedule</a></legend>
+                    <div id="{{id}}_ConformLoadSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SeasonDayTypeSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConformLoadGroup'>ConformLoadGroup: </label><div class='col-sm-8'><input id='ConformLoadGroup' class='form-control' type='text'{{#ConformLoadGroup}} value='{{ConformLoadGroup}}'{{/ConformLoadGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConformLoadGroup'>ConformLoadGroup: </label><div class='col-sm-8'><input id='{{id}}_ConformLoadGroup' class='form-control' type='text'{{#ConformLoadGroup}} value='{{ConformLoadGroup}}'{{/ConformLoadGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ConformLoadSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("ConformLoadGroup").value; if ("" != temp) obj.ConformLoadGroup = temp;
+                var obj = obj || { id: id, cls: "ConformLoadSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ConformLoadGroup").value; if ("" != temp) obj.ConformLoadGroup = temp;
 
                 return (obj);
             }
@@ -1207,8 +1207,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoadGroup_collapse" aria-expanded="true" aria-controls="NonConformLoadGroup_collapse" style="margin-left: 10px;">NonConformLoadGroup</a></legend>
-                    <div id="NonConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonConformLoadGroup_collapse" aria-expanded="true" aria-controls="{{id}}_NonConformLoadGroup_collapse" style="margin-left: 10px;">NonConformLoadGroup</a></legend>
+                    <div id="{{id}}_NonConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LoadGroup.prototype.edit_template.call (this) +
                     `
@@ -1218,10 +1218,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "NonConformLoadGroup" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "NonConformLoadGroup" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1324,8 +1324,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoadGroup_collapse" aria-expanded="true" aria-controls="ConformLoadGroup_collapse" style="margin-left: 10px;">ConformLoadGroup</a></legend>
-                    <div id="ConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConformLoadGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ConformLoadGroup_collapse" style="margin-left: 10px;">ConformLoadGroup</a></legend>
+                    <div id="{{id}}_ConformLoadGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LoadGroup.prototype.edit_template.call (this) +
                     `
@@ -1335,10 +1335,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ConformLoadGroup" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ConformLoadGroup" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1439,25 +1439,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubLoadArea_collapse" aria-expanded="true" aria-controls="SubLoadArea_collapse" style="margin-left: 10px;">SubLoadArea</a></legend>
-                    <div id="SubLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SubLoadArea_collapse" aria-expanded="true" aria-controls="{{id}}_SubLoadArea_collapse" style="margin-left: 10px;">SubLoadArea</a></legend>
+                    <div id="{{id}}_SubLoadArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + EnergyArea.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadArea'>LoadArea: </label><div class='col-sm-8'><input id='LoadArea' class='form-control' type='text'{{#LoadArea}} value='{{LoadArea}}'{{/LoadArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadArea'>LoadArea: </label><div class='col-sm-8'><input id='{{id}}_LoadArea' class='form-control' type='text'{{#LoadArea}} value='{{LoadArea}}'{{/LoadArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SubLoadArea" };
-                super.submit (obj);
-                temp = document.getElementById ("LoadArea").value; if ("" != temp) obj.LoadArea = temp;
+                var obj = obj || { id: id, cls: "SubLoadArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_LoadArea").value; if ("" != temp) obj.LoadArea = temp;
 
                 return (obj);
             }
@@ -1555,8 +1555,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadArea_collapse" aria-expanded="true" aria-controls="LoadArea_collapse" style="margin-left: 10px;">LoadArea</a></legend>
-                    <div id="LoadArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadArea_collapse" aria-expanded="true" aria-controls="{{id}}_LoadArea_collapse" style="margin-left: 10px;">LoadArea</a></legend>
+                    <div id="{{id}}_LoadArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + EnergyArea.prototype.edit_template.call (this) +
                     `
@@ -1566,10 +1566,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "LoadArea" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "LoadArea" };
+                super.submit (id, obj);
 
                 return (obj);
             }

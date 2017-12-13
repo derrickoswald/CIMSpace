@@ -93,27 +93,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IEC61968CIMVersion_collapse" aria-expanded="true" aria-controls="IEC61968CIMVersion_collapse" style="margin-left: 10px;">IEC61968CIMVersion</a></legend>
-                    <div id="IEC61968CIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IEC61968CIMVersion_collapse" aria-expanded="true" aria-controls="{{id}}_IEC61968CIMVersion_collapse" style="margin-left: 10px;">IEC61968CIMVersion</a></legend>
+                    <div id="{{id}}_IEC61968CIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='date'>date: </label><div class='col-sm-8'><input id='date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_date'>date: </label><div class='col-sm-8'><input id='{{id}}_date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "IEC61968CIMVersion" };
-                super.submit (obj);
-                temp = document.getElementById ("date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+                var obj = obj || { id: id, cls: "IEC61968CIMVersion" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
+                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
 
                 return (obj);
             }

@@ -97,25 +97,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType2UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType2UserDefined_collapse" style="margin-left: 10px;">PFVArControllerType2UserDefined</a></legend>
-                    <div id="PFVArControllerType2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArControllerType2UserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArControllerType2UserDefined_collapse" style="margin-left: 10px;">PFVArControllerType2UserDefined</a></legend>
+                    <div id="{{id}}_PFVArControllerType2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PFVArControllerType2Dynamics.PFVArControllerType2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArControllerType2UserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "PFVArControllerType2UserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -215,25 +215,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineLoadControllerUserDefined_collapse" aria-expanded="true" aria-controls="TurbineLoadControllerUserDefined_collapse" style="margin-left: 10px;">TurbineLoadControllerUserDefined</a></legend>
-                    <div id="TurbineLoadControllerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TurbineLoadControllerUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_TurbineLoadControllerUserDefined_collapse" style="margin-left: 10px;">TurbineLoadControllerUserDefined</a></legend>
+                    <div id="{{id}}_TurbineLoadControllerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + TurbineLoadControllerDynamics.TurbineLoadControllerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TurbineLoadControllerUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "TurbineLoadControllerUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -333,25 +333,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageAdjusterUserDefined_collapse" aria-expanded="true" aria-controls="VoltageAdjusterUserDefined_collapse" style="margin-left: 10px;">VoltageAdjusterUserDefined</a></legend>
-                    <div id="VoltageAdjusterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageAdjusterUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageAdjusterUserDefined_collapse" style="margin-left: 10px;">VoltageAdjusterUserDefined</a></legend>
+                    <div id="{{id}}_VoltageAdjusterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + VoltageAdjusterDynamics.VoltageAdjusterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VoltageAdjusterUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "VoltageAdjusterUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -451,25 +451,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TurbineGovernorUserDefined_collapse" aria-expanded="true" aria-controls="TurbineGovernorUserDefined_collapse" style="margin-left: 10px;">TurbineGovernorUserDefined</a></legend>
-                    <div id="TurbineGovernorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TurbineGovernorUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_TurbineGovernorUserDefined_collapse" style="margin-left: 10px;">TurbineGovernorUserDefined</a></legend>
+                    <div id="{{id}}_TurbineGovernorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + TurbineGovernorDynamics.TurbineGovernorDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TurbineGovernorUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "TurbineGovernorUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -569,25 +569,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadUserDefined_collapse" aria-expanded="true" aria-controls="LoadUserDefined_collapse" style="margin-left: 10px;">LoadUserDefined</a></legend>
-                    <div id="LoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_LoadUserDefined_collapse" style="margin-left: 10px;">LoadUserDefined</a></legend>
+                    <div id="{{id}}_LoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LoadDynamics.LoadDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "LoadUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -687,25 +687,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExcitationSystemUserDefined_collapse" aria-expanded="true" aria-controls="ExcitationSystemUserDefined_collapse" style="margin-left: 10px;">ExcitationSystemUserDefined</a></legend>
-                    <div id="ExcitationSystemUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExcitationSystemUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_ExcitationSystemUserDefined_collapse" style="margin-left: 10px;">ExcitationSystemUserDefined</a></legend>
+                    <div id="{{id}}_ExcitationSystemUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ExcitationSystemDynamics.ExcitationSystemDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ExcitationSystemUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "ExcitationSystemUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -805,25 +805,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindPlantUserDefined_collapse" aria-expanded="true" aria-controls="WindPlantUserDefined_collapse" style="margin-left: 10px;">WindPlantUserDefined</a></legend>
-                    <div id="WindPlantUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindPlantUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_WindPlantUserDefined_collapse" style="margin-left: 10px;">WindPlantUserDefined</a></legend>
+                    <div id="{{id}}_WindPlantUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindDynamics.WindPlantDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindPlantUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "WindPlantUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -923,25 +923,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemStabilizerUserDefined_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerUserDefined_collapse" style="margin-left: 10px;">PowerSystemStabilizerUserDefined</a></legend>
-                    <div id="PowerSystemStabilizerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemStabilizerUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemStabilizerUserDefined_collapse" style="margin-left: 10px;">PowerSystemStabilizerUserDefined</a></legend>
+                    <div id="{{id}}_PowerSystemStabilizerUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PowerSystemStabilizerUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "PowerSystemStabilizerUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -1041,25 +1041,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindType3or4UserDefined_collapse" aria-expanded="true" aria-controls="WindType3or4UserDefined_collapse" style="margin-left: 10px;">WindType3or4UserDefined</a></legend>
-                    <div id="WindType3or4UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindType3or4UserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_WindType3or4UserDefined_collapse" style="margin-left: 10px;">WindType3or4UserDefined</a></legend>
+                    <div id="{{id}}_WindType3or4UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindDynamics.WindTurbineType3or4Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindType3or4UserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "WindType3or4UserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -1159,25 +1159,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AsynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="AsynchronousMachineUserDefined_collapse" style="margin-left: 10px;">AsynchronousMachineUserDefined</a></legend>
-                    <div id="AsynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AsynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_AsynchronousMachineUserDefined_collapse" style="margin-left: 10px;">AsynchronousMachineUserDefined</a></legend>
+                    <div id="{{id}}_AsynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AsynchronousMachineDynamics.AsynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AsynchronousMachineUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "AsynchronousMachineUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -1277,25 +1277,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType1UserDefined_collapse" aria-expanded="true" aria-controls="PFVArControllerType1UserDefined_collapse" style="margin-left: 10px;">PFVArControllerType1UserDefined</a></legend>
-                    <div id="PFVArControllerType1UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArControllerType1UserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArControllerType1UserDefined_collapse" style="margin-left: 10px;">PFVArControllerType1UserDefined</a></legend>
+                    <div id="{{id}}_PFVArControllerType1UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PFVArControllerType1Dynamics.PFVArControllerType1Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArControllerType1UserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "PFVArControllerType1UserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -1395,25 +1395,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MechanicalLoadUserDefined_collapse" aria-expanded="true" aria-controls="MechanicalLoadUserDefined_collapse" style="margin-left: 10px;">MechanicalLoadUserDefined</a></legend>
-                    <div id="MechanicalLoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MechanicalLoadUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_MechanicalLoadUserDefined_collapse" style="margin-left: 10px;">MechanicalLoadUserDefined</a></legend>
+                    <div id="{{id}}_MechanicalLoadUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MechanicalLoadDynamics.MechanicalLoadDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MechanicalLoadUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "MechanicalLoadUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -1513,25 +1513,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageCompensatorUserDefined_collapse" aria-expanded="true" aria-controls="VoltageCompensatorUserDefined_collapse" style="margin-left: 10px;">VoltageCompensatorUserDefined</a></legend>
-                    <div id="VoltageCompensatorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageCompensatorUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageCompensatorUserDefined_collapse" style="margin-left: 10px;">VoltageCompensatorUserDefined</a></legend>
+                    <div id="{{id}}_VoltageCompensatorUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + VoltageCompensatorDynamics.VoltageCompensatorDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VoltageCompensatorUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "VoltageCompensatorUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -1631,25 +1631,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="UnderexcitationLimiterUserDefined_collapse" style="margin-left: 10px;">UnderexcitationLimiterUserDefined</a></legend>
-                    <div id="UnderexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcitationLimiterUserDefined_collapse" style="margin-left: 10px;">UnderexcitationLimiterUserDefined</a></legend>
+                    <div id="{{id}}_UnderexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "UnderexcitationLimiterUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "UnderexcitationLimiterUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -1749,25 +1749,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WindType1or2UserDefined_collapse" aria-expanded="true" aria-controls="WindType1or2UserDefined_collapse" style="margin-left: 10px;">WindType1or2UserDefined</a></legend>
-                    <div id="WindType1or2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WindType1or2UserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_WindType1or2UserDefined_collapse" style="margin-left: 10px;">WindType1or2UserDefined</a></legend>
+                    <div id="{{id}}_WindType1or2UserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WindDynamics.WindTurbineType1or2Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WindType1or2UserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "WindType1or2UserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -1867,25 +1867,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="OverexcitationLimiterUserDefined_collapse" style="margin-left: 10px;">OverexcitationLimiterUserDefined</a></legend>
-                    <div id="OverexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverexcitationLimiterUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_OverexcitationLimiterUserDefined_collapse" style="margin-left: 10px;">OverexcitationLimiterUserDefined</a></legend>
+                    <div id="{{id}}_OverexcitationLimiterUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + OverexcitationLimiterDynamics.OverexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OverexcitationLimiterUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "OverexcitationLimiterUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -2045,67 +2045,67 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProprietaryParameterDynamics_collapse" aria-expanded="true" aria-controls="ProprietaryParameterDynamics_collapse" style="margin-left: 10px;">ProprietaryParameterDynamics</a></legend>
-                    <div id="ProprietaryParameterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProprietaryParameterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_ProprietaryParameterDynamics_collapse" style="margin-left: 10px;">ProprietaryParameterDynamics</a></legend>
+                    <div id="{{id}}_ProprietaryParameterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='booleanParameterValue'>booleanParameterValue: </label><div class='col-sm-8'><input id='booleanParameterValue' class='form-check-input' type='checkbox'{{#booleanParameterValue}} checked{{/booleanParameterValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='floatParameterValue'>floatParameterValue: </label><div class='col-sm-8'><input id='floatParameterValue' class='form-control' type='text'{{#floatParameterValue}} value='{{floatParameterValue}}'{{/floatParameterValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='integerParameterValue'>integerParameterValue: </label><div class='col-sm-8'><input id='integerParameterValue' class='form-control' type='text'{{#integerParameterValue}} value='{{integerParameterValue}}'{{/integerParameterValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='parameterNumber'>parameterNumber: </label><div class='col-sm-8'><input id='parameterNumber' class='form-control' type='text'{{#parameterNumber}} value='{{parameterNumber}}'{{/parameterNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineGovernorUserDefined'>TurbineGovernorUserDefined: </label><div class='col-sm-8'><input id='TurbineGovernorUserDefined' class='form-control' type='text'{{#TurbineGovernorUserDefined}} value='{{TurbineGovernorUserDefined}}'{{/TurbineGovernorUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType2UserDefined'>PFVArControllerType2UserDefined: </label><div class='col-sm-8'><input id='PFVArControllerType2UserDefined' class='form-control' type='text'{{#PFVArControllerType2UserDefined}} value='{{PFVArControllerType2UserDefined}}'{{/PFVArControllerType2UserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindType1or2UserDefined'>WindType1or2UserDefined: </label><div class='col-sm-8'><input id='WindType1or2UserDefined' class='form-control' type='text'{{#WindType1or2UserDefined}} value='{{WindType1or2UserDefined}}'{{/WindType1or2UserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageAdjusterUserDefined'>VoltageAdjusterUserDefined: </label><div class='col-sm-8'><input id='VoltageAdjusterUserDefined' class='form-control' type='text'{{#VoltageAdjusterUserDefined}} value='{{VoltageAdjusterUserDefined}}'{{/VoltageAdjusterUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineLoadControllerUserDefined'>TurbineLoadControllerUserDefined: </label><div class='col-sm-8'><input id='TurbineLoadControllerUserDefined' class='form-control' type='text'{{#TurbineLoadControllerUserDefined}} value='{{TurbineLoadControllerUserDefined}}'{{/TurbineLoadControllerUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DiscontinuousExcitationControlUserDefined'>DiscontinuousExcitationControlUserDefined: </label><div class='col-sm-8'><input id='DiscontinuousExcitationControlUserDefined' class='form-control' type='text'{{#DiscontinuousExcitationControlUserDefined}} value='{{DiscontinuousExcitationControlUserDefined}}'{{/DiscontinuousExcitationControlUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerSystemStabilizerUserDefined'>PowerSystemStabilizerUserDefined: </label><div class='col-sm-8'><input id='PowerSystemStabilizerUserDefined' class='form-control' type='text'{{#PowerSystemStabilizerUserDefined}} value='{{PowerSystemStabilizerUserDefined}}'{{/PowerSystemStabilizerUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemUserDefined'>ExcitationSystemUserDefined: </label><div class='col-sm-8'><input id='ExcitationSystemUserDefined' class='form-control' type='text'{{#ExcitationSystemUserDefined}} value='{{ExcitationSystemUserDefined}}'{{/ExcitationSystemUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadUserDefined'>LoadUserDefined: </label><div class='col-sm-8'><input id='LoadUserDefined' class='form-control' type='text'{{#LoadUserDefined}} value='{{LoadUserDefined}}'{{/LoadUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AsynchronousMachineUserDefined'>AsynchronousMachineUserDefined: </label><div class='col-sm-8'><input id='AsynchronousMachineUserDefined' class='form-control' type='text'{{#AsynchronousMachineUserDefined}} value='{{AsynchronousMachineUserDefined}}'{{/AsynchronousMachineUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageCompensatorUserDefined'>VoltageCompensatorUserDefined: </label><div class='col-sm-8'><input id='VoltageCompensatorUserDefined' class='form-control' type='text'{{#VoltageCompensatorUserDefined}} value='{{VoltageCompensatorUserDefined}}'{{/VoltageCompensatorUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachineUserDefined'>SynchronousMachineUserDefined: </label><div class='col-sm-8'><input id='SynchronousMachineUserDefined' class='form-control' type='text'{{#SynchronousMachineUserDefined}} value='{{SynchronousMachineUserDefined}}'{{/SynchronousMachineUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MechanicalLoadUserDefined'>MechanicalLoadUserDefined: </label><div class='col-sm-8'><input id='MechanicalLoadUserDefined' class='form-control' type='text'{{#MechanicalLoadUserDefined}} value='{{MechanicalLoadUserDefined}}'{{/MechanicalLoadUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindType3or4UserDefined'>WindType3or4UserDefined: </label><div class='col-sm-8'><input id='WindType3or4UserDefined' class='form-control' type='text'{{#WindType3or4UserDefined}} value='{{WindType3or4UserDefined}}'{{/WindType3or4UserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType1UserDefined'>PFVArControllerType1UserDefined: </label><div class='col-sm-8'><input id='PFVArControllerType1UserDefined' class='form-control' type='text'{{#PFVArControllerType1UserDefined}} value='{{PFVArControllerType1UserDefined}}'{{/PFVArControllerType1UserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WindPlantUserDefined'>WindPlantUserDefined: </label><div class='col-sm-8'><input id='WindPlantUserDefined' class='form-control' type='text'{{#WindPlantUserDefined}} value='{{WindPlantUserDefined}}'{{/WindPlantUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UnderexcitationLimiterUserDefined'>UnderexcitationLimiterUserDefined: </label><div class='col-sm-8'><input id='UnderexcitationLimiterUserDefined' class='form-control' type='text'{{#UnderexcitationLimiterUserDefined}} value='{{UnderexcitationLimiterUserDefined}}'{{/UnderexcitationLimiterUserDefined}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OverexcitationLimiterUserDefined'>OverexcitationLimiterUserDefined: </label><div class='col-sm-8'><input id='OverexcitationLimiterUserDefined' class='form-control' type='text'{{#OverexcitationLimiterUserDefined}} value='{{OverexcitationLimiterUserDefined}}'{{/OverexcitationLimiterUserDefined}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_booleanParameterValue'>booleanParameterValue: </label><div class='col-sm-8'><input id='{{id}}_booleanParameterValue' class='form-check-input' type='checkbox'{{#booleanParameterValue}} checked{{/booleanParameterValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_floatParameterValue'>floatParameterValue: </label><div class='col-sm-8'><input id='{{id}}_floatParameterValue' class='form-control' type='text'{{#floatParameterValue}} value='{{floatParameterValue}}'{{/floatParameterValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_integerParameterValue'>integerParameterValue: </label><div class='col-sm-8'><input id='{{id}}_integerParameterValue' class='form-control' type='text'{{#integerParameterValue}} value='{{integerParameterValue}}'{{/integerParameterValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_parameterNumber'>parameterNumber: </label><div class='col-sm-8'><input id='{{id}}_parameterNumber' class='form-control' type='text'{{#parameterNumber}} value='{{parameterNumber}}'{{/parameterNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TurbineGovernorUserDefined'>TurbineGovernorUserDefined: </label><div class='col-sm-8'><input id='{{id}}_TurbineGovernorUserDefined' class='form-control' type='text'{{#TurbineGovernorUserDefined}} value='{{TurbineGovernorUserDefined}}'{{/TurbineGovernorUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType2UserDefined'>PFVArControllerType2UserDefined: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType2UserDefined' class='form-control' type='text'{{#PFVArControllerType2UserDefined}} value='{{PFVArControllerType2UserDefined}}'{{/PFVArControllerType2UserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindType1or2UserDefined'>WindType1or2UserDefined: </label><div class='col-sm-8'><input id='{{id}}_WindType1or2UserDefined' class='form-control' type='text'{{#WindType1or2UserDefined}} value='{{WindType1or2UserDefined}}'{{/WindType1or2UserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageAdjusterUserDefined'>VoltageAdjusterUserDefined: </label><div class='col-sm-8'><input id='{{id}}_VoltageAdjusterUserDefined' class='form-control' type='text'{{#VoltageAdjusterUserDefined}} value='{{VoltageAdjusterUserDefined}}'{{/VoltageAdjusterUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TurbineLoadControllerUserDefined'>TurbineLoadControllerUserDefined: </label><div class='col-sm-8'><input id='{{id}}_TurbineLoadControllerUserDefined' class='form-control' type='text'{{#TurbineLoadControllerUserDefined}} value='{{TurbineLoadControllerUserDefined}}'{{/TurbineLoadControllerUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DiscontinuousExcitationControlUserDefined'>DiscontinuousExcitationControlUserDefined: </label><div class='col-sm-8'><input id='{{id}}_DiscontinuousExcitationControlUserDefined' class='form-control' type='text'{{#DiscontinuousExcitationControlUserDefined}} value='{{DiscontinuousExcitationControlUserDefined}}'{{/DiscontinuousExcitationControlUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerSystemStabilizerUserDefined'>PowerSystemStabilizerUserDefined: </label><div class='col-sm-8'><input id='{{id}}_PowerSystemStabilizerUserDefined' class='form-control' type='text'{{#PowerSystemStabilizerUserDefined}} value='{{PowerSystemStabilizerUserDefined}}'{{/PowerSystemStabilizerUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemUserDefined'>ExcitationSystemUserDefined: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemUserDefined' class='form-control' type='text'{{#ExcitationSystemUserDefined}} value='{{ExcitationSystemUserDefined}}'{{/ExcitationSystemUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadUserDefined'>LoadUserDefined: </label><div class='col-sm-8'><input id='{{id}}_LoadUserDefined' class='form-control' type='text'{{#LoadUserDefined}} value='{{LoadUserDefined}}'{{/LoadUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AsynchronousMachineUserDefined'>AsynchronousMachineUserDefined: </label><div class='col-sm-8'><input id='{{id}}_AsynchronousMachineUserDefined' class='form-control' type='text'{{#AsynchronousMachineUserDefined}} value='{{AsynchronousMachineUserDefined}}'{{/AsynchronousMachineUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageCompensatorUserDefined'>VoltageCompensatorUserDefined: </label><div class='col-sm-8'><input id='{{id}}_VoltageCompensatorUserDefined' class='form-control' type='text'{{#VoltageCompensatorUserDefined}} value='{{VoltageCompensatorUserDefined}}'{{/VoltageCompensatorUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachineUserDefined'>SynchronousMachineUserDefined: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachineUserDefined' class='form-control' type='text'{{#SynchronousMachineUserDefined}} value='{{SynchronousMachineUserDefined}}'{{/SynchronousMachineUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MechanicalLoadUserDefined'>MechanicalLoadUserDefined: </label><div class='col-sm-8'><input id='{{id}}_MechanicalLoadUserDefined' class='form-control' type='text'{{#MechanicalLoadUserDefined}} value='{{MechanicalLoadUserDefined}}'{{/MechanicalLoadUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindType3or4UserDefined'>WindType3or4UserDefined: </label><div class='col-sm-8'><input id='{{id}}_WindType3or4UserDefined' class='form-control' type='text'{{#WindType3or4UserDefined}} value='{{WindType3or4UserDefined}}'{{/WindType3or4UserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType1UserDefined'>PFVArControllerType1UserDefined: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType1UserDefined' class='form-control' type='text'{{#PFVArControllerType1UserDefined}} value='{{PFVArControllerType1UserDefined}}'{{/PFVArControllerType1UserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WindPlantUserDefined'>WindPlantUserDefined: </label><div class='col-sm-8'><input id='{{id}}_WindPlantUserDefined' class='form-control' type='text'{{#WindPlantUserDefined}} value='{{WindPlantUserDefined}}'{{/WindPlantUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UnderexcitationLimiterUserDefined'>UnderexcitationLimiterUserDefined: </label><div class='col-sm-8'><input id='{{id}}_UnderexcitationLimiterUserDefined' class='form-control' type='text'{{#UnderexcitationLimiterUserDefined}} value='{{UnderexcitationLimiterUserDefined}}'{{/UnderexcitationLimiterUserDefined}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OverexcitationLimiterUserDefined'>OverexcitationLimiterUserDefined: </label><div class='col-sm-8'><input id='{{id}}_OverexcitationLimiterUserDefined' class='form-control' type='text'{{#OverexcitationLimiterUserDefined}} value='{{OverexcitationLimiterUserDefined}}'{{/OverexcitationLimiterUserDefined}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProprietaryParameterDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("booleanParameterValue").checked; if (temp) obj.booleanParameterValue = true;
-                temp = document.getElementById ("floatParameterValue").value; if ("" != temp) obj.floatParameterValue = temp;
-                temp = document.getElementById ("integerParameterValue").value; if ("" != temp) obj.integerParameterValue = temp;
-                temp = document.getElementById ("parameterNumber").value; if ("" != temp) obj.parameterNumber = temp;
-                temp = document.getElementById ("TurbineGovernorUserDefined").value; if ("" != temp) obj.TurbineGovernorUserDefined = temp;
-                temp = document.getElementById ("PFVArControllerType2UserDefined").value; if ("" != temp) obj.PFVArControllerType2UserDefined = temp;
-                temp = document.getElementById ("WindType1or2UserDefined").value; if ("" != temp) obj.WindType1or2UserDefined = temp;
-                temp = document.getElementById ("VoltageAdjusterUserDefined").value; if ("" != temp) obj.VoltageAdjusterUserDefined = temp;
-                temp = document.getElementById ("TurbineLoadControllerUserDefined").value; if ("" != temp) obj.TurbineLoadControllerUserDefined = temp;
-                temp = document.getElementById ("DiscontinuousExcitationControlUserDefined").value; if ("" != temp) obj.DiscontinuousExcitationControlUserDefined = temp;
-                temp = document.getElementById ("PowerSystemStabilizerUserDefined").value; if ("" != temp) obj.PowerSystemStabilizerUserDefined = temp;
-                temp = document.getElementById ("ExcitationSystemUserDefined").value; if ("" != temp) obj.ExcitationSystemUserDefined = temp;
-                temp = document.getElementById ("LoadUserDefined").value; if ("" != temp) obj.LoadUserDefined = temp;
-                temp = document.getElementById ("AsynchronousMachineUserDefined").value; if ("" != temp) obj.AsynchronousMachineUserDefined = temp;
-                temp = document.getElementById ("VoltageCompensatorUserDefined").value; if ("" != temp) obj.VoltageCompensatorUserDefined = temp;
-                temp = document.getElementById ("SynchronousMachineUserDefined").value; if ("" != temp) obj.SynchronousMachineUserDefined = temp;
-                temp = document.getElementById ("MechanicalLoadUserDefined").value; if ("" != temp) obj.MechanicalLoadUserDefined = temp;
-                temp = document.getElementById ("WindType3or4UserDefined").value; if ("" != temp) obj.WindType3or4UserDefined = temp;
-                temp = document.getElementById ("PFVArControllerType1UserDefined").value; if ("" != temp) obj.PFVArControllerType1UserDefined = temp;
-                temp = document.getElementById ("WindPlantUserDefined").value; if ("" != temp) obj.WindPlantUserDefined = temp;
-                temp = document.getElementById ("UnderexcitationLimiterUserDefined").value; if ("" != temp) obj.UnderexcitationLimiterUserDefined = temp;
-                temp = document.getElementById ("OverexcitationLimiterUserDefined").value; if ("" != temp) obj.OverexcitationLimiterUserDefined = temp;
+                var obj = obj || { id: id, cls: "ProprietaryParameterDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_booleanParameterValue").checked; if (temp) obj.booleanParameterValue = true;
+                temp = document.getElementById (id + "_floatParameterValue").value; if ("" != temp) obj.floatParameterValue = temp;
+                temp = document.getElementById (id + "_integerParameterValue").value; if ("" != temp) obj.integerParameterValue = temp;
+                temp = document.getElementById (id + "_parameterNumber").value; if ("" != temp) obj.parameterNumber = temp;
+                temp = document.getElementById (id + "_TurbineGovernorUserDefined").value; if ("" != temp) obj.TurbineGovernorUserDefined = temp;
+                temp = document.getElementById (id + "_PFVArControllerType2UserDefined").value; if ("" != temp) obj.PFVArControllerType2UserDefined = temp;
+                temp = document.getElementById (id + "_WindType1or2UserDefined").value; if ("" != temp) obj.WindType1or2UserDefined = temp;
+                temp = document.getElementById (id + "_VoltageAdjusterUserDefined").value; if ("" != temp) obj.VoltageAdjusterUserDefined = temp;
+                temp = document.getElementById (id + "_TurbineLoadControllerUserDefined").value; if ("" != temp) obj.TurbineLoadControllerUserDefined = temp;
+                temp = document.getElementById (id + "_DiscontinuousExcitationControlUserDefined").value; if ("" != temp) obj.DiscontinuousExcitationControlUserDefined = temp;
+                temp = document.getElementById (id + "_PowerSystemStabilizerUserDefined").value; if ("" != temp) obj.PowerSystemStabilizerUserDefined = temp;
+                temp = document.getElementById (id + "_ExcitationSystemUserDefined").value; if ("" != temp) obj.ExcitationSystemUserDefined = temp;
+                temp = document.getElementById (id + "_LoadUserDefined").value; if ("" != temp) obj.LoadUserDefined = temp;
+                temp = document.getElementById (id + "_AsynchronousMachineUserDefined").value; if ("" != temp) obj.AsynchronousMachineUserDefined = temp;
+                temp = document.getElementById (id + "_VoltageCompensatorUserDefined").value; if ("" != temp) obj.VoltageCompensatorUserDefined = temp;
+                temp = document.getElementById (id + "_SynchronousMachineUserDefined").value; if ("" != temp) obj.SynchronousMachineUserDefined = temp;
+                temp = document.getElementById (id + "_MechanicalLoadUserDefined").value; if ("" != temp) obj.MechanicalLoadUserDefined = temp;
+                temp = document.getElementById (id + "_WindType3or4UserDefined").value; if ("" != temp) obj.WindType3or4UserDefined = temp;
+                temp = document.getElementById (id + "_PFVArControllerType1UserDefined").value; if ("" != temp) obj.PFVArControllerType1UserDefined = temp;
+                temp = document.getElementById (id + "_WindPlantUserDefined").value; if ("" != temp) obj.WindPlantUserDefined = temp;
+                temp = document.getElementById (id + "_UnderexcitationLimiterUserDefined").value; if ("" != temp) obj.UnderexcitationLimiterUserDefined = temp;
+                temp = document.getElementById (id + "_OverexcitationLimiterUserDefined").value; if ("" != temp) obj.OverexcitationLimiterUserDefined = temp;
 
                 return (obj);
             }
@@ -2222,25 +2222,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="SynchronousMachineUserDefined_collapse" style="margin-left: 10px;">SynchronousMachineUserDefined</a></legend>
-                    <div id="SynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineUserDefined_collapse" style="margin-left: 10px;">SynchronousMachineUserDefined</a></legend>
+                    <div id="{{id}}_SynchronousMachineUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDynamics.SynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SynchronousMachineUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "SynchronousMachineUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }
@@ -2340,25 +2340,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DiscontinuousExcitationControlUserDefined_collapse" aria-expanded="true" aria-controls="DiscontinuousExcitationControlUserDefined_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlUserDefined</a></legend>
-                    <div id="DiscontinuousExcitationControlUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DiscontinuousExcitationControlUserDefined_collapse" aria-expanded="true" aria-controls="{{id}}_DiscontinuousExcitationControlUserDefined_collapse" style="margin-left: 10px;">DiscontinuousExcitationControlUserDefined</a></legend>
+                    <div id="{{id}}_DiscontinuousExcitationControlUserDefined_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DiscontinuousExcitationControlDynamics.DiscontinuousExcitationControlDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proprietary'>proprietary: </label><div class='col-sm-8'><input id='proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proprietary'>proprietary: </label><div class='col-sm-8'><input id='{{id}}_proprietary' class='form-check-input' type='checkbox'{{#proprietary}} checked{{/proprietary}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DiscontinuousExcitationControlUserDefined" };
-                super.submit (obj);
-                temp = document.getElementById ("proprietary").checked; if (temp) obj.proprietary = true;
+                var obj = obj || { id: id, cls: "DiscontinuousExcitationControlUserDefined" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_proprietary").checked; if (temp) obj.proprietary = true;
 
                 return (obj);
             }

@@ -90,25 +90,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
-                    <div id="DynamicsFunctionBlock_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DynamicsFunctionBlock_collapse" aria-expanded="true" aria-controls="{{id}}_DynamicsFunctionBlock_collapse" style="margin-left: 10px;">DynamicsFunctionBlock</a></legend>
+                    <div id="{{id}}_DynamicsFunctionBlock_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='enabled'>enabled: </label><div class='col-sm-8'><input id='enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_enabled'>enabled: </label><div class='col-sm-8'><input id='{{id}}_enabled' class='form-check-input' type='checkbox'{{#enabled}} checked{{/enabled}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DynamicsFunctionBlock" };
-                super.submit (obj);
-                temp = document.getElementById ("enabled").checked; if (temp) obj.enabled = true;
+                var obj = obj || { id: id, cls: "DynamicsFunctionBlock" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_enabled").checked; if (temp) obj.enabled = true;
 
                 return (obj);
             }
@@ -209,35 +209,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
-                    <div id="RotatingMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RotatingMachineDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_RotatingMachineDynamics_collapse" style="margin-left: 10px;">RotatingMachineDynamics</a></legend>
+                    <div id="{{id}}_RotatingMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='damping'>damping: </label><div class='col-sm-8'><input id='damping' class='form-control' type='text'{{#damping}} value='{{damping}}'{{/damping}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inertia'>inertia: </label><div class='col-sm-8'><input id='inertia' class='form-control' type='text'{{#inertia}} value='{{inertia}}'{{/inertia}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='saturationFactor'>saturationFactor: </label><div class='col-sm-8'><input id='saturationFactor' class='form-control' type='text'{{#saturationFactor}} value='{{saturationFactor}}'{{/saturationFactor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='saturationFactor120'>saturationFactor120: </label><div class='col-sm-8'><input id='saturationFactor120' class='form-control' type='text'{{#saturationFactor120}} value='{{saturationFactor120}}'{{/saturationFactor120}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='statorLeakageReactance'>statorLeakageReactance: </label><div class='col-sm-8'><input id='statorLeakageReactance' class='form-control' type='text'{{#statorLeakageReactance}} value='{{statorLeakageReactance}}'{{/statorLeakageReactance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='statorResistance'>statorResistance: </label><div class='col-sm-8'><input id='statorResistance' class='form-control' type='text'{{#statorResistance}} value='{{statorResistance}}'{{/statorResistance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_damping'>damping: </label><div class='col-sm-8'><input id='{{id}}_damping' class='form-control' type='text'{{#damping}} value='{{damping}}'{{/damping}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inertia'>inertia: </label><div class='col-sm-8'><input id='{{id}}_inertia' class='form-control' type='text'{{#inertia}} value='{{inertia}}'{{/inertia}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_saturationFactor'>saturationFactor: </label><div class='col-sm-8'><input id='{{id}}_saturationFactor' class='form-control' type='text'{{#saturationFactor}} value='{{saturationFactor}}'{{/saturationFactor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_saturationFactor120'>saturationFactor120: </label><div class='col-sm-8'><input id='{{id}}_saturationFactor120' class='form-control' type='text'{{#saturationFactor120}} value='{{saturationFactor120}}'{{/saturationFactor120}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statorLeakageReactance'>statorLeakageReactance: </label><div class='col-sm-8'><input id='{{id}}_statorLeakageReactance' class='form-control' type='text'{{#statorLeakageReactance}} value='{{statorLeakageReactance}}'{{/statorLeakageReactance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_statorResistance'>statorResistance: </label><div class='col-sm-8'><input id='{{id}}_statorResistance' class='form-control' type='text'{{#statorResistance}} value='{{statorResistance}}'{{/statorResistance}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RotatingMachineDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("damping").value; if ("" != temp) obj.damping = temp;
-                temp = document.getElementById ("inertia").value; if ("" != temp) obj.inertia = temp;
-                temp = document.getElementById ("saturationFactor").value; if ("" != temp) obj.saturationFactor = temp;
-                temp = document.getElementById ("saturationFactor120").value; if ("" != temp) obj.saturationFactor120 = temp;
-                temp = document.getElementById ("statorLeakageReactance").value; if ("" != temp) obj.statorLeakageReactance = temp;
-                temp = document.getElementById ("statorResistance").value; if ("" != temp) obj.statorResistance = temp;
+                var obj = obj || { id: id, cls: "RotatingMachineDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_damping").value; if ("" != temp) obj.damping = temp;
+                temp = document.getElementById (id + "_inertia").value; if ("" != temp) obj.inertia = temp;
+                temp = document.getElementById (id + "_saturationFactor").value; if ("" != temp) obj.saturationFactor = temp;
+                temp = document.getElementById (id + "_saturationFactor120").value; if ("" != temp) obj.saturationFactor120 = temp;
+                temp = document.getElementById (id + "_statorLeakageReactance").value; if ("" != temp) obj.statorLeakageReactance = temp;
+                temp = document.getElementById (id + "_statorResistance").value; if ("" != temp) obj.statorResistance = temp;
 
                 return (obj);
             }

@@ -89,27 +89,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceGroupReq_collapse" aria-expanded="true" aria-controls="ResourceGroupReq_collapse" style="margin-left: 10px;">ResourceGroupReq</a></legend>
-                    <div id="ResourceGroupReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceGroupReq_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceGroupReq_collapse" style="margin-left: 10px;">ResourceGroupReq</a></legend>
+                    <div id="{{id}}_ResourceGroupReq_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceGroup'>ResourceGroup: </label><div class='col-sm-8'><input id='ResourceGroup' class='form-control' type='text'{{#ResourceGroup}} value='{{ResourceGroup}}'{{/ResourceGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RTOs'>RTOs: </label><div class='col-sm-8'><input id='RTOs' class='form-control' type='text'{{#RTOs}} value='{{RTOs}}_string'{{/RTOs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceGroup'>ResourceGroup: </label><div class='col-sm-8'><input id='{{id}}_ResourceGroup' class='form-control' type='text'{{#ResourceGroup}} value='{{ResourceGroup}}'{{/ResourceGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RTOs'>RTOs: </label><div class='col-sm-8'><input id='{{id}}_RTOs' class='form-control' type='text'{{#RTOs}} value='{{RTOs}}_string'{{/RTOs}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceGroupReq" };
-                super.submit (obj);
-                temp = document.getElementById ("ResourceGroup").value; if ("" != temp) obj.ResourceGroup = temp;
-                temp = document.getElementById ("RTOs").value; if ("" != temp) obj.RTOs = temp.split (",");
+                var obj = obj || { id: id, cls: "ResourceGroupReq" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ResourceGroup").value; if ("" != temp) obj.ResourceGroup = temp;
+                temp = document.getElementById (id + "_RTOs").value; if ("" != temp) obj.RTOs = temp.split (",");
 
                 return (obj);
             }
@@ -207,25 +207,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveReqCurve_collapse" aria-expanded="true" aria-controls="ReserveReqCurve_collapse" style="margin-left: 10px;">ReserveReqCurve</a></legend>
-                    <div id="ReserveReqCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReserveReqCurve_collapse" aria-expanded="true" aria-controls="{{id}}_ReserveReqCurve_collapse" style="margin-left: 10px;">ReserveReqCurve</a></legend>
+                    <div id="{{id}}_ReserveReqCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='{{id}}_ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ReserveReqCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("ReserveReq").value; if ("" != temp) obj.ReserveReq = temp;
+                var obj = obj || { id: id, cls: "ReserveReqCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ReserveReq").value; if ("" != temp) obj.ReserveReq = temp;
 
                 return (obj);
             }
@@ -333,29 +333,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceGroup_collapse" aria-expanded="true" aria-controls="ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
-                    <div id="ResourceGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceGroup_collapse" style="margin-left: 10px;">ResourceGroup</a></legend>
+                    <div id="{{id}}_ResourceGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources}}_string'{{/RegisteredResources}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResources'>RegisteredResources: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResources' class='form-control' type='text'{{#RegisteredResources}} value='{{RegisteredResources}}_string'{{/RegisteredResources}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceGroup" };
-                super.submit (obj);
-                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("RegisteredResources").value; if ("" != temp) obj.RegisteredResources = temp.split (",");
+                var obj = obj || { id: id, cls: "ResourceGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_RegisteredResources").value; if ("" != temp) obj.RegisteredResources = temp.split (",");
 
                 return (obj);
             }
@@ -453,25 +453,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
-                    <div id="SensitivityPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SensitivityPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_SensitivityPriceCurve_collapse" style="margin-left: 10px;">SensitivityPriceCurve</a></legend>
+                    <div id="{{id}}_SensitivityPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReserveReq'>ReserveReq: </label><div class='col-sm-8'><input id='{{id}}_ReserveReq' class='form-control' type='text'{{#ReserveReq}} value='{{ReserveReq}}'{{/ReserveReq}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SensitivityPriceCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("ReserveReq").value; if ("" != temp) obj.ReserveReq = temp;
+                var obj = obj || { id: id, cls: "SensitivityPriceCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ReserveReq").value; if ("" != temp) obj.ReserveReq = temp;
 
                 return (obj);
             }
@@ -572,29 +572,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ReserveReq_collapse" aria-expanded="true" aria-controls="ReserveReq_collapse" style="margin-left: 10px;">ReserveReq</a></legend>
-                    <div id="ReserveReq_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ReserveReq_collapse" aria-expanded="true" aria-controls="{{id}}_ReserveReq_collapse" style="margin-left: 10px;">ReserveReq</a></legend>
+                    <div id="{{id}}_ReserveReq_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ResourceGroupReq.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SensitivityPriceCurve'>SensitivityPriceCurve: </label><div class='col-sm-8'><input id='SensitivityPriceCurve' class='form-control' type='text'{{#SensitivityPriceCurve}} value='{{SensitivityPriceCurve}}'{{/SensitivityPriceCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReserveReqCurve'>ReserveReqCurve: </label><div class='col-sm-8'><input id='ReserveReqCurve' class='form-control' type='text'{{#ReserveReqCurve}} value='{{ReserveReqCurve}}'{{/ReserveReqCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SensitivityPriceCurve'>SensitivityPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_SensitivityPriceCurve' class='form-control' type='text'{{#SensitivityPriceCurve}} value='{{SensitivityPriceCurve}}'{{/SensitivityPriceCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReserveReqCurve'>ReserveReqCurve: </label><div class='col-sm-8'><input id='{{id}}_ReserveReqCurve' class='form-control' type='text'{{#ReserveReqCurve}} value='{{ReserveReqCurve}}'{{/ReserveReqCurve}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ReserveReq" };
-                super.submit (obj);
-                temp = document.getElementById ("MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
-                temp = document.getElementById ("SensitivityPriceCurve").value; if ("" != temp) obj.SensitivityPriceCurve = temp;
-                temp = document.getElementById ("ReserveReqCurve").value; if ("" != temp) obj.ReserveReqCurve = temp;
+                var obj = obj || { id: id, cls: "ReserveReq" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
+                temp = document.getElementById (id + "_SensitivityPriceCurve").value; if ("" != temp) obj.SensitivityPriceCurve = temp;
+                temp = document.getElementById (id + "_ReserveReqCurve").value; if ("" != temp) obj.ReserveReqCurve = temp;
 
                 return (obj);
             }

@@ -126,35 +126,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="PowerSystemProjectSchedule_collapse" style="margin-left: 10px;">PowerSystemProjectSchedule</a></legend>
-                    <div id="PowerSystemProjectSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemProjectSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemProjectSchedule_collapse" style="margin-left: 10px;">PowerSystemProjectSchedule</a></legend>
+                    <div id="{{id}}_PowerSystemProjectSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualStart'>actualStart: </label><div class='col-sm-8'><input id='actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledEnd'>scheduledEnd: </label><div class='col-sm-8'><input id='scheduledEnd' class='form-control' type='text'{{#scheduledEnd}} value='{{scheduledEnd}}'{{/scheduledEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><select id='status' class='form-control'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepType'>stepType: </label><div class='col-sm-8'><select id='stepType' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='{{id}}_actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualStart'>actualStart: </label><div class='col-sm-8'><input id='{{id}}_actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledEnd'>scheduledEnd: </label><div class='col-sm-8'><input id='{{id}}_scheduledEnd' class='form-control' type='text'{{#scheduledEnd}} value='{{scheduledEnd}}'{{/scheduledEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='{{id}}_scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepType'>stepType: </label><div class='col-sm-8'><select id='{{id}}_stepType' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PowerSystemProjectSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("actualEnd").value; if ("" != temp) obj.actualEnd = temp;
-                temp = document.getElementById ("actualStart").value; if ("" != temp) obj.actualStart = temp;
-                temp = document.getElementById ("scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
-                temp = document.getElementById ("scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
-                temp = document.getElementById ("stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                var obj = obj || { id: id, cls: "PowerSystemProjectSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_actualEnd").value; if ("" != temp) obj.actualEnd = temp;
+                temp = document.getElementById (id + "_actualStart").value; if ("" != temp) obj.actualStart = temp;
+                temp = document.getElementById (id + "_scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
+                temp = document.getElementById (id + "_scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
+                temp = document.getElementById (id + "_stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
 
                 return (obj);
             }
@@ -270,37 +270,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemProject_collapse" aria-expanded="true" aria-controls="PowerSystemProject_collapse" style="margin-left: 10px;">PowerSystemProject</a></legend>
-                    <div id="PowerSystemProject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemProject_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemProject_collapse" style="margin-left: 10px;">PowerSystemProject</a></legend>
+                    <div id="{{id}}_PowerSystemProject_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='name'>name: </label><div class='col-sm-8'><input id='name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='state'>state: </label><div class='col-sm-8'><select id='state' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='description'>description: </label><div class='col-sm-8'><input id='description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Project'>Project: </label><div class='col-sm-8'><input id='Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_name'>name: </label><div class='col-sm-8'><input id='{{id}}_name' class='form-control' type='text'{{#name}} value='{{name}}'{{/name}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_state'>state: </label><div class='col-sm-8'><select id='{{id}}_state' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_description'>description: </label><div class='col-sm-8'><input id='{{id}}_description' class='form-control' type='text'{{#description}} value='{{description}}'{{/description}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Project'>Project: </label><div class='col-sm-8'><input id='{{id}}_Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PowerSystemProject" };
-                super.submit (obj);
-                temp = document.getElementById ("name").value; if ("" != temp) obj.name = temp;
-                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById ("state").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.state = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
-                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
-                temp = document.getElementById ("description").value; if ("" != temp) obj.description = temp;
-                temp = document.getElementById ("Project").value; if ("" != temp) obj.Project = temp;
+                var obj = obj || { id: id, cls: "PowerSystemProject" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_name").value; if ("" != temp) obj.name = temp;
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById (id + "_state").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.state = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
+                temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
+                temp = document.getElementById (id + "_Project").value; if ("" != temp) obj.Project = temp;
 
                 return (obj);
             }
@@ -416,35 +416,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProjectStep_collapse" aria-expanded="true" aria-controls="ProjectStep_collapse" style="margin-left: 10px;">ProjectStep</a></legend>
-                    <div id="ProjectStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProjectStep_collapse" aria-expanded="true" aria-controls="{{id}}_ProjectStep_collapse" style="margin-left: 10px;">ProjectStep</a></legend>
+                    <div id="{{id}}_ProjectStep_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actualStart'>actualStart: </label><div class='col-sm-8'><input id='actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledEnd'>scheduledEnd: </label><div class='col-sm-8'><input id='scheduledEnd' class='form-control' type='text'{{#scheduledEnd}} value='{{scheduledEnd}}'{{/scheduledEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><select id='status' class='form-control'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepType'>stepType: </label><div class='col-sm-8'><select id='stepType' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualEnd'>actualEnd: </label><div class='col-sm-8'><input id='{{id}}_actualEnd' class='form-control' type='text'{{#actualEnd}} value='{{actualEnd}}'{{/actualEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actualStart'>actualStart: </label><div class='col-sm-8'><input id='{{id}}_actualStart' class='form-control' type='text'{{#actualStart}} value='{{actualStart}}'{{/actualStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledEnd'>scheduledEnd: </label><div class='col-sm-8'><input id='{{id}}_scheduledEnd' class='form-control' type='text'{{#scheduledEnd}} value='{{scheduledEnd}}'{{/scheduledEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scheduledStart'>scheduledStart: </label><div class='col-sm-8'><input id='{{id}}_scheduledStart' class='form-control' type='text'{{#scheduledStart}} value='{{scheduledStart}}'{{/scheduledStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><select id='{{id}}_status' class='form-control'>{{#ProjectStepStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ProjectStepStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepType'>stepType: </label><div class='col-sm-8'><select id='{{id}}_stepType' class='form-control'>{{#StepKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StepKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProjectStep" };
-                super.submit (obj);
-                temp = document.getElementById ("actualEnd").value; if ("" != temp) obj.actualEnd = temp;
-                temp = document.getElementById ("actualStart").value; if ("" != temp) obj.actualStart = temp;
-                temp = document.getElementById ("scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
-                temp = document.getElementById ("scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
-                temp = document.getElementById ("stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                var obj = obj || { id: id, cls: "ProjectStep" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_actualEnd").value; if ("" != temp) obj.actualEnd = temp;
+                temp = document.getElementById (id + "_actualStart").value; if ("" != temp) obj.actualStart = temp;
+                temp = document.getElementById (id + "_scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
+                temp = document.getElementById (id + "_scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
+                temp = document.getElementById (id + "_stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
 
                 return (obj);
             }
@@ -530,25 +530,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="PowerSystemSubProject_collapse" style="margin-left: 10px;">PowerSystemSubProject</a></legend>
-                    <div id="PowerSystemSubProject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemSubProject_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemSubProject_collapse" style="margin-left: 10px;">PowerSystemSubProject</a></legend>
+                    <div id="{{id}}_PowerSystemSubProject_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemProject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Project'>Project: </label><div class='col-sm-8'><input id='Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Project'>Project: </label><div class='col-sm-8'><input id='{{id}}_Project' class='form-control' type='text'{{#Project}} value='{{Project}}'{{/Project}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PowerSystemSubProject" };
-                super.submit (obj);
-                temp = document.getElementById ("Project").value; if ("" != temp) obj.Project = temp;
+                var obj = obj || { id: id, cls: "PowerSystemSubProject" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Project").value; if ("" != temp) obj.Project = temp;
 
                 return (obj);
             }

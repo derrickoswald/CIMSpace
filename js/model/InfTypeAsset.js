@@ -131,55 +131,55 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratorTypeAsset_collapse" aria-expanded="true" aria-controls="GeneratorTypeAsset_collapse" style="margin-left: 10px;">GeneratorTypeAsset</a></legend>
-                    <div id="GeneratorTypeAsset_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GeneratorTypeAsset_collapse" aria-expanded="true" aria-controls="{{id}}_GeneratorTypeAsset_collapse" style="margin-left: 10px;">GeneratorTypeAsset</a></legend>
+                    <div id="{{id}}_GeneratorTypeAsset_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + InfAssets.GenericAssetModelOrMaterial.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxP'>maxP: </label><div class='col-sm-8'><input id='maxP' class='form-control' type='text'{{#maxP}} value='{{maxP}}'{{/maxP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxQ'>maxQ: </label><div class='col-sm-8'><input id='maxQ' class='form-control' type='text'{{#maxQ}} value='{{maxQ}}'{{/maxQ}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minP'>minP: </label><div class='col-sm-8'><input id='minP' class='form-control' type='text'{{#minP}} value='{{minP}}'{{/minP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minQ'>minQ: </label><div class='col-sm-8'><input id='minQ' class='form-control' type='text'{{#minQ}} value='{{minQ}}'{{/minQ}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rDirectSubtrans'>rDirectSubtrans: </label><div class='col-sm-8'><input id='rDirectSubtrans' class='form-control' type='text'{{#rDirectSubtrans}} value='{{rDirectSubtrans}}'{{/rDirectSubtrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rDirectSync'>rDirectSync: </label><div class='col-sm-8'><input id='rDirectSync' class='form-control' type='text'{{#rDirectSync}} value='{{rDirectSync}}'{{/rDirectSync}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rDirectTrans'>rDirectTrans: </label><div class='col-sm-8'><input id='rDirectTrans' class='form-control' type='text'{{#rDirectTrans}} value='{{rDirectTrans}}'{{/rDirectTrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rQuadSubtrans'>rQuadSubtrans: </label><div class='col-sm-8'><input id='rQuadSubtrans' class='form-control' type='text'{{#rQuadSubtrans}} value='{{rQuadSubtrans}}'{{/rQuadSubtrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rQuadSync'>rQuadSync: </label><div class='col-sm-8'><input id='rQuadSync' class='form-control' type='text'{{#rQuadSync}} value='{{rQuadSync}}'{{/rQuadSync}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rQuadTrans'>rQuadTrans: </label><div class='col-sm-8'><input id='rQuadTrans' class='form-control' type='text'{{#rQuadTrans}} value='{{rQuadTrans}}'{{/rQuadTrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectSubtrans'>xDirectSubtrans: </label><div class='col-sm-8'><input id='xDirectSubtrans' class='form-control' type='text'{{#xDirectSubtrans}} value='{{xDirectSubtrans}}'{{/xDirectSubtrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectSync'>xDirectSync: </label><div class='col-sm-8'><input id='xDirectSync' class='form-control' type='text'{{#xDirectSync}} value='{{xDirectSync}}'{{/xDirectSync}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectTrans'>xDirectTrans: </label><div class='col-sm-8'><input id='xDirectTrans' class='form-control' type='text'{{#xDirectTrans}} value='{{xDirectTrans}}'{{/xDirectTrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadSubtrans'>xQuadSubtrans: </label><div class='col-sm-8'><input id='xQuadSubtrans' class='form-control' type='text'{{#xQuadSubtrans}} value='{{xQuadSubtrans}}'{{/xQuadSubtrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadSync'>xQuadSync: </label><div class='col-sm-8'><input id='xQuadSync' class='form-control' type='text'{{#xQuadSync}} value='{{xQuadSync}}'{{/xQuadSync}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadTrans'>xQuadTrans: </label><div class='col-sm-8'><input id='xQuadTrans' class='form-control' type='text'{{#xQuadTrans}} value='{{xQuadTrans}}'{{/xQuadTrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxP'>maxP: </label><div class='col-sm-8'><input id='{{id}}_maxP' class='form-control' type='text'{{#maxP}} value='{{maxP}}'{{/maxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxQ'>maxQ: </label><div class='col-sm-8'><input id='{{id}}_maxQ' class='form-control' type='text'{{#maxQ}} value='{{maxQ}}'{{/maxQ}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minP'>minP: </label><div class='col-sm-8'><input id='{{id}}_minP' class='form-control' type='text'{{#minP}} value='{{minP}}'{{/minP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minQ'>minQ: </label><div class='col-sm-8'><input id='{{id}}_minQ' class='form-control' type='text'{{#minQ}} value='{{minQ}}'{{/minQ}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rDirectSubtrans'>rDirectSubtrans: </label><div class='col-sm-8'><input id='{{id}}_rDirectSubtrans' class='form-control' type='text'{{#rDirectSubtrans}} value='{{rDirectSubtrans}}'{{/rDirectSubtrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rDirectSync'>rDirectSync: </label><div class='col-sm-8'><input id='{{id}}_rDirectSync' class='form-control' type='text'{{#rDirectSync}} value='{{rDirectSync}}'{{/rDirectSync}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rDirectTrans'>rDirectTrans: </label><div class='col-sm-8'><input id='{{id}}_rDirectTrans' class='form-control' type='text'{{#rDirectTrans}} value='{{rDirectTrans}}'{{/rDirectTrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rQuadSubtrans'>rQuadSubtrans: </label><div class='col-sm-8'><input id='{{id}}_rQuadSubtrans' class='form-control' type='text'{{#rQuadSubtrans}} value='{{rQuadSubtrans}}'{{/rQuadSubtrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rQuadSync'>rQuadSync: </label><div class='col-sm-8'><input id='{{id}}_rQuadSync' class='form-control' type='text'{{#rQuadSync}} value='{{rQuadSync}}'{{/rQuadSync}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rQuadTrans'>rQuadTrans: </label><div class='col-sm-8'><input id='{{id}}_rQuadTrans' class='form-control' type='text'{{#rQuadTrans}} value='{{rQuadTrans}}'{{/rQuadTrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xDirectSubtrans'>xDirectSubtrans: </label><div class='col-sm-8'><input id='{{id}}_xDirectSubtrans' class='form-control' type='text'{{#xDirectSubtrans}} value='{{xDirectSubtrans}}'{{/xDirectSubtrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xDirectSync'>xDirectSync: </label><div class='col-sm-8'><input id='{{id}}_xDirectSync' class='form-control' type='text'{{#xDirectSync}} value='{{xDirectSync}}'{{/xDirectSync}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xDirectTrans'>xDirectTrans: </label><div class='col-sm-8'><input id='{{id}}_xDirectTrans' class='form-control' type='text'{{#xDirectTrans}} value='{{xDirectTrans}}'{{/xDirectTrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadSubtrans'>xQuadSubtrans: </label><div class='col-sm-8'><input id='{{id}}_xQuadSubtrans' class='form-control' type='text'{{#xQuadSubtrans}} value='{{xQuadSubtrans}}'{{/xQuadSubtrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadSync'>xQuadSync: </label><div class='col-sm-8'><input id='{{id}}_xQuadSync' class='form-control' type='text'{{#xQuadSync}} value='{{xQuadSync}}'{{/xQuadSync}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadTrans'>xQuadTrans: </label><div class='col-sm-8'><input id='{{id}}_xQuadTrans' class='form-control' type='text'{{#xQuadTrans}} value='{{xQuadTrans}}'{{/xQuadTrans}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "GeneratorTypeAsset" };
-                super.submit (obj);
-                temp = document.getElementById ("maxP").value; if ("" != temp) obj.maxP = temp;
-                temp = document.getElementById ("maxQ").value; if ("" != temp) obj.maxQ = temp;
-                temp = document.getElementById ("minP").value; if ("" != temp) obj.minP = temp;
-                temp = document.getElementById ("minQ").value; if ("" != temp) obj.minQ = temp;
-                temp = document.getElementById ("rDirectSubtrans").value; if ("" != temp) obj.rDirectSubtrans = temp;
-                temp = document.getElementById ("rDirectSync").value; if ("" != temp) obj.rDirectSync = temp;
-                temp = document.getElementById ("rDirectTrans").value; if ("" != temp) obj.rDirectTrans = temp;
-                temp = document.getElementById ("rQuadSubtrans").value; if ("" != temp) obj.rQuadSubtrans = temp;
-                temp = document.getElementById ("rQuadSync").value; if ("" != temp) obj.rQuadSync = temp;
-                temp = document.getElementById ("rQuadTrans").value; if ("" != temp) obj.rQuadTrans = temp;
-                temp = document.getElementById ("xDirectSubtrans").value; if ("" != temp) obj.xDirectSubtrans = temp;
-                temp = document.getElementById ("xDirectSync").value; if ("" != temp) obj.xDirectSync = temp;
-                temp = document.getElementById ("xDirectTrans").value; if ("" != temp) obj.xDirectTrans = temp;
-                temp = document.getElementById ("xQuadSubtrans").value; if ("" != temp) obj.xQuadSubtrans = temp;
-                temp = document.getElementById ("xQuadSync").value; if ("" != temp) obj.xQuadSync = temp;
-                temp = document.getElementById ("xQuadTrans").value; if ("" != temp) obj.xQuadTrans = temp;
+                var obj = obj || { id: id, cls: "GeneratorTypeAsset" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_maxP").value; if ("" != temp) obj.maxP = temp;
+                temp = document.getElementById (id + "_maxQ").value; if ("" != temp) obj.maxQ = temp;
+                temp = document.getElementById (id + "_minP").value; if ("" != temp) obj.minP = temp;
+                temp = document.getElementById (id + "_minQ").value; if ("" != temp) obj.minQ = temp;
+                temp = document.getElementById (id + "_rDirectSubtrans").value; if ("" != temp) obj.rDirectSubtrans = temp;
+                temp = document.getElementById (id + "_rDirectSync").value; if ("" != temp) obj.rDirectSync = temp;
+                temp = document.getElementById (id + "_rDirectTrans").value; if ("" != temp) obj.rDirectTrans = temp;
+                temp = document.getElementById (id + "_rQuadSubtrans").value; if ("" != temp) obj.rQuadSubtrans = temp;
+                temp = document.getElementById (id + "_rQuadSync").value; if ("" != temp) obj.rQuadSync = temp;
+                temp = document.getElementById (id + "_rQuadTrans").value; if ("" != temp) obj.rQuadTrans = temp;
+                temp = document.getElementById (id + "_xDirectSubtrans").value; if ("" != temp) obj.xDirectSubtrans = temp;
+                temp = document.getElementById (id + "_xDirectSync").value; if ("" != temp) obj.xDirectSync = temp;
+                temp = document.getElementById (id + "_xDirectTrans").value; if ("" != temp) obj.xDirectTrans = temp;
+                temp = document.getElementById (id + "_xQuadSubtrans").value; if ("" != temp) obj.xQuadSubtrans = temp;
+                temp = document.getElementById (id + "_xQuadSync").value; if ("" != temp) obj.xQuadSync = temp;
+                temp = document.getElementById (id + "_xQuadTrans").value; if ("" != temp) obj.xQuadTrans = temp;
 
                 return (obj);
             }
@@ -272,25 +272,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TypeAssetCatalogue_collapse" aria-expanded="true" aria-controls="TypeAssetCatalogue_collapse" style="margin-left: 10px;">TypeAssetCatalogue</a></legend>
-                    <div id="TypeAssetCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TypeAssetCatalogue_collapse" aria-expanded="true" aria-controls="{{id}}_TypeAssetCatalogue_collapse" style="margin-left: 10px;">TypeAssetCatalogue</a></legend>
+                    <div id="{{id}}_TypeAssetCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TypeAssetCatalogue" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                var obj = obj || { id: id, cls: "TypeAssetCatalogue" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }

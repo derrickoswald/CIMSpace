@@ -102,25 +102,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultCauseType_collapse" aria-expanded="true" aria-controls="FaultCauseType_collapse" style="margin-left: 10px;">FaultCauseType</a></legend>
-                    <div id="FaultCauseType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FaultCauseType_collapse" aria-expanded="true" aria-controls="{{id}}_FaultCauseType_collapse" style="margin-left: 10px;">FaultCauseType</a></legend>
+                    <div id="{{id}}_FaultCauseType_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Faults'>Faults: </label><div class='col-sm-8'><input id='Faults' class='form-control' type='text'{{#Faults}} value='{{Faults}}_string'{{/Faults}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Faults'>Faults: </label><div class='col-sm-8'><input id='{{id}}_Faults' class='form-control' type='text'{{#Faults}} value='{{Faults}}_string'{{/Faults}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FaultCauseType" };
-                super.submit (obj);
-                temp = document.getElementById ("Faults").value; if ("" != temp) obj.Faults = temp.split (",");
+                var obj = obj || { id: id, cls: "FaultCauseType" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Faults").value; if ("" != temp) obj.Faults = temp.split (",");
 
                 return (obj);
             }
@@ -224,31 +224,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultImpedance_collapse" aria-expanded="true" aria-controls="FaultImpedance_collapse" style="margin-left: 10px;">FaultImpedance</a></legend>
-                    <div id="FaultImpedance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FaultImpedance_collapse" aria-expanded="true" aria-controls="{{id}}_FaultImpedance_collapse" style="margin-left: 10px;">FaultImpedance</a></legend>
+                    <div id="{{id}}_FaultImpedance_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rGround'>rGround: </label><div class='col-sm-8'><input id='rGround' class='form-control' type='text'{{#rGround}} value='{{rGround}}'{{/rGround}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rLineToLine'>rLineToLine: </label><div class='col-sm-8'><input id='rLineToLine' class='form-control' type='text'{{#rLineToLine}} value='{{rLineToLine}}'{{/rLineToLine}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xGround'>xGround: </label><div class='col-sm-8'><input id='xGround' class='form-control' type='text'{{#xGround}} value='{{xGround}}'{{/xGround}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xLineToLine'>xLineToLine: </label><div class='col-sm-8'><input id='xLineToLine' class='form-control' type='text'{{#xLineToLine}} value='{{xLineToLine}}'{{/xLineToLine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rGround'>rGround: </label><div class='col-sm-8'><input id='{{id}}_rGround' class='form-control' type='text'{{#rGround}} value='{{rGround}}'{{/rGround}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rLineToLine'>rLineToLine: </label><div class='col-sm-8'><input id='{{id}}_rLineToLine' class='form-control' type='text'{{#rLineToLine}} value='{{rLineToLine}}'{{/rLineToLine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xGround'>xGround: </label><div class='col-sm-8'><input id='{{id}}_xGround' class='form-control' type='text'{{#xGround}} value='{{xGround}}'{{/xGround}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xLineToLine'>xLineToLine: </label><div class='col-sm-8'><input id='{{id}}_xLineToLine' class='form-control' type='text'{{#xLineToLine}} value='{{xLineToLine}}'{{/xLineToLine}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FaultImpedance" };
-                super.submit (obj);
-                temp = document.getElementById ("rGround").value; if ("" != temp) obj.rGround = temp;
-                temp = document.getElementById ("rLineToLine").value; if ("" != temp) obj.rLineToLine = temp;
-                temp = document.getElementById ("xGround").value; if ("" != temp) obj.xGround = temp;
-                temp = document.getElementById ("xLineToLine").value; if ("" != temp) obj.xLineToLine = temp;
+                var obj = obj || { id: id, cls: "FaultImpedance" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_rGround").value; if ("" != temp) obj.rGround = temp;
+                temp = document.getElementById (id + "_rLineToLine").value; if ("" != temp) obj.rLineToLine = temp;
+                temp = document.getElementById (id + "_xGround").value; if ("" != temp) obj.xGround = temp;
+                temp = document.getElementById (id + "_xLineToLine").value; if ("" != temp) obj.xLineToLine = temp;
 
                 return (obj);
             }
@@ -353,35 +353,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Fault_collapse" aria-expanded="true" aria-controls="Fault_collapse" style="margin-left: 10px;">Fault</a></legend>
-                    <div id="Fault_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Fault_collapse" aria-expanded="true" aria-controls="{{id}}_Fault_collapse" style="margin-left: 10px;">Fault</a></legend>
+                    <div id="{{id}}_Fault_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#PhaseConnectedFaultKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseConnectedFaultKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phases'>phases: </label><div class='col-sm-8'><input id='phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='impedance'>impedance: </label><div class='col-sm-8'><input id='impedance' class='form-control' type='text'{{#impedance}} value='{{impedance}}'{{/impedance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FaultyEquipment'>FaultyEquipment: </label><div class='col-sm-8'><input id='FaultyEquipment' class='form-control' type='text'{{#FaultyEquipment}} value='{{FaultyEquipment}}'{{/FaultyEquipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FaultCauseTypes'>FaultCauseTypes: </label><div class='col-sm-8'><input id='FaultCauseTypes' class='form-control' type='text'{{#FaultCauseTypes}} value='{{FaultCauseTypes}}_string'{{/FaultCauseTypes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Outage'>Outage: </label><div class='col-sm-8'><input id='Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#PhaseConnectedFaultKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/PhaseConnectedFaultKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phases'>phases: </label><div class='col-sm-8'><input id='{{id}}_phases' class='form-control' type='text'{{#phases}} value='{{phases}}'{{/phases}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_impedance'>impedance: </label><div class='col-sm-8'><input id='{{id}}_impedance' class='form-control' type='text'{{#impedance}} value='{{impedance}}'{{/impedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultyEquipment'>FaultyEquipment: </label><div class='col-sm-8'><input id='{{id}}_FaultyEquipment' class='form-control' type='text'{{#FaultyEquipment}} value='{{FaultyEquipment}}'{{/FaultyEquipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FaultCauseTypes'>FaultCauseTypes: </label><div class='col-sm-8'><input id='{{id}}_FaultCauseTypes' class='form-control' type='text'{{#FaultCauseTypes}} value='{{FaultCauseTypes}}_string'{{/FaultCauseTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Outage'>Outage: </label><div class='col-sm-8'><input id='{{id}}_Outage' class='form-control' type='text'{{#Outage}} value='{{Outage}}'{{/Outage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Fault" };
-                super.submit (obj);
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = PhaseConnectedFaultKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; }
-                temp = document.getElementById ("phases").value; if ("" != temp) obj.phases = temp;
-                temp = document.getElementById ("impedance").value; if ("" != temp) obj.impedance = temp;
-                temp = document.getElementById ("FaultyEquipment").value; if ("" != temp) obj.FaultyEquipment = temp;
-                temp = document.getElementById ("FaultCauseTypes").value; if ("" != temp) obj.FaultCauseTypes = temp.split (",");
-                temp = document.getElementById ("Outage").value; if ("" != temp) obj.Outage = temp;
+                var obj = obj || { id: id, cls: "Fault" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PhaseConnectedFaultKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; }
+                temp = document.getElementById (id + "_phases").value; if ("" != temp) obj.phases = temp;
+                temp = document.getElementById (id + "_impedance").value; if ("" != temp) obj.impedance = temp;
+                temp = document.getElementById (id + "_FaultyEquipment").value; if ("" != temp) obj.FaultyEquipment = temp;
+                temp = document.getElementById (id + "_FaultCauseTypes").value; if ("" != temp) obj.FaultCauseTypes = temp.split (",");
+                temp = document.getElementById (id + "_Outage").value; if ("" != temp) obj.Outage = temp;
 
                 return (obj);
             }
@@ -481,27 +481,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LineFault_collapse" aria-expanded="true" aria-controls="LineFault_collapse" style="margin-left: 10px;">LineFault</a></legend>
-                    <div id="LineFault_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LineFault_collapse" aria-expanded="true" aria-controls="{{id}}_LineFault_collapse" style="margin-left: 10px;">LineFault</a></legend>
+                    <div id="{{id}}_LineFault_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Fault.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lengthFromTerminal1'>lengthFromTerminal1: </label><div class='col-sm-8'><input id='lengthFromTerminal1' class='form-control' type='text'{{#lengthFromTerminal1}} value='{{lengthFromTerminal1}}'{{/lengthFromTerminal1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ACLineSegment'>ACLineSegment: </label><div class='col-sm-8'><input id='ACLineSegment' class='form-control' type='text'{{#ACLineSegment}} value='{{ACLineSegment}}'{{/ACLineSegment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lengthFromTerminal1'>lengthFromTerminal1: </label><div class='col-sm-8'><input id='{{id}}_lengthFromTerminal1' class='form-control' type='text'{{#lengthFromTerminal1}} value='{{lengthFromTerminal1}}'{{/lengthFromTerminal1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACLineSegment'>ACLineSegment: </label><div class='col-sm-8'><input id='{{id}}_ACLineSegment' class='form-control' type='text'{{#ACLineSegment}} value='{{ACLineSegment}}'{{/ACLineSegment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LineFault" };
-                super.submit (obj);
-                temp = document.getElementById ("lengthFromTerminal1").value; if ("" != temp) obj.lengthFromTerminal1 = temp;
-                temp = document.getElementById ("ACLineSegment").value; if ("" != temp) obj.ACLineSegment = temp;
+                var obj = obj || { id: id, cls: "LineFault" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_lengthFromTerminal1").value; if ("" != temp) obj.lengthFromTerminal1 = temp;
+                temp = document.getElementById (id + "_ACLineSegment").value; if ("" != temp) obj.ACLineSegment = temp;
 
                 return (obj);
             }
@@ -598,25 +598,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentFault_collapse" aria-expanded="true" aria-controls="EquipmentFault_collapse" style="margin-left: 10px;">EquipmentFault</a></legend>
-                    <div id="EquipmentFault_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquipmentFault_collapse" aria-expanded="true" aria-controls="{{id}}_EquipmentFault_collapse" style="margin-left: 10px;">EquipmentFault</a></legend>
+                    <div id="{{id}}_EquipmentFault_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Fault.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EquipmentFault" };
-                super.submit (obj);
-                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                var obj = obj || { id: id, cls: "EquipmentFault" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
                 return (obj);
             }

@@ -97,27 +97,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlAreaOperator_collapse" aria-expanded="true" aria-controls="ControlAreaOperator_collapse" style="margin-left: 10px;">ControlAreaOperator</a></legend>
-                    <div id="ControlAreaOperator_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ControlAreaOperator_collapse" aria-expanded="true" aria-controls="{{id}}_ControlAreaOperator_collapse" style="margin-left: 10px;">ControlAreaOperator</a></legend>
+                    <div id="{{id}}_ControlAreaOperator_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlledBy'>ControlledBy: </label><div class='col-sm-8'><input id='ControlledBy' class='form-control' type='text'{{#ControlledBy}} value='{{ControlledBy}}'{{/ControlledBy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CAChildOf'>CAChildOf: </label><div class='col-sm-8'><input id='CAChildOf' class='form-control' type='text'{{#CAChildOf}} value='{{CAChildOf}}_string'{{/CAChildOf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlledBy'>ControlledBy: </label><div class='col-sm-8'><input id='{{id}}_ControlledBy' class='form-control' type='text'{{#ControlledBy}} value='{{ControlledBy}}'{{/ControlledBy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CAChildOf'>CAChildOf: </label><div class='col-sm-8'><input id='{{id}}_CAChildOf' class='form-control' type='text'{{#CAChildOf}} value='{{CAChildOf}}_string'{{/CAChildOf}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ControlAreaOperator" };
-                super.submit (obj);
-                temp = document.getElementById ("ControlledBy").value; if ("" != temp) obj.ControlledBy = temp;
-                temp = document.getElementById ("CAChildOf").value; if ("" != temp) obj.CAChildOf = temp.split (",");
+                var obj = obj || { id: id, cls: "ControlAreaOperator" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ControlledBy").value; if ("" != temp) obj.ControlledBy = temp;
+                temp = document.getElementById (id + "_CAChildOf").value; if ("" != temp) obj.CAChildOf = temp.split (",");
 
                 return (obj);
             }
@@ -210,8 +210,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OpenAccessProduct_collapse" aria-expanded="true" aria-controls="OpenAccessProduct_collapse" style="margin-left: 10px;">OpenAccessProduct</a></legend>
-                    <div id="OpenAccessProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OpenAccessProduct_collapse" aria-expanded="true" aria-controls="{{id}}_OpenAccessProduct_collapse" style="margin-left: 10px;">OpenAccessProduct</a></legend>
+                    <div id="{{id}}_OpenAccessProduct_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
@@ -221,10 +221,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "OpenAccessProduct" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "OpenAccessProduct" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -314,29 +314,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionProduct_collapse" aria-expanded="true" aria-controls="TransmissionProduct_collapse" style="margin-left: 10px;">TransmissionProduct</a></legend>
-                    <div id="TransmissionProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransmissionProduct_collapse" aria-expanded="true" aria-controls="{{id}}_TransmissionProduct_collapse" style="margin-left: 10px;">TransmissionProduct</a></legend>
+                    <div id="{{id}}_TransmissionProduct_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transmissionProductType'>transmissionProductType: </label><div class='col-sm-8'><input id='transmissionProductType' class='form-control' type='text'{{#transmissionProductType}} value='{{transmissionProductType}}'{{/transmissionProductType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LocationFor'>LocationFor: </label><div class='col-sm-8'><input id='LocationFor' class='form-control' type='text'{{#LocationFor}} value='{{LocationFor}}_string'{{/LocationFor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionProvider'>TransmissionProvider: </label><div class='col-sm-8'><input id='TransmissionProvider' class='form-control' type='text'{{#TransmissionProvider}} value='{{TransmissionProvider}}'{{/TransmissionProvider}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transmissionProductType'>transmissionProductType: </label><div class='col-sm-8'><input id='{{id}}_transmissionProductType' class='form-control' type='text'{{#transmissionProductType}} value='{{transmissionProductType}}'{{/transmissionProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LocationFor'>LocationFor: </label><div class='col-sm-8'><input id='{{id}}_LocationFor' class='form-control' type='text'{{#LocationFor}} value='{{LocationFor}}_string'{{/LocationFor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionProvider'>TransmissionProvider: </label><div class='col-sm-8'><input id='{{id}}_TransmissionProvider' class='form-control' type='text'{{#TransmissionProvider}} value='{{TransmissionProvider}}'{{/TransmissionProvider}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TransmissionProduct" };
-                super.submit (obj);
-                temp = document.getElementById ("transmissionProductType").value; if ("" != temp) obj.transmissionProductType = temp;
-                temp = document.getElementById ("LocationFor").value; if ("" != temp) obj.LocationFor = temp.split (",");
-                temp = document.getElementById ("TransmissionProvider").value; if ("" != temp) obj.TransmissionProvider = temp;
+                var obj = obj || { id: id, cls: "TransmissionProduct" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_transmissionProductType").value; if ("" != temp) obj.transmissionProductType = temp;
+                temp = document.getElementById (id + "_LocationFor").value; if ("" != temp) obj.LocationFor = temp.split (",");
+                temp = document.getElementById (id + "_TransmissionProvider").value; if ("" != temp) obj.TransmissionProvider = temp;
 
                 return (obj);
             }
@@ -437,27 +437,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IntSchedAgreement_collapse" aria-expanded="true" aria-controls="IntSchedAgreement_collapse" style="margin-left: 10px;">IntSchedAgreement</a></legend>
-                    <div id="IntSchedAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IntSchedAgreement_collapse" aria-expanded="true" aria-controls="{{id}}_IntSchedAgreement_collapse" style="margin-left: 10px;">IntSchedAgreement</a></legend>
+                    <div id="{{id}}_IntSchedAgreement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='defaultIntegrationMethod'>defaultIntegrationMethod: </label><div class='col-sm-8'><input id='defaultIntegrationMethod' class='form-control' type='text'{{#defaultIntegrationMethod}} value='{{defaultIntegrationMethod}}'{{/defaultIntegrationMethod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_defaultIntegrationMethod'>defaultIntegrationMethod: </label><div class='col-sm-8'><input id='{{id}}_defaultIntegrationMethod' class='form-control' type='text'{{#defaultIntegrationMethod}} value='{{defaultIntegrationMethod}}'{{/defaultIntegrationMethod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}_string'{{/MktOrganisation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "IntSchedAgreement" };
-                super.submit (obj);
-                temp = document.getElementById ("defaultIntegrationMethod").value; if ("" != temp) obj.defaultIntegrationMethod = temp;
-                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
+                var obj = obj || { id: id, cls: "IntSchedAgreement" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_defaultIntegrationMethod").value; if ("" != temp) obj.defaultIntegrationMethod = temp;
+                temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp.split (",");
 
                 return (obj);
             }
@@ -554,8 +554,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerConsumer_collapse" aria-expanded="true" aria-controls="CustomerConsumer_collapse" style="margin-left: 10px;">CustomerConsumer</a></legend>
-                    <div id="CustomerConsumer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CustomerConsumer_collapse" aria-expanded="true" aria-controls="{{id}}_CustomerConsumer_collapse" style="margin-left: 10px;">CustomerConsumer</a></legend>
+                    <div id="{{id}}_CustomerConsumer_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
@@ -565,10 +565,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "CustomerConsumer" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "CustomerConsumer" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -672,8 +672,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransmissionProvider_collapse" aria-expanded="true" aria-controls="TransmissionProvider_collapse" style="margin-left: 10px;">TransmissionProvider</a></legend>
-                    <div id="TransmissionProvider_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransmissionProvider_collapse" aria-expanded="true" aria-controls="{{id}}_TransmissionProvider_collapse" style="margin-left: 10px;">TransmissionProvider</a></legend>
+                    <div id="{{id}}_TransmissionProvider_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
@@ -683,10 +683,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "TransmissionProvider" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "TransmissionProvider" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -789,25 +789,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Marketer_collapse" aria-expanded="true" aria-controls="Marketer_collapse" style="margin-left: 10px;">Marketer</a></legend>
-                    <div id="Marketer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Marketer_collapse" aria-expanded="true" aria-controls="{{id}}_Marketer_collapse" style="margin-left: 10px;">Marketer</a></legend>
+                    <div id="{{id}}_Marketer_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Resells_EnergyProduct'>Resells_EnergyProduct: </label><div class='col-sm-8'><input id='Resells_EnergyProduct' class='form-control' type='text'{{#Resells_EnergyProduct}} value='{{Resells_EnergyProduct}}_string'{{/Resells_EnergyProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Resells_EnergyProduct'>Resells_EnergyProduct: </label><div class='col-sm-8'><input id='{{id}}_Resells_EnergyProduct' class='form-control' type='text'{{#Resells_EnergyProduct}} value='{{Resells_EnergyProduct}}_string'{{/Resells_EnergyProduct}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Marketer" };
-                super.submit (obj);
-                temp = document.getElementById ("Resells_EnergyProduct").value; if ("" != temp) obj.Resells_EnergyProduct = temp.split (",");
+                var obj = obj || { id: id, cls: "Marketer" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Resells_EnergyProduct").value; if ("" != temp) obj.Resells_EnergyProduct = temp.split (",");
 
                 return (obj);
             }
@@ -905,8 +905,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GenerationProvider_collapse" aria-expanded="true" aria-controls="GenerationProvider_collapse" style="margin-left: 10px;">GenerationProvider</a></legend>
-                    <div id="GenerationProvider_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GenerationProvider_collapse" aria-expanded="true" aria-controls="{{id}}_GenerationProvider_collapse" style="margin-left: 10px;">GenerationProvider</a></legend>
+                    <div id="{{id}}_GenerationProvider_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
@@ -916,10 +916,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "GenerationProvider" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "GenerationProvider" };
+                super.submit (id, obj);
 
                 return (obj);
             }

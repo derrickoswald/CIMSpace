@@ -237,25 +237,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FaultIndicatorInfo_collapse" aria-expanded="true" aria-controls="FaultIndicatorInfo_collapse" style="margin-left: 10px;">FaultIndicatorInfo</a></legend>
-                    <div id="FaultIndicatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FaultIndicatorInfo_collapse" aria-expanded="true" aria-controls="{{id}}_FaultIndicatorInfo_collapse" style="margin-left: 10px;">FaultIndicatorInfo</a></legend>
+                    <div id="{{id}}_FaultIndicatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resetKind'>resetKind: </label><div class='col-sm-8'><select id='resetKind' class='form-control'>{{#FaultIndicatorResetKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FaultIndicatorResetKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resetKind'>resetKind: </label><div class='col-sm-8'><select id='{{id}}_resetKind' class='form-control'>{{#FaultIndicatorResetKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/FaultIndicatorResetKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FaultIndicatorInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("resetKind").value; if ("" != temp) { temp = FaultIndicatorResetKind[temp]; if ("undefined" != typeof (temp)) obj.resetKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FaultIndicatorResetKind." + temp; }
+                var obj = obj || { id: id, cls: "FaultIndicatorInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_resetKind").value; if ("" != temp) { temp = FaultIndicatorResetKind[temp]; if ("undefined" != typeof (temp)) obj.resetKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FaultIndicatorResetKind." + temp; }
 
                 return (obj);
             }
@@ -359,29 +359,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetModelCatalogueItem_collapse" aria-expanded="true" aria-controls="AssetModelCatalogueItem_collapse" style="margin-left: 10px;">AssetModelCatalogueItem</a></legend>
-                    <div id="AssetModelCatalogueItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AssetModelCatalogueItem_collapse" aria-expanded="true" aria-controls="{{id}}_AssetModelCatalogueItem_collapse" style="margin-left: 10px;">AssetModelCatalogueItem</a></legend>
+                    <div id="{{id}}_AssetModelCatalogueItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitCost'>unitCost: </label><div class='col-sm-8'><input id='unitCost' class='form-control' type='text'{{#unitCost}} value='{{unitCost}}'{{/unitCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModelCatalogue'>AssetModelCatalogue: </label><div class='col-sm-8'><input id='AssetModelCatalogue' class='form-control' type='text'{{#AssetModelCatalogue}} value='{{AssetModelCatalogue}}'{{/AssetModelCatalogue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitCost'>unitCost: </label><div class='col-sm-8'><input id='{{id}}_unitCost' class='form-control' type='text'{{#unitCost}} value='{{unitCost}}'{{/unitCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='{{id}}_AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModelCatalogue'>AssetModelCatalogue: </label><div class='col-sm-8'><input id='{{id}}_AssetModelCatalogue' class='form-control' type='text'{{#AssetModelCatalogue}} value='{{AssetModelCatalogue}}'{{/AssetModelCatalogue}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AssetModelCatalogueItem" };
-                super.submit (obj);
-                temp = document.getElementById ("unitCost").value; if ("" != temp) obj.unitCost = temp;
-                temp = document.getElementById ("AssetModel").value; if ("" != temp) obj.AssetModel = temp;
-                temp = document.getElementById ("AssetModelCatalogue").value; if ("" != temp) obj.AssetModelCatalogue = temp;
+                var obj = obj || { id: id, cls: "AssetModelCatalogueItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_unitCost").value; if ("" != temp) obj.unitCost = temp;
+                temp = document.getElementById (id + "_AssetModel").value; if ("" != temp) obj.AssetModel = temp;
+                temp = document.getElementById (id + "_AssetModelCatalogue").value; if ("" != temp) obj.AssetModelCatalogue = temp;
 
                 return (obj);
             }
@@ -497,37 +497,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldSwitchInfo_collapse" aria-expanded="true" aria-controls="OldSwitchInfo_collapse" style="margin-left: 10px;">OldSwitchInfo</a></legend>
-                    <div id="OldSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OldSwitchInfo_collapse" aria-expanded="true" aria-controls="{{id}}_OldSwitchInfo_collapse" style="margin-left: 10px;">OldSwitchInfo</a></legend>
+                    <div id="{{id}}_OldSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AssetInfo.SwitchInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dielectricStrength'>dielectricStrength: </label><div class='col-sm-8'><input id='dielectricStrength' class='form-control' type='text'{{#dielectricStrength}} value='{{dielectricStrength}}'{{/dielectricStrength}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='loadBreak'>loadBreak: </label><div class='col-sm-8'><input id='loadBreak' class='form-check-input' type='checkbox'{{#loadBreak}} checked{{/loadBreak}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='makingCapacity'>makingCapacity: </label><div class='col-sm-8'><input id='makingCapacity' class='form-control' type='text'{{#makingCapacity}} value='{{makingCapacity}}'{{/makingCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumCurrent'>minimumCurrent: </label><div class='col-sm-8'><input id='minimumCurrent' class='form-control' type='text'{{#minimumCurrent}} value='{{minimumCurrent}}'{{/minimumCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='poleCount'>poleCount: </label><div class='col-sm-8'><input id='poleCount' class='form-control' type='text'{{#poleCount}} value='{{poleCount}}'{{/poleCount}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='remote'>remote: </label><div class='col-sm-8'><input id='remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='withstandCurrent'>withstandCurrent: </label><div class='col-sm-8'><input id='withstandCurrent' class='form-control' type='text'{{#withstandCurrent}} value='{{withstandCurrent}}'{{/withstandCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dielectricStrength'>dielectricStrength: </label><div class='col-sm-8'><input id='{{id}}_dielectricStrength' class='form-control' type='text'{{#dielectricStrength}} value='{{dielectricStrength}}'{{/dielectricStrength}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_loadBreak'>loadBreak: </label><div class='col-sm-8'><input id='{{id}}_loadBreak' class='form-check-input' type='checkbox'{{#loadBreak}} checked{{/loadBreak}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_makingCapacity'>makingCapacity: </label><div class='col-sm-8'><input id='{{id}}_makingCapacity' class='form-control' type='text'{{#makingCapacity}} value='{{makingCapacity}}'{{/makingCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumCurrent'>minimumCurrent: </label><div class='col-sm-8'><input id='{{id}}_minimumCurrent' class='form-control' type='text'{{#minimumCurrent}} value='{{minimumCurrent}}'{{/minimumCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_poleCount'>poleCount: </label><div class='col-sm-8'><input id='{{id}}_poleCount' class='form-control' type='text'{{#poleCount}} value='{{poleCount}}'{{/poleCount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_remote'>remote: </label><div class='col-sm-8'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_withstandCurrent'>withstandCurrent: </label><div class='col-sm-8'><input id='{{id}}_withstandCurrent' class='form-control' type='text'{{#withstandCurrent}} value='{{withstandCurrent}}'{{/withstandCurrent}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OldSwitchInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("dielectricStrength").value; if ("" != temp) obj.dielectricStrength = temp;
-                temp = document.getElementById ("loadBreak").checked; if (temp) obj.loadBreak = true;
-                temp = document.getElementById ("makingCapacity").value; if ("" != temp) obj.makingCapacity = temp;
-                temp = document.getElementById ("minimumCurrent").value; if ("" != temp) obj.minimumCurrent = temp;
-                temp = document.getElementById ("poleCount").value; if ("" != temp) obj.poleCount = temp;
-                temp = document.getElementById ("remote").checked; if (temp) obj.remote = true;
-                temp = document.getElementById ("withstandCurrent").value; if ("" != temp) obj.withstandCurrent = temp;
+                var obj = obj || { id: id, cls: "OldSwitchInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dielectricStrength").value; if ("" != temp) obj.dielectricStrength = temp;
+                temp = document.getElementById (id + "_loadBreak").checked; if (temp) obj.loadBreak = true;
+                temp = document.getElementById (id + "_makingCapacity").value; if ("" != temp) obj.makingCapacity = temp;
+                temp = document.getElementById (id + "_minimumCurrent").value; if ("" != temp) obj.minimumCurrent = temp;
+                temp = document.getElementById (id + "_poleCount").value; if ("" != temp) obj.poleCount = temp;
+                temp = document.getElementById (id + "_remote").checked; if (temp) obj.remote = true;
+                temp = document.getElementById (id + "_withstandCurrent").value; if ("" != temp) obj.withstandCurrent = temp;
 
                 return (obj);
             }
@@ -658,55 +658,55 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentTransformerInfo_collapse" aria-expanded="true" aria-controls="CurrentTransformerInfo_collapse" style="margin-left: 10px;">CurrentTransformerInfo</a></legend>
-                    <div id="CurrentTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentTransformerInfo_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentTransformerInfo_collapse" style="margin-left: 10px;">CurrentTransformerInfo</a></legend>
+                    <div id="{{id}}_CurrentTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyLimit'>accuracyLimit: </label><div class='col-sm-8'><input id='accuracyLimit' class='form-control' type='text'{{#accuracyLimit}} value='{{accuracyLimit}}'{{/accuracyLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreCount'>coreCount: </label><div class='col-sm-8'><input id='coreCount' class='form-control' type='text'{{#coreCount}} value='{{coreCount}}'{{/coreCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ctClass'>ctClass: </label><div class='col-sm-8'><input id='ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kneePointCurrent'>kneePointCurrent: </label><div class='col-sm-8'><input id='kneePointCurrent' class='form-control' type='text'{{#kneePointCurrent}} value='{{kneePointCurrent}}'{{/kneePointCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kneePointVoltage'>kneePointVoltage: </label><div class='col-sm-8'><input id='kneePointVoltage' class='form-control' type='text'{{#kneePointVoltage}} value='{{kneePointVoltage}}'{{/kneePointVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxRatio'>maxRatio: </label><div class='col-sm-8'><input id='maxRatio' class='form-control' type='text'{{#maxRatio}} value='{{maxRatio}}'{{/maxRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryFlsRating'>primaryFlsRating: </label><div class='col-sm-8'><input id='primaryFlsRating' class='form-control' type='text'{{#primaryFlsRating}} value='{{primaryFlsRating}}'{{/primaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryFlsRating'>secondaryFlsRating: </label><div class='col-sm-8'><input id='secondaryFlsRating' class='form-control' type='text'{{#secondaryFlsRating}} value='{{secondaryFlsRating}}'{{/secondaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tertiaryFlsRating'>tertiaryFlsRating: </label><div class='col-sm-8'><input id='tertiaryFlsRating' class='form-control' type='text'{{#tertiaryFlsRating}} value='{{tertiaryFlsRating}}'{{/tertiaryFlsRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><input id='usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyLimit'>accuracyLimit: </label><div class='col-sm-8'><input id='{{id}}_accuracyLimit' class='form-control' type='text'{{#accuracyLimit}} value='{{accuracyLimit}}'{{/accuracyLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreCount'>coreCount: </label><div class='col-sm-8'><input id='{{id}}_coreCount' class='form-control' type='text'{{#coreCount}} value='{{coreCount}}'{{/coreCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ctClass'>ctClass: </label><div class='col-sm-8'><input id='{{id}}_ctClass' class='form-control' type='text'{{#ctClass}} value='{{ctClass}}'{{/ctClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kneePointCurrent'>kneePointCurrent: </label><div class='col-sm-8'><input id='{{id}}_kneePointCurrent' class='form-control' type='text'{{#kneePointCurrent}} value='{{kneePointCurrent}}'{{/kneePointCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kneePointVoltage'>kneePointVoltage: </label><div class='col-sm-8'><input id='{{id}}_kneePointVoltage' class='form-control' type='text'{{#kneePointVoltage}} value='{{kneePointVoltage}}'{{/kneePointVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxRatio'>maxRatio: </label><div class='col-sm-8'><input id='{{id}}_maxRatio' class='form-control' type='text'{{#maxRatio}} value='{{maxRatio}}'{{/maxRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='{{id}}_nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryFlsRating'>primaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_primaryFlsRating' class='form-control' type='text'{{#primaryFlsRating}} value='{{primaryFlsRating}}'{{/primaryFlsRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='{{id}}_primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryFlsRating'>secondaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_secondaryFlsRating' class='form-control' type='text'{{#secondaryFlsRating}} value='{{secondaryFlsRating}}'{{/secondaryFlsRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='{{id}}_secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryFlsRating'>tertiaryFlsRating: </label><div class='col-sm-8'><input id='{{id}}_tertiaryFlsRating' class='form-control' type='text'{{#tertiaryFlsRating}} value='{{tertiaryFlsRating}}'{{/tertiaryFlsRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='{{id}}_tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><input id='{{id}}_usage' class='form-control' type='text'{{#usage}} value='{{usage}}'{{/usage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CurrentTransformerInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
-                temp = document.getElementById ("accuracyLimit").value; if ("" != temp) obj.accuracyLimit = temp;
-                temp = document.getElementById ("coreCount").value; if ("" != temp) obj.coreCount = temp;
-                temp = document.getElementById ("ctClass").value; if ("" != temp) obj.ctClass = temp;
-                temp = document.getElementById ("kneePointCurrent").value; if ("" != temp) obj.kneePointCurrent = temp;
-                temp = document.getElementById ("kneePointVoltage").value; if ("" != temp) obj.kneePointVoltage = temp;
-                temp = document.getElementById ("maxRatio").value; if ("" != temp) obj.maxRatio = temp;
-                temp = document.getElementById ("nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
-                temp = document.getElementById ("primaryFlsRating").value; if ("" != temp) obj.primaryFlsRating = temp;
-                temp = document.getElementById ("primaryRatio").value; if ("" != temp) obj.primaryRatio = temp;
-                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
-                temp = document.getElementById ("secondaryFlsRating").value; if ("" != temp) obj.secondaryFlsRating = temp;
-                temp = document.getElementById ("secondaryRatio").value; if ("" != temp) obj.secondaryRatio = temp;
-                temp = document.getElementById ("tertiaryFlsRating").value; if ("" != temp) obj.tertiaryFlsRating = temp;
-                temp = document.getElementById ("tertiaryRatio").value; if ("" != temp) obj.tertiaryRatio = temp;
-                temp = document.getElementById ("usage").value; if ("" != temp) obj.usage = temp;
+                var obj = obj || { id: id, cls: "CurrentTransformerInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
+                temp = document.getElementById (id + "_accuracyLimit").value; if ("" != temp) obj.accuracyLimit = temp;
+                temp = document.getElementById (id + "_coreCount").value; if ("" != temp) obj.coreCount = temp;
+                temp = document.getElementById (id + "_ctClass").value; if ("" != temp) obj.ctClass = temp;
+                temp = document.getElementById (id + "_kneePointCurrent").value; if ("" != temp) obj.kneePointCurrent = temp;
+                temp = document.getElementById (id + "_kneePointVoltage").value; if ("" != temp) obj.kneePointVoltage = temp;
+                temp = document.getElementById (id + "_maxRatio").value; if ("" != temp) obj.maxRatio = temp;
+                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
+                temp = document.getElementById (id + "_primaryFlsRating").value; if ("" != temp) obj.primaryFlsRating = temp;
+                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) obj.primaryRatio = temp;
+                temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById (id + "_secondaryFlsRating").value; if ("" != temp) obj.secondaryFlsRating = temp;
+                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) obj.secondaryRatio = temp;
+                temp = document.getElementById (id + "_tertiaryFlsRating").value; if ("" != temp) obj.tertiaryFlsRating = temp;
+                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) obj.tertiaryRatio = temp;
+                temp = document.getElementById (id + "_usage").value; if ("" != temp) obj.usage = temp;
 
                 return (obj);
             }
@@ -816,41 +816,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SurgeArresterInfo_collapse" aria-expanded="true" aria-controls="SurgeArresterInfo_collapse" style="margin-left: 10px;">SurgeArresterInfo</a></legend>
-                    <div id="SurgeArresterInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SurgeArresterInfo_collapse" aria-expanded="true" aria-controls="{{id}}_SurgeArresterInfo_collapse" style="margin-left: 10px;">SurgeArresterInfo</a></legend>
+                    <div id="{{id}}_SurgeArresterInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='continuousOperatingVoltage'>continuousOperatingVoltage: </label><div class='col-sm-8'><input id='continuousOperatingVoltage' class='form-control' type='text'{{#continuousOperatingVoltage}} value='{{continuousOperatingVoltage}}'{{/continuousOperatingVoltage}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isPolymer'>isPolymer: </label><div class='col-sm-8'><input id='isPolymer' class='form-check-input' type='checkbox'{{#isPolymer}} checked{{/isPolymer}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lightningImpulseDischargeVoltage'>lightningImpulseDischargeVoltage: </label><div class='col-sm-8'><input id='lightningImpulseDischargeVoltage' class='form-control' type='text'{{#lightningImpulseDischargeVoltage}} value='{{lightningImpulseDischargeVoltage}}'{{/lightningImpulseDischargeVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lineDischargeClass'>lineDischargeClass: </label><div class='col-sm-8'><input id='lineDischargeClass' class='form-control' type='text'{{#lineDischargeClass}} value='{{lineDischargeClass}}'{{/lineDischargeClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalDischargeCurrent'>nominalDischargeCurrent: </label><div class='col-sm-8'><input id='nominalDischargeCurrent' class='form-control' type='text'{{#nominalDischargeCurrent}} value='{{nominalDischargeCurrent}}'{{/nominalDischargeCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pressureReliefClass'>pressureReliefClass: </label><div class='col-sm-8'><input id='pressureReliefClass' class='form-control' type='text'{{#pressureReliefClass}} value='{{pressureReliefClass}}'{{/pressureReliefClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='steepFrontDischargeVoltage'>steepFrontDischargeVoltage: </label><div class='col-sm-8'><input id='steepFrontDischargeVoltage' class='form-control' type='text'{{#steepFrontDischargeVoltage}} value='{{steepFrontDischargeVoltage}}'{{/steepFrontDischargeVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='switchingImpulseDischargeVoltage'>switchingImpulseDischargeVoltage: </label><div class='col-sm-8'><input id='switchingImpulseDischargeVoltage' class='form-control' type='text'{{#switchingImpulseDischargeVoltage}} value='{{switchingImpulseDischargeVoltage}}'{{/switchingImpulseDischargeVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_continuousOperatingVoltage'>continuousOperatingVoltage: </label><div class='col-sm-8'><input id='{{id}}_continuousOperatingVoltage' class='form-control' type='text'{{#continuousOperatingVoltage}} value='{{continuousOperatingVoltage}}'{{/continuousOperatingVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isPolymer'>isPolymer: </label><div class='col-sm-8'><input id='{{id}}_isPolymer' class='form-check-input' type='checkbox'{{#isPolymer}} checked{{/isPolymer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lightningImpulseDischargeVoltage'>lightningImpulseDischargeVoltage: </label><div class='col-sm-8'><input id='{{id}}_lightningImpulseDischargeVoltage' class='form-control' type='text'{{#lightningImpulseDischargeVoltage}} value='{{lightningImpulseDischargeVoltage}}'{{/lightningImpulseDischargeVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineDischargeClass'>lineDischargeClass: </label><div class='col-sm-8'><input id='{{id}}_lineDischargeClass' class='form-control' type='text'{{#lineDischargeClass}} value='{{lineDischargeClass}}'{{/lineDischargeClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalDischargeCurrent'>nominalDischargeCurrent: </label><div class='col-sm-8'><input id='{{id}}_nominalDischargeCurrent' class='form-control' type='text'{{#nominalDischargeCurrent}} value='{{nominalDischargeCurrent}}'{{/nominalDischargeCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pressureReliefClass'>pressureReliefClass: </label><div class='col-sm-8'><input id='{{id}}_pressureReliefClass' class='form-control' type='text'{{#pressureReliefClass}} value='{{pressureReliefClass}}'{{/pressureReliefClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_steepFrontDischargeVoltage'>steepFrontDischargeVoltage: </label><div class='col-sm-8'><input id='{{id}}_steepFrontDischargeVoltage' class='form-control' type='text'{{#steepFrontDischargeVoltage}} value='{{steepFrontDischargeVoltage}}'{{/steepFrontDischargeVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchingImpulseDischargeVoltage'>switchingImpulseDischargeVoltage: </label><div class='col-sm-8'><input id='{{id}}_switchingImpulseDischargeVoltage' class='form-control' type='text'{{#switchingImpulseDischargeVoltage}} value='{{switchingImpulseDischargeVoltage}}'{{/switchingImpulseDischargeVoltage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SurgeArresterInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("continuousOperatingVoltage").value; if ("" != temp) obj.continuousOperatingVoltage = temp;
-                temp = document.getElementById ("isPolymer").checked; if (temp) obj.isPolymer = true;
-                temp = document.getElementById ("lightningImpulseDischargeVoltage").value; if ("" != temp) obj.lightningImpulseDischargeVoltage = temp;
-                temp = document.getElementById ("lineDischargeClass").value; if ("" != temp) obj.lineDischargeClass = temp;
-                temp = document.getElementById ("nominalDischargeCurrent").value; if ("" != temp) obj.nominalDischargeCurrent = temp;
-                temp = document.getElementById ("pressureReliefClass").value; if ("" != temp) obj.pressureReliefClass = temp;
-                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = document.getElementById ("steepFrontDischargeVoltage").value; if ("" != temp) obj.steepFrontDischargeVoltage = temp;
-                temp = document.getElementById ("switchingImpulseDischargeVoltage").value; if ("" != temp) obj.switchingImpulseDischargeVoltage = temp;
+                var obj = obj || { id: id, cls: "SurgeArresterInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_continuousOperatingVoltage").value; if ("" != temp) obj.continuousOperatingVoltage = temp;
+                temp = document.getElementById (id + "_isPolymer").checked; if (temp) obj.isPolymer = true;
+                temp = document.getElementById (id + "_lightningImpulseDischargeVoltage").value; if ("" != temp) obj.lightningImpulseDischargeVoltage = temp;
+                temp = document.getElementById (id + "_lineDischargeClass").value; if ("" != temp) obj.lineDischargeClass = temp;
+                temp = document.getElementById (id + "_nominalDischargeCurrent").value; if ("" != temp) obj.nominalDischargeCurrent = temp;
+                temp = document.getElementById (id + "_pressureReliefClass").value; if ("" != temp) obj.pressureReliefClass = temp;
+                temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById (id + "_steepFrontDischargeVoltage").value; if ("" != temp) obj.steepFrontDischargeVoltage = temp;
+                temp = document.getElementById (id + "_switchingImpulseDischargeVoltage").value; if ("" != temp) obj.switchingImpulseDischargeVoltage = temp;
 
                 return (obj);
             }
@@ -943,25 +943,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AssetModelCatalogue_collapse" aria-expanded="true" aria-controls="AssetModelCatalogue_collapse" style="margin-left: 10px;">AssetModelCatalogue</a></legend>
-                    <div id="AssetModelCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AssetModelCatalogue_collapse" aria-expanded="true" aria-controls="{{id}}_AssetModelCatalogue_collapse" style="margin-left: 10px;">AssetModelCatalogue</a></legend>
+                    <div id="{{id}}_AssetModelCatalogue_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AssetModelCatalogue" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                var obj = obj || { id: id, cls: "AssetModelCatalogue" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -1059,27 +1059,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectionEquipmentInfo_collapse" aria-expanded="true" aria-controls="ProtectionEquipmentInfo_collapse" style="margin-left: 10px;">ProtectionEquipmentInfo</a></legend>
-                    <div id="ProtectionEquipmentInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectionEquipmentInfo_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectionEquipmentInfo_collapse" style="margin-left: 10px;">ProtectionEquipmentInfo</a></legend>
+                    <div id="{{id}}_ProtectionEquipmentInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='groundTrip'>groundTrip: </label><div class='col-sm-8'><input id='groundTrip' class='form-control' type='text'{{#groundTrip}} value='{{groundTrip}}'{{/groundTrip}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_groundTrip'>groundTrip: </label><div class='col-sm-8'><input id='{{id}}_groundTrip' class='form-control' type='text'{{#groundTrip}} value='{{groundTrip}}'{{/groundTrip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='{{id}}_phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProtectionEquipmentInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("groundTrip").value; if ("" != temp) obj.groundTrip = temp;
-                temp = document.getElementById ("phaseTrip").value; if ("" != temp) obj.phaseTrip = temp;
+                var obj = obj || { id: id, cls: "ProtectionEquipmentInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_groundTrip").value; if ("" != temp) obj.groundTrip = temp;
+                temp = document.getElementById (id + "_phaseTrip").value; if ("" != temp) obj.phaseTrip = temp;
 
                 return (obj);
             }
@@ -1184,35 +1184,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldTransformerTankInfo_collapse" aria-expanded="true" aria-controls="OldTransformerTankInfo_collapse" style="margin-left: 10px;">OldTransformerTankInfo</a></legend>
-                    <div id="OldTransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OldTransformerTankInfo_collapse" aria-expanded="true" aria-controls="{{id}}_OldTransformerTankInfo_collapse" style="margin-left: 10px;">OldTransformerTankInfo</a></legend>
+                    <div id="{{id}}_OldTransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AssetInfo.TransformerTankInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='constructionKind' class='form-control'>{{#TransformerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerConstructionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreCoilsWeight'>coreCoilsWeight: </label><div class='col-sm-8'><input id='coreCoilsWeight' class='form-control' type='text'{{#coreCoilsWeight}} value='{{coreCoilsWeight}}'{{/coreCoilsWeight}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreKind'>coreKind: </label><div class='col-sm-8'><select id='coreKind' class='form-control'>{{#TransformerCoreKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerCoreKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='function'>function: </label><div class='col-sm-8'><select id='function' class='form-control'>{{#TransformerFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerFunctionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralBIL'>neutralBIL: </label><div class='col-sm-8'><input id='neutralBIL' class='form-control' type='text'{{#neutralBIL}} value='{{neutralBIL}}'{{/neutralBIL}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='oilPreservationKind'>oilPreservationKind: </label><div class='col-sm-8'><select id='oilPreservationKind' class='form-control'>{{#OilPreservationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OilPreservationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control'>{{#TransformerConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerConstructionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreCoilsWeight'>coreCoilsWeight: </label><div class='col-sm-8'><input id='{{id}}_coreCoilsWeight' class='form-control' type='text'{{#coreCoilsWeight}} value='{{coreCoilsWeight}}'{{/coreCoilsWeight}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreKind'>coreKind: </label><div class='col-sm-8'><select id='{{id}}_coreKind' class='form-control'>{{#TransformerCoreKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerCoreKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_function'>function: </label><div class='col-sm-8'><select id='{{id}}_function' class='form-control'>{{#TransformerFunctionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/TransformerFunctionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralBIL'>neutralBIL: </label><div class='col-sm-8'><input id='{{id}}_neutralBIL' class='form-control' type='text'{{#neutralBIL}} value='{{neutralBIL}}'{{/neutralBIL}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_oilPreservationKind'>oilPreservationKind: </label><div class='col-sm-8'><select id='{{id}}_oilPreservationKind' class='form-control'>{{#OilPreservationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OilPreservationKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OldTransformerTankInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("constructionKind").value; if ("" != temp) { temp = TransformerConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerConstructionKind." + temp; }
-                temp = document.getElementById ("coreCoilsWeight").value; if ("" != temp) obj.coreCoilsWeight = temp;
-                temp = document.getElementById ("coreKind").value; if ("" != temp) { temp = TransformerCoreKind[temp]; if ("undefined" != typeof (temp)) obj.coreKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerCoreKind." + temp; }
-                temp = document.getElementById ("function").value; if ("" != temp) { temp = TransformerFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.function = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerFunctionKind." + temp; }
-                temp = document.getElementById ("neutralBIL").value; if ("" != temp) obj.neutralBIL = temp;
-                temp = document.getElementById ("oilPreservationKind").value; if ("" != temp) { temp = OilPreservationKind[temp]; if ("undefined" != typeof (temp)) obj.oilPreservationKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OilPreservationKind." + temp; }
+                var obj = obj || { id: id, cls: "OldTransformerTankInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = TransformerConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerConstructionKind." + temp; }
+                temp = document.getElementById (id + "_coreCoilsWeight").value; if ("" != temp) obj.coreCoilsWeight = temp;
+                temp = document.getElementById (id + "_coreKind").value; if ("" != temp) { temp = TransformerCoreKind[temp]; if ("undefined" != typeof (temp)) obj.coreKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerCoreKind." + temp; }
+                temp = document.getElementById (id + "_function").value; if ("" != temp) { temp = TransformerFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.function = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerFunctionKind." + temp; }
+                temp = document.getElementById (id + "_neutralBIL").value; if ("" != temp) obj.neutralBIL = temp;
+                temp = document.getElementById (id + "_oilPreservationKind").value; if ("" != temp) { temp = OilPreservationKind[temp]; if ("undefined" != typeof (temp)) obj.oilPreservationKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OilPreservationKind." + temp; }
 
                 return (obj);
             }
@@ -1324,41 +1324,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CompositeSwitchInfo_collapse" aria-expanded="true" aria-controls="CompositeSwitchInfo_collapse" style="margin-left: 10px;">CompositeSwitchInfo</a></legend>
-                    <div id="CompositeSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CompositeSwitchInfo_collapse" aria-expanded="true" aria-controls="{{id}}_CompositeSwitchInfo_collapse" style="margin-left: 10px;">CompositeSwitchInfo</a></legend>
+                    <div id="{{id}}_CompositeSwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='ganged'>ganged: </label><div class='col-sm-8'><input id='ganged' class='form-check-input' type='checkbox'{{#ganged}} checked{{/ganged}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='initOpMode'>initOpMode: </label><div class='col-sm-8'><input id='initOpMode' class='form-control' type='text'{{#initOpMode}} value='{{initOpMode}}'{{/initOpMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='interruptingRating'>interruptingRating: </label><div class='col-sm-8'><input id='interruptingRating' class='form-control' type='text'{{#interruptingRating}} value='{{interruptingRating}}'{{/interruptingRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#CompositeSwitchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CompositeSwitchKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='remote'>remote: </label><div class='col-sm-8'><input id='remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='switchStateCount'>switchStateCount: </label><div class='col-sm-8'><input id='switchStateCount' class='form-control' type='text'{{#switchStateCount}} value='{{switchStateCount}}'{{/switchStateCount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_ganged'>ganged: </label><div class='col-sm-8'><input id='{{id}}_ganged' class='form-check-input' type='checkbox'{{#ganged}} checked{{/ganged}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_initOpMode'>initOpMode: </label><div class='col-sm-8'><input id='{{id}}_initOpMode' class='form-control' type='text'{{#initOpMode}} value='{{initOpMode}}'{{/initOpMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_interruptingRating'>interruptingRating: </label><div class='col-sm-8'><input id='{{id}}_interruptingRating' class='form-control' type='text'{{#interruptingRating}} value='{{interruptingRating}}'{{/interruptingRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#CompositeSwitchKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CompositeSwitchKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCode'>phaseCode: </label><div class='col-sm-8'><input id='{{id}}_phaseCode' class='form-control' type='text'{{#phaseCode}} value='{{phaseCode}}'{{/phaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseCount'>phaseCount: </label><div class='col-sm-8'><input id='{{id}}_phaseCount' class='form-control' type='text'{{#phaseCount}} value='{{phaseCount}}'{{/phaseCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_remote'>remote: </label><div class='col-sm-8'><input id='{{id}}_remote' class='form-check-input' type='checkbox'{{#remote}} checked{{/remote}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchStateCount'>switchStateCount: </label><div class='col-sm-8'><input id='{{id}}_switchStateCount' class='form-control' type='text'{{#switchStateCount}} value='{{switchStateCount}}'{{/switchStateCount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CompositeSwitchInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("ganged").checked; if (temp) obj.ganged = true;
-                temp = document.getElementById ("initOpMode").value; if ("" != temp) obj.initOpMode = temp;
-                temp = document.getElementById ("interruptingRating").value; if ("" != temp) obj.interruptingRating = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = CompositeSwitchKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; }
-                temp = document.getElementById ("phaseCode").value; if ("" != temp) obj.phaseCode = temp;
-                temp = document.getElementById ("phaseCount").value; if ("" != temp) obj.phaseCount = temp;
-                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = document.getElementById ("remote").checked; if (temp) obj.remote = true;
-                temp = document.getElementById ("switchStateCount").value; if ("" != temp) obj.switchStateCount = temp;
+                var obj = obj || { id: id, cls: "CompositeSwitchInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ganged").checked; if (temp) obj.ganged = true;
+                temp = document.getElementById (id + "_initOpMode").value; if ("" != temp) obj.initOpMode = temp;
+                temp = document.getElementById (id + "_interruptingRating").value; if ("" != temp) obj.interruptingRating = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CompositeSwitchKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; }
+                temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) obj.phaseCode = temp;
+                temp = document.getElementById (id + "_phaseCount").value; if ("" != temp) obj.phaseCount = temp;
+                temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById (id + "_remote").checked; if (temp) obj.remote = true;
+                temp = document.getElementById (id + "_switchStateCount").value; if ("" != temp) obj.switchStateCount = temp;
 
                 return (obj);
             }
@@ -1462,37 +1462,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PotentialTransformerInfo_collapse" aria-expanded="true" aria-controls="PotentialTransformerInfo_collapse" style="margin-left: 10px;">PotentialTransformerInfo</a></legend>
-                    <div id="PotentialTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PotentialTransformerInfo_collapse" aria-expanded="true" aria-controls="{{id}}_PotentialTransformerInfo_collapse" style="margin-left: 10px;">PotentialTransformerInfo</a></legend>
+                    <div id="{{id}}_PotentialTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ptClass'>ptClass: </label><div class='col-sm-8'><input id='ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accuracyClass'>accuracyClass: </label><div class='col-sm-8'><input id='{{id}}_accuracyClass' class='form-control' type='text'{{#accuracyClass}} value='{{accuracyClass}}'{{/accuracyClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalRatio'>nominalRatio: </label><div class='col-sm-8'><input id='{{id}}_nominalRatio' class='form-control' type='text'{{#nominalRatio}} value='{{nominalRatio}}'{{/nominalRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_primaryRatio'>primaryRatio: </label><div class='col-sm-8'><input id='{{id}}_primaryRatio' class='form-control' type='text'{{#primaryRatio}} value='{{primaryRatio}}'{{/primaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ptClass'>ptClass: </label><div class='col-sm-8'><input id='{{id}}_ptClass' class='form-control' type='text'{{#ptClass}} value='{{ptClass}}'{{/ptClass}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_secondaryRatio'>secondaryRatio: </label><div class='col-sm-8'><input id='{{id}}_secondaryRatio' class='form-control' type='text'{{#secondaryRatio}} value='{{secondaryRatio}}'{{/secondaryRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tertiaryRatio'>tertiaryRatio: </label><div class='col-sm-8'><input id='{{id}}_tertiaryRatio' class='form-control' type='text'{{#tertiaryRatio}} value='{{tertiaryRatio}}'{{/tertiaryRatio}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PotentialTransformerInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
-                temp = document.getElementById ("nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
-                temp = document.getElementById ("primaryRatio").value; if ("" != temp) obj.primaryRatio = temp;
-                temp = document.getElementById ("ptClass").value; if ("" != temp) obj.ptClass = temp;
-                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = document.getElementById ("secondaryRatio").value; if ("" != temp) obj.secondaryRatio = temp;
-                temp = document.getElementById ("tertiaryRatio").value; if ("" != temp) obj.tertiaryRatio = temp;
+                var obj = obj || { id: id, cls: "PotentialTransformerInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
+                temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
+                temp = document.getElementById (id + "_primaryRatio").value; if ("" != temp) obj.primaryRatio = temp;
+                temp = document.getElementById (id + "_ptClass").value; if ("" != temp) obj.ptClass = temp;
+                temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById (id + "_secondaryRatio").value; if ("" != temp) obj.secondaryRatio = temp;
+                temp = document.getElementById (id + "_tertiaryRatio").value; if ("" != temp) obj.tertiaryRatio = temp;
 
                 return (obj);
             }
@@ -1585,31 +1585,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OldTransformerEndInfo_collapse" aria-expanded="true" aria-controls="OldTransformerEndInfo_collapse" style="margin-left: 10px;">OldTransformerEndInfo</a></legend>
-                    <div id="OldTransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OldTransformerEndInfo_collapse" aria-expanded="true" aria-controls="{{id}}_OldTransformerEndInfo_collapse" style="margin-left: 10px;">OldTransformerEndInfo</a></legend>
+                    <div id="{{id}}_OldTransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AssetInfo.TransformerEndInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dayOverLoadRating'>dayOverLoadRating: </label><div class='col-sm-8'><input id='dayOverLoadRating' class='form-control' type='text'{{#dayOverLoadRating}} value='{{dayOverLoadRating}}'{{/dayOverLoadRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hourOverLoadRating'>hourOverLoadRating: </label><div class='col-sm-8'><input id='hourOverLoadRating' class='form-control' type='text'{{#hourOverLoadRating}} value='{{hourOverLoadRating}}'{{/hourOverLoadRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='solidInsulationWeight'>solidInsulationWeight: </label><div class='col-sm-8'><input id='solidInsulationWeight' class='form-control' type='text'{{#solidInsulationWeight}} value='{{solidInsulationWeight}}'{{/solidInsulationWeight}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='windingInsulationKind'>windingInsulationKind: </label><div class='col-sm-8'><select id='windingInsulationKind' class='form-control'>{{#WindingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindingInsulationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dayOverLoadRating'>dayOverLoadRating: </label><div class='col-sm-8'><input id='{{id}}_dayOverLoadRating' class='form-control' type='text'{{#dayOverLoadRating}} value='{{dayOverLoadRating}}'{{/dayOverLoadRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hourOverLoadRating'>hourOverLoadRating: </label><div class='col-sm-8'><input id='{{id}}_hourOverLoadRating' class='form-control' type='text'{{#hourOverLoadRating}} value='{{hourOverLoadRating}}'{{/hourOverLoadRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_solidInsulationWeight'>solidInsulationWeight: </label><div class='col-sm-8'><input id='{{id}}_solidInsulationWeight' class='form-control' type='text'{{#solidInsulationWeight}} value='{{solidInsulationWeight}}'{{/solidInsulationWeight}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_windingInsulationKind'>windingInsulationKind: </label><div class='col-sm-8'><select id='{{id}}_windingInsulationKind' class='form-control'>{{#WindingInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WindingInsulationKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OldTransformerEndInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("dayOverLoadRating").value; if ("" != temp) obj.dayOverLoadRating = temp;
-                temp = document.getElementById ("hourOverLoadRating").value; if ("" != temp) obj.hourOverLoadRating = temp;
-                temp = document.getElementById ("solidInsulationWeight").value; if ("" != temp) obj.solidInsulationWeight = temp;
-                temp = document.getElementById ("windingInsulationKind").value; if ("" != temp) { temp = WindingInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.windingInsulationKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindingInsulationKind." + temp; }
+                var obj = obj || { id: id, cls: "OldTransformerEndInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dayOverLoadRating").value; if ("" != temp) obj.dayOverLoadRating = temp;
+                temp = document.getElementById (id + "_hourOverLoadRating").value; if ("" != temp) obj.hourOverLoadRating = temp;
+                temp = document.getElementById (id + "_solidInsulationWeight").value; if ("" != temp) obj.solidInsulationWeight = temp;
+                temp = document.getElementById (id + "_windingInsulationKind").value; if ("" != temp) { temp = WindingInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.windingInsulationKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindingInsulationKind." + temp; }
 
                 return (obj);
             }
@@ -1707,33 +1707,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RecloserInfo_collapse" aria-expanded="true" aria-controls="RecloserInfo_collapse" style="margin-left: 10px;">RecloserInfo</a></legend>
-                    <div id="RecloserInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RecloserInfo_collapse" aria-expanded="true" aria-controls="{{id}}_RecloserInfo_collapse" style="margin-left: 10px;">RecloserInfo</a></legend>
+                    <div id="{{id}}_RecloserInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + OldSwitchInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='groundTripCapable'>groundTripCapable: </label><div class='col-sm-8'><input id='groundTripCapable' class='form-check-input' type='checkbox'{{#groundTripCapable}} checked{{/groundTripCapable}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='groundTripNormalEnabled'>groundTripNormalEnabled: </label><div class='col-sm-8'><input id='groundTripNormalEnabled' class='form-check-input' type='checkbox'{{#groundTripNormalEnabled}} checked{{/groundTripNormalEnabled}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='groundTripRating'>groundTripRating: </label><div class='col-sm-8'><input id='groundTripRating' class='form-control' type='text'{{#groundTripRating}} value='{{groundTripRating}}'{{/groundTripRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseTripRating'>phaseTripRating: </label><div class='col-sm-8'><input id='phaseTripRating' class='form-control' type='text'{{#phaseTripRating}} value='{{phaseTripRating}}'{{/phaseTripRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='recloseLockoutCount'>recloseLockoutCount: </label><div class='col-sm-8'><input id='recloseLockoutCount' class='form-control' type='text'{{#recloseLockoutCount}} value='{{recloseLockoutCount}}'{{/recloseLockoutCount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_groundTripCapable'>groundTripCapable: </label><div class='col-sm-8'><input id='{{id}}_groundTripCapable' class='form-check-input' type='checkbox'{{#groundTripCapable}} checked{{/groundTripCapable}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_groundTripNormalEnabled'>groundTripNormalEnabled: </label><div class='col-sm-8'><input id='{{id}}_groundTripNormalEnabled' class='form-check-input' type='checkbox'{{#groundTripNormalEnabled}} checked{{/groundTripNormalEnabled}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_groundTripRating'>groundTripRating: </label><div class='col-sm-8'><input id='{{id}}_groundTripRating' class='form-control' type='text'{{#groundTripRating}} value='{{groundTripRating}}'{{/groundTripRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTripRating'>phaseTripRating: </label><div class='col-sm-8'><input id='{{id}}_phaseTripRating' class='form-control' type='text'{{#phaseTripRating}} value='{{phaseTripRating}}'{{/phaseTripRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recloseLockoutCount'>recloseLockoutCount: </label><div class='col-sm-8'><input id='{{id}}_recloseLockoutCount' class='form-control' type='text'{{#recloseLockoutCount}} value='{{recloseLockoutCount}}'{{/recloseLockoutCount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RecloserInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("groundTripCapable").checked; if (temp) obj.groundTripCapable = true;
-                temp = document.getElementById ("groundTripNormalEnabled").checked; if (temp) obj.groundTripNormalEnabled = true;
-                temp = document.getElementById ("groundTripRating").value; if ("" != temp) obj.groundTripRating = temp;
-                temp = document.getElementById ("phaseTripRating").value; if ("" != temp) obj.phaseTripRating = temp;
-                temp = document.getElementById ("recloseLockoutCount").value; if ("" != temp) obj.recloseLockoutCount = temp;
+                var obj = obj || { id: id, cls: "RecloserInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_groundTripCapable").checked; if (temp) obj.groundTripCapable = true;
+                temp = document.getElementById (id + "_groundTripNormalEnabled").checked; if (temp) obj.groundTripNormalEnabled = true;
+                temp = document.getElementById (id + "_groundTripRating").value; if ("" != temp) obj.groundTripRating = temp;
+                temp = document.getElementById (id + "_phaseTripRating").value; if ("" != temp) obj.phaseTripRating = temp;
+                temp = document.getElementById (id + "_recloseLockoutCount").value; if ("" != temp) obj.recloseLockoutCount = temp;
 
                 return (obj);
             }
@@ -1819,25 +1819,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BreakerInfo_collapse" aria-expanded="true" aria-controls="BreakerInfo_collapse" style="margin-left: 10px;">BreakerInfo</a></legend>
-                    <div id="BreakerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BreakerInfo_collapse" aria-expanded="true" aria-controls="{{id}}_BreakerInfo_collapse" style="margin-left: 10px;">BreakerInfo</a></legend>
+                    <div id="{{id}}_BreakerInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + OldSwitchInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseTrip'>phaseTrip: </label><div class='col-sm-8'><input id='{{id}}_phaseTrip' class='form-control' type='text'{{#phaseTrip}} value='{{phaseTrip}}'{{/phaseTrip}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BreakerInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("phaseTrip").value; if ("" != temp) obj.phaseTrip = temp;
+                var obj = obj || { id: id, cls: "BreakerInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_phaseTrip").value; if ("" != temp) obj.phaseTrip = temp;
 
                 return (obj);
             }

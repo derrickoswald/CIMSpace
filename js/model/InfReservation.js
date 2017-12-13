@@ -96,25 +96,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TiePoint_collapse" aria-expanded="true" aria-controls="TiePoint_collapse" style="margin-left: 10px;">TiePoint</a></legend>
-                    <div id="TiePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TiePoint_collapse" aria-expanded="true" aria-controls="{{id}}_TiePoint_collapse" style="margin-left: 10px;">TiePoint</a></legend>
+                    <div id="{{id}}_TiePoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tiePointMWRating'>tiePointMWRating: </label><div class='col-sm-8'><input id='tiePointMWRating' class='form-control' type='text'{{#tiePointMWRating}} value='{{tiePointMWRating}}'{{/tiePointMWRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tiePointMWRating'>tiePointMWRating: </label><div class='col-sm-8'><input id='{{id}}_tiePointMWRating' class='form-control' type='text'{{#tiePointMWRating}} value='{{tiePointMWRating}}'{{/tiePointMWRating}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TiePoint" };
-                super.submit (obj);
-                temp = document.getElementById ("tiePointMWRating").value; if ("" != temp) obj.tiePointMWRating = temp;
+                var obj = obj || { id: id, cls: "TiePoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tiePointMWRating").value; if ("" != temp) obj.tiePointMWRating = temp;
 
                 return (obj);
             }

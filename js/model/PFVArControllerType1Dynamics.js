@@ -96,29 +96,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArControllerType1Dynamics_collapse" aria-expanded="true" aria-controls="PFVArControllerType1Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType1Dynamics</a></legend>
-                    <div id="PFVArControllerType1Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArControllerType1Dynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArControllerType1Dynamics_collapse" style="margin-left: 10px;">PFVArControllerType1Dynamics</a></legend>
+                    <div id="{{id}}_PFVArControllerType1Dynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='VoltageAdjusterDynamics'>VoltageAdjusterDynamics: </label><div class='col-sm-8'><input id='VoltageAdjusterDynamics' class='form-control' type='text'{{#VoltageAdjusterDynamics}} value='{{VoltageAdjusterDynamics}}'{{/VoltageAdjusterDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_VoltageAdjusterDynamics'>VoltageAdjusterDynamics: </label><div class='col-sm-8'><input id='{{id}}_VoltageAdjusterDynamics' class='form-control' type='text'{{#VoltageAdjusterDynamics}} value='{{VoltageAdjusterDynamics}}'{{/VoltageAdjusterDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArControllerType1Dynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("VoltageAdjusterDynamics").value; if ("" != temp) obj.VoltageAdjusterDynamics = temp;
-                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
-                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                var obj = obj || { id: id, cls: "PFVArControllerType1Dynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_VoltageAdjusterDynamics").value; if ("" != temp) obj.VoltageAdjusterDynamics = temp;
+                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
 
                 return (obj);
             }
@@ -232,35 +232,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType1IEEEVArController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEVArController_collapse" style="margin-left: 10px;">PFVArType1IEEEVArController</a></legend>
-                    <div id="PFVArType1IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType1IEEEVArController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType1IEEEVArController_collapse" style="margin-left: 10px;">PFVArType1IEEEVArController</a></legend>
+                    <div id="{{id}}_PFVArType1IEEEVArController_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PFVArControllerType1Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tvarc'>tvarc: </label><div class='col-sm-8'><input id='tvarc' class='form-control' type='text'{{#tvarc}} value='{{tvarc}}'{{/tvarc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvar'>vvar: </label><div class='col-sm-8'><input id='vvar' class='form-control' type='text'{{#vvar}} value='{{vvar}}'{{/vvar}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvarcbw'>vvarcbw: </label><div class='col-sm-8'><input id='vvarcbw' class='form-control' type='text'{{#vvarcbw}} value='{{vvarcbw}}'{{/vvarcbw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvarref'>vvarref: </label><div class='col-sm-8'><input id='vvarref' class='form-control' type='text'{{#vvarref}} value='{{vvarref}}'{{/vvarref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvtmax'>vvtmax: </label><div class='col-sm-8'><input id='vvtmax' class='form-control' type='text'{{#vvtmax}} value='{{vvtmax}}'{{/vvtmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvtmin'>vvtmin: </label><div class='col-sm-8'><input id='vvtmin' class='form-control' type='text'{{#vvtmin}} value='{{vvtmin}}'{{/vvtmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tvarc'>tvarc: </label><div class='col-sm-8'><input id='{{id}}_tvarc' class='form-control' type='text'{{#tvarc}} value='{{tvarc}}'{{/tvarc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvar'>vvar: </label><div class='col-sm-8'><input id='{{id}}_vvar' class='form-control' type='text'{{#vvar}} value='{{vvar}}'{{/vvar}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvarcbw'>vvarcbw: </label><div class='col-sm-8'><input id='{{id}}_vvarcbw' class='form-control' type='text'{{#vvarcbw}} value='{{vvarcbw}}'{{/vvarcbw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvarref'>vvarref: </label><div class='col-sm-8'><input id='{{id}}_vvarref' class='form-control' type='text'{{#vvarref}} value='{{vvarref}}'{{/vvarref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvtmax'>vvtmax: </label><div class='col-sm-8'><input id='{{id}}_vvtmax' class='form-control' type='text'{{#vvtmax}} value='{{vvtmax}}'{{/vvtmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvtmin'>vvtmin: </label><div class='col-sm-8'><input id='{{id}}_vvtmin' class='form-control' type='text'{{#vvtmin}} value='{{vvtmin}}'{{/vvtmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArType1IEEEVArController" };
-                super.submit (obj);
-                temp = document.getElementById ("tvarc").value; if ("" != temp) obj.tvarc = temp;
-                temp = document.getElementById ("vvar").value; if ("" != temp) obj.vvar = temp;
-                temp = document.getElementById ("vvarcbw").value; if ("" != temp) obj.vvarcbw = temp;
-                temp = document.getElementById ("vvarref").value; if ("" != temp) obj.vvarref = temp;
-                temp = document.getElementById ("vvtmax").value; if ("" != temp) obj.vvtmax = temp;
-                temp = document.getElementById ("vvtmin").value; if ("" != temp) obj.vvtmin = temp;
+                var obj = obj || { id: id, cls: "PFVArType1IEEEVArController" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tvarc").value; if ("" != temp) obj.tvarc = temp;
+                temp = document.getElementById (id + "_vvar").value; if ("" != temp) obj.vvar = temp;
+                temp = document.getElementById (id + "_vvarcbw").value; if ("" != temp) obj.vvarcbw = temp;
+                temp = document.getElementById (id + "_vvarref").value; if ("" != temp) obj.vvarref = temp;
+                temp = document.getElementById (id + "_vvtmax").value; if ("" != temp) obj.vvtmax = temp;
+                temp = document.getElementById (id + "_vvtmin").value; if ("" != temp) obj.vvtmin = temp;
 
                 return (obj);
             }
@@ -369,39 +369,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PFVArType1IEEEPFController_collapse" aria-expanded="true" aria-controls="PFVArType1IEEEPFController_collapse" style="margin-left: 10px;">PFVArType1IEEEPFController</a></legend>
-                    <div id="PFVArType1IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PFVArType1IEEEPFController_collapse" aria-expanded="true" aria-controls="{{id}}_PFVArType1IEEEPFController_collapse" style="margin-left: 10px;">PFVArType1IEEEPFController</a></legend>
+                    <div id="{{id}}_PFVArType1IEEEPFController_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PFVArControllerType1Dynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='ovex'>ovex: </label><div class='col-sm-8'><input id='ovex' class='form-check-input' type='checkbox'{{#ovex}} checked{{/ovex}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpfc'>tpfc: </label><div class='col-sm-8'><input id='tpfc' class='form-control' type='text'{{#tpfc}} value='{{tpfc}}'{{/tpfc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vitmin'>vitmin: </label><div class='col-sm-8'><input id='vitmin' class='form-control' type='text'{{#vitmin}} value='{{vitmin}}'{{/vitmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpf'>vpf: </label><div class='col-sm-8'><input id='vpf' class='form-control' type='text'{{#vpf}} value='{{vpf}}'{{/vpf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpfcbw'>vpfcbw: </label><div class='col-sm-8'><input id='vpfcbw' class='form-control' type='text'{{#vpfcbw}} value='{{vpfcbw}}'{{/vpfcbw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vpfref'>vpfref: </label><div class='col-sm-8'><input id='vpfref' class='form-control' type='text'{{#vpfref}} value='{{vpfref}}'{{/vpfref}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvtmax'>vvtmax: </label><div class='col-sm-8'><input id='vvtmax' class='form-control' type='text'{{#vvtmax}} value='{{vvtmax}}'{{/vvtmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vvtmin'>vvtmin: </label><div class='col-sm-8'><input id='vvtmin' class='form-control' type='text'{{#vvtmin}} value='{{vvtmin}}'{{/vvtmin}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_ovex'>ovex: </label><div class='col-sm-8'><input id='{{id}}_ovex' class='form-check-input' type='checkbox'{{#ovex}} checked{{/ovex}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpfc'>tpfc: </label><div class='col-sm-8'><input id='{{id}}_tpfc' class='form-control' type='text'{{#tpfc}} value='{{tpfc}}'{{/tpfc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vitmin'>vitmin: </label><div class='col-sm-8'><input id='{{id}}_vitmin' class='form-control' type='text'{{#vitmin}} value='{{vitmin}}'{{/vitmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpf'>vpf: </label><div class='col-sm-8'><input id='{{id}}_vpf' class='form-control' type='text'{{#vpf}} value='{{vpf}}'{{/vpf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpfcbw'>vpfcbw: </label><div class='col-sm-8'><input id='{{id}}_vpfcbw' class='form-control' type='text'{{#vpfcbw}} value='{{vpfcbw}}'{{/vpfcbw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vpfref'>vpfref: </label><div class='col-sm-8'><input id='{{id}}_vpfref' class='form-control' type='text'{{#vpfref}} value='{{vpfref}}'{{/vpfref}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvtmax'>vvtmax: </label><div class='col-sm-8'><input id='{{id}}_vvtmax' class='form-control' type='text'{{#vvtmax}} value='{{vvtmax}}'{{/vvtmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vvtmin'>vvtmin: </label><div class='col-sm-8'><input id='{{id}}_vvtmin' class='form-control' type='text'{{#vvtmin}} value='{{vvtmin}}'{{/vvtmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PFVArType1IEEEPFController" };
-                super.submit (obj);
-                temp = document.getElementById ("ovex").checked; if (temp) obj.ovex = true;
-                temp = document.getElementById ("tpfc").value; if ("" != temp) obj.tpfc = temp;
-                temp = document.getElementById ("vitmin").value; if ("" != temp) obj.vitmin = temp;
-                temp = document.getElementById ("vpf").value; if ("" != temp) obj.vpf = temp;
-                temp = document.getElementById ("vpfcbw").value; if ("" != temp) obj.vpfcbw = temp;
-                temp = document.getElementById ("vpfref").value; if ("" != temp) obj.vpfref = temp;
-                temp = document.getElementById ("vvtmax").value; if ("" != temp) obj.vvtmax = temp;
-                temp = document.getElementById ("vvtmin").value; if ("" != temp) obj.vvtmin = temp;
+                var obj = obj || { id: id, cls: "PFVArType1IEEEPFController" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ovex").checked; if (temp) obj.ovex = true;
+                temp = document.getElementById (id + "_tpfc").value; if ("" != temp) obj.tpfc = temp;
+                temp = document.getElementById (id + "_vitmin").value; if ("" != temp) obj.vitmin = temp;
+                temp = document.getElementById (id + "_vpf").value; if ("" != temp) obj.vpf = temp;
+                temp = document.getElementById (id + "_vpfcbw").value; if ("" != temp) obj.vpfcbw = temp;
+                temp = document.getElementById (id + "_vpfref").value; if ("" != temp) obj.vpfref = temp;
+                temp = document.getElementById (id + "_vvtmax").value; if ("" != temp) obj.vvtmax = temp;
+                temp = document.getElementById (id + "_vvtmin").value; if ("" != temp) obj.vvtmin = temp;
 
                 return (obj);
             }

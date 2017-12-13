@@ -225,35 +225,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WireSpacingInfo_collapse" aria-expanded="true" aria-controls="WireSpacingInfo_collapse" style="margin-left: 10px;">WireSpacingInfo</a></legend>
-                    <div id="WireSpacingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WireSpacingInfo_collapse" aria-expanded="true" aria-controls="{{id}}_WireSpacingInfo_collapse" style="margin-left: 10px;">WireSpacingInfo</a></legend>
+                    <div id="{{id}}_WireSpacingInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isCable'>isCable: </label><div class='col-sm-8'><input id='isCable' class='form-check-input' type='checkbox'{{#isCable}} checked{{/isCable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseWireCount'>phaseWireCount: </label><div class='col-sm-8'><input id='phaseWireCount' class='form-control' type='text'{{#phaseWireCount}} value='{{phaseWireCount}}'{{/phaseWireCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseWireSpacing'>phaseWireSpacing: </label><div class='col-sm-8'><input id='phaseWireSpacing' class='form-control' type='text'{{#phaseWireSpacing}} value='{{phaseWireSpacing}}'{{/phaseWireSpacing}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='usage'>usage: </label><div class='col-sm-8'><select id='usage' class='form-control'>{{#WireUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireUsageKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DuctBank'>DuctBank: </label><div class='col-sm-8'><input id='DuctBank' class='form-control' type='text'{{#DuctBank}} value='{{DuctBank}}'{{/DuctBank}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Structures'>Structures: </label><div class='col-sm-8'><input id='Structures' class='form-control' type='text'{{#Structures}} value='{{Structures}}_string'{{/Structures}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isCable'>isCable: </label><div class='col-sm-8'><input id='{{id}}_isCable' class='form-check-input' type='checkbox'{{#isCable}} checked{{/isCable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseWireCount'>phaseWireCount: </label><div class='col-sm-8'><input id='{{id}}_phaseWireCount' class='form-control' type='text'{{#phaseWireCount}} value='{{phaseWireCount}}'{{/phaseWireCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseWireSpacing'>phaseWireSpacing: </label><div class='col-sm-8'><input id='{{id}}_phaseWireSpacing' class='form-control' type='text'{{#phaseWireSpacing}} value='{{phaseWireSpacing}}'{{/phaseWireSpacing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_usage'>usage: </label><div class='col-sm-8'><select id='{{id}}_usage' class='form-control'>{{#WireUsageKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireUsageKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DuctBank'>DuctBank: </label><div class='col-sm-8'><input id='{{id}}_DuctBank' class='form-control' type='text'{{#DuctBank}} value='{{DuctBank}}'{{/DuctBank}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Structures'>Structures: </label><div class='col-sm-8'><input id='{{id}}_Structures' class='form-control' type='text'{{#Structures}} value='{{Structures}}_string'{{/Structures}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WireSpacingInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("isCable").checked; if (temp) obj.isCable = true;
-                temp = document.getElementById ("phaseWireCount").value; if ("" != temp) obj.phaseWireCount = temp;
-                temp = document.getElementById ("phaseWireSpacing").value; if ("" != temp) obj.phaseWireSpacing = temp;
-                temp = document.getElementById ("usage").value; if ("" != temp) { temp = WireUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usage = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireUsageKind." + temp; }
-                temp = document.getElementById ("DuctBank").value; if ("" != temp) obj.DuctBank = temp;
-                temp = document.getElementById ("Structures").value; if ("" != temp) obj.Structures = temp.split (",");
+                var obj = obj || { id: id, cls: "WireSpacingInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_isCable").checked; if (temp) obj.isCable = true;
+                temp = document.getElementById (id + "_phaseWireCount").value; if ("" != temp) obj.phaseWireCount = temp;
+                temp = document.getElementById (id + "_phaseWireSpacing").value; if ("" != temp) obj.phaseWireSpacing = temp;
+                temp = document.getElementById (id + "_usage").value; if ("" != temp) { temp = WireUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usage = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireUsageKind." + temp; }
+                temp = document.getElementById (id + "_DuctBank").value; if ("" != temp) obj.DuctBank = temp;
+                temp = document.getElementById (id + "_Structures").value; if ("" != temp) obj.Structures = temp.split (",");
 
                 return (obj);
             }
@@ -393,53 +393,53 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapChangerInfo_collapse" aria-expanded="true" aria-controls="TapChangerInfo_collapse" style="margin-left: 10px;">TapChangerInfo</a></legend>
-                    <div id="TapChangerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapChangerInfo_collapse" aria-expanded="true" aria-controls="{{id}}_TapChangerInfo_collapse" style="margin-left: 10px;">TapChangerInfo</a></legend>
+                    <div id="{{id}}_TapChangerInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bil'>bil: </label><div class='col-sm-8'><input id='bil' class='form-control' type='text'{{#bil}} value='{{bil}}'{{/bil}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ctRating'>ctRating: </label><div class='col-sm-8'><input id='ctRating' class='form-control' type='text'{{#ctRating}} value='{{ctRating}}'{{/ctRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ctRatio'>ctRatio: </label><div class='col-sm-8'><input id='ctRatio' class='form-control' type='text'{{#ctRatio}} value='{{ctRatio}}'{{/ctRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='frequency'>frequency: </label><div class='col-sm-8'><input id='frequency' class='form-control' type='text'{{#frequency}} value='{{frequency}}'{{/frequency}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highStep'>highStep: </label><div class='col-sm-8'><input id='highStep' class='form-control' type='text'{{#highStep}} value='{{highStep}}'{{/highStep}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isTcul'>isTcul: </label><div class='col-sm-8'><input id='isTcul' class='form-check-input' type='checkbox'{{#isTcul}} checked{{/isTcul}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowStep'>lowStep: </label><div class='col-sm-8'><input id='lowStep' class='form-control' type='text'{{#lowStep}} value='{{lowStep}}'{{/lowStep}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStep'>neutralStep: </label><div class='col-sm-8'><input id='neutralStep' class='form-control' type='text'{{#neutralStep}} value='{{neutralStep}}'{{/neutralStep}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralU'>neutralU: </label><div class='col-sm-8'><input id='neutralU' class='form-control' type='text'{{#neutralU}} value='{{neutralU}}'{{/neutralU}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ptRatio'>ptRatio: </label><div class='col-sm-8'><input id='ptRatio' class='form-control' type='text'{{#ptRatio}} value='{{ptRatio}}'{{/ptRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedApparentPower'>ratedApparentPower: </label><div class='col-sm-8'><input id='ratedApparentPower' class='form-control' type='text'{{#ratedApparentPower}} value='{{ratedApparentPower}}'{{/ratedApparentPower}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepPhaseIncrement'>stepPhaseIncrement: </label><div class='col-sm-8'><input id='stepPhaseIncrement' class='form-control' type='text'{{#stepPhaseIncrement}} value='{{stepPhaseIncrement}}'{{/stepPhaseIncrement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stepVoltageIncrement'>stepVoltageIncrement: </label><div class='col-sm-8'><input id='stepVoltageIncrement' class='form-control' type='text'{{#stepVoltageIncrement}} value='{{stepVoltageIncrement}}'{{/stepVoltageIncrement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bil'>bil: </label><div class='col-sm-8'><input id='{{id}}_bil' class='form-control' type='text'{{#bil}} value='{{bil}}'{{/bil}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ctRating'>ctRating: </label><div class='col-sm-8'><input id='{{id}}_ctRating' class='form-control' type='text'{{#ctRating}} value='{{ctRating}}'{{/ctRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ctRatio'>ctRatio: </label><div class='col-sm-8'><input id='{{id}}_ctRatio' class='form-control' type='text'{{#ctRatio}} value='{{ctRatio}}'{{/ctRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequency'>frequency: </label><div class='col-sm-8'><input id='{{id}}_frequency' class='form-control' type='text'{{#frequency}} value='{{frequency}}'{{/frequency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highStep'>highStep: </label><div class='col-sm-8'><input id='{{id}}_highStep' class='form-control' type='text'{{#highStep}} value='{{highStep}}'{{/highStep}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isTcul'>isTcul: </label><div class='col-sm-8'><input id='{{id}}_isTcul' class='form-check-input' type='checkbox'{{#isTcul}} checked{{/isTcul}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowStep'>lowStep: </label><div class='col-sm-8'><input id='{{id}}_lowStep' class='form-control' type='text'{{#lowStep}} value='{{lowStep}}'{{/lowStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStep'>neutralStep: </label><div class='col-sm-8'><input id='{{id}}_neutralStep' class='form-control' type='text'{{#neutralStep}} value='{{neutralStep}}'{{/neutralStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralU'>neutralU: </label><div class='col-sm-8'><input id='{{id}}_neutralU' class='form-control' type='text'{{#neutralU}} value='{{neutralU}}'{{/neutralU}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ptRatio'>ptRatio: </label><div class='col-sm-8'><input id='{{id}}_ptRatio' class='form-control' type='text'{{#ptRatio}} value='{{ptRatio}}'{{/ptRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedApparentPower'>ratedApparentPower: </label><div class='col-sm-8'><input id='{{id}}_ratedApparentPower' class='form-control' type='text'{{#ratedApparentPower}} value='{{ratedApparentPower}}'{{/ratedApparentPower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepPhaseIncrement'>stepPhaseIncrement: </label><div class='col-sm-8'><input id='{{id}}_stepPhaseIncrement' class='form-control' type='text'{{#stepPhaseIncrement}} value='{{stepPhaseIncrement}}'{{/stepPhaseIncrement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stepVoltageIncrement'>stepVoltageIncrement: </label><div class='col-sm-8'><input id='{{id}}_stepVoltageIncrement' class='form-control' type='text'{{#stepVoltageIncrement}} value='{{stepVoltageIncrement}}'{{/stepVoltageIncrement}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TapChangerInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("bil").value; if ("" != temp) obj.bil = temp;
-                temp = document.getElementById ("ctRating").value; if ("" != temp) obj.ctRating = temp;
-                temp = document.getElementById ("ctRatio").value; if ("" != temp) obj.ctRatio = temp;
-                temp = document.getElementById ("frequency").value; if ("" != temp) obj.frequency = temp;
-                temp = document.getElementById ("highStep").value; if ("" != temp) obj.highStep = temp;
-                temp = document.getElementById ("isTcul").checked; if (temp) obj.isTcul = true;
-                temp = document.getElementById ("lowStep").value; if ("" != temp) obj.lowStep = temp;
-                temp = document.getElementById ("neutralStep").value; if ("" != temp) obj.neutralStep = temp;
-                temp = document.getElementById ("neutralU").value; if ("" != temp) obj.neutralU = temp;
-                temp = document.getElementById ("ptRatio").value; if ("" != temp) obj.ptRatio = temp;
-                temp = document.getElementById ("ratedApparentPower").value; if ("" != temp) obj.ratedApparentPower = temp;
-                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
-                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = document.getElementById ("stepPhaseIncrement").value; if ("" != temp) obj.stepPhaseIncrement = temp;
-                temp = document.getElementById ("stepVoltageIncrement").value; if ("" != temp) obj.stepVoltageIncrement = temp;
+                var obj = obj || { id: id, cls: "TapChangerInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_bil").value; if ("" != temp) obj.bil = temp;
+                temp = document.getElementById (id + "_ctRating").value; if ("" != temp) obj.ctRating = temp;
+                temp = document.getElementById (id + "_ctRatio").value; if ("" != temp) obj.ctRatio = temp;
+                temp = document.getElementById (id + "_frequency").value; if ("" != temp) obj.frequency = temp;
+                temp = document.getElementById (id + "_highStep").value; if ("" != temp) obj.highStep = temp;
+                temp = document.getElementById (id + "_isTcul").checked; if (temp) obj.isTcul = true;
+                temp = document.getElementById (id + "_lowStep").value; if ("" != temp) obj.lowStep = temp;
+                temp = document.getElementById (id + "_neutralStep").value; if ("" != temp) obj.neutralStep = temp;
+                temp = document.getElementById (id + "_neutralU").value; if ("" != temp) obj.neutralU = temp;
+                temp = document.getElementById (id + "_ptRatio").value; if ("" != temp) obj.ptRatio = temp;
+                temp = document.getElementById (id + "_ratedApparentPower").value; if ("" != temp) obj.ratedApparentPower = temp;
+                temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById (id + "_stepPhaseIncrement").value; if ("" != temp) obj.stepPhaseIncrement = temp;
+                temp = document.getElementById (id + "_stepVoltageIncrement").value; if ("" != temp) obj.stepVoltageIncrement = temp;
 
                 return (obj);
             }
@@ -530,25 +530,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTankInfo_collapse" aria-expanded="true" aria-controls="TransformerTankInfo_collapse" style="margin-left: 10px;">TransformerTankInfo</a></legend>
-                    <div id="TransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerTankInfo_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerTankInfo_collapse" style="margin-left: 10px;">TransformerTankInfo</a></legend>
+                    <div id="{{id}}_TransformerTankInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PowerTransformerInfo'>PowerTransformerInfo: </label><div class='col-sm-8'><input id='PowerTransformerInfo' class='form-control' type='text'{{#PowerTransformerInfo}} value='{{PowerTransformerInfo}}'{{/PowerTransformerInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PowerTransformerInfo'>PowerTransformerInfo: </label><div class='col-sm-8'><input id='{{id}}_PowerTransformerInfo' class='form-control' type='text'{{#PowerTransformerInfo}} value='{{PowerTransformerInfo}}'{{/PowerTransformerInfo}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TransformerTankInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("PowerTransformerInfo").value; if ("" != temp) obj.PowerTransformerInfo = temp;
+                var obj = obj || { id: id, cls: "TransformerTankInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_PowerTransformerInfo").value; if ("" != temp) obj.PowerTransformerInfo = temp;
 
                 return (obj);
             }
@@ -647,27 +647,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusbarSectionInfo_collapse" aria-expanded="true" aria-controls="BusbarSectionInfo_collapse" style="margin-left: 10px;">BusbarSectionInfo</a></legend>
-                    <div id="BusbarSectionInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusbarSectionInfo_collapse" aria-expanded="true" aria-controls="{{id}}_BusbarSectionInfo_collapse" style="margin-left: 10px;">BusbarSectionInfo</a></legend>
+                    <div id="{{id}}_BusbarSectionInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BusbarSectionInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
-                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                var obj = obj || { id: id, cls: "BusbarSectionInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
 
                 return (obj);
             }
@@ -755,8 +755,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerTransformerInfo_collapse" aria-expanded="true" aria-controls="PowerTransformerInfo_collapse" style="margin-left: 10px;">PowerTransformerInfo</a></legend>
-                    <div id="PowerTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerTransformerInfo_collapse" aria-expanded="true" aria-controls="{{id}}_PowerTransformerInfo_collapse" style="margin-left: 10px;">PowerTransformerInfo</a></legend>
+                    <div id="{{id}}_PowerTransformerInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
@@ -766,10 +766,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "PowerTransformerInfo" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "PowerTransformerInfo" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -915,55 +915,55 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WireInfo_collapse" aria-expanded="true" aria-controls="WireInfo_collapse" style="margin-left: 10px;">WireInfo</a></legend>
-                    <div id="WireInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WireInfo_collapse" aria-expanded="true" aria-controls="{{id}}_WireInfo_collapse" style="margin-left: 10px;">WireInfo</a></legend>
+                    <div id="{{id}}_WireInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreRadius'>coreRadius: </label><div class='col-sm-8'><input id='coreRadius' class='form-control' type='text'{{#coreRadius}} value='{{coreRadius}}'{{/coreRadius}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coreStrandCount'>coreStrandCount: </label><div class='col-sm-8'><input id='coreStrandCount' class='form-control' type='text'{{#coreStrandCount}} value='{{coreStrandCount}}'{{/coreStrandCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gmr'>gmr: </label><div class='col-sm-8'><input id='gmr' class='form-control' type='text'{{#gmr}} value='{{gmr}}'{{/gmr}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='insulated'>insulated: </label><div class='col-sm-8'><input id='insulated' class='form-check-input' type='checkbox'{{#insulated}} checked{{/insulated}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationMaterial'>insulationMaterial: </label><div class='col-sm-8'><select id='insulationMaterial' class='form-control'>{{#WireInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireInsulationKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationThickness'>insulationThickness: </label><div class='col-sm-8'><input id='insulationThickness' class='form-control' type='text'{{#insulationThickness}} value='{{insulationThickness}}'{{/insulationThickness}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='material'>material: </label><div class='col-sm-8'><select id='material' class='form-control'>{{#WireMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireMaterialKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rAC25'>rAC25: </label><div class='col-sm-8'><input id='rAC25' class='form-control' type='text'{{#rAC25}} value='{{rAC25}}'{{/rAC25}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rAC50'>rAC50: </label><div class='col-sm-8'><input id='rAC50' class='form-control' type='text'{{#rAC50}} value='{{rAC50}}'{{/rAC50}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rAC75'>rAC75: </label><div class='col-sm-8'><input id='rAC75' class='form-control' type='text'{{#rAC75}} value='{{rAC75}}'{{/rAC75}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='radius'>radius: </label><div class='col-sm-8'><input id='radius' class='form-control' type='text'{{#radius}} value='{{radius}}'{{/radius}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rDC20'>rDC20: </label><div class='col-sm-8'><input id='rDC20' class='form-control' type='text'{{#rDC20}} value='{{rDC20}}'{{/rDC20}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sizeDescription'>sizeDescription: </label><div class='col-sm-8'><input id='sizeDescription' class='form-control' type='text'{{#sizeDescription}} value='{{sizeDescription}}'{{/sizeDescription}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='strandCount'>strandCount: </label><div class='col-sm-8'><input id='strandCount' class='form-control' type='text'{{#strandCount}} value='{{strandCount}}'{{/strandCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PerLengthParameters'>PerLengthParameters: </label><div class='col-sm-8'><input id='PerLengthParameters' class='form-control' type='text'{{#PerLengthParameters}} value='{{PerLengthParameters}}_string'{{/PerLengthParameters}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreRadius'>coreRadius: </label><div class='col-sm-8'><input id='{{id}}_coreRadius' class='form-control' type='text'{{#coreRadius}} value='{{coreRadius}}'{{/coreRadius}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coreStrandCount'>coreStrandCount: </label><div class='col-sm-8'><input id='{{id}}_coreStrandCount' class='form-control' type='text'{{#coreStrandCount}} value='{{coreStrandCount}}'{{/coreStrandCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gmr'>gmr: </label><div class='col-sm-8'><input id='{{id}}_gmr' class='form-control' type='text'{{#gmr}} value='{{gmr}}'{{/gmr}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_insulated'>insulated: </label><div class='col-sm-8'><input id='{{id}}_insulated' class='form-check-input' type='checkbox'{{#insulated}} checked{{/insulated}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationMaterial'>insulationMaterial: </label><div class='col-sm-8'><select id='{{id}}_insulationMaterial' class='form-control'>{{#WireInsulationKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireInsulationKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationThickness'>insulationThickness: </label><div class='col-sm-8'><input id='{{id}}_insulationThickness' class='form-control' type='text'{{#insulationThickness}} value='{{insulationThickness}}'{{/insulationThickness}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_material'>material: </label><div class='col-sm-8'><select id='{{id}}_material' class='form-control'>{{#WireMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/WireMaterialKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rAC25'>rAC25: </label><div class='col-sm-8'><input id='{{id}}_rAC25' class='form-control' type='text'{{#rAC25}} value='{{rAC25}}'{{/rAC25}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rAC50'>rAC50: </label><div class='col-sm-8'><input id='{{id}}_rAC50' class='form-control' type='text'{{#rAC50}} value='{{rAC50}}'{{/rAC50}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rAC75'>rAC75: </label><div class='col-sm-8'><input id='{{id}}_rAC75' class='form-control' type='text'{{#rAC75}} value='{{rAC75}}'{{/rAC75}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_radius'>radius: </label><div class='col-sm-8'><input id='{{id}}_radius' class='form-control' type='text'{{#radius}} value='{{radius}}'{{/radius}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rDC20'>rDC20: </label><div class='col-sm-8'><input id='{{id}}_rDC20' class='form-control' type='text'{{#rDC20}} value='{{rDC20}}'{{/rDC20}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sizeDescription'>sizeDescription: </label><div class='col-sm-8'><input id='{{id}}_sizeDescription' class='form-control' type='text'{{#sizeDescription}} value='{{sizeDescription}}'{{/sizeDescription}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_strandCount'>strandCount: </label><div class='col-sm-8'><input id='{{id}}_strandCount' class='form-control' type='text'{{#strandCount}} value='{{strandCount}}'{{/strandCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PerLengthParameters'>PerLengthParameters: </label><div class='col-sm-8'><input id='{{id}}_PerLengthParameters' class='form-control' type='text'{{#PerLengthParameters}} value='{{PerLengthParameters}}_string'{{/PerLengthParameters}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WireInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("coreRadius").value; if ("" != temp) obj.coreRadius = temp;
-                temp = document.getElementById ("coreStrandCount").value; if ("" != temp) obj.coreStrandCount = temp;
-                temp = document.getElementById ("gmr").value; if ("" != temp) obj.gmr = temp;
-                temp = document.getElementById ("insulated").checked; if (temp) obj.insulated = true;
-                temp = document.getElementById ("insulationMaterial").value; if ("" != temp) { temp = WireInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.insulationMaterial = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireInsulationKind." + temp; }
-                temp = document.getElementById ("insulationThickness").value; if ("" != temp) obj.insulationThickness = temp;
-                temp = document.getElementById ("material").value; if ("" != temp) { temp = WireMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.material = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireMaterialKind." + temp; }
-                temp = document.getElementById ("rAC25").value; if ("" != temp) obj.rAC25 = temp;
-                temp = document.getElementById ("rAC50").value; if ("" != temp) obj.rAC50 = temp;
-                temp = document.getElementById ("rAC75").value; if ("" != temp) obj.rAC75 = temp;
-                temp = document.getElementById ("radius").value; if ("" != temp) obj.radius = temp;
-                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
-                temp = document.getElementById ("rDC20").value; if ("" != temp) obj.rDC20 = temp;
-                temp = document.getElementById ("sizeDescription").value; if ("" != temp) obj.sizeDescription = temp;
-                temp = document.getElementById ("strandCount").value; if ("" != temp) obj.strandCount = temp;
-                temp = document.getElementById ("PerLengthParameters").value; if ("" != temp) obj.PerLengthParameters = temp.split (",");
+                var obj = obj || { id: id, cls: "WireInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_coreRadius").value; if ("" != temp) obj.coreRadius = temp;
+                temp = document.getElementById (id + "_coreStrandCount").value; if ("" != temp) obj.coreStrandCount = temp;
+                temp = document.getElementById (id + "_gmr").value; if ("" != temp) obj.gmr = temp;
+                temp = document.getElementById (id + "_insulated").checked; if (temp) obj.insulated = true;
+                temp = document.getElementById (id + "_insulationMaterial").value; if ("" != temp) { temp = WireInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.insulationMaterial = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireInsulationKind." + temp; }
+                temp = document.getElementById (id + "_insulationThickness").value; if ("" != temp) obj.insulationThickness = temp;
+                temp = document.getElementById (id + "_material").value; if ("" != temp) { temp = WireMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.material = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireMaterialKind." + temp; }
+                temp = document.getElementById (id + "_rAC25").value; if ("" != temp) obj.rAC25 = temp;
+                temp = document.getElementById (id + "_rAC50").value; if ("" != temp) obj.rAC50 = temp;
+                temp = document.getElementById (id + "_rAC75").value; if ("" != temp) obj.rAC75 = temp;
+                temp = document.getElementById (id + "_radius").value; if ("" != temp) obj.radius = temp;
+                temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById (id + "_rDC20").value; if ("" != temp) obj.rDC20 = temp;
+                temp = document.getElementById (id + "_sizeDescription").value; if ("" != temp) obj.sizeDescription = temp;
+                temp = document.getElementById (id + "_strandCount").value; if ("" != temp) obj.strandCount = temp;
+                temp = document.getElementById (id + "_PerLengthParameters").value; if ("" != temp) obj.PerLengthParameters = temp.split (",");
 
                 return (obj);
             }
@@ -1070,33 +1070,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorInfo_collapse" aria-expanded="true" aria-controls="ShuntCompensatorInfo_collapse" style="margin-left: 10px;">ShuntCompensatorInfo</a></legend>
-                    <div id="ShuntCompensatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShuntCompensatorInfo_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensatorInfo_collapse" style="margin-left: 10px;">ShuntCompensatorInfo</a></legend>
+                    <div id="{{id}}_ShuntCompensatorInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxPowerLoss'>maxPowerLoss: </label><div class='col-sm-8'><input id='maxPowerLoss' class='form-control' type='text'{{#maxPowerLoss}} value='{{maxPowerLoss}}'{{/maxPowerLoss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedReactivePower'>ratedReactivePower: </label><div class='col-sm-8'><input id='ratedReactivePower' class='form-control' type='text'{{#ratedReactivePower}} value='{{ratedReactivePower}}'{{/ratedReactivePower}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ShuntCompensatorControl'>ShuntCompensatorControl: </label><div class='col-sm-8'><input id='ShuntCompensatorControl' class='form-control' type='text'{{#ShuntCompensatorControl}} value='{{ShuntCompensatorControl}}'{{/ShuntCompensatorControl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxPowerLoss'>maxPowerLoss: </label><div class='col-sm-8'><input id='{{id}}_maxPowerLoss' class='form-control' type='text'{{#maxPowerLoss}} value='{{maxPowerLoss}}'{{/maxPowerLoss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedReactivePower'>ratedReactivePower: </label><div class='col-sm-8'><input id='{{id}}_ratedReactivePower' class='form-control' type='text'{{#ratedReactivePower}} value='{{ratedReactivePower}}'{{/ratedReactivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensatorControl'>ShuntCompensatorControl: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensatorControl' class='form-control' type='text'{{#ShuntCompensatorControl}} value='{{ShuntCompensatorControl}}'{{/ShuntCompensatorControl}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ShuntCompensatorInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("maxPowerLoss").value; if ("" != temp) obj.maxPowerLoss = temp;
-                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
-                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = document.getElementById ("ratedReactivePower").value; if ("" != temp) obj.ratedReactivePower = temp;
-                temp = document.getElementById ("ShuntCompensatorControl").value; if ("" != temp) obj.ShuntCompensatorControl = temp;
+                var obj = obj || { id: id, cls: "ShuntCompensatorInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_maxPowerLoss").value; if ("" != temp) obj.maxPowerLoss = temp;
+                temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById (id + "_ratedReactivePower").value; if ("" != temp) obj.ratedReactivePower = temp;
+                temp = document.getElementById (id + "_ShuntCompensatorControl").value; if ("" != temp) obj.ShuntCompensatorControl = temp;
 
                 return (obj);
             }
@@ -1203,33 +1203,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SwitchInfo_collapse" aria-expanded="true" aria-controls="SwitchInfo_collapse" style="margin-left: 10px;">SwitchInfo</a></legend>
-                    <div id="SwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SwitchInfo_collapse" aria-expanded="true" aria-controls="{{id}}_SwitchInfo_collapse" style="margin-left: 10px;">SwitchInfo</a></legend>
+                    <div id="{{id}}_SwitchInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='breakingCapacity'>breakingCapacity: </label><div class='col-sm-8'><input id='breakingCapacity' class='form-control' type='text'{{#breakingCapacity}} value='{{breakingCapacity}}'{{/breakingCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isSinglePhase'>isSinglePhase: </label><div class='col-sm-8'><input id='isSinglePhase' class='form-check-input' type='checkbox'{{#isSinglePhase}} checked{{/isSinglePhase}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isUnganged'>isUnganged: </label><div class='col-sm-8'><input id='isUnganged' class='form-check-input' type='checkbox'{{#isUnganged}} checked{{/isUnganged}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_breakingCapacity'>breakingCapacity: </label><div class='col-sm-8'><input id='{{id}}_breakingCapacity' class='form-control' type='text'{{#breakingCapacity}} value='{{breakingCapacity}}'{{/breakingCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedCurrent'>ratedCurrent: </label><div class='col-sm-8'><input id='{{id}}_ratedCurrent' class='form-control' type='text'{{#ratedCurrent}} value='{{ratedCurrent}}'{{/ratedCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedVoltage'>ratedVoltage: </label><div class='col-sm-8'><input id='{{id}}_ratedVoltage' class='form-control' type='text'{{#ratedVoltage}} value='{{ratedVoltage}}'{{/ratedVoltage}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isSinglePhase'>isSinglePhase: </label><div class='col-sm-8'><input id='{{id}}_isSinglePhase' class='form-check-input' type='checkbox'{{#isSinglePhase}} checked{{/isSinglePhase}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isUnganged'>isUnganged: </label><div class='col-sm-8'><input id='{{id}}_isUnganged' class='form-check-input' type='checkbox'{{#isUnganged}} checked{{/isUnganged}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SwitchInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("breakingCapacity").value; if ("" != temp) obj.breakingCapacity = temp;
-                temp = document.getElementById ("ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
-                temp = document.getElementById ("ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
-                temp = document.getElementById ("isSinglePhase").checked; if (temp) obj.isSinglePhase = true;
-                temp = document.getElementById ("isUnganged").checked; if (temp) obj.isUnganged = true;
+                var obj = obj || { id: id, cls: "SwitchInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_breakingCapacity").value; if ("" != temp) obj.breakingCapacity = temp;
+                temp = document.getElementById (id + "_ratedCurrent").value; if ("" != temp) obj.ratedCurrent = temp;
+                temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
+                temp = document.getElementById (id + "_isSinglePhase").checked; if (temp) obj.isSinglePhase = true;
+                temp = document.getElementById (id + "_isUnganged").checked; if (temp) obj.isUnganged = true;
 
                 return (obj);
             }
@@ -1324,31 +1324,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WirePosition_collapse" aria-expanded="true" aria-controls="WirePosition_collapse" style="margin-left: 10px;">WirePosition</a></legend>
-                    <div id="WirePosition_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WirePosition_collapse" aria-expanded="true" aria-controls="{{id}}_WirePosition_collapse" style="margin-left: 10px;">WirePosition</a></legend>
+                    <div id="{{id}}_WirePosition_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phase'>phase: </label><div class='col-sm-8'><input id='phase' class='form-control' type='text'{{#phase}} value='{{phase}}'{{/phase}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xCoord'>xCoord: </label><div class='col-sm-8'><input id='xCoord' class='form-control' type='text'{{#xCoord}} value='{{xCoord}}'{{/xCoord}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='yCoord'>yCoord: </label><div class='col-sm-8'><input id='yCoord' class='form-control' type='text'{{#yCoord}} value='{{yCoord}}'{{/yCoord}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WireSpacingInfo'>WireSpacingInfo: </label><div class='col-sm-8'><input id='WireSpacingInfo' class='form-control' type='text'{{#WireSpacingInfo}} value='{{WireSpacingInfo}}'{{/WireSpacingInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phase'>phase: </label><div class='col-sm-8'><input id='{{id}}_phase' class='form-control' type='text'{{#phase}} value='{{phase}}'{{/phase}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xCoord'>xCoord: </label><div class='col-sm-8'><input id='{{id}}_xCoord' class='form-control' type='text'{{#xCoord}} value='{{xCoord}}'{{/xCoord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_yCoord'>yCoord: </label><div class='col-sm-8'><input id='{{id}}_yCoord' class='form-control' type='text'{{#yCoord}} value='{{yCoord}}'{{/yCoord}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WireSpacingInfo'>WireSpacingInfo: </label><div class='col-sm-8'><input id='{{id}}_WireSpacingInfo' class='form-control' type='text'{{#WireSpacingInfo}} value='{{WireSpacingInfo}}'{{/WireSpacingInfo}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WirePosition" };
-                super.submit (obj);
-                temp = document.getElementById ("phase").value; if ("" != temp) obj.phase = temp;
-                temp = document.getElementById ("xCoord").value; if ("" != temp) obj.xCoord = temp;
-                temp = document.getElementById ("yCoord").value; if ("" != temp) obj.yCoord = temp;
-                temp = document.getElementById ("WireSpacingInfo").value; if ("" != temp) obj.WireSpacingInfo = temp;
+                var obj = obj || { id: id, cls: "WirePosition" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_phase").value; if ("" != temp) obj.phase = temp;
+                temp = document.getElementById (id + "_xCoord").value; if ("" != temp) obj.xCoord = temp;
+                temp = document.getElementById (id + "_yCoord").value; if ("" != temp) obj.yCoord = temp;
+                temp = document.getElementById (id + "_WireSpacingInfo").value; if ("" != temp) obj.WireSpacingInfo = temp;
 
                 return (obj);
             }
@@ -1511,51 +1511,51 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerEndInfo_collapse" aria-expanded="true" aria-controls="TransformerEndInfo_collapse" style="margin-left: 10px;">TransformerEndInfo</a></legend>
-                    <div id="TransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerEndInfo_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerEndInfo_collapse" style="margin-left: 10px;">TransformerEndInfo</a></legend>
+                    <div id="{{id}}_TransformerEndInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Assets.AssetInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='connectionKind'>connectionKind: </label><div class='col-sm-8'><input id='connectionKind' class='form-control' type='text'{{#connectionKind}} value='{{connectionKind}}'{{/connectionKind}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyS'>emergencyS: </label><div class='col-sm-8'><input id='emergencyS' class='form-control' type='text'{{#emergencyS}} value='{{emergencyS}}'{{/emergencyS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endNumber'>endNumber: </label><div class='col-sm-8'><input id='endNumber' class='form-control' type='text'{{#endNumber}} value='{{endNumber}}'{{/endNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='insulationU'>insulationU: </label><div class='col-sm-8'><input id='insulationU' class='form-control' type='text'{{#insulationU}} value='{{insulationU}}'{{/insulationU}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseAngleClock'>phaseAngleClock: </label><div class='col-sm-8'><input id='phaseAngleClock' class='form-control' type='text'{{#phaseAngleClock}} value='{{phaseAngleClock}}'{{/phaseAngleClock}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedS'>ratedS: </label><div class='col-sm-8'><input id='ratedS' class='form-control' type='text'{{#ratedS}} value='{{ratedS}}'{{/ratedS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ratedU'>ratedU: </label><div class='col-sm-8'><input id='ratedU' class='form-control' type='text'{{#ratedU}} value='{{ratedU}}'{{/ratedU}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shortTermS'>shortTermS: </label><div class='col-sm-8'><input id='shortTermS' class='form-control' type='text'{{#shortTermS}} value='{{shortTermS}}'{{/shortTermS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ToMeshImpedances'>ToMeshImpedances: </label><div class='col-sm-8'><input id='ToMeshImpedances' class='form-control' type='text'{{#ToMeshImpedances}} value='{{ToMeshImpedances}}_string'{{/ToMeshImpedances}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GroundedEndShortCircuitTests'>GroundedEndShortCircuitTests: </label><div class='col-sm-8'><input id='GroundedEndShortCircuitTests' class='form-control' type='text'{{#GroundedEndShortCircuitTests}} value='{{GroundedEndShortCircuitTests}}_string'{{/GroundedEndShortCircuitTests}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerStarImpedance'>TransformerStarImpedance: </label><div class='col-sm-8'><input id='TransformerStarImpedance' class='form-control' type='text'{{#TransformerStarImpedance}} value='{{TransformerStarImpedance}}'{{/TransformerStarImpedance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransformerTankInfo'>TransformerTankInfo: </label><div class='col-sm-8'><input id='TransformerTankInfo' class='form-control' type='text'{{#TransformerTankInfo}} value='{{TransformerTankInfo}}'{{/TransformerTankInfo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CoreAdmittance'>CoreAdmittance: </label><div class='col-sm-8'><input id='CoreAdmittance' class='form-control' type='text'{{#CoreAdmittance}} value='{{CoreAdmittance}}'{{/CoreAdmittance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_connectionKind'>connectionKind: </label><div class='col-sm-8'><input id='{{id}}_connectionKind' class='form-control' type='text'{{#connectionKind}} value='{{connectionKind}}'{{/connectionKind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emergencyS'>emergencyS: </label><div class='col-sm-8'><input id='{{id}}_emergencyS' class='form-control' type='text'{{#emergencyS}} value='{{emergencyS}}'{{/emergencyS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endNumber'>endNumber: </label><div class='col-sm-8'><input id='{{id}}_endNumber' class='form-control' type='text'{{#endNumber}} value='{{endNumber}}'{{/endNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_insulationU'>insulationU: </label><div class='col-sm-8'><input id='{{id}}_insulationU' class='form-control' type='text'{{#insulationU}} value='{{insulationU}}'{{/insulationU}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseAngleClock'>phaseAngleClock: </label><div class='col-sm-8'><input id='{{id}}_phaseAngleClock' class='form-control' type='text'{{#phaseAngleClock}} value='{{phaseAngleClock}}'{{/phaseAngleClock}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedS'>ratedS: </label><div class='col-sm-8'><input id='{{id}}_ratedS' class='form-control' type='text'{{#ratedS}} value='{{ratedS}}'{{/ratedS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ratedU'>ratedU: </label><div class='col-sm-8'><input id='{{id}}_ratedU' class='form-control' type='text'{{#ratedU}} value='{{ratedU}}'{{/ratedU}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shortTermS'>shortTermS: </label><div class='col-sm-8'><input id='{{id}}_shortTermS' class='form-control' type='text'{{#shortTermS}} value='{{shortTermS}}'{{/shortTermS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ToMeshImpedances'>ToMeshImpedances: </label><div class='col-sm-8'><input id='{{id}}_ToMeshImpedances' class='form-control' type='text'{{#ToMeshImpedances}} value='{{ToMeshImpedances}}_string'{{/ToMeshImpedances}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GroundedEndShortCircuitTests'>GroundedEndShortCircuitTests: </label><div class='col-sm-8'><input id='{{id}}_GroundedEndShortCircuitTests' class='form-control' type='text'{{#GroundedEndShortCircuitTests}} value='{{GroundedEndShortCircuitTests}}_string'{{/GroundedEndShortCircuitTests}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerStarImpedance'>TransformerStarImpedance: </label><div class='col-sm-8'><input id='{{id}}_TransformerStarImpedance' class='form-control' type='text'{{#TransformerStarImpedance}} value='{{TransformerStarImpedance}}'{{/TransformerStarImpedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransformerTankInfo'>TransformerTankInfo: </label><div class='col-sm-8'><input id='{{id}}_TransformerTankInfo' class='form-control' type='text'{{#TransformerTankInfo}} value='{{TransformerTankInfo}}'{{/TransformerTankInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CoreAdmittance'>CoreAdmittance: </label><div class='col-sm-8'><input id='{{id}}_CoreAdmittance' class='form-control' type='text'{{#CoreAdmittance}} value='{{CoreAdmittance}}'{{/CoreAdmittance}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TransformerEndInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("connectionKind").value; if ("" != temp) obj.connectionKind = temp;
-                temp = document.getElementById ("emergencyS").value; if ("" != temp) obj.emergencyS = temp;
-                temp = document.getElementById ("endNumber").value; if ("" != temp) obj.endNumber = temp;
-                temp = document.getElementById ("insulationU").value; if ("" != temp) obj.insulationU = temp;
-                temp = document.getElementById ("phaseAngleClock").value; if ("" != temp) obj.phaseAngleClock = temp;
-                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
-                temp = document.getElementById ("ratedS").value; if ("" != temp) obj.ratedS = temp;
-                temp = document.getElementById ("ratedU").value; if ("" != temp) obj.ratedU = temp;
-                temp = document.getElementById ("shortTermS").value; if ("" != temp) obj.shortTermS = temp;
-                temp = document.getElementById ("ToMeshImpedances").value; if ("" != temp) obj.ToMeshImpedances = temp.split (",");
-                temp = document.getElementById ("GroundedEndShortCircuitTests").value; if ("" != temp) obj.GroundedEndShortCircuitTests = temp.split (",");
-                temp = document.getElementById ("TransformerStarImpedance").value; if ("" != temp) obj.TransformerStarImpedance = temp;
-                temp = document.getElementById ("TransformerTankInfo").value; if ("" != temp) obj.TransformerTankInfo = temp;
-                temp = document.getElementById ("CoreAdmittance").value; if ("" != temp) obj.CoreAdmittance = temp;
+                var obj = obj || { id: id, cls: "TransformerEndInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_connectionKind").value; if ("" != temp) obj.connectionKind = temp;
+                temp = document.getElementById (id + "_emergencyS").value; if ("" != temp) obj.emergencyS = temp;
+                temp = document.getElementById (id + "_endNumber").value; if ("" != temp) obj.endNumber = temp;
+                temp = document.getElementById (id + "_insulationU").value; if ("" != temp) obj.insulationU = temp;
+                temp = document.getElementById (id + "_phaseAngleClock").value; if ("" != temp) obj.phaseAngleClock = temp;
+                temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById (id + "_ratedS").value; if ("" != temp) obj.ratedS = temp;
+                temp = document.getElementById (id + "_ratedU").value; if ("" != temp) obj.ratedU = temp;
+                temp = document.getElementById (id + "_shortTermS").value; if ("" != temp) obj.shortTermS = temp;
+                temp = document.getElementById (id + "_ToMeshImpedances").value; if ("" != temp) obj.ToMeshImpedances = temp.split (",");
+                temp = document.getElementById (id + "_GroundedEndShortCircuitTests").value; if ("" != temp) obj.GroundedEndShortCircuitTests = temp.split (",");
+                temp = document.getElementById (id + "_TransformerStarImpedance").value; if ("" != temp) obj.TransformerStarImpedance = temp;
+                temp = document.getElementById (id + "_TransformerTankInfo").value; if ("" != temp) obj.TransformerTankInfo = temp;
+                temp = document.getElementById (id + "_CoreAdmittance").value; if ("" != temp) obj.CoreAdmittance = temp;
 
                 return (obj);
             }
@@ -1662,27 +1662,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransformerTest_collapse" aria-expanded="true" aria-controls="TransformerTest_collapse" style="margin-left: 10px;">TransformerTest</a></legend>
-                    <div id="TransformerTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransformerTest_collapse" aria-expanded="true" aria-controls="{{id}}_TransformerTest_collapse" style="margin-left: 10px;">TransformerTest</a></legend>
+                    <div id="{{id}}_TransformerTest_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='basePower'>basePower: </label><div class='col-sm-8'><input id='basePower' class='form-control' type='text'{{#basePower}} value='{{basePower}}'{{/basePower}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='temperature'>temperature: </label><div class='col-sm-8'><input id='temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_basePower'>basePower: </label><div class='col-sm-8'><input id='{{id}}_basePower' class='form-control' type='text'{{#basePower}} value='{{basePower}}'{{/basePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_temperature'>temperature: </label><div class='col-sm-8'><input id='{{id}}_temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TransformerTest" };
-                super.submit (obj);
-                temp = document.getElementById ("basePower").value; if ("" != temp) obj.basePower = temp;
-                temp = document.getElementById ("temperature").value; if ("" != temp) obj.temperature = temp;
+                var obj = obj || { id: id, cls: "TransformerTest" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_basePower").value; if ("" != temp) obj.basePower = temp;
+                temp = document.getElementById (id + "_temperature").value; if ("" != temp) obj.temperature = temp;
 
                 return (obj);
             }
@@ -1801,43 +1801,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CableInfo_collapse" aria-expanded="true" aria-controls="CableInfo_collapse" style="margin-left: 10px;">CableInfo</a></legend>
-                    <div id="CableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CableInfo_collapse" aria-expanded="true" aria-controls="{{id}}_CableInfo_collapse" style="margin-left: 10px;">CableInfo</a></legend>
+                    <div id="{{id}}_CableInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WireInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='constructionKind' class='form-control'>{{#CableConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableConstructionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverCore'>diameterOverCore: </label><div class='col-sm-8'><input id='diameterOverCore' class='form-control' type='text'{{#diameterOverCore}} value='{{diameterOverCore}}'{{/diameterOverCore}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverInsulation'>diameterOverInsulation: </label><div class='col-sm-8'><input id='diameterOverInsulation' class='form-control' type='text'{{#diameterOverInsulation}} value='{{diameterOverInsulation}}'{{/diameterOverInsulation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverJacket'>diameterOverJacket: </label><div class='col-sm-8'><input id='diameterOverJacket' class='form-control' type='text'{{#diameterOverJacket}} value='{{diameterOverJacket}}'{{/diameterOverJacket}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverScreen'>diameterOverScreen: </label><div class='col-sm-8'><input id='diameterOverScreen' class='form-control' type='text'{{#diameterOverScreen}} value='{{diameterOverScreen}}'{{/diameterOverScreen}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isStrandFill'>isStrandFill: </label><div class='col-sm-8'><input id='isStrandFill' class='form-check-input' type='checkbox'{{#isStrandFill}} checked{{/isStrandFill}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nominalTemperature'>nominalTemperature: </label><div class='col-sm-8'><input id='nominalTemperature' class='form-control' type='text'{{#nominalTemperature}} value='{{nominalTemperature}}'{{/nominalTemperature}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='outerJacketKind'>outerJacketKind: </label><div class='col-sm-8'><select id='outerJacketKind' class='form-control'>{{#CableOuterJacketKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableOuterJacketKind}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='sheathAsNeutral'>sheathAsNeutral: </label><div class='col-sm-8'><input id='sheathAsNeutral' class='form-check-input' type='checkbox'{{#sheathAsNeutral}} checked{{/sheathAsNeutral}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shieldMaterial'>shieldMaterial: </label><div class='col-sm-8'><select id='shieldMaterial' class='form-control'>{{#CableShieldMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableShieldMaterialKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constructionKind'>constructionKind: </label><div class='col-sm-8'><select id='{{id}}_constructionKind' class='form-control'>{{#CableConstructionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableConstructionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverCore'>diameterOverCore: </label><div class='col-sm-8'><input id='{{id}}_diameterOverCore' class='form-control' type='text'{{#diameterOverCore}} value='{{diameterOverCore}}'{{/diameterOverCore}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverInsulation'>diameterOverInsulation: </label><div class='col-sm-8'><input id='{{id}}_diameterOverInsulation' class='form-control' type='text'{{#diameterOverInsulation}} value='{{diameterOverInsulation}}'{{/diameterOverInsulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverJacket'>diameterOverJacket: </label><div class='col-sm-8'><input id='{{id}}_diameterOverJacket' class='form-control' type='text'{{#diameterOverJacket}} value='{{diameterOverJacket}}'{{/diameterOverJacket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverScreen'>diameterOverScreen: </label><div class='col-sm-8'><input id='{{id}}_diameterOverScreen' class='form-control' type='text'{{#diameterOverScreen}} value='{{diameterOverScreen}}'{{/diameterOverScreen}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isStrandFill'>isStrandFill: </label><div class='col-sm-8'><input id='{{id}}_isStrandFill' class='form-check-input' type='checkbox'{{#isStrandFill}} checked{{/isStrandFill}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nominalTemperature'>nominalTemperature: </label><div class='col-sm-8'><input id='{{id}}_nominalTemperature' class='form-control' type='text'{{#nominalTemperature}} value='{{nominalTemperature}}'{{/nominalTemperature}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outerJacketKind'>outerJacketKind: </label><div class='col-sm-8'><select id='{{id}}_outerJacketKind' class='form-control'>{{#CableOuterJacketKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableOuterJacketKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_sheathAsNeutral'>sheathAsNeutral: </label><div class='col-sm-8'><input id='{{id}}_sheathAsNeutral' class='form-check-input' type='checkbox'{{#sheathAsNeutral}} checked{{/sheathAsNeutral}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shieldMaterial'>shieldMaterial: </label><div class='col-sm-8'><select id='{{id}}_shieldMaterial' class='form-control'>{{#CableShieldMaterialKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CableShieldMaterialKind}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CableInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("constructionKind").value; if ("" != temp) { temp = CableConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableConstructionKind." + temp; }
-                temp = document.getElementById ("diameterOverCore").value; if ("" != temp) obj.diameterOverCore = temp;
-                temp = document.getElementById ("diameterOverInsulation").value; if ("" != temp) obj.diameterOverInsulation = temp;
-                temp = document.getElementById ("diameterOverJacket").value; if ("" != temp) obj.diameterOverJacket = temp;
-                temp = document.getElementById ("diameterOverScreen").value; if ("" != temp) obj.diameterOverScreen = temp;
-                temp = document.getElementById ("isStrandFill").checked; if (temp) obj.isStrandFill = true;
-                temp = document.getElementById ("nominalTemperature").value; if ("" != temp) obj.nominalTemperature = temp;
-                temp = document.getElementById ("outerJacketKind").value; if ("" != temp) { temp = CableOuterJacketKind[temp]; if ("undefined" != typeof (temp)) obj.outerJacketKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableOuterJacketKind." + temp; }
-                temp = document.getElementById ("sheathAsNeutral").checked; if (temp) obj.sheathAsNeutral = true;
-                temp = document.getElementById ("shieldMaterial").value; if ("" != temp) { temp = CableShieldMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.shieldMaterial = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableShieldMaterialKind." + temp; }
+                var obj = obj || { id: id, cls: "CableInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = CableConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableConstructionKind." + temp; }
+                temp = document.getElementById (id + "_diameterOverCore").value; if ("" != temp) obj.diameterOverCore = temp;
+                temp = document.getElementById (id + "_diameterOverInsulation").value; if ("" != temp) obj.diameterOverInsulation = temp;
+                temp = document.getElementById (id + "_diameterOverJacket").value; if ("" != temp) obj.diameterOverJacket = temp;
+                temp = document.getElementById (id + "_diameterOverScreen").value; if ("" != temp) obj.diameterOverScreen = temp;
+                temp = document.getElementById (id + "_isStrandFill").checked; if (temp) obj.isStrandFill = true;
+                temp = document.getElementById (id + "_nominalTemperature").value; if ("" != temp) obj.nominalTemperature = temp;
+                temp = document.getElementById (id + "_outerJacketKind").value; if ("" != temp) { temp = CableOuterJacketKind[temp]; if ("undefined" != typeof (temp)) obj.outerJacketKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableOuterJacketKind." + temp; }
+                temp = document.getElementById (id + "_sheathAsNeutral").checked; if (temp) obj.sheathAsNeutral = true;
+                temp = document.getElementById (id + "_shieldMaterial").value; if ("" != temp) { temp = CableShieldMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.shieldMaterial = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableShieldMaterialKind." + temp; }
 
                 return (obj);
             }
@@ -1935,33 +1935,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConcentricNeutralCableInfo_collapse" aria-expanded="true" aria-controls="ConcentricNeutralCableInfo_collapse" style="margin-left: 10px;">ConcentricNeutralCableInfo</a></legend>
-                    <div id="ConcentricNeutralCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConcentricNeutralCableInfo_collapse" aria-expanded="true" aria-controls="{{id}}_ConcentricNeutralCableInfo_collapse" style="margin-left: 10px;">ConcentricNeutralCableInfo</a></legend>
+                    <div id="{{id}}_ConcentricNeutralCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + CableInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='diameterOverNeutral'>diameterOverNeutral: </label><div class='col-sm-8'><input id='diameterOverNeutral' class='form-control' type='text'{{#diameterOverNeutral}} value='{{diameterOverNeutral}}'{{/diameterOverNeutral}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStrandCount'>neutralStrandCount: </label><div class='col-sm-8'><input id='neutralStrandCount' class='form-control' type='text'{{#neutralStrandCount}} value='{{neutralStrandCount}}'{{/neutralStrandCount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStrandGmr'>neutralStrandGmr: </label><div class='col-sm-8'><input id='neutralStrandGmr' class='form-control' type='text'{{#neutralStrandGmr}} value='{{neutralStrandGmr}}'{{/neutralStrandGmr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStrandRadius'>neutralStrandRadius: </label><div class='col-sm-8'><input id='neutralStrandRadius' class='form-control' type='text'{{#neutralStrandRadius}} value='{{neutralStrandRadius}}'{{/neutralStrandRadius}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='neutralStrandRDC20'>neutralStrandRDC20: </label><div class='col-sm-8'><input id='neutralStrandRDC20' class='form-control' type='text'{{#neutralStrandRDC20}} value='{{neutralStrandRDC20}}'{{/neutralStrandRDC20}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_diameterOverNeutral'>diameterOverNeutral: </label><div class='col-sm-8'><input id='{{id}}_diameterOverNeutral' class='form-control' type='text'{{#diameterOverNeutral}} value='{{diameterOverNeutral}}'{{/diameterOverNeutral}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStrandCount'>neutralStrandCount: </label><div class='col-sm-8'><input id='{{id}}_neutralStrandCount' class='form-control' type='text'{{#neutralStrandCount}} value='{{neutralStrandCount}}'{{/neutralStrandCount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStrandGmr'>neutralStrandGmr: </label><div class='col-sm-8'><input id='{{id}}_neutralStrandGmr' class='form-control' type='text'{{#neutralStrandGmr}} value='{{neutralStrandGmr}}'{{/neutralStrandGmr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStrandRadius'>neutralStrandRadius: </label><div class='col-sm-8'><input id='{{id}}_neutralStrandRadius' class='form-control' type='text'{{#neutralStrandRadius}} value='{{neutralStrandRadius}}'{{/neutralStrandRadius}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_neutralStrandRDC20'>neutralStrandRDC20: </label><div class='col-sm-8'><input id='{{id}}_neutralStrandRDC20' class='form-control' type='text'{{#neutralStrandRDC20}} value='{{neutralStrandRDC20}}'{{/neutralStrandRDC20}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ConcentricNeutralCableInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("diameterOverNeutral").value; if ("" != temp) obj.diameterOverNeutral = temp;
-                temp = document.getElementById ("neutralStrandCount").value; if ("" != temp) obj.neutralStrandCount = temp;
-                temp = document.getElementById ("neutralStrandGmr").value; if ("" != temp) obj.neutralStrandGmr = temp;
-                temp = document.getElementById ("neutralStrandRadius").value; if ("" != temp) obj.neutralStrandRadius = temp;
-                temp = document.getElementById ("neutralStrandRDC20").value; if ("" != temp) obj.neutralStrandRDC20 = temp;
+                var obj = obj || { id: id, cls: "ConcentricNeutralCableInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_diameterOverNeutral").value; if ("" != temp) obj.diameterOverNeutral = temp;
+                temp = document.getElementById (id + "_neutralStrandCount").value; if ("" != temp) obj.neutralStrandCount = temp;
+                temp = document.getElementById (id + "_neutralStrandGmr").value; if ("" != temp) obj.neutralStrandGmr = temp;
+                temp = document.getElementById (id + "_neutralStrandRadius").value; if ("" != temp) obj.neutralStrandRadius = temp;
+                temp = document.getElementById (id + "_neutralStrandRDC20").value; if ("" != temp) obj.neutralStrandRDC20 = temp;
 
                 return (obj);
             }
@@ -2044,8 +2044,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OverheadWireInfo_collapse" aria-expanded="true" aria-controls="OverheadWireInfo_collapse" style="margin-left: 10px;">OverheadWireInfo</a></legend>
-                    <div id="OverheadWireInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OverheadWireInfo_collapse" aria-expanded="true" aria-controls="{{id}}_OverheadWireInfo_collapse" style="margin-left: 10px;">OverheadWireInfo</a></legend>
+                    <div id="{{id}}_OverheadWireInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + WireInfo.prototype.edit_template.call (this) +
                     `
@@ -2055,10 +2055,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "OverheadWireInfo" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "OverheadWireInfo" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2147,27 +2147,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TapeShieldCableInfo_collapse" aria-expanded="true" aria-controls="TapeShieldCableInfo_collapse" style="margin-left: 10px;">TapeShieldCableInfo</a></legend>
-                    <div id="TapeShieldCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TapeShieldCableInfo_collapse" aria-expanded="true" aria-controls="{{id}}_TapeShieldCableInfo_collapse" style="margin-left: 10px;">TapeShieldCableInfo</a></legend>
+                    <div id="{{id}}_TapeShieldCableInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + CableInfo.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tapeLap'>tapeLap: </label><div class='col-sm-8'><input id='tapeLap' class='form-control' type='text'{{#tapeLap}} value='{{tapeLap}}'{{/tapeLap}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tapeThickness'>tapeThickness: </label><div class='col-sm-8'><input id='tapeThickness' class='form-control' type='text'{{#tapeThickness}} value='{{tapeThickness}}'{{/tapeThickness}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tapeLap'>tapeLap: </label><div class='col-sm-8'><input id='{{id}}_tapeLap' class='form-control' type='text'{{#tapeLap}} value='{{tapeLap}}'{{/tapeLap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tapeThickness'>tapeThickness: </label><div class='col-sm-8'><input id='{{id}}_tapeThickness' class='form-control' type='text'{{#tapeThickness}} value='{{tapeThickness}}'{{/tapeThickness}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TapeShieldCableInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("tapeLap").value; if ("" != temp) obj.tapeLap = temp;
-                temp = document.getElementById ("tapeThickness").value; if ("" != temp) obj.tapeThickness = temp;
+                var obj = obj || { id: id, cls: "TapeShieldCableInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tapeLap").value; if ("" != temp) obj.tapeLap = temp;
+                temp = document.getElementById (id + "_tapeThickness").value; if ("" != temp) obj.tapeThickness = temp;
 
                 return (obj);
             }
@@ -2278,39 +2278,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShortCircuitTest_collapse" aria-expanded="true" aria-controls="ShortCircuitTest_collapse" style="margin-left: 10px;">ShortCircuitTest</a></legend>
-                    <div id="ShortCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShortCircuitTest_collapse" aria-expanded="true" aria-controls="{{id}}_ShortCircuitTest_collapse" style="margin-left: 10px;">ShortCircuitTest</a></legend>
+                    <div id="{{id}}_ShortCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + TransformerTest.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energisedEndStep'>energisedEndStep: </label><div class='col-sm-8'><input id='energisedEndStep' class='form-control' type='text'{{#energisedEndStep}} value='{{energisedEndStep}}'{{/energisedEndStep}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='groundedEndStep'>groundedEndStep: </label><div class='col-sm-8'><input id='groundedEndStep' class='form-control' type='text'{{#groundedEndStep}} value='{{groundedEndStep}}'{{/groundedEndStep}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='leakageImpedance'>leakageImpedance: </label><div class='col-sm-8'><input id='leakageImpedance' class='form-control' type='text'{{#leakageImpedance}} value='{{leakageImpedance}}'{{/leakageImpedance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='leakageImpedanceZero'>leakageImpedanceZero: </label><div class='col-sm-8'><input id='leakageImpedanceZero' class='form-control' type='text'{{#leakageImpedanceZero}} value='{{leakageImpedanceZero}}'{{/leakageImpedanceZero}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loss'>loss: </label><div class='col-sm-8'><input id='loss' class='form-control' type='text'{{#loss}} value='{{loss}}'{{/loss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossZero'>lossZero: </label><div class='col-sm-8'><input id='lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GroundedEnds'>GroundedEnds: </label><div class='col-sm-8'><input id='GroundedEnds' class='form-control' type='text'{{#GroundedEnds}} value='{{GroundedEnds}}_string'{{/GroundedEnds}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energisedEndStep'>energisedEndStep: </label><div class='col-sm-8'><input id='{{id}}_energisedEndStep' class='form-control' type='text'{{#energisedEndStep}} value='{{energisedEndStep}}'{{/energisedEndStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_groundedEndStep'>groundedEndStep: </label><div class='col-sm-8'><input id='{{id}}_groundedEndStep' class='form-control' type='text'{{#groundedEndStep}} value='{{groundedEndStep}}'{{/groundedEndStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_leakageImpedance'>leakageImpedance: </label><div class='col-sm-8'><input id='{{id}}_leakageImpedance' class='form-control' type='text'{{#leakageImpedance}} value='{{leakageImpedance}}'{{/leakageImpedance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_leakageImpedanceZero'>leakageImpedanceZero: </label><div class='col-sm-8'><input id='{{id}}_leakageImpedanceZero' class='form-control' type='text'{{#leakageImpedanceZero}} value='{{leakageImpedanceZero}}'{{/leakageImpedanceZero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loss'>loss: </label><div class='col-sm-8'><input id='{{id}}_loss' class='form-control' type='text'{{#loss}} value='{{loss}}'{{/loss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossZero'>lossZero: </label><div class='col-sm-8'><input id='{{id}}_lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GroundedEnds'>GroundedEnds: </label><div class='col-sm-8'><input id='{{id}}_GroundedEnds' class='form-control' type='text'{{#GroundedEnds}} value='{{GroundedEnds}}_string'{{/GroundedEnds}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ShortCircuitTest" };
-                super.submit (obj);
-                temp = document.getElementById ("energisedEndStep").value; if ("" != temp) obj.energisedEndStep = temp;
-                temp = document.getElementById ("groundedEndStep").value; if ("" != temp) obj.groundedEndStep = temp;
-                temp = document.getElementById ("leakageImpedance").value; if ("" != temp) obj.leakageImpedance = temp;
-                temp = document.getElementById ("leakageImpedanceZero").value; if ("" != temp) obj.leakageImpedanceZero = temp;
-                temp = document.getElementById ("loss").value; if ("" != temp) obj.loss = temp;
-                temp = document.getElementById ("lossZero").value; if ("" != temp) obj.lossZero = temp;
-                temp = document.getElementById ("EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
-                temp = document.getElementById ("GroundedEnds").value; if ("" != temp) obj.GroundedEnds = temp.split (",");
+                var obj = obj || { id: id, cls: "ShortCircuitTest" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_energisedEndStep").value; if ("" != temp) obj.energisedEndStep = temp;
+                temp = document.getElementById (id + "_groundedEndStep").value; if ("" != temp) obj.groundedEndStep = temp;
+                temp = document.getElementById (id + "_leakageImpedance").value; if ("" != temp) obj.leakageImpedance = temp;
+                temp = document.getElementById (id + "_leakageImpedanceZero").value; if ("" != temp) obj.leakageImpedanceZero = temp;
+                temp = document.getElementById (id + "_loss").value; if ("" != temp) obj.loss = temp;
+                temp = document.getElementById (id + "_lossZero").value; if ("" != temp) obj.lossZero = temp;
+                temp = document.getElementById (id + "_EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
+                temp = document.getElementById (id + "_GroundedEnds").value; if ("" != temp) obj.GroundedEnds = temp.split (",");
 
                 return (obj);
             }
@@ -2423,35 +2423,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NoLoadTest_collapse" aria-expanded="true" aria-controls="NoLoadTest_collapse" style="margin-left: 10px;">NoLoadTest</a></legend>
-                    <div id="NoLoadTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NoLoadTest_collapse" aria-expanded="true" aria-controls="{{id}}_NoLoadTest_collapse" style="margin-left: 10px;">NoLoadTest</a></legend>
+                    <div id="{{id}}_NoLoadTest_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + TransformerTest.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energisedEndVoltage'>energisedEndVoltage: </label><div class='col-sm-8'><input id='energisedEndVoltage' class='form-control' type='text'{{#energisedEndVoltage}} value='{{energisedEndVoltage}}'{{/energisedEndVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='excitingCurrent'>excitingCurrent: </label><div class='col-sm-8'><input id='excitingCurrent' class='form-control' type='text'{{#excitingCurrent}} value='{{excitingCurrent}}'{{/excitingCurrent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='excitingCurrentZero'>excitingCurrentZero: </label><div class='col-sm-8'><input id='excitingCurrentZero' class='form-control' type='text'{{#excitingCurrentZero}} value='{{excitingCurrentZero}}'{{/excitingCurrentZero}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loss'>loss: </label><div class='col-sm-8'><input id='loss' class='form-control' type='text'{{#loss}} value='{{loss}}'{{/loss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lossZero'>lossZero: </label><div class='col-sm-8'><input id='lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energisedEndVoltage'>energisedEndVoltage: </label><div class='col-sm-8'><input id='{{id}}_energisedEndVoltage' class='form-control' type='text'{{#energisedEndVoltage}} value='{{energisedEndVoltage}}'{{/energisedEndVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_excitingCurrent'>excitingCurrent: </label><div class='col-sm-8'><input id='{{id}}_excitingCurrent' class='form-control' type='text'{{#excitingCurrent}} value='{{excitingCurrent}}'{{/excitingCurrent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_excitingCurrentZero'>excitingCurrentZero: </label><div class='col-sm-8'><input id='{{id}}_excitingCurrentZero' class='form-control' type='text'{{#excitingCurrentZero}} value='{{excitingCurrentZero}}'{{/excitingCurrentZero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loss'>loss: </label><div class='col-sm-8'><input id='{{id}}_loss' class='form-control' type='text'{{#loss}} value='{{loss}}'{{/loss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lossZero'>lossZero: </label><div class='col-sm-8'><input id='{{id}}_lossZero' class='form-control' type='text'{{#lossZero}} value='{{lossZero}}'{{/lossZero}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "NoLoadTest" };
-                super.submit (obj);
-                temp = document.getElementById ("energisedEndVoltage").value; if ("" != temp) obj.energisedEndVoltage = temp;
-                temp = document.getElementById ("excitingCurrent").value; if ("" != temp) obj.excitingCurrent = temp;
-                temp = document.getElementById ("excitingCurrentZero").value; if ("" != temp) obj.excitingCurrentZero = temp;
-                temp = document.getElementById ("loss").value; if ("" != temp) obj.loss = temp;
-                temp = document.getElementById ("lossZero").value; if ("" != temp) obj.lossZero = temp;
-                temp = document.getElementById ("EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
+                var obj = obj || { id: id, cls: "NoLoadTest" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_energisedEndVoltage").value; if ("" != temp) obj.energisedEndVoltage = temp;
+                temp = document.getElementById (id + "_excitingCurrent").value; if ("" != temp) obj.excitingCurrent = temp;
+                temp = document.getElementById (id + "_excitingCurrentZero").value; if ("" != temp) obj.excitingCurrentZero = temp;
+                temp = document.getElementById (id + "_loss").value; if ("" != temp) obj.loss = temp;
+                temp = document.getElementById (id + "_lossZero").value; if ("" != temp) obj.lossZero = temp;
+                temp = document.getElementById (id + "_EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
 
                 return (obj);
             }
@@ -2566,37 +2566,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OpenCircuitTest_collapse" aria-expanded="true" aria-controls="OpenCircuitTest_collapse" style="margin-left: 10px;">OpenCircuitTest</a></legend>
-                    <div id="OpenCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OpenCircuitTest_collapse" aria-expanded="true" aria-controls="{{id}}_OpenCircuitTest_collapse" style="margin-left: 10px;">OpenCircuitTest</a></legend>
+                    <div id="{{id}}_OpenCircuitTest_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + TransformerTest.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energisedEndStep'>energisedEndStep: </label><div class='col-sm-8'><input id='energisedEndStep' class='form-control' type='text'{{#energisedEndStep}} value='{{energisedEndStep}}'{{/energisedEndStep}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energisedEndVoltage'>energisedEndVoltage: </label><div class='col-sm-8'><input id='energisedEndVoltage' class='form-control' type='text'{{#energisedEndVoltage}} value='{{energisedEndVoltage}}'{{/energisedEndVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='openEndStep'>openEndStep: </label><div class='col-sm-8'><input id='openEndStep' class='form-control' type='text'{{#openEndStep}} value='{{openEndStep}}'{{/openEndStep}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='openEndVoltage'>openEndVoltage: </label><div class='col-sm-8'><input id='openEndVoltage' class='form-control' type='text'{{#openEndVoltage}} value='{{openEndVoltage}}'{{/openEndVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='phaseShift'>phaseShift: </label><div class='col-sm-8'><input id='phaseShift' class='form-control' type='text'{{#phaseShift}} value='{{phaseShift}}'{{/phaseShift}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OpenEnd'>OpenEnd: </label><div class='col-sm-8'><input id='OpenEnd' class='form-control' type='text'{{#OpenEnd}} value='{{OpenEnd}}'{{/OpenEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energisedEndStep'>energisedEndStep: </label><div class='col-sm-8'><input id='{{id}}_energisedEndStep' class='form-control' type='text'{{#energisedEndStep}} value='{{energisedEndStep}}'{{/energisedEndStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energisedEndVoltage'>energisedEndVoltage: </label><div class='col-sm-8'><input id='{{id}}_energisedEndVoltage' class='form-control' type='text'{{#energisedEndVoltage}} value='{{energisedEndVoltage}}'{{/energisedEndVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_openEndStep'>openEndStep: </label><div class='col-sm-8'><input id='{{id}}_openEndStep' class='form-control' type='text'{{#openEndStep}} value='{{openEndStep}}'{{/openEndStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_openEndVoltage'>openEndVoltage: </label><div class='col-sm-8'><input id='{{id}}_openEndVoltage' class='form-control' type='text'{{#openEndVoltage}} value='{{openEndVoltage}}'{{/openEndVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_phaseShift'>phaseShift: </label><div class='col-sm-8'><input id='{{id}}_phaseShift' class='form-control' type='text'{{#phaseShift}} value='{{phaseShift}}'{{/phaseShift}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OpenEnd'>OpenEnd: </label><div class='col-sm-8'><input id='{{id}}_OpenEnd' class='form-control' type='text'{{#OpenEnd}} value='{{OpenEnd}}'{{/OpenEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergisedEnd'>EnergisedEnd: </label><div class='col-sm-8'><input id='{{id}}_EnergisedEnd' class='form-control' type='text'{{#EnergisedEnd}} value='{{EnergisedEnd}}'{{/EnergisedEnd}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OpenCircuitTest" };
-                super.submit (obj);
-                temp = document.getElementById ("energisedEndStep").value; if ("" != temp) obj.energisedEndStep = temp;
-                temp = document.getElementById ("energisedEndVoltage").value; if ("" != temp) obj.energisedEndVoltage = temp;
-                temp = document.getElementById ("openEndStep").value; if ("" != temp) obj.openEndStep = temp;
-                temp = document.getElementById ("openEndVoltage").value; if ("" != temp) obj.openEndVoltage = temp;
-                temp = document.getElementById ("phaseShift").value; if ("" != temp) obj.phaseShift = temp;
-                temp = document.getElementById ("OpenEnd").value; if ("" != temp) obj.OpenEnd = temp;
-                temp = document.getElementById ("EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
+                var obj = obj || { id: id, cls: "OpenCircuitTest" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_energisedEndStep").value; if ("" != temp) obj.energisedEndStep = temp;
+                temp = document.getElementById (id + "_energisedEndVoltage").value; if ("" != temp) obj.energisedEndVoltage = temp;
+                temp = document.getElementById (id + "_openEndStep").value; if ("" != temp) obj.openEndStep = temp;
+                temp = document.getElementById (id + "_openEndVoltage").value; if ("" != temp) obj.openEndVoltage = temp;
+                temp = document.getElementById (id + "_phaseShift").value; if ("" != temp) obj.phaseShift = temp;
+                temp = document.getElementById (id + "_OpenEnd").value; if ("" != temp) obj.OpenEnd = temp;
+                temp = document.getElementById (id + "_EnergisedEnd").value; if ("" != temp) obj.EnergisedEnd = temp;
 
                 return (obj);
             }

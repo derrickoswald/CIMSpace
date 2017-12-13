@@ -96,29 +96,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperatureDependentLimitPoint_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitPoint_collapse" style="margin-left: 10px;">TemperatureDependentLimitPoint</a></legend>
-                    <div id="TemperatureDependentLimitPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TemperatureDependentLimitPoint_collapse" aria-expanded="true" aria-controls="{{id}}_TemperatureDependentLimitPoint_collapse" style="margin-left: 10px;">TemperatureDependentLimitPoint</a></legend>
+                    <div id="{{id}}_TemperatureDependentLimitPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='limitPercent'>limitPercent: </label><div class='col-sm-8'><input id='limitPercent' class='form-control' type='text'{{#limitPercent}} value='{{limitPercent}}'{{/limitPercent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='temperature'>temperature: </label><div class='col-sm-8'><input id='temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TemperatureDependentLimitTable'>TemperatureDependentLimitTable: </label><div class='col-sm-8'><input id='TemperatureDependentLimitTable' class='form-control' type='text'{{#TemperatureDependentLimitTable}} value='{{TemperatureDependentLimitTable}}'{{/TemperatureDependentLimitTable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitPercent'>limitPercent: </label><div class='col-sm-8'><input id='{{id}}_limitPercent' class='form-control' type='text'{{#limitPercent}} value='{{limitPercent}}'{{/limitPercent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_temperature'>temperature: </label><div class='col-sm-8'><input id='{{id}}_temperature' class='form-control' type='text'{{#temperature}} value='{{temperature}}'{{/temperature}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TemperatureDependentLimitTable'>TemperatureDependentLimitTable: </label><div class='col-sm-8'><input id='{{id}}_TemperatureDependentLimitTable' class='form-control' type='text'{{#TemperatureDependentLimitTable}} value='{{TemperatureDependentLimitTable}}'{{/TemperatureDependentLimitTable}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TemperatureDependentLimitPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("limitPercent").value; if ("" != temp) obj.limitPercent = temp;
-                temp = document.getElementById ("temperature").value; if ("" != temp) obj.temperature = temp;
-                temp = document.getElementById ("TemperatureDependentLimitTable").value; if ("" != temp) obj.TemperatureDependentLimitTable = temp;
+                var obj = obj || { id: id, cls: "TemperatureDependentLimitPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_limitPercent").value; if ("" != temp) obj.limitPercent = temp;
+                temp = document.getElementById (id + "_temperature").value; if ("" != temp) obj.temperature = temp;
+                temp = document.getElementById (id + "_TemperatureDependentLimitTable").value; if ("" != temp) obj.TemperatureDependentLimitTable = temp;
 
                 return (obj);
             }
@@ -221,29 +221,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperatonalLimitTypeScaling_collapse" aria-expanded="true" aria-controls="OperatonalLimitTypeScaling_collapse" style="margin-left: 10px;">OperatonalLimitTypeScaling</a></legend>
-                    <div id="OperatonalLimitTypeScaling_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperatonalLimitTypeScaling_collapse" aria-expanded="true" aria-controls="{{id}}_OperatonalLimitTypeScaling_collapse" style="margin-left: 10px;">OperatonalLimitTypeScaling</a></legend>
+                    <div id="{{id}}_OperatonalLimitTypeScaling_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scalingPercent'>scalingPercent: </label><div class='col-sm-8'><input id='scalingPercent' class='form-control' type='text'{{#scalingPercent}} value='{{scalingPercent}}'{{/scalingPercent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SourceOperationalLimitType'>SourceOperationalLimitType: </label><div class='col-sm-8'><input id='SourceOperationalLimitType' class='form-control' type='text'{{#SourceOperationalLimitType}} value='{{SourceOperationalLimitType}}'{{/SourceOperationalLimitType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TargetOperationalLimit'>TargetOperationalLimit: </label><div class='col-sm-8'><input id='TargetOperationalLimit' class='form-control' type='text'{{#TargetOperationalLimit}} value='{{TargetOperationalLimit}}'{{/TargetOperationalLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scalingPercent'>scalingPercent: </label><div class='col-sm-8'><input id='{{id}}_scalingPercent' class='form-control' type='text'{{#scalingPercent}} value='{{scalingPercent}}'{{/scalingPercent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SourceOperationalLimitType'>SourceOperationalLimitType: </label><div class='col-sm-8'><input id='{{id}}_SourceOperationalLimitType' class='form-control' type='text'{{#SourceOperationalLimitType}} value='{{SourceOperationalLimitType}}'{{/SourceOperationalLimitType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TargetOperationalLimit'>TargetOperationalLimit: </label><div class='col-sm-8'><input id='{{id}}_TargetOperationalLimit' class='form-control' type='text'{{#TargetOperationalLimit}} value='{{TargetOperationalLimit}}'{{/TargetOperationalLimit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OperatonalLimitTypeScaling" };
-                super.submit (obj);
-                temp = document.getElementById ("scalingPercent").value; if ("" != temp) obj.scalingPercent = temp;
-                temp = document.getElementById ("SourceOperationalLimitType").value; if ("" != temp) obj.SourceOperationalLimitType = temp;
-                temp = document.getElementById ("TargetOperationalLimit").value; if ("" != temp) obj.TargetOperationalLimit = temp;
+                var obj = obj || { id: id, cls: "OperatonalLimitTypeScaling" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_scalingPercent").value; if ("" != temp) obj.scalingPercent = temp;
+                temp = document.getElementById (id + "_SourceOperationalLimitType").value; if ("" != temp) obj.SourceOperationalLimitType = temp;
+                temp = document.getElementById (id + "_TargetOperationalLimit").value; if ("" != temp) obj.TargetOperationalLimit = temp;
 
                 return (obj);
             }
@@ -342,27 +342,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledLimitValue_collapse" style="margin-left: 10px;">ScheduledLimitValue</a></legend>
-                    <div id="ScheduledLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ScheduledLimitValue_collapse" aria-expanded="true" aria-controls="{{id}}_ScheduledLimitValue_collapse" style="margin-left: 10px;">ScheduledLimitValue</a></legend>
+                    <div id="{{id}}_ScheduledLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Season'>Season: </label><div class='col-sm-8'><input id='Season' class='form-control' type='text'{{#Season}} value='{{Season}}'{{/Season}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ScheduledLimitDependency'>ScheduledLimitDependency: </label><div class='col-sm-8'><input id='ScheduledLimitDependency' class='form-control' type='text'{{#ScheduledLimitDependency}} value='{{ScheduledLimitDependency}}'{{/ScheduledLimitDependency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Season'>Season: </label><div class='col-sm-8'><input id='{{id}}_Season' class='form-control' type='text'{{#Season}} value='{{Season}}'{{/Season}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ScheduledLimitDependency'>ScheduledLimitDependency: </label><div class='col-sm-8'><input id='{{id}}_ScheduledLimitDependency' class='form-control' type='text'{{#ScheduledLimitDependency}} value='{{ScheduledLimitDependency}}'{{/ScheduledLimitDependency}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ScheduledLimitValue" };
-                super.submit (obj);
-                temp = document.getElementById ("Season").value; if ("" != temp) obj.Season = temp;
-                temp = document.getElementById ("ScheduledLimitDependency").value; if ("" != temp) obj.ScheduledLimitDependency = temp;
+                var obj = obj || { id: id, cls: "ScheduledLimitValue" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Season").value; if ("" != temp) obj.Season = temp;
+                temp = document.getElementById (id + "_ScheduledLimitDependency").value; if ("" != temp) obj.ScheduledLimitDependency = temp;
 
                 return (obj);
             }
@@ -460,25 +460,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WeatherStation_collapse" aria-expanded="true" aria-controls="WeatherStation_collapse" style="margin-left: 10px;">WeatherStation</a></legend>
-                    <div id="WeatherStation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WeatherStation_collapse" aria-expanded="true" aria-controls="{{id}}_WeatherStation_collapse" style="margin-left: 10px;">WeatherStation</a></legend>
+                    <div id="{{id}}_WeatherStation_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}_string'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}_string'{{/Equipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WeatherStation" };
-                super.submit (obj);
-                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp.split (",");
+                var obj = obj || { id: id, cls: "WeatherStation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp.split (",");
 
                 return (obj);
             }
@@ -580,27 +580,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitDependency_collapse" aria-expanded="true" aria-controls="LimitDependency_collapse" style="margin-left: 10px;">LimitDependency</a></legend>
-                    <div id="LimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LimitDependency_collapse" aria-expanded="true" aria-controls="{{id}}_LimitDependency_collapse" style="margin-left: 10px;">LimitDependency</a></legend>
+                    <div id="{{id}}_LimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperationalLimit'>OperationalLimit: </label><div class='col-sm-8'><input id='OperationalLimit' class='form-control' type='text'{{#OperationalLimit}} value='{{OperationalLimit}}_string'{{/OperationalLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimit'>OperationalLimit: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimit' class='form-control' type='text'{{#OperationalLimit}} value='{{OperationalLimit}}_string'{{/OperationalLimit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LimitDependency" };
-                super.submit (obj);
-                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
-                temp = document.getElementById ("OperationalLimit").value; if ("" != temp) obj.OperationalLimit = temp.split (",");
+                var obj = obj || { id: id, cls: "LimitDependency" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
+                temp = document.getElementById (id + "_OperationalLimit").value; if ("" != temp) obj.OperationalLimit = temp.split (",");
 
                 return (obj);
             }
@@ -699,27 +699,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquipmentLimitSeriesComponent_collapse" aria-expanded="true" aria-controls="EquipmentLimitSeriesComponent_collapse" style="margin-left: 10px;">EquipmentLimitSeriesComponent</a></legend>
-                    <div id="EquipmentLimitSeriesComponent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquipmentLimitSeriesComponent_collapse" aria-expanded="true" aria-controls="{{id}}_EquipmentLimitSeriesComponent_collapse" style="margin-left: 10px;">EquipmentLimitSeriesComponent</a></legend>
+                    <div id="{{id}}_EquipmentLimitSeriesComponent_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SeriesEquipmentDependentLimit'>SeriesEquipmentDependentLimit: </label><div class='col-sm-8'><input id='SeriesEquipmentDependentLimit' class='form-control' type='text'{{#SeriesEquipmentDependentLimit}} value='{{SeriesEquipmentDependentLimit}}'{{/SeriesEquipmentDependentLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SeriesEquipmentDependentLimit'>SeriesEquipmentDependentLimit: </label><div class='col-sm-8'><input id='{{id}}_SeriesEquipmentDependentLimit' class='form-control' type='text'{{#SeriesEquipmentDependentLimit}} value='{{SeriesEquipmentDependentLimit}}'{{/SeriesEquipmentDependentLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EquipmentLimitSeriesComponent" };
-                super.submit (obj);
-                temp = document.getElementById ("SeriesEquipmentDependentLimit").value; if ("" != temp) obj.SeriesEquipmentDependentLimit = temp;
-                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+                var obj = obj || { id: id, cls: "EquipmentLimitSeriesComponent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_SeriesEquipmentDependentLimit").value; if ("" != temp) obj.SeriesEquipmentDependentLimit = temp;
+                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);
             }
@@ -815,25 +815,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledCurrentLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledCurrentLimitValue_collapse" style="margin-left: 10px;">ScheduledCurrentLimitValue</a></legend>
-                    <div id="ScheduledCurrentLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ScheduledCurrentLimitValue_collapse" aria-expanded="true" aria-controls="{{id}}_ScheduledCurrentLimitValue_collapse" style="margin-left: 10px;">ScheduledCurrentLimitValue</a></legend>
+                    <div id="{{id}}_ScheduledCurrentLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ScheduledLimitValue.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ScheduledCurrentLimitValue" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "ScheduledCurrentLimitValue" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -919,25 +919,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledVoltageLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledVoltageLimitValue_collapse" style="margin-left: 10px;">ScheduledVoltageLimitValue</a></legend>
-                    <div id="ScheduledVoltageLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ScheduledVoltageLimitValue_collapse" aria-expanded="true" aria-controls="{{id}}_ScheduledVoltageLimitValue_collapse" style="margin-left: 10px;">ScheduledVoltageLimitValue</a></legend>
+                    <div id="{{id}}_ScheduledVoltageLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ScheduledLimitValue.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ScheduledVoltageLimitValue" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "ScheduledVoltageLimitValue" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -1019,25 +1019,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledActivePowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledActivePowerLimitValue_collapse" style="margin-left: 10px;">ScheduledActivePowerLimitValue</a></legend>
-                    <div id="ScheduledActivePowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ScheduledActivePowerLimitValue_collapse" aria-expanded="true" aria-controls="{{id}}_ScheduledActivePowerLimitValue_collapse" style="margin-left: 10px;">ScheduledActivePowerLimitValue</a></legend>
+                    <div id="{{id}}_ScheduledActivePowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ScheduledLimitValue.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ScheduledActivePowerLimitValue" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "ScheduledActivePowerLimitValue" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -1123,25 +1123,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledApparentPowerLimitValue_collapse" aria-expanded="true" aria-controls="ScheduledApparentPowerLimitValue_collapse" style="margin-left: 10px;">ScheduledApparentPowerLimitValue</a></legend>
-                    <div id="ScheduledApparentPowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ScheduledApparentPowerLimitValue_collapse" aria-expanded="true" aria-controls="{{id}}_ScheduledApparentPowerLimitValue_collapse" style="margin-left: 10px;">ScheduledApparentPowerLimitValue</a></legend>
+                    <div id="{{id}}_ScheduledApparentPowerLimitValue_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ScheduledLimitValue.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ScheduledApparentPowerLimitValue" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "ScheduledApparentPowerLimitValue" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -1230,27 +1230,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LimitScalingLimit_collapse" aria-expanded="true" aria-controls="LimitScalingLimit_collapse" style="margin-left: 10px;">LimitScalingLimit</a></legend>
-                    <div id="LimitScalingLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LimitScalingLimit_collapse" aria-expanded="true" aria-controls="{{id}}_LimitScalingLimit_collapse" style="margin-left: 10px;">LimitScalingLimit</a></legend>
+                    <div id="{{id}}_LimitScalingLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LimitDependency.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='limitScalingPercent'>limitScalingPercent: </label><div class='col-sm-8'><input id='limitScalingPercent' class='form-control' type='text'{{#limitScalingPercent}} value='{{limitScalingPercent}}'{{/limitScalingPercent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SourceOperationalLimit'>SourceOperationalLimit: </label><div class='col-sm-8'><input id='SourceOperationalLimit' class='form-control' type='text'{{#SourceOperationalLimit}} value='{{SourceOperationalLimit}}'{{/SourceOperationalLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_limitScalingPercent'>limitScalingPercent: </label><div class='col-sm-8'><input id='{{id}}_limitScalingPercent' class='form-control' type='text'{{#limitScalingPercent}} value='{{limitScalingPercent}}'{{/limitScalingPercent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SourceOperationalLimit'>SourceOperationalLimit: </label><div class='col-sm-8'><input id='{{id}}_SourceOperationalLimit' class='form-control' type='text'{{#SourceOperationalLimit}} value='{{SourceOperationalLimit}}'{{/SourceOperationalLimit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LimitScalingLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("limitScalingPercent").value; if ("" != temp) obj.limitScalingPercent = temp;
-                temp = document.getElementById ("SourceOperationalLimit").value; if ("" != temp) obj.SourceOperationalLimit = temp;
+                var obj = obj || { id: id, cls: "LimitScalingLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_limitScalingPercent").value; if ("" != temp) obj.limitScalingPercent = temp;
+                temp = document.getElementById (id + "_SourceOperationalLimit").value; if ("" != temp) obj.SourceOperationalLimit = temp;
 
                 return (obj);
             }
@@ -1342,8 +1342,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnvironmentalDependentLimit_collapse" aria-expanded="true" aria-controls="EnvironmentalDependentLimit_collapse" style="margin-left: 10px;">EnvironmentalDependentLimit</a></legend>
-                    <div id="EnvironmentalDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnvironmentalDependentLimit_collapse" aria-expanded="true" aria-controls="{{id}}_EnvironmentalDependentLimit_collapse" style="margin-left: 10px;">EnvironmentalDependentLimit</a></legend>
+                    <div id="{{id}}_EnvironmentalDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LimitDependency.prototype.edit_template.call (this) +
                     `
@@ -1353,10 +1353,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "EnvironmentalDependentLimit" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "EnvironmentalDependentLimit" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1440,8 +1440,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ScheduledLimitDependency_collapse" aria-expanded="true" aria-controls="ScheduledLimitDependency_collapse" style="margin-left: 10px;">ScheduledLimitDependency</a></legend>
-                    <div id="ScheduledLimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ScheduledLimitDependency_collapse" aria-expanded="true" aria-controls="{{id}}_ScheduledLimitDependency_collapse" style="margin-left: 10px;">ScheduledLimitDependency</a></legend>
+                    <div id="{{id}}_ScheduledLimitDependency_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LimitDependency.prototype.edit_template.call (this) +
                     `
@@ -1451,10 +1451,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ScheduledLimitDependency" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ScheduledLimitDependency" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1553,8 +1553,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SeriesEquipmentDependentLimit_collapse" aria-expanded="true" aria-controls="SeriesEquipmentDependentLimit_collapse" style="margin-left: 10px;">SeriesEquipmentDependentLimit</a></legend>
-                    <div id="SeriesEquipmentDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SeriesEquipmentDependentLimit_collapse" aria-expanded="true" aria-controls="{{id}}_SeriesEquipmentDependentLimit_collapse" style="margin-left: 10px;">SeriesEquipmentDependentLimit</a></legend>
+                    <div id="{{id}}_SeriesEquipmentDependentLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LimitDependency.prototype.edit_template.call (this) +
                     `
@@ -1564,10 +1564,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "SeriesEquipmentDependentLimit" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "SeriesEquipmentDependentLimit" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1674,33 +1674,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperaturePolynomialLimit_collapse" aria-expanded="true" aria-controls="TemperaturePolynomialLimit_collapse" style="margin-left: 10px;">TemperaturePolynomialLimit</a></legend>
-                    <div id="TemperaturePolynomialLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TemperaturePolynomialLimit_collapse" aria-expanded="true" aria-controls="{{id}}_TemperaturePolynomialLimit_collapse" style="margin-left: 10px;">TemperaturePolynomialLimit</a></legend>
+                    <div id="{{id}}_TemperaturePolynomialLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + EnvironmentalDependentLimit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient0'>coefficient0: </label><div class='col-sm-8'><input id='coefficient0' class='form-control' type='text'{{#coefficient0}} value='{{coefficient0}}'{{/coefficient0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient1'>coefficient1: </label><div class='col-sm-8'><input id='coefficient1' class='form-control' type='text'{{#coefficient1}} value='{{coefficient1}}'{{/coefficient1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient2'>coefficient2: </label><div class='col-sm-8'><input id='coefficient2' class='form-control' type='text'{{#coefficient2}} value='{{coefficient2}}'{{/coefficient2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient3'>coefficient3: </label><div class='col-sm-8'><input id='coefficient3' class='form-control' type='text'{{#coefficient3}} value='{{coefficient3}}'{{/coefficient3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='coefficient4'>coefficient4: </label><div class='col-sm-8'><input id='coefficient4' class='form-control' type='text'{{#coefficient4}} value='{{coefficient4}}'{{/coefficient4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coefficient0'>coefficient0: </label><div class='col-sm-8'><input id='{{id}}_coefficient0' class='form-control' type='text'{{#coefficient0}} value='{{coefficient0}}'{{/coefficient0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coefficient1'>coefficient1: </label><div class='col-sm-8'><input id='{{id}}_coefficient1' class='form-control' type='text'{{#coefficient1}} value='{{coefficient1}}'{{/coefficient1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coefficient2'>coefficient2: </label><div class='col-sm-8'><input id='{{id}}_coefficient2' class='form-control' type='text'{{#coefficient2}} value='{{coefficient2}}'{{/coefficient2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coefficient3'>coefficient3: </label><div class='col-sm-8'><input id='{{id}}_coefficient3' class='form-control' type='text'{{#coefficient3}} value='{{coefficient3}}'{{/coefficient3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_coefficient4'>coefficient4: </label><div class='col-sm-8'><input id='{{id}}_coefficient4' class='form-control' type='text'{{#coefficient4}} value='{{coefficient4}}'{{/coefficient4}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TemperaturePolynomialLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("coefficient0").value; if ("" != temp) obj.coefficient0 = temp;
-                temp = document.getElementById ("coefficient1").value; if ("" != temp) obj.coefficient1 = temp;
-                temp = document.getElementById ("coefficient2").value; if ("" != temp) obj.coefficient2 = temp;
-                temp = document.getElementById ("coefficient3").value; if ("" != temp) obj.coefficient3 = temp;
-                temp = document.getElementById ("coefficient4").value; if ("" != temp) obj.coefficient4 = temp;
+                var obj = obj || { id: id, cls: "TemperaturePolynomialLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_coefficient0").value; if ("" != temp) obj.coefficient0 = temp;
+                temp = document.getElementById (id + "_coefficient1").value; if ("" != temp) obj.coefficient1 = temp;
+                temp = document.getElementById (id + "_coefficient2").value; if ("" != temp) obj.coefficient2 = temp;
+                temp = document.getElementById (id + "_coefficient3").value; if ("" != temp) obj.coefficient3 = temp;
+                temp = document.getElementById (id + "_coefficient4").value; if ("" != temp) obj.coefficient4 = temp;
 
                 return (obj);
             }
@@ -1788,8 +1788,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TemperatureDependentLimitTable_collapse" aria-expanded="true" aria-controls="TemperatureDependentLimitTable_collapse" style="margin-left: 10px;">TemperatureDependentLimitTable</a></legend>
-                    <div id="TemperatureDependentLimitTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TemperatureDependentLimitTable_collapse" aria-expanded="true" aria-controls="{{id}}_TemperatureDependentLimitTable_collapse" style="margin-left: 10px;">TemperatureDependentLimitTable</a></legend>
+                    <div id="{{id}}_TemperatureDependentLimitTable_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + EnvironmentalDependentLimit.prototype.edit_template.call (this) +
                     `
@@ -1799,10 +1799,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "TemperatureDependentLimitTable" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "TemperatureDependentLimitTable" };
+                super.submit (id, obj);
 
                 return (obj);
             }

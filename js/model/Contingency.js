@@ -104,25 +104,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Contingency_collapse" aria-expanded="true" aria-controls="Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
-                    <div id="Contingency_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Contingency_collapse" aria-expanded="true" aria-controls="{{id}}_Contingency_collapse" style="margin-left: 10px;">Contingency</a></legend>
+                    <div id="{{id}}_Contingency_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='mustStudy'>mustStudy: </label><div class='col-sm-8'><input id='mustStudy' class='form-check-input' type='checkbox'{{#mustStudy}} checked{{/mustStudy}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_mustStudy'>mustStudy: </label><div class='col-sm-8'><input id='{{id}}_mustStudy' class='form-check-input' type='checkbox'{{#mustStudy}} checked{{/mustStudy}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Contingency" };
-                super.submit (obj);
-                temp = document.getElementById ("mustStudy").checked; if (temp) obj.mustStudy = true;
+                var obj = obj || { id: id, cls: "Contingency" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_mustStudy").checked; if (temp) obj.mustStudy = true;
 
                 return (obj);
             }
@@ -217,25 +217,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyElement_collapse" aria-expanded="true" aria-controls="ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
-                    <div id="ContingencyElement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContingencyElement_collapse" aria-expanded="true" aria-controls="{{id}}_ContingencyElement_collapse" style="margin-left: 10px;">ContingencyElement</a></legend>
+                    <div id="{{id}}_ContingencyElement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Contingency'>Contingency: </label><div class='col-sm-8'><input id='Contingency' class='form-control' type='text'{{#Contingency}} value='{{Contingency}}'{{/Contingency}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Contingency'>Contingency: </label><div class='col-sm-8'><input id='{{id}}_Contingency' class='form-control' type='text'{{#Contingency}} value='{{Contingency}}'{{/Contingency}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ContingencyElement" };
-                super.submit (obj);
-                temp = document.getElementById ("Contingency").value; if ("" != temp) obj.Contingency = temp;
+                var obj = obj || { id: id, cls: "ContingencyElement" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Contingency").value; if ("" != temp) obj.Contingency = temp;
 
                 return (obj);
             }
@@ -335,27 +335,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ContingencyEquipment_collapse" aria-expanded="true" aria-controls="ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
-                    <div id="ContingencyEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ContingencyEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ContingencyEquipment_collapse" style="margin-left: 10px;">ContingencyEquipment</a></legend>
+                    <div id="{{id}}_ContingencyEquipment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ContingencyElement.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contingentStatus'>contingentStatus: </label><div class='col-sm-8'><select id='contingentStatus' class='form-control'>{{#ContingencyEquipmentStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ContingencyEquipmentStatusKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingentStatus'>contingentStatus: </label><div class='col-sm-8'><select id='{{id}}_contingentStatus' class='form-control'>{{#ContingencyEquipmentStatusKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ContingencyEquipmentStatusKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ContingencyEquipment" };
-                super.submit (obj);
-                temp = document.getElementById ("contingentStatus").value; if ("" != temp) { temp = ContingencyEquipmentStatusKind[temp]; if ("undefined" != typeof (temp)) obj.contingentStatus = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; }
-                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+                var obj = obj || { id: id, cls: "ContingencyEquipment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_contingentStatus").value; if ("" != temp) { temp = ContingencyEquipmentStatusKind[temp]; if ("undefined" != typeof (temp)) obj.contingentStatus = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; }
+                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);
             }

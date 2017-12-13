@@ -117,25 +117,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemotePoint_collapse" aria-expanded="true" aria-controls="RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
-                    <div id="RemotePoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemotePoint_collapse" aria-expanded="true" aria-controls="{{id}}_RemotePoint_collapse" style="margin-left: 10px;">RemotePoint</a></legend>
+                    <div id="{{id}}_RemotePoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteUnit'>RemoteUnit: </label><div class='col-sm-8'><input id='RemoteUnit' class='form-control' type='text'{{#RemoteUnit}} value='{{RemoteUnit}}'{{/RemoteUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteUnit'>RemoteUnit: </label><div class='col-sm-8'><input id='{{id}}_RemoteUnit' class='form-control' type='text'{{#RemoteUnit}} value='{{RemoteUnit}}'{{/RemoteUnit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RemotePoint" };
-                super.submit (obj);
-                temp = document.getElementById ("RemoteUnit").value; if ("" != temp) obj.RemoteUnit = temp;
+                var obj = obj || { id: id, cls: "RemotePoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RemoteUnit").value; if ("" != temp) obj.RemoteUnit = temp;
 
                 return (obj);
             }
@@ -244,27 +244,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteUnit_collapse" aria-expanded="true" aria-controls="RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
-                    <div id="RemoteUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteUnit_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteUnit_collapse" style="margin-left: 10px;">RemoteUnit</a></legend>
+                    <div id="{{id}}_RemoteUnit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='remoteUnitType'>remoteUnitType: </label><div class='col-sm-8'><select id='remoteUnitType' class='form-control'>{{#RemoteUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteUnitType}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CommunicationLinks'>CommunicationLinks: </label><div class='col-sm-8'><input id='CommunicationLinks' class='form-control' type='text'{{#CommunicationLinks}} value='{{CommunicationLinks}}_string'{{/CommunicationLinks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_remoteUnitType'>remoteUnitType: </label><div class='col-sm-8'><select id='{{id}}_remoteUnitType' class='form-control'>{{#RemoteUnitType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RemoteUnitType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CommunicationLinks'>CommunicationLinks: </label><div class='col-sm-8'><input id='{{id}}_CommunicationLinks' class='form-control' type='text'{{#CommunicationLinks}} value='{{CommunicationLinks}}_string'{{/CommunicationLinks}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RemoteUnit" };
-                super.submit (obj);
-                temp = document.getElementById ("remoteUnitType").value; if ("" != temp) { temp = RemoteUnitType[temp]; if ("undefined" != typeof (temp)) obj.remoteUnitType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteUnitType." + temp; }
-                temp = document.getElementById ("CommunicationLinks").value; if ("" != temp) obj.CommunicationLinks = temp.split (",");
+                var obj = obj || { id: id, cls: "RemoteUnit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_remoteUnitType").value; if ("" != temp) { temp = RemoteUnitType[temp]; if ("undefined" != typeof (temp)) obj.remoteUnitType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteUnitType." + temp; }
+                temp = document.getElementById (id + "_CommunicationLinks").value; if ("" != temp) obj.CommunicationLinks = temp.split (",");
 
                 return (obj);
             }
@@ -364,25 +364,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CommunicationLink_collapse" aria-expanded="true" aria-controls="CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
-                    <div id="CommunicationLink_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CommunicationLink_collapse" aria-expanded="true" aria-controls="{{id}}_CommunicationLink_collapse" style="margin-left: 10px;">CommunicationLink</a></legend>
+                    <div id="{{id}}_CommunicationLink_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteUnits'>RemoteUnits: </label><div class='col-sm-8'><input id='RemoteUnits' class='form-control' type='text'{{#RemoteUnits}} value='{{RemoteUnits}}_string'{{/RemoteUnits}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteUnits'>RemoteUnits: </label><div class='col-sm-8'><input id='{{id}}_RemoteUnits' class='form-control' type='text'{{#RemoteUnits}} value='{{RemoteUnits}}_string'{{/RemoteUnits}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CommunicationLink" };
-                super.submit (obj);
-                temp = document.getElementById ("RemoteUnits").value; if ("" != temp) obj.RemoteUnits = temp.split (",");
+                var obj = obj || { id: id, cls: "CommunicationLink" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RemoteUnits").value; if ("" != temp) obj.RemoteUnits = temp.split (",");
 
                 return (obj);
             }
@@ -489,33 +489,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteSource_collapse" aria-expanded="true" aria-controls="RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
-                    <div id="RemoteSource_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteSource_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteSource_collapse" style="margin-left: 10px;">RemoteSource</a></legend>
+                    <div id="{{id}}_RemoteSource_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deadband'>deadband: </label><div class='col-sm-8'><input id='deadband' class='form-control' type='text'{{#deadband}} value='{{deadband}}'{{/deadband}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scanInterval'>scanInterval: </label><div class='col-sm-8'><input id='scanInterval' class='form-control' type='text'{{#scanInterval}} value='{{scanInterval}}'{{/scanInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sensorMaximum'>sensorMaximum: </label><div class='col-sm-8'><input id='sensorMaximum' class='form-control' type='text'{{#sensorMaximum}} value='{{sensorMaximum}}'{{/sensorMaximum}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sensorMinimum'>sensorMinimum: </label><div class='col-sm-8'><input id='sensorMinimum' class='form-control' type='text'{{#sensorMinimum}} value='{{sensorMinimum}}'{{/sensorMinimum}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MeasurementValue'>MeasurementValue: </label><div class='col-sm-8'><input id='MeasurementValue' class='form-control' type='text'{{#MeasurementValue}} value='{{MeasurementValue}}'{{/MeasurementValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deadband'>deadband: </label><div class='col-sm-8'><input id='{{id}}_deadband' class='form-control' type='text'{{#deadband}} value='{{deadband}}'{{/deadband}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scanInterval'>scanInterval: </label><div class='col-sm-8'><input id='{{id}}_scanInterval' class='form-control' type='text'{{#scanInterval}} value='{{scanInterval}}'{{/scanInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sensorMaximum'>sensorMaximum: </label><div class='col-sm-8'><input id='{{id}}_sensorMaximum' class='form-control' type='text'{{#sensorMaximum}} value='{{sensorMaximum}}'{{/sensorMaximum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sensorMinimum'>sensorMinimum: </label><div class='col-sm-8'><input id='{{id}}_sensorMinimum' class='form-control' type='text'{{#sensorMinimum}} value='{{sensorMinimum}}'{{/sensorMinimum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MeasurementValue'>MeasurementValue: </label><div class='col-sm-8'><input id='{{id}}_MeasurementValue' class='form-control' type='text'{{#MeasurementValue}} value='{{MeasurementValue}}'{{/MeasurementValue}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RemoteSource" };
-                super.submit (obj);
-                temp = document.getElementById ("deadband").value; if ("" != temp) obj.deadband = temp;
-                temp = document.getElementById ("scanInterval").value; if ("" != temp) obj.scanInterval = temp;
-                temp = document.getElementById ("sensorMaximum").value; if ("" != temp) obj.sensorMaximum = temp;
-                temp = document.getElementById ("sensorMinimum").value; if ("" != temp) obj.sensorMinimum = temp;
-                temp = document.getElementById ("MeasurementValue").value; if ("" != temp) obj.MeasurementValue = temp;
+                var obj = obj || { id: id, cls: "RemoteSource" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_deadband").value; if ("" != temp) obj.deadband = temp;
+                temp = document.getElementById (id + "_scanInterval").value; if ("" != temp) obj.scanInterval = temp;
+                temp = document.getElementById (id + "_sensorMaximum").value; if ("" != temp) obj.sensorMaximum = temp;
+                temp = document.getElementById (id + "_sensorMinimum").value; if ("" != temp) obj.sensorMinimum = temp;
+                temp = document.getElementById (id + "_MeasurementValue").value; if ("" != temp) obj.MeasurementValue = temp;
 
                 return (obj);
             }
@@ -619,31 +619,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteControl_collapse" aria-expanded="true" aria-controls="RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
-                    <div id="RemoteControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteControl_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteControl_collapse" style="margin-left: 10px;">RemoteControl</a></legend>
+                    <div id="{{id}}_RemoteControl_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + RemotePoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actuatorMaximum'>actuatorMaximum: </label><div class='col-sm-8'><input id='actuatorMaximum' class='form-control' type='text'{{#actuatorMaximum}} value='{{actuatorMaximum}}'{{/actuatorMaximum}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actuatorMinimum'>actuatorMinimum: </label><div class='col-sm-8'><input id='actuatorMinimum' class='form-control' type='text'{{#actuatorMinimum}} value='{{actuatorMinimum}}'{{/actuatorMinimum}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='remoteControlled'>remoteControlled: </label><div class='col-sm-8'><input id='remoteControlled' class='form-check-input' type='checkbox'{{#remoteControlled}} checked{{/remoteControlled}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Control'>Control: </label><div class='col-sm-8'><input id='Control' class='form-control' type='text'{{#Control}} value='{{Control}}'{{/Control}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actuatorMaximum'>actuatorMaximum: </label><div class='col-sm-8'><input id='{{id}}_actuatorMaximum' class='form-control' type='text'{{#actuatorMaximum}} value='{{actuatorMaximum}}'{{/actuatorMaximum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actuatorMinimum'>actuatorMinimum: </label><div class='col-sm-8'><input id='{{id}}_actuatorMinimum' class='form-control' type='text'{{#actuatorMinimum}} value='{{actuatorMinimum}}'{{/actuatorMinimum}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_remoteControlled'>remoteControlled: </label><div class='col-sm-8'><input id='{{id}}_remoteControlled' class='form-check-input' type='checkbox'{{#remoteControlled}} checked{{/remoteControlled}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Control'>Control: </label><div class='col-sm-8'><input id='{{id}}_Control' class='form-control' type='text'{{#Control}} value='{{Control}}'{{/Control}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RemoteControl" };
-                super.submit (obj);
-                temp = document.getElementById ("actuatorMaximum").value; if ("" != temp) obj.actuatorMaximum = temp;
-                temp = document.getElementById ("actuatorMinimum").value; if ("" != temp) obj.actuatorMinimum = temp;
-                temp = document.getElementById ("remoteControlled").checked; if (temp) obj.remoteControlled = true;
-                temp = document.getElementById ("Control").value; if ("" != temp) obj.Control = temp;
+                var obj = obj || { id: id, cls: "RemoteControl" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_actuatorMaximum").value; if ("" != temp) obj.actuatorMaximum = temp;
+                temp = document.getElementById (id + "_actuatorMinimum").value; if ("" != temp) obj.actuatorMinimum = temp;
+                temp = document.getElementById (id + "_remoteControlled").checked; if (temp) obj.remoteControlled = true;
+                temp = document.getElementById (id + "_Control").value; if ("" != temp) obj.Control = temp;
 
                 return (obj);
             }

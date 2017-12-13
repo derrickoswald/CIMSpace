@@ -96,29 +96,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RecloseSequence_collapse" aria-expanded="true" aria-controls="RecloseSequence_collapse" style="margin-left: 10px;">RecloseSequence</a></legend>
-                    <div id="RecloseSequence_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RecloseSequence_collapse" aria-expanded="true" aria-controls="{{id}}_RecloseSequence_collapse" style="margin-left: 10px;">RecloseSequence</a></legend>
+                    <div id="{{id}}_RecloseSequence_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='recloseDelay'>recloseDelay: </label><div class='col-sm-8'><input id='recloseDelay' class='form-control' type='text'{{#recloseDelay}} value='{{recloseDelay}}'{{/recloseDelay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='recloseStep'>recloseStep: </label><div class='col-sm-8'><input id='recloseStep' class='form-control' type='text'{{#recloseStep}} value='{{recloseStep}}'{{/recloseStep}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProtectedSwitch'>ProtectedSwitch: </label><div class='col-sm-8'><input id='ProtectedSwitch' class='form-control' type='text'{{#ProtectedSwitch}} value='{{ProtectedSwitch}}'{{/ProtectedSwitch}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recloseDelay'>recloseDelay: </label><div class='col-sm-8'><input id='{{id}}_recloseDelay' class='form-control' type='text'{{#recloseDelay}} value='{{recloseDelay}}'{{/recloseDelay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_recloseStep'>recloseStep: </label><div class='col-sm-8'><input id='{{id}}_recloseStep' class='form-control' type='text'{{#recloseStep}} value='{{recloseStep}}'{{/recloseStep}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectedSwitch'>ProtectedSwitch: </label><div class='col-sm-8'><input id='{{id}}_ProtectedSwitch' class='form-control' type='text'{{#ProtectedSwitch}} value='{{ProtectedSwitch}}'{{/ProtectedSwitch}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RecloseSequence" };
-                super.submit (obj);
-                temp = document.getElementById ("recloseDelay").value; if ("" != temp) obj.recloseDelay = temp;
-                temp = document.getElementById ("recloseStep").value; if ("" != temp) obj.recloseStep = temp;
-                temp = document.getElementById ("ProtectedSwitch").value; if ("" != temp) obj.ProtectedSwitch = temp;
+                var obj = obj || { id: id, cls: "RecloseSequence" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_recloseDelay").value; if ("" != temp) obj.recloseDelay = temp;
+                temp = document.getElementById (id + "_recloseStep").value; if ("" != temp) obj.recloseStep = temp;
+                temp = document.getElementById (id + "_ProtectedSwitch").value; if ("" != temp) obj.ProtectedSwitch = temp;
 
                 return (obj);
             }
@@ -245,39 +245,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProtectionEquipment_collapse" aria-expanded="true" aria-controls="ProtectionEquipment_collapse" style="margin-left: 10px;">ProtectionEquipment</a></legend>
-                    <div id="ProtectionEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProtectionEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_ProtectionEquipment_collapse" style="margin-left: 10px;">ProtectionEquipment</a></legend>
+                    <div id="{{id}}_ProtectionEquipment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Equipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highLimit'>highLimit: </label><div class='col-sm-8'><input id='highLimit' class='form-control' type='text'{{#highLimit}} value='{{highLimit}}'{{/highLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowLimit'>lowLimit: </label><div class='col-sm-8'><input id='lowLimit' class='form-control' type='text'{{#lowLimit}} value='{{lowLimit}}'{{/lowLimit}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='powerDirectionFlag'>powerDirectionFlag: </label><div class='col-sm-8'><input id='powerDirectionFlag' class='form-check-input' type='checkbox'{{#powerDirectionFlag}} checked{{/powerDirectionFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='relayDelayTime'>relayDelayTime: </label><div class='col-sm-8'><input id='relayDelayTime' class='form-control' type='text'{{#relayDelayTime}} value='{{relayDelayTime}}'{{/relayDelayTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConductingEquipments'>ConductingEquipments: </label><div class='col-sm-8'><input id='ConductingEquipments' class='form-control' type='text'{{#ConductingEquipments}} value='{{ConductingEquipments}}_string'{{/ConductingEquipments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProtectedSwitches'>ProtectedSwitches: </label><div class='col-sm-8'><input id='ProtectedSwitches' class='form-control' type='text'{{#ProtectedSwitches}} value='{{ProtectedSwitches}}_string'{{/ProtectedSwitches}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highLimit'>highLimit: </label><div class='col-sm-8'><input id='{{id}}_highLimit' class='form-control' type='text'{{#highLimit}} value='{{highLimit}}'{{/highLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowLimit'>lowLimit: </label><div class='col-sm-8'><input id='{{id}}_lowLimit' class='form-control' type='text'{{#lowLimit}} value='{{lowLimit}}'{{/lowLimit}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_powerDirectionFlag'>powerDirectionFlag: </label><div class='col-sm-8'><input id='{{id}}_powerDirectionFlag' class='form-check-input' type='checkbox'{{#powerDirectionFlag}} checked{{/powerDirectionFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_relayDelayTime'>relayDelayTime: </label><div class='col-sm-8'><input id='{{id}}_relayDelayTime' class='form-control' type='text'{{#relayDelayTime}} value='{{relayDelayTime}}'{{/relayDelayTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitMultiplier'>unitMultiplier: </label><div class='col-sm-8'><input id='{{id}}_unitMultiplier' class='form-control' type='text'{{#unitMultiplier}} value='{{unitMultiplier}}'{{/unitMultiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unitSymbol'>unitSymbol: </label><div class='col-sm-8'><input id='{{id}}_unitSymbol' class='form-control' type='text'{{#unitSymbol}} value='{{unitSymbol}}'{{/unitSymbol}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConductingEquipments'>ConductingEquipments: </label><div class='col-sm-8'><input id='{{id}}_ConductingEquipments' class='form-control' type='text'{{#ConductingEquipments}} value='{{ConductingEquipments}}_string'{{/ConductingEquipments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProtectedSwitches'>ProtectedSwitches: </label><div class='col-sm-8'><input id='{{id}}_ProtectedSwitches' class='form-control' type='text'{{#ProtectedSwitches}} value='{{ProtectedSwitches}}_string'{{/ProtectedSwitches}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProtectionEquipment" };
-                super.submit (obj);
-                temp = document.getElementById ("highLimit").value; if ("" != temp) obj.highLimit = temp;
-                temp = document.getElementById ("lowLimit").value; if ("" != temp) obj.lowLimit = temp;
-                temp = document.getElementById ("powerDirectionFlag").checked; if (temp) obj.powerDirectionFlag = true;
-                temp = document.getElementById ("relayDelayTime").value; if ("" != temp) obj.relayDelayTime = temp;
-                temp = document.getElementById ("unitMultiplier").value; if ("" != temp) obj.unitMultiplier = temp;
-                temp = document.getElementById ("unitSymbol").value; if ("" != temp) obj.unitSymbol = temp;
-                temp = document.getElementById ("ConductingEquipments").value; if ("" != temp) obj.ConductingEquipments = temp.split (",");
-                temp = document.getElementById ("ProtectedSwitches").value; if ("" != temp) obj.ProtectedSwitches = temp.split (",");
+                var obj = obj || { id: id, cls: "ProtectionEquipment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_highLimit").value; if ("" != temp) obj.highLimit = temp;
+                temp = document.getElementById (id + "_lowLimit").value; if ("" != temp) obj.lowLimit = temp;
+                temp = document.getElementById (id + "_powerDirectionFlag").checked; if (temp) obj.powerDirectionFlag = true;
+                temp = document.getElementById (id + "_relayDelayTime").value; if ("" != temp) obj.relayDelayTime = temp;
+                temp = document.getElementById (id + "_unitMultiplier").value; if ("" != temp) obj.unitMultiplier = temp;
+                temp = document.getElementById (id + "_unitSymbol").value; if ("" != temp) obj.unitSymbol = temp;
+                temp = document.getElementById (id + "_ConductingEquipments").value; if ("" != temp) obj.ConductingEquipments = temp.split (",");
+                temp = document.getElementById (id + "_ProtectedSwitches").value; if ("" != temp) obj.ProtectedSwitches = temp.split (",");
 
                 return (obj);
             }
@@ -392,37 +392,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentRelay_collapse" aria-expanded="true" aria-controls="CurrentRelay_collapse" style="margin-left: 10px;">CurrentRelay</a></legend>
-                    <div id="CurrentRelay_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentRelay_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentRelay_collapse" style="margin-left: 10px;">CurrentRelay</a></legend>
+                    <div id="{{id}}_CurrentRelay_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ProtectionEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentLimit1'>currentLimit1: </label><div class='col-sm-8'><input id='currentLimit1' class='form-control' type='text'{{#currentLimit1}} value='{{currentLimit1}}'{{/currentLimit1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentLimit2'>currentLimit2: </label><div class='col-sm-8'><input id='currentLimit2' class='form-control' type='text'{{#currentLimit2}} value='{{currentLimit2}}'{{/currentLimit2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='currentLimit3'>currentLimit3: </label><div class='col-sm-8'><input id='currentLimit3' class='form-control' type='text'{{#currentLimit3}} value='{{currentLimit3}}'{{/currentLimit3}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inverseTimeFlag'>inverseTimeFlag: </label><div class='col-sm-8'><input id='inverseTimeFlag' class='form-check-input' type='checkbox'{{#inverseTimeFlag}} checked{{/inverseTimeFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeDelay1'>timeDelay1: </label><div class='col-sm-8'><input id='timeDelay1' class='form-control' type='text'{{#timeDelay1}} value='{{timeDelay1}}'{{/timeDelay1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeDelay2'>timeDelay2: </label><div class='col-sm-8'><input id='timeDelay2' class='form-control' type='text'{{#timeDelay2}} value='{{timeDelay2}}'{{/timeDelay2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeDelay3'>timeDelay3: </label><div class='col-sm-8'><input id='timeDelay3' class='form-control' type='text'{{#timeDelay3}} value='{{timeDelay3}}'{{/timeDelay3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currentLimit1'>currentLimit1: </label><div class='col-sm-8'><input id='{{id}}_currentLimit1' class='form-control' type='text'{{#currentLimit1}} value='{{currentLimit1}}'{{/currentLimit1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currentLimit2'>currentLimit2: </label><div class='col-sm-8'><input id='{{id}}_currentLimit2' class='form-control' type='text'{{#currentLimit2}} value='{{currentLimit2}}'{{/currentLimit2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_currentLimit3'>currentLimit3: </label><div class='col-sm-8'><input id='{{id}}_currentLimit3' class='form-control' type='text'{{#currentLimit3}} value='{{currentLimit3}}'{{/currentLimit3}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_inverseTimeFlag'>inverseTimeFlag: </label><div class='col-sm-8'><input id='{{id}}_inverseTimeFlag' class='form-check-input' type='checkbox'{{#inverseTimeFlag}} checked{{/inverseTimeFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeDelay1'>timeDelay1: </label><div class='col-sm-8'><input id='{{id}}_timeDelay1' class='form-control' type='text'{{#timeDelay1}} value='{{timeDelay1}}'{{/timeDelay1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeDelay2'>timeDelay2: </label><div class='col-sm-8'><input id='{{id}}_timeDelay2' class='form-control' type='text'{{#timeDelay2}} value='{{timeDelay2}}'{{/timeDelay2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeDelay3'>timeDelay3: </label><div class='col-sm-8'><input id='{{id}}_timeDelay3' class='form-control' type='text'{{#timeDelay3}} value='{{timeDelay3}}'{{/timeDelay3}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CurrentRelay" };
-                super.submit (obj);
-                temp = document.getElementById ("currentLimit1").value; if ("" != temp) obj.currentLimit1 = temp;
-                temp = document.getElementById ("currentLimit2").value; if ("" != temp) obj.currentLimit2 = temp;
-                temp = document.getElementById ("currentLimit3").value; if ("" != temp) obj.currentLimit3 = temp;
-                temp = document.getElementById ("inverseTimeFlag").checked; if (temp) obj.inverseTimeFlag = true;
-                temp = document.getElementById ("timeDelay1").value; if ("" != temp) obj.timeDelay1 = temp;
-                temp = document.getElementById ("timeDelay2").value; if ("" != temp) obj.timeDelay2 = temp;
-                temp = document.getElementById ("timeDelay3").value; if ("" != temp) obj.timeDelay3 = temp;
+                var obj = obj || { id: id, cls: "CurrentRelay" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_currentLimit1").value; if ("" != temp) obj.currentLimit1 = temp;
+                temp = document.getElementById (id + "_currentLimit2").value; if ("" != temp) obj.currentLimit2 = temp;
+                temp = document.getElementById (id + "_currentLimit3").value; if ("" != temp) obj.currentLimit3 = temp;
+                temp = document.getElementById (id + "_inverseTimeFlag").checked; if (temp) obj.inverseTimeFlag = true;
+                temp = document.getElementById (id + "_timeDelay1").value; if ("" != temp) obj.timeDelay1 = temp;
+                temp = document.getElementById (id + "_timeDelay2").value; if ("" != temp) obj.timeDelay2 = temp;
+                temp = document.getElementById (id + "_timeDelay3").value; if ("" != temp) obj.timeDelay3 = temp;
 
                 return (obj);
             }
@@ -516,29 +516,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="SynchrocheckRelay_collapse" style="margin-left: 10px;">SynchrocheckRelay</a></legend>
-                    <div id="SynchrocheckRelay_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchrocheckRelay_collapse" aria-expanded="true" aria-controls="{{id}}_SynchrocheckRelay_collapse" style="margin-left: 10px;">SynchrocheckRelay</a></legend>
+                    <div id="{{id}}_SynchrocheckRelay_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ProtectionEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxAngleDiff'>maxAngleDiff: </label><div class='col-sm-8'><input id='maxAngleDiff' class='form-control' type='text'{{#maxAngleDiff}} value='{{maxAngleDiff}}'{{/maxAngleDiff}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxFreqDiff'>maxFreqDiff: </label><div class='col-sm-8'><input id='maxFreqDiff' class='form-control' type='text'{{#maxFreqDiff}} value='{{maxFreqDiff}}'{{/maxFreqDiff}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxVoltDiff'>maxVoltDiff: </label><div class='col-sm-8'><input id='maxVoltDiff' class='form-control' type='text'{{#maxVoltDiff}} value='{{maxVoltDiff}}'{{/maxVoltDiff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxAngleDiff'>maxAngleDiff: </label><div class='col-sm-8'><input id='{{id}}_maxAngleDiff' class='form-control' type='text'{{#maxAngleDiff}} value='{{maxAngleDiff}}'{{/maxAngleDiff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxFreqDiff'>maxFreqDiff: </label><div class='col-sm-8'><input id='{{id}}_maxFreqDiff' class='form-control' type='text'{{#maxFreqDiff}} value='{{maxFreqDiff}}'{{/maxFreqDiff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxVoltDiff'>maxVoltDiff: </label><div class='col-sm-8'><input id='{{id}}_maxVoltDiff' class='form-control' type='text'{{#maxVoltDiff}} value='{{maxVoltDiff}}'{{/maxVoltDiff}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SynchrocheckRelay" };
-                super.submit (obj);
-                temp = document.getElementById ("maxAngleDiff").value; if ("" != temp) obj.maxAngleDiff = temp;
-                temp = document.getElementById ("maxFreqDiff").value; if ("" != temp) obj.maxFreqDiff = temp;
-                temp = document.getElementById ("maxVoltDiff").value; if ("" != temp) obj.maxVoltDiff = temp;
+                var obj = obj || { id: id, cls: "SynchrocheckRelay" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_maxAngleDiff").value; if ("" != temp) obj.maxAngleDiff = temp;
+                temp = document.getElementById (id + "_maxFreqDiff").value; if ("" != temp) obj.maxFreqDiff = temp;
+                temp = document.getElementById (id + "_maxVoltDiff").value; if ("" != temp) obj.maxVoltDiff = temp;
 
                 return (obj);
             }

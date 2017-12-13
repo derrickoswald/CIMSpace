@@ -90,25 +90,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NonConformLoad_collapse" aria-expanded="true" aria-controls="NonConformLoad_collapse" style="margin-left: 10px;">NonConformLoad</a></legend>
-                    <div id="NonConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NonConformLoad_collapse" aria-expanded="true" aria-controls="{{id}}_NonConformLoad_collapse" style="margin-left: 10px;">NonConformLoad</a></legend>
+                    <div id="{{id}}_NonConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadGroup'>LoadGroup: </label><div class='col-sm-8'><input id='LoadGroup' class='form-control' type='text'{{#LoadGroup}} value='{{LoadGroup}}'{{/LoadGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadGroup'>LoadGroup: </label><div class='col-sm-8'><input id='{{id}}_LoadGroup' class='form-control' type='text'{{#LoadGroup}} value='{{LoadGroup}}'{{/LoadGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "NonConformLoad" };
-                super.submit (obj);
-                temp = document.getElementById ("LoadGroup").value; if ("" != temp) obj.LoadGroup = temp;
+                var obj = obj || { id: id, cls: "NonConformLoad" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_LoadGroup").value; if ("" != temp) obj.LoadGroup = temp;
 
                 return (obj);
             }
@@ -203,25 +203,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConformLoad_collapse" aria-expanded="true" aria-controls="ConformLoad_collapse" style="margin-left: 10px;">ConformLoad</a></legend>
-                    <div id="ConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConformLoad_collapse" aria-expanded="true" aria-controls="{{id}}_ConformLoad_collapse" style="margin-left: 10px;">ConformLoad</a></legend>
+                    <div id="{{id}}_ConformLoad_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadGroup'>LoadGroup: </label><div class='col-sm-8'><input id='LoadGroup' class='form-control' type='text'{{#LoadGroup}} value='{{LoadGroup}}'{{/LoadGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadGroup'>LoadGroup: </label><div class='col-sm-8'><input id='{{id}}_LoadGroup' class='form-control' type='text'{{#LoadGroup}} value='{{LoadGroup}}'{{/LoadGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ConformLoad" };
-                super.submit (obj);
-                temp = document.getElementById ("LoadGroup").value; if ("" != temp) obj.LoadGroup = temp;
+                var obj = obj || { id: id, cls: "ConformLoad" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_LoadGroup").value; if ("" != temp) obj.LoadGroup = temp;
 
                 return (obj);
             }
@@ -313,8 +313,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StationSupply_collapse" aria-expanded="true" aria-controls="StationSupply_collapse" style="margin-left: 10px;">StationSupply</a></legend>
-                    <div id="StationSupply_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StationSupply_collapse" aria-expanded="true" aria-controls="{{id}}_StationSupply_collapse" style="margin-left: 10px;">StationSupply</a></legend>
+                    <div id="{{id}}_StationSupply_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Wires.EnergyConsumer.prototype.edit_template.call (this) +
                     `
@@ -324,10 +324,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "StationSupply" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "StationSupply" };
+                super.submit (id, obj);
 
                 return (obj);
             }

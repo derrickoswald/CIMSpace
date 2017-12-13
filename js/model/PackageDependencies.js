@@ -93,27 +93,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PackageDependenciesCIMVersion_collapse" aria-expanded="true" aria-controls="PackageDependenciesCIMVersion_collapse" style="margin-left: 10px;">PackageDependenciesCIMVersion</a></legend>
-                    <div id="PackageDependenciesCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PackageDependenciesCIMVersion_collapse" aria-expanded="true" aria-controls="{{id}}_PackageDependenciesCIMVersion_collapse" style="margin-left: 10px;">PackageDependenciesCIMVersion</a></legend>
+                    <div id="{{id}}_PackageDependenciesCIMVersion_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='date'>date: </label><div class='col-sm-8'><input id='date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='version'>version: </label><div class='col-sm-8'><input id='version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_date'>date: </label><div class='col-sm-8'><input id='{{id}}_date' class='form-control' type='text'{{#date}} value='{{date}}'{{/date}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_version'>version: </label><div class='col-sm-8'><input id='{{id}}_version' class='form-control' type='text'{{#version}} value='{{version}}'{{/version}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PackageDependenciesCIMVersion" };
-                super.submit (obj);
-                temp = document.getElementById ("date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById ("version").value; if ("" != temp) obj.version = temp;
+                var obj = obj || { id: id, cls: "PackageDependenciesCIMVersion" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
+                temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
 
                 return (obj);
             }

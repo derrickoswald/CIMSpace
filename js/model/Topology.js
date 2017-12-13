@@ -100,27 +100,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BusNameMarker_collapse" aria-expanded="true" aria-controls="BusNameMarker_collapse" style="margin-left: 10px;">BusNameMarker</a></legend>
-                    <div id="BusNameMarker_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BusNameMarker_collapse" aria-expanded="true" aria-controls="{{id}}_BusNameMarker_collapse" style="margin-left: 10px;">BusNameMarker</a></legend>
+                    <div id="{{id}}_BusNameMarker_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReportingGroup'>ReportingGroup: </label><div class='col-sm-8'><input id='ReportingGroup' class='form-control' type='text'{{#ReportingGroup}} value='{{ReportingGroup}}'{{/ReportingGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReportingGroup'>ReportingGroup: </label><div class='col-sm-8'><input id='{{id}}_ReportingGroup' class='form-control' type='text'{{#ReportingGroup}} value='{{ReportingGroup}}'{{/ReportingGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BusNameMarker" };
-                super.submit (obj);
-                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById ("ReportingGroup").value; if ("" != temp) obj.ReportingGroup = temp;
+                var obj = obj || { id: id, cls: "BusNameMarker" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById (id + "_ReportingGroup").value; if ("" != temp) obj.ReportingGroup = temp;
 
                 return (obj);
             }
@@ -229,27 +229,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DCTopologicalNode_collapse" aria-expanded="true" aria-controls="DCTopologicalNode_collapse" style="margin-left: 10px;">DCTopologicalNode</a></legend>
-                    <div id="DCTopologicalNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DCTopologicalNode_collapse" aria-expanded="true" aria-controls="{{id}}_DCTopologicalNode_collapse" style="margin-left: 10px;">DCTopologicalNode</a></legend>
+                    <div id="{{id}}_DCTopologicalNode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCEquipmentContainer'>DCEquipmentContainer: </label><div class='col-sm-8'><input id='DCEquipmentContainer' class='form-control' type='text'{{#DCEquipmentContainer}} value='{{DCEquipmentContainer}}'{{/DCEquipmentContainer}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DCTopologicalIsland'>DCTopologicalIsland: </label><div class='col-sm-8'><input id='DCTopologicalIsland' class='form-control' type='text'{{#DCTopologicalIsland}} value='{{DCTopologicalIsland}}'{{/DCTopologicalIsland}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCEquipmentContainer'>DCEquipmentContainer: </label><div class='col-sm-8'><input id='{{id}}_DCEquipmentContainer' class='form-control' type='text'{{#DCEquipmentContainer}} value='{{DCEquipmentContainer}}'{{/DCEquipmentContainer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DCTopologicalIsland'>DCTopologicalIsland: </label><div class='col-sm-8'><input id='{{id}}_DCTopologicalIsland' class='form-control' type='text'{{#DCTopologicalIsland}} value='{{DCTopologicalIsland}}'{{/DCTopologicalIsland}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DCTopologicalNode" };
-                super.submit (obj);
-                temp = document.getElementById ("DCEquipmentContainer").value; if ("" != temp) obj.DCEquipmentContainer = temp;
-                temp = document.getElementById ("DCTopologicalIsland").value; if ("" != temp) obj.DCTopologicalIsland = temp;
+                var obj = obj || { id: id, cls: "DCTopologicalNode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_DCEquipmentContainer").value; if ("" != temp) obj.DCEquipmentContainer = temp;
+                temp = document.getElementById (id + "_DCTopologicalIsland").value; if ("" != temp) obj.DCTopologicalIsland = temp;
 
                 return (obj);
             }
@@ -383,41 +383,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TopologicalNode_collapse" aria-expanded="true" aria-controls="TopologicalNode_collapse" style="margin-left: 10px;">TopologicalNode</a></legend>
-                    <div id="TopologicalNode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TopologicalNode_collapse" aria-expanded="true" aria-controls="{{id}}_TopologicalNode_collapse" style="margin-left: 10px;">TopologicalNode</a></legend>
+                    <div id="{{id}}_TopologicalNode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pInjection'>pInjection: </label><div class='col-sm-8'><input id='pInjection' class='form-control' type='text'{{#pInjection}} value='{{pInjection}}'{{/pInjection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qInjection'>qInjection: </label><div class='col-sm-8'><input id='qInjection' class='form-control' type='text'{{#qInjection}} value='{{qInjection}}'{{/qInjection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AngleRefTopologicalIsland'>AngleRefTopologicalIsland: </label><div class='col-sm-8'><input id='AngleRefTopologicalIsland' class='form-control' type='text'{{#AngleRefTopologicalIsland}} value='{{AngleRefTopologicalIsland}}'{{/AngleRefTopologicalIsland}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SvVoltage'>SvVoltage: </label><div class='col-sm-8'><input id='SvVoltage' class='form-control' type='text'{{#SvVoltage}} value='{{SvVoltage}}'{{/SvVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReportingGroup'>ReportingGroup: </label><div class='col-sm-8'><input id='ReportingGroup' class='form-control' type='text'{{#ReportingGroup}} value='{{ReportingGroup}}'{{/ReportingGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SvInjection'>SvInjection: </label><div class='col-sm-8'><input id='SvInjection' class='form-control' type='text'{{#SvInjection}} value='{{SvInjection}}'{{/SvInjection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BaseVoltage'>BaseVoltage: </label><div class='col-sm-8'><input id='BaseVoltage' class='form-control' type='text'{{#BaseVoltage}} value='{{BaseVoltage}}'{{/BaseVoltage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TopologicalIsland'>TopologicalIsland: </label><div class='col-sm-8'><input id='TopologicalIsland' class='form-control' type='text'{{#TopologicalIsland}} value='{{TopologicalIsland}}'{{/TopologicalIsland}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConnectivityNodeContainer'>ConnectivityNodeContainer: </label><div class='col-sm-8'><input id='ConnectivityNodeContainer' class='form-control' type='text'{{#ConnectivityNodeContainer}} value='{{ConnectivityNodeContainer}}'{{/ConnectivityNodeContainer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pInjection'>pInjection: </label><div class='col-sm-8'><input id='{{id}}_pInjection' class='form-control' type='text'{{#pInjection}} value='{{pInjection}}'{{/pInjection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qInjection'>qInjection: </label><div class='col-sm-8'><input id='{{id}}_qInjection' class='form-control' type='text'{{#qInjection}} value='{{qInjection}}'{{/qInjection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AngleRefTopologicalIsland'>AngleRefTopologicalIsland: </label><div class='col-sm-8'><input id='{{id}}_AngleRefTopologicalIsland' class='form-control' type='text'{{#AngleRefTopologicalIsland}} value='{{AngleRefTopologicalIsland}}'{{/AngleRefTopologicalIsland}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SvVoltage'>SvVoltage: </label><div class='col-sm-8'><input id='{{id}}_SvVoltage' class='form-control' type='text'{{#SvVoltage}} value='{{SvVoltage}}'{{/SvVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReportingGroup'>ReportingGroup: </label><div class='col-sm-8'><input id='{{id}}_ReportingGroup' class='form-control' type='text'{{#ReportingGroup}} value='{{ReportingGroup}}'{{/ReportingGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SvInjection'>SvInjection: </label><div class='col-sm-8'><input id='{{id}}_SvInjection' class='form-control' type='text'{{#SvInjection}} value='{{SvInjection}}'{{/SvInjection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BaseVoltage'>BaseVoltage: </label><div class='col-sm-8'><input id='{{id}}_BaseVoltage' class='form-control' type='text'{{#BaseVoltage}} value='{{BaseVoltage}}'{{/BaseVoltage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TopologicalIsland'>TopologicalIsland: </label><div class='col-sm-8'><input id='{{id}}_TopologicalIsland' class='form-control' type='text'{{#TopologicalIsland}} value='{{TopologicalIsland}}'{{/TopologicalIsland}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConnectivityNodeContainer'>ConnectivityNodeContainer: </label><div class='col-sm-8'><input id='{{id}}_ConnectivityNodeContainer' class='form-control' type='text'{{#ConnectivityNodeContainer}} value='{{ConnectivityNodeContainer}}'{{/ConnectivityNodeContainer}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TopologicalNode" };
-                super.submit (obj);
-                temp = document.getElementById ("pInjection").value; if ("" != temp) obj.pInjection = temp;
-                temp = document.getElementById ("qInjection").value; if ("" != temp) obj.qInjection = temp;
-                temp = document.getElementById ("AngleRefTopologicalIsland").value; if ("" != temp) obj.AngleRefTopologicalIsland = temp;
-                temp = document.getElementById ("SvVoltage").value; if ("" != temp) obj.SvVoltage = temp;
-                temp = document.getElementById ("ReportingGroup").value; if ("" != temp) obj.ReportingGroup = temp;
-                temp = document.getElementById ("SvInjection").value; if ("" != temp) obj.SvInjection = temp;
-                temp = document.getElementById ("BaseVoltage").value; if ("" != temp) obj.BaseVoltage = temp;
-                temp = document.getElementById ("TopologicalIsland").value; if ("" != temp) obj.TopologicalIsland = temp;
-                temp = document.getElementById ("ConnectivityNodeContainer").value; if ("" != temp) obj.ConnectivityNodeContainer = temp;
+                var obj = obj || { id: id, cls: "TopologicalNode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_pInjection").value; if ("" != temp) obj.pInjection = temp;
+                temp = document.getElementById (id + "_qInjection").value; if ("" != temp) obj.qInjection = temp;
+                temp = document.getElementById (id + "_AngleRefTopologicalIsland").value; if ("" != temp) obj.AngleRefTopologicalIsland = temp;
+                temp = document.getElementById (id + "_SvVoltage").value; if ("" != temp) obj.SvVoltage = temp;
+                temp = document.getElementById (id + "_ReportingGroup").value; if ("" != temp) obj.ReportingGroup = temp;
+                temp = document.getElementById (id + "_SvInjection").value; if ("" != temp) obj.SvInjection = temp;
+                temp = document.getElementById (id + "_BaseVoltage").value; if ("" != temp) obj.BaseVoltage = temp;
+                temp = document.getElementById (id + "_TopologicalIsland").value; if ("" != temp) obj.TopologicalIsland = temp;
+                temp = document.getElementById (id + "_ConnectivityNodeContainer").value; if ("" != temp) obj.ConnectivityNodeContainer = temp;
 
                 return (obj);
             }
@@ -527,25 +527,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TopologicalIsland_collapse" aria-expanded="true" aria-controls="TopologicalIsland_collapse" style="margin-left: 10px;">TopologicalIsland</a></legend>
-                    <div id="TopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TopologicalIsland_collapse" aria-expanded="true" aria-controls="{{id}}_TopologicalIsland_collapse" style="margin-left: 10px;">TopologicalIsland</a></legend>
+                    <div id="{{id}}_TopologicalIsland_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AngleRefTopologicalNode'>AngleRefTopologicalNode: </label><div class='col-sm-8'><input id='AngleRefTopologicalNode' class='form-control' type='text'{{#AngleRefTopologicalNode}} value='{{AngleRefTopologicalNode}}'{{/AngleRefTopologicalNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AngleRefTopologicalNode'>AngleRefTopologicalNode: </label><div class='col-sm-8'><input id='{{id}}_AngleRefTopologicalNode' class='form-control' type='text'{{#AngleRefTopologicalNode}} value='{{AngleRefTopologicalNode}}'{{/AngleRefTopologicalNode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TopologicalIsland" };
-                super.submit (obj);
-                temp = document.getElementById ("AngleRefTopologicalNode").value; if ("" != temp) obj.AngleRefTopologicalNode = temp;
+                var obj = obj || { id: id, cls: "TopologicalIsland" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_AngleRefTopologicalNode").value; if ("" != temp) obj.AngleRefTopologicalNode = temp;
 
                 return (obj);
             }

@@ -155,31 +155,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="SynchronousMachineDynamics_collapse" style="margin-left: 10px;">SynchronousMachineDynamics</a></legend>
-                    <div id="SynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineDynamics_collapse" style="margin-left: 10px;">SynchronousMachineDynamics</a></legend>
+                    <div id="{{id}}_SynchronousMachineDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.RotatingMachineDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MechanicalLoadDynamics'>MechanicalLoadDynamics: </label><div class='col-sm-8'><input id='MechanicalLoadDynamics' class='form-control' type='text'{{#MechanicalLoadDynamics}} value='{{MechanicalLoadDynamics}}'{{/MechanicalLoadDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SynchronousMachine'>SynchronousMachine: </label><div class='col-sm-8'><input id='SynchronousMachine' class='form-control' type='text'{{#SynchronousMachine}} value='{{SynchronousMachine}}'{{/SynchronousMachine}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics}}_string'{{/TurbineGovernorDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MechanicalLoadDynamics'>MechanicalLoadDynamics: </label><div class='col-sm-8'><input id='{{id}}_MechanicalLoadDynamics' class='form-control' type='text'{{#MechanicalLoadDynamics}} value='{{MechanicalLoadDynamics}}'{{/MechanicalLoadDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SynchronousMachine'>SynchronousMachine: </label><div class='col-sm-8'><input id='{{id}}_SynchronousMachine' class='form-control' type='text'{{#SynchronousMachine}} value='{{SynchronousMachine}}'{{/SynchronousMachine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TurbineGovernorDynamics'>TurbineGovernorDynamics: </label><div class='col-sm-8'><input id='{{id}}_TurbineGovernorDynamics' class='form-control' type='text'{{#TurbineGovernorDynamics}} value='{{TurbineGovernorDynamics}}_string'{{/TurbineGovernorDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SynchronousMachineDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("MechanicalLoadDynamics").value; if ("" != temp) obj.MechanicalLoadDynamics = temp;
-                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
-                temp = document.getElementById ("SynchronousMachine").value; if ("" != temp) obj.SynchronousMachine = temp;
-                temp = document.getElementById ("TurbineGovernorDynamics").value; if ("" != temp) obj.TurbineGovernorDynamics = temp.split (",");
+                var obj = obj || { id: id, cls: "SynchronousMachineDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_MechanicalLoadDynamics").value; if ("" != temp) obj.MechanicalLoadDynamics = temp;
+                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                temp = document.getElementById (id + "_SynchronousMachine").value; if ("" != temp) obj.SynchronousMachine = temp;
+                temp = document.getElementById (id + "_TurbineGovernorDynamics").value; if ("" != temp) obj.TurbineGovernorDynamics = temp.split (",");
 
                 return (obj);
             }
@@ -291,31 +291,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineDetailed_collapse" aria-expanded="true" aria-controls="SynchronousMachineDetailed_collapse" style="margin-left: 10px;">SynchronousMachineDetailed</a></legend>
-                    <div id="SynchronousMachineDetailed_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineDetailed_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineDetailed_collapse" style="margin-left: 10px;">SynchronousMachineDetailed</a></legend>
+                    <div id="{{id}}_SynchronousMachineDetailed_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='efdBaseRatio'>efdBaseRatio: </label><div class='col-sm-8'><input id='efdBaseRatio' class='form-control' type='text'{{#efdBaseRatio}} value='{{efdBaseRatio}}'{{/efdBaseRatio}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ifdBaseType'>ifdBaseType: </label><div class='col-sm-8'><select id='ifdBaseType' class='form-control'>{{#IfdBaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IfdBaseKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='saturationFactor120QAxis'>saturationFactor120QAxis: </label><div class='col-sm-8'><input id='saturationFactor120QAxis' class='form-control' type='text'{{#saturationFactor120QAxis}} value='{{saturationFactor120QAxis}}'{{/saturationFactor120QAxis}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='saturationFactorQAxis'>saturationFactorQAxis: </label><div class='col-sm-8'><input id='saturationFactorQAxis' class='form-control' type='text'{{#saturationFactorQAxis}} value='{{saturationFactorQAxis}}'{{/saturationFactorQAxis}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_efdBaseRatio'>efdBaseRatio: </label><div class='col-sm-8'><input id='{{id}}_efdBaseRatio' class='form-control' type='text'{{#efdBaseRatio}} value='{{efdBaseRatio}}'{{/efdBaseRatio}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ifdBaseType'>ifdBaseType: </label><div class='col-sm-8'><select id='{{id}}_ifdBaseType' class='form-control'>{{#IfdBaseKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/IfdBaseKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_saturationFactor120QAxis'>saturationFactor120QAxis: </label><div class='col-sm-8'><input id='{{id}}_saturationFactor120QAxis' class='form-control' type='text'{{#saturationFactor120QAxis}} value='{{saturationFactor120QAxis}}'{{/saturationFactor120QAxis}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_saturationFactorQAxis'>saturationFactorQAxis: </label><div class='col-sm-8'><input id='{{id}}_saturationFactorQAxis' class='form-control' type='text'{{#saturationFactorQAxis}} value='{{saturationFactorQAxis}}'{{/saturationFactorQAxis}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SynchronousMachineDetailed" };
-                super.submit (obj);
-                temp = document.getElementById ("efdBaseRatio").value; if ("" != temp) obj.efdBaseRatio = temp;
-                temp = document.getElementById ("ifdBaseType").value; if ("" != temp) { temp = IfdBaseKind[temp]; if ("undefined" != typeof (temp)) obj.ifdBaseType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#IfdBaseKind." + temp; }
-                temp = document.getElementById ("saturationFactor120QAxis").value; if ("" != temp) obj.saturationFactor120QAxis = temp;
-                temp = document.getElementById ("saturationFactorQAxis").value; if ("" != temp) obj.saturationFactorQAxis = temp;
+                var obj = obj || { id: id, cls: "SynchronousMachineDetailed" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_efdBaseRatio").value; if ("" != temp) obj.efdBaseRatio = temp;
+                temp = document.getElementById (id + "_ifdBaseType").value; if ("" != temp) { temp = IfdBaseKind[temp]; if ("undefined" != typeof (temp)) obj.ifdBaseType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#IfdBaseKind." + temp; }
+                temp = document.getElementById (id + "_saturationFactor120QAxis").value; if ("" != temp) obj.saturationFactor120QAxis = temp;
+                temp = document.getElementById (id + "_saturationFactorQAxis").value; if ("" != temp) obj.saturationFactorQAxis = temp;
 
                 return (obj);
             }
@@ -457,45 +457,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="SynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">SynchronousMachineEquivalentCircuit</a></legend>
-                    <div id="SynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineEquivalentCircuit_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineEquivalentCircuit_collapse" style="margin-left: 10px;">SynchronousMachineEquivalentCircuit</a></legend>
+                    <div id="{{id}}_SynchronousMachineEquivalentCircuit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDetailed.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r1d'>r1d: </label><div class='col-sm-8'><input id='r1d' class='form-control' type='text'{{#r1d}} value='{{r1d}}'{{/r1d}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r1q'>r1q: </label><div class='col-sm-8'><input id='r1q' class='form-control' type='text'{{#r1q}} value='{{r1q}}'{{/r1q}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r2q'>r2q: </label><div class='col-sm-8'><input id='r2q' class='form-control' type='text'{{#r2q}} value='{{r2q}}'{{/r2q}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rfd'>rfd: </label><div class='col-sm-8'><input id='rfd' class='form-control' type='text'{{#rfd}} value='{{rfd}}'{{/rfd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x1d'>x1d: </label><div class='col-sm-8'><input id='x1d' class='form-control' type='text'{{#x1d}} value='{{x1d}}'{{/x1d}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x1q'>x1q: </label><div class='col-sm-8'><input id='x1q' class='form-control' type='text'{{#x1q}} value='{{x1q}}'{{/x1q}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x2q'>x2q: </label><div class='col-sm-8'><input id='x2q' class='form-control' type='text'{{#x2q}} value='{{x2q}}'{{/x2q}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xad'>xad: </label><div class='col-sm-8'><input id='xad' class='form-control' type='text'{{#xad}} value='{{xad}}'{{/xad}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xaq'>xaq: </label><div class='col-sm-8'><input id='xaq' class='form-control' type='text'{{#xaq}} value='{{xaq}}'{{/xaq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xf1d'>xf1d: </label><div class='col-sm-8'><input id='xf1d' class='form-control' type='text'{{#xf1d}} value='{{xf1d}}'{{/xf1d}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xfd'>xfd: </label><div class='col-sm-8'><input id='xfd' class='form-control' type='text'{{#xfd}} value='{{xfd}}'{{/xfd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r1d'>r1d: </label><div class='col-sm-8'><input id='{{id}}_r1d' class='form-control' type='text'{{#r1d}} value='{{r1d}}'{{/r1d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r1q'>r1q: </label><div class='col-sm-8'><input id='{{id}}_r1q' class='form-control' type='text'{{#r1q}} value='{{r1q}}'{{/r1q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r2q'>r2q: </label><div class='col-sm-8'><input id='{{id}}_r2q' class='form-control' type='text'{{#r2q}} value='{{r2q}}'{{/r2q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rfd'>rfd: </label><div class='col-sm-8'><input id='{{id}}_rfd' class='form-control' type='text'{{#rfd}} value='{{rfd}}'{{/rfd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x1d'>x1d: </label><div class='col-sm-8'><input id='{{id}}_x1d' class='form-control' type='text'{{#x1d}} value='{{x1d}}'{{/x1d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x1q'>x1q: </label><div class='col-sm-8'><input id='{{id}}_x1q' class='form-control' type='text'{{#x1q}} value='{{x1q}}'{{/x1q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x2q'>x2q: </label><div class='col-sm-8'><input id='{{id}}_x2q' class='form-control' type='text'{{#x2q}} value='{{x2q}}'{{/x2q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xad'>xad: </label><div class='col-sm-8'><input id='{{id}}_xad' class='form-control' type='text'{{#xad}} value='{{xad}}'{{/xad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xaq'>xaq: </label><div class='col-sm-8'><input id='{{id}}_xaq' class='form-control' type='text'{{#xaq}} value='{{xaq}}'{{/xaq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xf1d'>xf1d: </label><div class='col-sm-8'><input id='{{id}}_xf1d' class='form-control' type='text'{{#xf1d}} value='{{xf1d}}'{{/xf1d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xfd'>xfd: </label><div class='col-sm-8'><input id='{{id}}_xfd' class='form-control' type='text'{{#xfd}} value='{{xfd}}'{{/xfd}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SynchronousMachineEquivalentCircuit" };
-                super.submit (obj);
-                temp = document.getElementById ("r1d").value; if ("" != temp) obj.r1d = temp;
-                temp = document.getElementById ("r1q").value; if ("" != temp) obj.r1q = temp;
-                temp = document.getElementById ("r2q").value; if ("" != temp) obj.r2q = temp;
-                temp = document.getElementById ("rfd").value; if ("" != temp) obj.rfd = temp;
-                temp = document.getElementById ("x1d").value; if ("" != temp) obj.x1d = temp;
-                temp = document.getElementById ("x1q").value; if ("" != temp) obj.x1q = temp;
-                temp = document.getElementById ("x2q").value; if ("" != temp) obj.x2q = temp;
-                temp = document.getElementById ("xad").value; if ("" != temp) obj.xad = temp;
-                temp = document.getElementById ("xaq").value; if ("" != temp) obj.xaq = temp;
-                temp = document.getElementById ("xf1d").value; if ("" != temp) obj.xf1d = temp;
-                temp = document.getElementById ("xfd").value; if ("" != temp) obj.xfd = temp;
+                var obj = obj || { id: id, cls: "SynchronousMachineEquivalentCircuit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_r1d").value; if ("" != temp) obj.r1d = temp;
+                temp = document.getElementById (id + "_r1q").value; if ("" != temp) obj.r1q = temp;
+                temp = document.getElementById (id + "_r2q").value; if ("" != temp) obj.r2q = temp;
+                temp = document.getElementById (id + "_rfd").value; if ("" != temp) obj.rfd = temp;
+                temp = document.getElementById (id + "_x1d").value; if ("" != temp) obj.x1d = temp;
+                temp = document.getElementById (id + "_x1q").value; if ("" != temp) obj.x1q = temp;
+                temp = document.getElementById (id + "_x2q").value; if ("" != temp) obj.x2q = temp;
+                temp = document.getElementById (id + "_xad").value; if ("" != temp) obj.xad = temp;
+                temp = document.getElementById (id + "_xaq").value; if ("" != temp) obj.xaq = temp;
+                temp = document.getElementById (id + "_xf1d").value; if ("" != temp) obj.xf1d = temp;
+                temp = document.getElementById (id + "_xfd").value; if ("" != temp) obj.xfd = temp;
 
                 return (obj);
             }
@@ -580,8 +580,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineSimplified_collapse" aria-expanded="true" aria-controls="SynchronousMachineSimplified_collapse" style="margin-left: 10px;">SynchronousMachineSimplified</a></legend>
-                    <div id="SynchronousMachineSimplified_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineSimplified_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineSimplified_collapse" style="margin-left: 10px;">SynchronousMachineSimplified</a></legend>
+                    <div id="{{id}}_SynchronousMachineSimplified_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDynamics.prototype.edit_template.call (this) +
                     `
@@ -591,10 +591,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "SynchronousMachineSimplified" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "SynchronousMachineSimplified" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -757,51 +757,51 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="SynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">SynchronousMachineTimeConstantReactance</a></legend>
-                    <div id="SynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SynchronousMachineTimeConstantReactance_collapse" aria-expanded="true" aria-controls="{{id}}_SynchronousMachineTimeConstantReactance_collapse" style="margin-left: 10px;">SynchronousMachineTimeConstantReactance</a></legend>
+                    <div id="{{id}}_SynchronousMachineTimeConstantReactance_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + SynchronousMachineDetailed.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='modelType'>modelType: </label><div class='col-sm-8'><select id='modelType' class='form-control'>{{#SynchronousMachineModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SynchronousMachineModelKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rotorType'>rotorType: </label><div class='col-sm-8'><select id='rotorType' class='form-control'>{{#RotorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RotorKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpdo'>tpdo: </label><div class='col-sm-8'><input id='tpdo' class='form-control' type='text'{{#tpdo}} value='{{tpdo}}'{{/tpdo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tppdo'>tppdo: </label><div class='col-sm-8'><input id='tppdo' class='form-control' type='text'{{#tppdo}} value='{{tppdo}}'{{/tppdo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tppqo'>tppqo: </label><div class='col-sm-8'><input id='tppqo' class='form-control' type='text'{{#tppqo}} value='{{tppqo}}'{{/tppqo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpqo'>tpqo: </label><div class='col-sm-8'><input id='tpqo' class='form-control' type='text'{{#tpqo}} value='{{tpqo}}'{{/tpqo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectSubtrans'>xDirectSubtrans: </label><div class='col-sm-8'><input id='xDirectSubtrans' class='form-control' type='text'{{#xDirectSubtrans}} value='{{xDirectSubtrans}}'{{/xDirectSubtrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectSync'>xDirectSync: </label><div class='col-sm-8'><input id='xDirectSync' class='form-control' type='text'{{#xDirectSync}} value='{{xDirectSync}}'{{/xDirectSync}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xDirectTrans'>xDirectTrans: </label><div class='col-sm-8'><input id='xDirectTrans' class='form-control' type='text'{{#xDirectTrans}} value='{{xDirectTrans}}'{{/xDirectTrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadSubtrans'>xQuadSubtrans: </label><div class='col-sm-8'><input id='xQuadSubtrans' class='form-control' type='text'{{#xQuadSubtrans}} value='{{xQuadSubtrans}}'{{/xQuadSubtrans}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadSync'>xQuadSync: </label><div class='col-sm-8'><input id='xQuadSync' class='form-control' type='text'{{#xQuadSync}} value='{{xQuadSync}}'{{/xQuadSync}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='xQuadTrans'>xQuadTrans: </label><div class='col-sm-8'><input id='xQuadTrans' class='form-control' type='text'{{#xQuadTrans}} value='{{xQuadTrans}}'{{/xQuadTrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modelType'>modelType: </label><div class='col-sm-8'><select id='{{id}}_modelType' class='form-control'>{{#SynchronousMachineModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/SynchronousMachineModelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rotorType'>rotorType: </label><div class='col-sm-8'><select id='{{id}}_rotorType' class='form-control'>{{#RotorKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/RotorKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpdo'>tpdo: </label><div class='col-sm-8'><input id='{{id}}_tpdo' class='form-control' type='text'{{#tpdo}} value='{{tpdo}}'{{/tpdo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tppdo'>tppdo: </label><div class='col-sm-8'><input id='{{id}}_tppdo' class='form-control' type='text'{{#tppdo}} value='{{tppdo}}'{{/tppdo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tppqo'>tppqo: </label><div class='col-sm-8'><input id='{{id}}_tppqo' class='form-control' type='text'{{#tppqo}} value='{{tppqo}}'{{/tppqo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpqo'>tpqo: </label><div class='col-sm-8'><input id='{{id}}_tpqo' class='form-control' type='text'{{#tpqo}} value='{{tpqo}}'{{/tpqo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xDirectSubtrans'>xDirectSubtrans: </label><div class='col-sm-8'><input id='{{id}}_xDirectSubtrans' class='form-control' type='text'{{#xDirectSubtrans}} value='{{xDirectSubtrans}}'{{/xDirectSubtrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xDirectSync'>xDirectSync: </label><div class='col-sm-8'><input id='{{id}}_xDirectSync' class='form-control' type='text'{{#xDirectSync}} value='{{xDirectSync}}'{{/xDirectSync}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xDirectTrans'>xDirectTrans: </label><div class='col-sm-8'><input id='{{id}}_xDirectTrans' class='form-control' type='text'{{#xDirectTrans}} value='{{xDirectTrans}}'{{/xDirectTrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadSubtrans'>xQuadSubtrans: </label><div class='col-sm-8'><input id='{{id}}_xQuadSubtrans' class='form-control' type='text'{{#xQuadSubtrans}} value='{{xQuadSubtrans}}'{{/xQuadSubtrans}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadSync'>xQuadSync: </label><div class='col-sm-8'><input id='{{id}}_xQuadSync' class='form-control' type='text'{{#xQuadSync}} value='{{xQuadSync}}'{{/xQuadSync}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_xQuadTrans'>xQuadTrans: </label><div class='col-sm-8'><input id='{{id}}_xQuadTrans' class='form-control' type='text'{{#xQuadTrans}} value='{{xQuadTrans}}'{{/xQuadTrans}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SynchronousMachineTimeConstantReactance" };
-                super.submit (obj);
-                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
-                temp = document.getElementById ("modelType").value; if ("" != temp) { temp = SynchronousMachineModelKind[temp]; if ("undefined" != typeof (temp)) obj.modelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineModelKind." + temp; }
-                temp = document.getElementById ("rotorType").value; if ("" != temp) { temp = RotorKind[temp]; if ("undefined" != typeof (temp)) obj.rotorType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RotorKind." + temp; }
-                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
-                temp = document.getElementById ("tpdo").value; if ("" != temp) obj.tpdo = temp;
-                temp = document.getElementById ("tppdo").value; if ("" != temp) obj.tppdo = temp;
-                temp = document.getElementById ("tppqo").value; if ("" != temp) obj.tppqo = temp;
-                temp = document.getElementById ("tpqo").value; if ("" != temp) obj.tpqo = temp;
-                temp = document.getElementById ("xDirectSubtrans").value; if ("" != temp) obj.xDirectSubtrans = temp;
-                temp = document.getElementById ("xDirectSync").value; if ("" != temp) obj.xDirectSync = temp;
-                temp = document.getElementById ("xDirectTrans").value; if ("" != temp) obj.xDirectTrans = temp;
-                temp = document.getElementById ("xQuadSubtrans").value; if ("" != temp) obj.xQuadSubtrans = temp;
-                temp = document.getElementById ("xQuadSync").value; if ("" != temp) obj.xQuadSync = temp;
-                temp = document.getElementById ("xQuadTrans").value; if ("" != temp) obj.xQuadTrans = temp;
+                var obj = obj || { id: id, cls: "SynchronousMachineTimeConstantReactance" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById (id + "_modelType").value; if ("" != temp) { temp = SynchronousMachineModelKind[temp]; if ("undefined" != typeof (temp)) obj.modelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineModelKind." + temp; }
+                temp = document.getElementById (id + "_rotorType").value; if ("" != temp) { temp = RotorKind[temp]; if ("undefined" != typeof (temp)) obj.rotorType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RotorKind." + temp; }
+                temp = document.getElementById (id + "_tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById (id + "_tpdo").value; if ("" != temp) obj.tpdo = temp;
+                temp = document.getElementById (id + "_tppdo").value; if ("" != temp) obj.tppdo = temp;
+                temp = document.getElementById (id + "_tppqo").value; if ("" != temp) obj.tppqo = temp;
+                temp = document.getElementById (id + "_tpqo").value; if ("" != temp) obj.tpqo = temp;
+                temp = document.getElementById (id + "_xDirectSubtrans").value; if ("" != temp) obj.xDirectSubtrans = temp;
+                temp = document.getElementById (id + "_xDirectSync").value; if ("" != temp) obj.xDirectSync = temp;
+                temp = document.getElementById (id + "_xDirectTrans").value; if ("" != temp) obj.xDirectTrans = temp;
+                temp = document.getElementById (id + "_xQuadSubtrans").value; if ("" != temp) obj.xQuadSubtrans = temp;
+                temp = document.getElementById (id + "_xQuadSync").value; if ("" != temp) obj.xQuadSync = temp;
+                temp = document.getElementById (id + "_xQuadTrans").value; if ("" != temp) obj.xQuadTrans = temp;
 
                 return (obj);
             }

@@ -110,27 +110,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitSet_collapse" aria-expanded="true" aria-controls="OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
-                    <div id="OperationalLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimitSet_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimitSet_collapse" style="margin-left: 10px;">OperationalLimitSet</a></legend>
+                    <div id="{{id}}_OperationalLimitSet_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Equipment'>Equipment: </label><div class='col-sm-8'><input id='Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Equipment'>Equipment: </label><div class='col-sm-8'><input id='{{id}}_Equipment' class='form-control' type='text'{{#Equipment}} value='{{Equipment}}'{{/Equipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OperationalLimitSet" };
-                super.submit (obj);
-                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
-                temp = document.getElementById ("Equipment").value; if ("" != temp) obj.Equipment = temp;
+                var obj = obj || { id: id, cls: "OperationalLimitSet" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
+                temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);
             }
@@ -242,29 +242,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimit_collapse" aria-expanded="true" aria-controls="OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
-                    <div id="OperationalLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimit_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimit_collapse" style="margin-left: 10px;">OperationalLimit</a></legend>
+                    <div id="{{id}}_OperationalLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperationalLimitSet'>OperationalLimitSet: </label><div class='col-sm-8'><input id='OperationalLimitSet' class='form-control' type='text'{{#OperationalLimitSet}} value='{{OperationalLimitSet}}'{{/OperationalLimitSet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='OperationalLimitType'>OperationalLimitType: </label><div class='col-sm-8'><input id='OperationalLimitType' class='form-control' type='text'{{#OperationalLimitType}} value='{{OperationalLimitType}}'{{/OperationalLimitType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LimitDependencyModel'>LimitDependencyModel: </label><div class='col-sm-8'><input id='LimitDependencyModel' class='form-control' type='text'{{#LimitDependencyModel}} value='{{LimitDependencyModel}}_string'{{/LimitDependencyModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimitSet'>OperationalLimitSet: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimitSet' class='form-control' type='text'{{#OperationalLimitSet}} value='{{OperationalLimitSet}}'{{/OperationalLimitSet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_OperationalLimitType'>OperationalLimitType: </label><div class='col-sm-8'><input id='{{id}}_OperationalLimitType' class='form-control' type='text'{{#OperationalLimitType}} value='{{OperationalLimitType}}'{{/OperationalLimitType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LimitDependencyModel'>LimitDependencyModel: </label><div class='col-sm-8'><input id='{{id}}_LimitDependencyModel' class='form-control' type='text'{{#LimitDependencyModel}} value='{{LimitDependencyModel}}_string'{{/LimitDependencyModel}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OperationalLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("OperationalLimitSet").value; if ("" != temp) obj.OperationalLimitSet = temp;
-                temp = document.getElementById ("OperationalLimitType").value; if ("" != temp) obj.OperationalLimitType = temp;
-                temp = document.getElementById ("LimitDependencyModel").value; if ("" != temp) obj.LimitDependencyModel = temp.split (",");
+                var obj = obj || { id: id, cls: "OperationalLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_OperationalLimitSet").value; if ("" != temp) obj.OperationalLimitSet = temp;
+                temp = document.getElementById (id + "_OperationalLimitType").value; if ("" != temp) obj.OperationalLimitType = temp;
+                temp = document.getElementById (id + "_LimitDependencyModel").value; if ("" != temp) obj.LimitDependencyModel = temp.split (",");
 
                 return (obj);
             }
@@ -368,29 +368,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
-                    <div id="BranchGroupTerminal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BranchGroupTerminal_collapse" aria-expanded="true" aria-controls="{{id}}_BranchGroupTerminal_collapse" style="margin-left: 10px;">BranchGroupTerminal</a></legend>
+                    <div id="{{id}}_BranchGroupTerminal_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='positiveFlowIn'>positiveFlowIn: </label><div class='col-sm-8'><input id='positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BranchGroup'>BranchGroup: </label><div class='col-sm-8'><input id='BranchGroup' class='form-control' type='text'{{#BranchGroup}} value='{{BranchGroup}}'{{/BranchGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_positiveFlowIn'>positiveFlowIn: </label><div class='col-sm-8'><input id='{{id}}_positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BranchGroup'>BranchGroup: </label><div class='col-sm-8'><input id='{{id}}_BranchGroup' class='form-control' type='text'{{#BranchGroup}} value='{{BranchGroup}}'{{/BranchGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BranchGroupTerminal" };
-                super.submit (obj);
-                temp = document.getElementById ("positiveFlowIn").checked; if (temp) obj.positiveFlowIn = true;
-                temp = document.getElementById ("BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
-                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                var obj = obj || { id: id, cls: "BranchGroupTerminal" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_positiveFlowIn").checked; if (temp) obj.positiveFlowIn = true;
+                temp = document.getElementById (id + "_BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
+                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
                 return (obj);
             }
@@ -513,35 +513,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BranchGroup_collapse" aria-expanded="true" aria-controls="BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
-                    <div id="BranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BranchGroup_collapse" aria-expanded="true" aria-controls="{{id}}_BranchGroup_collapse" style="margin-left: 10px;">BranchGroup</a></legend>
+                    <div id="{{id}}_BranchGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumActivePower'>maximumActivePower: </label><div class='col-sm-8'><input id='maximumActivePower' class='form-control' type='text'{{#maximumActivePower}} value='{{maximumActivePower}}'{{/maximumActivePower}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumReactivePower'>maximumReactivePower: </label><div class='col-sm-8'><input id='maximumReactivePower' class='form-control' type='text'{{#maximumReactivePower}} value='{{maximumReactivePower}}'{{/maximumReactivePower}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumActivePower'>minimumActivePower: </label><div class='col-sm-8'><input id='minimumActivePower' class='form-control' type='text'{{#minimumActivePower}} value='{{minimumActivePower}}'{{/minimumActivePower}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumReactivePower'>minimumReactivePower: </label><div class='col-sm-8'><input id='minimumReactivePower' class='form-control' type='text'{{#minimumReactivePower}} value='{{minimumReactivePower}}'{{/minimumReactivePower}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='monitorActivePower'>monitorActivePower: </label><div class='col-sm-8'><input id='monitorActivePower' class='form-check-input' type='checkbox'{{#monitorActivePower}} checked{{/monitorActivePower}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='monitorReactivePower'>monitorReactivePower: </label><div class='col-sm-8'><input id='monitorReactivePower' class='form-check-input' type='checkbox'{{#monitorReactivePower}} checked{{/monitorReactivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumActivePower'>maximumActivePower: </label><div class='col-sm-8'><input id='{{id}}_maximumActivePower' class='form-control' type='text'{{#maximumActivePower}} value='{{maximumActivePower}}'{{/maximumActivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumReactivePower'>maximumReactivePower: </label><div class='col-sm-8'><input id='{{id}}_maximumReactivePower' class='form-control' type='text'{{#maximumReactivePower}} value='{{maximumReactivePower}}'{{/maximumReactivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumActivePower'>minimumActivePower: </label><div class='col-sm-8'><input id='{{id}}_minimumActivePower' class='form-control' type='text'{{#minimumActivePower}} value='{{minimumActivePower}}'{{/minimumActivePower}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumReactivePower'>minimumReactivePower: </label><div class='col-sm-8'><input id='{{id}}_minimumReactivePower' class='form-control' type='text'{{#minimumReactivePower}} value='{{minimumReactivePower}}'{{/minimumReactivePower}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_monitorActivePower'>monitorActivePower: </label><div class='col-sm-8'><input id='{{id}}_monitorActivePower' class='form-check-input' type='checkbox'{{#monitorActivePower}} checked{{/monitorActivePower}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_monitorReactivePower'>monitorReactivePower: </label><div class='col-sm-8'><input id='{{id}}_monitorReactivePower' class='form-check-input' type='checkbox'{{#monitorReactivePower}} checked{{/monitorReactivePower}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BranchGroup" };
-                super.submit (obj);
-                temp = document.getElementById ("maximumActivePower").value; if ("" != temp) obj.maximumActivePower = temp;
-                temp = document.getElementById ("maximumReactivePower").value; if ("" != temp) obj.maximumReactivePower = temp;
-                temp = document.getElementById ("minimumActivePower").value; if ("" != temp) obj.minimumActivePower = temp;
-                temp = document.getElementById ("minimumReactivePower").value; if ("" != temp) obj.minimumReactivePower = temp;
-                temp = document.getElementById ("monitorActivePower").checked; if (temp) obj.monitorActivePower = true;
-                temp = document.getElementById ("monitorReactivePower").checked; if (temp) obj.monitorReactivePower = true;
+                var obj = obj || { id: id, cls: "BranchGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_maximumActivePower").value; if ("" != temp) obj.maximumActivePower = temp;
+                temp = document.getElementById (id + "_maximumReactivePower").value; if ("" != temp) obj.maximumReactivePower = temp;
+                temp = document.getElementById (id + "_minimumActivePower").value; if ("" != temp) obj.minimumActivePower = temp;
+                temp = document.getElementById (id + "_minimumReactivePower").value; if ("" != temp) obj.minimumReactivePower = temp;
+                temp = document.getElementById (id + "_monitorActivePower").checked; if (temp) obj.monitorActivePower = true;
+                temp = document.getElementById (id + "_monitorReactivePower").checked; if (temp) obj.monitorReactivePower = true;
 
                 return (obj);
             }
@@ -655,29 +655,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OperationalLimitType_collapse" aria-expanded="true" aria-controls="OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
-                    <div id="OperationalLimitType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OperationalLimitType_collapse" aria-expanded="true" aria-controls="{{id}}_OperationalLimitType_collapse" style="margin-left: 10px;">OperationalLimitType</a></legend>
+                    <div id="{{id}}_OperationalLimitType_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='acceptableDuration'>acceptableDuration: </label><div class='col-sm-8'><input id='acceptableDuration' class='form-control' type='text'{{#acceptableDuration}} value='{{acceptableDuration}}'{{/acceptableDuration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='direction'>direction: </label><div class='col-sm-8'><select id='direction' class='form-control'>{{#OperationalLimitDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OperationalLimitDirectionKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TargetOperationalLimitmTypeScaling'>TargetOperationalLimitmTypeScaling: </label><div class='col-sm-8'><input id='TargetOperationalLimitmTypeScaling' class='form-control' type='text'{{#TargetOperationalLimitmTypeScaling}} value='{{TargetOperationalLimitmTypeScaling}}'{{/TargetOperationalLimitmTypeScaling}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptableDuration'>acceptableDuration: </label><div class='col-sm-8'><input id='{{id}}_acceptableDuration' class='form-control' type='text'{{#acceptableDuration}} value='{{acceptableDuration}}'{{/acceptableDuration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_direction'>direction: </label><div class='col-sm-8'><select id='{{id}}_direction' class='form-control'>{{#OperationalLimitDirectionKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/OperationalLimitDirectionKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TargetOperationalLimitmTypeScaling'>TargetOperationalLimitmTypeScaling: </label><div class='col-sm-8'><input id='{{id}}_TargetOperationalLimitmTypeScaling' class='form-control' type='text'{{#TargetOperationalLimitmTypeScaling}} value='{{TargetOperationalLimitmTypeScaling}}'{{/TargetOperationalLimitmTypeScaling}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OperationalLimitType" };
-                super.submit (obj);
-                temp = document.getElementById ("acceptableDuration").value; if ("" != temp) obj.acceptableDuration = temp;
-                temp = document.getElementById ("direction").value; if ("" != temp) { temp = OperationalLimitDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; }
-                temp = document.getElementById ("TargetOperationalLimitmTypeScaling").value; if ("" != temp) obj.TargetOperationalLimitmTypeScaling = temp;
+                var obj = obj || { id: id, cls: "OperationalLimitType" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_acceptableDuration").value; if ("" != temp) obj.acceptableDuration = temp;
+                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = OperationalLimitDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; }
+                temp = document.getElementById (id + "_TargetOperationalLimitmTypeScaling").value; if ("" != temp) obj.TargetOperationalLimitmTypeScaling = temp;
 
                 return (obj);
             }
@@ -774,25 +774,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CurrentLimit_collapse" aria-expanded="true" aria-controls="CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
-                    <div id="CurrentLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CurrentLimit_collapse" aria-expanded="true" aria-controls="{{id}}_CurrentLimit_collapse" style="margin-left: 10px;">CurrentLimit</a></legend>
+                    <div id="{{id}}_CurrentLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CurrentLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "CurrentLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -878,25 +878,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
-                    <div id="ApparentPowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ApparentPowerLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ApparentPowerLimit_collapse" style="margin-left: 10px;">ApparentPowerLimit</a></legend>
+                    <div id="{{id}}_ApparentPowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ApparentPowerLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "ApparentPowerLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -982,25 +982,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageLimit_collapse" aria-expanded="true" aria-controls="VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
-                    <div id="VoltageLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageLimit_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageLimit_collapse" style="margin-left: 10px;">VoltageLimit</a></legend>
+                    <div id="{{id}}_VoltageLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VoltageLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "VoltageLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -1086,25 +1086,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActivePowerLimit_collapse" aria-expanded="true" aria-controls="ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
-                    <div id="ActivePowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ActivePowerLimit_collapse" aria-expanded="true" aria-controls="{{id}}_ActivePowerLimit_collapse" style="margin-left: 10px;">ActivePowerLimit</a></legend>
+                    <div id="{{id}}_ActivePowerLimit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + OperationalLimit.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ActivePowerLimit" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "ActivePowerLimit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }

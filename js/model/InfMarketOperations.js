@@ -105,39 +105,39 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BilateralTransaction_collapse" aria-expanded="true" aria-controls="BilateralTransaction_collapse" style="margin-left: 10px;">BilateralTransaction</a></legend>
-                    <div id="BilateralTransaction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BilateralTransaction_collapse" aria-expanded="true" aria-controls="{{id}}_BilateralTransaction_collapse" style="margin-left: 10px;">BilateralTransaction</a></legend>
+                    <div id="{{id}}_BilateralTransaction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scope'>scope: </label><div class='col-sm-8'><input id='scope' class='form-control' type='text'{{#scope}} value='{{scope}}'{{/scope}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionType'>transactionType: </label><div class='col-sm-8'><input id='transactionType' class='form-control' type='text'{{#transactionType}} value='{{transactionType}}'{{/transactionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='purchaseTimeMin'>purchaseTimeMin: </label><div class='col-sm-8'><input id='purchaseTimeMin' class='form-control' type='text'{{#purchaseTimeMin}} value='{{purchaseTimeMin}}'{{/purchaseTimeMin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='purchaseTimeMax'>purchaseTimeMax: </label><div class='col-sm-8'><input id='purchaseTimeMax' class='form-control' type='text'{{#purchaseTimeMax}} value='{{purchaseTimeMax}}'{{/purchaseTimeMax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='curtailTimeMin'>curtailTimeMin: </label><div class='col-sm-8'><input id='curtailTimeMin' class='form-control' type='text'{{#curtailTimeMin}} value='{{curtailTimeMin}}'{{/curtailTimeMin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='curtailTimeMax'>curtailTimeMax: </label><div class='col-sm-8'><input id='curtailTimeMax' class='form-control' type='text'{{#curtailTimeMax}} value='{{curtailTimeMax}}'{{/curtailTimeMax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='totalTranChargeMax'>totalTranChargeMax: </label><div class='col-sm-8'><input id='totalTranChargeMax' class='form-control' type='text'{{#totalTranChargeMax}} value='{{totalTranChargeMax}}'{{/totalTranChargeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><input id='{{id}}_scope' class='form-control' type='text'{{#scope}} value='{{scope}}'{{/scope}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionType'>transactionType: </label><div class='col-sm-8'><input id='{{id}}_transactionType' class='form-control' type='text'{{#transactionType}} value='{{transactionType}}'{{/transactionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseTimeMin'>purchaseTimeMin: </label><div class='col-sm-8'><input id='{{id}}_purchaseTimeMin' class='form-control' type='text'{{#purchaseTimeMin}} value='{{purchaseTimeMin}}'{{/purchaseTimeMin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_purchaseTimeMax'>purchaseTimeMax: </label><div class='col-sm-8'><input id='{{id}}_purchaseTimeMax' class='form-control' type='text'{{#purchaseTimeMax}} value='{{purchaseTimeMax}}'{{/purchaseTimeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curtailTimeMin'>curtailTimeMin: </label><div class='col-sm-8'><input id='{{id}}_curtailTimeMin' class='form-control' type='text'{{#curtailTimeMin}} value='{{curtailTimeMin}}'{{/curtailTimeMin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_curtailTimeMax'>curtailTimeMax: </label><div class='col-sm-8'><input id='{{id}}_curtailTimeMax' class='form-control' type='text'{{#curtailTimeMax}} value='{{curtailTimeMax}}'{{/curtailTimeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalTranChargeMax'>totalTranChargeMax: </label><div class='col-sm-8'><input id='{{id}}_totalTranChargeMax' class='form-control' type='text'{{#totalTranChargeMax}} value='{{totalTranChargeMax}}'{{/totalTranChargeMax}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BilateralTransaction" };
-                super.submit (obj);
-                temp = document.getElementById ("scope").value; if ("" != temp) obj.scope = temp;
-                temp = document.getElementById ("transactionType").value; if ("" != temp) obj.transactionType = temp;
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("purchaseTimeMin").value; if ("" != temp) obj.purchaseTimeMin = temp;
-                temp = document.getElementById ("purchaseTimeMax").value; if ("" != temp) obj.purchaseTimeMax = temp;
-                temp = document.getElementById ("curtailTimeMin").value; if ("" != temp) obj.curtailTimeMin = temp;
-                temp = document.getElementById ("curtailTimeMax").value; if ("" != temp) obj.curtailTimeMax = temp;
-                temp = document.getElementById ("totalTranChargeMax").value; if ("" != temp) obj.totalTranChargeMax = temp;
+                var obj = obj || { id: id, cls: "BilateralTransaction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_scope").value; if ("" != temp) obj.scope = temp;
+                temp = document.getElementById (id + "_transactionType").value; if ("" != temp) obj.transactionType = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_purchaseTimeMin").value; if ("" != temp) obj.purchaseTimeMin = temp;
+                temp = document.getElementById (id + "_purchaseTimeMax").value; if ("" != temp) obj.purchaseTimeMax = temp;
+                temp = document.getElementById (id + "_curtailTimeMin").value; if ("" != temp) obj.curtailTimeMin = temp;
+                temp = document.getElementById (id + "_curtailTimeMax").value; if ("" != temp) obj.curtailTimeMax = temp;
+                temp = document.getElementById (id + "_totalTranChargeMax").value; if ("" != temp) obj.totalTranChargeMax = temp;
 
                 return (obj);
             }
@@ -223,25 +223,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Participation_collapse" aria-expanded="true" aria-controls="Participation_collapse" style="margin-left: 10px;">Participation</a></legend>
-                    <div id="Participation_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Participation_collapse" aria-expanded="true" aria-controls="{{id}}_Participation_collapse" style="margin-left: 10px;">Participation</a></legend>
+                    <div id="{{id}}_Participation_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Participation" };
-                super.submit (obj);
-                temp = document.getElementById ("factor").value; if ("" != temp) obj.factor = temp;
+                var obj = obj || { id: id, cls: "Participation" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
 
                 return (obj);
             }
@@ -370,51 +370,51 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceCertification_collapse" aria-expanded="true" aria-controls="ResourceCertification_collapse" style="margin-left: 10px;">ResourceCertification</a></legend>
-                    <div id="ResourceCertification_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceCertification_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceCertification_collapse" style="margin-left: 10px;">ResourceCertification</a></legend>
+                    <div id="{{id}}_ResourceCertification_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedDAM'>certifiedDAM: </label><div class='col-sm-8'><input id='certifiedDAM' class='form-control' type='text'{{#certifiedDAM}} value='{{certifiedDAM}}'{{/certifiedDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedNonspinDAM'>certifiedNonspinDAM: </label><div class='col-sm-8'><input id='certifiedNonspinDAM' class='form-control' type='text'{{#certifiedNonspinDAM}} value='{{certifiedNonspinDAM}}'{{/certifiedNonspinDAM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedNonspinDAMMw'>certifiedNonspinDAMMw: </label><div class='col-sm-8'><input id='certifiedNonspinDAMMw' class='form-control' type='text'{{#certifiedNonspinDAMMw}} value='{{certifiedNonspinDAMMw}}'{{/certifiedNonspinDAMMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedNonspinRTM'>certifiedNonspinRTM: </label><div class='col-sm-8'><input id='certifiedNonspinRTM' class='form-control' type='text'{{#certifiedNonspinRTM}} value='{{certifiedNonspinRTM}}'{{/certifiedNonspinRTM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedNonspinRTMMw'>certifiedNonspinRTMMw: </label><div class='col-sm-8'><input id='certifiedNonspinRTMMw' class='form-control' type='text'{{#certifiedNonspinRTMMw}} value='{{certifiedNonspinRTMMw}}'{{/certifiedNonspinRTMMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedPIRP'>certifiedPIRP: </label><div class='col-sm-8'><input id='certifiedPIRP' class='form-control' type='text'{{#certifiedPIRP}} value='{{certifiedPIRP}}'{{/certifiedPIRP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRegulation'>certifiedRegulation: </label><div class='col-sm-8'><input id='certifiedRegulation' class='form-control' type='text'{{#certifiedRegulation}} value='{{certifiedRegulation}}'{{/certifiedRegulation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRegulationMw'>certifiedRegulationMw: </label><div class='col-sm-8'><input id='certifiedRegulationMw' class='form-control' type='text'{{#certifiedRegulationMw}} value='{{certifiedRegulationMw}}'{{/certifiedRegulationMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedReplaceAS'>certifiedReplaceAS: </label><div class='col-sm-8'><input id='certifiedReplaceAS' class='form-control' type='text'{{#certifiedReplaceAS}} value='{{certifiedReplaceAS}}'{{/certifiedReplaceAS}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><input id='certifiedSpin' class='form-control' type='text'{{#certifiedSpin}} value='{{certifiedSpin}}'{{/certifiedSpin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><input id='certifiedRTM' class='form-control' type='text'{{#certifiedRTM}} value='{{certifiedRTM}}'{{/certifiedRTM}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><input id='certifiedRUC' class='form-control' type='text'{{#certifiedRUC}} value='{{certifiedRUC}}'{{/certifiedRUC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedDAM'>certifiedDAM: </label><div class='col-sm-8'><input id='{{id}}_certifiedDAM' class='form-control' type='text'{{#certifiedDAM}} value='{{certifiedDAM}}'{{/certifiedDAM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinDAM'>certifiedNonspinDAM: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinDAM' class='form-control' type='text'{{#certifiedNonspinDAM}} value='{{certifiedNonspinDAM}}'{{/certifiedNonspinDAM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinDAMMw'>certifiedNonspinDAMMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinDAMMw' class='form-control' type='text'{{#certifiedNonspinDAMMw}} value='{{certifiedNonspinDAMMw}}'{{/certifiedNonspinDAMMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinRTM'>certifiedNonspinRTM: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinRTM' class='form-control' type='text'{{#certifiedNonspinRTM}} value='{{certifiedNonspinRTM}}'{{/certifiedNonspinRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedNonspinRTMMw'>certifiedNonspinRTMMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedNonspinRTMMw' class='form-control' type='text'{{#certifiedNonspinRTMMw}} value='{{certifiedNonspinRTMMw}}'{{/certifiedNonspinRTMMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedPIRP'>certifiedPIRP: </label><div class='col-sm-8'><input id='{{id}}_certifiedPIRP' class='form-control' type='text'{{#certifiedPIRP}} value='{{certifiedPIRP}}'{{/certifiedPIRP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulation'>certifiedRegulation: </label><div class='col-sm-8'><input id='{{id}}_certifiedRegulation' class='form-control' type='text'{{#certifiedRegulation}} value='{{certifiedRegulation}}'{{/certifiedRegulation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRegulationMw'>certifiedRegulationMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedRegulationMw' class='form-control' type='text'{{#certifiedRegulationMw}} value='{{certifiedRegulationMw}}'{{/certifiedRegulationMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedReplaceAS'>certifiedReplaceAS: </label><div class='col-sm-8'><input id='{{id}}_certifiedReplaceAS' class='form-control' type='text'{{#certifiedReplaceAS}} value='{{certifiedReplaceAS}}'{{/certifiedReplaceAS}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpin'>certifiedSpin: </label><div class='col-sm-8'><input id='{{id}}_certifiedSpin' class='form-control' type='text'{{#certifiedSpin}} value='{{certifiedSpin}}'{{/certifiedSpin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedSpinMw'>certifiedSpinMw: </label><div class='col-sm-8'><input id='{{id}}_certifiedSpinMw' class='form-control' type='text'{{#certifiedSpinMw}} value='{{certifiedSpinMw}}'{{/certifiedSpinMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRTM'>certifiedRTM: </label><div class='col-sm-8'><input id='{{id}}_certifiedRTM' class='form-control' type='text'{{#certifiedRTM}} value='{{certifiedRTM}}'{{/certifiedRTM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certifiedRUC'>certifiedRUC: </label><div class='col-sm-8'><input id='{{id}}_certifiedRUC' class='form-control' type='text'{{#certifiedRUC}} value='{{certifiedRUC}}'{{/certifiedRUC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceCertification" };
-                super.submit (obj);
-                temp = document.getElementById ("certifiedDAM").value; if ("" != temp) obj.certifiedDAM = temp;
-                temp = document.getElementById ("certifiedNonspinDAM").value; if ("" != temp) obj.certifiedNonspinDAM = temp;
-                temp = document.getElementById ("certifiedNonspinDAMMw").value; if ("" != temp) obj.certifiedNonspinDAMMw = temp;
-                temp = document.getElementById ("certifiedNonspinRTM").value; if ("" != temp) obj.certifiedNonspinRTM = temp;
-                temp = document.getElementById ("certifiedNonspinRTMMw").value; if ("" != temp) obj.certifiedNonspinRTMMw = temp;
-                temp = document.getElementById ("certifiedPIRP").value; if ("" != temp) obj.certifiedPIRP = temp;
-                temp = document.getElementById ("certifiedRegulation").value; if ("" != temp) obj.certifiedRegulation = temp;
-                temp = document.getElementById ("certifiedRegulationMw").value; if ("" != temp) obj.certifiedRegulationMw = temp;
-                temp = document.getElementById ("certifiedReplaceAS").value; if ("" != temp) obj.certifiedReplaceAS = temp;
-                temp = document.getElementById ("certifiedSpin").value; if ("" != temp) obj.certifiedSpin = temp;
-                temp = document.getElementById ("certifiedSpinMw").value; if ("" != temp) obj.certifiedSpinMw = temp;
-                temp = document.getElementById ("certifiedRTM").value; if ("" != temp) obj.certifiedRTM = temp;
-                temp = document.getElementById ("certifiedRUC").value; if ("" != temp) obj.certifiedRUC = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                var obj = obj || { id: id, cls: "ResourceCertification" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_certifiedDAM").value; if ("" != temp) obj.certifiedDAM = temp;
+                temp = document.getElementById (id + "_certifiedNonspinDAM").value; if ("" != temp) obj.certifiedNonspinDAM = temp;
+                temp = document.getElementById (id + "_certifiedNonspinDAMMw").value; if ("" != temp) obj.certifiedNonspinDAMMw = temp;
+                temp = document.getElementById (id + "_certifiedNonspinRTM").value; if ("" != temp) obj.certifiedNonspinRTM = temp;
+                temp = document.getElementById (id + "_certifiedNonspinRTMMw").value; if ("" != temp) obj.certifiedNonspinRTMMw = temp;
+                temp = document.getElementById (id + "_certifiedPIRP").value; if ("" != temp) obj.certifiedPIRP = temp;
+                temp = document.getElementById (id + "_certifiedRegulation").value; if ("" != temp) obj.certifiedRegulation = temp;
+                temp = document.getElementById (id + "_certifiedRegulationMw").value; if ("" != temp) obj.certifiedRegulationMw = temp;
+                temp = document.getElementById (id + "_certifiedReplaceAS").value; if ("" != temp) obj.certifiedReplaceAS = temp;
+                temp = document.getElementById (id + "_certifiedSpin").value; if ("" != temp) obj.certifiedSpin = temp;
+                temp = document.getElementById (id + "_certifiedSpinMw").value; if ("" != temp) obj.certifiedSpinMw = temp;
+                temp = document.getElementById (id + "_certifiedRTM").value; if ("" != temp) obj.certifiedRTM = temp;
+                temp = document.getElementById (id + "_certifiedRUC").value; if ("" != temp) obj.certifiedRUC = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
 
                 return (obj);
             }

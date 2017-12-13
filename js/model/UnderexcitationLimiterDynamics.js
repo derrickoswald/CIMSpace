@@ -93,27 +93,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="UnderexcitationLimiterDynamics_collapse" style="margin-left: 10px;">UnderexcitationLimiterDynamics</a></legend>
-                    <div id="UnderexcitationLimiterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcitationLimiterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcitationLimiterDynamics_collapse" style="margin-left: 10px;">UnderexcitationLimiterDynamics</a></legend>
+                    <div id="{{id}}_UnderexcitationLimiterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RemoteInputSignal'>RemoteInputSignal: </label><div class='col-sm-8'><input id='{{id}}_RemoteInputSignal' class='form-control' type='text'{{#RemoteInputSignal}} value='{{RemoteInputSignal}}'{{/RemoteInputSignal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "UnderexcitationLimiterDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
-                temp = document.getElementById ("RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
+                var obj = obj || { id: id, cls: "UnderexcitationLimiterDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                temp = document.getElementById (id + "_RemoteInputSignal").value; if ("" != temp) obj.RemoteInputSignal = temp;
 
                 return (obj);
             }
@@ -328,103 +328,103 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLimIEEE2_collapse" aria-expanded="true" aria-controls="UnderexcLimIEEE2_collapse" style="margin-left: 10px;">UnderexcLimIEEE2</a></legend>
-                    <div id="UnderexcLimIEEE2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLimIEEE2_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimIEEE2_collapse" style="margin-left: 10px;">UnderexcLimIEEE2</a></legend>
+                    <div id="{{id}}_UnderexcLimIEEE2_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kfb'>kfb: </label><div class='col-sm-8'><input id='kfb' class='form-control' type='text'{{#kfb}} value='{{kfb}}'{{/kfb}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kuf'>kuf: </label><div class='col-sm-8'><input id='kuf' class='form-control' type='text'{{#kuf}} value='{{kuf}}'{{/kuf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kui'>kui: </label><div class='col-sm-8'><input id='kui' class='form-control' type='text'{{#kui}} value='{{kui}}'{{/kui}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kul'>kul: </label><div class='col-sm-8'><input id='kul' class='form-control' type='text'{{#kul}} value='{{kul}}'{{/kul}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p0'>p0: </label><div class='col-sm-8'><input id='p0' class='form-control' type='text'{{#p0}} value='{{p0}}'{{/p0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p1'>p1: </label><div class='col-sm-8'><input id='p1' class='form-control' type='text'{{#p1}} value='{{p1}}'{{/p1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p10'>p10: </label><div class='col-sm-8'><input id='p10' class='form-control' type='text'{{#p10}} value='{{p10}}'{{/p10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p2'>p2: </label><div class='col-sm-8'><input id='p2' class='form-control' type='text'{{#p2}} value='{{p2}}'{{/p2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p3'>p3: </label><div class='col-sm-8'><input id='p3' class='form-control' type='text'{{#p3}} value='{{p3}}'{{/p3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p4'>p4: </label><div class='col-sm-8'><input id='p4' class='form-control' type='text'{{#p4}} value='{{p4}}'{{/p4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p5'>p5: </label><div class='col-sm-8'><input id='p5' class='form-control' type='text'{{#p5}} value='{{p5}}'{{/p5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p6'>p6: </label><div class='col-sm-8'><input id='p6' class='form-control' type='text'{{#p6}} value='{{p6}}'{{/p6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p7'>p7: </label><div class='col-sm-8'><input id='p7' class='form-control' type='text'{{#p7}} value='{{p7}}'{{/p7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p8'>p8: </label><div class='col-sm-8'><input id='p8' class='form-control' type='text'{{#p8}} value='{{p8}}'{{/p8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p9'>p9: </label><div class='col-sm-8'><input id='p9' class='form-control' type='text'{{#p9}} value='{{p9}}'{{/p9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q0'>q0: </label><div class='col-sm-8'><input id='q0' class='form-control' type='text'{{#q0}} value='{{q0}}'{{/q0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q1'>q1: </label><div class='col-sm-8'><input id='q1' class='form-control' type='text'{{#q1}} value='{{q1}}'{{/q1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q10'>q10: </label><div class='col-sm-8'><input id='q10' class='form-control' type='text'{{#q10}} value='{{q10}}'{{/q10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q2'>q2: </label><div class='col-sm-8'><input id='q2' class='form-control' type='text'{{#q2}} value='{{q2}}'{{/q2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q3'>q3: </label><div class='col-sm-8'><input id='q3' class='form-control' type='text'{{#q3}} value='{{q3}}'{{/q3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q4'>q4: </label><div class='col-sm-8'><input id='q4' class='form-control' type='text'{{#q4}} value='{{q4}}'{{/q4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q5'>q5: </label><div class='col-sm-8'><input id='q5' class='form-control' type='text'{{#q5}} value='{{q5}}'{{/q5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q6'>q6: </label><div class='col-sm-8'><input id='q6' class='form-control' type='text'{{#q6}} value='{{q6}}'{{/q6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q7'>q7: </label><div class='col-sm-8'><input id='q7' class='form-control' type='text'{{#q7}} value='{{q7}}'{{/q7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q8'>q8: </label><div class='col-sm-8'><input id='q8' class='form-control' type='text'{{#q8}} value='{{q8}}'{{/q8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q9'>q9: </label><div class='col-sm-8'><input id='q9' class='form-control' type='text'{{#q9}} value='{{q9}}'{{/q9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tu1'>tu1: </label><div class='col-sm-8'><input id='tu1' class='form-control' type='text'{{#tu1}} value='{{tu1}}'{{/tu1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tu2'>tu2: </label><div class='col-sm-8'><input id='tu2' class='form-control' type='text'{{#tu2}} value='{{tu2}}'{{/tu2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tu3'>tu3: </label><div class='col-sm-8'><input id='tu3' class='form-control' type='text'{{#tu3}} value='{{tu3}}'{{/tu3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tu4'>tu4: </label><div class='col-sm-8'><input id='tu4' class='form-control' type='text'{{#tu4}} value='{{tu4}}'{{/tu4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tul'>tul: </label><div class='col-sm-8'><input id='tul' class='form-control' type='text'{{#tul}} value='{{tul}}'{{/tul}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tup'>tup: </label><div class='col-sm-8'><input id='tup' class='form-control' type='text'{{#tup}} value='{{tup}}'{{/tup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tuq'>tuq: </label><div class='col-sm-8'><input id='tuq' class='form-control' type='text'{{#tuq}} value='{{tuq}}'{{/tuq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tuv'>tuv: </label><div class='col-sm-8'><input id='tuv' class='form-control' type='text'{{#tuv}} value='{{tuv}}'{{/tuv}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vuimax'>vuimax: </label><div class='col-sm-8'><input id='vuimax' class='form-control' type='text'{{#vuimax}} value='{{vuimax}}'{{/vuimax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vuimin'>vuimin: </label><div class='col-sm-8'><input id='vuimin' class='form-control' type='text'{{#vuimin}} value='{{vuimin}}'{{/vuimin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vulmax'>vulmax: </label><div class='col-sm-8'><input id='vulmax' class='form-control' type='text'{{#vulmax}} value='{{vulmax}}'{{/vulmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vulmin'>vulmin: </label><div class='col-sm-8'><input id='vulmin' class='form-control' type='text'{{#vulmin}} value='{{vulmin}}'{{/vulmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kfb'>kfb: </label><div class='col-sm-8'><input id='{{id}}_kfb' class='form-control' type='text'{{#kfb}} value='{{kfb}}'{{/kfb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kuf'>kuf: </label><div class='col-sm-8'><input id='{{id}}_kuf' class='form-control' type='text'{{#kuf}} value='{{kuf}}'{{/kuf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kui'>kui: </label><div class='col-sm-8'><input id='{{id}}_kui' class='form-control' type='text'{{#kui}} value='{{kui}}'{{/kui}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kul'>kul: </label><div class='col-sm-8'><input id='{{id}}_kul' class='form-control' type='text'{{#kul}} value='{{kul}}'{{/kul}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p0'>p0: </label><div class='col-sm-8'><input id='{{id}}_p0' class='form-control' type='text'{{#p0}} value='{{p0}}'{{/p0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p1'>p1: </label><div class='col-sm-8'><input id='{{id}}_p1' class='form-control' type='text'{{#p1}} value='{{p1}}'{{/p1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p10'>p10: </label><div class='col-sm-8'><input id='{{id}}_p10' class='form-control' type='text'{{#p10}} value='{{p10}}'{{/p10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p2'>p2: </label><div class='col-sm-8'><input id='{{id}}_p2' class='form-control' type='text'{{#p2}} value='{{p2}}'{{/p2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p3'>p3: </label><div class='col-sm-8'><input id='{{id}}_p3' class='form-control' type='text'{{#p3}} value='{{p3}}'{{/p3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p4'>p4: </label><div class='col-sm-8'><input id='{{id}}_p4' class='form-control' type='text'{{#p4}} value='{{p4}}'{{/p4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p5'>p5: </label><div class='col-sm-8'><input id='{{id}}_p5' class='form-control' type='text'{{#p5}} value='{{p5}}'{{/p5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p6'>p6: </label><div class='col-sm-8'><input id='{{id}}_p6' class='form-control' type='text'{{#p6}} value='{{p6}}'{{/p6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p7'>p7: </label><div class='col-sm-8'><input id='{{id}}_p7' class='form-control' type='text'{{#p7}} value='{{p7}}'{{/p7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p8'>p8: </label><div class='col-sm-8'><input id='{{id}}_p8' class='form-control' type='text'{{#p8}} value='{{p8}}'{{/p8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p9'>p9: </label><div class='col-sm-8'><input id='{{id}}_p9' class='form-control' type='text'{{#p9}} value='{{p9}}'{{/p9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q0'>q0: </label><div class='col-sm-8'><input id='{{id}}_q0' class='form-control' type='text'{{#q0}} value='{{q0}}'{{/q0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q1'>q1: </label><div class='col-sm-8'><input id='{{id}}_q1' class='form-control' type='text'{{#q1}} value='{{q1}}'{{/q1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q10'>q10: </label><div class='col-sm-8'><input id='{{id}}_q10' class='form-control' type='text'{{#q10}} value='{{q10}}'{{/q10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q2'>q2: </label><div class='col-sm-8'><input id='{{id}}_q2' class='form-control' type='text'{{#q2}} value='{{q2}}'{{/q2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q3'>q3: </label><div class='col-sm-8'><input id='{{id}}_q3' class='form-control' type='text'{{#q3}} value='{{q3}}'{{/q3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q4'>q4: </label><div class='col-sm-8'><input id='{{id}}_q4' class='form-control' type='text'{{#q4}} value='{{q4}}'{{/q4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q5'>q5: </label><div class='col-sm-8'><input id='{{id}}_q5' class='form-control' type='text'{{#q5}} value='{{q5}}'{{/q5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q6'>q6: </label><div class='col-sm-8'><input id='{{id}}_q6' class='form-control' type='text'{{#q6}} value='{{q6}}'{{/q6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q7'>q7: </label><div class='col-sm-8'><input id='{{id}}_q7' class='form-control' type='text'{{#q7}} value='{{q7}}'{{/q7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q8'>q8: </label><div class='col-sm-8'><input id='{{id}}_q8' class='form-control' type='text'{{#q8}} value='{{q8}}'{{/q8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q9'>q9: </label><div class='col-sm-8'><input id='{{id}}_q9' class='form-control' type='text'{{#q9}} value='{{q9}}'{{/q9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tu1'>tu1: </label><div class='col-sm-8'><input id='{{id}}_tu1' class='form-control' type='text'{{#tu1}} value='{{tu1}}'{{/tu1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tu2'>tu2: </label><div class='col-sm-8'><input id='{{id}}_tu2' class='form-control' type='text'{{#tu2}} value='{{tu2}}'{{/tu2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tu3'>tu3: </label><div class='col-sm-8'><input id='{{id}}_tu3' class='form-control' type='text'{{#tu3}} value='{{tu3}}'{{/tu3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tu4'>tu4: </label><div class='col-sm-8'><input id='{{id}}_tu4' class='form-control' type='text'{{#tu4}} value='{{tu4}}'{{/tu4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tul'>tul: </label><div class='col-sm-8'><input id='{{id}}_tul' class='form-control' type='text'{{#tul}} value='{{tul}}'{{/tul}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tup'>tup: </label><div class='col-sm-8'><input id='{{id}}_tup' class='form-control' type='text'{{#tup}} value='{{tup}}'{{/tup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tuq'>tuq: </label><div class='col-sm-8'><input id='{{id}}_tuq' class='form-control' type='text'{{#tuq}} value='{{tuq}}'{{/tuq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tuv'>tuv: </label><div class='col-sm-8'><input id='{{id}}_tuv' class='form-control' type='text'{{#tuv}} value='{{tuv}}'{{/tuv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vuimax'>vuimax: </label><div class='col-sm-8'><input id='{{id}}_vuimax' class='form-control' type='text'{{#vuimax}} value='{{vuimax}}'{{/vuimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vuimin'>vuimin: </label><div class='col-sm-8'><input id='{{id}}_vuimin' class='form-control' type='text'{{#vuimin}} value='{{vuimin}}'{{/vuimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vulmax'>vulmax: </label><div class='col-sm-8'><input id='{{id}}_vulmax' class='form-control' type='text'{{#vulmax}} value='{{vulmax}}'{{/vulmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vulmin'>vulmin: </label><div class='col-sm-8'><input id='{{id}}_vulmin' class='form-control' type='text'{{#vulmin}} value='{{vulmin}}'{{/vulmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "UnderexcLimIEEE2" };
-                super.submit (obj);
-                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
-                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
-                temp = document.getElementById ("kfb").value; if ("" != temp) obj.kfb = temp;
-                temp = document.getElementById ("kuf").value; if ("" != temp) obj.kuf = temp;
-                temp = document.getElementById ("kui").value; if ("" != temp) obj.kui = temp;
-                temp = document.getElementById ("kul").value; if ("" != temp) obj.kul = temp;
-                temp = document.getElementById ("p0").value; if ("" != temp) obj.p0 = temp;
-                temp = document.getElementById ("p1").value; if ("" != temp) obj.p1 = temp;
-                temp = document.getElementById ("p10").value; if ("" != temp) obj.p10 = temp;
-                temp = document.getElementById ("p2").value; if ("" != temp) obj.p2 = temp;
-                temp = document.getElementById ("p3").value; if ("" != temp) obj.p3 = temp;
-                temp = document.getElementById ("p4").value; if ("" != temp) obj.p4 = temp;
-                temp = document.getElementById ("p5").value; if ("" != temp) obj.p5 = temp;
-                temp = document.getElementById ("p6").value; if ("" != temp) obj.p6 = temp;
-                temp = document.getElementById ("p7").value; if ("" != temp) obj.p7 = temp;
-                temp = document.getElementById ("p8").value; if ("" != temp) obj.p8 = temp;
-                temp = document.getElementById ("p9").value; if ("" != temp) obj.p9 = temp;
-                temp = document.getElementById ("q0").value; if ("" != temp) obj.q0 = temp;
-                temp = document.getElementById ("q1").value; if ("" != temp) obj.q1 = temp;
-                temp = document.getElementById ("q10").value; if ("" != temp) obj.q10 = temp;
-                temp = document.getElementById ("q2").value; if ("" != temp) obj.q2 = temp;
-                temp = document.getElementById ("q3").value; if ("" != temp) obj.q3 = temp;
-                temp = document.getElementById ("q4").value; if ("" != temp) obj.q4 = temp;
-                temp = document.getElementById ("q5").value; if ("" != temp) obj.q5 = temp;
-                temp = document.getElementById ("q6").value; if ("" != temp) obj.q6 = temp;
-                temp = document.getElementById ("q7").value; if ("" != temp) obj.q7 = temp;
-                temp = document.getElementById ("q8").value; if ("" != temp) obj.q8 = temp;
-                temp = document.getElementById ("q9").value; if ("" != temp) obj.q9 = temp;
-                temp = document.getElementById ("tu1").value; if ("" != temp) obj.tu1 = temp;
-                temp = document.getElementById ("tu2").value; if ("" != temp) obj.tu2 = temp;
-                temp = document.getElementById ("tu3").value; if ("" != temp) obj.tu3 = temp;
-                temp = document.getElementById ("tu4").value; if ("" != temp) obj.tu4 = temp;
-                temp = document.getElementById ("tul").value; if ("" != temp) obj.tul = temp;
-                temp = document.getElementById ("tup").value; if ("" != temp) obj.tup = temp;
-                temp = document.getElementById ("tuq").value; if ("" != temp) obj.tuq = temp;
-                temp = document.getElementById ("tuv").value; if ("" != temp) obj.tuv = temp;
-                temp = document.getElementById ("vuimax").value; if ("" != temp) obj.vuimax = temp;
-                temp = document.getElementById ("vuimin").value; if ("" != temp) obj.vuimin = temp;
-                temp = document.getElementById ("vulmax").value; if ("" != temp) obj.vulmax = temp;
-                temp = document.getElementById ("vulmin").value; if ("" != temp) obj.vulmin = temp;
+                var obj = obj || { id: id, cls: "UnderexcLimIEEE2" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById (id + "_kfb").value; if ("" != temp) obj.kfb = temp;
+                temp = document.getElementById (id + "_kuf").value; if ("" != temp) obj.kuf = temp;
+                temp = document.getElementById (id + "_kui").value; if ("" != temp) obj.kui = temp;
+                temp = document.getElementById (id + "_kul").value; if ("" != temp) obj.kul = temp;
+                temp = document.getElementById (id + "_p0").value; if ("" != temp) obj.p0 = temp;
+                temp = document.getElementById (id + "_p1").value; if ("" != temp) obj.p1 = temp;
+                temp = document.getElementById (id + "_p10").value; if ("" != temp) obj.p10 = temp;
+                temp = document.getElementById (id + "_p2").value; if ("" != temp) obj.p2 = temp;
+                temp = document.getElementById (id + "_p3").value; if ("" != temp) obj.p3 = temp;
+                temp = document.getElementById (id + "_p4").value; if ("" != temp) obj.p4 = temp;
+                temp = document.getElementById (id + "_p5").value; if ("" != temp) obj.p5 = temp;
+                temp = document.getElementById (id + "_p6").value; if ("" != temp) obj.p6 = temp;
+                temp = document.getElementById (id + "_p7").value; if ("" != temp) obj.p7 = temp;
+                temp = document.getElementById (id + "_p8").value; if ("" != temp) obj.p8 = temp;
+                temp = document.getElementById (id + "_p9").value; if ("" != temp) obj.p9 = temp;
+                temp = document.getElementById (id + "_q0").value; if ("" != temp) obj.q0 = temp;
+                temp = document.getElementById (id + "_q1").value; if ("" != temp) obj.q1 = temp;
+                temp = document.getElementById (id + "_q10").value; if ("" != temp) obj.q10 = temp;
+                temp = document.getElementById (id + "_q2").value; if ("" != temp) obj.q2 = temp;
+                temp = document.getElementById (id + "_q3").value; if ("" != temp) obj.q3 = temp;
+                temp = document.getElementById (id + "_q4").value; if ("" != temp) obj.q4 = temp;
+                temp = document.getElementById (id + "_q5").value; if ("" != temp) obj.q5 = temp;
+                temp = document.getElementById (id + "_q6").value; if ("" != temp) obj.q6 = temp;
+                temp = document.getElementById (id + "_q7").value; if ("" != temp) obj.q7 = temp;
+                temp = document.getElementById (id + "_q8").value; if ("" != temp) obj.q8 = temp;
+                temp = document.getElementById (id + "_q9").value; if ("" != temp) obj.q9 = temp;
+                temp = document.getElementById (id + "_tu1").value; if ("" != temp) obj.tu1 = temp;
+                temp = document.getElementById (id + "_tu2").value; if ("" != temp) obj.tu2 = temp;
+                temp = document.getElementById (id + "_tu3").value; if ("" != temp) obj.tu3 = temp;
+                temp = document.getElementById (id + "_tu4").value; if ("" != temp) obj.tu4 = temp;
+                temp = document.getElementById (id + "_tul").value; if ("" != temp) obj.tul = temp;
+                temp = document.getElementById (id + "_tup").value; if ("" != temp) obj.tup = temp;
+                temp = document.getElementById (id + "_tuq").value; if ("" != temp) obj.tuq = temp;
+                temp = document.getElementById (id + "_tuv").value; if ("" != temp) obj.tuv = temp;
+                temp = document.getElementById (id + "_vuimax").value; if ("" != temp) obj.vuimax = temp;
+                temp = document.getElementById (id + "_vuimin").value; if ("" != temp) obj.vuimin = temp;
+                temp = document.getElementById (id + "_vulmax").value; if ("" != temp) obj.vulmax = temp;
+                temp = document.getElementById (id + "_vulmin").value; if ("" != temp) obj.vulmin = temp;
 
                 return (obj);
             }
@@ -525,35 +525,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLimX1_collapse" aria-expanded="true" aria-controls="UnderexcLimX1_collapse" style="margin-left: 10px;">UnderexcLimX1</a></legend>
-                    <div id="UnderexcLimX1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLimX1_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimX1_collapse" style="margin-left: 10px;">UnderexcLimX1</a></legend>
+                    <div id="{{id}}_UnderexcLimX1_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf2'>kf2: </label><div class='col-sm-8'><input id='kf2' class='form-control' type='text'{{#kf2}} value='{{kf2}}'{{/kf2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='km'>km: </label><div class='col-sm-8'><input id='km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='melmax'>melmax: </label><div class='col-sm-8'><input id='melmax' class='form-control' type='text'{{#melmax}} value='{{melmax}}'{{/melmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf2'>tf2: </label><div class='col-sm-8'><input id='tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tm'>tm: </label><div class='col-sm-8'><input id='tm' class='form-control' type='text'{{#tm}} value='{{tm}}'{{/tm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf2'>kf2: </label><div class='col-sm-8'><input id='{{id}}_kf2' class='form-control' type='text'{{#kf2}} value='{{kf2}}'{{/kf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_km'>km: </label><div class='col-sm-8'><input id='{{id}}_km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_melmax'>melmax: </label><div class='col-sm-8'><input id='{{id}}_melmax' class='form-control' type='text'{{#melmax}} value='{{melmax}}'{{/melmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf2'>tf2: </label><div class='col-sm-8'><input id='{{id}}_tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tm'>tm: </label><div class='col-sm-8'><input id='{{id}}_tm' class='form-control' type='text'{{#tm}} value='{{tm}}'{{/tm}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "UnderexcLimX1" };
-                super.submit (obj);
-                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
-                temp = document.getElementById ("kf2").value; if ("" != temp) obj.kf2 = temp;
-                temp = document.getElementById ("km").value; if ("" != temp) obj.km = temp;
-                temp = document.getElementById ("melmax").value; if ("" != temp) obj.melmax = temp;
-                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
-                temp = document.getElementById ("tm").value; if ("" != temp) obj.tm = temp;
+                var obj = obj || { id: id, cls: "UnderexcLimX1" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById (id + "_kf2").value; if ("" != temp) obj.kf2 = temp;
+                temp = document.getElementById (id + "_km").value; if ("" != temp) obj.km = temp;
+                temp = document.getElementById (id + "_melmax").value; if ("" != temp) obj.melmax = temp;
+                temp = document.getElementById (id + "_tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById (id + "_tm").value; if ("" != temp) obj.tm = temp;
 
                 return (obj);
             }
@@ -657,37 +657,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLimX2_collapse" aria-expanded="true" aria-controls="UnderexcLimX2_collapse" style="margin-left: 10px;">UnderexcLimX2</a></legend>
-                    <div id="UnderexcLimX2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLimX2_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimX2_collapse" style="margin-left: 10px;">UnderexcLimX2</a></legend>
+                    <div id="{{id}}_UnderexcLimX2_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf2'>kf2: </label><div class='col-sm-8'><input id='kf2' class='form-control' type='text'{{#kf2}} value='{{kf2}}'{{/kf2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='km'>km: </label><div class='col-sm-8'><input id='km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='melmax'>melmax: </label><div class='col-sm-8'><input id='melmax' class='form-control' type='text'{{#melmax}} value='{{melmax}}'{{/melmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qo'>qo: </label><div class='col-sm-8'><input id='qo' class='form-control' type='text'{{#qo}} value='{{qo}}'{{/qo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf2'>tf2: </label><div class='col-sm-8'><input id='tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tm'>tm: </label><div class='col-sm-8'><input id='tm' class='form-control' type='text'{{#tm}} value='{{tm}}'{{/tm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf2'>kf2: </label><div class='col-sm-8'><input id='{{id}}_kf2' class='form-control' type='text'{{#kf2}} value='{{kf2}}'{{/kf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_km'>km: </label><div class='col-sm-8'><input id='{{id}}_km' class='form-control' type='text'{{#km}} value='{{km}}'{{/km}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_melmax'>melmax: </label><div class='col-sm-8'><input id='{{id}}_melmax' class='form-control' type='text'{{#melmax}} value='{{melmax}}'{{/melmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qo'>qo: </label><div class='col-sm-8'><input id='{{id}}_qo' class='form-control' type='text'{{#qo}} value='{{qo}}'{{/qo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf2'>tf2: </label><div class='col-sm-8'><input id='{{id}}_tf2' class='form-control' type='text'{{#tf2}} value='{{tf2}}'{{/tf2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tm'>tm: </label><div class='col-sm-8'><input id='{{id}}_tm' class='form-control' type='text'{{#tm}} value='{{tm}}'{{/tm}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "UnderexcLimX2" };
-                super.submit (obj);
-                temp = document.getElementById ("kf2").value; if ("" != temp) obj.kf2 = temp;
-                temp = document.getElementById ("km").value; if ("" != temp) obj.km = temp;
-                temp = document.getElementById ("melmax").value; if ("" != temp) obj.melmax = temp;
-                temp = document.getElementById ("qo").value; if ("" != temp) obj.qo = temp;
-                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
-                temp = document.getElementById ("tf2").value; if ("" != temp) obj.tf2 = temp;
-                temp = document.getElementById ("tm").value; if ("" != temp) obj.tm = temp;
+                var obj = obj || { id: id, cls: "UnderexcLimX2" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kf2").value; if ("" != temp) obj.kf2 = temp;
+                temp = document.getElementById (id + "_km").value; if ("" != temp) obj.km = temp;
+                temp = document.getElementById (id + "_melmax").value; if ("" != temp) obj.melmax = temp;
+                temp = document.getElementById (id + "_qo").value; if ("" != temp) obj.qo = temp;
+                temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById (id + "_tf2").value; if ("" != temp) obj.tf2 = temp;
+                temp = document.getElementById (id + "_tm").value; if ("" != temp) obj.tm = temp;
 
                 return (obj);
             }
@@ -817,53 +817,53 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLimIEEE1_collapse" aria-expanded="true" aria-controls="UnderexcLimIEEE1_collapse" style="margin-left: 10px;">UnderexcLimIEEE1</a></legend>
-                    <div id="UnderexcLimIEEE1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLimIEEE1_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLimIEEE1_collapse" style="margin-left: 10px;">UnderexcLimIEEE1</a></legend>
+                    <div id="{{id}}_UnderexcLimIEEE1_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kuc'>kuc: </label><div class='col-sm-8'><input id='kuc' class='form-control' type='text'{{#kuc}} value='{{kuc}}'{{/kuc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kuf'>kuf: </label><div class='col-sm-8'><input id='kuf' class='form-control' type='text'{{#kuf}} value='{{kuf}}'{{/kuf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kui'>kui: </label><div class='col-sm-8'><input id='kui' class='form-control' type='text'{{#kui}} value='{{kui}}'{{/kui}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kul'>kul: </label><div class='col-sm-8'><input id='kul' class='form-control' type='text'{{#kul}} value='{{kul}}'{{/kul}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kur'>kur: </label><div class='col-sm-8'><input id='kur' class='form-control' type='text'{{#kur}} value='{{kur}}'{{/kur}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tu1'>tu1: </label><div class='col-sm-8'><input id='tu1' class='form-control' type='text'{{#tu1}} value='{{tu1}}'{{/tu1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tu2'>tu2: </label><div class='col-sm-8'><input id='tu2' class='form-control' type='text'{{#tu2}} value='{{tu2}}'{{/tu2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tu3'>tu3: </label><div class='col-sm-8'><input id='tu3' class='form-control' type='text'{{#tu3}} value='{{tu3}}'{{/tu3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tu4'>tu4: </label><div class='col-sm-8'><input id='tu4' class='form-control' type='text'{{#tu4}} value='{{tu4}}'{{/tu4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vucmax'>vucmax: </label><div class='col-sm-8'><input id='vucmax' class='form-control' type='text'{{#vucmax}} value='{{vucmax}}'{{/vucmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vuimax'>vuimax: </label><div class='col-sm-8'><input id='vuimax' class='form-control' type='text'{{#vuimax}} value='{{vuimax}}'{{/vuimax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vuimin'>vuimin: </label><div class='col-sm-8'><input id='vuimin' class='form-control' type='text'{{#vuimin}} value='{{vuimin}}'{{/vuimin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vulmax'>vulmax: </label><div class='col-sm-8'><input id='vulmax' class='form-control' type='text'{{#vulmax}} value='{{vulmax}}'{{/vulmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vulmin'>vulmin: </label><div class='col-sm-8'><input id='vulmin' class='form-control' type='text'{{#vulmin}} value='{{vulmin}}'{{/vulmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vurmax'>vurmax: </label><div class='col-sm-8'><input id='vurmax' class='form-control' type='text'{{#vurmax}} value='{{vurmax}}'{{/vurmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kuc'>kuc: </label><div class='col-sm-8'><input id='{{id}}_kuc' class='form-control' type='text'{{#kuc}} value='{{kuc}}'{{/kuc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kuf'>kuf: </label><div class='col-sm-8'><input id='{{id}}_kuf' class='form-control' type='text'{{#kuf}} value='{{kuf}}'{{/kuf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kui'>kui: </label><div class='col-sm-8'><input id='{{id}}_kui' class='form-control' type='text'{{#kui}} value='{{kui}}'{{/kui}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kul'>kul: </label><div class='col-sm-8'><input id='{{id}}_kul' class='form-control' type='text'{{#kul}} value='{{kul}}'{{/kul}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kur'>kur: </label><div class='col-sm-8'><input id='{{id}}_kur' class='form-control' type='text'{{#kur}} value='{{kur}}'{{/kur}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tu1'>tu1: </label><div class='col-sm-8'><input id='{{id}}_tu1' class='form-control' type='text'{{#tu1}} value='{{tu1}}'{{/tu1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tu2'>tu2: </label><div class='col-sm-8'><input id='{{id}}_tu2' class='form-control' type='text'{{#tu2}} value='{{tu2}}'{{/tu2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tu3'>tu3: </label><div class='col-sm-8'><input id='{{id}}_tu3' class='form-control' type='text'{{#tu3}} value='{{tu3}}'{{/tu3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tu4'>tu4: </label><div class='col-sm-8'><input id='{{id}}_tu4' class='form-control' type='text'{{#tu4}} value='{{tu4}}'{{/tu4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vucmax'>vucmax: </label><div class='col-sm-8'><input id='{{id}}_vucmax' class='form-control' type='text'{{#vucmax}} value='{{vucmax}}'{{/vucmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vuimax'>vuimax: </label><div class='col-sm-8'><input id='{{id}}_vuimax' class='form-control' type='text'{{#vuimax}} value='{{vuimax}}'{{/vuimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vuimin'>vuimin: </label><div class='col-sm-8'><input id='{{id}}_vuimin' class='form-control' type='text'{{#vuimin}} value='{{vuimin}}'{{/vuimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vulmax'>vulmax: </label><div class='col-sm-8'><input id='{{id}}_vulmax' class='form-control' type='text'{{#vulmax}} value='{{vulmax}}'{{/vulmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vulmin'>vulmin: </label><div class='col-sm-8'><input id='{{id}}_vulmin' class='form-control' type='text'{{#vulmin}} value='{{vulmin}}'{{/vulmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vurmax'>vurmax: </label><div class='col-sm-8'><input id='{{id}}_vurmax' class='form-control' type='text'{{#vurmax}} value='{{vurmax}}'{{/vurmax}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "UnderexcLimIEEE1" };
-                super.submit (obj);
-                temp = document.getElementById ("kuc").value; if ("" != temp) obj.kuc = temp;
-                temp = document.getElementById ("kuf").value; if ("" != temp) obj.kuf = temp;
-                temp = document.getElementById ("kui").value; if ("" != temp) obj.kui = temp;
-                temp = document.getElementById ("kul").value; if ("" != temp) obj.kul = temp;
-                temp = document.getElementById ("kur").value; if ("" != temp) obj.kur = temp;
-                temp = document.getElementById ("tu1").value; if ("" != temp) obj.tu1 = temp;
-                temp = document.getElementById ("tu2").value; if ("" != temp) obj.tu2 = temp;
-                temp = document.getElementById ("tu3").value; if ("" != temp) obj.tu3 = temp;
-                temp = document.getElementById ("tu4").value; if ("" != temp) obj.tu4 = temp;
-                temp = document.getElementById ("vucmax").value; if ("" != temp) obj.vucmax = temp;
-                temp = document.getElementById ("vuimax").value; if ("" != temp) obj.vuimax = temp;
-                temp = document.getElementById ("vuimin").value; if ("" != temp) obj.vuimin = temp;
-                temp = document.getElementById ("vulmax").value; if ("" != temp) obj.vulmax = temp;
-                temp = document.getElementById ("vulmin").value; if ("" != temp) obj.vulmin = temp;
-                temp = document.getElementById ("vurmax").value; if ("" != temp) obj.vurmax = temp;
+                var obj = obj || { id: id, cls: "UnderexcLimIEEE1" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kuc").value; if ("" != temp) obj.kuc = temp;
+                temp = document.getElementById (id + "_kuf").value; if ("" != temp) obj.kuf = temp;
+                temp = document.getElementById (id + "_kui").value; if ("" != temp) obj.kui = temp;
+                temp = document.getElementById (id + "_kul").value; if ("" != temp) obj.kul = temp;
+                temp = document.getElementById (id + "_kur").value; if ("" != temp) obj.kur = temp;
+                temp = document.getElementById (id + "_tu1").value; if ("" != temp) obj.tu1 = temp;
+                temp = document.getElementById (id + "_tu2").value; if ("" != temp) obj.tu2 = temp;
+                temp = document.getElementById (id + "_tu3").value; if ("" != temp) obj.tu3 = temp;
+                temp = document.getElementById (id + "_tu4").value; if ("" != temp) obj.tu4 = temp;
+                temp = document.getElementById (id + "_vucmax").value; if ("" != temp) obj.vucmax = temp;
+                temp = document.getElementById (id + "_vuimax").value; if ("" != temp) obj.vuimax = temp;
+                temp = document.getElementById (id + "_vuimin").value; if ("" != temp) obj.vuimin = temp;
+                temp = document.getElementById (id + "_vulmax").value; if ("" != temp) obj.vulmax = temp;
+                temp = document.getElementById (id + "_vulmin").value; if ("" != temp) obj.vulmin = temp;
+                temp = document.getElementById (id + "_vurmax").value; if ("" != temp) obj.vurmax = temp;
 
                 return (obj);
             }
@@ -969,37 +969,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#UnderexcLim2Simplified_collapse" aria-expanded="true" aria-controls="UnderexcLim2Simplified_collapse" style="margin-left: 10px;">UnderexcLim2Simplified</a></legend>
-                    <div id="UnderexcLim2Simplified_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_UnderexcLim2Simplified_collapse" aria-expanded="true" aria-controls="{{id}}_UnderexcLim2Simplified_collapse" style="margin-left: 10px;">UnderexcLim2Simplified</a></legend>
+                    <div id="{{id}}_UnderexcLim2Simplified_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + UnderexcitationLimiterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kui'>kui: </label><div class='col-sm-8'><input id='kui' class='form-control' type='text'{{#kui}} value='{{kui}}'{{/kui}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p0'>p0: </label><div class='col-sm-8'><input id='p0' class='form-control' type='text'{{#p0}} value='{{p0}}'{{/p0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p1'>p1: </label><div class='col-sm-8'><input id='p1' class='form-control' type='text'{{#p1}} value='{{p1}}'{{/p1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q0'>q0: </label><div class='col-sm-8'><input id='q0' class='form-control' type='text'{{#q0}} value='{{q0}}'{{/q0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q1'>q1: </label><div class='col-sm-8'><input id='q1' class='form-control' type='text'{{#q1}} value='{{q1}}'{{/q1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vuimax'>vuimax: </label><div class='col-sm-8'><input id='vuimax' class='form-control' type='text'{{#vuimax}} value='{{vuimax}}'{{/vuimax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vuimin'>vuimin: </label><div class='col-sm-8'><input id='vuimin' class='form-control' type='text'{{#vuimin}} value='{{vuimin}}'{{/vuimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kui'>kui: </label><div class='col-sm-8'><input id='{{id}}_kui' class='form-control' type='text'{{#kui}} value='{{kui}}'{{/kui}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p0'>p0: </label><div class='col-sm-8'><input id='{{id}}_p0' class='form-control' type='text'{{#p0}} value='{{p0}}'{{/p0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p1'>p1: </label><div class='col-sm-8'><input id='{{id}}_p1' class='form-control' type='text'{{#p1}} value='{{p1}}'{{/p1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q0'>q0: </label><div class='col-sm-8'><input id='{{id}}_q0' class='form-control' type='text'{{#q0}} value='{{q0}}'{{/q0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q1'>q1: </label><div class='col-sm-8'><input id='{{id}}_q1' class='form-control' type='text'{{#q1}} value='{{q1}}'{{/q1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vuimax'>vuimax: </label><div class='col-sm-8'><input id='{{id}}_vuimax' class='form-control' type='text'{{#vuimax}} value='{{vuimax}}'{{/vuimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vuimin'>vuimin: </label><div class='col-sm-8'><input id='{{id}}_vuimin' class='form-control' type='text'{{#vuimin}} value='{{vuimin}}'{{/vuimin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "UnderexcLim2Simplified" };
-                super.submit (obj);
-                temp = document.getElementById ("kui").value; if ("" != temp) obj.kui = temp;
-                temp = document.getElementById ("p0").value; if ("" != temp) obj.p0 = temp;
-                temp = document.getElementById ("p1").value; if ("" != temp) obj.p1 = temp;
-                temp = document.getElementById ("q0").value; if ("" != temp) obj.q0 = temp;
-                temp = document.getElementById ("q1").value; if ("" != temp) obj.q1 = temp;
-                temp = document.getElementById ("vuimax").value; if ("" != temp) obj.vuimax = temp;
-                temp = document.getElementById ("vuimin").value; if ("" != temp) obj.vuimin = temp;
+                var obj = obj || { id: id, cls: "UnderexcLim2Simplified" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kui").value; if ("" != temp) obj.kui = temp;
+                temp = document.getElementById (id + "_p0").value; if ("" != temp) obj.p0 = temp;
+                temp = document.getElementById (id + "_p1").value; if ("" != temp) obj.p1 = temp;
+                temp = document.getElementById (id + "_q0").value; if ("" != temp) obj.q0 = temp;
+                temp = document.getElementById (id + "_q1").value; if ("" != temp) obj.q1 = temp;
+                temp = document.getElementById (id + "_vuimax").value; if ("" != temp) obj.vuimax = temp;
+                temp = document.getElementById (id + "_vuimin").value; if ("" != temp) obj.vuimin = temp;
 
                 return (obj);
             }

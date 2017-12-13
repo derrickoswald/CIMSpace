@@ -137,8 +137,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpDocument_collapse" aria-expanded="true" aria-controls="ErpDocument_collapse" style="margin-left: 10px;">ErpDocument</a></legend>
-                    <div id="ErpDocument_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpDocument_collapse" aria-expanded="true" aria-controls="{{id}}_ErpDocument_collapse" style="margin-left: 10px;">ErpDocument</a></legend>
+                    <div id="{{id}}_ErpDocument_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
@@ -148,10 +148,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpDocument" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpDocument" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -236,8 +236,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="ErpIdentifiedObject_collapse" style="margin-left: 10px;">ErpIdentifiedObject</a></legend>
-                    <div id="ErpIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpIdentifiedObject_collapse" aria-expanded="true" aria-controls="{{id}}_ErpIdentifiedObject_collapse" style="margin-left: 10px;">ErpIdentifiedObject</a></legend>
+                    <div id="{{id}}_ErpIdentifiedObject_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -247,10 +247,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpIdentifiedObject" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpIdentifiedObject" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -338,25 +338,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBankAccount_collapse" aria-expanded="true" aria-controls="ErpBankAccount_collapse" style="margin-left: 10px;">ErpBankAccount</a></legend>
-                    <div id="ErpBankAccount_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpBankAccount_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBankAccount_collapse" style="margin-left: 10px;">ErpBankAccount</a></legend>
+                    <div id="{{id}}_ErpBankAccount_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + InfCommon.BankAccount.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bankABA'>bankABA: </label><div class='col-sm-8'><input id='bankABA' class='form-control' type='text'{{#bankABA}} value='{{bankABA}}'{{/bankABA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bankABA'>bankABA: </label><div class='col-sm-8'><input id='{{id}}_bankABA' class='form-control' type='text'{{#bankABA}} value='{{bankABA}}'{{/bankABA}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpBankAccount" };
-                super.submit (obj);
-                temp = document.getElementById ("bankABA").value; if ("" != temp) obj.bankABA = temp;
+                var obj = obj || { id: id, cls: "ErpBankAccount" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_bankABA").value; if ("" != temp) obj.bankABA = temp;
 
                 return (obj);
             }
@@ -441,8 +441,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpSalesOrder_collapse" aria-expanded="true" aria-controls="ErpSalesOrder_collapse" style="margin-left: 10px;">ErpSalesOrder</a></legend>
-                    <div id="ErpSalesOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpSalesOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpSalesOrder_collapse" style="margin-left: 10px;">ErpSalesOrder</a></legend>
+                    <div id="{{id}}_ErpSalesOrder_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -452,10 +452,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpSalesOrder" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpSalesOrder" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -545,8 +545,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpTimeSheet_collapse" aria-expanded="true" aria-controls="ErpTimeSheet_collapse" style="margin-left: 10px;">ErpTimeSheet</a></legend>
-                    <div id="ErpTimeSheet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpTimeSheet_collapse" aria-expanded="true" aria-controls="{{id}}_ErpTimeSheet_collapse" style="margin-left: 10px;">ErpTimeSheet</a></legend>
+                    <div id="{{id}}_ErpTimeSheet_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -556,10 +556,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpTimeSheet" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpTimeSheet" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -663,31 +663,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPOLineItem_collapse" aria-expanded="true" aria-controls="ErpPOLineItem_collapse" style="margin-left: 10px;">ErpPOLineItem</a></legend>
-                    <div id="ErpPOLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPOLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPOLineItem_collapse" style="margin-left: 10px;">ErpPOLineItem</a></legend>
+                    <div id="{{id}}_ErpPOLineItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecDelLineItem'>ErpRecDelLineItem: </label><div class='col-sm-8'><input id='ErpRecDelLineItem' class='form-control' type='text'{{#ErpRecDelLineItem}} value='{{ErpRecDelLineItem}}'{{/ErpRecDelLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpReqLineItem'>ErpReqLineItem: </label><div class='col-sm-8'><input id='ErpReqLineItem' class='form-control' type='text'{{#ErpReqLineItem}} value='{{ErpReqLineItem}}'{{/ErpReqLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModelCatalogueItem'>AssetModelCatalogueItem: </label><div class='col-sm-8'><input id='AssetModelCatalogueItem' class='form-control' type='text'{{#AssetModelCatalogueItem}} value='{{AssetModelCatalogueItem}}'{{/AssetModelCatalogueItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPurchaseOrder'>ErpPurchaseOrder: </label><div class='col-sm-8'><input id='ErpPurchaseOrder' class='form-control' type='text'{{#ErpPurchaseOrder}} value='{{ErpPurchaseOrder}}'{{/ErpPurchaseOrder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecDelLineItem'>ErpRecDelLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpRecDelLineItem' class='form-control' type='text'{{#ErpRecDelLineItem}} value='{{ErpRecDelLineItem}}'{{/ErpRecDelLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReqLineItem'>ErpReqLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpReqLineItem' class='form-control' type='text'{{#ErpReqLineItem}} value='{{ErpReqLineItem}}'{{/ErpReqLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModelCatalogueItem'>AssetModelCatalogueItem: </label><div class='col-sm-8'><input id='{{id}}_AssetModelCatalogueItem' class='form-control' type='text'{{#AssetModelCatalogueItem}} value='{{AssetModelCatalogueItem}}'{{/AssetModelCatalogueItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPurchaseOrder'>ErpPurchaseOrder: </label><div class='col-sm-8'><input id='{{id}}_ErpPurchaseOrder' class='form-control' type='text'{{#ErpPurchaseOrder}} value='{{ErpPurchaseOrder}}'{{/ErpPurchaseOrder}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpPOLineItem" };
-                super.submit (obj);
-                temp = document.getElementById ("ErpRecDelLineItem").value; if ("" != temp) obj.ErpRecDelLineItem = temp;
-                temp = document.getElementById ("ErpReqLineItem").value; if ("" != temp) obj.ErpReqLineItem = temp;
-                temp = document.getElementById ("AssetModelCatalogueItem").value; if ("" != temp) obj.AssetModelCatalogueItem = temp;
-                temp = document.getElementById ("ErpPurchaseOrder").value; if ("" != temp) obj.ErpPurchaseOrder = temp;
+                var obj = obj || { id: id, cls: "ErpPOLineItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ErpRecDelLineItem").value; if ("" != temp) obj.ErpRecDelLineItem = temp;
+                temp = document.getElementById (id + "_ErpReqLineItem").value; if ("" != temp) obj.ErpReqLineItem = temp;
+                temp = document.getElementById (id + "_AssetModelCatalogueItem").value; if ("" != temp) obj.AssetModelCatalogueItem = temp;
+                temp = document.getElementById (id + "_ErpPurchaseOrder").value; if ("" != temp) obj.ErpPurchaseOrder = temp;
 
                 return (obj);
             }
@@ -789,8 +789,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="ErpReceiveDelivery_collapse" style="margin-left: 10px;">ErpReceiveDelivery</a></legend>
-                    <div id="ErpReceiveDelivery_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpReceiveDelivery_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReceiveDelivery_collapse" style="margin-left: 10px;">ErpReceiveDelivery</a></legend>
+                    <div id="{{id}}_ErpReceiveDelivery_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -800,10 +800,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpReceiveDelivery" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpReceiveDelivery" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -915,31 +915,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayment_collapse" aria-expanded="true" aria-controls="ErpPayment_collapse" style="margin-left: 10px;">ErpPayment</a></legend>
-                    <div id="ErpPayment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPayment_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayment_collapse" style="margin-left: 10px;">ErpPayment</a></legend>
+                    <div id="{{id}}_ErpPayment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='termsPayment'>termsPayment: </label><div class='col-sm-8'><input id='termsPayment' class='form-control' type='text'{{#termsPayment}} value='{{termsPayment}}'{{/termsPayment}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems}}_string'{{/ErpPayableLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems}}_string'{{/ErpRecLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems}}_string'{{/ErpInvoiceLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_termsPayment'>termsPayment: </label><div class='col-sm-8'><input id='{{id}}_termsPayment' class='form-control' type='text'{{#termsPayment}} value='{{termsPayment}}'{{/termsPayment}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems}}_string'{{/ErpPayableLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems}}_string'{{/ErpRecLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems}}_string'{{/ErpInvoiceLineItems}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpPayment" };
-                super.submit (obj);
-                temp = document.getElementById ("termsPayment").value; if ("" != temp) obj.termsPayment = temp;
-                temp = document.getElementById ("ErpPayableLineItems").value; if ("" != temp) obj.ErpPayableLineItems = temp.split (",");
-                temp = document.getElementById ("ErpRecLineItems").value; if ("" != temp) obj.ErpRecLineItems = temp.split (",");
-                temp = document.getElementById ("ErpInvoiceLineItems").value; if ("" != temp) obj.ErpInvoiceLineItems = temp.split (",");
+                var obj = obj || { id: id, cls: "ErpPayment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_termsPayment").value; if ("" != temp) obj.termsPayment = temp;
+                temp = document.getElementById (id + "_ErpPayableLineItems").value; if ("" != temp) obj.ErpPayableLineItems = temp.split (",");
+                temp = document.getElementById (id + "_ErpRecLineItems").value; if ("" != temp) obj.ErpRecLineItems = temp.split (",");
+                temp = document.getElementById (id + "_ErpInvoiceLineItems").value; if ("" != temp) obj.ErpInvoiceLineItems = temp.split (",");
 
                 return (obj);
             }
@@ -1040,8 +1040,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpJournal_collapse" aria-expanded="true" aria-controls="ErpJournal_collapse" style="margin-left: 10px;">ErpJournal</a></legend>
-                    <div id="ErpJournal_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpJournal_collapse" aria-expanded="true" aria-controls="{{id}}_ErpJournal_collapse" style="margin-left: 10px;">ErpJournal</a></legend>
+                    <div id="{{id}}_ErpJournal_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -1051,10 +1051,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpJournal" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpJournal" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1187,43 +1187,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInvoice_collapse" aria-expanded="true" aria-controls="ErpInvoice_collapse" style="margin-left: 10px;">ErpInvoice</a></legend>
-                    <div id="ErpInvoice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpInvoice_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInvoice_collapse" style="margin-left: 10px;">ErpInvoice</a></legend>
+                    <div id="{{id}}_ErpInvoice_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='billMediaKind'>billMediaKind: </label><div class='col-sm-8'><select id='billMediaKind' class='form-control'>{{#BillMediaKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BillMediaKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dueDate'>dueDate: </label><div class='col-sm-8'><input id='dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ErpInvoiceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mailedDate'>mailedDate: </label><div class='col-sm-8'><input id='mailedDate' class='form-control' type='text'{{#mailedDate}} value='{{mailedDate}}'{{/mailedDate}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='proForma'>proForma: </label><div class='col-sm-8'><input id='proForma' class='form-check-input' type='checkbox'{{#proForma}} checked{{/proForma}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transferType'>transferType: </label><div class='col-sm-8'><input id='transferType' class='form-control' type='text'{{#transferType}} value='{{transferType}}'{{/transferType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billMediaKind'>billMediaKind: </label><div class='col-sm-8'><select id='{{id}}_billMediaKind' class='form-control'>{{#BillMediaKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/BillMediaKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dueDate'>dueDate: </label><div class='col-sm-8'><input id='{{id}}_dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#ErpInvoiceKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mailedDate'>mailedDate: </label><div class='col-sm-8'><input id='{{id}}_mailedDate' class='form-control' type='text'{{#mailedDate}} value='{{mailedDate}}'{{/mailedDate}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_proForma'>proForma: </label><div class='col-sm-8'><input id='{{id}}_proForma' class='form-check-input' type='checkbox'{{#proForma}} checked{{/proForma}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceNumber'>referenceNumber: </label><div class='col-sm-8'><input id='{{id}}_referenceNumber' class='form-control' type='text'{{#referenceNumber}} value='{{referenceNumber}}'{{/referenceNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transferType'>transferType: </label><div class='col-sm-8'><input id='{{id}}_transferType' class='form-control' type='text'{{#transferType}} value='{{transferType}}'{{/transferType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpInvoice" };
-                super.submit (obj);
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById ("billMediaKind").value; if ("" != temp) { temp = BillMediaKind[temp]; if ("undefined" != typeof (temp)) obj.billMediaKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BillMediaKind." + temp; }
-                temp = document.getElementById ("dueDate").value; if ("" != temp) obj.dueDate = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ErpInvoiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceKind." + temp; }
-                temp = document.getElementById ("mailedDate").value; if ("" != temp) obj.mailedDate = temp;
-                temp = document.getElementById ("proForma").checked; if (temp) obj.proForma = true;
-                temp = document.getElementById ("referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
-                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
-                temp = document.getElementById ("transferType").value; if ("" != temp) obj.transferType = temp;
-                temp = document.getElementById ("CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
+                var obj = obj || { id: id, cls: "ErpInvoice" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById (id + "_billMediaKind").value; if ("" != temp) { temp = BillMediaKind[temp]; if ("undefined" != typeof (temp)) obj.billMediaKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BillMediaKind." + temp; }
+                temp = document.getElementById (id + "_dueDate").value; if ("" != temp) obj.dueDate = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceKind." + temp; }
+                temp = document.getElementById (id + "_mailedDate").value; if ("" != temp) obj.mailedDate = temp;
+                temp = document.getElementById (id + "_proForma").checked; if (temp) obj.proForma = true;
+                temp = document.getElementById (id + "_referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
+                temp = document.getElementById (id + "_transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById (id + "_transferType").value; if ("" != temp) obj.transferType = temp;
+                temp = document.getElementById (id + "_CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
 
                 return (obj);
             }
@@ -1323,8 +1323,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="ErpPurchaseOrder_collapse" style="margin-left: 10px;">ErpPurchaseOrder</a></legend>
-                    <div id="ErpPurchaseOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPurchaseOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPurchaseOrder_collapse" style="margin-left: 10px;">ErpPurchaseOrder</a></legend>
+                    <div id="{{id}}_ErpPurchaseOrder_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -1334,10 +1334,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpPurchaseOrder" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpPurchaseOrder" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1436,8 +1436,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedger_collapse" aria-expanded="true" aria-controls="ErpLedger_collapse" style="margin-left: 10px;">ErpLedger</a></legend>
-                    <div id="ErpLedger_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpLedger_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedger_collapse" style="margin-left: 10px;">ErpLedger</a></legend>
+                    <div id="{{id}}_ErpLedger_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -1447,10 +1447,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpLedger" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpLedger" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1549,8 +1549,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRequisition_collapse" aria-expanded="true" aria-controls="ErpRequisition_collapse" style="margin-left: 10px;">ErpRequisition</a></legend>
-                    <div id="ErpRequisition_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpRequisition_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRequisition_collapse" style="margin-left: 10px;">ErpRequisition</a></legend>
+                    <div id="{{id}}_ErpRequisition_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -1560,10 +1560,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpRequisition" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpRequisition" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1665,25 +1665,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBOM_collapse" aria-expanded="true" aria-controls="ErpBOM_collapse" style="margin-left: 10px;">ErpBOM</a></legend>
-                    <div id="ErpBOM_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpBOM_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBOM_collapse" style="margin-left: 10px;">ErpBOM</a></legend>
+                    <div id="{{id}}_ErpBOM_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Design'>Design: </label><div class='col-sm-8'><input id='{{id}}_Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpBOM" };
-                super.submit (obj);
-                temp = document.getElementById ("Design").value; if ("" != temp) obj.Design = temp;
+                var obj = obj || { id: id, cls: "ErpBOM" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Design").value; if ("" != temp) obj.Design = temp;
 
                 return (obj);
             }
@@ -1798,8 +1798,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="ErpProjectAccounting_collapse" style="margin-left: 10px;">ErpProjectAccounting</a></legend>
-                    <div id="ErpProjectAccounting_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpProjectAccounting_collapse" aria-expanded="true" aria-controls="{{id}}_ErpProjectAccounting_collapse" style="margin-left: 10px;">ErpProjectAccounting</a></legend>
+                    <div id="{{id}}_ErpProjectAccounting_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -1809,10 +1809,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpProjectAccounting" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpProjectAccounting" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1984,61 +1984,61 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="ErpInvoiceLineItem_collapse" style="margin-left: 10px;">ErpInvoiceLineItem</a></legend>
-                    <div id="ErpInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpInvoiceLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInvoiceLineItem_collapse" style="margin-left: 10px;">ErpInvoiceLineItem</a></legend>
+                    <div id="{{id}}_ErpInvoiceLineItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='billPeriod'>billPeriod: </label><div class='col-sm-8'><input id='billPeriod' class='form-control' type='text'{{#billPeriod}} value='{{billPeriod}}'{{/billPeriod}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='glAccount'>glAccount: </label><div class='col-sm-8'><input id='glAccount' class='form-control' type='text'{{#glAccount}} value='{{glAccount}}'{{/glAccount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='glDateTime'>glDateTime: </label><div class='col-sm-8'><input id='glDateTime' class='form-control' type='text'{{#glDateTime}} value='{{glDateTime}}'{{/glDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#ErpInvoiceLineItemKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceLineItemKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lineAmount'>lineAmount: </label><div class='col-sm-8'><input id='lineAmount' class='form-control' type='text'{{#lineAmount}} value='{{lineAmount}}'{{/lineAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lineNumber'>lineNumber: </label><div class='col-sm-8'><input id='lineNumber' class='form-control' type='text'{{#lineNumber}} value='{{lineNumber}}'{{/lineNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lineVersion'>lineVersion: </label><div class='col-sm-8'><input id='lineVersion' class='form-control' type='text'{{#lineVersion}} value='{{lineVersion}}'{{/lineVersion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='netAmount'>netAmount: </label><div class='col-sm-8'><input id='netAmount' class='form-control' type='text'{{#netAmount}} value='{{netAmount}}'{{/netAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='previousAmount'>previousAmount: </label><div class='col-sm-8'><input id='previousAmount' class='form-control' type='text'{{#previousAmount}} value='{{previousAmount}}'{{/previousAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ContainerErpInvoiceLineItem'>ContainerErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ContainerErpInvoiceLineItem' class='form-control' type='text'{{#ContainerErpInvoiceLineItem}} value='{{ContainerErpInvoiceLineItem}}'{{/ContainerErpInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayableLineItem'>ErpPayableLineItem: </label><div class='col-sm-8'><input id='ErpPayableLineItem' class='form-control' type='text'{{#ErpPayableLineItem}} value='{{ErpPayableLineItem}}'{{/ErpPayableLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoice'>ErpInvoice: </label><div class='col-sm-8'><input id='ErpInvoice' class='form-control' type='text'{{#ErpInvoice}} value='{{ErpInvoice}}'{{/ErpInvoice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerBillingInfos'>CustomerBillingInfos: </label><div class='col-sm-8'><input id='CustomerBillingInfos' class='form-control' type='text'{{#CustomerBillingInfos}} value='{{CustomerBillingInfos}}_string'{{/CustomerBillingInfos}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecLineItem'>ErpRecLineItem: </label><div class='col-sm-8'><input id='ErpRecLineItem' class='form-control' type='text'{{#ErpRecLineItem}} value='{{ErpRecLineItem}}'{{/ErpRecLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes}}_string'{{/UserAttributes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecDelvLineItem'>ErpRecDelvLineItem: </label><div class='col-sm-8'><input id='ErpRecDelvLineItem' class='form-control' type='text'{{#ErpRecDelvLineItem}} value='{{ErpRecDelvLineItem}}'{{/ErpRecDelvLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='WorkBillingInfos'>WorkBillingInfos: </label><div class='col-sm-8'><input id='WorkBillingInfos' class='form-control' type='text'{{#WorkBillingInfos}} value='{{WorkBillingInfos}}_string'{{/WorkBillingInfos}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billPeriod'>billPeriod: </label><div class='col-sm-8'><input id='{{id}}_billPeriod' class='form-control' type='text'{{#billPeriod}} value='{{billPeriod}}'{{/billPeriod}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_glAccount'>glAccount: </label><div class='col-sm-8'><input id='{{id}}_glAccount' class='form-control' type='text'{{#glAccount}} value='{{glAccount}}'{{/glAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_glDateTime'>glDateTime: </label><div class='col-sm-8'><input id='{{id}}_glDateTime' class='form-control' type='text'{{#glDateTime}} value='{{glDateTime}}'{{/glDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#ErpInvoiceLineItemKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpInvoiceLineItemKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineAmount'>lineAmount: </label><div class='col-sm-8'><input id='{{id}}_lineAmount' class='form-control' type='text'{{#lineAmount}} value='{{lineAmount}}'{{/lineAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineNumber'>lineNumber: </label><div class='col-sm-8'><input id='{{id}}_lineNumber' class='form-control' type='text'{{#lineNumber}} value='{{lineNumber}}'{{/lineNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lineVersion'>lineVersion: </label><div class='col-sm-8'><input id='{{id}}_lineVersion' class='form-control' type='text'{{#lineVersion}} value='{{lineVersion}}'{{/lineVersion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_netAmount'>netAmount: </label><div class='col-sm-8'><input id='{{id}}_netAmount' class='form-control' type='text'{{#netAmount}} value='{{netAmount}}'{{/netAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_previousAmount'>previousAmount: </label><div class='col-sm-8'><input id='{{id}}_previousAmount' class='form-control' type='text'{{#previousAmount}} value='{{previousAmount}}'{{/previousAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ContainerErpInvoiceLineItem'>ContainerErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ContainerErpInvoiceLineItem' class='form-control' type='text'{{#ContainerErpInvoiceLineItem}} value='{{ContainerErpInvoiceLineItem}}'{{/ContainerErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItem'>ErpPayableLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItem' class='form-control' type='text'{{#ErpPayableLineItem}} value='{{ErpPayableLineItem}}'{{/ErpPayableLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoice'>ErpInvoice: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoice' class='form-control' type='text'{{#ErpInvoice}} value='{{ErpInvoice}}'{{/ErpInvoice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerBillingInfos'>CustomerBillingInfos: </label><div class='col-sm-8'><input id='{{id}}_CustomerBillingInfos' class='form-control' type='text'{{#CustomerBillingInfos}} value='{{CustomerBillingInfos}}_string'{{/CustomerBillingInfos}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItem'>ErpRecLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItem' class='form-control' type='text'{{#ErpRecLineItem}} value='{{ErpRecLineItem}}'{{/ErpRecLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='{{id}}_UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes}}_string'{{/UserAttributes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecDelvLineItem'>ErpRecDelvLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpRecDelvLineItem' class='form-control' type='text'{{#ErpRecDelvLineItem}} value='{{ErpRecDelvLineItem}}'{{/ErpRecDelvLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_WorkBillingInfos'>WorkBillingInfos: </label><div class='col-sm-8'><input id='{{id}}_WorkBillingInfos' class='form-control' type='text'{{#WorkBillingInfos}} value='{{WorkBillingInfos}}_string'{{/WorkBillingInfos}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpInvoiceLineItem" };
-                super.submit (obj);
-                temp = document.getElementById ("billPeriod").value; if ("" != temp) obj.billPeriod = temp;
-                temp = document.getElementById ("glAccount").value; if ("" != temp) obj.glAccount = temp;
-                temp = document.getElementById ("glDateTime").value; if ("" != temp) obj.glDateTime = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = ErpInvoiceLineItemKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceLineItemKind." + temp; }
-                temp = document.getElementById ("lineAmount").value; if ("" != temp) obj.lineAmount = temp;
-                temp = document.getElementById ("lineNumber").value; if ("" != temp) obj.lineNumber = temp;
-                temp = document.getElementById ("lineVersion").value; if ("" != temp) obj.lineVersion = temp;
-                temp = document.getElementById ("netAmount").value; if ("" != temp) obj.netAmount = temp;
-                temp = document.getElementById ("previousAmount").value; if ("" != temp) obj.previousAmount = temp;
-                temp = document.getElementById ("ContainerErpInvoiceLineItem").value; if ("" != temp) obj.ContainerErpInvoiceLineItem = temp;
-                temp = document.getElementById ("ErpPayableLineItem").value; if ("" != temp) obj.ErpPayableLineItem = temp;
-                temp = document.getElementById ("ErpInvoice").value; if ("" != temp) obj.ErpInvoice = temp;
-                temp = document.getElementById ("CustomerBillingInfos").value; if ("" != temp) obj.CustomerBillingInfos = temp.split (",");
-                temp = document.getElementById ("ErpRecLineItem").value; if ("" != temp) obj.ErpRecLineItem = temp;
-                temp = document.getElementById ("UserAttributes").value; if ("" != temp) obj.UserAttributes = temp.split (",");
-                temp = document.getElementById ("ErpRecDelvLineItem").value; if ("" != temp) obj.ErpRecDelvLineItem = temp;
-                temp = document.getElementById ("ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
-                temp = document.getElementById ("ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
-                temp = document.getElementById ("WorkBillingInfos").value; if ("" != temp) obj.WorkBillingInfos = temp.split (",");
+                var obj = obj || { id: id, cls: "ErpInvoiceLineItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_billPeriod").value; if ("" != temp) obj.billPeriod = temp;
+                temp = document.getElementById (id + "_glAccount").value; if ("" != temp) obj.glAccount = temp;
+                temp = document.getElementById (id + "_glDateTime").value; if ("" != temp) obj.glDateTime = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceLineItemKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceLineItemKind." + temp; }
+                temp = document.getElementById (id + "_lineAmount").value; if ("" != temp) obj.lineAmount = temp;
+                temp = document.getElementById (id + "_lineNumber").value; if ("" != temp) obj.lineNumber = temp;
+                temp = document.getElementById (id + "_lineVersion").value; if ("" != temp) obj.lineVersion = temp;
+                temp = document.getElementById (id + "_netAmount").value; if ("" != temp) obj.netAmount = temp;
+                temp = document.getElementById (id + "_previousAmount").value; if ("" != temp) obj.previousAmount = temp;
+                temp = document.getElementById (id + "_ContainerErpInvoiceLineItem").value; if ("" != temp) obj.ContainerErpInvoiceLineItem = temp;
+                temp = document.getElementById (id + "_ErpPayableLineItem").value; if ("" != temp) obj.ErpPayableLineItem = temp;
+                temp = document.getElementById (id + "_ErpInvoice").value; if ("" != temp) obj.ErpInvoice = temp;
+                temp = document.getElementById (id + "_CustomerBillingInfos").value; if ("" != temp) obj.CustomerBillingInfos = temp.split (",");
+                temp = document.getElementById (id + "_ErpRecLineItem").value; if ("" != temp) obj.ErpRecLineItem = temp;
+                temp = document.getElementById (id + "_UserAttributes").value; if ("" != temp) obj.UserAttributes = temp.split (",");
+                temp = document.getElementById (id + "_ErpRecDelvLineItem").value; if ("" != temp) obj.ErpRecDelvLineItem = temp;
+                temp = document.getElementById (id + "_ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
+                temp = document.getElementById (id + "_ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
+                temp = document.getElementById (id + "_WorkBillingInfos").value; if ("" != temp) obj.WorkBillingInfos = temp.split (",");
 
                 return (obj);
             }
@@ -2143,8 +2143,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="ErpChartOfAccounts_collapse" style="margin-left: 10px;">ErpChartOfAccounts</a></legend>
-                    <div id="ErpChartOfAccounts_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpChartOfAccounts_collapse" aria-expanded="true" aria-controls="{{id}}_ErpChartOfAccounts_collapse" style="margin-left: 10px;">ErpChartOfAccounts</a></legend>
+                    <div id="{{id}}_ErpChartOfAccounts_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -2154,10 +2154,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpChartOfAccounts" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpChartOfAccounts" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2247,8 +2247,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReceivable_collapse" aria-expanded="true" aria-controls="ErpReceivable_collapse" style="margin-left: 10px;">ErpReceivable</a></legend>
-                    <div id="ErpReceivable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpReceivable_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReceivable_collapse" style="margin-left: 10px;">ErpReceivable</a></legend>
+                    <div id="{{id}}_ErpReceivable_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -2258,10 +2258,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpReceivable" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpReceivable" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2353,8 +2353,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="ErpEngChangeOrder_collapse" style="margin-left: 10px;">ErpEngChangeOrder</a></legend>
-                    <div id="ErpEngChangeOrder_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpEngChangeOrder_collapse" aria-expanded="true" aria-controls="{{id}}_ErpEngChangeOrder_collapse" style="margin-left: 10px;">ErpEngChangeOrder</a></legend>
+                    <div id="{{id}}_ErpEngChangeOrder_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -2364,10 +2364,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpEngChangeOrder" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpEngChangeOrder" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2462,25 +2462,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayable_collapse" aria-expanded="true" aria-controls="ErpPayable_collapse" style="margin-left: 10px;">ErpPayable</a></legend>
-                    <div id="ErpPayable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPayable_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayable_collapse" style="margin-left: 10px;">ErpPayable</a></legend>
+                    <div id="{{id}}_ErpPayable_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ContractorItems'>ContractorItems: </label><div class='col-sm-8'><input id='ContractorItems' class='form-control' type='text'{{#ContractorItems}} value='{{ContractorItems}}_string'{{/ContractorItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ContractorItems'>ContractorItems: </label><div class='col-sm-8'><input id='{{id}}_ContractorItems' class='form-control' type='text'{{#ContractorItems}} value='{{ContractorItems}}_string'{{/ContractorItems}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpPayable" };
-                super.submit (obj);
-                temp = document.getElementById ("ContractorItems").value; if ("" != temp) obj.ContractorItems = temp.split (",");
+                var obj = obj || { id: id, cls: "ErpPayable" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ContractorItems").value; if ("" != temp) obj.ContractorItems = temp.split (",");
 
                 return (obj);
             }
@@ -2580,8 +2580,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="ErpLedgerBudget_collapse" style="margin-left: 10px;">ErpLedgerBudget</a></legend>
-                    <div id="ErpLedgerBudget_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpLedgerBudget_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedgerBudget_collapse" style="margin-left: 10px;">ErpLedgerBudget</a></legend>
+                    <div id="{{id}}_ErpLedgerBudget_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -2591,10 +2591,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpLedgerBudget" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpLedgerBudget" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2693,8 +2693,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpQuote_collapse" aria-expanded="true" aria-controls="ErpQuote_collapse" style="margin-left: 10px;">ErpQuote</a></legend>
-                    <div id="ErpQuote_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpQuote_collapse" aria-expanded="true" aria-controls="{{id}}_ErpQuote_collapse" style="margin-left: 10px;">ErpQuote</a></legend>
+                    <div id="{{id}}_ErpQuote_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpDocument.prototype.edit_template.call (this) +
                     `
@@ -2704,10 +2704,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpQuote" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpQuote" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -2808,29 +2808,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="ErpLedBudLineItem_collapse" style="margin-left: 10px;">ErpLedBudLineItem</a></legend>
-                    <div id="ErpLedBudLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpLedBudLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedBudLineItem_collapse" style="margin-left: 10px;">ErpLedBudLineItem</a></legend>
+                    <div id="{{id}}_ErpLedBudLineItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedgerBudget'>ErpLedgerBudget: </label><div class='col-sm-8'><input id='ErpLedgerBudget' class='form-control' type='text'{{#ErpLedgerBudget}} value='{{ErpLedgerBudget}}'{{/ErpLedgerBudget}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedBudLineItem'>ErpLedBudLineItem: </label><div class='col-sm-8'><input id='ErpLedBudLineItem' class='form-control' type='text'{{#ErpLedBudLineItem}} value='{{ErpLedBudLineItem}}'{{/ErpLedBudLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerBudget'>ErpLedgerBudget: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerBudget' class='form-control' type='text'{{#ErpLedgerBudget}} value='{{ErpLedgerBudget}}'{{/ErpLedgerBudget}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedBudLineItem'>ErpLedBudLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpLedBudLineItem' class='form-control' type='text'{{#ErpLedBudLineItem}} value='{{ErpLedBudLineItem}}'{{/ErpLedBudLineItem}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpLedBudLineItem" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ErpLedgerBudget").value; if ("" != temp) obj.ErpLedgerBudget = temp;
-                temp = document.getElementById ("ErpLedBudLineItem").value; if ("" != temp) obj.ErpLedBudLineItem = temp;
+                var obj = obj || { id: id, cls: "ErpLedBudLineItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ErpLedgerBudget").value; if ("" != temp) obj.ErpLedgerBudget = temp;
+                temp = document.getElementById (id + "_ErpLedBudLineItem").value; if ("" != temp) obj.ErpLedBudLineItem = temp;
 
                 return (obj);
             }
@@ -2931,27 +2931,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInventoryCount_collapse" aria-expanded="true" aria-controls="ErpInventoryCount_collapse" style="margin-left: 10px;">ErpInventoryCount</a></legend>
-                    <div id="ErpInventoryCount_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpInventoryCount_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInventoryCount_collapse" style="margin-left: 10px;">ErpInventoryCount</a></legend>
+                    <div id="{{id}}_ErpInventoryCount_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModel'>AssetModel: </label><div class='col-sm-8'><input id='{{id}}_AssetModel' class='form-control' type='text'{{#AssetModel}} value='{{AssetModel}}'{{/AssetModel}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpInventoryCount" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("AssetModel").value; if ("" != temp) obj.AssetModel = temp;
+                var obj = obj || { id: id, cls: "ErpInventoryCount" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_AssetModel").value; if ("" != temp) obj.AssetModel = temp;
 
                 return (obj);
             }
@@ -3052,29 +3052,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpTimeEntry_collapse" aria-expanded="true" aria-controls="ErpTimeEntry_collapse" style="margin-left: 10px;">ErpTimeEntry</a></legend>
-                    <div id="ErpTimeEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpTimeEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpTimeEntry_collapse" style="margin-left: 10px;">ErpTimeEntry</a></legend>
+                    <div id="{{id}}_ErpTimeEntry_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpTimeSheet'>ErpTimeSheet: </label><div class='col-sm-8'><input id='ErpTimeSheet' class='form-control' type='text'{{#ErpTimeSheet}} value='{{ErpTimeSheet}}'{{/ErpTimeSheet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpTimeSheet'>ErpTimeSheet: </label><div class='col-sm-8'><input id='{{id}}_ErpTimeSheet' class='form-control' type='text'{{#ErpTimeSheet}} value='{{ErpTimeSheet}}'{{/ErpTimeSheet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpProjectAccounting'>ErpProjectAccounting: </label><div class='col-sm-8'><input id='{{id}}_ErpProjectAccounting' class='form-control' type='text'{{#ErpProjectAccounting}} value='{{ErpProjectAccounting}}'{{/ErpProjectAccounting}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpTimeEntry" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ErpTimeSheet").value; if ("" != temp) obj.ErpTimeSheet = temp;
-                temp = document.getElementById ("ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
+                var obj = obj || { id: id, cls: "ErpTimeEntry" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ErpTimeSheet").value; if ("" != temp) obj.ErpTimeSheet = temp;
+                temp = document.getElementById (id + "_ErpProjectAccounting").value; if ("" != temp) obj.ErpProjectAccounting = temp;
 
                 return (obj);
             }
@@ -3185,35 +3185,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="ErpQuoteLineItem_collapse" style="margin-left: 10px;">ErpQuoteLineItem</a></legend>
-                    <div id="ErpQuoteLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpQuoteLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpQuoteLineItem_collapse" style="margin-left: 10px;">ErpQuoteLineItem</a></legend>
+                    <div id="{{id}}_ErpQuoteLineItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Design'>Design: </label><div class='col-sm-8'><input id='Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuote'>ErpQuote: </label><div class='col-sm-8'><input id='ErpQuote' class='form-control' type='text'{{#ErpQuote}} value='{{ErpQuote}}'{{/ErpQuote}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpReqLineItem'>ErpReqLineItem: </label><div class='col-sm-8'><input id='ErpReqLineItem' class='form-control' type='text'{{#ErpReqLineItem}} value='{{ErpReqLineItem}}'{{/ErpReqLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AssetModelCatalogueItem'>AssetModelCatalogueItem: </label><div class='col-sm-8'><input id='AssetModelCatalogueItem' class='form-control' type='text'{{#AssetModelCatalogueItem}} value='{{AssetModelCatalogueItem}}'{{/AssetModelCatalogueItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Design'>Design: </label><div class='col-sm-8'><input id='{{id}}_Design' class='form-control' type='text'{{#Design}} value='{{Design}}'{{/Design}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuote'>ErpQuote: </label><div class='col-sm-8'><input id='{{id}}_ErpQuote' class='form-control' type='text'{{#ErpQuote}} value='{{ErpQuote}}'{{/ErpQuote}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReqLineItem'>ErpReqLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpReqLineItem' class='form-control' type='text'{{#ErpReqLineItem}} value='{{ErpReqLineItem}}'{{/ErpReqLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AssetModelCatalogueItem'>AssetModelCatalogueItem: </label><div class='col-sm-8'><input id='{{id}}_AssetModelCatalogueItem' class='form-control' type='text'{{#AssetModelCatalogueItem}} value='{{AssetModelCatalogueItem}}'{{/AssetModelCatalogueItem}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpQuoteLineItem" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("Design").value; if ("" != temp) obj.Design = temp;
-                temp = document.getElementById ("ErpQuote").value; if ("" != temp) obj.ErpQuote = temp;
-                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
-                temp = document.getElementById ("ErpReqLineItem").value; if ("" != temp) obj.ErpReqLineItem = temp;
-                temp = document.getElementById ("AssetModelCatalogueItem").value; if ("" != temp) obj.AssetModelCatalogueItem = temp;
+                var obj = obj || { id: id, cls: "ErpQuoteLineItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_Design").value; if ("" != temp) obj.Design = temp;
+                temp = document.getElementById (id + "_ErpQuote").value; if ("" != temp) obj.ErpQuote = temp;
+                temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                temp = document.getElementById (id + "_ErpReqLineItem").value; if ("" != temp) obj.ErpReqLineItem = temp;
+                temp = document.getElementById (id + "_AssetModelCatalogueItem").value; if ("" != temp) obj.AssetModelCatalogueItem = temp;
 
                 return (obj);
             }
@@ -3343,43 +3343,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="ErpLedgerEntry_collapse" style="margin-left: 10px;">ErpLedgerEntry</a></legend>
-                    <div id="ErpLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpLedgerEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpLedgerEntry_collapse" style="margin-left: 10px;">ErpLedgerEntry</a></legend>
+                    <div id="{{id}}_ErpLedgerEntry_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountID'>accountID: </label><div class='col-sm-8'><input id='accountID' class='form-control' type='text'{{#accountID}} value='{{accountID}}'{{/accountID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountKind'>accountKind: </label><div class='col-sm-8'><select id='accountKind' class='form-control'>{{#ErpAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpAccountKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postedDateTime'>postedDateTime: </label><div class='col-sm-8'><input id='postedDateTime' class='form-control' type='text'{{#postedDateTime}} value='{{postedDateTime}}'{{/postedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpJounalEntry'>ErpJounalEntry: </label><div class='col-sm-8'><input id='ErpJounalEntry' class='form-control' type='text'{{#ErpJounalEntry}} value='{{ErpJounalEntry}}'{{/ErpJounalEntry}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes}}_string'{{/UserAttributes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedger'>ErpLedger: </label><div class='col-sm-8'><input id='ErpLedger' class='form-control' type='text'{{#ErpLedger}} value='{{ErpLedger}}'{{/ErpLedger}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountID'>accountID: </label><div class='col-sm-8'><input id='{{id}}_accountID' class='form-control' type='text'{{#accountID}} value='{{accountID}}'{{/accountID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountKind'>accountKind: </label><div class='col-sm-8'><select id='{{id}}_accountKind' class='form-control'>{{#ErpAccountKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ErpAccountKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postedDateTime'>postedDateTime: </label><div class='col-sm-8'><input id='{{id}}_postedDateTime' class='form-control' type='text'{{#postedDateTime}} value='{{postedDateTime}}'{{/postedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJounalEntry'>ErpJounalEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpJounalEntry' class='form-control' type='text'{{#ErpJounalEntry}} value='{{ErpJounalEntry}}'{{/ErpJounalEntry}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_UserAttributes'>UserAttributes: </label><div class='col-sm-8'><input id='{{id}}_UserAttributes' class='form-control' type='text'{{#UserAttributes}} value='{{UserAttributes}}_string'{{/UserAttributes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedger'>ErpLedger: </label><div class='col-sm-8'><input id='{{id}}_ErpLedger' class='form-control' type='text'{{#ErpLedger}} value='{{ErpLedger}}'{{/ErpLedger}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpLedgerEntry" };
-                super.submit (obj);
-                temp = document.getElementById ("accountID").value; if ("" != temp) obj.accountID = temp;
-                temp = document.getElementById ("accountKind").value; if ("" != temp) { temp = ErpAccountKind[temp]; if ("undefined" != typeof (temp)) obj.accountKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpAccountKind." + temp; }
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById ("postedDateTime").value; if ("" != temp) obj.postedDateTime = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
-                temp = document.getElementById ("ErpJounalEntry").value; if ("" != temp) obj.ErpJounalEntry = temp;
-                temp = document.getElementById ("ErpLedgerEntry").value; if ("" != temp) obj.ErpLedgerEntry = temp;
-                temp = document.getElementById ("UserAttributes").value; if ("" != temp) obj.UserAttributes = temp.split (",");
-                temp = document.getElementById ("ErpLedger").value; if ("" != temp) obj.ErpLedger = temp;
+                var obj = obj || { id: id, cls: "ErpLedgerEntry" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accountID").value; if ("" != temp) obj.accountID = temp;
+                temp = document.getElementById (id + "_accountKind").value; if ("" != temp) { temp = ErpAccountKind[temp]; if ("undefined" != typeof (temp)) obj.accountKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpAccountKind." + temp; }
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById (id + "_postedDateTime").value; if ("" != temp) obj.postedDateTime = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById (id + "_ErpJounalEntry").value; if ("" != temp) obj.ErpJounalEntry = temp;
+                temp = document.getElementById (id + "_ErpLedgerEntry").value; if ("" != temp) obj.ErpLedgerEntry = temp;
+                temp = document.getElementById (id + "_UserAttributes").value; if ("" != temp) obj.UserAttributes = temp.split (",");
+                temp = document.getElementById (id + "_ErpLedger").value; if ("" != temp) obj.ErpLedger = temp;
 
                 return (obj);
             }
@@ -3482,27 +3482,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpItemMaster_collapse" aria-expanded="true" aria-controls="ErpItemMaster_collapse" style="margin-left: 10px;">ErpItemMaster</a></legend>
-                    <div id="ErpItemMaster_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpItemMaster_collapse" aria-expanded="true" aria-controls="{{id}}_ErpItemMaster_collapse" style="margin-left: 10px;">ErpItemMaster</a></legend>
+                    <div id="{{id}}_ErpItemMaster_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpItemMaster" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("Asset").value; if ("" != temp) obj.Asset = temp;
+                var obj = obj || { id: id, cls: "ErpItemMaster" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_Asset").value; if ("" != temp) obj.Asset = temp;
 
                 return (obj);
             }
@@ -3613,33 +3613,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="ErpPayableLineItem_collapse" style="margin-left: 10px;">ErpPayableLineItem</a></legend>
-                    <div id="ErpPayableLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPayableLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPayableLineItem_collapse" style="margin-left: 10px;">ErpPayableLineItem</a></legend>
+                    <div id="{{id}}_ErpPayableLineItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayable'>ErpPayable: </label><div class='col-sm-8'><input id='ErpPayable' class='form-control' type='text'{{#ErpPayable}} value='{{ErpPayable}}'{{/ErpPayable}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayable'>ErpPayable: </label><div class='col-sm-8'><input id='{{id}}_ErpPayable' class='form-control' type='text'{{#ErpPayable}} value='{{ErpPayable}}'{{/ErpPayable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpPayableLineItem" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
-                temp = document.getElementById ("ErpPayable").value; if ("" != temp) obj.ErpPayable = temp;
-                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
-                temp = document.getElementById ("ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
+                var obj = obj || { id: id, cls: "ErpPayableLineItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
+                temp = document.getElementById (id + "_ErpPayable").value; if ("" != temp) obj.ErpPayable = temp;
+                temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                temp = document.getElementById (id + "_ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
 
                 return (obj);
             }
@@ -3753,33 +3753,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRecLineItem_collapse" aria-expanded="true" aria-controls="ErpRecLineItem_collapse" style="margin-left: 10px;">ErpRecLineItem</a></legend>
-                    <div id="ErpRecLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpRecLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRecLineItem_collapse" style="margin-left: 10px;">ErpRecLineItem</a></legend>
+                    <div id="{{id}}_ErpRecLineItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpReceivable'>ErpReceivable: </label><div class='col-sm-8'><input id='ErpReceivable' class='form-control' type='text'{{#ErpReceivable}} value='{{ErpReceivable}}'{{/ErpReceivable}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayments'>ErpPayments: </label><div class='col-sm-8'><input id='{{id}}_ErpPayments' class='form-control' type='text'{{#ErpPayments}} value='{{ErpPayments}}_string'{{/ErpPayments}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournalEntries'>ErpJournalEntries: </label><div class='col-sm-8'><input id='{{id}}_ErpJournalEntries' class='form-control' type='text'{{#ErpJournalEntries}} value='{{ErpJournalEntries}}_string'{{/ErpJournalEntries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReceivable'>ErpReceivable: </label><div class='col-sm-8'><input id='{{id}}_ErpReceivable' class='form-control' type='text'{{#ErpReceivable}} value='{{ErpReceivable}}'{{/ErpReceivable}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpRecLineItem" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
-                temp = document.getElementById ("ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
-                temp = document.getElementById ("ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
-                temp = document.getElementById ("ErpReceivable").value; if ("" != temp) obj.ErpReceivable = temp;
+                var obj = obj || { id: id, cls: "ErpRecLineItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                temp = document.getElementById (id + "_ErpPayments").value; if ("" != temp) obj.ErpPayments = temp.split (",");
+                temp = document.getElementById (id + "_ErpJournalEntries").value; if ("" != temp) obj.ErpJournalEntries = temp.split (",");
+                temp = document.getElementById (id + "_ErpReceivable").value; if ("" != temp) obj.ErpReceivable = temp;
 
                 return (obj);
             }
@@ -3883,29 +3883,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpIssueInventory_collapse" aria-expanded="true" aria-controls="ErpIssueInventory_collapse" style="margin-left: 10px;">ErpIssueInventory</a></legend>
-                    <div id="ErpIssueInventory_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpIssueInventory_collapse" aria-expanded="true" aria-controls="{{id}}_ErpIssueInventory_collapse" style="margin-left: 10px;">ErpIssueInventory</a></legend>
+                    <div id="{{id}}_ErpIssueInventory_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpIssueInventory" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
-                temp = document.getElementById ("TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
+                var obj = obj || { id: id, cls: "ErpIssueInventory" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
+                temp = document.getElementById (id + "_TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
 
                 return (obj);
             }
@@ -4006,27 +4006,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpInventory_collapse" aria-expanded="true" aria-controls="ErpInventory_collapse" style="margin-left: 10px;">ErpInventory</a></legend>
-                    <div id="ErpInventory_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpInventory_collapse" aria-expanded="true" aria-controls="{{id}}_ErpInventory_collapse" style="margin-left: 10px;">ErpInventory</a></legend>
+                    <div id="{{id}}_ErpInventory_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Asset'>Asset: </label><div class='col-sm-8'><input id='Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Asset'>Asset: </label><div class='col-sm-8'><input id='{{id}}_Asset' class='form-control' type='text'{{#Asset}} value='{{Asset}}'{{/Asset}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpInventory" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("Asset").value; if ("" != temp) obj.Asset = temp;
+                var obj = obj || { id: id, cls: "ErpInventory" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_Asset").value; if ("" != temp) obj.Asset = temp;
 
                 return (obj);
             }
@@ -4148,43 +4148,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpReqLineItem_collapse" aria-expanded="true" aria-controls="ErpReqLineItem_collapse" style="margin-left: 10px;">ErpReqLineItem</a></legend>
-                    <div id="ErpReqLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpReqLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpReqLineItem_collapse" style="margin-left: 10px;">ErpReqLineItem</a></legend>
+                    <div id="{{id}}_ErpReqLineItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cost'>cost: </label><div class='col-sm-8'><input id='cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deliveryDate'>deliveryDate: </label><div class='col-sm-8'><input id='deliveryDate' class='form-control' type='text'{{#deliveryDate}} value='{{deliveryDate}}'{{/deliveryDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='quantity'>quantity: </label><div class='col-sm-8'><input id='quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRequisition'>ErpRequisition: </label><div class='col-sm-8'><input id='ErpRequisition' class='form-control' type='text'{{#ErpRequisition}} value='{{ErpRequisition}}'{{/ErpRequisition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cost'>cost: </label><div class='col-sm-8'><input id='{{id}}_cost' class='form-control' type='text'{{#cost}} value='{{cost}}'{{/cost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deliveryDate'>deliveryDate: </label><div class='col-sm-8'><input id='{{id}}_deliveryDate' class='form-control' type='text'{{#deliveryDate}} value='{{deliveryDate}}'{{/deliveryDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_quantity'>quantity: </label><div class='col-sm-8'><input id='{{id}}_quantity' class='form-control' type='text'{{#quantity}} value='{{quantity}}'{{/quantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeMaterial'>TypeMaterial: </label><div class='col-sm-8'><input id='{{id}}_TypeMaterial' class='form-control' type='text'{{#TypeMaterial}} value='{{TypeMaterial}}'{{/TypeMaterial}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRequisition'>ErpRequisition: </label><div class='col-sm-8'><input id='{{id}}_ErpRequisition' class='form-control' type='text'{{#ErpRequisition}} value='{{ErpRequisition}}'{{/ErpRequisition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpQuoteLineItem'>ErpQuoteLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpQuoteLineItem' class='form-control' type='text'{{#ErpQuoteLineItem}} value='{{ErpQuoteLineItem}}'{{/ErpQuoteLineItem}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpReqLineItem" };
-                super.submit (obj);
-                temp = document.getElementById ("code").value; if ("" != temp) obj.code = temp;
-                temp = document.getElementById ("cost").value; if ("" != temp) obj.cost = temp;
-                temp = document.getElementById ("deliveryDate").value; if ("" != temp) obj.deliveryDate = temp;
-                temp = document.getElementById ("quantity").value; if ("" != temp) obj.quantity = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ErpPOLineItem").value; if ("" != temp) obj.ErpPOLineItem = temp;
-                temp = document.getElementById ("TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
-                temp = document.getElementById ("ErpRequisition").value; if ("" != temp) obj.ErpRequisition = temp;
-                temp = document.getElementById ("TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
-                temp = document.getElementById ("ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
+                var obj = obj || { id: id, cls: "ErpReqLineItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_code").value; if ("" != temp) obj.code = temp;
+                temp = document.getElementById (id + "_cost").value; if ("" != temp) obj.cost = temp;
+                temp = document.getElementById (id + "_deliveryDate").value; if ("" != temp) obj.deliveryDate = temp;
+                temp = document.getElementById (id + "_quantity").value; if ("" != temp) obj.quantity = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ErpPOLineItem").value; if ("" != temp) obj.ErpPOLineItem = temp;
+                temp = document.getElementById (id + "_TypeMaterial").value; if ("" != temp) obj.TypeMaterial = temp;
+                temp = document.getElementById (id + "_ErpRequisition").value; if ("" != temp) obj.ErpRequisition = temp;
+                temp = document.getElementById (id + "_TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
+                temp = document.getElementById (id + "_ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
 
                 return (obj);
             }
@@ -4288,25 +4288,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpPersonnel_collapse" aria-expanded="true" aria-controls="ErpPersonnel_collapse" style="margin-left: 10px;">ErpPersonnel</a></legend>
-                    <div id="ErpPersonnel_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpPersonnel_collapse" aria-expanded="true" aria-controls="{{id}}_ErpPersonnel_collapse" style="margin-left: 10px;">ErpPersonnel</a></legend>
+                    <div id="{{id}}_ErpPersonnel_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpPersonnel" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
+                var obj = obj || { id: id, cls: "ErpPersonnel" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
 
                 return (obj);
             }
@@ -4440,47 +4440,47 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpJournalEntry_collapse" aria-expanded="true" aria-controls="ErpJournalEntry_collapse" style="margin-left: 10px;">ErpJournalEntry</a></legend>
-                    <div id="ErpJournalEntry_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpJournalEntry_collapse" aria-expanded="true" aria-controls="{{id}}_ErpJournalEntry_collapse" style="margin-left: 10px;">ErpJournalEntry</a></legend>
+                    <div id="{{id}}_ErpJournalEntry_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='accountID'>accountID: </label><div class='col-sm-8'><input id='accountID' class='form-control' type='text'{{#accountID}} value='{{accountID}}'{{/accountID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='amount'>amount: </label><div class='col-sm-8'><input id='amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postingDateTime'>postingDateTime: </label><div class='col-sm-8'><input id='postingDateTime' class='form-control' type='text'{{#postingDateTime}} value='{{postingDateTime}}'{{/postingDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sourceID'>sourceID: </label><div class='col-sm-8'><input id='sourceID' class='form-control' type='text'{{#sourceID}} value='{{sourceID}}'{{/sourceID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems}}_string'{{/ErpPayableLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpJournal'>ErpJournal: </label><div class='col-sm-8'><input id='ErpJournal' class='form-control' type='text'{{#ErpJournal}} value='{{ErpJournal}}'{{/ErpJournal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems}}_string'{{/ErpRecLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CostTypes'>CostTypes: </label><div class='col-sm-8'><input id='CostTypes' class='form-control' type='text'{{#CostTypes}} value='{{CostTypes}}_string'{{/CostTypes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_accountID'>accountID: </label><div class='col-sm-8'><input id='{{id}}_accountID' class='form-control' type='text'{{#accountID}} value='{{accountID}}'{{/accountID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_amount'>amount: </label><div class='col-sm-8'><input id='{{id}}_amount' class='form-control' type='text'{{#amount}} value='{{amount}}'{{/amount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postingDateTime'>postingDateTime: </label><div class='col-sm-8'><input id='{{id}}_postingDateTime' class='form-control' type='text'{{#postingDateTime}} value='{{postingDateTime}}'{{/postingDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sourceID'>sourceID: </label><div class='col-sm-8'><input id='{{id}}_sourceID' class='form-control' type='text'{{#sourceID}} value='{{sourceID}}'{{/sourceID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_transactionDateTime'>transactionDateTime: </label><div class='col-sm-8'><input id='{{id}}_transactionDateTime' class='form-control' type='text'{{#transactionDateTime}} value='{{transactionDateTime}}'{{/transactionDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLedgerEntry'>ErpLedgerEntry: </label><div class='col-sm-8'><input id='{{id}}_ErpLedgerEntry' class='form-control' type='text'{{#ErpLedgerEntry}} value='{{ErpLedgerEntry}}'{{/ErpLedgerEntry}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPayableLineItems'>ErpPayableLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpPayableLineItems' class='form-control' type='text'{{#ErpPayableLineItems}} value='{{ErpPayableLineItems}}_string'{{/ErpPayableLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpJournal'>ErpJournal: </label><div class='col-sm-8'><input id='{{id}}_ErpJournal' class='form-control' type='text'{{#ErpJournal}} value='{{ErpJournal}}'{{/ErpJournal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpRecLineItems'>ErpRecLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpRecLineItems' class='form-control' type='text'{{#ErpRecLineItems}} value='{{ErpRecLineItems}}_string'{{/ErpRecLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CostTypes'>CostTypes: </label><div class='col-sm-8'><input id='{{id}}_CostTypes' class='form-control' type='text'{{#CostTypes}} value='{{CostTypes}}_string'{{/CostTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpJournalEntry" };
-                super.submit (obj);
-                temp = document.getElementById ("accountID").value; if ("" != temp) obj.accountID = temp;
-                temp = document.getElementById ("amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById ("postingDateTime").value; if ("" != temp) obj.postingDateTime = temp;
-                temp = document.getElementById ("sourceID").value; if ("" != temp) obj.sourceID = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
-                temp = document.getElementById ("ErpLedgerEntry").value; if ("" != temp) obj.ErpLedgerEntry = temp;
-                temp = document.getElementById ("ErpPayableLineItems").value; if ("" != temp) obj.ErpPayableLineItems = temp.split (",");
-                temp = document.getElementById ("ErpJournal").value; if ("" != temp) obj.ErpJournal = temp;
-                temp = document.getElementById ("ErpRecLineItems").value; if ("" != temp) obj.ErpRecLineItems = temp.split (",");
-                temp = document.getElementById ("CostTypes").value; if ("" != temp) obj.CostTypes = temp.split (",");
-                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                var obj = obj || { id: id, cls: "ErpJournalEntry" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_accountID").value; if ("" != temp) obj.accountID = temp;
+                temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
+                temp = document.getElementById (id + "_postingDateTime").value; if ("" != temp) obj.postingDateTime = temp;
+                temp = document.getElementById (id + "_sourceID").value; if ("" != temp) obj.sourceID = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_transactionDateTime").value; if ("" != temp) obj.transactionDateTime = temp;
+                temp = document.getElementById (id + "_ErpLedgerEntry").value; if ("" != temp) obj.ErpLedgerEntry = temp;
+                temp = document.getElementById (id + "_ErpPayableLineItems").value; if ("" != temp) obj.ErpPayableLineItems = temp.split (",");
+                temp = document.getElementById (id + "_ErpJournal").value; if ("" != temp) obj.ErpJournal = temp;
+                temp = document.getElementById (id + "_ErpRecLineItems").value; if ("" != temp) obj.ErpRecLineItems = temp.split (",");
+                temp = document.getElementById (id + "_CostTypes").value; if ("" != temp) obj.CostTypes = temp.split (",");
+                temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
 
                 return (obj);
             }
@@ -4586,29 +4586,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpBomItemData_collapse" aria-expanded="true" aria-controls="ErpBomItemData_collapse" style="margin-left: 10px;">ErpBomItemData</a></legend>
-                    <div id="ErpBomItemData_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpBomItemData_collapse" aria-expanded="true" aria-controls="{{id}}_ErpBomItemData_collapse" style="margin-left: 10px;">ErpBomItemData</a></legend>
+                    <div id="{{id}}_ErpBomItemData_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpBOM'>ErpBOM: </label><div class='col-sm-8'><input id='ErpBOM' class='form-control' type='text'{{#ErpBOM}} value='{{ErpBOM}}'{{/ErpBOM}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TypeAsset'>TypeAsset: </label><div class='col-sm-8'><input id='{{id}}_TypeAsset' class='form-control' type='text'{{#TypeAsset}} value='{{TypeAsset}}'{{/TypeAsset}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DesignLocation'>DesignLocation: </label><div class='col-sm-8'><input id='{{id}}_DesignLocation' class='form-control' type='text'{{#DesignLocation}} value='{{DesignLocation}}'{{/DesignLocation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpBOM'>ErpBOM: </label><div class='col-sm-8'><input id='{{id}}_ErpBOM' class='form-control' type='text'{{#ErpBOM}} value='{{ErpBOM}}'{{/ErpBOM}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpBomItemData" };
-                super.submit (obj);
-                temp = document.getElementById ("TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
-                temp = document.getElementById ("DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
-                temp = document.getElementById ("ErpBOM").value; if ("" != temp) obj.ErpBOM = temp;
+                var obj = obj || { id: id, cls: "ErpBomItemData" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_TypeAsset").value; if ("" != temp) obj.TypeAsset = temp;
+                temp = document.getElementById (id + "_DesignLocation").value; if ("" != temp) obj.DesignLocation = temp;
+                temp = document.getElementById (id + "_ErpBOM").value; if ("" != temp) obj.ErpBOM = temp;
 
                 return (obj);
             }
@@ -4710,27 +4710,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="ErpSiteLevelData_collapse" style="margin-left: 10px;">ErpSiteLevelData</a></legend>
-                    <div id="ErpSiteLevelData_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpSiteLevelData_collapse" aria-expanded="true" aria-controls="{{id}}_ErpSiteLevelData_collapse" style="margin-left: 10px;">ErpSiteLevelData</a></legend>
+                    <div id="{{id}}_ErpSiteLevelData_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LandProperty'>LandProperty: </label><div class='col-sm-8'><input id='{{id}}_LandProperty' class='form-control' type='text'{{#LandProperty}} value='{{LandProperty}}'{{/LandProperty}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpSiteLevelData" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("LandProperty").value; if ("" != temp) obj.LandProperty = temp;
+                var obj = obj || { id: id, cls: "ErpSiteLevelData" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_LandProperty").value; if ("" != temp) obj.LandProperty = temp;
 
                 return (obj);
             }
@@ -4841,33 +4841,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="ErpRecDelvLineItem_collapse" style="margin-left: 10px;">ErpRecDelvLineItem</a></legend>
-                    <div id="ErpRecDelvLineItem_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpRecDelvLineItem_collapse" aria-expanded="true" aria-controls="{{id}}_ErpRecDelvLineItem_collapse" style="margin-left: 10px;">ErpRecDelvLineItem</a></legend>
+                    <div id="{{id}}_ErpRecDelvLineItem_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Assets'>Assets: </label><div class='col-sm-8'><input id='Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpReceiveDelivery'>ErpReceiveDelivery: </label><div class='col-sm-8'><input id='ErpReceiveDelivery' class='form-control' type='text'{{#ErpReceiveDelivery}} value='{{ErpReceiveDelivery}}'{{/ErpReceiveDelivery}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpPOLineItem'>ErpPOLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpPOLineItem' class='form-control' type='text'{{#ErpPOLineItem}} value='{{ErpPOLineItem}}'{{/ErpPOLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItem'>ErpInvoiceLineItem: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItem' class='form-control' type='text'{{#ErpInvoiceLineItem}} value='{{ErpInvoiceLineItem}}'{{/ErpInvoiceLineItem}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Assets'>Assets: </label><div class='col-sm-8'><input id='{{id}}_Assets' class='form-control' type='text'{{#Assets}} value='{{Assets}}_string'{{/Assets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpReceiveDelivery'>ErpReceiveDelivery: </label><div class='col-sm-8'><input id='{{id}}_ErpReceiveDelivery' class='form-control' type='text'{{#ErpReceiveDelivery}} value='{{ErpReceiveDelivery}}'{{/ErpReceiveDelivery}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ErpRecDelvLineItem" };
-                super.submit (obj);
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("ErpPOLineItem").value; if ("" != temp) obj.ErpPOLineItem = temp;
-                temp = document.getElementById ("ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
-                temp = document.getElementById ("Assets").value; if ("" != temp) obj.Assets = temp.split (",");
-                temp = document.getElementById ("ErpReceiveDelivery").value; if ("" != temp) obj.ErpReceiveDelivery = temp;
+                var obj = obj || { id: id, cls: "ErpRecDelvLineItem" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_ErpPOLineItem").value; if ("" != temp) obj.ErpPOLineItem = temp;
+                temp = document.getElementById (id + "_ErpInvoiceLineItem").value; if ("" != temp) obj.ErpInvoiceLineItem = temp;
+                temp = document.getElementById (id + "_Assets").value; if ("" != temp) obj.Assets = temp.split (",");
+                temp = document.getElementById (id + "_ErpReceiveDelivery").value; if ("" != temp) obj.ErpReceiveDelivery = temp;
 
                 return (obj);
             }
@@ -4969,8 +4969,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ErpCompetency_collapse" aria-expanded="true" aria-controls="ErpCompetency_collapse" style="margin-left: 10px;">ErpCompetency</a></legend>
-                    <div id="ErpCompetency_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ErpCompetency_collapse" aria-expanded="true" aria-controls="{{id}}_ErpCompetency_collapse" style="margin-left: 10px;">ErpCompetency</a></legend>
+                    <div id="{{id}}_ErpCompetency_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ErpIdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -4980,10 +4980,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ErpCompetency" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ErpCompetency" };
+                super.submit (id, obj);
 
                 return (obj);
             }

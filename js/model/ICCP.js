@@ -118,31 +118,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IPAccessPoint_collapse" aria-expanded="true" aria-controls="IPAccessPoint_collapse" style="margin-left: 10px;">IPAccessPoint</a></legend>
-                    <div id="IPAccessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IPAccessPoint_collapse" aria-expanded="true" aria-controls="{{id}}_IPAccessPoint_collapse" style="margin-left: 10px;">IPAccessPoint</a></legend>
+                    <div id="{{id}}_IPAccessPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='address'>address: </label><div class='col-sm-8'><input id='address' class='form-control' type='text'{{#address}} value='{{address}}'{{/address}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='addressType'>addressType: </label><div class='col-sm-8'><input id='addressType' class='form-control' type='text'{{#addressType}} value='{{addressType}}'{{/addressType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='gateway'>gateway: </label><div class='col-sm-8'><input id='gateway' class='form-control' type='text'{{#gateway}} value='{{gateway}}'{{/gateway}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='subnet'>subnet: </label><div class='col-sm-8'><input id='subnet' class='form-control' type='text'{{#subnet}} value='{{subnet}}'{{/subnet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_address'>address: </label><div class='col-sm-8'><input id='{{id}}_address' class='form-control' type='text'{{#address}} value='{{address}}'{{/address}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_addressType'>addressType: </label><div class='col-sm-8'><input id='{{id}}_addressType' class='form-control' type='text'{{#addressType}} value='{{addressType}}'{{/addressType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_gateway'>gateway: </label><div class='col-sm-8'><input id='{{id}}_gateway' class='form-control' type='text'{{#gateway}} value='{{gateway}}'{{/gateway}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_subnet'>subnet: </label><div class='col-sm-8'><input id='{{id}}_subnet' class='form-control' type='text'{{#subnet}} value='{{subnet}}'{{/subnet}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "IPAccessPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("address").value; if ("" != temp) obj.address = temp;
-                temp = document.getElementById ("addressType").value; if ("" != temp) obj.addressType = temp;
-                temp = document.getElementById ("gateway").value; if ("" != temp) obj.gateway = temp;
-                temp = document.getElementById ("subnet").value; if ("" != temp) obj.subnet = temp;
+                var obj = obj || { id: id, cls: "IPAccessPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_address").value; if ("" != temp) obj.address = temp;
+                temp = document.getElementById (id + "_addressType").value; if ("" != temp) obj.addressType = temp;
+                temp = document.getElementById (id + "_gateway").value; if ("" != temp) obj.gateway = temp;
+                temp = document.getElementById (id + "_subnet").value; if ("" != temp) obj.subnet = temp;
 
                 return (obj);
             }
@@ -230,29 +230,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#IPAddressType_collapse" aria-expanded="true" aria-controls="IPAddressType_collapse" style="margin-left: 10px;">IPAddressType</a></legend>
-                    <div id="IPAddressType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_IPAddressType_collapse" aria-expanded="true" aria-controls="{{id}}_IPAddressType_collapse" style="margin-left: 10px;">IPAddressType</a></legend>
+                    <div id="{{id}}_IPAddressType_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "IPAddressType" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
-                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
+                var obj = obj || { id: id, cls: "IPAddressType" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
 
                 return (obj);
             }
@@ -345,27 +345,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPInformationMessage_collapse" aria-expanded="true" aria-controls="ICCPInformationMessage_collapse" style="margin-left: 10px;">ICCPInformationMessage</a></legend>
-                    <div id="ICCPInformationMessage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPInformationMessage_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPInformationMessage_collapse" style="margin-left: 10px;">ICCPInformationMessage</a></legend>
+                    <div id="{{id}}_ICCPInformationMessage_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localReference'>localReference: </label><div class='col-sm-8'><input id='localReference' class='form-control' type='text'{{#localReference}} value='{{localReference}}'{{/localReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scope'>scope: </label><div class='col-sm-8'><select id='scope' class='form-control'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localReference'>localReference: </label><div class='col-sm-8'><input id='{{id}}_localReference' class='form-control' type='text'{{#localReference}} value='{{localReference}}'{{/localReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ICCPInformationMessage" };
-                super.submit (obj);
-                temp = document.getElementById ("localReference").value; if ("" != temp) obj.localReference = temp;
-                temp = document.getElementById ("scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+                var obj = obj || { id: id, cls: "ICCPInformationMessage" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_localReference").value; if ("" != temp) obj.localReference = temp;
+                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
 
                 return (obj);
             }
@@ -455,25 +455,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPPoint_collapse" aria-expanded="true" aria-controls="ICCPPoint_collapse" style="margin-left: 10px;">ICCPPoint</a></legend>
-                    <div id="ICCPPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPPoint_collapse" style="margin-left: 10px;">ICCPPoint</a></legend>
+                    <div id="{{id}}_ICCPPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='scope'>scope: </label><div class='col-sm-8'><select id='scope' class='form-control'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_scope'>scope: </label><div class='col-sm-8'><select id='{{id}}_scope' class='form-control'>{{#ICCPPScope}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPPScope}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ICCPPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+                var obj = obj || { id: id, cls: "ICCPPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
 
                 return (obj);
             }
@@ -570,31 +570,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TASE2BilateralTable_collapse" aria-expanded="true" aria-controls="TASE2BilateralTable_collapse" style="margin-left: 10px;">TASE2BilateralTable</a></legend>
-                    <div id="TASE2BilateralTable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TASE2BilateralTable_collapse" aria-expanded="true" aria-controls="{{id}}_TASE2BilateralTable_collapse" style="margin-left: 10px;">TASE2BilateralTable</a></legend>
+                    <div id="{{id}}_TASE2BilateralTable_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bilateralTableID'>bilateralTableID: </label><div class='col-sm-8'><input id='bilateralTableID' class='form-control' type='text'{{#bilateralTableID}} value='{{bilateralTableID}}'{{/bilateralTableID}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='calling'>calling: </label><div class='col-sm-8'><input id='calling' class='form-check-input' type='checkbox'{{#calling}} checked{{/calling}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nameOfICC'>nameOfICC: </label><div class='col-sm-8'><input id='nameOfICC' class='form-control' type='text'{{#nameOfICC}} value='{{nameOfICC}}'{{/nameOfICC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tase2version'>tase2version: </label><div class='col-sm-8'><input id='tase2version' class='form-control' type='text'{{#tase2version}} value='{{tase2version}}'{{/tase2version}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bilateralTableID'>bilateralTableID: </label><div class='col-sm-8'><input id='{{id}}_bilateralTableID' class='form-control' type='text'{{#bilateralTableID}} value='{{bilateralTableID}}'{{/bilateralTableID}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_calling'>calling: </label><div class='col-sm-8'><input id='{{id}}_calling' class='form-check-input' type='checkbox'{{#calling}} checked{{/calling}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nameOfICC'>nameOfICC: </label><div class='col-sm-8'><input id='{{id}}_nameOfICC' class='form-control' type='text'{{#nameOfICC}} value='{{nameOfICC}}'{{/nameOfICC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tase2version'>tase2version: </label><div class='col-sm-8'><input id='{{id}}_tase2version' class='form-control' type='text'{{#tase2version}} value='{{tase2version}}'{{/tase2version}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TASE2BilateralTable" };
-                super.submit (obj);
-                temp = document.getElementById ("bilateralTableID").value; if ("" != temp) obj.bilateralTableID = temp;
-                temp = document.getElementById ("calling").checked; if (temp) obj.calling = true;
-                temp = document.getElementById ("nameOfICC").value; if ("" != temp) obj.nameOfICC = temp;
-                temp = document.getElementById ("tase2version").value; if ("" != temp) obj.tase2version = temp;
+                var obj = obj || { id: id, cls: "TASE2BilateralTable" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_bilateralTableID").value; if ("" != temp) obj.bilateralTableID = temp;
+                temp = document.getElementById (id + "_calling").checked; if (temp) obj.calling = true;
+                temp = document.getElementById (id + "_nameOfICC").value; if ("" != temp) obj.nameOfICC = temp;
+                temp = document.getElementById (id + "_tase2version").value; if ("" != temp) obj.tase2version = temp;
 
                 return (obj);
             }
@@ -682,29 +682,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ISOAPAddressing_collapse" aria-expanded="true" aria-controls="ISOAPAddressing_collapse" style="margin-left: 10px;">ISOAPAddressing</a></legend>
-                    <div id="ISOAPAddressing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ISOAPAddressing_collapse" aria-expanded="true" aria-controls="{{id}}_ISOAPAddressing_collapse" style="margin-left: 10px;">ISOAPAddressing</a></legend>
+                    <div id="{{id}}_ISOAPAddressing_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='unit'>unit: </label><div class='col-sm-8'><input id='unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='multiplier'>multiplier: </label><div class='col-sm-8'><input id='multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_unit'>unit: </label><div class='col-sm-8'><input id='{{id}}_unit' class='form-control' type='text'{{#unit}} value='{{unit}}'{{/unit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_multiplier'>multiplier: </label><div class='col-sm-8'><input id='{{id}}_multiplier' class='form-control' type='text'{{#multiplier}} value='{{multiplier}}'{{/multiplier}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ISOAPAddressing" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById ("unit").value; if ("" != temp) obj.unit = temp;
-                temp = document.getElementById ("multiplier").value; if ("" != temp) obj.multiplier = temp;
+                var obj = obj || { id: id, cls: "ISOAPAddressing" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) obj.unit = temp;
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) obj.multiplier = temp;
 
                 return (obj);
             }
@@ -789,27 +789,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TCPAcessPoint_collapse" aria-expanded="true" aria-controls="TCPAcessPoint_collapse" style="margin-left: 10px;">TCPAcessPoint</a></legend>
-                    <div id="TCPAcessPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TCPAcessPoint_collapse" aria-expanded="true" aria-controls="{{id}}_TCPAcessPoint_collapse" style="margin-left: 10px;">TCPAcessPoint</a></legend>
+                    <div id="{{id}}_TCPAcessPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + IPAccessPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='keepAliveTime'>keepAliveTime: </label><div class='col-sm-8'><input id='keepAliveTime' class='form-control' type='text'{{#keepAliveTime}} value='{{keepAliveTime}}'{{/keepAliveTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='port'>port: </label><div class='col-sm-8'><input id='port' class='form-control' type='text'{{#port}} value='{{port}}'{{/port}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_keepAliveTime'>keepAliveTime: </label><div class='col-sm-8'><input id='{{id}}_keepAliveTime' class='form-control' type='text'{{#keepAliveTime}} value='{{keepAliveTime}}'{{/keepAliveTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_port'>port: </label><div class='col-sm-8'><input id='{{id}}_port' class='form-control' type='text'{{#port}} value='{{port}}'{{/port}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TCPAcessPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("keepAliveTime").value; if ("" != temp) obj.keepAliveTime = temp;
-                temp = document.getElementById ("port").value; if ("" != temp) obj.port = temp;
+                var obj = obj || { id: id, cls: "TCPAcessPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_keepAliveTime").value; if ("" != temp) obj.keepAliveTime = temp;
+                temp = document.getElementById (id + "_port").value; if ("" != temp) obj.port = temp;
 
                 return (obj);
             }
@@ -900,31 +900,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ISOUpperLayer_collapse" aria-expanded="true" aria-controls="ISOUpperLayer_collapse" style="margin-left: 10px;">ISOUpperLayer</a></legend>
-                    <div id="ISOUpperLayer_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ISOUpperLayer_collapse" aria-expanded="true" aria-controls="{{id}}_ISOUpperLayer_collapse" style="margin-left: 10px;">ISOUpperLayer</a></legend>
+                    <div id="{{id}}_ISOUpperLayer_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + TCPAcessPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ap'>ap: </label><div class='col-sm-8'><input id='ap' class='form-control' type='text'{{#ap}} value='{{ap}}'{{/ap}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='osiPsel'>osiPsel: </label><div class='col-sm-8'><input id='osiPsel' class='form-control' type='text'{{#osiPsel}} value='{{osiPsel}}'{{/osiPsel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='osiSsel'>osiSsel: </label><div class='col-sm-8'><input id='osiSsel' class='form-control' type='text'{{#osiSsel}} value='{{osiSsel}}'{{/osiSsel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='osiTsel'>osiTsel: </label><div class='col-sm-8'><input id='osiTsel' class='form-control' type='text'{{#osiTsel}} value='{{osiTsel}}'{{/osiTsel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ap'>ap: </label><div class='col-sm-8'><input id='{{id}}_ap' class='form-control' type='text'{{#ap}} value='{{ap}}'{{/ap}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiPsel'>osiPsel: </label><div class='col-sm-8'><input id='{{id}}_osiPsel' class='form-control' type='text'{{#osiPsel}} value='{{osiPsel}}'{{/osiPsel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiSsel'>osiSsel: </label><div class='col-sm-8'><input id='{{id}}_osiSsel' class='form-control' type='text'{{#osiSsel}} value='{{osiSsel}}'{{/osiSsel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_osiTsel'>osiTsel: </label><div class='col-sm-8'><input id='{{id}}_osiTsel' class='form-control' type='text'{{#osiTsel}} value='{{osiTsel}}'{{/osiTsel}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ISOUpperLayer" };
-                super.submit (obj);
-                temp = document.getElementById ("ap").value; if ("" != temp) obj.ap = temp;
-                temp = document.getElementById ("osiPsel").value; if ("" != temp) obj.osiPsel = temp;
-                temp = document.getElementById ("osiSsel").value; if ("" != temp) obj.osiSsel = temp;
-                temp = document.getElementById ("osiTsel").value; if ("" != temp) obj.osiTsel = temp;
+                var obj = obj || { id: id, cls: "ISOUpperLayer" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ap").value; if ("" != temp) obj.ap = temp;
+                temp = document.getElementById (id + "_osiPsel").value; if ("" != temp) obj.osiPsel = temp;
+                temp = document.getElementById (id + "_osiSsel").value; if ("" != temp) obj.osiSsel = temp;
+                temp = document.getElementById (id + "_osiTsel").value; if ("" != temp) obj.osiTsel = temp;
 
                 return (obj);
             }
@@ -1008,25 +1008,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPIndicationPoint_collapse" aria-expanded="true" aria-controls="ICCPIndicationPoint_collapse" style="margin-left: 10px;">ICCPIndicationPoint</a></legend>
-                    <div id="ICCPIndicationPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPIndicationPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPIndicationPoint_collapse" style="margin-left: 10px;">ICCPIndicationPoint</a></legend>
+                    <div id="{{id}}_ICCPIndicationPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#ICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPIndicationPointType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control'>{{#ICCPIndicationPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPIndicationPointType}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ICCPIndicationPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("type").value; if ("" != temp) { temp = ICCPIndicationPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; }
+                var obj = obj || { id: id, cls: "ICCPIndicationPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPIndicationPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; }
 
                 return (obj);
             }
@@ -1110,25 +1110,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPControlPoint_collapse" aria-expanded="true" aria-controls="ICCPControlPoint_collapse" style="margin-left: 10px;">ICCPControlPoint</a></legend>
-                    <div id="ICCPControlPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPControlPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPControlPoint_collapse" style="margin-left: 10px;">ICCPControlPoint</a></legend>
+                    <div id="{{id}}_ICCPControlPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ICCPPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='deviceClass' class='form-control'>{{#ICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPControlPointDeviceClass}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deviceClass'>deviceClass: </label><div class='col-sm-8'><select id='{{id}}_deviceClass' class='form-control'>{{#ICCPControlPointDeviceClass}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPControlPointDeviceClass}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ICCPControlPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("deviceClass").value; if ("" != temp) { temp = ICCPControlPointDeviceClass[temp]; if ("undefined" != typeof (temp)) obj.deviceClass = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; }
+                var obj = obj || { id: id, cls: "ICCPControlPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_deviceClass").value; if ("" != temp) { temp = ICCPControlPointDeviceClass[temp]; if ("undefined" != typeof (temp)) obj.deviceClass = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; }
 
                 return (obj);
             }
@@ -1207,8 +1207,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPCommandPoint_collapse" aria-expanded="true" aria-controls="ICCPCommandPoint_collapse" style="margin-left: 10px;">ICCPCommandPoint</a></legend>
-                    <div id="ICCPCommandPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPCommandPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPCommandPoint_collapse" style="margin-left: 10px;">ICCPCommandPoint</a></legend>
+                    <div id="{{id}}_ICCPCommandPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
@@ -1218,10 +1218,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ICCPCommandPoint" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ICCPCommandPoint" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -1305,25 +1305,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ICCPSetPoint_collapse" aria-expanded="true" aria-controls="ICCPSetPoint_collapse" style="margin-left: 10px;">ICCPSetPoint</a></legend>
-                    <div id="ICCPSetPoint_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ICCPSetPoint_collapse" aria-expanded="true" aria-controls="{{id}}_ICCPSetPoint_collapse" style="margin-left: 10px;">ICCPSetPoint</a></legend>
+                    <div id="{{id}}_ICCPSetPoint_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ICCPControlPoint.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#ICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPSetPointType}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control'>{{#ICCPSetPointType}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ICCPSetPointType}}</select></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ICCPSetPoint" };
-                super.submit (obj);
-                temp = document.getElementById ("type").value; if ("" != temp) { temp = ICCPSetPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; }
+                var obj = obj || { id: id, cls: "ICCPSetPoint" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPSetPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; }
 
                 return (obj);
             }

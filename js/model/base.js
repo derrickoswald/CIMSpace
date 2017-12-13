@@ -421,9 +421,9 @@ define
             /**
              * Form scraping function for Element.
              */
-            submit (obj)
+            submit (id, obj)
             {
-                return (obj || {});
+                return (obj || { id: id });
             }
          }
 

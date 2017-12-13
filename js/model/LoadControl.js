@@ -123,47 +123,47 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RemoteConnectDisconnectInfo_collapse" aria-expanded="true" aria-controls="RemoteConnectDisconnectInfo_collapse" style="margin-left: 10px;">RemoteConnectDisconnectInfo</a></legend>
-                    <div id="RemoteConnectDisconnectInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RemoteConnectDisconnectInfo_collapse" aria-expanded="true" aria-controls="{{id}}_RemoteConnectDisconnectInfo_collapse" style="margin-left: 10px;">RemoteConnectDisconnectInfo</a></legend>
+                    <div id="{{id}}_RemoteConnectDisconnectInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='armedTimeout'>armedTimeout: </label><div class='col-sm-8'><input id='armedTimeout' class='form-control' type='text'{{#armedTimeout}} value='{{armedTimeout}}'{{/armedTimeout}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='customerVoltageLimit'>customerVoltageLimit: </label><div class='col-sm-8'><input id='customerVoltageLimit' class='form-control' type='text'{{#customerVoltageLimit}} value='{{customerVoltageLimit}}'{{/customerVoltageLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyLimit'>energyLimit: </label><div class='col-sm-8'><input id='energyLimit' class='form-control' type='text'{{#energyLimit}} value='{{energyLimit}}'{{/energyLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyUsageStartDateTime'>energyUsageStartDateTime: </label><div class='col-sm-8'><input id='energyUsageStartDateTime' class='form-control' type='text'{{#energyUsageStartDateTime}} value='{{energyUsageStartDateTime}}'{{/energyUsageStartDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyUsageWarning'>energyUsageWarning: </label><div class='col-sm-8'><input id='energyUsageWarning' class='form-control' type='text'{{#energyUsageWarning}} value='{{energyUsageWarning}}'{{/energyUsageWarning}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isArmConnect'>isArmConnect: </label><div class='col-sm-8'><input id='isArmConnect' class='form-check-input' type='checkbox'{{#isArmConnect}} checked{{/isArmConnect}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isArmDisconnect'>isArmDisconnect: </label><div class='col-sm-8'><input id='isArmDisconnect' class='form-check-input' type='checkbox'{{#isArmDisconnect}} checked{{/isArmDisconnect}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isEnergyLimiting'>isEnergyLimiting: </label><div class='col-sm-8'><input id='isEnergyLimiting' class='form-check-input' type='checkbox'{{#isEnergyLimiting}} checked{{/isEnergyLimiting}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='needsPowerLimitCheck'>needsPowerLimitCheck: </label><div class='col-sm-8'><input id='needsPowerLimitCheck' class='form-check-input' type='checkbox'{{#needsPowerLimitCheck}} checked{{/needsPowerLimitCheck}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='needsVoltageLimitCheck'>needsVoltageLimitCheck: </label><div class='col-sm-8'><input id='needsVoltageLimitCheck' class='form-check-input' type='checkbox'{{#needsVoltageLimitCheck}} checked{{/needsVoltageLimitCheck}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='powerLimit'>powerLimit: </label><div class='col-sm-8'><input id='powerLimit' class='form-control' type='text'{{#powerLimit}} value='{{powerLimit}}'{{/powerLimit}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='usePushbutton'>usePushbutton: </label><div class='col-sm-8'><input id='usePushbutton' class='form-check-input' type='checkbox'{{#usePushbutton}} checked{{/usePushbutton}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_armedTimeout'>armedTimeout: </label><div class='col-sm-8'><input id='{{id}}_armedTimeout' class='form-control' type='text'{{#armedTimeout}} value='{{armedTimeout}}'{{/armedTimeout}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_customerVoltageLimit'>customerVoltageLimit: </label><div class='col-sm-8'><input id='{{id}}_customerVoltageLimit' class='form-control' type='text'{{#customerVoltageLimit}} value='{{customerVoltageLimit}}'{{/customerVoltageLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyLimit'>energyLimit: </label><div class='col-sm-8'><input id='{{id}}_energyLimit' class='form-control' type='text'{{#energyLimit}} value='{{energyLimit}}'{{/energyLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyUsageStartDateTime'>energyUsageStartDateTime: </label><div class='col-sm-8'><input id='{{id}}_energyUsageStartDateTime' class='form-control' type='text'{{#energyUsageStartDateTime}} value='{{energyUsageStartDateTime}}'{{/energyUsageStartDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyUsageWarning'>energyUsageWarning: </label><div class='col-sm-8'><input id='{{id}}_energyUsageWarning' class='form-control' type='text'{{#energyUsageWarning}} value='{{energyUsageWarning}}'{{/energyUsageWarning}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isArmConnect'>isArmConnect: </label><div class='col-sm-8'><input id='{{id}}_isArmConnect' class='form-check-input' type='checkbox'{{#isArmConnect}} checked{{/isArmConnect}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isArmDisconnect'>isArmDisconnect: </label><div class='col-sm-8'><input id='{{id}}_isArmDisconnect' class='form-check-input' type='checkbox'{{#isArmDisconnect}} checked{{/isArmDisconnect}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isEnergyLimiting'>isEnergyLimiting: </label><div class='col-sm-8'><input id='{{id}}_isEnergyLimiting' class='form-check-input' type='checkbox'{{#isEnergyLimiting}} checked{{/isEnergyLimiting}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_needsPowerLimitCheck'>needsPowerLimitCheck: </label><div class='col-sm-8'><input id='{{id}}_needsPowerLimitCheck' class='form-check-input' type='checkbox'{{#needsPowerLimitCheck}} checked{{/needsPowerLimitCheck}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_needsVoltageLimitCheck'>needsVoltageLimitCheck: </label><div class='col-sm-8'><input id='{{id}}_needsVoltageLimitCheck' class='form-check-input' type='checkbox'{{#needsVoltageLimitCheck}} checked{{/needsVoltageLimitCheck}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_powerLimit'>powerLimit: </label><div class='col-sm-8'><input id='{{id}}_powerLimit' class='form-control' type='text'{{#powerLimit}} value='{{powerLimit}}'{{/powerLimit}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_usePushbutton'>usePushbutton: </label><div class='col-sm-8'><input id='{{id}}_usePushbutton' class='form-check-input' type='checkbox'{{#usePushbutton}} checked{{/usePushbutton}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RemoteConnectDisconnectInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("armedTimeout").value; if ("" != temp) obj.armedTimeout = temp;
-                temp = document.getElementById ("customerVoltageLimit").value; if ("" != temp) obj.customerVoltageLimit = temp;
-                temp = document.getElementById ("energyLimit").value; if ("" != temp) obj.energyLimit = temp;
-                temp = document.getElementById ("energyUsageStartDateTime").value; if ("" != temp) obj.energyUsageStartDateTime = temp;
-                temp = document.getElementById ("energyUsageWarning").value; if ("" != temp) obj.energyUsageWarning = temp;
-                temp = document.getElementById ("isArmConnect").checked; if (temp) obj.isArmConnect = true;
-                temp = document.getElementById ("isArmDisconnect").checked; if (temp) obj.isArmDisconnect = true;
-                temp = document.getElementById ("isEnergyLimiting").checked; if (temp) obj.isEnergyLimiting = true;
-                temp = document.getElementById ("needsPowerLimitCheck").checked; if (temp) obj.needsPowerLimitCheck = true;
-                temp = document.getElementById ("needsVoltageLimitCheck").checked; if (temp) obj.needsVoltageLimitCheck = true;
-                temp = document.getElementById ("powerLimit").value; if ("" != temp) obj.powerLimit = temp;
-                temp = document.getElementById ("usePushbutton").checked; if (temp) obj.usePushbutton = true;
+                var obj = obj || { id: id, cls: "RemoteConnectDisconnectInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_armedTimeout").value; if ("" != temp) obj.armedTimeout = temp;
+                temp = document.getElementById (id + "_customerVoltageLimit").value; if ("" != temp) obj.customerVoltageLimit = temp;
+                temp = document.getElementById (id + "_energyLimit").value; if ("" != temp) obj.energyLimit = temp;
+                temp = document.getElementById (id + "_energyUsageStartDateTime").value; if ("" != temp) obj.energyUsageStartDateTime = temp;
+                temp = document.getElementById (id + "_energyUsageWarning").value; if ("" != temp) obj.energyUsageWarning = temp;
+                temp = document.getElementById (id + "_isArmConnect").checked; if (temp) obj.isArmConnect = true;
+                temp = document.getElementById (id + "_isArmDisconnect").checked; if (temp) obj.isArmDisconnect = true;
+                temp = document.getElementById (id + "_isEnergyLimiting").checked; if (temp) obj.isEnergyLimiting = true;
+                temp = document.getElementById (id + "_needsPowerLimitCheck").checked; if (temp) obj.needsPowerLimitCheck = true;
+                temp = document.getElementById (id + "_needsVoltageLimitCheck").checked; if (temp) obj.needsVoltageLimitCheck = true;
+                temp = document.getElementById (id + "_powerLimit").value; if ("" != temp) obj.powerLimit = temp;
+                temp = document.getElementById (id + "_usePushbutton").checked; if (temp) obj.usePushbutton = true;
 
                 return (obj);
             }
@@ -275,41 +275,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ConnectDisconnectFunction_collapse" aria-expanded="true" aria-controls="ConnectDisconnectFunction_collapse" style="margin-left: 10px;">ConnectDisconnectFunction</a></legend>
-                    <div id="ConnectDisconnectFunction_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ConnectDisconnectFunction_collapse" aria-expanded="true" aria-controls="{{id}}_ConnectDisconnectFunction_collapse" style="margin-left: 10px;">ConnectDisconnectFunction</a></legend>
+                    <div id="{{id}}_ConnectDisconnectFunction_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Metering.EndDeviceFunction.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eventCount'>eventCount: </label><div class='col-sm-8'><input id='eventCount' class='form-control' type='text'{{#eventCount}} value='{{eventCount}}'{{/eventCount}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isConnected'>isConnected: </label><div class='col-sm-8'><input id='isConnected' class='form-check-input' type='checkbox'{{#isConnected}} checked{{/isConnected}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isDelayedDiscon'>isDelayedDiscon: </label><div class='col-sm-8'><input id='isDelayedDiscon' class='form-check-input' type='checkbox'{{#isDelayedDiscon}} checked{{/isDelayedDiscon}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isLocalAutoDisconOp'>isLocalAutoDisconOp: </label><div class='col-sm-8'><input id='isLocalAutoDisconOp' class='form-check-input' type='checkbox'{{#isLocalAutoDisconOp}} checked{{/isLocalAutoDisconOp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isLocalAutoReconOp'>isLocalAutoReconOp: </label><div class='col-sm-8'><input id='isLocalAutoReconOp' class='form-check-input' type='checkbox'{{#isLocalAutoReconOp}} checked{{/isLocalAutoReconOp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isRemoteAutoDisconOp'>isRemoteAutoDisconOp: </label><div class='col-sm-8'><input id='isRemoteAutoDisconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoDisconOp}} checked{{/isRemoteAutoDisconOp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isRemoteAutoReconOp'>isRemoteAutoReconOp: </label><div class='col-sm-8'><input id='isRemoteAutoReconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoReconOp}} checked{{/isRemoteAutoReconOp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rcdInfo'>rcdInfo: </label><div class='col-sm-8'><input id='rcdInfo' class='form-control' type='text'{{#rcdInfo}} value='{{rcdInfo}}'{{/rcdInfo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Switches'>Switches: </label><div class='col-sm-8'><input id='Switches' class='form-control' type='text'{{#Switches}} value='{{Switches}}_string'{{/Switches}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eventCount'>eventCount: </label><div class='col-sm-8'><input id='{{id}}_eventCount' class='form-control' type='text'{{#eventCount}} value='{{eventCount}}'{{/eventCount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isConnected'>isConnected: </label><div class='col-sm-8'><input id='{{id}}_isConnected' class='form-check-input' type='checkbox'{{#isConnected}} checked{{/isConnected}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isDelayedDiscon'>isDelayedDiscon: </label><div class='col-sm-8'><input id='{{id}}_isDelayedDiscon' class='form-check-input' type='checkbox'{{#isDelayedDiscon}} checked{{/isDelayedDiscon}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isLocalAutoDisconOp'>isLocalAutoDisconOp: </label><div class='col-sm-8'><input id='{{id}}_isLocalAutoDisconOp' class='form-check-input' type='checkbox'{{#isLocalAutoDisconOp}} checked{{/isLocalAutoDisconOp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isLocalAutoReconOp'>isLocalAutoReconOp: </label><div class='col-sm-8'><input id='{{id}}_isLocalAutoReconOp' class='form-check-input' type='checkbox'{{#isLocalAutoReconOp}} checked{{/isLocalAutoReconOp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isRemoteAutoDisconOp'>isRemoteAutoDisconOp: </label><div class='col-sm-8'><input id='{{id}}_isRemoteAutoDisconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoDisconOp}} checked{{/isRemoteAutoDisconOp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isRemoteAutoReconOp'>isRemoteAutoReconOp: </label><div class='col-sm-8'><input id='{{id}}_isRemoteAutoReconOp' class='form-check-input' type='checkbox'{{#isRemoteAutoReconOp}} checked{{/isRemoteAutoReconOp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rcdInfo'>rcdInfo: </label><div class='col-sm-8'><input id='{{id}}_rcdInfo' class='form-control' type='text'{{#rcdInfo}} value='{{rcdInfo}}'{{/rcdInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Switches'>Switches: </label><div class='col-sm-8'><input id='{{id}}_Switches' class='form-control' type='text'{{#Switches}} value='{{Switches}}_string'{{/Switches}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ConnectDisconnectFunction" };
-                super.submit (obj);
-                temp = document.getElementById ("eventCount").value; if ("" != temp) obj.eventCount = temp;
-                temp = document.getElementById ("isConnected").checked; if (temp) obj.isConnected = true;
-                temp = document.getElementById ("isDelayedDiscon").checked; if (temp) obj.isDelayedDiscon = true;
-                temp = document.getElementById ("isLocalAutoDisconOp").checked; if (temp) obj.isLocalAutoDisconOp = true;
-                temp = document.getElementById ("isLocalAutoReconOp").checked; if (temp) obj.isLocalAutoReconOp = true;
-                temp = document.getElementById ("isRemoteAutoDisconOp").checked; if (temp) obj.isRemoteAutoDisconOp = true;
-                temp = document.getElementById ("isRemoteAutoReconOp").checked; if (temp) obj.isRemoteAutoReconOp = true;
-                temp = document.getElementById ("rcdInfo").value; if ("" != temp) obj.rcdInfo = temp;
-                temp = document.getElementById ("Switches").value; if ("" != temp) obj.Switches = temp.split (",");
+                var obj = obj || { id: id, cls: "ConnectDisconnectFunction" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_eventCount").value; if ("" != temp) obj.eventCount = temp;
+                temp = document.getElementById (id + "_isConnected").checked; if (temp) obj.isConnected = true;
+                temp = document.getElementById (id + "_isDelayedDiscon").checked; if (temp) obj.isDelayedDiscon = true;
+                temp = document.getElementById (id + "_isLocalAutoDisconOp").checked; if (temp) obj.isLocalAutoDisconOp = true;
+                temp = document.getElementById (id + "_isLocalAutoReconOp").checked; if (temp) obj.isLocalAutoReconOp = true;
+                temp = document.getElementById (id + "_isRemoteAutoDisconOp").checked; if (temp) obj.isRemoteAutoDisconOp = true;
+                temp = document.getElementById (id + "_isRemoteAutoReconOp").checked; if (temp) obj.isRemoteAutoReconOp = true;
+                temp = document.getElementById (id + "_rcdInfo").value; if ("" != temp) obj.rcdInfo = temp;
+                temp = document.getElementById (id + "_Switches").value; if ("" != temp) obj.Switches = temp.split (",");
 
                 return (obj);
             }

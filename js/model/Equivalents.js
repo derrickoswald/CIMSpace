@@ -92,8 +92,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentNetwork_collapse" aria-expanded="true" aria-controls="EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
-                    <div id="EquivalentNetwork_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentNetwork_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentNetwork_collapse" style="margin-left: 10px;">EquivalentNetwork</a></legend>
+                    <div id="{{id}}_EquivalentNetwork_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.ConnectivityNodeContainer.prototype.edit_template.call (this) +
                     `
@@ -103,10 +103,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "EquivalentNetwork" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "EquivalentNetwork" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -203,25 +203,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentEquipment_collapse" aria-expanded="true" aria-controls="EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
-                    <div id="EquivalentEquipment_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentEquipment_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentEquipment_collapse" style="margin-left: 10px;">EquivalentEquipment</a></legend>
+                    <div id="{{id}}_EquivalentEquipment_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.ConductingEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EquivalentNetwork'>EquivalentNetwork: </label><div class='col-sm-8'><input id='EquivalentNetwork' class='form-control' type='text'{{#EquivalentNetwork}} value='{{EquivalentNetwork}}'{{/EquivalentNetwork}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EquivalentNetwork'>EquivalentNetwork: </label><div class='col-sm-8'><input id='{{id}}_EquivalentNetwork' class='form-control' type='text'{{#EquivalentNetwork}} value='{{EquivalentNetwork}}'{{/EquivalentNetwork}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EquivalentEquipment" };
-                super.submit (obj);
-                temp = document.getElementById ("EquivalentNetwork").value; if ("" != temp) obj.EquivalentNetwork = temp;
+                var obj = obj || { id: id, cls: "EquivalentEquipment" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_EquivalentNetwork").value; if ("" != temp) obj.EquivalentNetwork = temp;
 
                 return (obj);
             }
@@ -319,27 +319,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentShunt_collapse" aria-expanded="true" aria-controls="EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
-                    <div id="EquivalentShunt_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentShunt_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentShunt_collapse" style="margin-left: 10px;">EquivalentShunt</a></legend>
+                    <div id="{{id}}_EquivalentShunt_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b'>b: </label><div class='col-sm-8'><input id='b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='g'>g: </label><div class='col-sm-8'><input id='g' class='form-control' type='text'{{#g}} value='{{g}}'{{/g}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b'>b: </label><div class='col-sm-8'><input id='{{id}}_b' class='form-control' type='text'{{#b}} value='{{b}}'{{/b}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_g'>g: </label><div class='col-sm-8'><input id='{{id}}_g' class='form-control' type='text'{{#g}} value='{{g}}'{{/g}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EquivalentShunt" };
-                super.submit (obj);
-                temp = document.getElementById ("b").value; if ("" != temp) obj.b = temp;
-                temp = document.getElementById ("g").value; if ("" != temp) obj.g = temp;
+                var obj = obj || { id: id, cls: "EquivalentShunt" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_b").value; if ("" != temp) obj.b = temp;
+                temp = document.getElementById (id + "_g").value; if ("" != temp) obj.g = temp;
 
                 return (obj);
             }
@@ -470,55 +470,55 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentBranch_collapse" aria-expanded="true" aria-controls="EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
-                    <div id="EquivalentBranch_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentBranch_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentBranch_collapse" style="margin-left: 10px;">EquivalentBranch</a></legend>
+                    <div id="{{id}}_EquivalentBranch_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='negativeR12'>negativeR12: </label><div class='col-sm-8'><input id='negativeR12' class='form-control' type='text'{{#negativeR12}} value='{{negativeR12}}'{{/negativeR12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='negativeR21'>negativeR21: </label><div class='col-sm-8'><input id='negativeR21' class='form-control' type='text'{{#negativeR21}} value='{{negativeR21}}'{{/negativeR21}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='negativeX12'>negativeX12: </label><div class='col-sm-8'><input id='negativeX12' class='form-control' type='text'{{#negativeX12}} value='{{negativeX12}}'{{/negativeX12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='negativeX21'>negativeX21: </label><div class='col-sm-8'><input id='negativeX21' class='form-control' type='text'{{#negativeX21}} value='{{negativeX21}}'{{/negativeX21}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='positiveR12'>positiveR12: </label><div class='col-sm-8'><input id='positiveR12' class='form-control' type='text'{{#positiveR12}} value='{{positiveR12}}'{{/positiveR12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='positiveR21'>positiveR21: </label><div class='col-sm-8'><input id='positiveR21' class='form-control' type='text'{{#positiveR21}} value='{{positiveR21}}'{{/positiveR21}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='positiveX12'>positiveX12: </label><div class='col-sm-8'><input id='positiveX12' class='form-control' type='text'{{#positiveX12}} value='{{positiveX12}}'{{/positiveX12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='positiveX21'>positiveX21: </label><div class='col-sm-8'><input id='positiveX21' class='form-control' type='text'{{#positiveX21}} value='{{positiveX21}}'{{/positiveX21}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r21'>r21: </label><div class='col-sm-8'><input id='r21' class='form-control' type='text'{{#r21}} value='{{r21}}'{{/r21}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x'>x: </label><div class='col-sm-8'><input id='x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x21'>x21: </label><div class='col-sm-8'><input id='x21' class='form-control' type='text'{{#x21}} value='{{x21}}'{{/x21}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeroR12'>zeroR12: </label><div class='col-sm-8'><input id='zeroR12' class='form-control' type='text'{{#zeroR12}} value='{{zeroR12}}'{{/zeroR12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeroR21'>zeroR21: </label><div class='col-sm-8'><input id='zeroR21' class='form-control' type='text'{{#zeroR21}} value='{{zeroR21}}'{{/zeroR21}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeroX12'>zeroX12: </label><div class='col-sm-8'><input id='zeroX12' class='form-control' type='text'{{#zeroX12}} value='{{zeroX12}}'{{/zeroX12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='zeroX21'>zeroX21: </label><div class='col-sm-8'><input id='zeroX21' class='form-control' type='text'{{#zeroX21}} value='{{zeroX21}}'{{/zeroX21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_negativeR12'>negativeR12: </label><div class='col-sm-8'><input id='{{id}}_negativeR12' class='form-control' type='text'{{#negativeR12}} value='{{negativeR12}}'{{/negativeR12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_negativeR21'>negativeR21: </label><div class='col-sm-8'><input id='{{id}}_negativeR21' class='form-control' type='text'{{#negativeR21}} value='{{negativeR21}}'{{/negativeR21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_negativeX12'>negativeX12: </label><div class='col-sm-8'><input id='{{id}}_negativeX12' class='form-control' type='text'{{#negativeX12}} value='{{negativeX12}}'{{/negativeX12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_negativeX21'>negativeX21: </label><div class='col-sm-8'><input id='{{id}}_negativeX21' class='form-control' type='text'{{#negativeX21}} value='{{negativeX21}}'{{/negativeX21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_positiveR12'>positiveR12: </label><div class='col-sm-8'><input id='{{id}}_positiveR12' class='form-control' type='text'{{#positiveR12}} value='{{positiveR12}}'{{/positiveR12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_positiveR21'>positiveR21: </label><div class='col-sm-8'><input id='{{id}}_positiveR21' class='form-control' type='text'{{#positiveR21}} value='{{positiveR21}}'{{/positiveR21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_positiveX12'>positiveX12: </label><div class='col-sm-8'><input id='{{id}}_positiveX12' class='form-control' type='text'{{#positiveX12}} value='{{positiveX12}}'{{/positiveX12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_positiveX21'>positiveX21: </label><div class='col-sm-8'><input id='{{id}}_positiveX21' class='form-control' type='text'{{#positiveX21}} value='{{positiveX21}}'{{/positiveX21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r21'>r21: </label><div class='col-sm-8'><input id='{{id}}_r21' class='form-control' type='text'{{#r21}} value='{{r21}}'{{/r21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x'>x: </label><div class='col-sm-8'><input id='{{id}}_x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x21'>x21: </label><div class='col-sm-8'><input id='{{id}}_x21' class='form-control' type='text'{{#x21}} value='{{x21}}'{{/x21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zeroR12'>zeroR12: </label><div class='col-sm-8'><input id='{{id}}_zeroR12' class='form-control' type='text'{{#zeroR12}} value='{{zeroR12}}'{{/zeroR12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zeroR21'>zeroR21: </label><div class='col-sm-8'><input id='{{id}}_zeroR21' class='form-control' type='text'{{#zeroR21}} value='{{zeroR21}}'{{/zeroR21}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zeroX12'>zeroX12: </label><div class='col-sm-8'><input id='{{id}}_zeroX12' class='form-control' type='text'{{#zeroX12}} value='{{zeroX12}}'{{/zeroX12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_zeroX21'>zeroX21: </label><div class='col-sm-8'><input id='{{id}}_zeroX21' class='form-control' type='text'{{#zeroX21}} value='{{zeroX21}}'{{/zeroX21}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EquivalentBranch" };
-                super.submit (obj);
-                temp = document.getElementById ("negativeR12").value; if ("" != temp) obj.negativeR12 = temp;
-                temp = document.getElementById ("negativeR21").value; if ("" != temp) obj.negativeR21 = temp;
-                temp = document.getElementById ("negativeX12").value; if ("" != temp) obj.negativeX12 = temp;
-                temp = document.getElementById ("negativeX21").value; if ("" != temp) obj.negativeX21 = temp;
-                temp = document.getElementById ("positiveR12").value; if ("" != temp) obj.positiveR12 = temp;
-                temp = document.getElementById ("positiveR21").value; if ("" != temp) obj.positiveR21 = temp;
-                temp = document.getElementById ("positiveX12").value; if ("" != temp) obj.positiveX12 = temp;
-                temp = document.getElementById ("positiveX21").value; if ("" != temp) obj.positiveX21 = temp;
-                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
-                temp = document.getElementById ("r21").value; if ("" != temp) obj.r21 = temp;
-                temp = document.getElementById ("x").value; if ("" != temp) obj.x = temp;
-                temp = document.getElementById ("x21").value; if ("" != temp) obj.x21 = temp;
-                temp = document.getElementById ("zeroR12").value; if ("" != temp) obj.zeroR12 = temp;
-                temp = document.getElementById ("zeroR21").value; if ("" != temp) obj.zeroR21 = temp;
-                temp = document.getElementById ("zeroX12").value; if ("" != temp) obj.zeroX12 = temp;
-                temp = document.getElementById ("zeroX21").value; if ("" != temp) obj.zeroX21 = temp;
+                var obj = obj || { id: id, cls: "EquivalentBranch" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_negativeR12").value; if ("" != temp) obj.negativeR12 = temp;
+                temp = document.getElementById (id + "_negativeR21").value; if ("" != temp) obj.negativeR21 = temp;
+                temp = document.getElementById (id + "_negativeX12").value; if ("" != temp) obj.negativeX12 = temp;
+                temp = document.getElementById (id + "_negativeX21").value; if ("" != temp) obj.negativeX21 = temp;
+                temp = document.getElementById (id + "_positiveR12").value; if ("" != temp) obj.positiveR12 = temp;
+                temp = document.getElementById (id + "_positiveR21").value; if ("" != temp) obj.positiveR21 = temp;
+                temp = document.getElementById (id + "_positiveX12").value; if ("" != temp) obj.positiveX12 = temp;
+                temp = document.getElementById (id + "_positiveX21").value; if ("" != temp) obj.positiveX21 = temp;
+                temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById (id + "_r21").value; if ("" != temp) obj.r21 = temp;
+                temp = document.getElementById (id + "_x").value; if ("" != temp) obj.x = temp;
+                temp = document.getElementById (id + "_x21").value; if ("" != temp) obj.x21 = temp;
+                temp = document.getElementById (id + "_zeroR12").value; if ("" != temp) obj.zeroR12 = temp;
+                temp = document.getElementById (id + "_zeroR21").value; if ("" != temp) obj.zeroR21 = temp;
+                temp = document.getElementById (id + "_zeroX12").value; if ("" != temp) obj.zeroX12 = temp;
+                temp = document.getElementById (id + "_zeroX21").value; if ("" != temp) obj.zeroX21 = temp;
 
                 return (obj);
             }
@@ -651,55 +651,55 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EquivalentInjection_collapse" aria-expanded="true" aria-controls="EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
-                    <div id="EquivalentInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EquivalentInjection_collapse" aria-expanded="true" aria-controls="{{id}}_EquivalentInjection_collapse" style="margin-left: 10px;">EquivalentInjection</a></legend>
+                    <div id="{{id}}_EquivalentInjection_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + EquivalentEquipment.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxP'>maxP: </label><div class='col-sm-8'><input id='maxP' class='form-control' type='text'{{#maxP}} value='{{maxP}}'{{/maxP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxQ'>maxQ: </label><div class='col-sm-8'><input id='maxQ' class='form-control' type='text'{{#maxQ}} value='{{maxQ}}'{{/maxQ}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minP'>minP: </label><div class='col-sm-8'><input id='minP' class='form-control' type='text'{{#minP}} value='{{minP}}'{{/minP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minQ'>minQ: </label><div class='col-sm-8'><input id='minQ' class='form-control' type='text'{{#minQ}} value='{{minQ}}'{{/minQ}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r'>r: </label><div class='col-sm-8'><input id='r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r0'>r0: </label><div class='col-sm-8'><input id='r0' class='form-control' type='text'{{#r0}} value='{{r0}}'{{/r0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='r2'>r2: </label><div class='col-sm-8'><input id='r2' class='form-control' type='text'{{#r2}} value='{{r2}}'{{/r2}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='regulationCapability'>regulationCapability: </label><div class='col-sm-8'><input id='regulationCapability' class='form-check-input' type='checkbox'{{#regulationCapability}} checked{{/regulationCapability}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='regulationStatus'>regulationStatus: </label><div class='col-sm-8'><input id='regulationStatus' class='form-check-input' type='checkbox'{{#regulationStatus}} checked{{/regulationStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='regulationTarget'>regulationTarget: </label><div class='col-sm-8'><input id='regulationTarget' class='form-control' type='text'{{#regulationTarget}} value='{{regulationTarget}}'{{/regulationTarget}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x'>x: </label><div class='col-sm-8'><input id='x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x0'>x0: </label><div class='col-sm-8'><input id='x0' class='form-control' type='text'{{#x0}} value='{{x0}}'{{/x0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='x2'>x2: </label><div class='col-sm-8'><input id='x2' class='form-control' type='text'{{#x2}} value='{{x2}}'{{/x2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p'>p: </label><div class='col-sm-8'><input id='p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q'>q: </label><div class='col-sm-8'><input id='q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ReactiveCapabilityCurve'>ReactiveCapabilityCurve: </label><div class='col-sm-8'><input id='ReactiveCapabilityCurve' class='form-control' type='text'{{#ReactiveCapabilityCurve}} value='{{ReactiveCapabilityCurve}}'{{/ReactiveCapabilityCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxP'>maxP: </label><div class='col-sm-8'><input id='{{id}}_maxP' class='form-control' type='text'{{#maxP}} value='{{maxP}}'{{/maxP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxQ'>maxQ: </label><div class='col-sm-8'><input id='{{id}}_maxQ' class='form-control' type='text'{{#maxQ}} value='{{maxQ}}'{{/maxQ}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minP'>minP: </label><div class='col-sm-8'><input id='{{id}}_minP' class='form-control' type='text'{{#minP}} value='{{minP}}'{{/minP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minQ'>minQ: </label><div class='col-sm-8'><input id='{{id}}_minQ' class='form-control' type='text'{{#minQ}} value='{{minQ}}'{{/minQ}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r'>r: </label><div class='col-sm-8'><input id='{{id}}_r' class='form-control' type='text'{{#r}} value='{{r}}'{{/r}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r0'>r0: </label><div class='col-sm-8'><input id='{{id}}_r0' class='form-control' type='text'{{#r0}} value='{{r0}}'{{/r0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_r2'>r2: </label><div class='col-sm-8'><input id='{{id}}_r2' class='form-control' type='text'{{#r2}} value='{{r2}}'{{/r2}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_regulationCapability'>regulationCapability: </label><div class='col-sm-8'><input id='{{id}}_regulationCapability' class='form-check-input' type='checkbox'{{#regulationCapability}} checked{{/regulationCapability}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_regulationStatus'>regulationStatus: </label><div class='col-sm-8'><input id='{{id}}_regulationStatus' class='form-check-input' type='checkbox'{{#regulationStatus}} checked{{/regulationStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regulationTarget'>regulationTarget: </label><div class='col-sm-8'><input id='{{id}}_regulationTarget' class='form-control' type='text'{{#regulationTarget}} value='{{regulationTarget}}'{{/regulationTarget}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x'>x: </label><div class='col-sm-8'><input id='{{id}}_x' class='form-control' type='text'{{#x}} value='{{x}}'{{/x}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x0'>x0: </label><div class='col-sm-8'><input id='{{id}}_x0' class='form-control' type='text'{{#x0}} value='{{x0}}'{{/x0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_x2'>x2: </label><div class='col-sm-8'><input id='{{id}}_x2' class='form-control' type='text'{{#x2}} value='{{x2}}'{{/x2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p'>p: </label><div class='col-sm-8'><input id='{{id}}_p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q'>q: </label><div class='col-sm-8'><input id='{{id}}_q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ReactiveCapabilityCurve'>ReactiveCapabilityCurve: </label><div class='col-sm-8'><input id='{{id}}_ReactiveCapabilityCurve' class='form-control' type='text'{{#ReactiveCapabilityCurve}} value='{{ReactiveCapabilityCurve}}'{{/ReactiveCapabilityCurve}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EquivalentInjection" };
-                super.submit (obj);
-                temp = document.getElementById ("maxP").value; if ("" != temp) obj.maxP = temp;
-                temp = document.getElementById ("maxQ").value; if ("" != temp) obj.maxQ = temp;
-                temp = document.getElementById ("minP").value; if ("" != temp) obj.minP = temp;
-                temp = document.getElementById ("minQ").value; if ("" != temp) obj.minQ = temp;
-                temp = document.getElementById ("r").value; if ("" != temp) obj.r = temp;
-                temp = document.getElementById ("r0").value; if ("" != temp) obj.r0 = temp;
-                temp = document.getElementById ("r2").value; if ("" != temp) obj.r2 = temp;
-                temp = document.getElementById ("regulationCapability").checked; if (temp) obj.regulationCapability = true;
-                temp = document.getElementById ("regulationStatus").checked; if (temp) obj.regulationStatus = true;
-                temp = document.getElementById ("regulationTarget").value; if ("" != temp) obj.regulationTarget = temp;
-                temp = document.getElementById ("x").value; if ("" != temp) obj.x = temp;
-                temp = document.getElementById ("x0").value; if ("" != temp) obj.x0 = temp;
-                temp = document.getElementById ("x2").value; if ("" != temp) obj.x2 = temp;
-                temp = document.getElementById ("p").value; if ("" != temp) obj.p = temp;
-                temp = document.getElementById ("q").value; if ("" != temp) obj.q = temp;
-                temp = document.getElementById ("ReactiveCapabilityCurve").value; if ("" != temp) obj.ReactiveCapabilityCurve = temp;
+                var obj = obj || { id: id, cls: "EquivalentInjection" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_maxP").value; if ("" != temp) obj.maxP = temp;
+                temp = document.getElementById (id + "_maxQ").value; if ("" != temp) obj.maxQ = temp;
+                temp = document.getElementById (id + "_minP").value; if ("" != temp) obj.minP = temp;
+                temp = document.getElementById (id + "_minQ").value; if ("" != temp) obj.minQ = temp;
+                temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
+                temp = document.getElementById (id + "_r0").value; if ("" != temp) obj.r0 = temp;
+                temp = document.getElementById (id + "_r2").value; if ("" != temp) obj.r2 = temp;
+                temp = document.getElementById (id + "_regulationCapability").checked; if (temp) obj.regulationCapability = true;
+                temp = document.getElementById (id + "_regulationStatus").checked; if (temp) obj.regulationStatus = true;
+                temp = document.getElementById (id + "_regulationTarget").value; if ("" != temp) obj.regulationTarget = temp;
+                temp = document.getElementById (id + "_x").value; if ("" != temp) obj.x = temp;
+                temp = document.getElementById (id + "_x0").value; if ("" != temp) obj.x0 = temp;
+                temp = document.getElementById (id + "_x2").value; if ("" != temp) obj.x2 = temp;
+                temp = document.getElementById (id + "_p").value; if ("" != temp) obj.p = temp;
+                temp = document.getElementById (id + "_q").value; if ("" != temp) obj.q = temp;
+                temp = document.getElementById (id + "_ReactiveCapabilityCurve").value; if ("" != temp) obj.ReactiveCapabilityCurve = temp;
 
                 return (obj);
             }

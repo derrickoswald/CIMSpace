@@ -155,51 +155,51 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadMotor_collapse" aria-expanded="true" aria-controls="LoadMotor_collapse" style="margin-left: 10px;">LoadMotor</a></legend>
-                    <div id="LoadMotor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadMotor_collapse" aria-expanded="true" aria-controls="{{id}}_LoadMotor_collapse" style="margin-left: 10px;">LoadMotor</a></legend>
+                    <div id="{{id}}_LoadMotor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='d'>d: </label><div class='col-sm-8'><input id='d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='h'>h: </label><div class='col-sm-8'><input id='h' class='form-control' type='text'{{#h}} value='{{h}}'{{/h}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lfac'>lfac: </label><div class='col-sm-8'><input id='lfac' class='form-control' type='text'{{#lfac}} value='{{lfac}}'{{/lfac}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lp'>lp: </label><div class='col-sm-8'><input id='lp' class='form-control' type='text'{{#lp}} value='{{lp}}'{{/lp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lpp'>lpp: </label><div class='col-sm-8'><input id='lpp' class='form-control' type='text'{{#lpp}} value='{{lpp}}'{{/lpp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ls'>ls: </label><div class='col-sm-8'><input id='ls' class='form-control' type='text'{{#ls}} value='{{ls}}'{{/ls}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pfrac'>pfrac: </label><div class='col-sm-8'><input id='pfrac' class='form-control' type='text'{{#pfrac}} value='{{pfrac}}'{{/pfrac}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ra'>ra: </label><div class='col-sm-8'><input id='ra' class='form-control' type='text'{{#ra}} value='{{ra}}'{{/ra}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tbkr'>tbkr: </label><div class='col-sm-8'><input id='tbkr' class='form-control' type='text'{{#tbkr}} value='{{tbkr}}'{{/tbkr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpo'>tpo: </label><div class='col-sm-8'><input id='tpo' class='form-control' type='text'{{#tpo}} value='{{tpo}}'{{/tpo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tppo'>tppo: </label><div class='col-sm-8'><input id='tppo' class='form-control' type='text'{{#tppo}} value='{{tppo}}'{{/tppo}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tv'>tv: </label><div class='col-sm-8'><input id='tv' class='form-control' type='text'{{#tv}} value='{{tv}}'{{/tv}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vt'>vt: </label><div class='col-sm-8'><input id='vt' class='form-control' type='text'{{#vt}} value='{{vt}}'{{/vt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadAggregate'>LoadAggregate: </label><div class='col-sm-8'><input id='LoadAggregate' class='form-control' type='text'{{#LoadAggregate}} value='{{LoadAggregate}}'{{/LoadAggregate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_d'>d: </label><div class='col-sm-8'><input id='{{id}}_d' class='form-control' type='text'{{#d}} value='{{d}}'{{/d}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_h'>h: </label><div class='col-sm-8'><input id='{{id}}_h' class='form-control' type='text'{{#h}} value='{{h}}'{{/h}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lfac'>lfac: </label><div class='col-sm-8'><input id='{{id}}_lfac' class='form-control' type='text'{{#lfac}} value='{{lfac}}'{{/lfac}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lp'>lp: </label><div class='col-sm-8'><input id='{{id}}_lp' class='form-control' type='text'{{#lp}} value='{{lp}}'{{/lp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lpp'>lpp: </label><div class='col-sm-8'><input id='{{id}}_lpp' class='form-control' type='text'{{#lpp}} value='{{lpp}}'{{/lpp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ls'>ls: </label><div class='col-sm-8'><input id='{{id}}_ls' class='form-control' type='text'{{#ls}} value='{{ls}}'{{/ls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfrac'>pfrac: </label><div class='col-sm-8'><input id='{{id}}_pfrac' class='form-control' type='text'{{#pfrac}} value='{{pfrac}}'{{/pfrac}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ra'>ra: </label><div class='col-sm-8'><input id='{{id}}_ra' class='form-control' type='text'{{#ra}} value='{{ra}}'{{/ra}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tbkr'>tbkr: </label><div class='col-sm-8'><input id='{{id}}_tbkr' class='form-control' type='text'{{#tbkr}} value='{{tbkr}}'{{/tbkr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpo'>tpo: </label><div class='col-sm-8'><input id='{{id}}_tpo' class='form-control' type='text'{{#tpo}} value='{{tpo}}'{{/tpo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tppo'>tppo: </label><div class='col-sm-8'><input id='{{id}}_tppo' class='form-control' type='text'{{#tppo}} value='{{tppo}}'{{/tppo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tv'>tv: </label><div class='col-sm-8'><input id='{{id}}_tv' class='form-control' type='text'{{#tv}} value='{{tv}}'{{/tv}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vt'>vt: </label><div class='col-sm-8'><input id='{{id}}_vt' class='form-control' type='text'{{#vt}} value='{{vt}}'{{/vt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadAggregate'>LoadAggregate: </label><div class='col-sm-8'><input id='{{id}}_LoadAggregate' class='form-control' type='text'{{#LoadAggregate}} value='{{LoadAggregate}}'{{/LoadAggregate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadMotor" };
-                super.submit (obj);
-                temp = document.getElementById ("d").value; if ("" != temp) obj.d = temp;
-                temp = document.getElementById ("h").value; if ("" != temp) obj.h = temp;
-                temp = document.getElementById ("lfac").value; if ("" != temp) obj.lfac = temp;
-                temp = document.getElementById ("lp").value; if ("" != temp) obj.lp = temp;
-                temp = document.getElementById ("lpp").value; if ("" != temp) obj.lpp = temp;
-                temp = document.getElementById ("ls").value; if ("" != temp) obj.ls = temp;
-                temp = document.getElementById ("pfrac").value; if ("" != temp) obj.pfrac = temp;
-                temp = document.getElementById ("ra").value; if ("" != temp) obj.ra = temp;
-                temp = document.getElementById ("tbkr").value; if ("" != temp) obj.tbkr = temp;
-                temp = document.getElementById ("tpo").value; if ("" != temp) obj.tpo = temp;
-                temp = document.getElementById ("tppo").value; if ("" != temp) obj.tppo = temp;
-                temp = document.getElementById ("tv").value; if ("" != temp) obj.tv = temp;
-                temp = document.getElementById ("vt").value; if ("" != temp) obj.vt = temp;
-                temp = document.getElementById ("LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
+                var obj = obj || { id: id, cls: "LoadMotor" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_d").value; if ("" != temp) obj.d = temp;
+                temp = document.getElementById (id + "_h").value; if ("" != temp) obj.h = temp;
+                temp = document.getElementById (id + "_lfac").value; if ("" != temp) obj.lfac = temp;
+                temp = document.getElementById (id + "_lp").value; if ("" != temp) obj.lp = temp;
+                temp = document.getElementById (id + "_lpp").value; if ("" != temp) obj.lpp = temp;
+                temp = document.getElementById (id + "_ls").value; if ("" != temp) obj.ls = temp;
+                temp = document.getElementById (id + "_pfrac").value; if ("" != temp) obj.pfrac = temp;
+                temp = document.getElementById (id + "_ra").value; if ("" != temp) obj.ra = temp;
+                temp = document.getElementById (id + "_tbkr").value; if ("" != temp) obj.tbkr = temp;
+                temp = document.getElementById (id + "_tpo").value; if ("" != temp) obj.tpo = temp;
+                temp = document.getElementById (id + "_tppo").value; if ("" != temp) obj.tppo = temp;
+                temp = document.getElementById (id + "_tv").value; if ("" != temp) obj.tv = temp;
+                temp = document.getElementById (id + "_vt").value; if ("" != temp) obj.vt = temp;
+                temp = document.getElementById (id + "_LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
 
                 return (obj);
             }
@@ -300,8 +300,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadDynamics_collapse" aria-expanded="true" aria-controls="LoadDynamics_collapse" style="margin-left: 10px;">LoadDynamics</a></legend>
-                    <div id="LoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_LoadDynamics_collapse" style="margin-left: 10px;">LoadDynamics</a></legend>
+                    <div id="{{id}}_LoadDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -311,10 +311,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "LoadDynamics" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "LoadDynamics" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -462,59 +462,59 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadStatic_collapse" aria-expanded="true" aria-controls="LoadStatic_collapse" style="margin-left: 10px;">LoadStatic</a></legend>
-                    <div id="LoadStatic_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadStatic_collapse" aria-expanded="true" aria-controls="{{id}}_LoadStatic_collapse" style="margin-left: 10px;">LoadStatic</a></legend>
+                    <div id="{{id}}_LoadStatic_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ep1'>ep1: </label><div class='col-sm-8'><input id='ep1' class='form-control' type='text'{{#ep1}} value='{{ep1}}'{{/ep1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ep2'>ep2: </label><div class='col-sm-8'><input id='ep2' class='form-control' type='text'{{#ep2}} value='{{ep2}}'{{/ep2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ep3'>ep3: </label><div class='col-sm-8'><input id='ep3' class='form-control' type='text'{{#ep3}} value='{{ep3}}'{{/ep3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eq1'>eq1: </label><div class='col-sm-8'><input id='eq1' class='form-control' type='text'{{#eq1}} value='{{eq1}}'{{/eq1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eq2'>eq2: </label><div class='col-sm-8'><input id='eq2' class='form-control' type='text'{{#eq2}} value='{{eq2}}'{{/eq2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eq3'>eq3: </label><div class='col-sm-8'><input id='eq3' class='form-control' type='text'{{#eq3}} value='{{eq3}}'{{/eq3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp1'>kp1: </label><div class='col-sm-8'><input id='kp1' class='form-control' type='text'{{#kp1}} value='{{kp1}}'{{/kp1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp2'>kp2: </label><div class='col-sm-8'><input id='kp2' class='form-control' type='text'{{#kp2}} value='{{kp2}}'{{/kp2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp3'>kp3: </label><div class='col-sm-8'><input id='kp3' class='form-control' type='text'{{#kp3}} value='{{kp3}}'{{/kp3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kp4'>kp4: </label><div class='col-sm-8'><input id='kp4' class='form-control' type='text'{{#kp4}} value='{{kp4}}'{{/kp4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpf'>kpf: </label><div class='col-sm-8'><input id='kpf' class='form-control' type='text'{{#kpf}} value='{{kpf}}'{{/kpf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kq1'>kq1: </label><div class='col-sm-8'><input id='kq1' class='form-control' type='text'{{#kq1}} value='{{kq1}}'{{/kq1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kq2'>kq2: </label><div class='col-sm-8'><input id='kq2' class='form-control' type='text'{{#kq2}} value='{{kq2}}'{{/kq2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kq3'>kq3: </label><div class='col-sm-8'><input id='kq3' class='form-control' type='text'{{#kq3}} value='{{kq3}}'{{/kq3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kq4'>kq4: </label><div class='col-sm-8'><input id='kq4' class='form-control' type='text'{{#kq4}} value='{{kq4}}'{{/kq4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kqf'>kqf: </label><div class='col-sm-8'><input id='kqf' class='form-control' type='text'{{#kqf}} value='{{kqf}}'{{/kqf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='staticLoadModelType'>staticLoadModelType: </label><div class='col-sm-8'><select id='staticLoadModelType' class='form-control'>{{#StaticLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StaticLoadModelKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadAggregate'>LoadAggregate: </label><div class='col-sm-8'><input id='LoadAggregate' class='form-control' type='text'{{#LoadAggregate}} value='{{LoadAggregate}}'{{/LoadAggregate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ep1'>ep1: </label><div class='col-sm-8'><input id='{{id}}_ep1' class='form-control' type='text'{{#ep1}} value='{{ep1}}'{{/ep1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ep2'>ep2: </label><div class='col-sm-8'><input id='{{id}}_ep2' class='form-control' type='text'{{#ep2}} value='{{ep2}}'{{/ep2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ep3'>ep3: </label><div class='col-sm-8'><input id='{{id}}_ep3' class='form-control' type='text'{{#ep3}} value='{{ep3}}'{{/ep3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eq1'>eq1: </label><div class='col-sm-8'><input id='{{id}}_eq1' class='form-control' type='text'{{#eq1}} value='{{eq1}}'{{/eq1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eq2'>eq2: </label><div class='col-sm-8'><input id='{{id}}_eq2' class='form-control' type='text'{{#eq2}} value='{{eq2}}'{{/eq2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eq3'>eq3: </label><div class='col-sm-8'><input id='{{id}}_eq3' class='form-control' type='text'{{#eq3}} value='{{eq3}}'{{/eq3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp1'>kp1: </label><div class='col-sm-8'><input id='{{id}}_kp1' class='form-control' type='text'{{#kp1}} value='{{kp1}}'{{/kp1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp2'>kp2: </label><div class='col-sm-8'><input id='{{id}}_kp2' class='form-control' type='text'{{#kp2}} value='{{kp2}}'{{/kp2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp3'>kp3: </label><div class='col-sm-8'><input id='{{id}}_kp3' class='form-control' type='text'{{#kp3}} value='{{kp3}}'{{/kp3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kp4'>kp4: </label><div class='col-sm-8'><input id='{{id}}_kp4' class='form-control' type='text'{{#kp4}} value='{{kp4}}'{{/kp4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpf'>kpf: </label><div class='col-sm-8'><input id='{{id}}_kpf' class='form-control' type='text'{{#kpf}} value='{{kpf}}'{{/kpf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kq1'>kq1: </label><div class='col-sm-8'><input id='{{id}}_kq1' class='form-control' type='text'{{#kq1}} value='{{kq1}}'{{/kq1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kq2'>kq2: </label><div class='col-sm-8'><input id='{{id}}_kq2' class='form-control' type='text'{{#kq2}} value='{{kq2}}'{{/kq2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kq3'>kq3: </label><div class='col-sm-8'><input id='{{id}}_kq3' class='form-control' type='text'{{#kq3}} value='{{kq3}}'{{/kq3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kq4'>kq4: </label><div class='col-sm-8'><input id='{{id}}_kq4' class='form-control' type='text'{{#kq4}} value='{{kq4}}'{{/kq4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kqf'>kqf: </label><div class='col-sm-8'><input id='{{id}}_kqf' class='form-control' type='text'{{#kqf}} value='{{kqf}}'{{/kqf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_staticLoadModelType'>staticLoadModelType: </label><div class='col-sm-8'><select id='{{id}}_staticLoadModelType' class='form-control'>{{#StaticLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/StaticLoadModelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadAggregate'>LoadAggregate: </label><div class='col-sm-8'><input id='{{id}}_LoadAggregate' class='form-control' type='text'{{#LoadAggregate}} value='{{LoadAggregate}}'{{/LoadAggregate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadStatic" };
-                super.submit (obj);
-                temp = document.getElementById ("ep1").value; if ("" != temp) obj.ep1 = temp;
-                temp = document.getElementById ("ep2").value; if ("" != temp) obj.ep2 = temp;
-                temp = document.getElementById ("ep3").value; if ("" != temp) obj.ep3 = temp;
-                temp = document.getElementById ("eq1").value; if ("" != temp) obj.eq1 = temp;
-                temp = document.getElementById ("eq2").value; if ("" != temp) obj.eq2 = temp;
-                temp = document.getElementById ("eq3").value; if ("" != temp) obj.eq3 = temp;
-                temp = document.getElementById ("kp1").value; if ("" != temp) obj.kp1 = temp;
-                temp = document.getElementById ("kp2").value; if ("" != temp) obj.kp2 = temp;
-                temp = document.getElementById ("kp3").value; if ("" != temp) obj.kp3 = temp;
-                temp = document.getElementById ("kp4").value; if ("" != temp) obj.kp4 = temp;
-                temp = document.getElementById ("kpf").value; if ("" != temp) obj.kpf = temp;
-                temp = document.getElementById ("kq1").value; if ("" != temp) obj.kq1 = temp;
-                temp = document.getElementById ("kq2").value; if ("" != temp) obj.kq2 = temp;
-                temp = document.getElementById ("kq3").value; if ("" != temp) obj.kq3 = temp;
-                temp = document.getElementById ("kq4").value; if ("" != temp) obj.kq4 = temp;
-                temp = document.getElementById ("kqf").value; if ("" != temp) obj.kqf = temp;
-                temp = document.getElementById ("staticLoadModelType").value; if ("" != temp) { temp = StaticLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.staticLoadModelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; }
-                temp = document.getElementById ("LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
+                var obj = obj || { id: id, cls: "LoadStatic" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ep1").value; if ("" != temp) obj.ep1 = temp;
+                temp = document.getElementById (id + "_ep2").value; if ("" != temp) obj.ep2 = temp;
+                temp = document.getElementById (id + "_ep3").value; if ("" != temp) obj.ep3 = temp;
+                temp = document.getElementById (id + "_eq1").value; if ("" != temp) obj.eq1 = temp;
+                temp = document.getElementById (id + "_eq2").value; if ("" != temp) obj.eq2 = temp;
+                temp = document.getElementById (id + "_eq3").value; if ("" != temp) obj.eq3 = temp;
+                temp = document.getElementById (id + "_kp1").value; if ("" != temp) obj.kp1 = temp;
+                temp = document.getElementById (id + "_kp2").value; if ("" != temp) obj.kp2 = temp;
+                temp = document.getElementById (id + "_kp3").value; if ("" != temp) obj.kp3 = temp;
+                temp = document.getElementById (id + "_kp4").value; if ("" != temp) obj.kp4 = temp;
+                temp = document.getElementById (id + "_kpf").value; if ("" != temp) obj.kpf = temp;
+                temp = document.getElementById (id + "_kq1").value; if ("" != temp) obj.kq1 = temp;
+                temp = document.getElementById (id + "_kq2").value; if ("" != temp) obj.kq2 = temp;
+                temp = document.getElementById (id + "_kq3").value; if ("" != temp) obj.kq3 = temp;
+                temp = document.getElementById (id + "_kq4").value; if ("" != temp) obj.kq4 = temp;
+                temp = document.getElementById (id + "_kqf").value; if ("" != temp) obj.kqf = temp;
+                temp = document.getElementById (id + "_staticLoadModelType").value; if ("" != temp) { temp = StaticLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.staticLoadModelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; }
+                temp = document.getElementById (id + "_LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
 
                 return (obj);
             }
@@ -641,45 +641,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadComposite_collapse" aria-expanded="true" aria-controls="LoadComposite_collapse" style="margin-left: 10px;">LoadComposite</a></legend>
-                    <div id="LoadComposite_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadComposite_collapse" aria-expanded="true" aria-controls="{{id}}_LoadComposite_collapse" style="margin-left: 10px;">LoadComposite</a></legend>
+                    <div id="{{id}}_LoadComposite_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LoadDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='epfd'>epfd: </label><div class='col-sm-8'><input id='epfd' class='form-control' type='text'{{#epfd}} value='{{epfd}}'{{/epfd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='epfs'>epfs: </label><div class='col-sm-8'><input id='epfs' class='form-control' type='text'{{#epfs}} value='{{epfs}}'{{/epfs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='epvd'>epvd: </label><div class='col-sm-8'><input id='epvd' class='form-control' type='text'{{#epvd}} value='{{epvd}}'{{/epvd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='epvs'>epvs: </label><div class='col-sm-8'><input id='epvs' class='form-control' type='text'{{#epvs}} value='{{epvs}}'{{/epvs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eqfd'>eqfd: </label><div class='col-sm-8'><input id='eqfd' class='form-control' type='text'{{#eqfd}} value='{{eqfd}}'{{/eqfd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eqfs'>eqfs: </label><div class='col-sm-8'><input id='eqfs' class='form-control' type='text'{{#eqfs}} value='{{eqfs}}'{{/eqfs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eqvd'>eqvd: </label><div class='col-sm-8'><input id='eqvd' class='form-control' type='text'{{#eqvd}} value='{{eqvd}}'{{/eqvd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='eqvs'>eqvs: </label><div class='col-sm-8'><input id='eqvs' class='form-control' type='text'{{#eqvs}} value='{{eqvs}}'{{/eqvs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='h'>h: </label><div class='col-sm-8'><input id='h' class='form-control' type='text'{{#h}} value='{{h}}'{{/h}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lfrac'>lfrac: </label><div class='col-sm-8'><input id='lfrac' class='form-control' type='text'{{#lfrac}} value='{{lfrac}}'{{/lfrac}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pfrac'>pfrac: </label><div class='col-sm-8'><input id='pfrac' class='form-control' type='text'{{#pfrac}} value='{{pfrac}}'{{/pfrac}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_epfd'>epfd: </label><div class='col-sm-8'><input id='{{id}}_epfd' class='form-control' type='text'{{#epfd}} value='{{epfd}}'{{/epfd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_epfs'>epfs: </label><div class='col-sm-8'><input id='{{id}}_epfs' class='form-control' type='text'{{#epfs}} value='{{epfs}}'{{/epfs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_epvd'>epvd: </label><div class='col-sm-8'><input id='{{id}}_epvd' class='form-control' type='text'{{#epvd}} value='{{epvd}}'{{/epvd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_epvs'>epvs: </label><div class='col-sm-8'><input id='{{id}}_epvs' class='form-control' type='text'{{#epvs}} value='{{epvs}}'{{/epvs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eqfd'>eqfd: </label><div class='col-sm-8'><input id='{{id}}_eqfd' class='form-control' type='text'{{#eqfd}} value='{{eqfd}}'{{/eqfd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eqfs'>eqfs: </label><div class='col-sm-8'><input id='{{id}}_eqfs' class='form-control' type='text'{{#eqfs}} value='{{eqfs}}'{{/eqfs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eqvd'>eqvd: </label><div class='col-sm-8'><input id='{{id}}_eqvd' class='form-control' type='text'{{#eqvd}} value='{{eqvd}}'{{/eqvd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_eqvs'>eqvs: </label><div class='col-sm-8'><input id='{{id}}_eqvs' class='form-control' type='text'{{#eqvs}} value='{{eqvs}}'{{/eqvs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_h'>h: </label><div class='col-sm-8'><input id='{{id}}_h' class='form-control' type='text'{{#h}} value='{{h}}'{{/h}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lfrac'>lfrac: </label><div class='col-sm-8'><input id='{{id}}_lfrac' class='form-control' type='text'{{#lfrac}} value='{{lfrac}}'{{/lfrac}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pfrac'>pfrac: </label><div class='col-sm-8'><input id='{{id}}_pfrac' class='form-control' type='text'{{#pfrac}} value='{{pfrac}}'{{/pfrac}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadComposite" };
-                super.submit (obj);
-                temp = document.getElementById ("epfd").value; if ("" != temp) obj.epfd = temp;
-                temp = document.getElementById ("epfs").value; if ("" != temp) obj.epfs = temp;
-                temp = document.getElementById ("epvd").value; if ("" != temp) obj.epvd = temp;
-                temp = document.getElementById ("epvs").value; if ("" != temp) obj.epvs = temp;
-                temp = document.getElementById ("eqfd").value; if ("" != temp) obj.eqfd = temp;
-                temp = document.getElementById ("eqfs").value; if ("" != temp) obj.eqfs = temp;
-                temp = document.getElementById ("eqvd").value; if ("" != temp) obj.eqvd = temp;
-                temp = document.getElementById ("eqvs").value; if ("" != temp) obj.eqvs = temp;
-                temp = document.getElementById ("h").value; if ("" != temp) obj.h = temp;
-                temp = document.getElementById ("lfrac").value; if ("" != temp) obj.lfrac = temp;
-                temp = document.getElementById ("pfrac").value; if ("" != temp) obj.pfrac = temp;
+                var obj = obj || { id: id, cls: "LoadComposite" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_epfd").value; if ("" != temp) obj.epfd = temp;
+                temp = document.getElementById (id + "_epfs").value; if ("" != temp) obj.epfs = temp;
+                temp = document.getElementById (id + "_epvd").value; if ("" != temp) obj.epvd = temp;
+                temp = document.getElementById (id + "_epvs").value; if ("" != temp) obj.epvs = temp;
+                temp = document.getElementById (id + "_eqfd").value; if ("" != temp) obj.eqfd = temp;
+                temp = document.getElementById (id + "_eqfs").value; if ("" != temp) obj.eqfs = temp;
+                temp = document.getElementById (id + "_eqvd").value; if ("" != temp) obj.eqvd = temp;
+                temp = document.getElementById (id + "_eqvs").value; if ("" != temp) obj.eqvs = temp;
+                temp = document.getElementById (id + "_h").value; if ("" != temp) obj.h = temp;
+                temp = document.getElementById (id + "_lfrac").value; if ("" != temp) obj.lfrac = temp;
+                temp = document.getElementById (id + "_pfrac").value; if ("" != temp) obj.pfrac = temp;
 
                 return (obj);
             }
@@ -791,41 +791,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadGenericNonLinear_collapse" aria-expanded="true" aria-controls="LoadGenericNonLinear_collapse" style="margin-left: 10px;">LoadGenericNonLinear</a></legend>
-                    <div id="LoadGenericNonLinear_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadGenericNonLinear_collapse" aria-expanded="true" aria-controls="{{id}}_LoadGenericNonLinear_collapse" style="margin-left: 10px;">LoadGenericNonLinear</a></legend>
+                    <div id="{{id}}_LoadGenericNonLinear_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LoadDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bs'>bs: </label><div class='col-sm-8'><input id='bs' class='form-control' type='text'{{#bs}} value='{{bs}}'{{/bs}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bt'>bt: </label><div class='col-sm-8'><input id='bt' class='form-control' type='text'{{#bt}} value='{{bt}}'{{/bt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='genericNonLinearLoadModelType'>genericNonLinearLoadModelType: </label><div class='col-sm-8'><select id='genericNonLinearLoadModelType' class='form-control'>{{#GenericNonLinearLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GenericNonLinearLoadModelKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ls'>ls: </label><div class='col-sm-8'><input id='ls' class='form-control' type='text'{{#ls}} value='{{ls}}'{{/ls}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lt'>lt: </label><div class='col-sm-8'><input id='lt' class='form-control' type='text'{{#lt}} value='{{lt}}'{{/lt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pt'>pt: </label><div class='col-sm-8'><input id='pt' class='form-control' type='text'{{#pt}} value='{{pt}}'{{/pt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qt'>qt: </label><div class='col-sm-8'><input id='qt' class='form-control' type='text'{{#qt}} value='{{qt}}'{{/qt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tq'>tq: </label><div class='col-sm-8'><input id='tq' class='form-control' type='text'{{#tq}} value='{{tq}}'{{/tq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bs'>bs: </label><div class='col-sm-8'><input id='{{id}}_bs' class='form-control' type='text'{{#bs}} value='{{bs}}'{{/bs}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bt'>bt: </label><div class='col-sm-8'><input id='{{id}}_bt' class='form-control' type='text'{{#bt}} value='{{bt}}'{{/bt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_genericNonLinearLoadModelType'>genericNonLinearLoadModelType: </label><div class='col-sm-8'><select id='{{id}}_genericNonLinearLoadModelType' class='form-control'>{{#GenericNonLinearLoadModelKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/GenericNonLinearLoadModelKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ls'>ls: </label><div class='col-sm-8'><input id='{{id}}_ls' class='form-control' type='text'{{#ls}} value='{{ls}}'{{/ls}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lt'>lt: </label><div class='col-sm-8'><input id='{{id}}_lt' class='form-control' type='text'{{#lt}} value='{{lt}}'{{/lt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pt'>pt: </label><div class='col-sm-8'><input id='{{id}}_pt' class='form-control' type='text'{{#pt}} value='{{pt}}'{{/pt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qt'>qt: </label><div class='col-sm-8'><input id='{{id}}_qt' class='form-control' type='text'{{#qt}} value='{{qt}}'{{/qt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tq'>tq: </label><div class='col-sm-8'><input id='{{id}}_tq' class='form-control' type='text'{{#tq}} value='{{tq}}'{{/tq}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadGenericNonLinear" };
-                super.submit (obj);
-                temp = document.getElementById ("bs").value; if ("" != temp) obj.bs = temp;
-                temp = document.getElementById ("bt").value; if ("" != temp) obj.bt = temp;
-                temp = document.getElementById ("genericNonLinearLoadModelType").value; if ("" != temp) { temp = GenericNonLinearLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.genericNonLinearLoadModelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; }
-                temp = document.getElementById ("ls").value; if ("" != temp) obj.ls = temp;
-                temp = document.getElementById ("lt").value; if ("" != temp) obj.lt = temp;
-                temp = document.getElementById ("pt").value; if ("" != temp) obj.pt = temp;
-                temp = document.getElementById ("qt").value; if ("" != temp) obj.qt = temp;
-                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
-                temp = document.getElementById ("tq").value; if ("" != temp) obj.tq = temp;
+                var obj = obj || { id: id, cls: "LoadGenericNonLinear" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_bs").value; if ("" != temp) obj.bs = temp;
+                temp = document.getElementById (id + "_bt").value; if ("" != temp) obj.bt = temp;
+                temp = document.getElementById (id + "_genericNonLinearLoadModelType").value; if ("" != temp) { temp = GenericNonLinearLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.genericNonLinearLoadModelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; }
+                temp = document.getElementById (id + "_ls").value; if ("" != temp) obj.ls = temp;
+                temp = document.getElementById (id + "_lt").value; if ("" != temp) obj.lt = temp;
+                temp = document.getElementById (id + "_pt").value; if ("" != temp) obj.pt = temp;
+                temp = document.getElementById (id + "_qt").value; if ("" != temp) obj.qt = temp;
+                temp = document.getElementById (id + "_tp").value; if ("" != temp) obj.tp = temp;
+                temp = document.getElementById (id + "_tq").value; if ("" != temp) obj.tq = temp;
 
                 return (obj);
             }
@@ -916,27 +916,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadAggregate_collapse" aria-expanded="true" aria-controls="LoadAggregate_collapse" style="margin-left: 10px;">LoadAggregate</a></legend>
-                    <div id="LoadAggregate_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadAggregate_collapse" aria-expanded="true" aria-controls="{{id}}_LoadAggregate_collapse" style="margin-left: 10px;">LoadAggregate</a></legend>
+                    <div id="{{id}}_LoadAggregate_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + LoadDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadMotor'>LoadMotor: </label><div class='col-sm-8'><input id='LoadMotor' class='form-control' type='text'{{#LoadMotor}} value='{{LoadMotor}}'{{/LoadMotor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadStatic'>LoadStatic: </label><div class='col-sm-8'><input id='LoadStatic' class='form-control' type='text'{{#LoadStatic}} value='{{LoadStatic}}'{{/LoadStatic}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadMotor'>LoadMotor: </label><div class='col-sm-8'><input id='{{id}}_LoadMotor' class='form-control' type='text'{{#LoadMotor}} value='{{LoadMotor}}'{{/LoadMotor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadStatic'>LoadStatic: </label><div class='col-sm-8'><input id='{{id}}_LoadStatic' class='form-control' type='text'{{#LoadStatic}} value='{{LoadStatic}}'{{/LoadStatic}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadAggregate" };
-                super.submit (obj);
-                temp = document.getElementById ("LoadMotor").value; if ("" != temp) obj.LoadMotor = temp;
-                temp = document.getElementById ("LoadStatic").value; if ("" != temp) obj.LoadStatic = temp;
+                var obj = obj || { id: id, cls: "LoadAggregate" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_LoadMotor").value; if ("" != temp) obj.LoadMotor = temp;
+                temp = document.getElementById (id + "_LoadStatic").value; if ("" != temp) obj.LoadStatic = temp;
 
                 return (obj);
             }

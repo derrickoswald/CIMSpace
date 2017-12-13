@@ -114,35 +114,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ChargeGroup_collapse" aria-expanded="true" aria-controls="ChargeGroup_collapse" style="margin-left: 10px;">ChargeGroup</a></legend>
-                    <div id="ChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ChargeGroup_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeGroup_collapse" style="margin-left: 10px;">ChargeGroup</a></legend>
+                    <div id="{{id}}_ChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketCode'>marketCode: </label><div class='col-sm-8'><input id='marketCode' class='form-control' type='text'{{#marketCode}} value='{{marketCode}}'{{/marketCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeGroupParent'>ChargeGroupParent: </label><div class='col-sm-8'><input id='ChargeGroupParent' class='form-control' type='text'{{#ChargeGroupParent}} value='{{ChargeGroupParent}}'{{/ChargeGroupParent}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType}}_string'{{/ChargeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketCode'>marketCode: </label><div class='col-sm-8'><input id='{{id}}_marketCode' class='form-control' type='text'{{#marketCode}} value='{{marketCode}}'{{/marketCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroupParent'>ChargeGroupParent: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroupParent' class='form-control' type='text'{{#ChargeGroupParent}} value='{{ChargeGroupParent}}'{{/ChargeGroupParent}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType}}_string'{{/ChargeType}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ChargeGroup" };
-                super.submit (obj);
-                temp = document.getElementById ("marketCode").value; if ("" != temp) obj.marketCode = temp;
-                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
-                temp = document.getElementById ("terminationDate").value; if ("" != temp) obj.terminationDate = temp;
-                temp = document.getElementById ("ChargeGroupParent").value; if ("" != temp) obj.ChargeGroupParent = temp;
-                temp = document.getElementById ("MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp.split (",");
-                temp = document.getElementById ("ChargeType").value; if ("" != temp) obj.ChargeType = temp.split (",");
+                var obj = obj || { id: id, cls: "ChargeGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_marketCode").value; if ("" != temp) obj.marketCode = temp;
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById (id + "_terminationDate").value; if ("" != temp) obj.terminationDate = temp;
+                temp = document.getElementById (id + "_ChargeGroupParent").value; if ("" != temp) obj.ChargeGroupParent = temp;
+                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp.split (",");
+                temp = document.getElementById (id + "_ChargeType").value; if ("" != temp) obj.ChargeType = temp.split (",");
 
                 return (obj);
             }
@@ -263,27 +263,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ProductBid_collapse" aria-expanded="true" aria-controls="ProductBid_collapse" style="margin-left: 10px;">ProductBid</a></legend>
-                    <div id="ProductBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ProductBid_collapse" aria-expanded="true" aria-controls="{{id}}_ProductBid_collapse" style="margin-left: 10px;">ProductBid</a></legend>
+                    <div id="{{id}}_ProductBid_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Bid'>Bid: </label><div class='col-sm-8'><input id='Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bid'>Bid: </label><div class='col-sm-8'><input id='{{id}}_Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ProductBid" };
-                super.submit (obj);
-                temp = document.getElementById ("MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
-                temp = document.getElementById ("Bid").value; if ("" != temp) obj.Bid = temp;
+                var obj = obj || { id: id, cls: "ProductBid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
+                temp = document.getElementById (id + "_Bid").value; if ("" != temp) obj.Bid = temp;
 
                 return (obj);
             }
@@ -395,33 +395,33 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadFollowingInst_collapse" aria-expanded="true" aria-controls="LoadFollowingInst_collapse" style="margin-left: 10px;">LoadFollowingInst</a></legend>
-                    <div id="LoadFollowingInst_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadFollowingInst_collapse" aria-expanded="true" aria-controls="{{id}}_LoadFollowingInst_collapse" style="margin-left: 10px;">LoadFollowingInst</a></legend>
+                    <div id="{{id}}_LoadFollowingInst_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mssInstructionID'>mssInstructionID: </label><div class='col-sm-8'><input id='mssInstructionID' class='form-control' type='text'{{#mssInstructionID}} value='{{mssInstructionID}}'{{/mssInstructionID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endTime'>endTime: </label><div class='col-sm-8'><input id='endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadFollowingMW'>loadFollowingMW: </label><div class='col-sm-8'><input id='loadFollowingMW' class='form-control' type='text'{{#loadFollowingMW}} value='{{loadFollowingMW}}'{{/loadFollowingMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mssInstructionID'>mssInstructionID: </label><div class='col-sm-8'><input id='{{id}}_mssInstructionID' class='form-control' type='text'{{#mssInstructionID}} value='{{mssInstructionID}}'{{/mssInstructionID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadFollowingMW'>loadFollowingMW: </label><div class='col-sm-8'><input id='{{id}}_loadFollowingMW' class='form-control' type='text'{{#loadFollowingMW}} value='{{loadFollowingMW}}'{{/loadFollowingMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadFollowingInst" };
-                super.submit (obj);
-                temp = document.getElementById ("mssInstructionID").value; if ("" != temp) obj.mssInstructionID = temp;
-                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById ("endTime").value; if ("" != temp) obj.endTime = temp;
-                temp = document.getElementById ("loadFollowingMW").value; if ("" != temp) obj.loadFollowingMW = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                var obj = obj || { id: id, cls: "LoadFollowingInst" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_mssInstructionID").value; if ("" != temp) obj.mssInstructionID = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById (id + "_endTime").value; if ("" != temp) obj.endTime = temp;
+                temp = document.getElementById (id + "_loadFollowingMW").value; if ("" != temp) obj.loadFollowingMW = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
             }
@@ -525,31 +525,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AttributeProperty_collapse" aria-expanded="true" aria-controls="AttributeProperty_collapse" style="margin-left: 10px;">AttributeProperty</a></legend>
-                    <div id="AttributeProperty_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AttributeProperty_collapse" aria-expanded="true" aria-controls="{{id}}_AttributeProperty_collapse" style="margin-left: 10px;">AttributeProperty</a></legend>
+                    <div id="{{id}}_AttributeProperty_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sequence'>sequence: </label><div class='col-sm-8'><input id='sequence' class='form-control' type='text'{{#sequence}} value='{{sequence}}'{{/sequence}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='propertyName'>propertyName: </label><div class='col-sm-8'><input id='propertyName' class='form-control' type='text'{{#propertyName}} value='{{propertyName}}'{{/propertyName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='propertyValue'>propertyValue: </label><div class='col-sm-8'><input id='propertyValue' class='form-control' type='text'{{#propertyValue}} value='{{propertyValue}}'{{/propertyValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sequence'>sequence: </label><div class='col-sm-8'><input id='{{id}}_sequence' class='form-control' type='text'{{#sequence}} value='{{sequence}}'{{/sequence}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyName'>propertyName: </label><div class='col-sm-8'><input id='{{id}}_propertyName' class='form-control' type='text'{{#propertyName}} value='{{propertyName}}'{{/propertyName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_propertyValue'>propertyValue: </label><div class='col-sm-8'><input id='{{id}}_propertyValue' class='form-control' type='text'{{#propertyValue}} value='{{propertyValue}}'{{/propertyValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}'{{/MktUserAttribute}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AttributeProperty" };
-                super.submit (obj);
-                temp = document.getElementById ("sequence").value; if ("" != temp) obj.sequence = temp;
-                temp = document.getElementById ("propertyName").value; if ("" != temp) obj.propertyName = temp;
-                temp = document.getElementById ("propertyValue").value; if ("" != temp) obj.propertyValue = temp;
-                temp = document.getElementById ("MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp;
+                var obj = obj || { id: id, cls: "AttributeProperty" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_sequence").value; if ("" != temp) obj.sequence = temp;
+                temp = document.getElementById (id + "_propertyName").value; if ("" != temp) obj.propertyName = temp;
+                temp = document.getElementById (id + "_propertyValue").value; if ("" != temp) obj.propertyValue = temp;
+                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp;
 
                 return (obj);
             }
@@ -651,27 +651,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="LoadReductionPriceCurve_collapse" style="margin-left: 10px;">LoadReductionPriceCurve</a></legend>
-                    <div id="LoadReductionPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadReductionPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_LoadReductionPriceCurve_collapse" style="margin-left: 10px;">LoadReductionPriceCurve</a></legend>
+                    <div id="{{id}}_LoadReductionPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}_string'{{/RegisteredLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}_string'{{/RegisteredLoad}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadReductionPriceCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("LoadBid").value; if ("" != temp) obj.LoadBid = temp;
-                temp = document.getElementById ("RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp.split (",");
+                var obj = obj || { id: id, cls: "LoadReductionPriceCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_LoadBid").value; if ("" != temp) obj.LoadBid = temp;
+                temp = document.getElementById (id + "_RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp.split (",");
 
                 return (obj);
             }
@@ -767,25 +767,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="BidHourlyProductSchedule_collapse" style="margin-left: 10px;">BidHourlyProductSchedule</a></legend>
-                    <div id="BidHourlyProductSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidHourlyProductSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidHourlyProductSchedule_collapse" style="margin-left: 10px;">BidHourlyProductSchedule</a></legend>
+                    <div id="{{id}}_BidHourlyProductSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BidHourlyProductSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("ProductBid").value; if ("" != temp) obj.ProductBid = temp;
+                var obj = obj || { id: id, cls: "BidHourlyProductSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ProductBid").value; if ("" != temp) obj.ProductBid = temp;
 
                 return (obj);
             }
@@ -887,25 +887,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="StartUpTimeCurve_collapse" style="margin-left: 10px;">StartUpTimeCurve</a></legend>
-                    <div id="StartUpTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartUpTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpTimeCurve_collapse" style="margin-left: 10px;">StartUpTimeCurve</a></legend>
+                    <div id="{{id}}_StartUpTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "StartUpTimeCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "StartUpTimeCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -1008,25 +1008,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="EnergyPriceCurve_collapse" style="margin-left: 10px;">EnergyPriceCurve</a></legend>
-                    <div id="EnergyPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_EnergyPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_EnergyPriceCurve_collapse" style="margin-left: 10px;">EnergyPriceCurve</a></legend>
+                    <div id="{{id}}_EnergyPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyTransactions'>EnergyTransactions: </label><div class='col-sm-8'><input id='EnergyTransactions' class='form-control' type='text'{{#EnergyTransactions}} value='{{EnergyTransactions}}_string'{{/EnergyTransactions}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyTransactions'>EnergyTransactions: </label><div class='col-sm-8'><input id='{{id}}_EnergyTransactions' class='form-control' type='text'{{#EnergyTransactions}} value='{{EnergyTransactions}}_string'{{/EnergyTransactions}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "EnergyPriceCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("EnergyTransactions").value; if ("" != temp) obj.EnergyTransactions = temp.split (",");
+                var obj = obj || { id: id, cls: "EnergyPriceCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_EnergyTransactions").value; if ("" != temp) obj.EnergyTransactions = temp.split (",");
 
                 return (obj);
             }
@@ -1164,53 +1164,53 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidSelfSched_collapse" aria-expanded="true" aria-controls="BidSelfSched_collapse" style="margin-left: 10px;">BidSelfSched</a></legend>
-                    <div id="BidSelfSched_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidSelfSched_collapse" aria-expanded="true" aria-controls="{{id}}_BidSelfSched_collapse" style="margin-left: 10px;">BidSelfSched</a></legend>
+                    <div id="{{id}}_BidSelfSched_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='balancingFlag'>balancingFlag: </label><div class='col-sm-8'><input id='balancingFlag' class='form-control' type='text'{{#balancingFlag}} value='{{balancingFlag}}'{{/balancingFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidType'>bidType: </label><div class='col-sm-8'><input id='bidType' class='form-control' type='text'{{#bidType}} value='{{bidType}}'{{/bidType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priorityFlag'>priorityFlag: </label><div class='col-sm-8'><input id='priorityFlag' class='form-control' type='text'{{#priorityFlag}} value='{{priorityFlag}}'{{/priorityFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pumpSelfSchedMw'>pumpSelfSchedMw: </label><div class='col-sm-8'><input id='pumpSelfSchedMw' class='form-control' type='text'{{#pumpSelfSchedMw}} value='{{pumpSelfSchedMw}}'{{/pumpSelfSchedMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='referenceType'>referenceType: </label><div class='col-sm-8'><input id='referenceType' class='form-control' type='text'{{#referenceType}} value='{{referenceType}}'{{/referenceType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='selfSchedMw'>selfSchedMw: </label><div class='col-sm-8'><input id='selfSchedMw' class='form-control' type='text'{{#selfSchedMw}} value='{{selfSchedMw}}'{{/selfSchedMw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='selfSchedSptResource'>selfSchedSptResource: </label><div class='col-sm-8'><input id='selfSchedSptResource' class='form-control' type='text'{{#selfSchedSptResource}} value='{{selfSchedSptResource}}'{{/selfSchedSptResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='selfSchedType'>selfSchedType: </label><div class='col-sm-8'><input id='selfSchedType' class='form-control' type='text'{{#selfSchedType}} value='{{selfSchedType}}'{{/selfSchedType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateType'>updateType: </label><div class='col-sm-8'><input id='updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='wheelingTransactionReference'>wheelingTransactionReference: </label><div class='col-sm-8'><input id='wheelingTransactionReference' class='form-control' type='text'{{#wheelingTransactionReference}} value='{{wheelingTransactionReference}}'{{/wheelingTransactionReference}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_balancingFlag'>balancingFlag: </label><div class='col-sm-8'><input id='{{id}}_balancingFlag' class='form-control' type='text'{{#balancingFlag}} value='{{balancingFlag}}'{{/balancingFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><input id='{{id}}_bidType' class='form-control' type='text'{{#bidType}} value='{{bidType}}'{{/bidType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priorityFlag'>priorityFlag: </label><div class='col-sm-8'><input id='{{id}}_priorityFlag' class='form-control' type='text'{{#priorityFlag}} value='{{priorityFlag}}'{{/priorityFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pumpSelfSchedMw'>pumpSelfSchedMw: </label><div class='col-sm-8'><input id='{{id}}_pumpSelfSchedMw' class='form-control' type='text'{{#pumpSelfSchedMw}} value='{{pumpSelfSchedMw}}'{{/pumpSelfSchedMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_referenceType'>referenceType: </label><div class='col-sm-8'><input id='{{id}}_referenceType' class='form-control' type='text'{{#referenceType}} value='{{referenceType}}'{{/referenceType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedMw'>selfSchedMw: </label><div class='col-sm-8'><input id='{{id}}_selfSchedMw' class='form-control' type='text'{{#selfSchedMw}} value='{{selfSchedMw}}'{{/selfSchedMw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedSptResource'>selfSchedSptResource: </label><div class='col-sm-8'><input id='{{id}}_selfSchedSptResource' class='form-control' type='text'{{#selfSchedSptResource}} value='{{selfSchedSptResource}}'{{/selfSchedSptResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_selfSchedType'>selfSchedType: </label><div class='col-sm-8'><input id='{{id}}_selfSchedType' class='form-control' type='text'{{#selfSchedType}} value='{{selfSchedType}}'{{/selfSchedType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateType'>updateType: </label><div class='col-sm-8'><input id='{{id}}_updateType' class='form-control' type='text'{{#updateType}} value='{{updateType}}'{{/updateType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_wheelingTransactionReference'>wheelingTransactionReference: </label><div class='col-sm-8'><input id='{{id}}_wheelingTransactionReference' class='form-control' type='text'{{#wheelingTransactionReference}} value='{{wheelingTransactionReference}}'{{/wheelingTransactionReference}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionContractRight'>TransmissionContractRight: </label><div class='col-sm-8'><input id='{{id}}_TransmissionContractRight' class='form-control' type='text'{{#TransmissionContractRight}} value='{{TransmissionContractRight}}'{{/TransmissionContractRight}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='{{id}}_AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}'{{/SubControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BidSelfSched" };
-                super.submit (obj);
-                temp = document.getElementById ("balancingFlag").value; if ("" != temp) obj.balancingFlag = temp;
-                temp = document.getElementById ("bidType").value; if ("" != temp) obj.bidType = temp;
-                temp = document.getElementById ("priorityFlag").value; if ("" != temp) obj.priorityFlag = temp;
-                temp = document.getElementById ("pumpSelfSchedMw").value; if ("" != temp) obj.pumpSelfSchedMw = temp;
-                temp = document.getElementById ("referenceType").value; if ("" != temp) obj.referenceType = temp;
-                temp = document.getElementById ("selfSchedMw").value; if ("" != temp) obj.selfSchedMw = temp;
-                temp = document.getElementById ("selfSchedSptResource").value; if ("" != temp) obj.selfSchedSptResource = temp;
-                temp = document.getElementById ("selfSchedType").value; if ("" != temp) obj.selfSchedType = temp;
-                temp = document.getElementById ("updateType").value; if ("" != temp) obj.updateType = temp;
-                temp = document.getElementById ("wheelingTransactionReference").value; if ("" != temp) obj.wheelingTransactionReference = temp;
-                temp = document.getElementById ("ProductBid").value; if ("" != temp) obj.ProductBid = temp;
-                temp = document.getElementById ("TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
-                temp = document.getElementById ("HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
-                temp = document.getElementById ("AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
-                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
+                var obj = obj || { id: id, cls: "BidSelfSched" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_balancingFlag").value; if ("" != temp) obj.balancingFlag = temp;
+                temp = document.getElementById (id + "_bidType").value; if ("" != temp) obj.bidType = temp;
+                temp = document.getElementById (id + "_priorityFlag").value; if ("" != temp) obj.priorityFlag = temp;
+                temp = document.getElementById (id + "_pumpSelfSchedMw").value; if ("" != temp) obj.pumpSelfSchedMw = temp;
+                temp = document.getElementById (id + "_referenceType").value; if ("" != temp) obj.referenceType = temp;
+                temp = document.getElementById (id + "_selfSchedMw").value; if ("" != temp) obj.selfSchedMw = temp;
+                temp = document.getElementById (id + "_selfSchedSptResource").value; if ("" != temp) obj.selfSchedSptResource = temp;
+                temp = document.getElementById (id + "_selfSchedType").value; if ("" != temp) obj.selfSchedType = temp;
+                temp = document.getElementById (id + "_updateType").value; if ("" != temp) obj.updateType = temp;
+                temp = document.getElementById (id + "_wheelingTransactionReference").value; if ("" != temp) obj.wheelingTransactionReference = temp;
+                temp = document.getElementById (id + "_ProductBid").value; if ("" != temp) obj.ProductBid = temp;
+                temp = document.getElementById (id + "_TransmissionContractRight").value; if ("" != temp) obj.TransmissionContractRight = temp;
+                temp = document.getElementById (id + "_HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
+                temp = document.getElementById (id + "_AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
+                temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp;
 
                 return (obj);
             }
@@ -1318,31 +1318,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidPriceSchedule_collapse" aria-expanded="true" aria-controls="BidPriceSchedule_collapse" style="margin-left: 10px;">BidPriceSchedule</a></legend>
-                    <div id="BidPriceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidPriceSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceSchedule_collapse" style="margin-left: 10px;">BidPriceSchedule</a></legend>
+                    <div id="{{id}}_BidPriceSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidType'>bidType: </label><div class='col-sm-8'><input id='bidType' class='form-control' type='text'{{#bidType}} value='{{bidType}}'{{/bidType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mitigationStatus'>mitigationStatus: </label><div class='col-sm-8'><input id='mitigationStatus' class='form-control' type='text'{{#mitigationStatus}} value='{{mitigationStatus}}'{{/mitigationStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BidPriceCurve'>BidPriceCurve: </label><div class='col-sm-8'><input id='BidPriceCurve' class='form-control' type='text'{{#BidPriceCurve}} value='{{BidPriceCurve}}'{{/BidPriceCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidType'>bidType: </label><div class='col-sm-8'><input id='{{id}}_bidType' class='form-control' type='text'{{#bidType}} value='{{bidType}}'{{/bidType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mitigationStatus'>mitigationStatus: </label><div class='col-sm-8'><input id='{{id}}_mitigationStatus' class='form-control' type='text'{{#mitigationStatus}} value='{{mitigationStatus}}'{{/mitigationStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidPriceCurve'>BidPriceCurve: </label><div class='col-sm-8'><input id='{{id}}_BidPriceCurve' class='form-control' type='text'{{#BidPriceCurve}} value='{{BidPriceCurve}}'{{/BidPriceCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BidPriceSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("bidType").value; if ("" != temp) obj.bidType = temp;
-                temp = document.getElementById ("mitigationStatus").value; if ("" != temp) obj.mitigationStatus = temp;
-                temp = document.getElementById ("BidPriceCurve").value; if ("" != temp) obj.BidPriceCurve = temp;
-                temp = document.getElementById ("ProductBid").value; if ("" != temp) obj.ProductBid = temp;
+                var obj = obj || { id: id, cls: "BidPriceSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_bidType").value; if ("" != temp) obj.bidType = temp;
+                temp = document.getElementById (id + "_mitigationStatus").value; if ("" != temp) obj.mitigationStatus = temp;
+                temp = document.getElementById (id + "_BidPriceCurve").value; if ("" != temp) obj.BidPriceCurve = temp;
+                temp = document.getElementById (id + "_ProductBid").value; if ("" != temp) obj.ProductBid = temp;
 
                 return (obj);
             }
@@ -1469,43 +1469,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ChargeComponent_collapse" aria-expanded="true" aria-controls="ChargeComponent_collapse" style="margin-left: 10px;">ChargeComponent</a></legend>
-                    <div id="ChargeComponent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ChargeComponent_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeComponent_collapse" style="margin-left: 10px;">ChargeComponent</a></legend>
+                    <div id="{{id}}_ChargeComponent_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deleteStatus'>deleteStatus: </label><div class='col-sm-8'><input id='deleteStatus' class='form-control' type='text'{{#deleteStatus}} value='{{deleteStatus}}'{{/deleteStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='message'>message: </label><div class='col-sm-8'><input id='message' class='form-control' type='text'{{#message}} value='{{message}}'{{/message}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sum'>sum: </label><div class='col-sm-8'><input id='sum' class='form-control' type='text'{{#sum}} value='{{sum}}'{{/sum}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='roundOff'>roundOff: </label><div class='col-sm-8'><input id='roundOff' class='form-control' type='text'{{#roundOff}} value='{{roundOff}}'{{/roundOff}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='equation'>equation: </label><div class='col-sm-8'><input id='equation' class='form-control' type='text'{{#equation}} value='{{equation}}'{{/equation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeTypes'>ChargeTypes: </label><div class='col-sm-8'><input id='ChargeTypes' class='form-control' type='text'{{#ChargeTypes}} value='{{ChargeTypes}}_string'{{/ChargeTypes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BillDeterminants'>BillDeterminants: </label><div class='col-sm-8'><input id='BillDeterminants' class='form-control' type='text'{{#BillDeterminants}} value='{{BillDeterminants}}_string'{{/BillDeterminants}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deleteStatus'>deleteStatus: </label><div class='col-sm-8'><input id='{{id}}_deleteStatus' class='form-control' type='text'{{#deleteStatus}} value='{{deleteStatus}}'{{/deleteStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_message'>message: </label><div class='col-sm-8'><input id='{{id}}_message' class='form-control' type='text'{{#message}} value='{{message}}'{{/message}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sum'>sum: </label><div class='col-sm-8'><input id='{{id}}_sum' class='form-control' type='text'{{#sum}} value='{{sum}}'{{/sum}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_roundOff'>roundOff: </label><div class='col-sm-8'><input id='{{id}}_roundOff' class='form-control' type='text'{{#roundOff}} value='{{roundOff}}'{{/roundOff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_equation'>equation: </label><div class='col-sm-8'><input id='{{id}}_equation' class='form-control' type='text'{{#equation}} value='{{equation}}'{{/equation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeTypes'>ChargeTypes: </label><div class='col-sm-8'><input id='{{id}}_ChargeTypes' class='form-control' type='text'{{#ChargeTypes}} value='{{ChargeTypes}}_string'{{/ChargeTypes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BillDeterminants'>BillDeterminants: </label><div class='col-sm-8'><input id='{{id}}_BillDeterminants' class='form-control' type='text'{{#BillDeterminants}} value='{{BillDeterminants}}_string'{{/BillDeterminants}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ChargeComponent" };
-                super.submit (obj);
-                temp = document.getElementById ("deleteStatus").value; if ("" != temp) obj.deleteStatus = temp;
-                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
-                temp = document.getElementById ("terminationDate").value; if ("" != temp) obj.terminationDate = temp;
-                temp = document.getElementById ("message").value; if ("" != temp) obj.message = temp;
-                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById ("sum").value; if ("" != temp) obj.sum = temp;
-                temp = document.getElementById ("roundOff").value; if ("" != temp) obj.roundOff = temp;
-                temp = document.getElementById ("equation").value; if ("" != temp) obj.equation = temp;
-                temp = document.getElementById ("ChargeTypes").value; if ("" != temp) obj.ChargeTypes = temp.split (",");
-                temp = document.getElementById ("BillDeterminants").value; if ("" != temp) obj.BillDeterminants = temp.split (",");
+                var obj = obj || { id: id, cls: "ChargeComponent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_deleteStatus").value; if ("" != temp) obj.deleteStatus = temp;
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById (id + "_terminationDate").value; if ("" != temp) obj.terminationDate = temp;
+                temp = document.getElementById (id + "_message").value; if ("" != temp) obj.message = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_sum").value; if ("" != temp) obj.sum = temp;
+                temp = document.getElementById (id + "_roundOff").value; if ("" != temp) obj.roundOff = temp;
+                temp = document.getElementById (id + "_equation").value; if ("" != temp) obj.equation = temp;
+                temp = document.getElementById (id + "_ChargeTypes").value; if ("" != temp) obj.ChargeTypes = temp.split (",");
+                temp = document.getElementById (id + "_BillDeterminants").value; if ("" != temp) obj.BillDeterminants = temp.split (",");
 
                 return (obj);
             }
@@ -1644,45 +1644,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MajorChargeGroup_collapse" aria-expanded="true" aria-controls="MajorChargeGroup_collapse" style="margin-left: 10px;">MajorChargeGroup</a></legend>
-                    <div id="MajorChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MajorChargeGroup_collapse" aria-expanded="true" aria-controls="{{id}}_MajorChargeGroup_collapse" style="margin-left: 10px;">MajorChargeGroup</a></legend>
+                    <div id="{{id}}_MajorChargeGroup_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='runType'>runType: </label><div class='col-sm-8'><input id='runType' class='form-control' type='text'{{#runType}} value='{{runType}}'{{/runType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='runVersion'>runVersion: </label><div class='col-sm-8'><input id='runVersion' class='form-control' type='text'{{#runVersion}} value='{{runVersion}}'{{/runVersion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='invoiceType'>invoiceType: </label><div class='col-sm-8'><input id='invoiceType' class='form-control' type='text'{{#invoiceType}} value='{{invoiceType}}'{{/invoiceType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='requireAutorun'>requireAutorun: </label><div class='col-sm-8'><input id='requireAutorun' class='form-control' type='text'{{#requireAutorun}} value='{{requireAutorun}}'{{/requireAutorun}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='revisionNumber'>revisionNumber: </label><div class='col-sm-8'><input id='revisionNumber' class='form-control' type='text'{{#revisionNumber}} value='{{revisionNumber}}'{{/revisionNumber}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Settlement'>Settlement: </label><div class='col-sm-8'><input id='Settlement' class='form-control' type='text'{{#Settlement}} value='{{Settlement}}_string'{{/Settlement}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketInvoice'>MarketInvoice: </label><div class='col-sm-8'><input id='MarketInvoice' class='form-control' type='text'{{#MarketInvoice}} value='{{MarketInvoice}}_string'{{/MarketInvoice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType}}_string'{{/ChargeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runType'>runType: </label><div class='col-sm-8'><input id='{{id}}_runType' class='form-control' type='text'{{#runType}} value='{{runType}}'{{/runType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_runVersion'>runVersion: </label><div class='col-sm-8'><input id='{{id}}_runVersion' class='form-control' type='text'{{#runVersion}} value='{{runVersion}}'{{/runVersion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='{{id}}_frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_invoiceType'>invoiceType: </label><div class='col-sm-8'><input id='{{id}}_invoiceType' class='form-control' type='text'{{#invoiceType}} value='{{invoiceType}}'{{/invoiceType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_requireAutorun'>requireAutorun: </label><div class='col-sm-8'><input id='{{id}}_requireAutorun' class='form-control' type='text'{{#requireAutorun}} value='{{requireAutorun}}'{{/requireAutorun}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_revisionNumber'>revisionNumber: </label><div class='col-sm-8'><input id='{{id}}_revisionNumber' class='form-control' type='text'{{#revisionNumber}} value='{{revisionNumber}}'{{/revisionNumber}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Settlement'>Settlement: </label><div class='col-sm-8'><input id='{{id}}_Settlement' class='form-control' type='text'{{#Settlement}} value='{{Settlement}}_string'{{/Settlement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketInvoice'>MarketInvoice: </label><div class='col-sm-8'><input id='{{id}}_MarketInvoice' class='form-control' type='text'{{#MarketInvoice}} value='{{MarketInvoice}}_string'{{/MarketInvoice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeType'>ChargeType: </label><div class='col-sm-8'><input id='{{id}}_ChargeType' class='form-control' type='text'{{#ChargeType}} value='{{ChargeType}}_string'{{/ChargeType}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MajorChargeGroup" };
-                super.submit (obj);
-                temp = document.getElementById ("runType").value; if ("" != temp) obj.runType = temp;
-                temp = document.getElementById ("runVersion").value; if ("" != temp) obj.runVersion = temp;
-                temp = document.getElementById ("frequencyType").value; if ("" != temp) obj.frequencyType = temp;
-                temp = document.getElementById ("invoiceType").value; if ("" != temp) obj.invoiceType = temp;
-                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
-                temp = document.getElementById ("terminationDate").value; if ("" != temp) obj.terminationDate = temp;
-                temp = document.getElementById ("requireAutorun").value; if ("" != temp) obj.requireAutorun = temp;
-                temp = document.getElementById ("revisionNumber").value; if ("" != temp) obj.revisionNumber = temp;
-                temp = document.getElementById ("Settlement").value; if ("" != temp) obj.Settlement = temp.split (",");
-                temp = document.getElementById ("MarketInvoice").value; if ("" != temp) obj.MarketInvoice = temp.split (",");
-                temp = document.getElementById ("ChargeType").value; if ("" != temp) obj.ChargeType = temp.split (",");
+                var obj = obj || { id: id, cls: "MajorChargeGroup" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_runType").value; if ("" != temp) obj.runType = temp;
+                temp = document.getElementById (id + "_runVersion").value; if ("" != temp) obj.runVersion = temp;
+                temp = document.getElementById (id + "_frequencyType").value; if ("" != temp) obj.frequencyType = temp;
+                temp = document.getElementById (id + "_invoiceType").value; if ("" != temp) obj.invoiceType = temp;
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById (id + "_terminationDate").value; if ("" != temp) obj.terminationDate = temp;
+                temp = document.getElementById (id + "_requireAutorun").value; if ("" != temp) obj.requireAutorun = temp;
+                temp = document.getElementById (id + "_revisionNumber").value; if ("" != temp) obj.revisionNumber = temp;
+                temp = document.getElementById (id + "_Settlement").value; if ("" != temp) obj.Settlement = temp.split (",");
+                temp = document.getElementById (id + "_MarketInvoice").value; if ("" != temp) obj.MarketInvoice = temp.split (",");
+                temp = document.getElementById (id + "_ChargeType").value; if ("" != temp) obj.ChargeType = temp.split (",");
 
                 return (obj);
             }
@@ -1820,45 +1820,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ChargeType_collapse" aria-expanded="true" aria-controls="ChargeType_collapse" style="margin-left: 10px;">ChargeType</a></legend>
-                    <div id="ChargeType_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ChargeType_collapse" aria-expanded="true" aria-controls="{{id}}_ChargeType_collapse" style="margin-left: 10px;">ChargeType</a></legend>
+                    <div id="{{id}}_ChargeType_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='factor'>factor: </label><div class='col-sm-8'><input id='factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='chargeOrder'>chargeOrder: </label><div class='col-sm-8'><input id='chargeOrder' class='form-control' type='text'{{#chargeOrder}} value='{{chargeOrder}}'{{/chargeOrder}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='chargeVersion'>chargeVersion: </label><div class='col-sm-8'><input id='chargeVersion' class='form-control' type='text'{{#chargeVersion}} value='{{chargeVersion}}'{{/chargeVersion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='totalInterval'>totalInterval: </label><div class='col-sm-8'><input id='totalInterval' class='form-control' type='text'{{#totalInterval}} value='{{totalInterval}}'{{/totalInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}_string'{{/MajorChargeGroup}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents}}_string'{{/ChargeComponents}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ChargeGroup'>ChargeGroup: </label><div class='col-sm-8'><input id='ChargeGroup' class='form-control' type='text'{{#ChargeGroup}} value='{{ChargeGroup}}_string'{{/ChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_effectiveDate'>effectiveDate: </label><div class='col-sm-8'><input id='{{id}}_effectiveDate' class='form-control' type='text'{{#effectiveDate}} value='{{effectiveDate}}'{{/effectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_terminationDate'>terminationDate: </label><div class='col-sm-8'><input id='{{id}}_terminationDate' class='form-control' type='text'{{#terminationDate}} value='{{terminationDate}}'{{/terminationDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_factor'>factor: </label><div class='col-sm-8'><input id='{{id}}_factor' class='form-control' type='text'{{#factor}} value='{{factor}}'{{/factor}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chargeOrder'>chargeOrder: </label><div class='col-sm-8'><input id='{{id}}_chargeOrder' class='form-control' type='text'{{#chargeOrder}} value='{{chargeOrder}}'{{/chargeOrder}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_frequencyType'>frequencyType: </label><div class='col-sm-8'><input id='{{id}}_frequencyType' class='form-control' type='text'{{#frequencyType}} value='{{frequencyType}}'{{/frequencyType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_chargeVersion'>chargeVersion: </label><div class='col-sm-8'><input id='{{id}}_chargeVersion' class='form-control' type='text'{{#chargeVersion}} value='{{chargeVersion}}'{{/chargeVersion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_totalInterval'>totalInterval: </label><div class='col-sm-8'><input id='{{id}}_totalInterval' class='form-control' type='text'{{#totalInterval}} value='{{totalInterval}}'{{/totalInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}_string'{{/MajorChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktUserAttribute'>MktUserAttribute: </label><div class='col-sm-8'><input id='{{id}}_MktUserAttribute' class='form-control' type='text'{{#MktUserAttribute}} value='{{MktUserAttribute}}_string'{{/MktUserAttribute}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeComponents'>ChargeComponents: </label><div class='col-sm-8'><input id='{{id}}_ChargeComponents' class='form-control' type='text'{{#ChargeComponents}} value='{{ChargeComponents}}_string'{{/ChargeComponents}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ChargeGroup'>ChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_ChargeGroup' class='form-control' type='text'{{#ChargeGroup}} value='{{ChargeGroup}}_string'{{/ChargeGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ChargeType" };
-                super.submit (obj);
-                temp = document.getElementById ("effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
-                temp = document.getElementById ("terminationDate").value; if ("" != temp) obj.terminationDate = temp;
-                temp = document.getElementById ("factor").value; if ("" != temp) obj.factor = temp;
-                temp = document.getElementById ("chargeOrder").value; if ("" != temp) obj.chargeOrder = temp;
-                temp = document.getElementById ("frequencyType").value; if ("" != temp) obj.frequencyType = temp;
-                temp = document.getElementById ("chargeVersion").value; if ("" != temp) obj.chargeVersion = temp;
-                temp = document.getElementById ("totalInterval").value; if ("" != temp) obj.totalInterval = temp;
-                temp = document.getElementById ("MajorChargeGroup").value; if ("" != temp) obj.MajorChargeGroup = temp.split (",");
-                temp = document.getElementById ("MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp.split (",");
-                temp = document.getElementById ("ChargeComponents").value; if ("" != temp) obj.ChargeComponents = temp.split (",");
-                temp = document.getElementById ("ChargeGroup").value; if ("" != temp) obj.ChargeGroup = temp.split (",");
+                var obj = obj || { id: id, cls: "ChargeType" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_effectiveDate").value; if ("" != temp) obj.effectiveDate = temp;
+                temp = document.getElementById (id + "_terminationDate").value; if ("" != temp) obj.terminationDate = temp;
+                temp = document.getElementById (id + "_factor").value; if ("" != temp) obj.factor = temp;
+                temp = document.getElementById (id + "_chargeOrder").value; if ("" != temp) obj.chargeOrder = temp;
+                temp = document.getElementById (id + "_frequencyType").value; if ("" != temp) obj.frequencyType = temp;
+                temp = document.getElementById (id + "_chargeVersion").value; if ("" != temp) obj.chargeVersion = temp;
+                temp = document.getElementById (id + "_totalInterval").value; if ("" != temp) obj.totalInterval = temp;
+                temp = document.getElementById (id + "_MajorChargeGroup").value; if ("" != temp) obj.MajorChargeGroup = temp.split (",");
+                temp = document.getElementById (id + "_MktUserAttribute").value; if ("" != temp) obj.MktUserAttribute = temp.split (",");
+                temp = document.getElementById (id + "_ChargeComponents").value; if ("" != temp) obj.ChargeComponents = temp.split (",");
+                temp = document.getElementById (id + "_ChargeGroup").value; if ("" != temp) obj.ChargeGroup = temp.split (",");
 
                 return (obj);
             }
@@ -1965,25 +1965,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StartUpCostCurve_collapse" aria-expanded="true" aria-controls="StartUpCostCurve_collapse" style="margin-left: 10px;">StartUpCostCurve</a></legend>
-                    <div id="StartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StartUpCostCurve_collapse" aria-expanded="true" aria-controls="{{id}}_StartUpCostCurve_collapse" style="margin-left: 10px;">StartUpCostCurve</a></legend>
+                    <div id="{{id}}_StartUpCostCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerators'>RegisteredGenerators: </label><div class='col-sm-8'><input id='RegisteredGenerators' class='form-control' type='text'{{#RegisteredGenerators}} value='{{RegisteredGenerators}}_string'{{/RegisteredGenerators}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerators'>RegisteredGenerators: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerators' class='form-control' type='text'{{#RegisteredGenerators}} value='{{RegisteredGenerators}}_string'{{/RegisteredGenerators}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "StartUpCostCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredGenerators").value; if ("" != temp) obj.RegisteredGenerators = temp.split (",");
+                var obj = obj || { id: id, cls: "StartUpCostCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredGenerators").value; if ("" != temp) obj.RegisteredGenerators = temp.split (",");
 
                 return (obj);
             }
@@ -2090,29 +2090,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidDistributionFactor_collapse" aria-expanded="true" aria-controls="BidDistributionFactor_collapse" style="margin-left: 10px;">BidDistributionFactor</a></legend>
-                    <div id="BidDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidDistributionFactor_collapse" aria-expanded="true" aria-controls="{{id}}_BidDistributionFactor_collapse" style="margin-left: 10px;">BidDistributionFactor</a></legend>
+                    <div id="{{id}}_BidDistributionFactor_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeIntervalStart'>timeIntervalStart: </label><div class='col-sm-8'><input id='timeIntervalStart' class='form-control' type='text'{{#timeIntervalStart}} value='{{timeIntervalStart}}'{{/timeIntervalStart}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='timeIntervalEnd'>timeIntervalEnd: </label><div class='col-sm-8'><input id='timeIntervalEnd' class='form-control' type='text'{{#timeIntervalEnd}} value='{{timeIntervalEnd}}'{{/timeIntervalEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeIntervalStart'>timeIntervalStart: </label><div class='col-sm-8'><input id='{{id}}_timeIntervalStart' class='form-control' type='text'{{#timeIntervalStart}} value='{{timeIntervalStart}}'{{/timeIntervalStart}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_timeIntervalEnd'>timeIntervalEnd: </label><div class='col-sm-8'><input id='{{id}}_timeIntervalEnd' class='form-control' type='text'{{#timeIntervalEnd}} value='{{timeIntervalEnd}}'{{/timeIntervalEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ProductBid'>ProductBid: </label><div class='col-sm-8'><input id='{{id}}_ProductBid' class='form-control' type='text'{{#ProductBid}} value='{{ProductBid}}'{{/ProductBid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BidDistributionFactor" };
-                super.submit (obj);
-                temp = document.getElementById ("timeIntervalStart").value; if ("" != temp) obj.timeIntervalStart = temp;
-                temp = document.getElementById ("timeIntervalEnd").value; if ("" != temp) obj.timeIntervalEnd = temp;
-                temp = document.getElementById ("ProductBid").value; if ("" != temp) obj.ProductBid = temp;
+                var obj = obj || { id: id, cls: "BidDistributionFactor" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_timeIntervalStart").value; if ("" != temp) obj.timeIntervalStart = temp;
+                temp = document.getElementById (id + "_timeIntervalEnd").value; if ("" != temp) obj.timeIntervalEnd = temp;
+                temp = document.getElementById (id + "_ProductBid").value; if ("" != temp) obj.ProductBid = temp;
 
                 return (obj);
             }
@@ -2225,27 +2225,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradeProduct_collapse" aria-expanded="true" aria-controls="TradeProduct_collapse" style="margin-left: 10px;">TradeProduct</a></legend>
-                    <div id="TradeProduct_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TradeProduct_collapse" aria-expanded="true" aria-controls="{{id}}_TradeProduct_collapse" style="margin-left: 10px;">TradeProduct</a></legend>
+                    <div id="{{id}}_TradeProduct_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradeType'>tradeType: </label><div class='col-sm-8'><input id='tradeType' class='form-control' type='text'{{#tradeType}} value='{{tradeType}}'{{/tradeType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradeProductType'>tradeProductType: </label><div class='col-sm-8'><input id='tradeProductType' class='form-control' type='text'{{#tradeProductType}} value='{{tradeProductType}}'{{/tradeProductType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeType'>tradeType: </label><div class='col-sm-8'><input id='{{id}}_tradeType' class='form-control' type='text'{{#tradeType}} value='{{tradeType}}'{{/tradeType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeProductType'>tradeProductType: </label><div class='col-sm-8'><input id='{{id}}_tradeProductType' class='form-control' type='text'{{#tradeProductType}} value='{{tradeProductType}}'{{/tradeProductType}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TradeProduct" };
-                super.submit (obj);
-                temp = document.getElementById ("tradeType").value; if ("" != temp) obj.tradeType = temp;
-                temp = document.getElementById ("tradeProductType").value; if ("" != temp) obj.tradeProductType = temp;
+                var obj = obj || { id: id, cls: "TradeProduct" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_tradeType").value; if ("" != temp) obj.tradeType = temp;
+                temp = document.getElementById (id + "_tradeProductType").value; if ("" != temp) obj.tradeProductType = temp;
 
                 return (obj);
             }
@@ -2358,37 +2358,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradeError_collapse" aria-expanded="true" aria-controls="TradeError_collapse" style="margin-left: 10px;">TradeError</a></legend>
-                    <div id="TradeError_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TradeError_collapse" aria-expanded="true" aria-controls="{{id}}_TradeError_collapse" style="margin-left: 10px;">TradeError</a></legend>
+                    <div id="{{id}}_TradeError_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='errPriority'>errPriority: </label><div class='col-sm-8'><input id='errPriority' class='form-control' type='text'{{#errPriority}} value='{{errPriority}}'{{/errPriority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='errMessage'>errMessage: </label><div class='col-sm-8'><input id='errMessage' class='form-control' type='text'{{#errMessage}} value='{{errMessage}}'{{/errMessage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ruleID'>ruleID: </label><div class='col-sm-8'><input id='ruleID' class='form-control' type='text'{{#ruleID}} value='{{ruleID}}'{{/ruleID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endTime'>endTime: </label><div class='col-sm-8'><input id='endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Trade'>Trade: </label><div class='col-sm-8'><input id='Trade' class='form-control' type='text'{{#Trade}} value='{{Trade}}'{{/Trade}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errPriority'>errPriority: </label><div class='col-sm-8'><input id='{{id}}_errPriority' class='form-control' type='text'{{#errPriority}} value='{{errPriority}}'{{/errPriority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errMessage'>errMessage: </label><div class='col-sm-8'><input id='{{id}}_errMessage' class='form-control' type='text'{{#errMessage}} value='{{errMessage}}'{{/errMessage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ruleID'>ruleID: </label><div class='col-sm-8'><input id='{{id}}_ruleID' class='form-control' type='text'{{#ruleID}} value='{{ruleID}}'{{/ruleID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Trade'>Trade: </label><div class='col-sm-8'><input id='{{id}}_Trade' class='form-control' type='text'{{#Trade}} value='{{Trade}}'{{/Trade}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TradeError" };
-                super.submit (obj);
-                temp = document.getElementById ("errPriority").value; if ("" != temp) obj.errPriority = temp;
-                temp = document.getElementById ("errMessage").value; if ("" != temp) obj.errMessage = temp;
-                temp = document.getElementById ("ruleID").value; if ("" != temp) obj.ruleID = temp;
-                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById ("endTime").value; if ("" != temp) obj.endTime = temp;
-                temp = document.getElementById ("logTimeStamp").value; if ("" != temp) obj.logTimeStamp = temp;
-                temp = document.getElementById ("Trade").value; if ("" != temp) obj.Trade = temp;
+                var obj = obj || { id: id, cls: "TradeError" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_errPriority").value; if ("" != temp) obj.errPriority = temp;
+                temp = document.getElementById (id + "_errMessage").value; if ("" != temp) obj.errMessage = temp;
+                temp = document.getElementById (id + "_ruleID").value; if ("" != temp) obj.ruleID = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById (id + "_endTime").value; if ("" != temp) obj.endTime = temp;
+                temp = document.getElementById (id + "_logTimeStamp").value; if ("" != temp) obj.logTimeStamp = temp;
+                temp = document.getElementById (id + "_Trade").value; if ("" != temp) obj.Trade = temp;
 
                 return (obj);
             }
@@ -2531,37 +2531,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Bid_collapse" aria-expanded="true" aria-controls="Bid_collapse" style="margin-left: 10px;">Bid</a></legend>
-                    <div id="Bid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Bid_collapse" aria-expanded="true" aria-controls="{{id}}_Bid_collapse" style="margin-left: 10px;">Bid</a></legend>
+                    <div id="{{id}}_Bid_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stopTime'>stopTime: </label><div class='col-sm-8'><input id='stopTime' class='form-control' type='text'{{#stopTime}} value='{{stopTime}}'{{/stopTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ActionRequest'>ActionRequest: </label><div class='col-sm-8'><input id='ActionRequest' class='form-control' type='text'{{#ActionRequest}} value='{{ActionRequest}}'{{/ActionRequest}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}'{{/MarketParticipant}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyMarket'>EnergyMarket: </label><div class='col-sm-8'><input id='EnergyMarket' class='form-control' type='text'{{#EnergyMarket}} value='{{EnergyMarket}}'{{/EnergyMarket}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stopTime'>stopTime: </label><div class='col-sm-8'><input id='{{id}}_stopTime' class='form-control' type='text'{{#stopTime}} value='{{stopTime}}'{{/stopTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActionRequest'>ActionRequest: </label><div class='col-sm-8'><input id='{{id}}_ActionRequest' class='form-control' type='text'{{#ActionRequest}} value='{{ActionRequest}}'{{/ActionRequest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='{{id}}_MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}'{{/MarketParticipant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyMarket'>EnergyMarket: </label><div class='col-sm-8'><input id='{{id}}_EnergyMarket' class='form-control' type='text'{{#EnergyMarket}} value='{{EnergyMarket}}'{{/EnergyMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SchedulingCoordinator'>SchedulingCoordinator: </label><div class='col-sm-8'><input id='{{id}}_SchedulingCoordinator' class='form-control' type='text'{{#SchedulingCoordinator}} value='{{SchedulingCoordinator}}'{{/SchedulingCoordinator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Bid" };
-                super.submit (obj);
-                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById ("stopTime").value; if ("" != temp) obj.stopTime = temp;
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("ActionRequest").value; if ("" != temp) obj.ActionRequest = temp;
-                temp = document.getElementById ("MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp;
-                temp = document.getElementById ("EnergyMarket").value; if ("" != temp) obj.EnergyMarket = temp;
-                temp = document.getElementById ("SchedulingCoordinator").value; if ("" != temp) obj.SchedulingCoordinator = temp;
+                var obj = obj || { id: id, cls: "Bid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById (id + "_stopTime").value; if ("" != temp) obj.stopTime = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_ActionRequest").value; if ("" != temp) obj.ActionRequest = temp;
+                temp = document.getElementById (id + "_MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp;
+                temp = document.getElementById (id + "_EnergyMarket").value; if ("" != temp) obj.EnergyMarket = temp;
+                temp = document.getElementById (id + "_SchedulingCoordinator").value; if ("" != temp) obj.SchedulingCoordinator = temp;
 
                 return (obj);
             }
@@ -2736,69 +2736,69 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Trade_collapse" aria-expanded="true" aria-controls="Trade_collapse" style="margin-left: 10px;">Trade</a></legend>
-                    <div id="Trade_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Trade_collapse" aria-expanded="true" aria-controls="{{id}}_Trade_collapse" style="margin-left: 10px;">Trade</a></legend>
+                    <div id="{{id}}_Trade_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='adjustedTradeQuantity'>adjustedTradeQuantity: </label><div class='col-sm-8'><input id='adjustedTradeQuantity' class='form-control' type='text'{{#adjustedTradeQuantity}} value='{{adjustedTradeQuantity}}'{{/adjustedTradeQuantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='counterTradeQuantity'>counterTradeQuantity: </label><div class='col-sm-8'><input id='counterTradeQuantity' class='form-control' type='text'{{#counterTradeQuantity}} value='{{counterTradeQuantity}}'{{/counterTradeQuantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dependOnTradeName'>dependOnTradeName: </label><div class='col-sm-8'><input id='dependOnTradeName' class='form-control' type='text'{{#dependOnTradeName}} value='{{dependOnTradeName}}'{{/dependOnTradeName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastModified'>lastModified: </label><div class='col-sm-8'><input id='lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='stopTime'>stopTime: </label><div class='col-sm-8'><input id='stopTime' class='form-control' type='text'{{#stopTime}} value='{{stopTime}}'{{/stopTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='submitFromTimeStamp'>submitFromTimeStamp: </label><div class='col-sm-8'><input id='submitFromTimeStamp' class='form-control' type='text'{{#submitFromTimeStamp}} value='{{submitFromTimeStamp}}'{{/submitFromTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='submitFromUser'>submitFromUser: </label><div class='col-sm-8'><input id='submitFromUser' class='form-control' type='text'{{#submitFromUser}} value='{{submitFromUser}}'{{/submitFromUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='submitToTimeStamp'>submitToTimeStamp: </label><div class='col-sm-8'><input id='submitToTimeStamp' class='form-control' type='text'{{#submitToTimeStamp}} value='{{submitToTimeStamp}}'{{/submitToTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='submitToUser '>submitToUser : </label><div class='col-sm-8'><input id='submitToUser ' class='form-control' type='text'{{#submitToUser }} value='{{submitToUser }}'{{/submitToUser }}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradeQuantity'>tradeQuantity: </label><div class='col-sm-8'><input id='tradeQuantity' class='form-control' type='text'{{#tradeQuantity}} value='{{tradeQuantity}}'{{/tradeQuantity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tradeStatus'>tradeStatus: </label><div class='col-sm-8'><input id='tradeStatus' class='form-control' type='text'{{#tradeStatus}} value='{{tradeStatus}}'{{/tradeStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TradeProduct'>TradeProduct: </label><div class='col-sm-8'><input id='TradeProduct' class='form-control' type='text'{{#TradeProduct}} value='{{TradeProduct}}'{{/TradeProduct}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='submitFromSchedulingCoordinator'>submitFromSchedulingCoordinator: </label><div class='col-sm-8'><input id='submitFromSchedulingCoordinator' class='form-control' type='text'{{#submitFromSchedulingCoordinator}} value='{{submitFromSchedulingCoordinator}}'{{/submitFromSchedulingCoordinator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ActionRequest'>ActionRequest: </label><div class='col-sm-8'><input id='ActionRequest' class='form-control' type='text'{{#ActionRequest}} value='{{ActionRequest}}'{{/ActionRequest}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='To_SC'>To_SC: </label><div class='col-sm-8'><input id='To_SC' class='form-control' type='text'{{#To_SC}} value='{{To_SC}}'{{/To_SC}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pnode'>Pnode: </label><div class='col-sm-8'><input id='Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='submitToSchedulingCoordinator'>submitToSchedulingCoordinator: </label><div class='col-sm-8'><input id='submitToSchedulingCoordinator' class='form-control' type='text'{{#submitToSchedulingCoordinator}} value='{{submitToSchedulingCoordinator}}'{{/submitToSchedulingCoordinator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='From_SC'>From_SC: </label><div class='col-sm-8'><input id='From_SC' class='form-control' type='text'{{#From_SC}} value='{{From_SC}}'{{/From_SC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_adjustedTradeQuantity'>adjustedTradeQuantity: </label><div class='col-sm-8'><input id='{{id}}_adjustedTradeQuantity' class='form-control' type='text'{{#adjustedTradeQuantity}} value='{{adjustedTradeQuantity}}'{{/adjustedTradeQuantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_counterTradeQuantity'>counterTradeQuantity: </label><div class='col-sm-8'><input id='{{id}}_counterTradeQuantity' class='form-control' type='text'{{#counterTradeQuantity}} value='{{counterTradeQuantity}}'{{/counterTradeQuantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dependOnTradeName'>dependOnTradeName: </label><div class='col-sm-8'><input id='{{id}}_dependOnTradeName' class='form-control' type='text'{{#dependOnTradeName}} value='{{dependOnTradeName}}'{{/dependOnTradeName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastModified'>lastModified: </label><div class='col-sm-8'><input id='{{id}}_lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_stopTime'>stopTime: </label><div class='col-sm-8'><input id='{{id}}_stopTime' class='form-control' type='text'{{#stopTime}} value='{{stopTime}}'{{/stopTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_submitFromTimeStamp'>submitFromTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_submitFromTimeStamp' class='form-control' type='text'{{#submitFromTimeStamp}} value='{{submitFromTimeStamp}}'{{/submitFromTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_submitFromUser'>submitFromUser: </label><div class='col-sm-8'><input id='{{id}}_submitFromUser' class='form-control' type='text'{{#submitFromUser}} value='{{submitFromUser}}'{{/submitFromUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_submitToTimeStamp'>submitToTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_submitToTimeStamp' class='form-control' type='text'{{#submitToTimeStamp}} value='{{submitToTimeStamp}}'{{/submitToTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_submitToUser '>submitToUser : </label><div class='col-sm-8'><input id='{{id}}_submitToUser ' class='form-control' type='text'{{#submitToUser }} value='{{submitToUser }}'{{/submitToUser }}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeQuantity'>tradeQuantity: </label><div class='col-sm-8'><input id='{{id}}_tradeQuantity' class='form-control' type='text'{{#tradeQuantity}} value='{{tradeQuantity}}'{{/tradeQuantity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tradeStatus'>tradeStatus: </label><div class='col-sm-8'><input id='{{id}}_tradeStatus' class='form-control' type='text'{{#tradeStatus}} value='{{tradeStatus}}'{{/tradeStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TradeProduct'>TradeProduct: </label><div class='col-sm-8'><input id='{{id}}_TradeProduct' class='form-control' type='text'{{#TradeProduct}} value='{{TradeProduct}}'{{/TradeProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_submitFromSchedulingCoordinator'>submitFromSchedulingCoordinator: </label><div class='col-sm-8'><input id='{{id}}_submitFromSchedulingCoordinator' class='form-control' type='text'{{#submitFromSchedulingCoordinator}} value='{{submitFromSchedulingCoordinator}}'{{/submitFromSchedulingCoordinator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ActionRequest'>ActionRequest: </label><div class='col-sm-8'><input id='{{id}}_ActionRequest' class='form-control' type='text'{{#ActionRequest}} value='{{ActionRequest}}'{{/ActionRequest}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_To_SC'>To_SC: </label><div class='col-sm-8'><input id='{{id}}_To_SC' class='form-control' type='text'{{#To_SC}} value='{{To_SC}}'{{/To_SC}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnode'>Pnode: </label><div class='col-sm-8'><input id='{{id}}_Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_submitToSchedulingCoordinator'>submitToSchedulingCoordinator: </label><div class='col-sm-8'><input id='{{id}}_submitToSchedulingCoordinator' class='form-control' type='text'{{#submitToSchedulingCoordinator}} value='{{submitToSchedulingCoordinator}}'{{/submitToSchedulingCoordinator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_From_SC'>From_SC: </label><div class='col-sm-8'><input id='{{id}}_From_SC' class='form-control' type='text'{{#From_SC}} value='{{From_SC}}'{{/From_SC}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Trade" };
-                super.submit (obj);
-                temp = document.getElementById ("adjustedTradeQuantity").value; if ("" != temp) obj.adjustedTradeQuantity = temp;
-                temp = document.getElementById ("counterTradeQuantity").value; if ("" != temp) obj.counterTradeQuantity = temp;
-                temp = document.getElementById ("dependOnTradeName").value; if ("" != temp) obj.dependOnTradeName = temp;
-                temp = document.getElementById ("lastModified").value; if ("" != temp) obj.lastModified = temp;
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById ("stopTime").value; if ("" != temp) obj.stopTime = temp;
-                temp = document.getElementById ("submitFromTimeStamp").value; if ("" != temp) obj.submitFromTimeStamp = temp;
-                temp = document.getElementById ("submitFromUser").value; if ("" != temp) obj.submitFromUser = temp;
-                temp = document.getElementById ("submitToTimeStamp").value; if ("" != temp) obj.submitToTimeStamp = temp;
-                temp = document.getElementById ("submitToUser ").value; if ("" != temp) obj.submitToUser  = temp;
-                temp = document.getElementById ("tradeQuantity").value; if ("" != temp) obj.tradeQuantity = temp;
-                temp = document.getElementById ("tradeStatus").value; if ("" != temp) obj.tradeStatus = temp;
-                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
-                temp = document.getElementById ("TradeProduct").value; if ("" != temp) obj.TradeProduct = temp;
-                temp = document.getElementById ("submitFromSchedulingCoordinator").value; if ("" != temp) obj.submitFromSchedulingCoordinator = temp;
-                temp = document.getElementById ("ActionRequest").value; if ("" != temp) obj.ActionRequest = temp;
-                temp = document.getElementById ("To_SC").value; if ("" != temp) obj.To_SC = temp;
-                temp = document.getElementById ("Pnode").value; if ("" != temp) obj.Pnode = temp;
-                temp = document.getElementById ("submitToSchedulingCoordinator").value; if ("" != temp) obj.submitToSchedulingCoordinator = temp;
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
-                temp = document.getElementById ("From_SC").value; if ("" != temp) obj.From_SC = temp;
+                var obj = obj || { id: id, cls: "Trade" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_adjustedTradeQuantity").value; if ("" != temp) obj.adjustedTradeQuantity = temp;
+                temp = document.getElementById (id + "_counterTradeQuantity").value; if ("" != temp) obj.counterTradeQuantity = temp;
+                temp = document.getElementById (id + "_dependOnTradeName").value; if ("" != temp) obj.dependOnTradeName = temp;
+                temp = document.getElementById (id + "_lastModified").value; if ("" != temp) obj.lastModified = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById (id + "_stopTime").value; if ("" != temp) obj.stopTime = temp;
+                temp = document.getElementById (id + "_submitFromTimeStamp").value; if ("" != temp) obj.submitFromTimeStamp = temp;
+                temp = document.getElementById (id + "_submitFromUser").value; if ("" != temp) obj.submitFromUser = temp;
+                temp = document.getElementById (id + "_submitToTimeStamp").value; if ("" != temp) obj.submitToTimeStamp = temp;
+                temp = document.getElementById (id + "_submitToUser ").value; if ("" != temp) obj.submitToUser  = temp;
+                temp = document.getElementById (id + "_tradeQuantity").value; if ("" != temp) obj.tradeQuantity = temp;
+                temp = document.getElementById (id + "_tradeStatus").value; if ("" != temp) obj.tradeStatus = temp;
+                temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById (id + "_TradeProduct").value; if ("" != temp) obj.TradeProduct = temp;
+                temp = document.getElementById (id + "_submitFromSchedulingCoordinator").value; if ("" != temp) obj.submitFromSchedulingCoordinator = temp;
+                temp = document.getElementById (id + "_ActionRequest").value; if ("" != temp) obj.ActionRequest = temp;
+                temp = document.getElementById (id + "_To_SC").value; if ("" != temp) obj.To_SC = temp;
+                temp = document.getElementById (id + "_Pnode").value; if ("" != temp) obj.Pnode = temp;
+                temp = document.getElementById (id + "_submitToSchedulingCoordinator").value; if ("" != temp) obj.submitToSchedulingCoordinator = temp;
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                temp = document.getElementById (id + "_From_SC").value; if ("" != temp) obj.From_SC = temp;
 
                 return (obj);
             }
@@ -2930,43 +2930,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidError_collapse" aria-expanded="true" aria-controls="BidError_collapse" style="margin-left: 10px;">BidError</a></legend>
-                    <div id="BidError_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidError_collapse" aria-expanded="true" aria-controls="{{id}}_BidError_collapse" style="margin-left: 10px;">BidError</a></legend>
+                    <div id="{{id}}_BidError_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='errPriority'>errPriority: </label><div class='col-sm-8'><input id='errPriority' class='form-control' type='text'{{#errPriority}} value='{{errPriority}}'{{/errPriority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='errMessage'>errMessage: </label><div class='col-sm-8'><input id='errMessage' class='form-control' type='text'{{#errMessage}} value='{{errMessage}}'{{/errMessage}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ruleID'>ruleID: </label><div class='col-sm-8'><input id='ruleID' class='form-control' type='text'{{#ruleID}} value='{{ruleID}}'{{/ruleID}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endTime'>endTime: </label><div class='col-sm-8'><input id='endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='componentType'>componentType: </label><div class='col-sm-8'><input id='componentType' class='form-control' type='text'{{#componentType}} value='{{componentType}}'{{/componentType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='msgLevel'>msgLevel: </label><div class='col-sm-8'><input id='msgLevel' class='form-control' type='text'{{#msgLevel}} value='{{msgLevel}}'{{/msgLevel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceBid'>ResourceBid: </label><div class='col-sm-8'><input id='ResourceBid' class='form-control' type='text'{{#ResourceBid}} value='{{ResourceBid}}_string'{{/ResourceBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errPriority'>errPriority: </label><div class='col-sm-8'><input id='{{id}}_errPriority' class='form-control' type='text'{{#errPriority}} value='{{errPriority}}'{{/errPriority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_errMessage'>errMessage: </label><div class='col-sm-8'><input id='{{id}}_errMessage' class='form-control' type='text'{{#errMessage}} value='{{errMessage}}'{{/errMessage}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ruleID'>ruleID: </label><div class='col-sm-8'><input id='{{id}}_ruleID' class='form-control' type='text'{{#ruleID}} value='{{ruleID}}'{{/ruleID}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endTime'>endTime: </label><div class='col-sm-8'><input id='{{id}}_endTime' class='form-control' type='text'{{#endTime}} value='{{endTime}}'{{/endTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_logTimeStamp'>logTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_logTimeStamp' class='form-control' type='text'{{#logTimeStamp}} value='{{logTimeStamp}}'{{/logTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_componentType'>componentType: </label><div class='col-sm-8'><input id='{{id}}_componentType' class='form-control' type='text'{{#componentType}} value='{{componentType}}'{{/componentType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_msgLevel'>msgLevel: </label><div class='col-sm-8'><input id='{{id}}_msgLevel' class='form-control' type='text'{{#msgLevel}} value='{{msgLevel}}'{{/msgLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceBid'>ResourceBid: </label><div class='col-sm-8'><input id='{{id}}_ResourceBid' class='form-control' type='text'{{#ResourceBid}} value='{{ResourceBid}}_string'{{/ResourceBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketProduct'>MarketProduct: </label><div class='col-sm-8'><input id='{{id}}_MarketProduct' class='form-control' type='text'{{#MarketProduct}} value='{{MarketProduct}}'{{/MarketProduct}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BidError" };
-                super.submit (obj);
-                temp = document.getElementById ("errPriority").value; if ("" != temp) obj.errPriority = temp;
-                temp = document.getElementById ("errMessage").value; if ("" != temp) obj.errMessage = temp;
-                temp = document.getElementById ("ruleID").value; if ("" != temp) obj.ruleID = temp;
-                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById ("endTime").value; if ("" != temp) obj.endTime = temp;
-                temp = document.getElementById ("logTimeStamp").value; if ("" != temp) obj.logTimeStamp = temp;
-                temp = document.getElementById ("componentType").value; if ("" != temp) obj.componentType = temp;
-                temp = document.getElementById ("msgLevel").value; if ("" != temp) obj.msgLevel = temp;
-                temp = document.getElementById ("ResourceBid").value; if ("" != temp) obj.ResourceBid = temp.split (",");
-                temp = document.getElementById ("MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
+                var obj = obj || { id: id, cls: "BidError" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_errPriority").value; if ("" != temp) obj.errPriority = temp;
+                temp = document.getElementById (id + "_errMessage").value; if ("" != temp) obj.errMessage = temp;
+                temp = document.getElementById (id + "_ruleID").value; if ("" != temp) obj.ruleID = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById (id + "_endTime").value; if ("" != temp) obj.endTime = temp;
+                temp = document.getElementById (id + "_logTimeStamp").value; if ("" != temp) obj.logTimeStamp = temp;
+                temp = document.getElementById (id + "_componentType").value; if ("" != temp) obj.componentType = temp;
+                temp = document.getElementById (id + "_msgLevel").value; if ("" != temp) obj.msgLevel = temp;
+                temp = document.getElementById (id + "_ResourceBid").value; if ("" != temp) obj.ResourceBid = temp.split (",");
+                temp = document.getElementById (id + "_MarketProduct").value; if ("" != temp) obj.MarketProduct = temp;
 
                 return (obj);
             }
@@ -3072,25 +3072,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ActionRequest_collapse" aria-expanded="true" aria-controls="ActionRequest_collapse" style="margin-left: 10px;">ActionRequest</a></legend>
-                    <div id="ActionRequest_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ActionRequest_collapse" aria-expanded="true" aria-controls="{{id}}_ActionRequest_collapse" style="margin-left: 10px;">ActionRequest</a></legend>
+                    <div id="{{id}}_ActionRequest_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='actionName'>actionName: </label><div class='col-sm-8'><input id='actionName' class='form-control' type='text'{{#actionName}} value='{{actionName}}'{{/actionName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_actionName'>actionName: </label><div class='col-sm-8'><input id='{{id}}_actionName' class='form-control' type='text'{{#actionName}} value='{{actionName}}'{{/actionName}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ActionRequest" };
-                super.submit (obj);
-                temp = document.getElementById ("actionName").value; if ("" != temp) obj.actionName = temp;
+                var obj = obj || { id: id, cls: "ActionRequest" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_actionName").value; if ("" != temp) obj.actionName = temp;
 
                 return (obj);
             }
@@ -3201,35 +3201,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="InterTieDispatchResponse_collapse" style="margin-left: 10px;">InterTieDispatchResponse</a></legend>
-                    <div id="InterTieDispatchResponse_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InterTieDispatchResponse_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieDispatchResponse_collapse" style="margin-left: 10px;">InterTieDispatchResponse</a></legend>
+                    <div id="{{id}}_InterTieDispatchResponse_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='acceptStatus'>acceptStatus: </label><div class='col-sm-8'><input id='acceptStatus' class='form-control' type='text'{{#acceptStatus}} value='{{acceptStatus}}'{{/acceptStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='passIndicator'>passIndicator: </label><div class='col-sm-8'><input id='passIndicator' class='form-control' type='text'{{#passIndicator}} value='{{passIndicator}}'{{/passIndicator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><input id='{{id}}_acceptStatus' class='form-control' type='text'{{#acceptStatus}} value='{{acceptStatus}}'{{/acceptStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='{{id}}_acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='{{id}}_clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><input id='{{id}}_passIndicator' class='form-control' type='text'{{#passIndicator}} value='{{passIndicator}}'{{/passIndicator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "InterTieDispatchResponse" };
-                super.submit (obj);
-                temp = document.getElementById ("acceptStatus").value; if ("" != temp) obj.acceptStatus = temp;
-                temp = document.getElementById ("acceptMW").value; if ("" != temp) obj.acceptMW = temp;
-                temp = document.getElementById ("clearedMW").value; if ("" != temp) obj.clearedMW = temp;
-                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById ("passIndicator").value; if ("" != temp) obj.passIndicator = temp;
-                temp = document.getElementById ("RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp;
+                var obj = obj || { id: id, cls: "InterTieDispatchResponse" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_acceptStatus").value; if ("" != temp) obj.acceptStatus = temp;
+                temp = document.getElementById (id + "_acceptMW").value; if ("" != temp) obj.acceptMW = temp;
+                temp = document.getElementById (id + "_clearedMW").value; if ("" != temp) obj.clearedMW = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById (id + "_passIndicator").value; if ("" != temp) obj.passIndicator = temp;
+                temp = document.getElementById (id + "_RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp;
 
                 return (obj);
             }
@@ -3328,8 +3328,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidSet_collapse" aria-expanded="true" aria-controls="BidSet_collapse" style="margin-left: 10px;">BidSet</a></legend>
-                    <div id="BidSet_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidSet_collapse" aria-expanded="true" aria-controls="{{id}}_BidSet_collapse" style="margin-left: 10px;">BidSet</a></legend>
+                    <div id="{{id}}_BidSet_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
@@ -3339,10 +3339,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "BidSet" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "BidSet" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -3457,37 +3457,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RampRateCurve_collapse" aria-expanded="true" aria-controls="RampRateCurve_collapse" style="margin-left: 10px;">RampRateCurve</a></legend>
-                    <div id="RampRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RampRateCurve_collapse" aria-expanded="true" aria-controls="{{id}}_RampRateCurve_collapse" style="margin-left: 10px;">RampRateCurve</a></legend>
+                    <div id="{{id}}_RampRateCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='condition'>condition: </label><div class='col-sm-8'><input id='condition' class='form-control' type='text'{{#condition}} value='{{condition}}'{{/condition}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='constraintRampType'>constraintRampType: </label><div class='col-sm-8'><input id='constraintRampType' class='form-control' type='text'{{#constraintRampType}} value='{{constraintRampType}}'{{/constraintRampType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rampRateType'>rampRateType: </label><div class='col-sm-8'><input id='rampRateType' class='form-control' type='text'{{#rampRateType}} value='{{rampRateType}}'{{/rampRateType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GeneratingBid'>GeneratingBid: </label><div class='col-sm-8'><input id='GeneratingBid' class='form-control' type='text'{{#GeneratingBid}} value='{{GeneratingBid}}'{{/GeneratingBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_condition'>condition: </label><div class='col-sm-8'><input id='{{id}}_condition' class='form-control' type='text'{{#condition}} value='{{condition}}'{{/condition}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_constraintRampType'>constraintRampType: </label><div class='col-sm-8'><input id='{{id}}_constraintRampType' class='form-control' type='text'{{#constraintRampType}} value='{{constraintRampType}}'{{/constraintRampType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampRateType'>rampRateType: </label><div class='col-sm-8'><input id='{{id}}_rampRateType' class='form-control' type='text'{{#rampRateType}} value='{{rampRateType}}'{{/rampRateType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingBid'>GeneratingBid: </label><div class='col-sm-8'><input id='{{id}}_GeneratingBid' class='form-control' type='text'{{#GeneratingBid}} value='{{GeneratingBid}}'{{/GeneratingBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LoadBid'>LoadBid: </label><div class='col-sm-8'><input id='{{id}}_LoadBid' class='form-control' type='text'{{#LoadBid}} value='{{LoadBid}}'{{/LoadBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}_string'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieBid'>InterTieBid: </label><div class='col-sm-8'><input id='{{id}}_InterTieBid' class='form-control' type='text'{{#InterTieBid}} value='{{InterTieBid}}'{{/InterTieBid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RampRateCurve" };
-                super.submit (obj);
-                temp = document.getElementById ("condition").value; if ("" != temp) obj.condition = temp;
-                temp = document.getElementById ("constraintRampType").value; if ("" != temp) obj.constraintRampType = temp;
-                temp = document.getElementById ("rampRateType").value; if ("" != temp) obj.rampRateType = temp;
-                temp = document.getElementById ("GeneratingBid").value; if ("" != temp) obj.GeneratingBid = temp;
-                temp = document.getElementById ("LoadBid").value; if ("" != temp) obj.LoadBid = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
-                temp = document.getElementById ("InterTieBid").value; if ("" != temp) obj.InterTieBid = temp;
+                var obj = obj || { id: id, cls: "RampRateCurve" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_condition").value; if ("" != temp) obj.condition = temp;
+                temp = document.getElementById (id + "_constraintRampType").value; if ("" != temp) obj.constraintRampType = temp;
+                temp = document.getElementById (id + "_rampRateType").value; if ("" != temp) obj.rampRateType = temp;
+                temp = document.getElementById (id + "_GeneratingBid").value; if ("" != temp) obj.GeneratingBid = temp;
+                temp = document.getElementById (id + "_LoadBid").value; if ("" != temp) obj.LoadBid = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp.split (",");
+                temp = document.getElementById (id + "_InterTieBid").value; if ("" != temp) obj.InterTieBid = temp;
 
                 return (obj);
             }
@@ -3612,43 +3612,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#DispatchInstReply_collapse" aria-expanded="true" aria-controls="DispatchInstReply_collapse" style="margin-left: 10px;">DispatchInstReply</a></legend>
-                    <div id="DispatchInstReply_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_DispatchInstReply_collapse" aria-expanded="true" aria-controls="{{id}}_DispatchInstReply_collapse" style="margin-left: 10px;">DispatchInstReply</a></legend>
+                    <div id="{{id}}_DispatchInstReply_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='acceptStatus'>acceptStatus: </label><div class='col-sm-8'><input id='acceptStatus' class='form-control' type='text'{{#acceptStatus}} value='{{acceptStatus}}'{{/acceptStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='certificationName'>certificationName: </label><div class='col-sm-8'><input id='certificationName' class='form-control' type='text'{{#certificationName}} value='{{certificationName}}'{{/certificationName}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='instructionTime'>instructionTime: </label><div class='col-sm-8'><input id='instructionTime' class='form-control' type='text'{{#instructionTime}} value='{{instructionTime}}'{{/instructionTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='instructionType'>instructionType: </label><div class='col-sm-8'><input id='instructionType' class='form-control' type='text'{{#instructionType}} value='{{instructionType}}'{{/instructionType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='passIndicator'>passIndicator: </label><div class='col-sm-8'><input id='passIndicator' class='form-control' type='text'{{#passIndicator}} value='{{passIndicator}}'{{/passIndicator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receivedTime'>receivedTime: </label><div class='col-sm-8'><input id='receivedTime' class='form-control' type='text'{{#receivedTime}} value='{{receivedTime}}'{{/receivedTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startTime'>startTime: </label><div class='col-sm-8'><input id='startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptMW'>acceptMW: </label><div class='col-sm-8'><input id='{{id}}_acceptMW' class='form-control' type='text'{{#acceptMW}} value='{{acceptMW}}'{{/acceptMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_acceptStatus'>acceptStatus: </label><div class='col-sm-8'><input id='{{id}}_acceptStatus' class='form-control' type='text'{{#acceptStatus}} value='{{acceptStatus}}'{{/acceptStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_certificationName'>certificationName: </label><div class='col-sm-8'><input id='{{id}}_certificationName' class='form-control' type='text'{{#certificationName}} value='{{certificationName}}'{{/certificationName}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedMW'>clearedMW: </label><div class='col-sm-8'><input id='{{id}}_clearedMW' class='form-control' type='text'{{#clearedMW}} value='{{clearedMW}}'{{/clearedMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionTime'>instructionTime: </label><div class='col-sm-8'><input id='{{id}}_instructionTime' class='form-control' type='text'{{#instructionTime}} value='{{instructionTime}}'{{/instructionTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_instructionType'>instructionType: </label><div class='col-sm-8'><input id='{{id}}_instructionType' class='form-control' type='text'{{#instructionType}} value='{{instructionType}}'{{/instructionType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_passIndicator'>passIndicator: </label><div class='col-sm-8'><input id='{{id}}_passIndicator' class='form-control' type='text'{{#passIndicator}} value='{{passIndicator}}'{{/passIndicator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receivedTime'>receivedTime: </label><div class='col-sm-8'><input id='{{id}}_receivedTime' class='form-control' type='text'{{#receivedTime}} value='{{receivedTime}}'{{/receivedTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startTime'>startTime: </label><div class='col-sm-8'><input id='{{id}}_startTime' class='form-control' type='text'{{#startTime}} value='{{startTime}}'{{/startTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "DispatchInstReply" };
-                super.submit (obj);
-                temp = document.getElementById ("acceptMW").value; if ("" != temp) obj.acceptMW = temp;
-                temp = document.getElementById ("acceptStatus").value; if ("" != temp) obj.acceptStatus = temp;
-                temp = document.getElementById ("certificationName").value; if ("" != temp) obj.certificationName = temp;
-                temp = document.getElementById ("clearedMW").value; if ("" != temp) obj.clearedMW = temp;
-                temp = document.getElementById ("instructionTime").value; if ("" != temp) obj.instructionTime = temp;
-                temp = document.getElementById ("instructionType").value; if ("" != temp) obj.instructionType = temp;
-                temp = document.getElementById ("passIndicator").value; if ("" != temp) obj.passIndicator = temp;
-                temp = document.getElementById ("receivedTime").value; if ("" != temp) obj.receivedTime = temp;
-                temp = document.getElementById ("startTime").value; if ("" != temp) obj.startTime = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                var obj = obj || { id: id, cls: "DispatchInstReply" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_acceptMW").value; if ("" != temp) obj.acceptMW = temp;
+                temp = document.getElementById (id + "_acceptStatus").value; if ("" != temp) obj.acceptStatus = temp;
+                temp = document.getElementById (id + "_certificationName").value; if ("" != temp) obj.certificationName = temp;
+                temp = document.getElementById (id + "_clearedMW").value; if ("" != temp) obj.clearedMW = temp;
+                temp = document.getElementById (id + "_instructionTime").value; if ("" != temp) obj.instructionTime = temp;
+                temp = document.getElementById (id + "_instructionType").value; if ("" != temp) obj.instructionType = temp;
+                temp = document.getElementById (id + "_passIndicator").value; if ("" != temp) obj.passIndicator = temp;
+                temp = document.getElementById (id + "_receivedTime").value; if ("" != temp) obj.receivedTime = temp;
+                temp = document.getElementById (id + "_startTime").value; if ("" != temp) obj.startTime = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
 
                 return (obj);
             }
@@ -3747,8 +3747,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="NotificationTimeCurve_collapse" style="margin-left: 10px;">NotificationTimeCurve</a></legend>
-                    <div id="NotificationTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_NotificationTimeCurve_collapse" aria-expanded="true" aria-controls="{{id}}_NotificationTimeCurve_collapse" style="margin-left: 10px;">NotificationTimeCurve</a></legend>
+                    <div id="{{id}}_NotificationTimeCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -3758,10 +3758,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "NotificationTimeCurve" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "NotificationTimeCurve" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -3865,31 +3865,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="MarketScheduledEvent_collapse" style="margin-left: 10px;">MarketScheduledEvent</a></legend>
-                    <div id="MarketScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketScheduledEvent_collapse" aria-expanded="true" aria-controls="{{id}}_MarketScheduledEvent_collapse" style="margin-left: 10px;">MarketScheduledEvent</a></legend>
+                    <div id="{{id}}_MarketScheduledEvent_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='category'>category: </label><div class='col-sm-8'><input id='category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='duration'>duration: </label><div class='col-sm-8'><input id='duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}'{{/MajorChargeGroup}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_category'>category: </label><div class='col-sm-8'><input id='{{id}}_category' class='form-control' type='text'{{#category}} value='{{category}}'{{/category}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_duration'>duration: </label><div class='col-sm-8'><input id='{{id}}_duration' class='form-control' type='text'{{#duration}} value='{{duration}}'{{/duration}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MajorChargeGroup'>MajorChargeGroup: </label><div class='col-sm-8'><input id='{{id}}_MajorChargeGroup' class='form-control' type='text'{{#MajorChargeGroup}} value='{{MajorChargeGroup}}'{{/MajorChargeGroup}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketScheduledEvent" };
-                super.submit (obj);
-                temp = document.getElementById ("category").value; if ("" != temp) obj.category = temp;
-                temp = document.getElementById ("duration").value; if ("" != temp) obj.duration = temp;
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("MajorChargeGroup").value; if ("" != temp) obj.MajorChargeGroup = temp;
+                var obj = obj || { id: id, cls: "MarketScheduledEvent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_category").value; if ("" != temp) obj.category = temp;
+                temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_MajorChargeGroup").value; if ("" != temp) obj.MajorChargeGroup = temp;
 
                 return (obj);
             }
@@ -3986,8 +3986,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidPriceCurve_collapse" aria-expanded="true" aria-controls="BidPriceCurve_collapse" style="margin-left: 10px;">BidPriceCurve</a></legend>
-                    <div id="BidPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidPriceCurve_collapse" aria-expanded="true" aria-controls="{{id}}_BidPriceCurve_collapse" style="margin-left: 10px;">BidPriceCurve</a></legend>
+                    <div id="{{id}}_BidPriceCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -3997,10 +3997,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "BidPriceCurve" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "BidPriceCurve" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -4095,25 +4095,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#BidHourlySchedule_collapse" aria-expanded="true" aria-controls="BidHourlySchedule_collapse" style="margin-left: 10px;">BidHourlySchedule</a></legend>
-                    <div id="BidHourlySchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_BidHourlySchedule_collapse" aria-expanded="true" aria-controls="{{id}}_BidHourlySchedule_collapse" style="margin-left: 10px;">BidHourlySchedule</a></legend>
+                    <div id="{{id}}_BidHourlySchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.RegularIntervalSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Bid'>Bid: </label><div class='col-sm-8'><input id='Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Bid'>Bid: </label><div class='col-sm-8'><input id='{{id}}_Bid' class='form-control' type='text'{{#Bid}} value='{{Bid}}'{{/Bid}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "BidHourlySchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("Bid").value; if ("" != temp) obj.Bid = temp;
+                var obj = obj || { id: id, cls: "BidHourlySchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_Bid").value; if ("" != temp) obj.Bid = temp;
 
                 return (obj);
             }
@@ -4210,25 +4210,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="PumpingLevelSchedule_collapse" style="margin-left: 10px;">PumpingLevelSchedule</a></legend>
-                    <div id="PumpingLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PumpingLevelSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingLevelSchedule_collapse" style="margin-left: 10px;">PumpingLevelSchedule</a></legend>
+                    <div id="{{id}}_PumpingLevelSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PumpingLevelSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "PumpingLevelSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -4316,25 +4316,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingCostSchedule_collapse" style="margin-left: 10px;">PumpingCostSchedule</a></legend>
-                    <div id="PumpingCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PumpingCostSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingCostSchedule_collapse" style="margin-left: 10px;">PumpingCostSchedule</a></legend>
+                    <div id="{{id}}_PumpingCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PumpingCostSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "PumpingCostSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -4422,25 +4422,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="PumpingShutDownCostSchedule_collapse" style="margin-left: 10px;">PumpingShutDownCostSchedule</a></legend>
-                    <div id="PumpingShutDownCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PumpingShutDownCostSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_PumpingShutDownCostSchedule_collapse" style="margin-left: 10px;">PumpingShutDownCostSchedule</a></legend>
+                    <div id="{{id}}_PumpingShutDownCostSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + BidHourlyProductSchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-control' type='text'{{#value}} value='{{value}}'{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PumpingShutDownCostSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("value").value; if ("" != temp) obj.value = temp;
+                var obj = obj || { id: id, cls: "PumpingShutDownCostSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
             }
@@ -4573,55 +4573,55 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ResourceBid_collapse" aria-expanded="true" aria-controls="ResourceBid_collapse" style="margin-left: 10px;">ResourceBid</a></legend>
-                    <div id="ResourceBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ResourceBid_collapse" aria-expanded="true" aria-controls="{{id}}_ResourceBid_collapse" style="margin-left: 10px;">ResourceBid</a></legend>
+                    <div id="{{id}}_ResourceBid_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Bid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aggregationFlag'>aggregationFlag: </label><div class='col-sm-8'><input id='aggregationFlag' class='form-control' type='text'{{#aggregationFlag}} value='{{aggregationFlag}}'{{/aggregationFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bidStatus'>bidStatus: </label><div class='col-sm-8'><input id='bidStatus' class='form-control' type='text'{{#bidStatus}} value='{{bidStatus}}'{{/bidStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='commodityType'>commodityType: </label><div class='col-sm-8'><input id='commodityType' class='form-control' type='text'{{#commodityType}} value='{{commodityType}}'{{/commodityType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><input id='contingencyAvailFlag' class='form-control' type='text'{{#contingencyAvailFlag}} value='{{contingencyAvailFlag}}'{{/contingencyAvailFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='createdISO'>createdISO: </label><div class='col-sm-8'><input id='createdISO' class='form-control' type='text'{{#createdISO}} value='{{createdISO}}'{{/createdISO}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyMaxDay'>energyMaxDay: </label><div class='col-sm-8'><input id='energyMaxDay' class='form-control' type='text'{{#energyMaxDay}} value='{{energyMaxDay}}'{{/energyMaxDay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyMinDay'>energyMinDay: </label><div class='col-sm-8'><input id='energyMinDay' class='form-control' type='text'{{#energyMinDay}} value='{{energyMinDay}}'{{/energyMinDay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketSepFlag'>marketSepFlag: </label><div class='col-sm-8'><input id='marketSepFlag' class='form-control' type='text'{{#marketSepFlag}} value='{{marketSepFlag}}'{{/marketSepFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minDispatchTime'>minDispatchTime: </label><div class='col-sm-8'><input id='minDispatchTime' class='form-control' type='text'{{#minDispatchTime}} value='{{minDispatchTime}}'{{/minDispatchTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceLoadingType'>resourceLoadingType: </label><div class='col-sm-8'><input id='resourceLoadingType' class='form-control' type='text'{{#resourceLoadingType}} value='{{resourceLoadingType}}'{{/resourceLoadingType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shutDownsMaxDay'>shutDownsMaxDay: </label><div class='col-sm-8'><input id='shutDownsMaxDay' class='form-control' type='text'{{#shutDownsMaxDay}} value='{{shutDownsMaxDay}}'{{/shutDownsMaxDay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shutDownsMaxWeek'>shutDownsMaxWeek: </label><div class='col-sm-8'><input id='shutDownsMaxWeek' class='form-control' type='text'{{#shutDownsMaxWeek}} value='{{shutDownsMaxWeek}}'{{/shutDownsMaxWeek}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpsMaxDay'>startUpsMaxDay: </label><div class='col-sm-8'><input id='startUpsMaxDay' class='form-control' type='text'{{#startUpsMaxDay}} value='{{startUpsMaxDay}}'{{/startUpsMaxDay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpsMaxWeek'>startUpsMaxWeek: </label><div class='col-sm-8'><input id='startUpsMaxWeek' class='form-control' type='text'{{#startUpsMaxWeek}} value='{{startUpsMaxWeek}}'{{/startUpsMaxWeek}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='virtual'>virtual: </label><div class='col-sm-8'><input id='virtual' class='form-check-input' type='checkbox'{{#virtual}} checked{{/virtual}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BidError'>BidError: </label><div class='col-sm-8'><input id='BidError' class='form-control' type='text'{{#BidError}} value='{{BidError}}_string'{{/BidError}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aggregationFlag'>aggregationFlag: </label><div class='col-sm-8'><input id='{{id}}_aggregationFlag' class='form-control' type='text'{{#aggregationFlag}} value='{{aggregationFlag}}'{{/aggregationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bidStatus'>bidStatus: </label><div class='col-sm-8'><input id='{{id}}_bidStatus' class='form-control' type='text'{{#bidStatus}} value='{{bidStatus}}'{{/bidStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commodityType'>commodityType: </label><div class='col-sm-8'><input id='{{id}}_commodityType' class='form-control' type='text'{{#commodityType}} value='{{commodityType}}'{{/commodityType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><input id='{{id}}_contingencyAvailFlag' class='form-control' type='text'{{#contingencyAvailFlag}} value='{{contingencyAvailFlag}}'{{/contingencyAvailFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_createdISO'>createdISO: </label><div class='col-sm-8'><input id='{{id}}_createdISO' class='form-control' type='text'{{#createdISO}} value='{{createdISO}}'{{/createdISO}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyMaxDay'>energyMaxDay: </label><div class='col-sm-8'><input id='{{id}}_energyMaxDay' class='form-control' type='text'{{#energyMaxDay}} value='{{energyMaxDay}}'{{/energyMaxDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyMinDay'>energyMinDay: </label><div class='col-sm-8'><input id='{{id}}_energyMinDay' class='form-control' type='text'{{#energyMinDay}} value='{{energyMinDay}}'{{/energyMinDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketSepFlag'>marketSepFlag: </label><div class='col-sm-8'><input id='{{id}}_marketSepFlag' class='form-control' type='text'{{#marketSepFlag}} value='{{marketSepFlag}}'{{/marketSepFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minDispatchTime'>minDispatchTime: </label><div class='col-sm-8'><input id='{{id}}_minDispatchTime' class='form-control' type='text'{{#minDispatchTime}} value='{{minDispatchTime}}'{{/minDispatchTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceLoadingType'>resourceLoadingType: </label><div class='col-sm-8'><input id='{{id}}_resourceLoadingType' class='form-control' type='text'{{#resourceLoadingType}} value='{{resourceLoadingType}}'{{/resourceLoadingType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shutDownsMaxDay'>shutDownsMaxDay: </label><div class='col-sm-8'><input id='{{id}}_shutDownsMaxDay' class='form-control' type='text'{{#shutDownsMaxDay}} value='{{shutDownsMaxDay}}'{{/shutDownsMaxDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shutDownsMaxWeek'>shutDownsMaxWeek: </label><div class='col-sm-8'><input id='{{id}}_shutDownsMaxWeek' class='form-control' type='text'{{#shutDownsMaxWeek}} value='{{shutDownsMaxWeek}}'{{/shutDownsMaxWeek}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpsMaxDay'>startUpsMaxDay: </label><div class='col-sm-8'><input id='{{id}}_startUpsMaxDay' class='form-control' type='text'{{#startUpsMaxDay}} value='{{startUpsMaxDay}}'{{/startUpsMaxDay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpsMaxWeek'>startUpsMaxWeek: </label><div class='col-sm-8'><input id='{{id}}_startUpsMaxWeek' class='form-control' type='text'{{#startUpsMaxWeek}} value='{{startUpsMaxWeek}}'{{/startUpsMaxWeek}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_virtual'>virtual: </label><div class='col-sm-8'><input id='{{id}}_virtual' class='form-check-input' type='checkbox'{{#virtual}} checked{{/virtual}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidError'>BidError: </label><div class='col-sm-8'><input id='{{id}}_BidError' class='form-control' type='text'{{#BidError}} value='{{BidError}}_string'{{/BidError}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ResourceBid" };
-                super.submit (obj);
-                temp = document.getElementById ("aggregationFlag").value; if ("" != temp) obj.aggregationFlag = temp;
-                temp = document.getElementById ("bidStatus").value; if ("" != temp) obj.bidStatus = temp;
-                temp = document.getElementById ("commodityType").value; if ("" != temp) obj.commodityType = temp;
-                temp = document.getElementById ("contingencyAvailFlag").value; if ("" != temp) obj.contingencyAvailFlag = temp;
-                temp = document.getElementById ("createdISO").value; if ("" != temp) obj.createdISO = temp;
-                temp = document.getElementById ("energyMaxDay").value; if ("" != temp) obj.energyMaxDay = temp;
-                temp = document.getElementById ("energyMinDay").value; if ("" != temp) obj.energyMinDay = temp;
-                temp = document.getElementById ("marketSepFlag").value; if ("" != temp) obj.marketSepFlag = temp;
-                temp = document.getElementById ("minDispatchTime").value; if ("" != temp) obj.minDispatchTime = temp;
-                temp = document.getElementById ("resourceLoadingType").value; if ("" != temp) obj.resourceLoadingType = temp;
-                temp = document.getElementById ("shutDownsMaxDay").value; if ("" != temp) obj.shutDownsMaxDay = temp;
-                temp = document.getElementById ("shutDownsMaxWeek").value; if ("" != temp) obj.shutDownsMaxWeek = temp;
-                temp = document.getElementById ("startUpsMaxDay").value; if ("" != temp) obj.startUpsMaxDay = temp;
-                temp = document.getElementById ("startUpsMaxWeek").value; if ("" != temp) obj.startUpsMaxWeek = temp;
-                temp = document.getElementById ("virtual").checked; if (temp) obj.virtual = true;
-                temp = document.getElementById ("BidError").value; if ("" != temp) obj.BidError = temp.split (",");
+                var obj = obj || { id: id, cls: "ResourceBid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_aggregationFlag").value; if ("" != temp) obj.aggregationFlag = temp;
+                temp = document.getElementById (id + "_bidStatus").value; if ("" != temp) obj.bidStatus = temp;
+                temp = document.getElementById (id + "_commodityType").value; if ("" != temp) obj.commodityType = temp;
+                temp = document.getElementById (id + "_contingencyAvailFlag").value; if ("" != temp) obj.contingencyAvailFlag = temp;
+                temp = document.getElementById (id + "_createdISO").value; if ("" != temp) obj.createdISO = temp;
+                temp = document.getElementById (id + "_energyMaxDay").value; if ("" != temp) obj.energyMaxDay = temp;
+                temp = document.getElementById (id + "_energyMinDay").value; if ("" != temp) obj.energyMinDay = temp;
+                temp = document.getElementById (id + "_marketSepFlag").value; if ("" != temp) obj.marketSepFlag = temp;
+                temp = document.getElementById (id + "_minDispatchTime").value; if ("" != temp) obj.minDispatchTime = temp;
+                temp = document.getElementById (id + "_resourceLoadingType").value; if ("" != temp) obj.resourceLoadingType = temp;
+                temp = document.getElementById (id + "_shutDownsMaxDay").value; if ("" != temp) obj.shutDownsMaxDay = temp;
+                temp = document.getElementById (id + "_shutDownsMaxWeek").value; if ("" != temp) obj.shutDownsMaxWeek = temp;
+                temp = document.getElementById (id + "_startUpsMaxDay").value; if ("" != temp) obj.startUpsMaxDay = temp;
+                temp = document.getElementById (id + "_startUpsMaxWeek").value; if ("" != temp) obj.startUpsMaxWeek = temp;
+                temp = document.getElementById (id + "_virtual").checked; if (temp) obj.virtual = true;
+                temp = document.getElementById (id + "_BidError").value; if ("" != temp) obj.BidError = temp.split (",");
 
                 return (obj);
             }
@@ -4724,27 +4724,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieBid_collapse" aria-expanded="true" aria-controls="InterTieBid_collapse" style="margin-left: 10px;">InterTieBid</a></legend>
-                    <div id="InterTieBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InterTieBid_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieBid_collapse" style="margin-left: 10px;">InterTieBid</a></legend>
+                    <div id="{{id}}_InterTieBid_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minHourlyBlock '>minHourlyBlock : </label><div class='col-sm-8'><input id='minHourlyBlock ' class='form-control' type='text'{{#minHourlyBlock }} value='{{minHourlyBlock }}'{{/minHourlyBlock }}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minHourlyBlock '>minHourlyBlock : </label><div class='col-sm-8'><input id='{{id}}_minHourlyBlock ' class='form-control' type='text'{{#minHourlyBlock }} value='{{minHourlyBlock }}'{{/minHourlyBlock }}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredInterTie'>RegisteredInterTie: </label><div class='col-sm-8'><input id='{{id}}_RegisteredInterTie' class='form-control' type='text'{{#RegisteredInterTie}} value='{{RegisteredInterTie}}'{{/RegisteredInterTie}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "InterTieBid" };
-                super.submit (obj);
-                temp = document.getElementById ("minHourlyBlock ").value; if ("" != temp) obj.minHourlyBlock  = temp;
-                temp = document.getElementById ("RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp;
+                var obj = obj || { id: id, cls: "InterTieBid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_minHourlyBlock ").value; if ("" != temp) obj.minHourlyBlock  = temp;
+                temp = document.getElementById (id + "_RegisteredInterTie").value; if ("" != temp) obj.RegisteredInterTie = temp;
 
                 return (obj);
             }
@@ -4865,35 +4865,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TransactionBid_collapse" aria-expanded="true" aria-controls="TransactionBid_collapse" style="margin-left: 10px;">TransactionBid</a></legend>
-                    <div id="TransactionBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TransactionBid_collapse" aria-expanded="true" aria-controls="{{id}}_TransactionBid_collapse" style="margin-left: 10px;">TransactionBid</a></legend>
+                    <div id="{{id}}_TransactionBid_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Bid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='demandTransaction'>demandTransaction: </label><div class='col-sm-8'><input id='demandTransaction' class='form-check-input' type='checkbox'{{#demandTransaction}} checked{{/demandTransaction}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='dispatchable'>dispatchable: </label><div class='col-sm-8'><input id='dispatchable' class='form-check-input' type='checkbox'{{#dispatchable}} checked{{/dispatchable}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='payCongestion'>payCongestion: </label><div class='col-sm-8'><input id='payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Receipt_Pnode'>Receipt_Pnode: </label><div class='col-sm-8'><input id='Receipt_Pnode' class='form-control' type='text'{{#Receipt_Pnode}} value='{{Receipt_Pnode}}'{{/Receipt_Pnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Delivery_Pnode'>Delivery_Pnode: </label><div class='col-sm-8'><input id='Delivery_Pnode' class='form-control' type='text'{{#Delivery_Pnode}} value='{{Delivery_Pnode}}'{{/Delivery_Pnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TransmissionReservation'>TransmissionReservation: </label><div class='col-sm-8'><input id='TransmissionReservation' class='form-control' type='text'{{#TransmissionReservation}} value='{{TransmissionReservation}}'{{/TransmissionReservation}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_demandTransaction'>demandTransaction: </label><div class='col-sm-8'><input id='{{id}}_demandTransaction' class='form-check-input' type='checkbox'{{#demandTransaction}} checked{{/demandTransaction}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_dispatchable'>dispatchable: </label><div class='col-sm-8'><input id='{{id}}_dispatchable' class='form-check-input' type='checkbox'{{#dispatchable}} checked{{/dispatchable}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_payCongestion'>payCongestion: </label><div class='col-sm-8'><input id='{{id}}_payCongestion' class='form-check-input' type='checkbox'{{#payCongestion}} checked{{/payCongestion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Receipt_Pnode'>Receipt_Pnode: </label><div class='col-sm-8'><input id='{{id}}_Receipt_Pnode' class='form-control' type='text'{{#Receipt_Pnode}} value='{{Receipt_Pnode}}'{{/Receipt_Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Delivery_Pnode'>Delivery_Pnode: </label><div class='col-sm-8'><input id='{{id}}_Delivery_Pnode' class='form-control' type='text'{{#Delivery_Pnode}} value='{{Delivery_Pnode}}'{{/Delivery_Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TransmissionReservation'>TransmissionReservation: </label><div class='col-sm-8'><input id='{{id}}_TransmissionReservation' class='form-control' type='text'{{#TransmissionReservation}} value='{{TransmissionReservation}}'{{/TransmissionReservation}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TransactionBid" };
-                super.submit (obj);
-                temp = document.getElementById ("demandTransaction").checked; if (temp) obj.demandTransaction = true;
-                temp = document.getElementById ("dispatchable").checked; if (temp) obj.dispatchable = true;
-                temp = document.getElementById ("payCongestion").checked; if (temp) obj.payCongestion = true;
-                temp = document.getElementById ("Receipt_Pnode").value; if ("" != temp) obj.Receipt_Pnode = temp;
-                temp = document.getElementById ("Delivery_Pnode").value; if ("" != temp) obj.Delivery_Pnode = temp;
-                temp = document.getElementById ("TransmissionReservation").value; if ("" != temp) obj.TransmissionReservation = temp;
+                var obj = obj || { id: id, cls: "TransactionBid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_demandTransaction").checked; if (temp) obj.demandTransaction = true;
+                temp = document.getElementById (id + "_dispatchable").checked; if (temp) obj.dispatchable = true;
+                temp = document.getElementById (id + "_payCongestion").checked; if (temp) obj.payCongestion = true;
+                temp = document.getElementById (id + "_Receipt_Pnode").value; if ("" != temp) obj.Receipt_Pnode = temp;
+                temp = document.getElementById (id + "_Delivery_Pnode").value; if ("" != temp) obj.Delivery_Pnode = temp;
+                temp = document.getElementById (id + "_TransmissionReservation").value; if ("" != temp) obj.TransmissionReservation = temp;
 
                 return (obj);
             }
@@ -4999,25 +4999,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AreaLoadBid_collapse" aria-expanded="true" aria-controls="AreaLoadBid_collapse" style="margin-left: 10px;">AreaLoadBid</a></legend>
-                    <div id="AreaLoadBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AreaLoadBid_collapse" aria-expanded="true" aria-controls="{{id}}_AreaLoadBid_collapse" style="margin-left: 10px;">AreaLoadBid</a></legend>
+                    <div id="{{id}}_AreaLoadBid_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Bid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='demandBidMW'>demandBidMW: </label><div class='col-sm-8'><input id='demandBidMW' class='form-control' type='text'{{#demandBidMW}} value='{{demandBidMW}}'{{/demandBidMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_demandBidMW'>demandBidMW: </label><div class='col-sm-8'><input id='{{id}}_demandBidMW' class='form-control' type='text'{{#demandBidMW}} value='{{demandBidMW}}'{{/demandBidMW}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AreaLoadBid" };
-                super.submit (obj);
-                temp = document.getElementById ("demandBidMW").value; if ("" != temp) obj.demandBidMW = temp;
+                var obj = obj || { id: id, cls: "AreaLoadBid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_demandBidMW").value; if ("" != temp) obj.demandBidMW = temp;
 
                 return (obj);
             }
@@ -5167,55 +5167,55 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#LoadBid_collapse" aria-expanded="true" aria-controls="LoadBid_collapse" style="margin-left: 10px;">LoadBid</a></legend>
-                    <div id="LoadBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_LoadBid_collapse" aria-expanded="true" aria-controls="{{id}}_LoadBid_collapse" style="margin-left: 10px;">LoadBid</a></legend>
+                    <div id="{{id}}_LoadBid_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dropRampRate'>dropRampRate: </label><div class='col-sm-8'><input id='dropRampRate' class='form-control' type='text'{{#dropRampRate}} value='{{dropRampRate}}'{{/dropRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadRedInitiationCost'>loadRedInitiationCost: </label><div class='col-sm-8'><input id='loadRedInitiationCost' class='form-control' type='text'{{#loadRedInitiationCost}} value='{{loadRedInitiationCost}}'{{/loadRedInitiationCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='loadRedInitiationTime'>loadRedInitiationTime: </label><div class='col-sm-8'><input id='loadRedInitiationTime' class='form-control' type='text'{{#loadRedInitiationTime}} value='{{loadRedInitiationTime}}'{{/loadRedInitiationTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketDate'>marketDate: </label><div class='col-sm-8'><input id='marketDate' class='form-control' type='text'{{#marketDate}} value='{{marketDate}}'{{/marketDate}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='meteredValue'>meteredValue: </label><div class='col-sm-8'><input id='meteredValue' class='form-check-input' type='checkbox'{{#meteredValue}} checked{{/meteredValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoad'>minLoad: </label><div class='col-sm-8'><input id='minLoad' class='form-control' type='text'{{#minLoad}} value='{{minLoad}}'{{/minLoad}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoadReduction'>minLoadReduction: </label><div class='col-sm-8'><input id='minLoadReduction' class='form-control' type='text'{{#minLoadReduction}} value='{{minLoadReduction}}'{{/minLoadReduction}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoadReductionCost'>minLoadReductionCost: </label><div class='col-sm-8'><input id='minLoadReductionCost' class='form-control' type='text'{{#minLoadReductionCost}} value='{{minLoadReductionCost}}'{{/minLoadReductionCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pickUpRampRate'>pickUpRampRate: </label><div class='col-sm-8'><input id='pickUpRampRate' class='form-control' type='text'{{#pickUpRampRate}} value='{{pickUpRampRate}}'{{/pickUpRampRate}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='priceSetting'>priceSetting: </label><div class='col-sm-8'><input id='priceSetting' class='form-check-input' type='checkbox'{{#priceSetting}} checked{{/priceSetting}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shutdownCost'>shutdownCost: </label><div class='col-sm-8'><input id='shutdownCost' class='form-control' type='text'{{#shutdownCost}} value='{{shutdownCost}}'{{/shutdownCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AreaLoadBid'>AreaLoadBid: </label><div class='col-sm-8'><input id='AreaLoadBid' class='form-control' type='text'{{#AreaLoadBid}} value='{{AreaLoadBid}}'{{/AreaLoadBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}'{{/RegisteredLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dropRampRate'>dropRampRate: </label><div class='col-sm-8'><input id='{{id}}_dropRampRate' class='form-control' type='text'{{#dropRampRate}} value='{{dropRampRate}}'{{/dropRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRedInitiationCost'>loadRedInitiationCost: </label><div class='col-sm-8'><input id='{{id}}_loadRedInitiationCost' class='form-control' type='text'{{#loadRedInitiationCost}} value='{{loadRedInitiationCost}}'{{/loadRedInitiationCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_loadRedInitiationTime'>loadRedInitiationTime: </label><div class='col-sm-8'><input id='{{id}}_loadRedInitiationTime' class='form-control' type='text'{{#loadRedInitiationTime}} value='{{loadRedInitiationTime}}'{{/loadRedInitiationTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketDate'>marketDate: </label><div class='col-sm-8'><input id='{{id}}_marketDate' class='form-control' type='text'{{#marketDate}} value='{{marketDate}}'{{/marketDate}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_meteredValue'>meteredValue: </label><div class='col-sm-8'><input id='{{id}}_meteredValue' class='form-check-input' type='checkbox'{{#meteredValue}} checked{{/meteredValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoad'>minLoad: </label><div class='col-sm-8'><input id='{{id}}_minLoad' class='form-control' type='text'{{#minLoad}} value='{{minLoad}}'{{/minLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReduction'>minLoadReduction: </label><div class='col-sm-8'><input id='{{id}}_minLoadReduction' class='form-control' type='text'{{#minLoadReduction}} value='{{minLoadReduction}}'{{/minLoadReduction}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionCost'>minLoadReductionCost: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionCost' class='form-control' type='text'{{#minLoadReductionCost}} value='{{minLoadReductionCost}}'{{/minLoadReductionCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minLoadReductionInterval'>minLoadReductionInterval: </label><div class='col-sm-8'><input id='{{id}}_minLoadReductionInterval' class='form-control' type='text'{{#minLoadReductionInterval}} value='{{minLoadReductionInterval}}'{{/minLoadReductionInterval}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minTimeBetLoadRed'>minTimeBetLoadRed: </label><div class='col-sm-8'><input id='{{id}}_minTimeBetLoadRed' class='form-control' type='text'{{#minTimeBetLoadRed}} value='{{minTimeBetLoadRed}}'{{/minTimeBetLoadRed}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pickUpRampRate'>pickUpRampRate: </label><div class='col-sm-8'><input id='{{id}}_pickUpRampRate' class='form-control' type='text'{{#pickUpRampRate}} value='{{pickUpRampRate}}'{{/pickUpRampRate}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_priceSetting'>priceSetting: </label><div class='col-sm-8'><input id='{{id}}_priceSetting' class='form-check-input' type='checkbox'{{#priceSetting}} checked{{/priceSetting}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_reqNoticeTime'>reqNoticeTime: </label><div class='col-sm-8'><input id='{{id}}_reqNoticeTime' class='form-control' type='text'{{#reqNoticeTime}} value='{{reqNoticeTime}}'{{/reqNoticeTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shutdownCost'>shutdownCost: </label><div class='col-sm-8'><input id='{{id}}_shutdownCost' class='form-control' type='text'{{#shutdownCost}} value='{{shutdownCost}}'{{/shutdownCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AreaLoadBid'>AreaLoadBid: </label><div class='col-sm-8'><input id='{{id}}_AreaLoadBid' class='form-control' type='text'{{#AreaLoadBid}} value='{{AreaLoadBid}}'{{/AreaLoadBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}'{{/RegisteredLoad}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "LoadBid" };
-                super.submit (obj);
-                temp = document.getElementById ("dropRampRate").value; if ("" != temp) obj.dropRampRate = temp;
-                temp = document.getElementById ("loadRedInitiationCost").value; if ("" != temp) obj.loadRedInitiationCost = temp;
-                temp = document.getElementById ("loadRedInitiationTime").value; if ("" != temp) obj.loadRedInitiationTime = temp;
-                temp = document.getElementById ("marketDate").value; if ("" != temp) obj.marketDate = temp;
-                temp = document.getElementById ("meteredValue").checked; if (temp) obj.meteredValue = true;
-                temp = document.getElementById ("minLoad").value; if ("" != temp) obj.minLoad = temp;
-                temp = document.getElementById ("minLoadReduction").value; if ("" != temp) obj.minLoadReduction = temp;
-                temp = document.getElementById ("minLoadReductionCost").value; if ("" != temp) obj.minLoadReductionCost = temp;
-                temp = document.getElementById ("minLoadReductionInterval").value; if ("" != temp) obj.minLoadReductionInterval = temp;
-                temp = document.getElementById ("minTimeBetLoadRed").value; if ("" != temp) obj.minTimeBetLoadRed = temp;
-                temp = document.getElementById ("pickUpRampRate").value; if ("" != temp) obj.pickUpRampRate = temp;
-                temp = document.getElementById ("priceSetting").checked; if (temp) obj.priceSetting = true;
-                temp = document.getElementById ("reqNoticeTime").value; if ("" != temp) obj.reqNoticeTime = temp;
-                temp = document.getElementById ("shutdownCost").value; if ("" != temp) obj.shutdownCost = temp;
-                temp = document.getElementById ("AreaLoadBid").value; if ("" != temp) obj.AreaLoadBid = temp;
-                temp = document.getElementById ("RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp;
+                var obj = obj || { id: id, cls: "LoadBid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dropRampRate").value; if ("" != temp) obj.dropRampRate = temp;
+                temp = document.getElementById (id + "_loadRedInitiationCost").value; if ("" != temp) obj.loadRedInitiationCost = temp;
+                temp = document.getElementById (id + "_loadRedInitiationTime").value; if ("" != temp) obj.loadRedInitiationTime = temp;
+                temp = document.getElementById (id + "_marketDate").value; if ("" != temp) obj.marketDate = temp;
+                temp = document.getElementById (id + "_meteredValue").checked; if (temp) obj.meteredValue = true;
+                temp = document.getElementById (id + "_minLoad").value; if ("" != temp) obj.minLoad = temp;
+                temp = document.getElementById (id + "_minLoadReduction").value; if ("" != temp) obj.minLoadReduction = temp;
+                temp = document.getElementById (id + "_minLoadReductionCost").value; if ("" != temp) obj.minLoadReductionCost = temp;
+                temp = document.getElementById (id + "_minLoadReductionInterval").value; if ("" != temp) obj.minLoadReductionInterval = temp;
+                temp = document.getElementById (id + "_minTimeBetLoadRed").value; if ("" != temp) obj.minTimeBetLoadRed = temp;
+                temp = document.getElementById (id + "_pickUpRampRate").value; if ("" != temp) obj.pickUpRampRate = temp;
+                temp = document.getElementById (id + "_priceSetting").checked; if (temp) obj.priceSetting = true;
+                temp = document.getElementById (id + "_reqNoticeTime").value; if ("" != temp) obj.reqNoticeTime = temp;
+                temp = document.getElementById (id + "_shutdownCost").value; if ("" != temp) obj.shutdownCost = temp;
+                temp = document.getElementById (id + "_AreaLoadBid").value; if ("" != temp) obj.AreaLoadBid = temp;
+                temp = document.getElementById (id + "_RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp;
 
                 return (obj);
             }
@@ -5386,67 +5386,67 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#GeneratingBid_collapse" aria-expanded="true" aria-controls="GeneratingBid_collapse" style="margin-left: 10px;">GeneratingBid</a></legend>
-                    <div id="GeneratingBid_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_GeneratingBid_collapse" aria-expanded="true" aria-controls="{{id}}_GeneratingBid_collapse" style="margin-left: 10px;">GeneratingBid</a></legend>
+                    <div id="{{id}}_GeneratingBid_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + ResourceBid.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='combinedCycleUnitOffer'>combinedCycleUnitOffer: </label><div class='col-sm-8'><input id='combinedCycleUnitOffer' class='form-control' type='text'{{#combinedCycleUnitOffer}} value='{{combinedCycleUnitOffer}}'{{/combinedCycleUnitOffer}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='downTimeMax'>downTimeMax: </label><div class='col-sm-8'><input id='downTimeMax' class='form-control' type='text'{{#downTimeMax}} value='{{downTimeMax}}'{{/downTimeMax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='installedCapacity'>installedCapacity: </label><div class='col-sm-8'><input id='installedCapacity' class='form-control' type='text'{{#installedCapacity}} value='{{installedCapacity}}'{{/installedCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowerRampRate'>lowerRampRate: </label><div class='col-sm-8'><input id='lowerRampRate' class='form-control' type='text'{{#lowerRampRate}} value='{{lowerRampRate}}'{{/lowerRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxEmergencyMW'>maxEmergencyMW: </label><div class='col-sm-8'><input id='maxEmergencyMW' class='form-control' type='text'{{#maxEmergencyMW}} value='{{maxEmergencyMW}}'{{/maxEmergencyMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maximumEconomicMW'>maximumEconomicMW: </label><div class='col-sm-8'><input id='maximumEconomicMW' class='form-control' type='text'{{#maximumEconomicMW}} value='{{maximumEconomicMW}}'{{/maximumEconomicMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minEmergencyMW'>minEmergencyMW: </label><div class='col-sm-8'><input id='minEmergencyMW' class='form-control' type='text'{{#minEmergencyMW}} value='{{minEmergencyMW}}'{{/minEmergencyMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minimumEconomicMW'>minimumEconomicMW: </label><div class='col-sm-8'><input id='minimumEconomicMW' class='form-control' type='text'{{#minimumEconomicMW}} value='{{minimumEconomicMW}}'{{/minimumEconomicMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='notificationTime'>notificationTime: </label><div class='col-sm-8'><input id='notificationTime' class='form-control' type='text'{{#notificationTime}} value='{{notificationTime}}'{{/notificationTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='operatingMode'>operatingMode: </label><div class='col-sm-8'><input id='operatingMode' class='form-control' type='text'{{#operatingMode}} value='{{operatingMode}}'{{/operatingMode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='raiseRampRate'>raiseRampRate: </label><div class='col-sm-8'><input id='raiseRampRate' class='form-control' type='text'{{#raiseRampRate}} value='{{raiseRampRate}}'{{/raiseRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='rampCurveType'>rampCurveType: </label><div class='col-sm-8'><input id='rampCurveType' class='form-control' type='text'{{#rampCurveType}} value='{{rampCurveType}}'{{/rampCurveType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startupCost'>startupCost: </label><div class='col-sm-8'><input id='startupCost' class='form-control' type='text'{{#startupCost}} value='{{startupCost}}'{{/startupCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpRampRate'>startUpRampRate: </label><div class='col-sm-8'><input id='startUpRampRate' class='form-control' type='text'{{#startUpRampRate}} value='{{startUpRampRate}}'{{/startUpRampRate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpType'>startUpType: </label><div class='col-sm-8'><input id='startUpType' class='form-control' type='text'{{#startUpType}} value='{{startUpType}}'{{/startUpType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='upTimeMax'>upTimeMax: </label><div class='col-sm-8'><input id='upTimeMax' class='form-control' type='text'{{#upTimeMax}} value='{{upTimeMax}}'{{/upTimeMax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='NotificationTimeCurve'>NotificationTimeCurve: </label><div class='col-sm-8'><input id='NotificationTimeCurve' class='form-control' type='text'{{#NotificationTimeCurve}} value='{{NotificationTimeCurve}}'{{/NotificationTimeCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartUpCostCurve'>StartUpCostCurve: </label><div class='col-sm-8'><input id='StartUpCostCurve' class='form-control' type='text'{{#StartUpCostCurve}} value='{{StartUpCostCurve}}'{{/StartUpCostCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='StartUpTimeCurve'>StartUpTimeCurve: </label><div class='col-sm-8'><input id='StartUpTimeCurve' class='form-control' type='text'{{#StartUpTimeCurve}} value='{{StartUpTimeCurve}}'{{/StartUpTimeCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='BidSet'>BidSet: </label><div class='col-sm-8'><input id='BidSet' class='form-control' type='text'{{#BidSet}} value='{{BidSet}}'{{/BidSet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_combinedCycleUnitOffer'>combinedCycleUnitOffer: </label><div class='col-sm-8'><input id='{{id}}_combinedCycleUnitOffer' class='form-control' type='text'{{#combinedCycleUnitOffer}} value='{{combinedCycleUnitOffer}}'{{/combinedCycleUnitOffer}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_downTimeMax'>downTimeMax: </label><div class='col-sm-8'><input id='{{id}}_downTimeMax' class='form-control' type='text'{{#downTimeMax}} value='{{downTimeMax}}'{{/downTimeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_installedCapacity'>installedCapacity: </label><div class='col-sm-8'><input id='{{id}}_installedCapacity' class='form-control' type='text'{{#installedCapacity}} value='{{installedCapacity}}'{{/installedCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowerRampRate'>lowerRampRate: </label><div class='col-sm-8'><input id='{{id}}_lowerRampRate' class='form-control' type='text'{{#lowerRampRate}} value='{{lowerRampRate}}'{{/lowerRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxEmergencyMW'>maxEmergencyMW: </label><div class='col-sm-8'><input id='{{id}}_maxEmergencyMW' class='form-control' type='text'{{#maxEmergencyMW}} value='{{maxEmergencyMW}}'{{/maxEmergencyMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maximumEconomicMW'>maximumEconomicMW: </label><div class='col-sm-8'><input id='{{id}}_maximumEconomicMW' class='form-control' type='text'{{#maximumEconomicMW}} value='{{maximumEconomicMW}}'{{/maximumEconomicMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minEmergencyMW'>minEmergencyMW: </label><div class='col-sm-8'><input id='{{id}}_minEmergencyMW' class='form-control' type='text'{{#minEmergencyMW}} value='{{minEmergencyMW}}'{{/minEmergencyMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minimumEconomicMW'>minimumEconomicMW: </label><div class='col-sm-8'><input id='{{id}}_minimumEconomicMW' class='form-control' type='text'{{#minimumEconomicMW}} value='{{minimumEconomicMW}}'{{/minimumEconomicMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='{{id}}_noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_notificationTime'>notificationTime: </label><div class='col-sm-8'><input id='{{id}}_notificationTime' class='form-control' type='text'{{#notificationTime}} value='{{notificationTime}}'{{/notificationTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_operatingMode'>operatingMode: </label><div class='col-sm-8'><input id='{{id}}_operatingMode' class='form-control' type='text'{{#operatingMode}} value='{{operatingMode}}'{{/operatingMode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_raiseRampRate'>raiseRampRate: </label><div class='col-sm-8'><input id='{{id}}_raiseRampRate' class='form-control' type='text'{{#raiseRampRate}} value='{{raiseRampRate}}'{{/raiseRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_rampCurveType'>rampCurveType: </label><div class='col-sm-8'><input id='{{id}}_rampCurveType' class='form-control' type='text'{{#rampCurveType}} value='{{rampCurveType}}'{{/rampCurveType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startupCost'>startupCost: </label><div class='col-sm-8'><input id='{{id}}_startupCost' class='form-control' type='text'{{#startupCost}} value='{{startupCost}}'{{/startupCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpRampRate'>startUpRampRate: </label><div class='col-sm-8'><input id='{{id}}_startUpRampRate' class='form-control' type='text'{{#startUpRampRate}} value='{{startUpRampRate}}'{{/startUpRampRate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpType'>startUpType: </label><div class='col-sm-8'><input id='{{id}}_startUpType' class='form-control' type='text'{{#startUpType}} value='{{startUpType}}'{{/startUpType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_upTimeMax'>upTimeMax: </label><div class='col-sm-8'><input id='{{id}}_upTimeMax' class='form-control' type='text'{{#upTimeMax}} value='{{upTimeMax}}'{{/upTimeMax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_NotificationTimeCurve'>NotificationTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_NotificationTimeCurve' class='form-control' type='text'{{#NotificationTimeCurve}} value='{{NotificationTimeCurve}}'{{/NotificationTimeCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpCostCurve'>StartUpCostCurve: </label><div class='col-sm-8'><input id='{{id}}_StartUpCostCurve' class='form-control' type='text'{{#StartUpCostCurve}} value='{{StartUpCostCurve}}'{{/StartUpCostCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_StartUpTimeCurve'>StartUpTimeCurve: </label><div class='col-sm-8'><input id='{{id}}_StartUpTimeCurve' class='form-control' type='text'{{#StartUpTimeCurve}} value='{{StartUpTimeCurve}}'{{/StartUpTimeCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_BidSet'>BidSet: </label><div class='col-sm-8'><input id='{{id}}_BidSet' class='form-control' type='text'{{#BidSet}} value='{{BidSet}}'{{/BidSet}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "GeneratingBid" };
-                super.submit (obj);
-                temp = document.getElementById ("combinedCycleUnitOffer").value; if ("" != temp) obj.combinedCycleUnitOffer = temp;
-                temp = document.getElementById ("downTimeMax").value; if ("" != temp) obj.downTimeMax = temp;
-                temp = document.getElementById ("installedCapacity").value; if ("" != temp) obj.installedCapacity = temp;
-                temp = document.getElementById ("lowerRampRate").value; if ("" != temp) obj.lowerRampRate = temp;
-                temp = document.getElementById ("maxEmergencyMW").value; if ("" != temp) obj.maxEmergencyMW = temp;
-                temp = document.getElementById ("maximumEconomicMW").value; if ("" != temp) obj.maximumEconomicMW = temp;
-                temp = document.getElementById ("minEmergencyMW").value; if ("" != temp) obj.minEmergencyMW = temp;
-                temp = document.getElementById ("minimumEconomicMW").value; if ("" != temp) obj.minimumEconomicMW = temp;
-                temp = document.getElementById ("noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
-                temp = document.getElementById ("notificationTime").value; if ("" != temp) obj.notificationTime = temp;
-                temp = document.getElementById ("operatingMode").value; if ("" != temp) obj.operatingMode = temp;
-                temp = document.getElementById ("raiseRampRate").value; if ("" != temp) obj.raiseRampRate = temp;
-                temp = document.getElementById ("rampCurveType").value; if ("" != temp) obj.rampCurveType = temp;
-                temp = document.getElementById ("startupCost").value; if ("" != temp) obj.startupCost = temp;
-                temp = document.getElementById ("startUpRampRate").value; if ("" != temp) obj.startUpRampRate = temp;
-                temp = document.getElementById ("startUpType").value; if ("" != temp) obj.startUpType = temp;
-                temp = document.getElementById ("upTimeMax").value; if ("" != temp) obj.upTimeMax = temp;
-                temp = document.getElementById ("NotificationTimeCurve").value; if ("" != temp) obj.NotificationTimeCurve = temp;
-                temp = document.getElementById ("StartUpCostCurve").value; if ("" != temp) obj.StartUpCostCurve = temp;
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
-                temp = document.getElementById ("StartUpTimeCurve").value; if ("" != temp) obj.StartUpTimeCurve = temp;
-                temp = document.getElementById ("BidSet").value; if ("" != temp) obj.BidSet = temp;
+                var obj = obj || { id: id, cls: "GeneratingBid" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_combinedCycleUnitOffer").value; if ("" != temp) obj.combinedCycleUnitOffer = temp;
+                temp = document.getElementById (id + "_downTimeMax").value; if ("" != temp) obj.downTimeMax = temp;
+                temp = document.getElementById (id + "_installedCapacity").value; if ("" != temp) obj.installedCapacity = temp;
+                temp = document.getElementById (id + "_lowerRampRate").value; if ("" != temp) obj.lowerRampRate = temp;
+                temp = document.getElementById (id + "_maxEmergencyMW").value; if ("" != temp) obj.maxEmergencyMW = temp;
+                temp = document.getElementById (id + "_maximumEconomicMW").value; if ("" != temp) obj.maximumEconomicMW = temp;
+                temp = document.getElementById (id + "_minEmergencyMW").value; if ("" != temp) obj.minEmergencyMW = temp;
+                temp = document.getElementById (id + "_minimumEconomicMW").value; if ("" != temp) obj.minimumEconomicMW = temp;
+                temp = document.getElementById (id + "_noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
+                temp = document.getElementById (id + "_notificationTime").value; if ("" != temp) obj.notificationTime = temp;
+                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) obj.operatingMode = temp;
+                temp = document.getElementById (id + "_raiseRampRate").value; if ("" != temp) obj.raiseRampRate = temp;
+                temp = document.getElementById (id + "_rampCurveType").value; if ("" != temp) obj.rampCurveType = temp;
+                temp = document.getElementById (id + "_startupCost").value; if ("" != temp) obj.startupCost = temp;
+                temp = document.getElementById (id + "_startUpRampRate").value; if ("" != temp) obj.startUpRampRate = temp;
+                temp = document.getElementById (id + "_startUpType").value; if ("" != temp) obj.startUpType = temp;
+                temp = document.getElementById (id + "_upTimeMax").value; if ("" != temp) obj.upTimeMax = temp;
+                temp = document.getElementById (id + "_NotificationTimeCurve").value; if ("" != temp) obj.NotificationTimeCurve = temp;
+                temp = document.getElementById (id + "_StartUpCostCurve").value; if ("" != temp) obj.StartUpCostCurve = temp;
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                temp = document.getElementById (id + "_StartUpTimeCurve").value; if ("" != temp) obj.StartUpTimeCurve = temp;
+                temp = document.getElementById (id + "_BidSet").value; if ("" != temp) obj.BidSet = temp;
 
                 return (obj);
             }
@@ -5549,25 +5549,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#OpenTieSchedule_collapse" aria-expanded="true" aria-controls="OpenTieSchedule_collapse" style="margin-left: 10px;">OpenTieSchedule</a></legend>
-                    <div id="OpenTieSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_OpenTieSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_OpenTieSchedule_collapse" style="margin-left: 10px;">OpenTieSchedule</a></legend>
+                    <div id="{{id}}_OpenTieSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + BidHourlySchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "OpenTieSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("value").checked; if (temp) obj.value = true;
+                var obj = obj || { id: id, cls: "OpenTieSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").checked; if (temp) obj.value = true;
 
                 return (obj);
             }
@@ -5655,25 +5655,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="HourlyPreDispatchSchedule_collapse" style="margin-left: 10px;">HourlyPreDispatchSchedule</a></legend>
-                    <div id="HourlyPreDispatchSchedule_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_HourlyPreDispatchSchedule_collapse" aria-expanded="true" aria-controls="{{id}}_HourlyPreDispatchSchedule_collapse" style="margin-left: 10px;">HourlyPreDispatchSchedule</a></legend>
+                    <div id="{{id}}_HourlyPreDispatchSchedule_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + BidHourlySchedule.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='value'>value: </label><div class='col-sm-8'><input id='value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_value'>value: </label><div class='col-sm-8'><input id='{{id}}_value' class='form-check-input' type='checkbox'{{#value}} checked{{/value}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "HourlyPreDispatchSchedule" };
-                super.submit (obj);
-                temp = document.getElementById ("value").checked; if (temp) obj.value = true;
+                var obj = obj || { id: id, cls: "HourlyPreDispatchSchedule" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_value").checked; if (temp) obj.value = true;
 
                 return (obj);
             }

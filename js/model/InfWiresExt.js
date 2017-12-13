@@ -87,27 +87,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SVC_collapse" aria-expanded="true" aria-controls="SVC_collapse" style="margin-left: 10px;">SVC</a></legend>
-                    <div id="SVC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SVC_collapse" aria-expanded="true" aria-controls="{{id}}_SVC_collapse" style="margin-left: 10px;">SVC</a></legend>
+                    <div id="{{id}}_SVC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Wires.ShuntCompensator.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='capacitiveRating'>capacitiveRating: </label><div class='col-sm-8'><input id='capacitiveRating' class='form-control' type='text'{{#capacitiveRating}} value='{{capacitiveRating}}'{{/capacitiveRating}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inductiveRating'>inductiveRating: </label><div class='col-sm-8'><input id='inductiveRating' class='form-control' type='text'{{#inductiveRating}} value='{{inductiveRating}}'{{/inductiveRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_capacitiveRating'>capacitiveRating: </label><div class='col-sm-8'><input id='{{id}}_capacitiveRating' class='form-control' type='text'{{#capacitiveRating}} value='{{capacitiveRating}}'{{/capacitiveRating}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inductiveRating'>inductiveRating: </label><div class='col-sm-8'><input id='{{id}}_inductiveRating' class='form-control' type='text'{{#inductiveRating}} value='{{inductiveRating}}'{{/inductiveRating}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SVC" };
-                super.submit (obj);
-                temp = document.getElementById ("capacitiveRating").value; if ("" != temp) obj.capacitiveRating = temp;
-                temp = document.getElementById ("inductiveRating").value; if ("" != temp) obj.inductiveRating = temp;
+                var obj = obj || { id: id, cls: "SVC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_capacitiveRating").value; if ("" != temp) obj.capacitiveRating = temp;
+                temp = document.getElementById (id + "_inductiveRating").value; if ("" != temp) obj.inductiveRating = temp;
 
                 return (obj);
             }
@@ -244,59 +244,59 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="ShuntCompensatorControl_collapse" style="margin-left: 10px;">ShuntCompensatorControl</a></legend>
-                    <div id="ShuntCompensatorControl_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ShuntCompensatorControl_collapse" aria-expanded="true" aria-controls="{{id}}_ShuntCompensatorControl_collapse" style="margin-left: 10px;">ShuntCompensatorControl</a></legend>
+                    <div id="{{id}}_ShuntCompensatorControl_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Wires.RegulatingControl.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='branchDirect'>branchDirect: </label><div class='col-sm-8'><input id='branchDirect' class='form-control' type='text'{{#branchDirect}} value='{{branchDirect}}'{{/branchDirect}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='cellSize'>cellSize: </label><div class='col-sm-8'><input id='cellSize' class='form-control' type='text'{{#cellSize}} value='{{cellSize}}'{{/cellSize}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='controlKind'>controlKind: </label><div class='col-sm-8'><input id='controlKind' class='form-control' type='text'{{#controlKind}} value='{{controlKind}}'{{/controlKind}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='highVoltageOverride'>highVoltageOverride: </label><div class='col-sm-8'><input id='highVoltageOverride' class='form-control' type='text'{{#highVoltageOverride}} value='{{highVoltageOverride}}'{{/highVoltageOverride}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localControlKind'>localControlKind: </label><div class='col-sm-8'><input id='localControlKind' class='form-control' type='text'{{#localControlKind}} value='{{localControlKind}}'{{/localControlKind}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localOffLevel'>localOffLevel: </label><div class='col-sm-8'><input id='localOffLevel' class='form-control' type='text'{{#localOffLevel}} value='{{localOffLevel}}'{{/localOffLevel}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='localOnLevel'>localOnLevel: </label><div class='col-sm-8'><input id='localOnLevel' class='form-control' type='text'{{#localOnLevel}} value='{{localOnLevel}}'{{/localOnLevel}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='localOverride'>localOverride: </label><div class='col-sm-8'><input id='localOverride' class='form-check-input' type='checkbox'{{#localOverride}} checked{{/localOverride}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lowVoltageOverride'>lowVoltageOverride: </label><div class='col-sm-8'><input id='lowVoltageOverride' class='form-control' type='text'{{#lowVoltageOverride}} value='{{lowVoltageOverride}}'{{/lowVoltageOverride}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxSwitchOperationCount'>maxSwitchOperationCount: </label><div class='col-sm-8'><input id='maxSwitchOperationCount' class='form-control' type='text'{{#maxSwitchOperationCount}} value='{{maxSwitchOperationCount}}'{{/maxSwitchOperationCount}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='normalOpen'>normalOpen: </label><div class='col-sm-8'><input id='normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='regBranch'>regBranch: </label><div class='col-sm-8'><input id='regBranch' class='form-control' type='text'{{#regBranch}} value='{{regBranch}}'{{/regBranch}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='regBranchEnd'>regBranchEnd: </label><div class='col-sm-8'><input id='regBranchEnd' class='form-control' type='text'{{#regBranchEnd}} value='{{regBranchEnd}}'{{/regBranchEnd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='regBranchKind'>regBranchKind: </label><div class='col-sm-8'><input id='regBranchKind' class='form-control' type='text'{{#regBranchKind}} value='{{regBranchKind}}'{{/regBranchKind}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sensingPhaseCode'>sensingPhaseCode: </label><div class='col-sm-8'><input id='sensingPhaseCode' class='form-control' type='text'{{#sensingPhaseCode}} value='{{sensingPhaseCode}}'{{/sensingPhaseCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='switchOperationCycle'>switchOperationCycle: </label><div class='col-sm-8'><input id='switchOperationCycle' class='form-control' type='text'{{#switchOperationCycle}} value='{{switchOperationCycle}}'{{/switchOperationCycle}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vRegLineLine'>vRegLineLine: </label><div class='col-sm-8'><input id='vRegLineLine' class='form-check-input' type='checkbox'{{#vRegLineLine}} checked{{/vRegLineLine}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ShuntCompensatorInfo'>ShuntCompensatorInfo: </label><div class='col-sm-8'><input id='ShuntCompensatorInfo' class='form-control' type='text'{{#ShuntCompensatorInfo}} value='{{ShuntCompensatorInfo}}'{{/ShuntCompensatorInfo}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_branchDirect'>branchDirect: </label><div class='col-sm-8'><input id='{{id}}_branchDirect' class='form-control' type='text'{{#branchDirect}} value='{{branchDirect}}'{{/branchDirect}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_cellSize'>cellSize: </label><div class='col-sm-8'><input id='{{id}}_cellSize' class='form-control' type='text'{{#cellSize}} value='{{cellSize}}'{{/cellSize}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_controlKind'>controlKind: </label><div class='col-sm-8'><input id='{{id}}_controlKind' class='form-control' type='text'{{#controlKind}} value='{{controlKind}}'{{/controlKind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_highVoltageOverride'>highVoltageOverride: </label><div class='col-sm-8'><input id='{{id}}_highVoltageOverride' class='form-control' type='text'{{#highVoltageOverride}} value='{{highVoltageOverride}}'{{/highVoltageOverride}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localControlKind'>localControlKind: </label><div class='col-sm-8'><input id='{{id}}_localControlKind' class='form-control' type='text'{{#localControlKind}} value='{{localControlKind}}'{{/localControlKind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localOffLevel'>localOffLevel: </label><div class='col-sm-8'><input id='{{id}}_localOffLevel' class='form-control' type='text'{{#localOffLevel}} value='{{localOffLevel}}'{{/localOffLevel}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_localOnLevel'>localOnLevel: </label><div class='col-sm-8'><input id='{{id}}_localOnLevel' class='form-control' type='text'{{#localOnLevel}} value='{{localOnLevel}}'{{/localOnLevel}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_localOverride'>localOverride: </label><div class='col-sm-8'><input id='{{id}}_localOverride' class='form-check-input' type='checkbox'{{#localOverride}} checked{{/localOverride}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lowVoltageOverride'>lowVoltageOverride: </label><div class='col-sm-8'><input id='{{id}}_lowVoltageOverride' class='form-control' type='text'{{#lowVoltageOverride}} value='{{lowVoltageOverride}}'{{/lowVoltageOverride}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxSwitchOperationCount'>maxSwitchOperationCount: </label><div class='col-sm-8'><input id='{{id}}_maxSwitchOperationCount' class='form-control' type='text'{{#maxSwitchOperationCount}} value='{{maxSwitchOperationCount}}'{{/maxSwitchOperationCount}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_normalOpen'>normalOpen: </label><div class='col-sm-8'><input id='{{id}}_normalOpen' class='form-check-input' type='checkbox'{{#normalOpen}} checked{{/normalOpen}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranch'>regBranch: </label><div class='col-sm-8'><input id='{{id}}_regBranch' class='form-control' type='text'{{#regBranch}} value='{{regBranch}}'{{/regBranch}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranchEnd'>regBranchEnd: </label><div class='col-sm-8'><input id='{{id}}_regBranchEnd' class='form-control' type='text'{{#regBranchEnd}} value='{{regBranchEnd}}'{{/regBranchEnd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_regBranchKind'>regBranchKind: </label><div class='col-sm-8'><input id='{{id}}_regBranchKind' class='form-control' type='text'{{#regBranchKind}} value='{{regBranchKind}}'{{/regBranchKind}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sensingPhaseCode'>sensingPhaseCode: </label><div class='col-sm-8'><input id='{{id}}_sensingPhaseCode' class='form-control' type='text'{{#sensingPhaseCode}} value='{{sensingPhaseCode}}'{{/sensingPhaseCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_switchOperationCycle'>switchOperationCycle: </label><div class='col-sm-8'><input id='{{id}}_switchOperationCycle' class='form-control' type='text'{{#switchOperationCycle}} value='{{switchOperationCycle}}'{{/switchOperationCycle}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vRegLineLine'>vRegLineLine: </label><div class='col-sm-8'><input id='{{id}}_vRegLineLine' class='form-check-input' type='checkbox'{{#vRegLineLine}} checked{{/vRegLineLine}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensatorInfo'>ShuntCompensatorInfo: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensatorInfo' class='form-control' type='text'{{#ShuntCompensatorInfo}} value='{{ShuntCompensatorInfo}}'{{/ShuntCompensatorInfo}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ShuntCompensatorControl" };
-                super.submit (obj);
-                temp = document.getElementById ("branchDirect").value; if ("" != temp) obj.branchDirect = temp;
-                temp = document.getElementById ("cellSize").value; if ("" != temp) obj.cellSize = temp;
-                temp = document.getElementById ("controlKind").value; if ("" != temp) obj.controlKind = temp;
-                temp = document.getElementById ("highVoltageOverride").value; if ("" != temp) obj.highVoltageOverride = temp;
-                temp = document.getElementById ("localControlKind").value; if ("" != temp) obj.localControlKind = temp;
-                temp = document.getElementById ("localOffLevel").value; if ("" != temp) obj.localOffLevel = temp;
-                temp = document.getElementById ("localOnLevel").value; if ("" != temp) obj.localOnLevel = temp;
-                temp = document.getElementById ("localOverride").checked; if (temp) obj.localOverride = true;
-                temp = document.getElementById ("lowVoltageOverride").value; if ("" != temp) obj.lowVoltageOverride = temp;
-                temp = document.getElementById ("maxSwitchOperationCount").value; if ("" != temp) obj.maxSwitchOperationCount = temp;
-                temp = document.getElementById ("normalOpen").checked; if (temp) obj.normalOpen = true;
-                temp = document.getElementById ("regBranch").value; if ("" != temp) obj.regBranch = temp;
-                temp = document.getElementById ("regBranchEnd").value; if ("" != temp) obj.regBranchEnd = temp;
-                temp = document.getElementById ("regBranchKind").value; if ("" != temp) obj.regBranchKind = temp;
-                temp = document.getElementById ("sensingPhaseCode").value; if ("" != temp) obj.sensingPhaseCode = temp;
-                temp = document.getElementById ("switchOperationCycle").value; if ("" != temp) obj.switchOperationCycle = temp;
-                temp = document.getElementById ("vRegLineLine").checked; if (temp) obj.vRegLineLine = true;
-                temp = document.getElementById ("ShuntCompensatorInfo").value; if ("" != temp) obj.ShuntCompensatorInfo = temp;
+                var obj = obj || { id: id, cls: "ShuntCompensatorControl" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_branchDirect").value; if ("" != temp) obj.branchDirect = temp;
+                temp = document.getElementById (id + "_cellSize").value; if ("" != temp) obj.cellSize = temp;
+                temp = document.getElementById (id + "_controlKind").value; if ("" != temp) obj.controlKind = temp;
+                temp = document.getElementById (id + "_highVoltageOverride").value; if ("" != temp) obj.highVoltageOverride = temp;
+                temp = document.getElementById (id + "_localControlKind").value; if ("" != temp) obj.localControlKind = temp;
+                temp = document.getElementById (id + "_localOffLevel").value; if ("" != temp) obj.localOffLevel = temp;
+                temp = document.getElementById (id + "_localOnLevel").value; if ("" != temp) obj.localOnLevel = temp;
+                temp = document.getElementById (id + "_localOverride").checked; if (temp) obj.localOverride = true;
+                temp = document.getElementById (id + "_lowVoltageOverride").value; if ("" != temp) obj.lowVoltageOverride = temp;
+                temp = document.getElementById (id + "_maxSwitchOperationCount").value; if ("" != temp) obj.maxSwitchOperationCount = temp;
+                temp = document.getElementById (id + "_normalOpen").checked; if (temp) obj.normalOpen = true;
+                temp = document.getElementById (id + "_regBranch").value; if ("" != temp) obj.regBranch = temp;
+                temp = document.getElementById (id + "_regBranchEnd").value; if ("" != temp) obj.regBranchEnd = temp;
+                temp = document.getElementById (id + "_regBranchKind").value; if ("" != temp) obj.regBranchKind = temp;
+                temp = document.getElementById (id + "_sensingPhaseCode").value; if ("" != temp) obj.sensingPhaseCode = temp;
+                temp = document.getElementById (id + "_switchOperationCycle").value; if ("" != temp) obj.switchOperationCycle = temp;
+                temp = document.getElementById (id + "_vRegLineLine").checked; if (temp) obj.vRegLineLine = true;
+                temp = document.getElementById (id + "_ShuntCompensatorInfo").value; if ("" != temp) obj.ShuntCompensatorInfo = temp;
 
                 return (obj);
             }

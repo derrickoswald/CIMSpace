@@ -90,25 +90,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VoltageAdjusterDynamics_collapse" aria-expanded="true" aria-controls="VoltageAdjusterDynamics_collapse" style="margin-left: 10px;">VoltageAdjusterDynamics</a></legend>
-                    <div id="VoltageAdjusterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VoltageAdjusterDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_VoltageAdjusterDynamics_collapse" style="margin-left: 10px;">VoltageAdjusterDynamics</a></legend>
+                    <div id="{{id}}_VoltageAdjusterDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_PFVArControllerType1Dynamics'>PFVArControllerType1Dynamics: </label><div class='col-sm-8'><input id='{{id}}_PFVArControllerType1Dynamics' class='form-control' type='text'{{#PFVArControllerType1Dynamics}} value='{{PFVArControllerType1Dynamics}}'{{/PFVArControllerType1Dynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VoltageAdjusterDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
+                var obj = obj || { id: id, cls: "VoltageAdjusterDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_PFVArControllerType1Dynamics").value; if ("" != temp) obj.PFVArControllerType1Dynamics = temp;
 
                 return (obj);
             }
@@ -220,35 +220,35 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#VAdjIEEE_collapse" aria-expanded="true" aria-controls="VAdjIEEE_collapse" style="margin-left: 10px;">VAdjIEEE</a></legend>
-                    <div id="VAdjIEEE_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_VAdjIEEE_collapse" aria-expanded="true" aria-controls="{{id}}_VAdjIEEE_collapse" style="margin-left: 10px;">VAdjIEEE</a></legend>
+                    <div id="{{id}}_VAdjIEEE_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + VoltageAdjusterDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='adjslew'>adjslew: </label><div class='col-sm-8'><input id='adjslew' class='form-control' type='text'{{#adjslew}} value='{{adjslew}}'{{/adjslew}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='taoff'>taoff: </label><div class='col-sm-8'><input id='taoff' class='form-control' type='text'{{#taoff}} value='{{taoff}}'{{/taoff}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='taon'>taon: </label><div class='col-sm-8'><input id='taon' class='form-control' type='text'{{#taon}} value='{{taon}}'{{/taon}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vadjf'>vadjf: </label><div class='col-sm-8'><input id='vadjf' class='form-control' type='text'{{#vadjf}} value='{{vadjf}}'{{/vadjf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vadjmax'>vadjmax: </label><div class='col-sm-8'><input id='vadjmax' class='form-control' type='text'{{#vadjmax}} value='{{vadjmax}}'{{/vadjmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vadjmin'>vadjmin: </label><div class='col-sm-8'><input id='vadjmin' class='form-control' type='text'{{#vadjmin}} value='{{vadjmin}}'{{/vadjmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_adjslew'>adjslew: </label><div class='col-sm-8'><input id='{{id}}_adjslew' class='form-control' type='text'{{#adjslew}} value='{{adjslew}}'{{/adjslew}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_taoff'>taoff: </label><div class='col-sm-8'><input id='{{id}}_taoff' class='form-control' type='text'{{#taoff}} value='{{taoff}}'{{/taoff}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_taon'>taon: </label><div class='col-sm-8'><input id='{{id}}_taon' class='form-control' type='text'{{#taon}} value='{{taon}}'{{/taon}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vadjf'>vadjf: </label><div class='col-sm-8'><input id='{{id}}_vadjf' class='form-control' type='text'{{#vadjf}} value='{{vadjf}}'{{/vadjf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vadjmax'>vadjmax: </label><div class='col-sm-8'><input id='{{id}}_vadjmax' class='form-control' type='text'{{#vadjmax}} value='{{vadjmax}}'{{/vadjmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vadjmin'>vadjmin: </label><div class='col-sm-8'><input id='{{id}}_vadjmin' class='form-control' type='text'{{#vadjmin}} value='{{vadjmin}}'{{/vadjmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "VAdjIEEE" };
-                super.submit (obj);
-                temp = document.getElementById ("adjslew").value; if ("" != temp) obj.adjslew = temp;
-                temp = document.getElementById ("taoff").value; if ("" != temp) obj.taoff = temp;
-                temp = document.getElementById ("taon").value; if ("" != temp) obj.taon = temp;
-                temp = document.getElementById ("vadjf").value; if ("" != temp) obj.vadjf = temp;
-                temp = document.getElementById ("vadjmax").value; if ("" != temp) obj.vadjmax = temp;
-                temp = document.getElementById ("vadjmin").value; if ("" != temp) obj.vadjmin = temp;
+                var obj = obj || { id: id, cls: "VAdjIEEE" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_adjslew").value; if ("" != temp) obj.adjslew = temp;
+                temp = document.getElementById (id + "_taoff").value; if ("" != temp) obj.taoff = temp;
+                temp = document.getElementById (id + "_taon").value; if ("" != temp) obj.taon = temp;
+                temp = document.getElementById (id + "_vadjf").value; if ("" != temp) obj.vadjf = temp;
+                temp = document.getElementById (id + "_vadjmax").value; if ("" != temp) obj.vadjmax = temp;
+                temp = document.getElementById (id + "_vadjmin").value; if ("" != temp) obj.vadjmin = temp;
 
                 return (obj);
             }

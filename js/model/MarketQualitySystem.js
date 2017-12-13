@@ -104,31 +104,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryCost_collapse" aria-expanded="true" aria-controls="AuxiliaryCost_collapse" style="margin-left: 10px;">AuxiliaryCost</a></legend>
-                    <div id="AuxiliaryCost_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryCost_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryCost_collapse" style="margin-left: 10px;">AuxiliaryCost</a></legend>
+                    <div id="{{id}}_AuxiliaryCost_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AuxiliaryCost" };
-                super.submit (obj);
-                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
-                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
+                var obj = obj || { id: id, cls: "AuxiliaryCost" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
 
                 return (obj);
             }
@@ -232,31 +232,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="ExpectedEnergyValues_collapse" style="margin-left: 10px;">ExpectedEnergyValues</a></legend>
-                    <div id="ExpectedEnergyValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExpectedEnergyValues_collapse" aria-expanded="true" aria-controls="{{id}}_ExpectedEnergyValues_collapse" style="margin-left: 10px;">ExpectedEnergyValues</a></legend>
+                    <div id="{{id}}_ExpectedEnergyValues_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyTypeCode'>energyTypeCode: </label><div class='col-sm-8'><input id='energyTypeCode' class='form-control' type='text'{{#energyTypeCode}} value='{{energyTypeCode}}'{{/energyTypeCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='expectedMwh'>expectedMwh: </label><div class='col-sm-8'><input id='expectedMwh' class='form-control' type='text'{{#expectedMwh}} value='{{expectedMwh}}'{{/expectedMwh}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExpectedEnergy'>ExpectedEnergy: </label><div class='col-sm-8'><input id='ExpectedEnergy' class='form-control' type='text'{{#ExpectedEnergy}} value='{{ExpectedEnergy}}'{{/ExpectedEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyTypeCode'>energyTypeCode: </label><div class='col-sm-8'><input id='{{id}}_energyTypeCode' class='form-control' type='text'{{#energyTypeCode}} value='{{energyTypeCode}}'{{/energyTypeCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_expectedMwh'>expectedMwh: </label><div class='col-sm-8'><input id='{{id}}_expectedMwh' class='form-control' type='text'{{#expectedMwh}} value='{{expectedMwh}}'{{/expectedMwh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExpectedEnergy'>ExpectedEnergy: </label><div class='col-sm-8'><input id='{{id}}_ExpectedEnergy' class='form-control' type='text'{{#ExpectedEnergy}} value='{{ExpectedEnergy}}'{{/ExpectedEnergy}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ExpectedEnergyValues" };
-                super.submit (obj);
-                temp = document.getElementById ("energyTypeCode").value; if ("" != temp) obj.energyTypeCode = temp;
-                temp = document.getElementById ("expectedMwh").value; if ("" != temp) obj.expectedMwh = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
-                temp = document.getElementById ("ExpectedEnergy").value; if ("" != temp) obj.ExpectedEnergy = temp;
+                var obj = obj || { id: id, cls: "ExpectedEnergyValues" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_energyTypeCode").value; if ("" != temp) obj.energyTypeCode = temp;
+                temp = document.getElementById (id + "_expectedMwh").value; if ("" != temp) obj.expectedMwh = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById (id + "_ExpectedEnergy").value; if ("" != temp) obj.ExpectedEnergy = temp;
 
                 return (obj);
             }
@@ -355,27 +355,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryObject_collapse" aria-expanded="true" aria-controls="AuxiliaryObject_collapse" style="margin-left: 10px;">AuxiliaryObject</a></legend>
-                    <div id="AuxiliaryObject_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryObject_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryObject_collapse" style="margin-left: 10px;">AuxiliaryObject</a></legend>
+                    <div id="{{id}}_AuxiliaryObject_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}'{{/RegisteredLoad}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredLoad'>RegisteredLoad: </label><div class='col-sm-8'><input id='{{id}}_RegisteredLoad' class='form-control' type='text'{{#RegisteredLoad}} value='{{RegisteredLoad}}'{{/RegisteredLoad}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredGenerator'>RegisteredGenerator: </label><div class='col-sm-8'><input id='{{id}}_RegisteredGenerator' class='form-control' type='text'{{#RegisteredGenerator}} value='{{RegisteredGenerator}}'{{/RegisteredGenerator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AuxiliaryObject" };
-                super.submit (obj);
-                temp = document.getElementById ("RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp;
-                temp = document.getElementById ("RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
+                var obj = obj || { id: id, cls: "AuxiliaryObject" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_RegisteredLoad").value; if ("" != temp) obj.RegisteredLoad = temp;
+                temp = document.getElementById (id + "_RegisteredGenerator").value; if ("" != temp) obj.RegisteredGenerator = temp;
 
                 return (obj);
             }
@@ -477,29 +477,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradingHubValues_collapse" aria-expanded="true" aria-controls="TradingHubValues_collapse" style="margin-left: 10px;">TradingHubValues</a></legend>
-                    <div id="TradingHubValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TradingHubValues_collapse" aria-expanded="true" aria-controls="{{id}}_TradingHubValues_collapse" style="margin-left: 10px;">TradingHubValues</a></legend>
+                    <div id="{{id}}_TradingHubValues_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='price'>price: </label><div class='col-sm-8'><input id='price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TradingHubPrice'>TradingHubPrice: </label><div class='col-sm-8'><input id='TradingHubPrice' class='form-control' type='text'{{#TradingHubPrice}} value='{{TradingHubPrice}}'{{/TradingHubPrice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_price'>price: </label><div class='col-sm-8'><input id='{{id}}_price' class='form-control' type='text'{{#price}} value='{{price}}'{{/price}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TradingHubPrice'>TradingHubPrice: </label><div class='col-sm-8'><input id='{{id}}_TradingHubPrice' class='form-control' type='text'{{#TradingHubPrice}} value='{{TradingHubPrice}}'{{/TradingHubPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregatedPnode'>AggregatedPnode: </label><div class='col-sm-8'><input id='{{id}}_AggregatedPnode' class='form-control' type='text'{{#AggregatedPnode}} value='{{AggregatedPnode}}'{{/AggregatedPnode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TradingHubValues" };
-                super.submit (obj);
-                temp = document.getElementById ("price").value; if ("" != temp) obj.price = temp;
-                temp = document.getElementById ("TradingHubPrice").value; if ("" != temp) obj.TradingHubPrice = temp;
-                temp = document.getElementById ("AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp;
+                var obj = obj || { id: id, cls: "TradingHubValues" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_price").value; if ("" != temp) obj.price = temp;
+                temp = document.getElementById (id + "_TradingHubPrice").value; if ("" != temp) obj.TradingHubPrice = temp;
+                temp = document.getElementById (id + "_AggregatedPnode").value; if ("" != temp) obj.AggregatedPnode = temp;
 
                 return (obj);
             }
@@ -609,31 +609,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TradingHubPrice_collapse" aria-expanded="true" aria-controls="TradingHubPrice_collapse" style="margin-left: 10px;">TradingHubPrice</a></legend>
-                    <div id="TradingHubPrice_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TradingHubPrice_collapse" aria-expanded="true" aria-controls="{{id}}_TradingHubPrice_collapse" style="margin-left: 10px;">TradingHubPrice</a></legend>
+                    <div id="{{id}}_TradingHubPrice_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketType'>marketType: </label><div class='col-sm-8'><input id='marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketType'>marketType: </label><div class='col-sm-8'><input id='{{id}}_marketType' class='form-control' type='text'{{#marketType}} value='{{marketType}}'{{/marketType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TradingHubPrice" };
-                super.submit (obj);
-                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById ("marketType").value; if ("" != temp) obj.marketType = temp;
-                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
-                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                var obj = obj || { id: id, cls: "TradingHubPrice" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById (id + "_marketType").value; if ("" != temp) obj.marketType = temp;
+                temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
 
                 return (obj);
             }
@@ -739,29 +739,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExpectedEnergy_collapse" aria-expanded="true" aria-controls="ExpectedEnergy_collapse" style="margin-left: 10px;">ExpectedEnergy</a></legend>
-                    <div id="ExpectedEnergy_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExpectedEnergy_collapse" aria-expanded="true" aria-controls="{{id}}_ExpectedEnergy_collapse" style="margin-left: 10px;">ExpectedEnergy</a></legend>
+                    <div id="{{id}}_ExpectedEnergy_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ExpectedEnergy" };
-                super.submit (obj);
-                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
-                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                var obj = obj || { id: id, cls: "ExpectedEnergy" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
 
                 return (obj);
             }
@@ -867,29 +867,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="TenMinAuxiliaryData_collapse" style="margin-left: 10px;">TenMinAuxiliaryData</a></legend>
-                    <div id="TenMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TenMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="{{id}}_TenMinAuxiliaryData_collapse" style="margin-left: 10px;">TenMinAuxiliaryData</a></legend>
+                    <div id="{{id}}_TenMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TenMinAuxiliaryData" };
-                super.submit (obj);
-                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
-                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                var obj = obj || { id: id, cls: "TenMinAuxiliaryData" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
 
                 return (obj);
             }
@@ -997,29 +997,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AllocationResult_collapse" aria-expanded="true" aria-controls="AllocationResult_collapse" style="margin-left: 10px;">AllocationResult</a></legend>
-                    <div id="AllocationResult_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AllocationResult_collapse" aria-expanded="true" aria-controls="{{id}}_AllocationResult_collapse" style="margin-left: 10px;">AllocationResult</a></legend>
+                    <div id="{{id}}_AllocationResult_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AllocationResult" };
-                super.submit (obj);
-                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
-                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                var obj = obj || { id: id, cls: "AllocationResult" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
 
                 return (obj);
             }
@@ -1132,37 +1132,37 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AllocationResultValues_collapse" aria-expanded="true" aria-controls="AllocationResultValues_collapse" style="margin-left: 10px;">AllocationResultValues</a></legend>
-                    <div id="AllocationResultValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AllocationResultValues_collapse" aria-expanded="true" aria-controls="{{id}}_AllocationResultValues_collapse" style="margin-left: 10px;">AllocationResultValues</a></legend>
+                    <div id="{{id}}_AllocationResultValues_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='aggregateType'>aggregateType: </label><div class='col-sm-8'><input id='aggregateType' class='form-control' type='text'{{#aggregateType}} value='{{aggregateType}}'{{/aggregateType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='allocationMwHour'>allocationMwHour: </label><div class='col-sm-8'><input id='allocationMwHour' class='form-control' type='text'{{#allocationMwHour}} value='{{allocationMwHour}}'{{/allocationMwHour}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='allocationPrice'>allocationPrice: </label><div class='col-sm-8'><input id='allocationPrice' class='form-control' type='text'{{#allocationPrice}} value='{{allocationPrice}}'{{/allocationPrice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='energyTypeCode'>energyTypeCode: </label><div class='col-sm-8'><input id='energyTypeCode' class='form-control' type='text'{{#energyTypeCode}} value='{{energyTypeCode}}'{{/energyTypeCode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketServiceType'>marketServiceType: </label><div class='col-sm-8'><input id='marketServiceType' class='form-control' type='text'{{#marketServiceType}} value='{{marketServiceType}}'{{/marketServiceType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AllocationResult'>AllocationResult: </label><div class='col-sm-8'><input id='AllocationResult' class='form-control' type='text'{{#AllocationResult}} value='{{AllocationResult}}'{{/AllocationResult}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_aggregateType'>aggregateType: </label><div class='col-sm-8'><input id='{{id}}_aggregateType' class='form-control' type='text'{{#aggregateType}} value='{{aggregateType}}'{{/aggregateType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_allocationMwHour'>allocationMwHour: </label><div class='col-sm-8'><input id='{{id}}_allocationMwHour' class='form-control' type='text'{{#allocationMwHour}} value='{{allocationMwHour}}'{{/allocationMwHour}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_allocationPrice'>allocationPrice: </label><div class='col-sm-8'><input id='{{id}}_allocationPrice' class='form-control' type='text'{{#allocationPrice}} value='{{allocationPrice}}'{{/allocationPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_energyTypeCode'>energyTypeCode: </label><div class='col-sm-8'><input id='{{id}}_energyTypeCode' class='form-control' type='text'{{#energyTypeCode}} value='{{energyTypeCode}}'{{/energyTypeCode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketServiceType'>marketServiceType: </label><div class='col-sm-8'><input id='{{id}}_marketServiceType' class='form-control' type='text'{{#marketServiceType}} value='{{marketServiceType}}'{{/marketServiceType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RegisteredResource'>RegisteredResource: </label><div class='col-sm-8'><input id='{{id}}_RegisteredResource' class='form-control' type='text'{{#RegisteredResource}} value='{{RegisteredResource}}'{{/RegisteredResource}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AllocationResult'>AllocationResult: </label><div class='col-sm-8'><input id='{{id}}_AllocationResult' class='form-control' type='text'{{#AllocationResult}} value='{{AllocationResult}}'{{/AllocationResult}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AllocationResultValues" };
-                super.submit (obj);
-                temp = document.getElementById ("aggregateType").value; if ("" != temp) obj.aggregateType = temp;
-                temp = document.getElementById ("allocationMwHour").value; if ("" != temp) obj.allocationMwHour = temp;
-                temp = document.getElementById ("allocationPrice").value; if ("" != temp) obj.allocationPrice = temp;
-                temp = document.getElementById ("energyTypeCode").value; if ("" != temp) obj.energyTypeCode = temp;
-                temp = document.getElementById ("marketServiceType").value; if ("" != temp) obj.marketServiceType = temp;
-                temp = document.getElementById ("RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
-                temp = document.getElementById ("AllocationResult").value; if ("" != temp) obj.AllocationResult = temp;
+                var obj = obj || { id: id, cls: "AllocationResultValues" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_aggregateType").value; if ("" != temp) obj.aggregateType = temp;
+                temp = document.getElementById (id + "_allocationMwHour").value; if ("" != temp) obj.allocationMwHour = temp;
+                temp = document.getElementById (id + "_allocationPrice").value; if ("" != temp) obj.allocationPrice = temp;
+                temp = document.getElementById (id + "_energyTypeCode").value; if ("" != temp) obj.energyTypeCode = temp;
+                temp = document.getElementById (id + "_marketServiceType").value; if ("" != temp) obj.marketServiceType = temp;
+                temp = document.getElementById (id + "_RegisteredResource").value; if ("" != temp) obj.RegisteredResource = temp;
+                temp = document.getElementById (id + "_AllocationResult").value; if ("" != temp) obj.AllocationResult = temp;
 
                 return (obj);
             }
@@ -1269,29 +1269,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="FiveMinAuxiliaryData_collapse" style="margin-left: 10px;">FiveMinAuxiliaryData</a></legend>
-                    <div id="FiveMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_FiveMinAuxiliaryData_collapse" aria-expanded="true" aria-controls="{{id}}_FiveMinAuxiliaryData_collapse" style="margin-left: 10px;">FiveMinAuxiliaryData</a></legend>
+                    <div id="{{id}}_FiveMinAuxiliaryData_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateUser'>updateUser: </label><div class='col-sm-8'><input id='updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_intervalStartTime'>intervalStartTime: </label><div class='col-sm-8'><input id='{{id}}_intervalStartTime' class='form-control' type='text'{{#intervalStartTime}} value='{{intervalStartTime}}'{{/intervalStartTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateUser'>updateUser: </label><div class='col-sm-8'><input id='{{id}}_updateUser' class='form-control' type='text'{{#updateUser}} value='{{updateUser}}'{{/updateUser}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_updateTimeStamp'>updateTimeStamp: </label><div class='col-sm-8'><input id='{{id}}_updateTimeStamp' class='form-control' type='text'{{#updateTimeStamp}} value='{{updateTimeStamp}}'{{/updateTimeStamp}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "FiveMinAuxiliaryData" };
-                super.submit (obj);
-                temp = document.getElementById ("intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
-                temp = document.getElementById ("updateUser").value; if ("" != temp) obj.updateUser = temp;
-                temp = document.getElementById ("updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
+                var obj = obj || { id: id, cls: "FiveMinAuxiliaryData" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_intervalStartTime").value; if ("" != temp) obj.intervalStartTime = temp;
+                temp = document.getElementById (id + "_updateUser").value; if ("" != temp) obj.updateUser = temp;
+                temp = document.getElementById (id + "_updateTimeStamp").value; if ("" != temp) obj.updateTimeStamp = temp;
 
                 return (obj);
             }
@@ -1416,45 +1416,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AuxiliaryValues_collapse" aria-expanded="true" aria-controls="AuxiliaryValues_collapse" style="margin-left: 10px;">AuxiliaryValues</a></legend>
-                    <div id="AuxiliaryValues_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AuxiliaryValues_collapse" aria-expanded="true" aria-controls="{{id}}_AuxiliaryValues_collapse" style="margin-left: 10px;">AuxiliaryValues</a></legend>
+                    <div id="{{id}}_AuxiliaryValues_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + AuxiliaryObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minExpostCapacity'>minExpostCapacity: </label><div class='col-sm-8'><input id='minExpostCapacity' class='form-control' type='text'{{#minExpostCapacity}} value='{{minExpostCapacity}}'{{/minExpostCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxExpostCapacity'>maxExpostCapacity: </label><div class='col-sm-8'><input id='maxExpostCapacity' class='form-control' type='text'{{#maxExpostCapacity}} value='{{maxExpostCapacity}}'{{/maxExpostCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='availUndispatchedQ'>availUndispatchedQ: </label><div class='col-sm-8'><input id='availUndispatchedQ' class='form-control' type='text'{{#availUndispatchedQ}} value='{{availUndispatchedQ}}'{{/availUndispatchedQ}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='incrementalORAvail'>incrementalORAvail: </label><div class='col-sm-8'><input id='incrementalORAvail' class='form-control' type='text'{{#incrementalORAvail}} value='{{incrementalORAvail}}'{{/incrementalORAvail}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpCost'>startUpCost: </label><div class='col-sm-8'><input id='startUpCost' class='form-control' type='text'{{#startUpCost}} value='{{startUpCost}}'{{/startUpCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startUpCostEligibilityFlag'>startUpCostEligibilityFlag: </label><div class='col-sm-8'><input id='startUpCostEligibilityFlag' class='form-control' type='text'{{#startUpCostEligibilityFlag}} value='{{startUpCostEligibilityFlag}}'{{/startUpCostEligibilityFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='noLoadCostEligibilityFlag'>noLoadCostEligibilityFlag: </label><div class='col-sm-8'><input id='noLoadCostEligibilityFlag' class='form-control' type='text'{{#noLoadCostEligibilityFlag}} value='{{noLoadCostEligibilityFlag}}'{{/noLoadCostEligibilityFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AuxillaryCost'>AuxillaryCost: </label><div class='col-sm-8'><input id='AuxillaryCost' class='form-control' type='text'{{#AuxillaryCost}} value='{{AuxillaryCost}}'{{/AuxillaryCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='FiveMinAuxillaryData'>FiveMinAuxillaryData: </label><div class='col-sm-8'><input id='FiveMinAuxillaryData' class='form-control' type='text'{{#FiveMinAuxillaryData}} value='{{FiveMinAuxillaryData}}'{{/FiveMinAuxillaryData}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TenMinAuxillaryData'>TenMinAuxillaryData: </label><div class='col-sm-8'><input id='TenMinAuxillaryData' class='form-control' type='text'{{#TenMinAuxillaryData}} value='{{TenMinAuxillaryData}}'{{/TenMinAuxillaryData}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minExpostCapacity'>minExpostCapacity: </label><div class='col-sm-8'><input id='{{id}}_minExpostCapacity' class='form-control' type='text'{{#minExpostCapacity}} value='{{minExpostCapacity}}'{{/minExpostCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxExpostCapacity'>maxExpostCapacity: </label><div class='col-sm-8'><input id='{{id}}_maxExpostCapacity' class='form-control' type='text'{{#maxExpostCapacity}} value='{{maxExpostCapacity}}'{{/maxExpostCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_availUndispatchedQ'>availUndispatchedQ: </label><div class='col-sm-8'><input id='{{id}}_availUndispatchedQ' class='form-control' type='text'{{#availUndispatchedQ}} value='{{availUndispatchedQ}}'{{/availUndispatchedQ}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_incrementalORAvail'>incrementalORAvail: </label><div class='col-sm-8'><input id='{{id}}_incrementalORAvail' class='form-control' type='text'{{#incrementalORAvail}} value='{{incrementalORAvail}}'{{/incrementalORAvail}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCost'>startUpCost: </label><div class='col-sm-8'><input id='{{id}}_startUpCost' class='form-control' type='text'{{#startUpCost}} value='{{startUpCost}}'{{/startUpCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startUpCostEligibilityFlag'>startUpCostEligibilityFlag: </label><div class='col-sm-8'><input id='{{id}}_startUpCostEligibilityFlag' class='form-control' type='text'{{#startUpCostEligibilityFlag}} value='{{startUpCostEligibilityFlag}}'{{/startUpCostEligibilityFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCost'>noLoadCost: </label><div class='col-sm-8'><input id='{{id}}_noLoadCost' class='form-control' type='text'{{#noLoadCost}} value='{{noLoadCost}}'{{/noLoadCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_noLoadCostEligibilityFlag'>noLoadCostEligibilityFlag: </label><div class='col-sm-8'><input id='{{id}}_noLoadCostEligibilityFlag' class='form-control' type='text'{{#noLoadCostEligibilityFlag}} value='{{noLoadCostEligibilityFlag}}'{{/noLoadCostEligibilityFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AuxillaryCost'>AuxillaryCost: </label><div class='col-sm-8'><input id='{{id}}_AuxillaryCost' class='form-control' type='text'{{#AuxillaryCost}} value='{{AuxillaryCost}}'{{/AuxillaryCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_FiveMinAuxillaryData'>FiveMinAuxillaryData: </label><div class='col-sm-8'><input id='{{id}}_FiveMinAuxillaryData' class='form-control' type='text'{{#FiveMinAuxillaryData}} value='{{FiveMinAuxillaryData}}'{{/FiveMinAuxillaryData}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TenMinAuxillaryData'>TenMinAuxillaryData: </label><div class='col-sm-8'><input id='{{id}}_TenMinAuxillaryData' class='form-control' type='text'{{#TenMinAuxillaryData}} value='{{TenMinAuxillaryData}}'{{/TenMinAuxillaryData}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AuxiliaryValues" };
-                super.submit (obj);
-                temp = document.getElementById ("minExpostCapacity").value; if ("" != temp) obj.minExpostCapacity = temp;
-                temp = document.getElementById ("maxExpostCapacity").value; if ("" != temp) obj.maxExpostCapacity = temp;
-                temp = document.getElementById ("availUndispatchedQ").value; if ("" != temp) obj.availUndispatchedQ = temp;
-                temp = document.getElementById ("incrementalORAvail").value; if ("" != temp) obj.incrementalORAvail = temp;
-                temp = document.getElementById ("startUpCost").value; if ("" != temp) obj.startUpCost = temp;
-                temp = document.getElementById ("startUpCostEligibilityFlag").value; if ("" != temp) obj.startUpCostEligibilityFlag = temp;
-                temp = document.getElementById ("noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
-                temp = document.getElementById ("noLoadCostEligibilityFlag").value; if ("" != temp) obj.noLoadCostEligibilityFlag = temp;
-                temp = document.getElementById ("AuxillaryCost").value; if ("" != temp) obj.AuxillaryCost = temp;
-                temp = document.getElementById ("FiveMinAuxillaryData").value; if ("" != temp) obj.FiveMinAuxillaryData = temp;
-                temp = document.getElementById ("TenMinAuxillaryData").value; if ("" != temp) obj.TenMinAuxillaryData = temp;
+                var obj = obj || { id: id, cls: "AuxiliaryValues" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_minExpostCapacity").value; if ("" != temp) obj.minExpostCapacity = temp;
+                temp = document.getElementById (id + "_maxExpostCapacity").value; if ("" != temp) obj.maxExpostCapacity = temp;
+                temp = document.getElementById (id + "_availUndispatchedQ").value; if ("" != temp) obj.availUndispatchedQ = temp;
+                temp = document.getElementById (id + "_incrementalORAvail").value; if ("" != temp) obj.incrementalORAvail = temp;
+                temp = document.getElementById (id + "_startUpCost").value; if ("" != temp) obj.startUpCost = temp;
+                temp = document.getElementById (id + "_startUpCostEligibilityFlag").value; if ("" != temp) obj.startUpCostEligibilityFlag = temp;
+                temp = document.getElementById (id + "_noLoadCost").value; if ("" != temp) obj.noLoadCost = temp;
+                temp = document.getElementById (id + "_noLoadCostEligibilityFlag").value; if ("" != temp) obj.noLoadCostEligibilityFlag = temp;
+                temp = document.getElementById (id + "_AuxillaryCost").value; if ("" != temp) obj.AuxillaryCost = temp;
+                temp = document.getElementById (id + "_FiveMinAuxillaryData").value; if ("" != temp) obj.FiveMinAuxillaryData = temp;
+                temp = document.getElementById (id + "_TenMinAuxillaryData").value; if ("" != temp) obj.TenMinAuxillaryData = temp;
 
                 return (obj);
             }

@@ -113,29 +113,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#TieFlow_collapse" aria-expanded="true" aria-controls="TieFlow_collapse" style="margin-left: 10px;">TieFlow</a></legend>
-                    <div id="TieFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_TieFlow_collapse" aria-expanded="true" aria-controls="{{id}}_TieFlow_collapse" style="margin-left: 10px;">TieFlow</a></legend>
+                    <div id="{{id}}_TieFlow_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='positiveFlowIn'>positiveFlowIn: </label><div class='col-sm-8'><input id='positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_positiveFlowIn'>positiveFlowIn: </label><div class='col-sm-8'><input id='{{id}}_positiveFlowIn' class='form-check-input' type='checkbox'{{#positiveFlowIn}} checked{{/positiveFlowIn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='{{id}}_ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "TieFlow" };
-                super.submit (obj);
-                temp = document.getElementById ("positiveFlowIn").checked; if (temp) obj.positiveFlowIn = true;
-                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
-                temp = document.getElementById ("ControlArea").value; if ("" != temp) obj.ControlArea = temp;
+                var obj = obj || { id: id, cls: "TieFlow" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_positiveFlowIn").checked; if (temp) obj.positiveFlowIn = true;
+                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
+                temp = document.getElementById (id + "_ControlArea").value; if ("" != temp) obj.ControlArea = temp;
 
                 return (obj);
             }
@@ -242,27 +242,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlAreaGeneratingUnit_collapse" aria-expanded="true" aria-controls="ControlAreaGeneratingUnit_collapse" style="margin-left: 10px;">ControlAreaGeneratingUnit</a></legend>
-                    <div id="ControlAreaGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ControlAreaGeneratingUnit_collapse" aria-expanded="true" aria-controls="{{id}}_ControlAreaGeneratingUnit_collapse" style="margin-left: 10px;">ControlAreaGeneratingUnit</a></legend>
+                    <div id="{{id}}_ControlAreaGeneratingUnit_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlArea'>ControlArea: </label><div class='col-sm-8'><input id='{{id}}_ControlArea' class='form-control' type='text'{{#ControlArea}} value='{{ControlArea}}'{{/ControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_GeneratingUnit'>GeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_GeneratingUnit' class='form-control' type='text'{{#GeneratingUnit}} value='{{GeneratingUnit}}'{{/GeneratingUnit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ControlAreaGeneratingUnit" };
-                super.submit (obj);
-                temp = document.getElementById ("ControlArea").value; if ("" != temp) obj.ControlArea = temp;
-                temp = document.getElementById ("GeneratingUnit").value; if ("" != temp) obj.GeneratingUnit = temp;
+                var obj = obj || { id: id, cls: "ControlAreaGeneratingUnit" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ControlArea").value; if ("" != temp) obj.ControlArea = temp;
+                temp = document.getElementById (id + "_GeneratingUnit").value; if ("" != temp) obj.GeneratingUnit = temp;
 
                 return (obj);
             }
@@ -365,29 +365,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AltTieMeas_collapse" aria-expanded="true" aria-controls="AltTieMeas_collapse" style="margin-left: 10px;">AltTieMeas</a></legend>
-                    <div id="AltTieMeas_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AltTieMeas_collapse" aria-expanded="true" aria-controls="{{id}}_AltTieMeas_collapse" style="margin-left: 10px;">AltTieMeas</a></legend>
+                    <div id="{{id}}_AltTieMeas_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TieFlow'>TieFlow: </label><div class='col-sm-8'><input id='TieFlow' class='form-control' type='text'{{#TieFlow}} value='{{TieFlow}}'{{/TieFlow}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AnalogValue'>AnalogValue: </label><div class='col-sm-8'><input id='AnalogValue' class='form-control' type='text'{{#AnalogValue}} value='{{AnalogValue}}'{{/AnalogValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TieFlow'>TieFlow: </label><div class='col-sm-8'><input id='{{id}}_TieFlow' class='form-control' type='text'{{#TieFlow}} value='{{TieFlow}}'{{/TieFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AnalogValue'>AnalogValue: </label><div class='col-sm-8'><input id='{{id}}_AnalogValue' class='form-control' type='text'{{#AnalogValue}} value='{{AnalogValue}}'{{/AnalogValue}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AltTieMeas" };
-                super.submit (obj);
-                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById ("TieFlow").value; if ("" != temp) obj.TieFlow = temp;
-                temp = document.getElementById ("AnalogValue").value; if ("" != temp) obj.AnalogValue = temp;
+                var obj = obj || { id: id, cls: "AltTieMeas" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById (id + "_TieFlow").value; if ("" != temp) obj.TieFlow = temp;
+                temp = document.getElementById (id + "_AnalogValue").value; if ("" != temp) obj.AnalogValue = temp;
 
                 return (obj);
             }
@@ -489,29 +489,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#AltGeneratingUnitMeas_collapse" aria-expanded="true" aria-controls="AltGeneratingUnitMeas_collapse" style="margin-left: 10px;">AltGeneratingUnitMeas</a></legend>
-                    <div id="AltGeneratingUnitMeas_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_AltGeneratingUnitMeas_collapse" aria-expanded="true" aria-controls="{{id}}_AltGeneratingUnitMeas_collapse" style="margin-left: 10px;">AltGeneratingUnitMeas</a></legend>
+                    <div id="{{id}}_AltGeneratingUnitMeas_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priority'>priority: </label><div class='col-sm-8'><input id='priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AnalogValue'>AnalogValue: </label><div class='col-sm-8'><input id='AnalogValue' class='form-control' type='text'{{#AnalogValue}} value='{{AnalogValue}}'{{/AnalogValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlAreaGeneratingUnit'>ControlAreaGeneratingUnit: </label><div class='col-sm-8'><input id='ControlAreaGeneratingUnit' class='form-control' type='text'{{#ControlAreaGeneratingUnit}} value='{{ControlAreaGeneratingUnit}}'{{/ControlAreaGeneratingUnit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priority'>priority: </label><div class='col-sm-8'><input id='{{id}}_priority' class='form-control' type='text'{{#priority}} value='{{priority}}'{{/priority}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AnalogValue'>AnalogValue: </label><div class='col-sm-8'><input id='{{id}}_AnalogValue' class='form-control' type='text'{{#AnalogValue}} value='{{AnalogValue}}'{{/AnalogValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlAreaGeneratingUnit'>ControlAreaGeneratingUnit: </label><div class='col-sm-8'><input id='{{id}}_ControlAreaGeneratingUnit' class='form-control' type='text'{{#ControlAreaGeneratingUnit}} value='{{ControlAreaGeneratingUnit}}'{{/ControlAreaGeneratingUnit}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "AltGeneratingUnitMeas" };
-                super.submit (obj);
-                temp = document.getElementById ("priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById ("AnalogValue").value; if ("" != temp) obj.AnalogValue = temp;
-                temp = document.getElementById ("ControlAreaGeneratingUnit").value; if ("" != temp) obj.ControlAreaGeneratingUnit = temp;
+                var obj = obj || { id: id, cls: "AltGeneratingUnitMeas" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
+                temp = document.getElementById (id + "_AnalogValue").value; if ("" != temp) obj.AnalogValue = temp;
+                temp = document.getElementById (id + "_ControlAreaGeneratingUnit").value; if ("" != temp) obj.ControlAreaGeneratingUnit = temp;
 
                 return (obj);
             }
@@ -630,31 +630,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ControlArea_collapse" aria-expanded="true" aria-controls="ControlArea_collapse" style="margin-left: 10px;">ControlArea</a></legend>
-                    <div id="ControlArea_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ControlArea_collapse" aria-expanded="true" aria-controls="{{id}}_ControlArea_collapse" style="margin-left: 10px;">ControlArea</a></legend>
+                    <div id="{{id}}_ControlArea_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='netInterchange'>netInterchange: </label><div class='col-sm-8'><input id='netInterchange' class='form-control' type='text'{{#netInterchange}} value='{{netInterchange}}'{{/netInterchange}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pTolerance'>pTolerance: </label><div class='col-sm-8'><input id='pTolerance' class='form-control' type='text'{{#pTolerance}} value='{{pTolerance}}'{{/pTolerance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><select id='type' class='form-control'>{{#ControlAreaTypeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ControlAreaTypeKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyArea'>EnergyArea: </label><div class='col-sm-8'><input id='EnergyArea' class='form-control' type='text'{{#EnergyArea}} value='{{EnergyArea}}'{{/EnergyArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_netInterchange'>netInterchange: </label><div class='col-sm-8'><input id='{{id}}_netInterchange' class='form-control' type='text'{{#netInterchange}} value='{{netInterchange}}'{{/netInterchange}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pTolerance'>pTolerance: </label><div class='col-sm-8'><input id='{{id}}_pTolerance' class='form-control' type='text'{{#pTolerance}} value='{{pTolerance}}'{{/pTolerance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><select id='{{id}}_type' class='form-control'>{{#ControlAreaTypeKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/ControlAreaTypeKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyArea'>EnergyArea: </label><div class='col-sm-8'><input id='{{id}}_EnergyArea' class='form-control' type='text'{{#EnergyArea}} value='{{EnergyArea}}'{{/EnergyArea}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ControlArea" };
-                super.submit (obj);
-                temp = document.getElementById ("netInterchange").value; if ("" != temp) obj.netInterchange = temp;
-                temp = document.getElementById ("pTolerance").value; if ("" != temp) obj.pTolerance = temp;
-                temp = document.getElementById ("type").value; if ("" != temp) { temp = ControlAreaTypeKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ControlAreaTypeKind." + temp; }
-                temp = document.getElementById ("EnergyArea").value; if ("" != temp) obj.EnergyArea = temp;
+                var obj = obj || { id: id, cls: "ControlArea" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_netInterchange").value; if ("" != temp) obj.netInterchange = temp;
+                temp = document.getElementById (id + "_pTolerance").value; if ("" != temp) obj.pTolerance = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ControlAreaTypeKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ControlAreaTypeKind." + temp; }
+                temp = document.getElementById (id + "_EnergyArea").value; if ("" != temp) obj.EnergyArea = temp;
 
                 return (obj);
             }

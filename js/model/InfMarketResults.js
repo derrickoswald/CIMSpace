@@ -90,29 +90,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SecurityConstraintsClearing_collapse" aria-expanded="true" aria-controls="SecurityConstraintsClearing_collapse" style="margin-left: 10px;">SecurityConstraintsClearing</a></legend>
-                    <div id="SecurityConstraintsClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SecurityConstraintsClearing_collapse" aria-expanded="true" aria-controls="{{id}}_SecurityConstraintsClearing_collapse" style="margin-left: 10px;">SecurityConstraintsClearing</a></legend>
+                    <div id="{{id}}_SecurityConstraintsClearing_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwLimit'>mwLimit: </label><div class='col-sm-8'><input id='mwLimit' class='form-control' type='text'{{#mwLimit}} value='{{mwLimit}}'{{/mwLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mwFlow'>mwFlow: </label><div class='col-sm-8'><input id='mwFlow' class='form-control' type='text'{{#mwFlow}} value='{{mwFlow}}'{{/mwFlow}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='shadowPrice'>shadowPrice: </label><div class='col-sm-8'><input id='shadowPrice' class='form-control' type='text'{{#shadowPrice}} value='{{shadowPrice}}'{{/shadowPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwLimit'>mwLimit: </label><div class='col-sm-8'><input id='{{id}}_mwLimit' class='form-control' type='text'{{#mwLimit}} value='{{mwLimit}}'{{/mwLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mwFlow'>mwFlow: </label><div class='col-sm-8'><input id='{{id}}_mwFlow' class='form-control' type='text'{{#mwFlow}} value='{{mwFlow}}'{{/mwFlow}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_shadowPrice'>shadowPrice: </label><div class='col-sm-8'><input id='{{id}}_shadowPrice' class='form-control' type='text'{{#shadowPrice}} value='{{shadowPrice}}'{{/shadowPrice}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SecurityConstraintsClearing" };
-                super.submit (obj);
-                temp = document.getElementById ("mwLimit").value; if ("" != temp) obj.mwLimit = temp;
-                temp = document.getElementById ("mwFlow").value; if ("" != temp) obj.mwFlow = temp;
-                temp = document.getElementById ("shadowPrice").value; if ("" != temp) obj.shadowPrice = temp;
+                var obj = obj || { id: id, cls: "SecurityConstraintsClearing" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_mwLimit").value; if ("" != temp) obj.mwLimit = temp;
+                temp = document.getElementById (id + "_mwFlow").value; if ("" != temp) obj.mwFlow = temp;
+                temp = document.getElementById (id + "_shadowPrice").value; if ("" != temp) obj.shadowPrice = temp;
 
                 return (obj);
             }
@@ -209,29 +209,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketCaseClearing_collapse" aria-expanded="true" aria-controls="MarketCaseClearing_collapse" style="margin-left: 10px;">MarketCaseClearing</a></legend>
-                    <div id="MarketCaseClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketCaseClearing_collapse" aria-expanded="true" aria-controls="{{id}}_MarketCaseClearing_collapse" style="margin-left: 10px;">MarketCaseClearing</a></legend>
+                    <div id="{{id}}_MarketCaseClearing_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='caseType'>caseType: </label><div class='col-sm-8'><input id='caseType' class='form-control' type='text'{{#caseType}} value='{{caseType}}'{{/caseType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='postedDate'>postedDate: </label><div class='col-sm-8'><input id='postedDate' class='form-control' type='text'{{#postedDate}} value='{{postedDate}}'{{/postedDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='modifiedDate'>modifiedDate: </label><div class='col-sm-8'><input id='modifiedDate' class='form-control' type='text'{{#modifiedDate}} value='{{modifiedDate}}'{{/modifiedDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_caseType'>caseType: </label><div class='col-sm-8'><input id='{{id}}_caseType' class='form-control' type='text'{{#caseType}} value='{{caseType}}'{{/caseType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_postedDate'>postedDate: </label><div class='col-sm-8'><input id='{{id}}_postedDate' class='form-control' type='text'{{#postedDate}} value='{{postedDate}}'{{/postedDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_modifiedDate'>modifiedDate: </label><div class='col-sm-8'><input id='{{id}}_modifiedDate' class='form-control' type='text'{{#modifiedDate}} value='{{modifiedDate}}'{{/modifiedDate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketCaseClearing" };
-                super.submit (obj);
-                temp = document.getElementById ("caseType").value; if ("" != temp) obj.caseType = temp;
-                temp = document.getElementById ("postedDate").value; if ("" != temp) obj.postedDate = temp;
-                temp = document.getElementById ("modifiedDate").value; if ("" != temp) obj.modifiedDate = temp;
+                var obj = obj || { id: id, cls: "MarketCaseClearing" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_caseType").value; if ("" != temp) obj.caseType = temp;
+                temp = document.getElementById (id + "_postedDate").value; if ("" != temp) obj.postedDate = temp;
+                temp = document.getElementById (id + "_modifiedDate").value; if ("" != temp) obj.modifiedDate = temp;
 
                 return (obj);
             }
@@ -330,8 +330,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieClearing_collapse" aria-expanded="true" aria-controls="InterTieClearing_collapse" style="margin-left: 10px;">InterTieClearing</a></legend>
-                    <div id="InterTieClearing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InterTieClearing_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieClearing_collapse" style="margin-left: 10px;">InterTieClearing</a></legend>
+                    <div id="{{id}}_InterTieClearing_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + MarketPlan.MarketFactors.prototype.edit_template.call (this) +
                     `
@@ -341,10 +341,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "InterTieClearing" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "InterTieClearing" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -450,31 +450,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#InterTieResults_collapse" aria-expanded="true" aria-controls="InterTieResults_collapse" style="margin-left: 10px;">InterTieResults</a></legend>
-                    <div id="InterTieResults_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_InterTieResults_collapse" aria-expanded="true" aria-controls="{{id}}_InterTieResults_collapse" style="margin-left: 10px;">InterTieResults</a></legend>
+                    <div id="{{id}}_InterTieResults_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='clearedValue'>clearedValue: </label><div class='col-sm-8'><input id='clearedValue' class='form-control' type='text'{{#clearedValue}} value='{{clearedValue}}'{{/clearedValue}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='baseMW'>baseMW: </label><div class='col-sm-8'><input id='baseMW' class='form-control' type='text'{{#baseMW}} value='{{baseMW}}'{{/baseMW}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterTieClearing'>InterTieClearing: </label><div class='col-sm-8'><input id='InterTieClearing' class='form-control' type='text'{{#InterTieClearing}} value='{{InterTieClearing}}'{{/InterTieClearing}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_clearedValue'>clearedValue: </label><div class='col-sm-8'><input id='{{id}}_clearedValue' class='form-control' type='text'{{#clearedValue}} value='{{clearedValue}}'{{/clearedValue}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_baseMW'>baseMW: </label><div class='col-sm-8'><input id='{{id}}_baseMW' class='form-control' type='text'{{#baseMW}} value='{{baseMW}}'{{/baseMW}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTieClearing'>InterTieClearing: </label><div class='col-sm-8'><input id='{{id}}_InterTieClearing' class='form-control' type='text'{{#InterTieClearing}} value='{{InterTieClearing}}'{{/InterTieClearing}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Flowgate'>Flowgate: </label><div class='col-sm-8'><input id='{{id}}_Flowgate' class='form-control' type='text'{{#Flowgate}} value='{{Flowgate}}'{{/Flowgate}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "InterTieResults" };
-                super.submit (obj);
-                temp = document.getElementById ("clearedValue").value; if ("" != temp) obj.clearedValue = temp;
-                temp = document.getElementById ("baseMW").value; if ("" != temp) obj.baseMW = temp;
-                temp = document.getElementById ("InterTieClearing").value; if ("" != temp) obj.InterTieClearing = temp;
-                temp = document.getElementById ("Flowgate").value; if ("" != temp) obj.Flowgate = temp;
+                var obj = obj || { id: id, cls: "InterTieResults" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_clearedValue").value; if ("" != temp) obj.clearedValue = temp;
+                temp = document.getElementById (id + "_baseMW").value; if ("" != temp) obj.baseMW = temp;
+                temp = document.getElementById (id + "_InterTieClearing").value; if ("" != temp) obj.InterTieClearing = temp;
+                temp = document.getElementById (id + "_Flowgate").value; if ("" != temp) obj.Flowgate = temp;
 
                 return (obj);
             }

@@ -108,25 +108,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StandardIndustryCode_collapse" aria-expanded="true" aria-controls="StandardIndustryCode_collapse" style="margin-left: 10px;">StandardIndustryCode</a></legend>
-                    <div id="StandardIndustryCode_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StandardIndustryCode_collapse" aria-expanded="true" aria-controls="{{id}}_StandardIndustryCode_collapse" style="margin-left: 10px;">StandardIndustryCode</a></legend>
+                    <div id="{{id}}_StandardIndustryCode_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='code'>code: </label><div class='col-sm-8'><input id='code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_code'>code: </label><div class='col-sm-8'><input id='{{id}}_code' class='form-control' type='text'{{#code}} value='{{code}}'{{/code}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "StandardIndustryCode" };
-                super.submit (obj);
-                temp = document.getElementById ("code").value; if ("" != temp) obj.code = temp;
+                var obj = obj || { id: id, cls: "StandardIndustryCode" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_code").value; if ("" != temp) obj.code = temp;
 
                 return (obj);
             }
@@ -232,31 +232,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ServiceGuarantee_collapse" aria-expanded="true" aria-controls="ServiceGuarantee_collapse" style="margin-left: 10px;">ServiceGuarantee</a></legend>
-                    <div id="ServiceGuarantee_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ServiceGuarantee_collapse" aria-expanded="true" aria-controls="{{id}}_ServiceGuarantee_collapse" style="margin-left: 10px;">ServiceGuarantee</a></legend>
+                    <div id="{{id}}_ServiceGuarantee_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='applicationPeriod'>applicationPeriod: </label><div class='col-sm-8'><input id='applicationPeriod' class='form-control' type='text'{{#applicationPeriod}} value='{{applicationPeriod}}'{{/applicationPeriod}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='automaticPay'>automaticPay: </label><div class='col-sm-8'><input id='automaticPay' class='form-check-input' type='checkbox'{{#automaticPay}} checked{{/automaticPay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='payAmount'>payAmount: </label><div class='col-sm-8'><input id='payAmount' class='form-control' type='text'{{#payAmount}} value='{{payAmount}}'{{/payAmount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='serviceRequirement'>serviceRequirement: </label><div class='col-sm-8'><input id='serviceRequirement' class='form-control' type='text'{{#serviceRequirement}} value='{{serviceRequirement}}'{{/serviceRequirement}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_applicationPeriod'>applicationPeriod: </label><div class='col-sm-8'><input id='{{id}}_applicationPeriod' class='form-control' type='text'{{#applicationPeriod}} value='{{applicationPeriod}}'{{/applicationPeriod}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_automaticPay'>automaticPay: </label><div class='col-sm-8'><input id='{{id}}_automaticPay' class='form-check-input' type='checkbox'{{#automaticPay}} checked{{/automaticPay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_payAmount'>payAmount: </label><div class='col-sm-8'><input id='{{id}}_payAmount' class='form-control' type='text'{{#payAmount}} value='{{payAmount}}'{{/payAmount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_serviceRequirement'>serviceRequirement: </label><div class='col-sm-8'><input id='{{id}}_serviceRequirement' class='form-control' type='text'{{#serviceRequirement}} value='{{serviceRequirement}}'{{/serviceRequirement}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ServiceGuarantee" };
-                super.submit (obj);
-                temp = document.getElementById ("applicationPeriod").value; if ("" != temp) obj.applicationPeriod = temp;
-                temp = document.getElementById ("automaticPay").checked; if (temp) obj.automaticPay = true;
-                temp = document.getElementById ("payAmount").value; if ("" != temp) obj.payAmount = temp;
-                temp = document.getElementById ("serviceRequirement").value; if ("" != temp) obj.serviceRequirement = temp;
+                var obj = obj || { id: id, cls: "ServiceGuarantee" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_applicationPeriod").value; if ("" != temp) obj.applicationPeriod = temp;
+                temp = document.getElementById (id + "_automaticPay").checked; if (temp) obj.automaticPay = true;
+                temp = document.getElementById (id + "_payAmount").value; if ("" != temp) obj.payAmount = temp;
+                temp = document.getElementById (id + "_serviceRequirement").value; if ("" != temp) obj.serviceRequirement = temp;
 
                 return (obj);
             }
@@ -344,25 +344,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ComplianceEvent_collapse" aria-expanded="true" aria-controls="ComplianceEvent_collapse" style="margin-left: 10px;">ComplianceEvent</a></legend>
-                    <div id="ComplianceEvent_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ComplianceEvent_collapse" aria-expanded="true" aria-controls="{{id}}_ComplianceEvent_collapse" style="margin-left: 10px;">ComplianceEvent</a></legend>
+                    <div id="{{id}}_ComplianceEvent_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.ActivityRecord.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deadline'>deadline: </label><div class='col-sm-8'><input id='deadline' class='form-control' type='text'{{#deadline}} value='{{deadline}}'{{/deadline}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deadline'>deadline: </label><div class='col-sm-8'><input id='{{id}}_deadline' class='form-control' type='text'{{#deadline}} value='{{deadline}}'{{/deadline}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "ComplianceEvent" };
-                super.submit (obj);
-                temp = document.getElementById ("deadline").value; if ("" != temp) obj.deadline = temp;
+                var obj = obj || { id: id, cls: "ComplianceEvent" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_deadline").value; if ("" != temp) obj.deadline = temp;
 
                 return (obj);
             }
@@ -481,41 +481,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#WorkBillingInfo_collapse" aria-expanded="true" aria-controls="WorkBillingInfo_collapse" style="margin-left: 10px;">WorkBillingInfo</a></legend>
-                    <div id="WorkBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_WorkBillingInfo_collapse" aria-expanded="true" aria-controls="{{id}}_WorkBillingInfo_collapse" style="margin-left: 10px;">WorkBillingInfo</a></legend>
+                    <div id="{{id}}_WorkBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='costEstimate'>costEstimate: </label><div class='col-sm-8'><input id='costEstimate' class='form-control' type='text'{{#costEstimate}} value='{{costEstimate}}'{{/costEstimate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deposit'>deposit: </label><div class='col-sm-8'><input id='deposit' class='form-control' type='text'{{#deposit}} value='{{deposit}}'{{/deposit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='discount'>discount: </label><div class='col-sm-8'><input id='discount' class='form-control' type='text'{{#discount}} value='{{discount}}'{{/discount}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dueDateTime'>dueDateTime: </label><div class='col-sm-8'><input id='dueDateTime' class='form-control' type='text'{{#dueDateTime}} value='{{dueDateTime}}'{{/dueDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='issueDateTime'>issueDateTime: </label><div class='col-sm-8'><input id='issueDateTime' class='form-control' type='text'{{#issueDateTime}} value='{{issueDateTime}}'{{/issueDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='receivedDateTime'>receivedDateTime: </label><div class='col-sm-8'><input id='receivedDateTime' class='form-control' type='text'{{#receivedDateTime}} value='{{receivedDateTime}}'{{/receivedDateTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='workPrice'>workPrice: </label><div class='col-sm-8'><input id='workPrice' class='form-control' type='text'{{#workPrice}} value='{{workPrice}}'{{/workPrice}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpLineItems'>ErpLineItems: </label><div class='col-sm-8'><input id='ErpLineItems' class='form-control' type='text'{{#ErpLineItems}} value='{{ErpLineItems}}_string'{{/ErpLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_costEstimate'>costEstimate: </label><div class='col-sm-8'><input id='{{id}}_costEstimate' class='form-control' type='text'{{#costEstimate}} value='{{costEstimate}}'{{/costEstimate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deposit'>deposit: </label><div class='col-sm-8'><input id='{{id}}_deposit' class='form-control' type='text'{{#deposit}} value='{{deposit}}'{{/deposit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_discount'>discount: </label><div class='col-sm-8'><input id='{{id}}_discount' class='form-control' type='text'{{#discount}} value='{{discount}}'{{/discount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dueDateTime'>dueDateTime: </label><div class='col-sm-8'><input id='{{id}}_dueDateTime' class='form-control' type='text'{{#dueDateTime}} value='{{dueDateTime}}'{{/dueDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_issueDateTime'>issueDateTime: </label><div class='col-sm-8'><input id='{{id}}_issueDateTime' class='form-control' type='text'{{#issueDateTime}} value='{{issueDateTime}}'{{/issueDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_receivedDateTime'>receivedDateTime: </label><div class='col-sm-8'><input id='{{id}}_receivedDateTime' class='form-control' type='text'{{#receivedDateTime}} value='{{receivedDateTime}}'{{/receivedDateTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_workPrice'>workPrice: </label><div class='col-sm-8'><input id='{{id}}_workPrice' class='form-control' type='text'{{#workPrice}} value='{{workPrice}}'{{/workPrice}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpLineItems'>ErpLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpLineItems' class='form-control' type='text'{{#ErpLineItems}} value='{{ErpLineItems}}_string'{{/ErpLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "WorkBillingInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("costEstimate").value; if ("" != temp) obj.costEstimate = temp;
-                temp = document.getElementById ("deposit").value; if ("" != temp) obj.deposit = temp;
-                temp = document.getElementById ("discount").value; if ("" != temp) obj.discount = temp;
-                temp = document.getElementById ("dueDateTime").value; if ("" != temp) obj.dueDateTime = temp;
-                temp = document.getElementById ("issueDateTime").value; if ("" != temp) obj.issueDateTime = temp;
-                temp = document.getElementById ("receivedDateTime").value; if ("" != temp) obj.receivedDateTime = temp;
-                temp = document.getElementById ("workPrice").value; if ("" != temp) obj.workPrice = temp;
-                temp = document.getElementById ("ErpLineItems").value; if ("" != temp) obj.ErpLineItems = temp.split (",");
-                temp = document.getElementById ("CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
+                var obj = obj || { id: id, cls: "WorkBillingInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_costEstimate").value; if ("" != temp) obj.costEstimate = temp;
+                temp = document.getElementById (id + "_deposit").value; if ("" != temp) obj.deposit = temp;
+                temp = document.getElementById (id + "_discount").value; if ("" != temp) obj.discount = temp;
+                temp = document.getElementById (id + "_dueDateTime").value; if ("" != temp) obj.dueDateTime = temp;
+                temp = document.getElementById (id + "_issueDateTime").value; if ("" != temp) obj.issueDateTime = temp;
+                temp = document.getElementById (id + "_receivedDateTime").value; if ("" != temp) obj.receivedDateTime = temp;
+                temp = document.getElementById (id + "_workPrice").value; if ("" != temp) obj.workPrice = temp;
+                temp = document.getElementById (id + "_ErpLineItems").value; if ("" != temp) obj.ErpLineItems = temp.split (",");
+                temp = document.getElementById (id + "_CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
 
                 return (obj);
             }
@@ -611,8 +611,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#ExternalCustomerAgreement_collapse" aria-expanded="true" aria-controls="ExternalCustomerAgreement_collapse" style="margin-left: 10px;">ExternalCustomerAgreement</a></legend>
-                    <div id="ExternalCustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_ExternalCustomerAgreement_collapse" aria-expanded="true" aria-controls="{{id}}_ExternalCustomerAgreement_collapse" style="margin-left: 10px;">ExternalCustomerAgreement</a></legend>
+                    <div id="{{id}}_ExternalCustomerAgreement_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Agreement.prototype.edit_template.call (this) +
                     `
@@ -622,10 +622,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "ExternalCustomerAgreement" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "ExternalCustomerAgreement" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -735,41 +735,41 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerQualityPricing_collapse" aria-expanded="true" aria-controls="PowerQualityPricing_collapse" style="margin-left: 10px;">PowerQualityPricing</a></legend>
-                    <div id="PowerQualityPricing_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerQualityPricing_collapse" aria-expanded="true" aria-controls="{{id}}_PowerQualityPricing_collapse" style="margin-left: 10px;">PowerQualityPricing</a></legend>
+                    <div id="{{id}}_PowerQualityPricing_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyHighVoltLimit'>emergencyHighVoltLimit: </label><div class='col-sm-8'><input id='emergencyHighVoltLimit' class='form-control' type='text'{{#emergencyHighVoltLimit}} value='{{emergencyHighVoltLimit}}'{{/emergencyHighVoltLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='emergencyLowVoltLimit'>emergencyLowVoltLimit: </label><div class='col-sm-8'><input id='emergencyLowVoltLimit' class='form-control' type='text'{{#emergencyLowVoltLimit}} value='{{emergencyLowVoltLimit}}'{{/emergencyLowVoltLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalHighVoltLimit'>normalHighVoltLimit: </label><div class='col-sm-8'><input id='normalHighVoltLimit' class='form-control' type='text'{{#normalHighVoltLimit}} value='{{normalHighVoltLimit}}'{{/normalHighVoltLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='normalLowVoltLimit'>normalLowVoltLimit: </label><div class='col-sm-8'><input id='normalLowVoltLimit' class='form-control' type='text'{{#normalLowVoltLimit}} value='{{normalLowVoltLimit}}'{{/normalLowVoltLimit}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='powerFactorMin'>powerFactorMin: </label><div class='col-sm-8'><input id='powerFactorMin' class='form-control' type='text'{{#powerFactorMin}} value='{{powerFactorMin}}'{{/powerFactorMin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valueUninterruptedServiceEnergy'>valueUninterruptedServiceEnergy: </label><div class='col-sm-8'><input id='valueUninterruptedServiceEnergy' class='form-control' type='text'{{#valueUninterruptedServiceEnergy}} value='{{valueUninterruptedServiceEnergy}}'{{/valueUninterruptedServiceEnergy}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='valueUninterruptedServiceP'>valueUninterruptedServiceP: </label><div class='col-sm-8'><input id='valueUninterruptedServiceP' class='form-control' type='text'{{#valueUninterruptedServiceP}} value='{{valueUninterruptedServiceP}}'{{/valueUninterruptedServiceP}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='voltImbalanceViolCost'>voltImbalanceViolCost: </label><div class='col-sm-8'><input id='voltImbalanceViolCost' class='form-control' type='text'{{#voltImbalanceViolCost}} value='{{voltImbalanceViolCost}}'{{/voltImbalanceViolCost}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='voltLimitViolCost'>voltLimitViolCost: </label><div class='col-sm-8'><input id='voltLimitViolCost' class='form-control' type='text'{{#voltLimitViolCost}} value='{{voltLimitViolCost}}'{{/voltLimitViolCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emergencyHighVoltLimit'>emergencyHighVoltLimit: </label><div class='col-sm-8'><input id='{{id}}_emergencyHighVoltLimit' class='form-control' type='text'{{#emergencyHighVoltLimit}} value='{{emergencyHighVoltLimit}}'{{/emergencyHighVoltLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_emergencyLowVoltLimit'>emergencyLowVoltLimit: </label><div class='col-sm-8'><input id='{{id}}_emergencyLowVoltLimit' class='form-control' type='text'{{#emergencyLowVoltLimit}} value='{{emergencyLowVoltLimit}}'{{/emergencyLowVoltLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalHighVoltLimit'>normalHighVoltLimit: </label><div class='col-sm-8'><input id='{{id}}_normalHighVoltLimit' class='form-control' type='text'{{#normalHighVoltLimit}} value='{{normalHighVoltLimit}}'{{/normalHighVoltLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_normalLowVoltLimit'>normalLowVoltLimit: </label><div class='col-sm-8'><input id='{{id}}_normalLowVoltLimit' class='form-control' type='text'{{#normalLowVoltLimit}} value='{{normalLowVoltLimit}}'{{/normalLowVoltLimit}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_powerFactorMin'>powerFactorMin: </label><div class='col-sm-8'><input id='{{id}}_powerFactorMin' class='form-control' type='text'{{#powerFactorMin}} value='{{powerFactorMin}}'{{/powerFactorMin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valueUninterruptedServiceEnergy'>valueUninterruptedServiceEnergy: </label><div class='col-sm-8'><input id='{{id}}_valueUninterruptedServiceEnergy' class='form-control' type='text'{{#valueUninterruptedServiceEnergy}} value='{{valueUninterruptedServiceEnergy}}'{{/valueUninterruptedServiceEnergy}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_valueUninterruptedServiceP'>valueUninterruptedServiceP: </label><div class='col-sm-8'><input id='{{id}}_valueUninterruptedServiceP' class='form-control' type='text'{{#valueUninterruptedServiceP}} value='{{valueUninterruptedServiceP}}'{{/valueUninterruptedServiceP}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltImbalanceViolCost'>voltImbalanceViolCost: </label><div class='col-sm-8'><input id='{{id}}_voltImbalanceViolCost' class='form-control' type='text'{{#voltImbalanceViolCost}} value='{{voltImbalanceViolCost}}'{{/voltImbalanceViolCost}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_voltLimitViolCost'>voltLimitViolCost: </label><div class='col-sm-8'><input id='{{id}}_voltLimitViolCost' class='form-control' type='text'{{#voltLimitViolCost}} value='{{voltLimitViolCost}}'{{/voltLimitViolCost}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PowerQualityPricing" };
-                super.submit (obj);
-                temp = document.getElementById ("emergencyHighVoltLimit").value; if ("" != temp) obj.emergencyHighVoltLimit = temp;
-                temp = document.getElementById ("emergencyLowVoltLimit").value; if ("" != temp) obj.emergencyLowVoltLimit = temp;
-                temp = document.getElementById ("normalHighVoltLimit").value; if ("" != temp) obj.normalHighVoltLimit = temp;
-                temp = document.getElementById ("normalLowVoltLimit").value; if ("" != temp) obj.normalLowVoltLimit = temp;
-                temp = document.getElementById ("powerFactorMin").value; if ("" != temp) obj.powerFactorMin = temp;
-                temp = document.getElementById ("valueUninterruptedServiceEnergy").value; if ("" != temp) obj.valueUninterruptedServiceEnergy = temp;
-                temp = document.getElementById ("valueUninterruptedServiceP").value; if ("" != temp) obj.valueUninterruptedServiceP = temp;
-                temp = document.getElementById ("voltImbalanceViolCost").value; if ("" != temp) obj.voltImbalanceViolCost = temp;
-                temp = document.getElementById ("voltLimitViolCost").value; if ("" != temp) obj.voltLimitViolCost = temp;
+                var obj = obj || { id: id, cls: "PowerQualityPricing" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_emergencyHighVoltLimit").value; if ("" != temp) obj.emergencyHighVoltLimit = temp;
+                temp = document.getElementById (id + "_emergencyLowVoltLimit").value; if ("" != temp) obj.emergencyLowVoltLimit = temp;
+                temp = document.getElementById (id + "_normalHighVoltLimit").value; if ("" != temp) obj.normalHighVoltLimit = temp;
+                temp = document.getElementById (id + "_normalLowVoltLimit").value; if ("" != temp) obj.normalLowVoltLimit = temp;
+                temp = document.getElementById (id + "_powerFactorMin").value; if ("" != temp) obj.powerFactorMin = temp;
+                temp = document.getElementById (id + "_valueUninterruptedServiceEnergy").value; if ("" != temp) obj.valueUninterruptedServiceEnergy = temp;
+                temp = document.getElementById (id + "_valueUninterruptedServiceP").value; if ("" != temp) obj.valueUninterruptedServiceP = temp;
+                temp = document.getElementById (id + "_voltImbalanceViolCost").value; if ("" != temp) obj.voltImbalanceViolCost = temp;
+                temp = document.getElementById (id + "_voltLimitViolCost").value; if ("" != temp) obj.voltLimitViolCost = temp;
 
                 return (obj);
             }
@@ -852,8 +852,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SubscribePowerCurve_collapse" aria-expanded="true" aria-controls="SubscribePowerCurve_collapse" style="margin-left: 10px;">SubscribePowerCurve</a></legend>
-                    <div id="SubscribePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SubscribePowerCurve_collapse" aria-expanded="true" aria-controls="{{id}}_SubscribePowerCurve_collapse" style="margin-left: 10px;">SubscribePowerCurve</a></legend>
+                    <div id="{{id}}_SubscribePowerCurve_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.Curve.prototype.edit_template.call (this) +
                     `
@@ -863,10 +863,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "SubscribePowerCurve" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "SubscribePowerCurve" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -985,43 +985,43 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#CustomerBillingInfo_collapse" aria-expanded="true" aria-controls="CustomerBillingInfo_collapse" style="margin-left: 10px;">CustomerBillingInfo</a></legend>
-                    <div id="CustomerBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_CustomerBillingInfo_collapse" aria-expanded="true" aria-controls="{{id}}_CustomerBillingInfo_collapse" style="margin-left: 10px;">CustomerBillingInfo</a></legend>
+                    <div id="{{id}}_CustomerBillingInfo_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Document.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='billingDate'>billingDate: </label><div class='col-sm-8'><input id='billingDate' class='form-control' type='text'{{#billingDate}} value='{{billingDate}}'{{/billingDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dueDate'>dueDate: </label><div class='col-sm-8'><input id='dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kind'>kind: </label><div class='col-sm-8'><select id='kind' class='form-control'>{{#CustomerBillingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CustomerBillingKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastPaymentAmt'>lastPaymentAmt: </label><div class='col-sm-8'><input id='lastPaymentAmt' class='form-control' type='text'{{#lastPaymentAmt}} value='{{lastPaymentAmt}}'{{/lastPaymentAmt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastPaymentDate'>lastPaymentDate: </label><div class='col-sm-8'><input id='lastPaymentDate' class='form-control' type='text'{{#lastPaymentDate}} value='{{lastPaymentDate}}'{{/lastPaymentDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='outBalance'>outBalance: </label><div class='col-sm-8'><input id='outBalance' class='form-control' type='text'{{#outBalance}} value='{{outBalance}}'{{/outBalance}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pymtPlanAmt'>pymtPlanAmt: </label><div class='col-sm-8'><input id='pymtPlanAmt' class='form-control' type='text'{{#pymtPlanAmt}} value='{{pymtPlanAmt}}'{{/pymtPlanAmt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pymtPlanType'>pymtPlanType: </label><div class='col-sm-8'><input id='pymtPlanType' class='form-control' type='text'{{#pymtPlanType}} value='{{pymtPlanType}}'{{/pymtPlanType}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems}}_string'{{/ErpInvoiceLineItems}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_billingDate'>billingDate: </label><div class='col-sm-8'><input id='{{id}}_billingDate' class='form-control' type='text'{{#billingDate}} value='{{billingDate}}'{{/billingDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dueDate'>dueDate: </label><div class='col-sm-8'><input id='{{id}}_dueDate' class='form-control' type='text'{{#dueDate}} value='{{dueDate}}'{{/dueDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kind'>kind: </label><div class='col-sm-8'><select id='{{id}}_kind' class='form-control'>{{#CustomerBillingKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/CustomerBillingKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastPaymentAmt'>lastPaymentAmt: </label><div class='col-sm-8'><input id='{{id}}_lastPaymentAmt' class='form-control' type='text'{{#lastPaymentAmt}} value='{{lastPaymentAmt}}'{{/lastPaymentAmt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastPaymentDate'>lastPaymentDate: </label><div class='col-sm-8'><input id='{{id}}_lastPaymentDate' class='form-control' type='text'{{#lastPaymentDate}} value='{{lastPaymentDate}}'{{/lastPaymentDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_outBalance'>outBalance: </label><div class='col-sm-8'><input id='{{id}}_outBalance' class='form-control' type='text'{{#outBalance}} value='{{outBalance}}'{{/outBalance}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pymtPlanAmt'>pymtPlanAmt: </label><div class='col-sm-8'><input id='{{id}}_pymtPlanAmt' class='form-control' type='text'{{#pymtPlanAmt}} value='{{pymtPlanAmt}}'{{/pymtPlanAmt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pymtPlanType'>pymtPlanType: </label><div class='col-sm-8'><input id='{{id}}_pymtPlanType' class='form-control' type='text'{{#pymtPlanType}} value='{{pymtPlanType}}'{{/pymtPlanType}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ErpInvoiceLineItems'>ErpInvoiceLineItems: </label><div class='col-sm-8'><input id='{{id}}_ErpInvoiceLineItems' class='form-control' type='text'{{#ErpInvoiceLineItems}} value='{{ErpInvoiceLineItems}}_string'{{/ErpInvoiceLineItems}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_CustomerAccount'>CustomerAccount: </label><div class='col-sm-8'><input id='{{id}}_CustomerAccount' class='form-control' type='text'{{#CustomerAccount}} value='{{CustomerAccount}}'{{/CustomerAccount}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "CustomerBillingInfo" };
-                super.submit (obj);
-                temp = document.getElementById ("billingDate").value; if ("" != temp) obj.billingDate = temp;
-                temp = document.getElementById ("dueDate").value; if ("" != temp) obj.dueDate = temp;
-                temp = document.getElementById ("kind").value; if ("" != temp) { temp = CustomerBillingKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; }
-                temp = document.getElementById ("lastPaymentAmt").value; if ("" != temp) obj.lastPaymentAmt = temp;
-                temp = document.getElementById ("lastPaymentDate").value; if ("" != temp) obj.lastPaymentDate = temp;
-                temp = document.getElementById ("outBalance").value; if ("" != temp) obj.outBalance = temp;
-                temp = document.getElementById ("pymtPlanAmt").value; if ("" != temp) obj.pymtPlanAmt = temp;
-                temp = document.getElementById ("pymtPlanType").value; if ("" != temp) obj.pymtPlanType = temp;
-                temp = document.getElementById ("ErpInvoiceLineItems").value; if ("" != temp) obj.ErpInvoiceLineItems = temp.split (",");
-                temp = document.getElementById ("CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
+                var obj = obj || { id: id, cls: "CustomerBillingInfo" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_billingDate").value; if ("" != temp) obj.billingDate = temp;
+                temp = document.getElementById (id + "_dueDate").value; if ("" != temp) obj.dueDate = temp;
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerBillingKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; }
+                temp = document.getElementById (id + "_lastPaymentAmt").value; if ("" != temp) obj.lastPaymentAmt = temp;
+                temp = document.getElementById (id + "_lastPaymentDate").value; if ("" != temp) obj.lastPaymentDate = temp;
+                temp = document.getElementById (id + "_outBalance").value; if ("" != temp) obj.outBalance = temp;
+                temp = document.getElementById (id + "_pymtPlanAmt").value; if ("" != temp) obj.pymtPlanAmt = temp;
+                temp = document.getElementById (id + "_pymtPlanType").value; if ("" != temp) obj.pymtPlanType = temp;
+                temp = document.getElementById (id + "_ErpInvoiceLineItems").value; if ("" != temp) obj.ErpInvoiceLineItems = temp.split (",");
+                temp = document.getElementById (id + "_CustomerAccount").value; if ("" != temp) obj.CustomerAccount = temp;
 
                 return (obj);
             }

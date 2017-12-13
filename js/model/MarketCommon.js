@@ -164,31 +164,31 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketRole_collapse" aria-expanded="true" aria-controls="MarketRole_collapse" style="margin-left: 10px;">MarketRole</a></legend>
-                    <div id="MarketRole_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketRole_collapse" aria-expanded="true" aria-controls="{{id}}_MarketRole_collapse" style="margin-left: 10px;">MarketRole</a></legend>
+                    <div id="{{id}}_MarketRole_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.IdentifiedObject.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='roleType'>roleType: </label><div class='col-sm-8'><select id='roleType' class='form-control'>{{#MarketRoleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketRoleKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='status'>status: </label><div class='col-sm-8'><input id='status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='type'>type: </label><div class='col-sm-8'><input id='type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}_string'{{/MarketParticipant}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_roleType'>roleType: </label><div class='col-sm-8'><select id='{{id}}_roleType' class='form-control'>{{#MarketRoleKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/MarketRoleKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_status'>status: </label><div class='col-sm-8'><input id='{{id}}_status' class='form-control' type='text'{{#status}} value='{{status}}'{{/status}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_type'>type: </label><div class='col-sm-8'><input id='{{id}}_type' class='form-control' type='text'{{#type}} value='{{type}}'{{/type}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketParticipant'>MarketParticipant: </label><div class='col-sm-8'><input id='{{id}}_MarketParticipant' class='form-control' type='text'{{#MarketParticipant}} value='{{MarketParticipant}}_string'{{/MarketParticipant}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketRole" };
-                super.submit (obj);
-                temp = document.getElementById ("roleType").value; if ("" != temp) { temp = MarketRoleKind[temp]; if ("undefined" != typeof (temp)) obj.roleType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#MarketRoleKind." + temp; }
-                temp = document.getElementById ("status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById ("type").value; if ("" != temp) obj.type = temp;
-                temp = document.getElementById ("MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp.split (",");
+                var obj = obj || { id: id, cls: "MarketRole" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_roleType").value; if ("" != temp) { temp = MarketRoleKind[temp]; if ("undefined" != typeof (temp)) obj.roleType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#MarketRoleKind." + temp; }
+                temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
+                temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
+                temp = document.getElementById (id + "_MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp.split (",");
 
                 return (obj);
             }
@@ -554,115 +554,115 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#RegisteredResource_collapse" aria-expanded="true" aria-controls="RegisteredResource_collapse" style="margin-left: 10px;">RegisteredResource</a></legend>
-                    <div id="RegisteredResource_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_RegisteredResource_collapse" aria-expanded="true" aria-controls="{{id}}_RegisteredResource_collapse" style="margin-left: 10px;">RegisteredResource</a></legend>
+                    <div id="{{id}}_RegisteredResource_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Core.PowerSystemResource.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ACAFlag'>ACAFlag: </label><div class='col-sm-8'><input id='ACAFlag' class='form-control' type='text'{{#ACAFlag}} value='{{ACAFlag}}'{{/ACAFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ASSPOptimizationFlag'>ASSPOptimizationFlag: </label><div class='col-sm-8'><input id='ASSPOptimizationFlag' class='form-control' type='text'{{#ASSPOptimizationFlag}} value='{{ASSPOptimizationFlag}}'{{/ASSPOptimizationFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='commercialOpDate'>commercialOpDate: </label><div class='col-sm-8'><input id='commercialOpDate' class='form-control' type='text'{{#commercialOpDate}} value='{{commercialOpDate}}'{{/commercialOpDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><input id='contingencyAvailFlag' class='form-control' type='text'{{#contingencyAvailFlag}} value='{{contingencyAvailFlag}}'{{/contingencyAvailFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dispatchFlag'>dispatchFlag: </label><div class='col-sm-8'><input id='dispatchFlag' class='form-control' type='text'{{#dispatchFlag}} value='{{dispatchFlag}}'{{/dispatchFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ECAFlag'>ECAFlag: </label><div class='col-sm-8'><input id='ECAFlag' class='form-control' type='text'{{#ECAFlag}} value='{{ECAFlag}}'{{/ECAFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='flexibleOfferFlag'>flexibleOfferFlag: </label><div class='col-sm-8'><input id='flexibleOfferFlag' class='form-control' type='text'{{#flexibleOfferFlag}} value='{{flexibleOfferFlag}}'{{/flexibleOfferFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='hourlyPredispatch'>hourlyPredispatch: </label><div class='col-sm-8'><input id='hourlyPredispatch' class='form-control' type='text'{{#hourlyPredispatch}} value='{{hourlyPredispatch}}'{{/hourlyPredispatch}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='isAggregatedRes'>isAggregatedRes: </label><div class='col-sm-8'><input id='isAggregatedRes' class='form-control' type='text'{{#isAggregatedRes}} value='{{isAggregatedRes}}'{{/isAggregatedRes}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lastModified'>lastModified: </label><div class='col-sm-8'><input id='lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='LMPMFlag'>LMPMFlag: </label><div class='col-sm-8'><input id='LMPMFlag' class='form-control' type='text'{{#LMPMFlag}} value='{{LMPMFlag}}'{{/LMPMFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='marketParticipationFlag'>marketParticipationFlag: </label><div class='col-sm-8'><input id='marketParticipationFlag' class='form-control' type='text'{{#marketParticipationFlag}} value='{{marketParticipationFlag}}'{{/marketParticipationFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxBaseSelfSchedQty '>maxBaseSelfSchedQty : </label><div class='col-sm-8'><input id='maxBaseSelfSchedQty ' class='form-control' type='text'{{#maxBaseSelfSchedQty }} value='{{maxBaseSelfSchedQty }}'{{/maxBaseSelfSchedQty }}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='maxOnTime'>maxOnTime: </label><div class='col-sm-8'><input id='maxOnTime' class='form-control' type='text'{{#maxOnTime}} value='{{maxOnTime}}'{{/maxOnTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minDispatchTime'>minDispatchTime: </label><div class='col-sm-8'><input id='minDispatchTime' class='form-control' type='text'{{#minDispatchTime}} value='{{minDispatchTime}}'{{/minDispatchTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minOffTime'>minOffTime: </label><div class='col-sm-8'><input id='minOffTime' class='form-control' type='text'{{#minOffTime}} value='{{minOffTime}}'{{/minOffTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='minOnTime'>minOnTime: </label><div class='col-sm-8'><input id='minOnTime' class='form-control' type='text'{{#minOnTime}} value='{{minOnTime}}'{{/minOnTime}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='mustOfferFlag'>mustOfferFlag: </label><div class='col-sm-8'><input id='mustOfferFlag' class='form-control' type='text'{{#mustOfferFlag}} value='{{mustOfferFlag}}'{{/mustOfferFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nonMarket'>nonMarket: </label><div class='col-sm-8'><input id='nonMarket' class='form-control' type='text'{{#nonMarket}} value='{{nonMarket}}'{{/nonMarket}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pointOfDeliveryFlag'>pointOfDeliveryFlag: </label><div class='col-sm-8'><input id='pointOfDeliveryFlag' class='form-control' type='text'{{#pointOfDeliveryFlag}} value='{{pointOfDeliveryFlag}}'{{/pointOfDeliveryFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceSetFlagDA'>priceSetFlagDA: </label><div class='col-sm-8'><input id='priceSetFlagDA' class='form-control' type='text'{{#priceSetFlagDA}} value='{{priceSetFlagDA}}'{{/priceSetFlagDA}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='priceSetFlagRT'>priceSetFlagRT: </label><div class='col-sm-8'><input id='priceSetFlagRT' class='form-control' type='text'{{#priceSetFlagRT}} value='{{priceSetFlagRT}}'{{/priceSetFlagRT}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='registrationStatus'>registrationStatus: </label><div class='col-sm-8'><input id='registrationStatus' class='form-control' type='text'{{#registrationStatus}} value='{{registrationStatus}}'{{/registrationStatus}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='resourceAdequacyFlag'>resourceAdequacyFlag: </label><div class='col-sm-8'><input id='resourceAdequacyFlag' class='form-control' type='text'{{#resourceAdequacyFlag}} value='{{resourceAdequacyFlag}}'{{/resourceAdequacyFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SMPMFlag'>SMPMFlag: </label><div class='col-sm-8'><input id='SMPMFlag' class='form-control' type='text'{{#SMPMFlag}} value='{{SMPMFlag}}'{{/SMPMFlag}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='DefaultBid'>DefaultBid: </label><div class='col-sm-8'><input id='DefaultBid' class='form-control' type='text'{{#DefaultBid}} value='{{DefaultBid}}'{{/DefaultBid}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='InterTie'>InterTie: </label><div class='col-sm-8'><input id='InterTie' class='form-control' type='text'{{#InterTie}} value='{{InterTie}}_string'{{/InterTie}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ControlAreaDesignation'>ControlAreaDesignation: </label><div class='col-sm-8'><input id='ControlAreaDesignation' class='form-control' type='text'{{#ControlAreaDesignation}} value='{{ControlAreaDesignation}}_string'{{/ControlAreaDesignation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceGroups'>ResourceGroups: </label><div class='col-sm-8'><input id='ResourceGroups' class='form-control' type='text'{{#ResourceGroups}} value='{{ResourceGroups}}_string'{{/ResourceGroups}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceCertification'>ResourceCertification: </label><div class='col-sm-8'><input id='ResourceCertification' class='form-control' type='text'{{#ResourceCertification}} value='{{ResourceCertification}}_string'{{/ResourceCertification}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Pnode'>Pnode: </label><div class='col-sm-8'><input id='Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold}}_string'{{/MPMTestThreshold}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='EnergyMarkets'>EnergyMarkets: </label><div class='col-sm-8'><input id='EnergyMarkets' class='form-control' type='text'{{#EnergyMarkets}} value='{{EnergyMarkets}}_string'{{/EnergyMarkets}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceCapacity'>ResourceCapacity: </label><div class='col-sm-8'><input id='ResourceCapacity' class='form-control' type='text'{{#ResourceCapacity}} value='{{ResourceCapacity}}_string'{{/ResourceCapacity}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ForbiddenRegion'>ForbiddenRegion: </label><div class='col-sm-8'><input id='ForbiddenRegion' class='form-control' type='text'{{#ForbiddenRegion}} value='{{ForbiddenRegion}}_string'{{/ForbiddenRegion}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='RampRateCurve'>RampRateCurve: </label><div class='col-sm-8'><input id='RampRateCurve' class='form-control' type='text'{{#RampRateCurve}} value='{{RampRateCurve}}_string'{{/RampRateCurve}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ACAFlag'>ACAFlag: </label><div class='col-sm-8'><input id='{{id}}_ACAFlag' class='form-control' type='text'{{#ACAFlag}} value='{{ACAFlag}}'{{/ACAFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ASSPOptimizationFlag'>ASSPOptimizationFlag: </label><div class='col-sm-8'><input id='{{id}}_ASSPOptimizationFlag' class='form-control' type='text'{{#ASSPOptimizationFlag}} value='{{ASSPOptimizationFlag}}'{{/ASSPOptimizationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_commercialOpDate'>commercialOpDate: </label><div class='col-sm-8'><input id='{{id}}_commercialOpDate' class='form-control' type='text'{{#commercialOpDate}} value='{{commercialOpDate}}'{{/commercialOpDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_contingencyAvailFlag'>contingencyAvailFlag: </label><div class='col-sm-8'><input id='{{id}}_contingencyAvailFlag' class='form-control' type='text'{{#contingencyAvailFlag}} value='{{contingencyAvailFlag}}'{{/contingencyAvailFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dispatchFlag'>dispatchFlag: </label><div class='col-sm-8'><input id='{{id}}_dispatchFlag' class='form-control' type='text'{{#dispatchFlag}} value='{{dispatchFlag}}'{{/dispatchFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ECAFlag'>ECAFlag: </label><div class='col-sm-8'><input id='{{id}}_ECAFlag' class='form-control' type='text'{{#ECAFlag}} value='{{ECAFlag}}'{{/ECAFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_endEffectiveDate'>endEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_endEffectiveDate' class='form-control' type='text'{{#endEffectiveDate}} value='{{endEffectiveDate}}'{{/endEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_flexibleOfferFlag'>flexibleOfferFlag: </label><div class='col-sm-8'><input id='{{id}}_flexibleOfferFlag' class='form-control' type='text'{{#flexibleOfferFlag}} value='{{flexibleOfferFlag}}'{{/flexibleOfferFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_hourlyPredispatch'>hourlyPredispatch: </label><div class='col-sm-8'><input id='{{id}}_hourlyPredispatch' class='form-control' type='text'{{#hourlyPredispatch}} value='{{hourlyPredispatch}}'{{/hourlyPredispatch}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_isAggregatedRes'>isAggregatedRes: </label><div class='col-sm-8'><input id='{{id}}_isAggregatedRes' class='form-control' type='text'{{#isAggregatedRes}} value='{{isAggregatedRes}}'{{/isAggregatedRes}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lastModified'>lastModified: </label><div class='col-sm-8'><input id='{{id}}_lastModified' class='form-control' type='text'{{#lastModified}} value='{{lastModified}}'{{/lastModified}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_LMPMFlag'>LMPMFlag: </label><div class='col-sm-8'><input id='{{id}}_LMPMFlag' class='form-control' type='text'{{#LMPMFlag}} value='{{LMPMFlag}}'{{/LMPMFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_marketParticipationFlag'>marketParticipationFlag: </label><div class='col-sm-8'><input id='{{id}}_marketParticipationFlag' class='form-control' type='text'{{#marketParticipationFlag}} value='{{marketParticipationFlag}}'{{/marketParticipationFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxBaseSelfSchedQty '>maxBaseSelfSchedQty : </label><div class='col-sm-8'><input id='{{id}}_maxBaseSelfSchedQty ' class='form-control' type='text'{{#maxBaseSelfSchedQty }} value='{{maxBaseSelfSchedQty }}'{{/maxBaseSelfSchedQty }}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_maxOnTime'>maxOnTime: </label><div class='col-sm-8'><input id='{{id}}_maxOnTime' class='form-control' type='text'{{#maxOnTime}} value='{{maxOnTime}}'{{/maxOnTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minDispatchTime'>minDispatchTime: </label><div class='col-sm-8'><input id='{{id}}_minDispatchTime' class='form-control' type='text'{{#minDispatchTime}} value='{{minDispatchTime}}'{{/minDispatchTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minOffTime'>minOffTime: </label><div class='col-sm-8'><input id='{{id}}_minOffTime' class='form-control' type='text'{{#minOffTime}} value='{{minOffTime}}'{{/minOffTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_minOnTime'>minOnTime: </label><div class='col-sm-8'><input id='{{id}}_minOnTime' class='form-control' type='text'{{#minOnTime}} value='{{minOnTime}}'{{/minOnTime}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_mustOfferFlag'>mustOfferFlag: </label><div class='col-sm-8'><input id='{{id}}_mustOfferFlag' class='form-control' type='text'{{#mustOfferFlag}} value='{{mustOfferFlag}}'{{/mustOfferFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nonMarket'>nonMarket: </label><div class='col-sm-8'><input id='{{id}}_nonMarket' class='form-control' type='text'{{#nonMarket}} value='{{nonMarket}}'{{/nonMarket}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pointOfDeliveryFlag'>pointOfDeliveryFlag: </label><div class='col-sm-8'><input id='{{id}}_pointOfDeliveryFlag' class='form-control' type='text'{{#pointOfDeliveryFlag}} value='{{pointOfDeliveryFlag}}'{{/pointOfDeliveryFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSetFlagDA'>priceSetFlagDA: </label><div class='col-sm-8'><input id='{{id}}_priceSetFlagDA' class='form-control' type='text'{{#priceSetFlagDA}} value='{{priceSetFlagDA}}'{{/priceSetFlagDA}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_priceSetFlagRT'>priceSetFlagRT: </label><div class='col-sm-8'><input id='{{id}}_priceSetFlagRT' class='form-control' type='text'{{#priceSetFlagRT}} value='{{priceSetFlagRT}}'{{/priceSetFlagRT}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_registrationStatus'>registrationStatus: </label><div class='col-sm-8'><input id='{{id}}_registrationStatus' class='form-control' type='text'{{#registrationStatus}} value='{{registrationStatus}}'{{/registrationStatus}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_resourceAdequacyFlag'>resourceAdequacyFlag: </label><div class='col-sm-8'><input id='{{id}}_resourceAdequacyFlag' class='form-control' type='text'{{#resourceAdequacyFlag}} value='{{resourceAdequacyFlag}}'{{/resourceAdequacyFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SMPMFlag'>SMPMFlag: </label><div class='col-sm-8'><input id='{{id}}_SMPMFlag' class='form-control' type='text'{{#SMPMFlag}} value='{{SMPMFlag}}'{{/SMPMFlag}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_startEffectiveDate'>startEffectiveDate: </label><div class='col-sm-8'><input id='{{id}}_startEffectiveDate' class='form-control' type='text'{{#startEffectiveDate}} value='{{startEffectiveDate}}'{{/startEffectiveDate}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_HostControlArea'>HostControlArea: </label><div class='col-sm-8'><input id='{{id}}_HostControlArea' class='form-control' type='text'{{#HostControlArea}} value='{{HostControlArea}}'{{/HostControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_DefaultBid'>DefaultBid: </label><div class='col-sm-8'><input id='{{id}}_DefaultBid' class='form-control' type='text'{{#DefaultBid}} value='{{DefaultBid}}'{{/DefaultBid}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_InterTie'>InterTie: </label><div class='col-sm-8'><input id='{{id}}_InterTie' class='form-control' type='text'{{#InterTie}} value='{{InterTie}}_string'{{/InterTie}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AggregateNode'>AggregateNode: </label><div class='col-sm-8'><input id='{{id}}_AggregateNode' class='form-control' type='text'{{#AggregateNode}} value='{{AggregateNode}}_string'{{/AggregateNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ControlAreaDesignation'>ControlAreaDesignation: </label><div class='col-sm-8'><input id='{{id}}_ControlAreaDesignation' class='form-control' type='text'{{#ControlAreaDesignation}} value='{{ControlAreaDesignation}}_string'{{/ControlAreaDesignation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='{{id}}_TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceGroups'>ResourceGroups: </label><div class='col-sm-8'><input id='{{id}}_ResourceGroups' class='form-control' type='text'{{#ResourceGroups}} value='{{ResourceGroups}}_string'{{/ResourceGroups}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktOrganisation'>MktOrganisation: </label><div class='col-sm-8'><input id='{{id}}_MktOrganisation' class='form-control' type='text'{{#MktOrganisation}} value='{{MktOrganisation}}'{{/MktOrganisation}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceCertification'>ResourceCertification: </label><div class='col-sm-8'><input id='{{id}}_ResourceCertification' class='form-control' type='text'{{#ResourceCertification}} value='{{ResourceCertification}}_string'{{/ResourceCertification}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MktConnectivityNode'>MktConnectivityNode: </label><div class='col-sm-8'><input id='{{id}}_MktConnectivityNode' class='form-control' type='text'{{#MktConnectivityNode}} value='{{MktConnectivityNode}}'{{/MktConnectivityNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Pnode'>Pnode: </label><div class='col-sm-8'><input id='{{id}}_Pnode' class='form-control' type='text'{{#Pnode}} value='{{Pnode}}'{{/Pnode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MPMTestThreshold'>MPMTestThreshold: </label><div class='col-sm-8'><input id='{{id}}_MPMTestThreshold' class='form-control' type='text'{{#MPMTestThreshold}} value='{{MPMTestThreshold}}_string'{{/MPMTestThreshold}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_EnergyMarkets'>EnergyMarkets: </label><div class='col-sm-8'><input id='{{id}}_EnergyMarkets' class='form-control' type='text'{{#EnergyMarkets}} value='{{EnergyMarkets}}_string'{{/EnergyMarkets}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceCapacity'>ResourceCapacity: </label><div class='col-sm-8'><input id='{{id}}_ResourceCapacity' class='form-control' type='text'{{#ResourceCapacity}} value='{{ResourceCapacity}}_string'{{/ResourceCapacity}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_AdjacentCASet'>AdjacentCASet: </label><div class='col-sm-8'><input id='{{id}}_AdjacentCASet' class='form-control' type='text'{{#AdjacentCASet}} value='{{AdjacentCASet}}'{{/AdjacentCASet}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ForbiddenRegion'>ForbiddenRegion: </label><div class='col-sm-8'><input id='{{id}}_ForbiddenRegion' class='form-control' type='text'{{#ForbiddenRegion}} value='{{ForbiddenRegion}}_string'{{/ForbiddenRegion}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_SubControlArea'>SubControlArea: </label><div class='col-sm-8'><input id='{{id}}_SubControlArea' class='form-control' type='text'{{#SubControlArea}} value='{{SubControlArea}}_string'{{/SubControlArea}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_RampRateCurve'>RampRateCurve: </label><div class='col-sm-8'><input id='{{id}}_RampRateCurve' class='form-control' type='text'{{#RampRateCurve}} value='{{RampRateCurve}}_string'{{/RampRateCurve}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ResourceVerifiableCosts'>ResourceVerifiableCosts: </label><div class='col-sm-8'><input id='{{id}}_ResourceVerifiableCosts' class='form-control' type='text'{{#ResourceVerifiableCosts}} value='{{ResourceVerifiableCosts}}'{{/ResourceVerifiableCosts}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "RegisteredResource" };
-                super.submit (obj);
-                temp = document.getElementById ("ACAFlag").value; if ("" != temp) obj.ACAFlag = temp;
-                temp = document.getElementById ("ASSPOptimizationFlag").value; if ("" != temp) obj.ASSPOptimizationFlag = temp;
-                temp = document.getElementById ("commercialOpDate").value; if ("" != temp) obj.commercialOpDate = temp;
-                temp = document.getElementById ("contingencyAvailFlag").value; if ("" != temp) obj.contingencyAvailFlag = temp;
-                temp = document.getElementById ("dispatchFlag").value; if ("" != temp) obj.dispatchFlag = temp;
-                temp = document.getElementById ("ECAFlag").value; if ("" != temp) obj.ECAFlag = temp;
-                temp = document.getElementById ("endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
-                temp = document.getElementById ("flexibleOfferFlag").value; if ("" != temp) obj.flexibleOfferFlag = temp;
-                temp = document.getElementById ("hourlyPredispatch").value; if ("" != temp) obj.hourlyPredispatch = temp;
-                temp = document.getElementById ("isAggregatedRes").value; if ("" != temp) obj.isAggregatedRes = temp;
-                temp = document.getElementById ("lastModified").value; if ("" != temp) obj.lastModified = temp;
-                temp = document.getElementById ("LMPMFlag").value; if ("" != temp) obj.LMPMFlag = temp;
-                temp = document.getElementById ("marketParticipationFlag").value; if ("" != temp) obj.marketParticipationFlag = temp;
-                temp = document.getElementById ("maxBaseSelfSchedQty ").value; if ("" != temp) obj.maxBaseSelfSchedQty  = temp;
-                temp = document.getElementById ("maxOnTime").value; if ("" != temp) obj.maxOnTime = temp;
-                temp = document.getElementById ("minDispatchTime").value; if ("" != temp) obj.minDispatchTime = temp;
-                temp = document.getElementById ("minOffTime").value; if ("" != temp) obj.minOffTime = temp;
-                temp = document.getElementById ("minOnTime").value; if ("" != temp) obj.minOnTime = temp;
-                temp = document.getElementById ("mustOfferFlag").value; if ("" != temp) obj.mustOfferFlag = temp;
-                temp = document.getElementById ("nonMarket").value; if ("" != temp) obj.nonMarket = temp;
-                temp = document.getElementById ("pointOfDeliveryFlag").value; if ("" != temp) obj.pointOfDeliveryFlag = temp;
-                temp = document.getElementById ("priceSetFlagDA").value; if ("" != temp) obj.priceSetFlagDA = temp;
-                temp = document.getElementById ("priceSetFlagRT").value; if ("" != temp) obj.priceSetFlagRT = temp;
-                temp = document.getElementById ("registrationStatus").value; if ("" != temp) obj.registrationStatus = temp;
-                temp = document.getElementById ("resourceAdequacyFlag").value; if ("" != temp) obj.resourceAdequacyFlag = temp;
-                temp = document.getElementById ("SMPMFlag").value; if ("" != temp) obj.SMPMFlag = temp;
-                temp = document.getElementById ("startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
-                temp = document.getElementById ("HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
-                temp = document.getElementById ("DefaultBid").value; if ("" != temp) obj.DefaultBid = temp;
-                temp = document.getElementById ("InterTie").value; if ("" != temp) obj.InterTie = temp.split (",");
-                temp = document.getElementById ("AggregateNode").value; if ("" != temp) obj.AggregateNode = temp.split (",");
-                temp = document.getElementById ("ControlAreaDesignation").value; if ("" != temp) obj.ControlAreaDesignation = temp.split (",");
-                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
-                temp = document.getElementById ("ResourceGroups").value; if ("" != temp) obj.ResourceGroups = temp.split (",");
-                temp = document.getElementById ("MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
-                temp = document.getElementById ("ResourceCertification").value; if ("" != temp) obj.ResourceCertification = temp.split (",");
-                temp = document.getElementById ("MktConnectivityNode").value; if ("" != temp) obj.MktConnectivityNode = temp;
-                temp = document.getElementById ("Pnode").value; if ("" != temp) obj.Pnode = temp;
-                temp = document.getElementById ("MPMTestThreshold").value; if ("" != temp) obj.MPMTestThreshold = temp.split (",");
-                temp = document.getElementById ("EnergyMarkets").value; if ("" != temp) obj.EnergyMarkets = temp.split (",");
-                temp = document.getElementById ("ResourceCapacity").value; if ("" != temp) obj.ResourceCapacity = temp.split (",");
-                temp = document.getElementById ("AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
-                temp = document.getElementById ("ForbiddenRegion").value; if ("" != temp) obj.ForbiddenRegion = temp.split (",");
-                temp = document.getElementById ("SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
-                temp = document.getElementById ("RampRateCurve").value; if ("" != temp) obj.RampRateCurve = temp.split (",");
-                temp = document.getElementById ("ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
+                var obj = obj || { id: id, cls: "RegisteredResource" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ACAFlag").value; if ("" != temp) obj.ACAFlag = temp;
+                temp = document.getElementById (id + "_ASSPOptimizationFlag").value; if ("" != temp) obj.ASSPOptimizationFlag = temp;
+                temp = document.getElementById (id + "_commercialOpDate").value; if ("" != temp) obj.commercialOpDate = temp;
+                temp = document.getElementById (id + "_contingencyAvailFlag").value; if ("" != temp) obj.contingencyAvailFlag = temp;
+                temp = document.getElementById (id + "_dispatchFlag").value; if ("" != temp) obj.dispatchFlag = temp;
+                temp = document.getElementById (id + "_ECAFlag").value; if ("" != temp) obj.ECAFlag = temp;
+                temp = document.getElementById (id + "_endEffectiveDate").value; if ("" != temp) obj.endEffectiveDate = temp;
+                temp = document.getElementById (id + "_flexibleOfferFlag").value; if ("" != temp) obj.flexibleOfferFlag = temp;
+                temp = document.getElementById (id + "_hourlyPredispatch").value; if ("" != temp) obj.hourlyPredispatch = temp;
+                temp = document.getElementById (id + "_isAggregatedRes").value; if ("" != temp) obj.isAggregatedRes = temp;
+                temp = document.getElementById (id + "_lastModified").value; if ("" != temp) obj.lastModified = temp;
+                temp = document.getElementById (id + "_LMPMFlag").value; if ("" != temp) obj.LMPMFlag = temp;
+                temp = document.getElementById (id + "_marketParticipationFlag").value; if ("" != temp) obj.marketParticipationFlag = temp;
+                temp = document.getElementById (id + "_maxBaseSelfSchedQty ").value; if ("" != temp) obj.maxBaseSelfSchedQty  = temp;
+                temp = document.getElementById (id + "_maxOnTime").value; if ("" != temp) obj.maxOnTime = temp;
+                temp = document.getElementById (id + "_minDispatchTime").value; if ("" != temp) obj.minDispatchTime = temp;
+                temp = document.getElementById (id + "_minOffTime").value; if ("" != temp) obj.minOffTime = temp;
+                temp = document.getElementById (id + "_minOnTime").value; if ("" != temp) obj.minOnTime = temp;
+                temp = document.getElementById (id + "_mustOfferFlag").value; if ("" != temp) obj.mustOfferFlag = temp;
+                temp = document.getElementById (id + "_nonMarket").value; if ("" != temp) obj.nonMarket = temp;
+                temp = document.getElementById (id + "_pointOfDeliveryFlag").value; if ("" != temp) obj.pointOfDeliveryFlag = temp;
+                temp = document.getElementById (id + "_priceSetFlagDA").value; if ("" != temp) obj.priceSetFlagDA = temp;
+                temp = document.getElementById (id + "_priceSetFlagRT").value; if ("" != temp) obj.priceSetFlagRT = temp;
+                temp = document.getElementById (id + "_registrationStatus").value; if ("" != temp) obj.registrationStatus = temp;
+                temp = document.getElementById (id + "_resourceAdequacyFlag").value; if ("" != temp) obj.resourceAdequacyFlag = temp;
+                temp = document.getElementById (id + "_SMPMFlag").value; if ("" != temp) obj.SMPMFlag = temp;
+                temp = document.getElementById (id + "_startEffectiveDate").value; if ("" != temp) obj.startEffectiveDate = temp;
+                temp = document.getElementById (id + "_HostControlArea").value; if ("" != temp) obj.HostControlArea = temp;
+                temp = document.getElementById (id + "_DefaultBid").value; if ("" != temp) obj.DefaultBid = temp;
+                temp = document.getElementById (id + "_InterTie").value; if ("" != temp) obj.InterTie = temp.split (",");
+                temp = document.getElementById (id + "_AggregateNode").value; if ("" != temp) obj.AggregateNode = temp.split (",");
+                temp = document.getElementById (id + "_ControlAreaDesignation").value; if ("" != temp) obj.ControlAreaDesignation = temp.split (",");
+                temp = document.getElementById (id + "_TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById (id + "_ResourceGroups").value; if ("" != temp) obj.ResourceGroups = temp.split (",");
+                temp = document.getElementById (id + "_MktOrganisation").value; if ("" != temp) obj.MktOrganisation = temp;
+                temp = document.getElementById (id + "_ResourceCertification").value; if ("" != temp) obj.ResourceCertification = temp.split (",");
+                temp = document.getElementById (id + "_MktConnectivityNode").value; if ("" != temp) obj.MktConnectivityNode = temp;
+                temp = document.getElementById (id + "_Pnode").value; if ("" != temp) obj.Pnode = temp;
+                temp = document.getElementById (id + "_MPMTestThreshold").value; if ("" != temp) obj.MPMTestThreshold = temp.split (",");
+                temp = document.getElementById (id + "_EnergyMarkets").value; if ("" != temp) obj.EnergyMarkets = temp.split (",");
+                temp = document.getElementById (id + "_ResourceCapacity").value; if ("" != temp) obj.ResourceCapacity = temp.split (",");
+                temp = document.getElementById (id + "_AdjacentCASet").value; if ("" != temp) obj.AdjacentCASet = temp;
+                temp = document.getElementById (id + "_ForbiddenRegion").value; if ("" != temp) obj.ForbiddenRegion = temp.split (",");
+                temp = document.getElementById (id + "_SubControlArea").value; if ("" != temp) obj.SubControlArea = temp.split (",");
+                temp = document.getElementById (id + "_RampRateCurve").value; if ("" != temp) obj.RampRateCurve = temp.split (",");
+                temp = document.getElementById (id + "_ResourceVerifiableCosts").value; if ("" != temp) obj.ResourceVerifiableCosts = temp;
 
                 return (obj);
             }
@@ -816,29 +816,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#MarketParticipant_collapse" aria-expanded="true" aria-controls="MarketParticipant_collapse" style="margin-left: 10px;">MarketParticipant</a></legend>
-                    <div id="MarketParticipant_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_MarketParticipant_collapse" aria-expanded="true" aria-controls="{{id}}_MarketParticipant_collapse" style="margin-left: 10px;">MarketParticipant</a></legend>
+                    <div id="{{id}}_MarketParticipant_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + Common.Organisation.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketRole'>MarketRole: </label><div class='col-sm-8'><input id='MarketRole' class='form-control' type='text'{{#MarketRole}} value='{{MarketRole}}_string'{{/MarketRole}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketRole'>MarketRole: </label><div class='col-sm-8'><input id='{{id}}_MarketRole' class='form-control' type='text'{{#MarketRole}} value='{{MarketRole}}_string'{{/MarketRole}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TimeSeries'>TimeSeries: </label><div class='col-sm-8'><input id='{{id}}_TimeSeries' class='form-control' type='text'{{#TimeSeries}} value='{{TimeSeries}}_string'{{/TimeSeries}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_MarketDocument'>MarketDocument: </label><div class='col-sm-8'><input id='{{id}}_MarketDocument' class='form-control' type='text'{{#MarketDocument}} value='{{MarketDocument}}_string'{{/MarketDocument}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "MarketParticipant" };
-                super.submit (obj);
-                temp = document.getElementById ("MarketRole").value; if ("" != temp) obj.MarketRole = temp.split (",");
-                temp = document.getElementById ("TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
-                temp = document.getElementById ("MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
+                var obj = obj || { id: id, cls: "MarketParticipant" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_MarketRole").value; if ("" != temp) obj.MarketRole = temp.split (",");
+                temp = document.getElementById (id + "_TimeSeries").value; if ("" != temp) obj.TimeSeries = temp.split (",");
+                temp = document.getElementById (id + "_MarketDocument").value; if ("" != temp) obj.MarketDocument = temp.split (",");
 
                 return (obj);
             }

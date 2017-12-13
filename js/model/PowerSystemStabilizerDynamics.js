@@ -116,25 +116,25 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
-                    <div id="PowerSystemStabilizerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PowerSystemStabilizerDynamics_collapse" aria-expanded="true" aria-controls="{{id}}_PowerSystemStabilizerDynamics_collapse" style="margin-left: 10px;">PowerSystemStabilizerDynamics</a></legend>
+                    <div id="{{id}}_PowerSystemStabilizerDynamics_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StandardModels.DynamicsFunctionBlock.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ExcitationSystemDynamics'>ExcitationSystemDynamics: </label><div class='col-sm-8'><input id='{{id}}_ExcitationSystemDynamics' class='form-control' type='text'{{#ExcitationSystemDynamics}} value='{{ExcitationSystemDynamics}}'{{/ExcitationSystemDynamics}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PowerSystemStabilizerDynamics" };
-                super.submit (obj);
-                temp = document.getElementById ("ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
+                var obj = obj || { id: id, cls: "PowerSystemStabilizerDynamics" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ExcitationSystemDynamics").value; if ("" != temp) obj.ExcitationSystemDynamics = temp;
 
                 return (obj);
             }
@@ -260,45 +260,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST1_collapse" aria-expanded="true" aria-controls="PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
-                    <div id="PssPTIST1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssPTIST1_collapse" aria-expanded="true" aria-controls="{{id}}_PssPTIST1_collapse" style="margin-left: 10px;">PssPTIST1</a></legend>
+                    <div id="{{id}}_PssPTIST1_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtc'>dtc: </label><div class='col-sm-8'><input id='dtc' class='form-control' type='text'{{#dtc}} value='{{dtc}}'{{/dtc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtf'>dtf: </label><div class='col-sm-8'><input id='dtf' class='form-control' type='text'{{#dtf}} value='{{dtf}}'{{/dtf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtp'>dtp: </label><div class='col-sm-8'><input id='dtp' class='form-control' type='text'{{#dtp}} value='{{dtp}}'{{/dtp}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtc'>dtc: </label><div class='col-sm-8'><input id='{{id}}_dtc' class='form-control' type='text'{{#dtc}} value='{{dtc}}'{{/dtc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtf'>dtf: </label><div class='col-sm-8'><input id='{{id}}_dtf' class='form-control' type='text'{{#dtf}} value='{{dtf}}'{{/dtf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtp'>dtp: </label><div class='col-sm-8'><input id='{{id}}_dtp' class='form-control' type='text'{{#dtp}} value='{{dtp}}'{{/dtp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_m'>m: </label><div class='col-sm-8'><input id='{{id}}_m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssPTIST1" };
-                super.submit (obj);
-                temp = document.getElementById ("dtc").value; if ("" != temp) obj.dtc = temp;
-                temp = document.getElementById ("dtf").value; if ("" != temp) obj.dtf = temp;
-                temp = document.getElementById ("dtp").value; if ("" != temp) obj.dtp = temp;
-                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
-                temp = document.getElementById ("m").value; if ("" != temp) obj.m = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
-                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                var obj = obj || { id: id, cls: "PssPTIST1" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_dtc").value; if ("" != temp) obj.dtc = temp;
+                temp = document.getElementById (id + "_dtf").value; if ("" != temp) obj.dtf = temp;
+                temp = document.getElementById (id + "_dtp").value; if ("" != temp) obj.dtp = temp;
+                temp = document.getElementById (id + "_k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById (id + "_m").value; if ("" != temp) obj.m = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById (id + "_tp").value; if ("" != temp) obj.tp = temp;
 
                 return (obj);
             }
@@ -468,77 +468,77 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE2B_collapse" aria-expanded="true" aria-controls="PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
-                    <div id="PssIEEE2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE2B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE2B_collapse" style="margin-left: 10px;">PssIEEE2B</a></legend>
+                    <div id="{{id}}_PssIEEE2B_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks3'>ks3: </label><div class='col-sm-8'><input id='ks3' class='form-control' type='text'{{#ks3}} value='{{ks3}}'{{/ks3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='n'>n: </label><div class='col-sm-8'><input id='n' class='form-control' type='text'{{#n}} value='{{n}}'{{/n}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t11'>t11: </label><div class='col-sm-8'><input id='t11' class='form-control' type='text'{{#t11}} value='{{t11}}'{{/t11}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw1'>tw1: </label><div class='col-sm-8'><input id='tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw2'>tw2: </label><div class='col-sm-8'><input id='tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw3'>tw3: </label><div class='col-sm-8'><input id='tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw4'>tw4: </label><div class='col-sm-8'><input id='tw4' class='form-control' type='text'{{#tw4}} value='{{tw4}}'{{/tw4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi1max'>vsi1max: </label><div class='col-sm-8'><input id='vsi1max' class='form-control' type='text'{{#vsi1max}} value='{{vsi1max}}'{{/vsi1max}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi1min'>vsi1min: </label><div class='col-sm-8'><input id='vsi1min' class='form-control' type='text'{{#vsi1min}} value='{{vsi1min}}'{{/vsi1min}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi2max'>vsi2max: </label><div class='col-sm-8'><input id='vsi2max' class='form-control' type='text'{{#vsi2max}} value='{{vsi2max}}'{{/vsi2max}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi2min'>vsi2min: </label><div class='col-sm-8'><input id='vsi2min' class='form-control' type='text'{{#vsi2min}} value='{{vsi2min}}'{{/vsi2min}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmax'>vstmax: </label><div class='col-sm-8'><input id='vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmin'>vstmin: </label><div class='col-sm-8'><input id='vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks1'>ks1: </label><div class='col-sm-8'><input id='{{id}}_ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks2'>ks2: </label><div class='col-sm-8'><input id='{{id}}_ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks3'>ks3: </label><div class='col-sm-8'><input id='{{id}}_ks3' class='form-control' type='text'{{#ks3}} value='{{ks3}}'{{/ks3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_m'>m: </label><div class='col-sm-8'><input id='{{id}}_m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_n'>n: </label><div class='col-sm-8'><input id='{{id}}_n' class='form-control' type='text'{{#n}} value='{{n}}'{{/n}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t10'>t10: </label><div class='col-sm-8'><input id='{{id}}_t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t11'>t11: </label><div class='col-sm-8'><input id='{{id}}_t11' class='form-control' type='text'{{#t11}} value='{{t11}}'{{/t11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t7'>t7: </label><div class='col-sm-8'><input id='{{id}}_t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t8'>t8: </label><div class='col-sm-8'><input id='{{id}}_t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t9'>t9: </label><div class='col-sm-8'><input id='{{id}}_t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw1'>tw1: </label><div class='col-sm-8'><input id='{{id}}_tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw2'>tw2: </label><div class='col-sm-8'><input id='{{id}}_tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw3'>tw3: </label><div class='col-sm-8'><input id='{{id}}_tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw4'>tw4: </label><div class='col-sm-8'><input id='{{id}}_tw4' class='form-control' type='text'{{#tw4}} value='{{tw4}}'{{/tw4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsi1max'>vsi1max: </label><div class='col-sm-8'><input id='{{id}}_vsi1max' class='form-control' type='text'{{#vsi1max}} value='{{vsi1max}}'{{/vsi1max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsi1min'>vsi1min: </label><div class='col-sm-8'><input id='{{id}}_vsi1min' class='form-control' type='text'{{#vsi1min}} value='{{vsi1min}}'{{/vsi1min}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsi2max'>vsi2max: </label><div class='col-sm-8'><input id='{{id}}_vsi2max' class='form-control' type='text'{{#vsi2max}} value='{{vsi2max}}'{{/vsi2max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsi2min'>vsi2min: </label><div class='col-sm-8'><input id='{{id}}_vsi2min' class='form-control' type='text'{{#vsi2min}} value='{{vsi2min}}'{{/vsi2min}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssIEEE2B" };
-                super.submit (obj);
-                temp = document.getElementById ("inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("ks1").value; if ("" != temp) obj.ks1 = temp;
-                temp = document.getElementById ("ks2").value; if ("" != temp) obj.ks2 = temp;
-                temp = document.getElementById ("ks3").value; if ("" != temp) obj.ks3 = temp;
-                temp = document.getElementById ("m").value; if ("" != temp) obj.m = temp;
-                temp = document.getElementById ("n").value; if ("" != temp) obj.n = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t10").value; if ("" != temp) obj.t10 = temp;
-                temp = document.getElementById ("t11").value; if ("" != temp) obj.t11 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("t7").value; if ("" != temp) obj.t7 = temp;
-                temp = document.getElementById ("t8").value; if ("" != temp) obj.t8 = temp;
-                temp = document.getElementById ("t9").value; if ("" != temp) obj.t9 = temp;
-                temp = document.getElementById ("tw1").value; if ("" != temp) obj.tw1 = temp;
-                temp = document.getElementById ("tw2").value; if ("" != temp) obj.tw2 = temp;
-                temp = document.getElementById ("tw3").value; if ("" != temp) obj.tw3 = temp;
-                temp = document.getElementById ("tw4").value; if ("" != temp) obj.tw4 = temp;
-                temp = document.getElementById ("vsi1max").value; if ("" != temp) obj.vsi1max = temp;
-                temp = document.getElementById ("vsi1min").value; if ("" != temp) obj.vsi1min = temp;
-                temp = document.getElementById ("vsi2max").value; if ("" != temp) obj.vsi2max = temp;
-                temp = document.getElementById ("vsi2min").value; if ("" != temp) obj.vsi2min = temp;
-                temp = document.getElementById ("vstmax").value; if ("" != temp) obj.vstmax = temp;
-                temp = document.getElementById ("vstmin").value; if ("" != temp) obj.vstmin = temp;
+                var obj = obj || { id: id, cls: "PssIEEE2B" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
+                temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
+                temp = document.getElementById (id + "_ks3").value; if ("" != temp) obj.ks3 = temp;
+                temp = document.getElementById (id + "_m").value; if ("" != temp) obj.m = temp;
+                temp = document.getElementById (id + "_n").value; if ("" != temp) obj.n = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t10").value; if ("" != temp) obj.t10 = temp;
+                temp = document.getElementById (id + "_t11").value; if ("" != temp) obj.t11 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_t7").value; if ("" != temp) obj.t7 = temp;
+                temp = document.getElementById (id + "_t8").value; if ("" != temp) obj.t8 = temp;
+                temp = document.getElementById (id + "_t9").value; if ("" != temp) obj.t9 = temp;
+                temp = document.getElementById (id + "_tw1").value; if ("" != temp) obj.tw1 = temp;
+                temp = document.getElementById (id + "_tw2").value; if ("" != temp) obj.tw2 = temp;
+                temp = document.getElementById (id + "_tw3").value; if ("" != temp) obj.tw3 = temp;
+                temp = document.getElementById (id + "_tw4").value; if ("" != temp) obj.tw4 = temp;
+                temp = document.getElementById (id + "_vsi1max").value; if ("" != temp) obj.vsi1max = temp;
+                temp = document.getElementById (id + "_vsi1min").value; if ("" != temp) obj.vsi1min = temp;
+                temp = document.getElementById (id + "_vsi2max").value; if ("" != temp) obj.vsi2max = temp;
+                temp = document.getElementById (id + "_vsi2min").value; if ("" != temp) obj.vsi2min = temp;
+                temp = document.getElementById (id + "_vstmax").value; if ("" != temp) obj.vstmax = temp;
+                temp = document.getElementById (id + "_vstmin").value; if ("" != temp) obj.vstmin = temp;
 
                 return (obj);
             }
@@ -679,59 +679,59 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2ST_collapse" aria-expanded="true" aria-controls="Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
-                    <div id="Pss2ST_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss2ST_collapse" aria-expanded="true" aria-controls="{{id}}_Pss2ST_collapse" style="margin-left: 10px;">Pss2ST</a></legend>
+                    <div id="{{id}}_Pss2ST_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lsmax'>lsmax: </label><div class='col-sm-8'><input id='lsmax' class='form-control' type='text'{{#lsmax}} value='{{lsmax}}'{{/lsmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lsmin'>lsmin: </label><div class='col-sm-8'><input id='lsmin' class='form-control' type='text'{{#lsmin}} value='{{lsmin}}'{{/lsmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcl'>vcl: </label><div class='col-sm-8'><input id='vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcu'>vcu: </label><div class='col-sm-8'><input id='vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lsmax'>lsmax: </label><div class='col-sm-8'><input id='{{id}}_lsmax' class='form-control' type='text'{{#lsmax}} value='{{lsmax}}'{{/lsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lsmin'>lsmin: </label><div class='col-sm-8'><input id='{{id}}_lsmin' class='form-control' type='text'{{#lsmin}} value='{{lsmin}}'{{/lsmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t10'>t10: </label><div class='col-sm-8'><input id='{{id}}_t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t7'>t7: </label><div class='col-sm-8'><input id='{{id}}_t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t8'>t8: </label><div class='col-sm-8'><input id='{{id}}_t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t9'>t9: </label><div class='col-sm-8'><input id='{{id}}_t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcl'>vcl: </label><div class='col-sm-8'><input id='{{id}}_vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcu'>vcu: </label><div class='col-sm-8'><input id='{{id}}_vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Pss2ST" };
-                super.submit (obj);
-                temp = document.getElementById ("inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
-                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
-                temp = document.getElementById ("lsmax").value; if ("" != temp) obj.lsmax = temp;
-                temp = document.getElementById ("lsmin").value; if ("" != temp) obj.lsmin = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t10").value; if ("" != temp) obj.t10 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("t7").value; if ("" != temp) obj.t7 = temp;
-                temp = document.getElementById ("t8").value; if ("" != temp) obj.t8 = temp;
-                temp = document.getElementById ("t9").value; if ("" != temp) obj.t9 = temp;
-                temp = document.getElementById ("vcl").value; if ("" != temp) obj.vcl = temp;
-                temp = document.getElementById ("vcu").value; if ("" != temp) obj.vcu = temp;
+                var obj = obj || { id: id, cls: "Pss2ST" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById (id + "_lsmax").value; if ("" != temp) obj.lsmax = temp;
+                temp = document.getElementById (id + "_lsmin").value; if ("" != temp) obj.lsmin = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t10").value; if ("" != temp) obj.t10 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_t7").value; if ("" != temp) obj.t7 = temp;
+                temp = document.getElementById (id + "_t8").value; if ("" != temp) obj.t8 = temp;
+                temp = document.getElementById (id + "_t9").value; if ("" != temp) obj.t9 = temp;
+                temp = document.getElementById (id + "_vcl").value; if ("" != temp) obj.vcl = temp;
+                temp = document.getElementById (id + "_vcu").value; if ("" != temp) obj.vcu = temp;
 
                 return (obj);
             }
@@ -859,53 +859,53 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1_collapse" aria-expanded="true" aria-controls="Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
-                    <div id="Pss1_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss1_collapse" aria-expanded="true" aria-controls="{{id}}_Pss1_collapse" style="margin-left: 10px;">Pss1</a></legend>
+                    <div id="{{id}}_Pss1_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpe'>kpe: </label><div class='col-sm-8'><input id='kpe' class='form-control' type='text'{{#kpe}} value='{{kpe}}'{{/kpe}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kw'>kw: </label><div class='col-sm-8'><input id='kw' class='form-control' type='text'{{#kw}} value='{{kw}}'{{/kw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpe'>tpe: </label><div class='col-sm-8'><input id='tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vadat'>vadat: </label><div class='col-sm-8'><input id='vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmn'>vsmn: </label><div class='col-sm-8'><input id='vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmx'>vsmx: </label><div class='col-sm-8'><input id='vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpe'>kpe: </label><div class='col-sm-8'><input id='{{id}}_kpe' class='form-control' type='text'{{#kpe}} value='{{kpe}}'{{/kpe}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kw'>kw: </label><div class='col-sm-8'><input id='{{id}}_kw' class='form-control' type='text'{{#kw}} value='{{kw}}'{{/kw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmin'>pmin: </label><div class='col-sm-8'><input id='{{id}}_pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t10'>t10: </label><div class='col-sm-8'><input id='{{id}}_t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t7'>t7: </label><div class='col-sm-8'><input id='{{id}}_t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t8'>t8: </label><div class='col-sm-8'><input id='{{id}}_t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t9'>t9: </label><div class='col-sm-8'><input id='{{id}}_t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpe'>tpe: </label><div class='col-sm-8'><input id='{{id}}_tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vadat'>vadat: </label><div class='col-sm-8'><input id='{{id}}_vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmn'>vsmn: </label><div class='col-sm-8'><input id='{{id}}_vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmx'>vsmx: </label><div class='col-sm-8'><input id='{{id}}_vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Pss1" };
-                super.submit (obj);
-                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
-                temp = document.getElementById ("kpe").value; if ("" != temp) obj.kpe = temp;
-                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
-                temp = document.getElementById ("kw").value; if ("" != temp) obj.kw = temp;
-                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
-                temp = document.getElementById ("t10").value; if ("" != temp) obj.t10 = temp;
-                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("t7").value; if ("" != temp) obj.t7 = temp;
-                temp = document.getElementById ("t8").value; if ("" != temp) obj.t8 = temp;
-                temp = document.getElementById ("t9").value; if ("" != temp) obj.t9 = temp;
-                temp = document.getElementById ("tpe").value; if ("" != temp) obj.tpe = temp;
-                temp = document.getElementById ("vadat").checked; if (temp) obj.vadat = true;
-                temp = document.getElementById ("vsmn").value; if ("" != temp) obj.vsmn = temp;
-                temp = document.getElementById ("vsmx").value; if ("" != temp) obj.vsmx = temp;
+                var obj = obj || { id: id, cls: "Pss1" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById (id + "_kpe").value; if ("" != temp) obj.kpe = temp;
+                temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById (id + "_kw").value; if ("" != temp) obj.kw = temp;
+                temp = document.getElementById (id + "_pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById (id + "_t10").value; if ("" != temp) obj.t10 = temp;
+                temp = document.getElementById (id + "_t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_t7").value; if ("" != temp) obj.t7 = temp;
+                temp = document.getElementById (id + "_t8").value; if ("" != temp) obj.t8 = temp;
+                temp = document.getElementById (id + "_t9").value; if ("" != temp) obj.t9 = temp;
+                temp = document.getElementById (id + "_tpe").value; if ("" != temp) obj.tpe = temp;
+                temp = document.getElementById (id + "_vadat").checked; if (temp) obj.vadat = true;
+                temp = document.getElementById (id + "_vsmn").value; if ("" != temp) obj.vsmn = temp;
+                temp = document.getElementById (id + "_vsmx").value; if ("" != temp) obj.vsmx = temp;
 
                 return (obj);
             }
@@ -1027,49 +1027,49 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSH_collapse" aria-expanded="true" aria-controls="PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
-                    <div id="PssSH_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSH_collapse" aria-expanded="true" aria-controls="{{id}}_PssSH_collapse" style="margin-left: 10px;">PssSH</a></legend>
+                    <div id="{{id}}_PssSH_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k0'>k0: </label><div class='col-sm-8'><input id='k0' class='form-control' type='text'{{#k0}} value='{{k0}}'{{/k0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k4'>k4: </label><div class='col-sm-8'><input id='k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k0'>k0: </label><div class='col-sm-8'><input id='{{id}}_k0' class='form-control' type='text'{{#k0}} value='{{k0}}'{{/k0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k3'>k3: </label><div class='col-sm-8'><input id='{{id}}_k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k4'>k4: </label><div class='col-sm-8'><input id='{{id}}_k4' class='form-control' type='text'{{#k4}} value='{{k4}}'{{/k4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td'>td: </label><div class='col-sm-8'><input id='{{id}}_td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssSH" };
-                super.submit (obj);
-                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
-                temp = document.getElementById ("k0").value; if ("" != temp) obj.k0 = temp;
-                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
-                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
-                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
-                temp = document.getElementById ("k4").value; if ("" != temp) obj.k4 = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
-                temp = document.getElementById ("vsmax").value; if ("" != temp) obj.vsmax = temp;
-                temp = document.getElementById ("vsmin").value; if ("" != temp) obj.vsmin = temp;
+                var obj = obj || { id: id, cls: "PssSH" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById (id + "_k0").value; if ("" != temp) obj.k0 = temp;
+                temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById (id + "_k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById (id + "_k4").value; if ("" != temp) obj.k4 = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById (id + "_vsmax").value; if ("" != temp) obj.vsmax = temp;
+                temp = document.getElementById (id + "_vsmin").value; if ("" != temp) obj.vsmin = temp;
 
                 return (obj);
             }
@@ -1222,67 +1222,67 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss1A_collapse" aria-expanded="true" aria-controls="Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
-                    <div id="Pss1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss1A_collapse" aria-expanded="true" aria-controls="{{id}}_Pss1A_collapse" style="margin-left: 10px;">Pss1A</a></legend>
+                    <div id="{{id}}_Pss1A_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a3'>a3: </label><div class='col-sm-8'><input id='a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a4'>a4: </label><div class='col-sm-8'><input id='a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a5'>a5: </label><div class='col-sm-8'><input id='a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a6'>a6: </label><div class='col-sm-8'><input id='a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a7'>a7: </label><div class='col-sm-8'><input id='a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a8'>a8: </label><div class='col-sm-8'><input id='a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='inputSignalType' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='kd'>kd: </label><div class='col-sm-8'><input id='kd' class='form-check-input' type='checkbox'{{#kd}} checked{{/kd}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tdelay'>tdelay: </label><div class='col-sm-8'><input id='tdelay' class='form-control' type='text'{{#tdelay}} value='{{tdelay}}'{{/tdelay}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcl'>vcl: </label><div class='col-sm-8'><input id='vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcu'>vcu: </label><div class='col-sm-8'><input id='vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a1'>a1: </label><div class='col-sm-8'><input id='{{id}}_a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a2'>a2: </label><div class='col-sm-8'><input id='{{id}}_a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a3'>a3: </label><div class='col-sm-8'><input id='{{id}}_a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a4'>a4: </label><div class='col-sm-8'><input id='{{id}}_a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a5'>a5: </label><div class='col-sm-8'><input id='{{id}}_a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a6'>a6: </label><div class='col-sm-8'><input id='{{id}}_a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a7'>a7: </label><div class='col-sm-8'><input id='{{id}}_a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a8'>a8: </label><div class='col-sm-8'><input id='{{id}}_a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='{{id}}_inputSignalType' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_kd'>kd: </label><div class='col-sm-8'><input id='{{id}}_kd' class='form-check-input' type='checkbox'{{#kd}} checked{{/kd}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tdelay'>tdelay: </label><div class='col-sm-8'><input id='{{id}}_tdelay' class='form-control' type='text'{{#tdelay}} value='{{tdelay}}'{{/tdelay}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcl'>vcl: </label><div class='col-sm-8'><input id='{{id}}_vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcu'>vcu: </label><div class='col-sm-8'><input id='{{id}}_vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Pss1A" };
-                super.submit (obj);
-                temp = document.getElementById ("a1").value; if ("" != temp) obj.a1 = temp;
-                temp = document.getElementById ("a2").value; if ("" != temp) obj.a2 = temp;
-                temp = document.getElementById ("a3").value; if ("" != temp) obj.a3 = temp;
-                temp = document.getElementById ("a4").value; if ("" != temp) obj.a4 = temp;
-                temp = document.getElementById ("a5").value; if ("" != temp) obj.a5 = temp;
-                temp = document.getElementById ("a6").value; if ("" != temp) obj.a6 = temp;
-                temp = document.getElementById ("a7").value; if ("" != temp) obj.a7 = temp;
-                temp = document.getElementById ("a8").value; if ("" != temp) obj.a8 = temp;
-                temp = document.getElementById ("inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("kd").checked; if (temp) obj.kd = true;
-                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("tdelay").value; if ("" != temp) obj.tdelay = temp;
-                temp = document.getElementById ("vcl").value; if ("" != temp) obj.vcl = temp;
-                temp = document.getElementById ("vcu").value; if ("" != temp) obj.vcu = temp;
-                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
-                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                var obj = obj || { id: id, cls: "Pss1A" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_a1").value; if ("" != temp) obj.a1 = temp;
+                temp = document.getElementById (id + "_a2").value; if ("" != temp) obj.a2 = temp;
+                temp = document.getElementById (id + "_a3").value; if ("" != temp) obj.a3 = temp;
+                temp = document.getElementById (id + "_a4").value; if ("" != temp) obj.a4 = temp;
+                temp = document.getElementById (id + "_a5").value; if ("" != temp) obj.a5 = temp;
+                temp = document.getElementById (id + "_a6").value; if ("" != temp) obj.a6 = temp;
+                temp = document.getElementById (id + "_a7").value; if ("" != temp) obj.a7 = temp;
+                temp = document.getElementById (id + "_a8").value; if ("" != temp) obj.a8 = temp;
+                temp = document.getElementById (id + "_inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_kd").checked; if (temp) obj.kd = true;
+                temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_tdelay").value; if ("" != temp) obj.tdelay = temp;
+                temp = document.getElementById (id + "_vcl").value; if ("" != temp) obj.vcl = temp;
+                temp = document.getElementById (id + "_vcu").value; if ("" != temp) obj.vcu = temp;
+                temp = document.getElementById (id + "_vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById (id + "_vrmin").value; if ("" != temp) obj.vrmin = temp;
 
                 return (obj);
             }
@@ -1398,45 +1398,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSK_collapse" aria-expanded="true" aria-controls="PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
-                    <div id="PssSK_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSK_collapse" aria-expanded="true" aria-controls="{{id}}_PssSK_collapse" style="margin-left: 10px;">PssSK</a></legend>
+                    <div id="{{id}}_PssSK_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k3'>k3: </label><div class='col-sm-8'><input id='k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k3'>k3: </label><div class='col-sm-8'><input id='{{id}}_k3' class='form-control' type='text'{{#k3}} value='{{k3}}'{{/k3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssSK" };
-                super.submit (obj);
-                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
-                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
-                temp = document.getElementById ("k3").value; if ("" != temp) obj.k3 = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("vsmax").value; if ("" != temp) obj.vsmax = temp;
-                temp = document.getElementById ("vsmin").value; if ("" != temp) obj.vsmin = temp;
+                var obj = obj || { id: id, cls: "PssSK" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById (id + "_k3").value; if ("" != temp) obj.k3 = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_vsmax").value; if ("" != temp) obj.vsmax = temp;
+                temp = document.getElementById (id + "_vsmin").value; if ("" != temp) obj.vsmin = temp;
 
                 return (obj);
             }
@@ -1559,47 +1559,47 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE1A_collapse" aria-expanded="true" aria-controls="PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
-                    <div id="PssIEEE1A_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE1A_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE1A_collapse" style="margin-left: 10px;">PssIEEE1A</a></legend>
+                    <div id="{{id}}_PssIEEE1A_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='inputSignalType' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks'>ks: </label><div class='col-sm-8'><input id='ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmax'>vrmax: </label><div class='col-sm-8'><input id='vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vrmin'>vrmin: </label><div class='col-sm-8'><input id='vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a1'>a1: </label><div class='col-sm-8'><input id='{{id}}_a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a2'>a2: </label><div class='col-sm-8'><input id='{{id}}_a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignalType'>inputSignalType: </label><div class='col-sm-8'><select id='{{id}}_inputSignalType' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks'>ks: </label><div class='col-sm-8'><input id='{{id}}_ks' class='form-control' type='text'{{#ks}} value='{{ks}}'{{/ks}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmax'>vrmax: </label><div class='col-sm-8'><input id='{{id}}_vrmax' class='form-control' type='text'{{#vrmax}} value='{{vrmax}}'{{/vrmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vrmin'>vrmin: </label><div class='col-sm-8'><input id='{{id}}_vrmin' class='form-control' type='text'{{#vrmin}} value='{{vrmin}}'{{/vrmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssIEEE1A" };
-                super.submit (obj);
-                temp = document.getElementById ("a1").value; if ("" != temp) obj.a1 = temp;
-                temp = document.getElementById ("a2").value; if ("" != temp) obj.a2 = temp;
-                temp = document.getElementById ("inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("ks").value; if ("" != temp) obj.ks = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("vrmax").value; if ("" != temp) obj.vrmax = temp;
-                temp = document.getElementById ("vrmin").value; if ("" != temp) obj.vrmin = temp;
+                var obj = obj || { id: id, cls: "PssIEEE1A" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_a1").value; if ("" != temp) obj.a1 = temp;
+                temp = document.getElementById (id + "_a2").value; if ("" != temp) obj.a2 = temp;
+                temp = document.getElementById (id + "_inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_vrmax").value; if ("" != temp) obj.vrmax = temp;
+                temp = document.getElementById (id + "_vrmin").value; if ("" != temp) obj.vrmin = temp;
 
                 return (obj);
             }
@@ -1784,91 +1784,91 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssPTIST3_collapse" aria-expanded="true" aria-controls="PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
-                    <div id="PssPTIST3_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssPTIST3_collapse" aria-expanded="true" aria-controls="{{id}}_PssPTIST3_collapse" style="margin-left: 10px;">PssPTIST3</a></legend>
+                    <div id="{{id}}_PssPTIST3_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a0'>a0: </label><div class='col-sm-8'><input id='a0' class='form-control' type='text'{{#a0}} value='{{a0}}'{{/a0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a3'>a3: </label><div class='col-sm-8'><input id='a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a4'>a4: </label><div class='col-sm-8'><input id='a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a5'>a5: </label><div class='col-sm-8'><input id='a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='al'>al: </label><div class='col-sm-8'><input id='al' class='form-control' type='text'{{#al}} value='{{al}}'{{/al}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='athres'>athres: </label><div class='col-sm-8'><input id='athres' class='form-control' type='text'{{#athres}} value='{{athres}}'{{/athres}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b0'>b0: </label><div class='col-sm-8'><input id='b0' class='form-control' type='text'{{#b0}} value='{{b0}}'{{/b0}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b1'>b1: </label><div class='col-sm-8'><input id='b1' class='form-control' type='text'{{#b1}} value='{{b1}}'{{/b1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b2'>b2: </label><div class='col-sm-8'><input id='b2' class='form-control' type='text'{{#b2}} value='{{b2}}'{{/b2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b3'>b3: </label><div class='col-sm-8'><input id='b3' class='form-control' type='text'{{#b3}} value='{{b3}}'{{/b3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b4'>b4: </label><div class='col-sm-8'><input id='b4' class='form-control' type='text'{{#b4}} value='{{b4}}'{{/b4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='b5'>b5: </label><div class='col-sm-8'><input id='b5' class='form-control' type='text'{{#b5}} value='{{b5}}'{{/b5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dl'>dl: </label><div class='col-sm-8'><input id='dl' class='form-control' type='text'{{#dl}} value='{{dl}}'{{/dl}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtc'>dtc: </label><div class='col-sm-8'><input id='dtc' class='form-control' type='text'{{#dtc}} value='{{dtc}}'{{/dtc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtf'>dtf: </label><div class='col-sm-8'><input id='dtf' class='form-control' type='text'{{#dtf}} value='{{dtf}}'{{/dtf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='dtp'>dtp: </label><div class='col-sm-8'><input id='dtp' class='form-control' type='text'{{#dtp}} value='{{dtp}}'{{/dtp}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isw'>isw: </label><div class='col-sm-8'><input id='isw' class='form-check-input' type='checkbox'{{#isw}} checked{{/isw}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k'>k: </label><div class='col-sm-8'><input id='k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='lthres'>lthres: </label><div class='col-sm-8'><input id='lthres' class='form-control' type='text'{{#lthres}} value='{{lthres}}'{{/lthres}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='nav'>nav: </label><div class='col-sm-8'><input id='nav' class='form-control' type='text'{{#nav}} value='{{nav}}'{{/nav}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ncl'>ncl: </label><div class='col-sm-8'><input id='ncl' class='form-control' type='text'{{#ncl}} value='{{ncl}}'{{/ncl}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ncr'>ncr: </label><div class='col-sm-8'><input id='ncr' class='form-control' type='text'{{#ncr}} value='{{ncr}}'{{/ncr}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmin'>pmin: </label><div class='col-sm-8'><input id='pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tf'>tf: </label><div class='col-sm-8'><input id='tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tp'>tp: </label><div class='col-sm-8'><input id='tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a0'>a0: </label><div class='col-sm-8'><input id='{{id}}_a0' class='form-control' type='text'{{#a0}} value='{{a0}}'{{/a0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a1'>a1: </label><div class='col-sm-8'><input id='{{id}}_a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a2'>a2: </label><div class='col-sm-8'><input id='{{id}}_a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a3'>a3: </label><div class='col-sm-8'><input id='{{id}}_a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a4'>a4: </label><div class='col-sm-8'><input id='{{id}}_a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a5'>a5: </label><div class='col-sm-8'><input id='{{id}}_a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_al'>al: </label><div class='col-sm-8'><input id='{{id}}_al' class='form-control' type='text'{{#al}} value='{{al}}'{{/al}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_athres'>athres: </label><div class='col-sm-8'><input id='{{id}}_athres' class='form-control' type='text'{{#athres}} value='{{athres}}'{{/athres}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b0'>b0: </label><div class='col-sm-8'><input id='{{id}}_b0' class='form-control' type='text'{{#b0}} value='{{b0}}'{{/b0}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b1'>b1: </label><div class='col-sm-8'><input id='{{id}}_b1' class='form-control' type='text'{{#b1}} value='{{b1}}'{{/b1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b2'>b2: </label><div class='col-sm-8'><input id='{{id}}_b2' class='form-control' type='text'{{#b2}} value='{{b2}}'{{/b2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b3'>b3: </label><div class='col-sm-8'><input id='{{id}}_b3' class='form-control' type='text'{{#b3}} value='{{b3}}'{{/b3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b4'>b4: </label><div class='col-sm-8'><input id='{{id}}_b4' class='form-control' type='text'{{#b4}} value='{{b4}}'{{/b4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_b5'>b5: </label><div class='col-sm-8'><input id='{{id}}_b5' class='form-control' type='text'{{#b5}} value='{{b5}}'{{/b5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dl'>dl: </label><div class='col-sm-8'><input id='{{id}}_dl' class='form-control' type='text'{{#dl}} value='{{dl}}'{{/dl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtc'>dtc: </label><div class='col-sm-8'><input id='{{id}}_dtc' class='form-control' type='text'{{#dtc}} value='{{dtc}}'{{/dtc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtf'>dtf: </label><div class='col-sm-8'><input id='{{id}}_dtf' class='form-control' type='text'{{#dtf}} value='{{dtf}}'{{/dtf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_dtp'>dtp: </label><div class='col-sm-8'><input id='{{id}}_dtp' class='form-control' type='text'{{#dtp}} value='{{dtp}}'{{/dtp}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isw'>isw: </label><div class='col-sm-8'><input id='{{id}}_isw' class='form-check-input' type='checkbox'{{#isw}} checked{{/isw}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k'>k: </label><div class='col-sm-8'><input id='{{id}}_k' class='form-control' type='text'{{#k}} value='{{k}}'{{/k}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_lthres'>lthres: </label><div class='col-sm-8'><input id='{{id}}_lthres' class='form-control' type='text'{{#lthres}} value='{{lthres}}'{{/lthres}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_m'>m: </label><div class='col-sm-8'><input id='{{id}}_m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_nav'>nav: </label><div class='col-sm-8'><input id='{{id}}_nav' class='form-control' type='text'{{#nav}} value='{{nav}}'{{/nav}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ncl'>ncl: </label><div class='col-sm-8'><input id='{{id}}_ncl' class='form-control' type='text'{{#ncl}} value='{{ncl}}'{{/ncl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ncr'>ncr: </label><div class='col-sm-8'><input id='{{id}}_ncr' class='form-control' type='text'{{#ncr}} value='{{ncr}}'{{/ncr}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmin'>pmin: </label><div class='col-sm-8'><input id='{{id}}_pmin' class='form-control' type='text'{{#pmin}} value='{{pmin}}'{{/pmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tf'>tf: </label><div class='col-sm-8'><input id='{{id}}_tf' class='form-control' type='text'{{#tf}} value='{{tf}}'{{/tf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tp'>tp: </label><div class='col-sm-8'><input id='{{id}}_tp' class='form-control' type='text'{{#tp}} value='{{tp}}'{{/tp}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssPTIST3" };
-                super.submit (obj);
-                temp = document.getElementById ("a0").value; if ("" != temp) obj.a0 = temp;
-                temp = document.getElementById ("a1").value; if ("" != temp) obj.a1 = temp;
-                temp = document.getElementById ("a2").value; if ("" != temp) obj.a2 = temp;
-                temp = document.getElementById ("a3").value; if ("" != temp) obj.a3 = temp;
-                temp = document.getElementById ("a4").value; if ("" != temp) obj.a4 = temp;
-                temp = document.getElementById ("a5").value; if ("" != temp) obj.a5 = temp;
-                temp = document.getElementById ("al").value; if ("" != temp) obj.al = temp;
-                temp = document.getElementById ("athres").value; if ("" != temp) obj.athres = temp;
-                temp = document.getElementById ("b0").value; if ("" != temp) obj.b0 = temp;
-                temp = document.getElementById ("b1").value; if ("" != temp) obj.b1 = temp;
-                temp = document.getElementById ("b2").value; if ("" != temp) obj.b2 = temp;
-                temp = document.getElementById ("b3").value; if ("" != temp) obj.b3 = temp;
-                temp = document.getElementById ("b4").value; if ("" != temp) obj.b4 = temp;
-                temp = document.getElementById ("b5").value; if ("" != temp) obj.b5 = temp;
-                temp = document.getElementById ("dl").value; if ("" != temp) obj.dl = temp;
-                temp = document.getElementById ("dtc").value; if ("" != temp) obj.dtc = temp;
-                temp = document.getElementById ("dtf").value; if ("" != temp) obj.dtf = temp;
-                temp = document.getElementById ("dtp").value; if ("" != temp) obj.dtp = temp;
-                temp = document.getElementById ("isw").checked; if (temp) obj.isw = true;
-                temp = document.getElementById ("k").value; if ("" != temp) obj.k = temp;
-                temp = document.getElementById ("lthres").value; if ("" != temp) obj.lthres = temp;
-                temp = document.getElementById ("m").value; if ("" != temp) obj.m = temp;
-                temp = document.getElementById ("nav").value; if ("" != temp) obj.nav = temp;
-                temp = document.getElementById ("ncl").value; if ("" != temp) obj.ncl = temp;
-                temp = document.getElementById ("ncr").value; if ("" != temp) obj.ncr = temp;
-                temp = document.getElementById ("pmin").value; if ("" != temp) obj.pmin = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("tf").value; if ("" != temp) obj.tf = temp;
-                temp = document.getElementById ("tp").value; if ("" != temp) obj.tp = temp;
+                var obj = obj || { id: id, cls: "PssPTIST3" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_a0").value; if ("" != temp) obj.a0 = temp;
+                temp = document.getElementById (id + "_a1").value; if ("" != temp) obj.a1 = temp;
+                temp = document.getElementById (id + "_a2").value; if ("" != temp) obj.a2 = temp;
+                temp = document.getElementById (id + "_a3").value; if ("" != temp) obj.a3 = temp;
+                temp = document.getElementById (id + "_a4").value; if ("" != temp) obj.a4 = temp;
+                temp = document.getElementById (id + "_a5").value; if ("" != temp) obj.a5 = temp;
+                temp = document.getElementById (id + "_al").value; if ("" != temp) obj.al = temp;
+                temp = document.getElementById (id + "_athres").value; if ("" != temp) obj.athres = temp;
+                temp = document.getElementById (id + "_b0").value; if ("" != temp) obj.b0 = temp;
+                temp = document.getElementById (id + "_b1").value; if ("" != temp) obj.b1 = temp;
+                temp = document.getElementById (id + "_b2").value; if ("" != temp) obj.b2 = temp;
+                temp = document.getElementById (id + "_b3").value; if ("" != temp) obj.b3 = temp;
+                temp = document.getElementById (id + "_b4").value; if ("" != temp) obj.b4 = temp;
+                temp = document.getElementById (id + "_b5").value; if ("" != temp) obj.b5 = temp;
+                temp = document.getElementById (id + "_dl").value; if ("" != temp) obj.dl = temp;
+                temp = document.getElementById (id + "_dtc").value; if ("" != temp) obj.dtc = temp;
+                temp = document.getElementById (id + "_dtf").value; if ("" != temp) obj.dtf = temp;
+                temp = document.getElementById (id + "_dtp").value; if ("" != temp) obj.dtp = temp;
+                temp = document.getElementById (id + "_isw").checked; if (temp) obj.isw = true;
+                temp = document.getElementById (id + "_k").value; if ("" != temp) obj.k = temp;
+                temp = document.getElementById (id + "_lthres").value; if ("" != temp) obj.lthres = temp;
+                temp = document.getElementById (id + "_m").value; if ("" != temp) obj.m = temp;
+                temp = document.getElementById (id + "_nav").value; if ("" != temp) obj.nav = temp;
+                temp = document.getElementById (id + "_ncl").value; if ("" != temp) obj.ncl = temp;
+                temp = document.getElementById (id + "_ncr").value; if ("" != temp) obj.ncr = temp;
+                temp = document.getElementById (id + "_pmin").value; if ("" != temp) obj.pmin = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_tf").value; if ("" != temp) obj.tf = temp;
+                temp = document.getElementById (id + "_tp").value; if ("" != temp) obj.tp = temp;
 
                 return (obj);
             }
@@ -2154,157 +2154,157 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE4B_collapse" aria-expanded="true" aria-controls="PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
-                    <div id="PssIEEE4B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE4B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE4B_collapse" style="margin-left: 10px;">PssIEEE4B</a></legend>
+                    <div id="{{id}}_PssIEEE4B_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bwh1'>bwh1: </label><div class='col-sm-8'><input id='bwh1' class='form-control' type='text'{{#bwh1}} value='{{bwh1}}'{{/bwh1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bwh2'>bwh2: </label><div class='col-sm-8'><input id='bwh2' class='form-control' type='text'{{#bwh2}} value='{{bwh2}}'{{/bwh2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bwl1'>bwl1: </label><div class='col-sm-8'><input id='bwl1' class='form-control' type='text'{{#bwl1}} value='{{bwl1}}'{{/bwl1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='bwl2'>bwl2: </label><div class='col-sm-8'><input id='bwl2' class='form-control' type='text'{{#bwl2}} value='{{bwl2}}'{{/bwl2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh'>kh: </label><div class='col-sm-8'><input id='kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh1'>kh1: </label><div class='col-sm-8'><input id='kh1' class='form-control' type='text'{{#kh1}} value='{{kh1}}'{{/kh1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh11'>kh11: </label><div class='col-sm-8'><input id='kh11' class='form-control' type='text'{{#kh11}} value='{{kh11}}'{{/kh11}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh17'>kh17: </label><div class='col-sm-8'><input id='kh17' class='form-control' type='text'{{#kh17}} value='{{kh17}}'{{/kh17}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kh2'>kh2: </label><div class='col-sm-8'><input id='kh2' class='form-control' type='text'{{#kh2}} value='{{kh2}}'{{/kh2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki'>ki: </label><div class='col-sm-8'><input id='ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki1'>ki1: </label><div class='col-sm-8'><input id='ki1' class='form-control' type='text'{{#ki1}} value='{{ki1}}'{{/ki1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki11'>ki11: </label><div class='col-sm-8'><input id='ki11' class='form-control' type='text'{{#ki11}} value='{{ki11}}'{{/ki11}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki17'>ki17: </label><div class='col-sm-8'><input id='ki17' class='form-control' type='text'{{#ki17}} value='{{ki17}}'{{/ki17}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ki2'>ki2: </label><div class='col-sm-8'><input id='ki2' class='form-control' type='text'{{#ki2}} value='{{ki2}}'{{/ki2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl'>kl: </label><div class='col-sm-8'><input id='kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl1'>kl1: </label><div class='col-sm-8'><input id='kl1' class='form-control' type='text'{{#kl1}} value='{{kl1}}'{{/kl1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl11'>kl11: </label><div class='col-sm-8'><input id='kl11' class='form-control' type='text'{{#kl11}} value='{{kl11}}'{{/kl11}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl17'>kl17: </label><div class='col-sm-8'><input id='kl17' class='form-control' type='text'{{#kl17}} value='{{kl17}}'{{/kl17}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kl2'>kl2: </label><div class='col-sm-8'><input id='kl2' class='form-control' type='text'{{#kl2}} value='{{kl2}}'{{/kl2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omeganh1'>omeganh1: </label><div class='col-sm-8'><input id='omeganh1' class='form-control' type='text'{{#omeganh1}} value='{{omeganh1}}'{{/omeganh1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omeganh2'>omeganh2: </label><div class='col-sm-8'><input id='omeganh2' class='form-control' type='text'{{#omeganh2}} value='{{omeganh2}}'{{/omeganh2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omeganl1'>omeganl1: </label><div class='col-sm-8'><input id='omeganl1' class='form-control' type='text'{{#omeganl1}} value='{{omeganl1}}'{{/omeganl1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='omeganl2'>omeganl2: </label><div class='col-sm-8'><input id='omeganl2' class='form-control' type='text'{{#omeganl2}} value='{{omeganl2}}'{{/omeganl2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th1'>th1: </label><div class='col-sm-8'><input id='th1' class='form-control' type='text'{{#th1}} value='{{th1}}'{{/th1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th10'>th10: </label><div class='col-sm-8'><input id='th10' class='form-control' type='text'{{#th10}} value='{{th10}}'{{/th10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th11'>th11: </label><div class='col-sm-8'><input id='th11' class='form-control' type='text'{{#th11}} value='{{th11}}'{{/th11}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th12'>th12: </label><div class='col-sm-8'><input id='th12' class='form-control' type='text'{{#th12}} value='{{th12}}'{{/th12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th2'>th2: </label><div class='col-sm-8'><input id='th2' class='form-control' type='text'{{#th2}} value='{{th2}}'{{/th2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th3'>th3: </label><div class='col-sm-8'><input id='th3' class='form-control' type='text'{{#th3}} value='{{th3}}'{{/th3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th4'>th4: </label><div class='col-sm-8'><input id='th4' class='form-control' type='text'{{#th4}} value='{{th4}}'{{/th4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th5'>th5: </label><div class='col-sm-8'><input id='th5' class='form-control' type='text'{{#th5}} value='{{th5}}'{{/th5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th6'>th6: </label><div class='col-sm-8'><input id='th6' class='form-control' type='text'{{#th6}} value='{{th6}}'{{/th6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th7'>th7: </label><div class='col-sm-8'><input id='th7' class='form-control' type='text'{{#th7}} value='{{th7}}'{{/th7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th8'>th8: </label><div class='col-sm-8'><input id='th8' class='form-control' type='text'{{#th8}} value='{{th8}}'{{/th8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='th9'>th9: </label><div class='col-sm-8'><input id='th9' class='form-control' type='text'{{#th9}} value='{{th9}}'{{/th9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti1'>ti1: </label><div class='col-sm-8'><input id='ti1' class='form-control' type='text'{{#ti1}} value='{{ti1}}'{{/ti1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti10'>ti10: </label><div class='col-sm-8'><input id='ti10' class='form-control' type='text'{{#ti10}} value='{{ti10}}'{{/ti10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti11'>ti11: </label><div class='col-sm-8'><input id='ti11' class='form-control' type='text'{{#ti11}} value='{{ti11}}'{{/ti11}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti12'>ti12: </label><div class='col-sm-8'><input id='ti12' class='form-control' type='text'{{#ti12}} value='{{ti12}}'{{/ti12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti2'>ti2: </label><div class='col-sm-8'><input id='ti2' class='form-control' type='text'{{#ti2}} value='{{ti2}}'{{/ti2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti3'>ti3: </label><div class='col-sm-8'><input id='ti3' class='form-control' type='text'{{#ti3}} value='{{ti3}}'{{/ti3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti4'>ti4: </label><div class='col-sm-8'><input id='ti4' class='form-control' type='text'{{#ti4}} value='{{ti4}}'{{/ti4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti5'>ti5: </label><div class='col-sm-8'><input id='ti5' class='form-control' type='text'{{#ti5}} value='{{ti5}}'{{/ti5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti6'>ti6: </label><div class='col-sm-8'><input id='ti6' class='form-control' type='text'{{#ti6}} value='{{ti6}}'{{/ti6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti7'>ti7: </label><div class='col-sm-8'><input id='ti7' class='form-control' type='text'{{#ti7}} value='{{ti7}}'{{/ti7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti8'>ti8: </label><div class='col-sm-8'><input id='ti8' class='form-control' type='text'{{#ti8}} value='{{ti8}}'{{/ti8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ti9'>ti9: </label><div class='col-sm-8'><input id='ti9' class='form-control' type='text'{{#ti9}} value='{{ti9}}'{{/ti9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl1'>tl1: </label><div class='col-sm-8'><input id='tl1' class='form-control' type='text'{{#tl1}} value='{{tl1}}'{{/tl1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl10'>tl10: </label><div class='col-sm-8'><input id='tl10' class='form-control' type='text'{{#tl10}} value='{{tl10}}'{{/tl10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl11'>tl11: </label><div class='col-sm-8'><input id='tl11' class='form-control' type='text'{{#tl11}} value='{{tl11}}'{{/tl11}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl12'>tl12: </label><div class='col-sm-8'><input id='tl12' class='form-control' type='text'{{#tl12}} value='{{tl12}}'{{/tl12}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl2'>tl2: </label><div class='col-sm-8'><input id='tl2' class='form-control' type='text'{{#tl2}} value='{{tl2}}'{{/tl2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl3'>tl3: </label><div class='col-sm-8'><input id='tl3' class='form-control' type='text'{{#tl3}} value='{{tl3}}'{{/tl3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl4'>tl4: </label><div class='col-sm-8'><input id='tl4' class='form-control' type='text'{{#tl4}} value='{{tl4}}'{{/tl4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl5'>tl5: </label><div class='col-sm-8'><input id='tl5' class='form-control' type='text'{{#tl5}} value='{{tl5}}'{{/tl5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl6'>tl6: </label><div class='col-sm-8'><input id='tl6' class='form-control' type='text'{{#tl6}} value='{{tl6}}'{{/tl6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl7'>tl7: </label><div class='col-sm-8'><input id='tl7' class='form-control' type='text'{{#tl7}} value='{{tl7}}'{{/tl7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl8'>tl8: </label><div class='col-sm-8'><input id='tl8' class='form-control' type='text'{{#tl8}} value='{{tl8}}'{{/tl8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl9'>tl9: </label><div class='col-sm-8'><input id='tl9' class='form-control' type='text'{{#tl9}} value='{{tl9}}'{{/tl9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vhmax'>vhmax: </label><div class='col-sm-8'><input id='vhmax' class='form-control' type='text'{{#vhmax}} value='{{vhmax}}'{{/vhmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vhmin'>vhmin: </label><div class='col-sm-8'><input id='vhmin' class='form-control' type='text'{{#vhmin}} value='{{vhmin}}'{{/vhmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimax'>vimax: </label><div class='col-sm-8'><input id='vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vimin'>vimin: </label><div class='col-sm-8'><input id='vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vlmax'>vlmax: </label><div class='col-sm-8'><input id='vlmax' class='form-control' type='text'{{#vlmax}} value='{{vlmax}}'{{/vlmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vlmin'>vlmin: </label><div class='col-sm-8'><input id='vlmin' class='form-control' type='text'{{#vlmin}} value='{{vlmin}}'{{/vlmin}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmax'>vstmax: </label><div class='col-sm-8'><input id='vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmin'>vstmin: </label><div class='col-sm-8'><input id='vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bwh1'>bwh1: </label><div class='col-sm-8'><input id='{{id}}_bwh1' class='form-control' type='text'{{#bwh1}} value='{{bwh1}}'{{/bwh1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bwh2'>bwh2: </label><div class='col-sm-8'><input id='{{id}}_bwh2' class='form-control' type='text'{{#bwh2}} value='{{bwh2}}'{{/bwh2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bwl1'>bwl1: </label><div class='col-sm-8'><input id='{{id}}_bwl1' class='form-control' type='text'{{#bwl1}} value='{{bwl1}}'{{/bwl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_bwl2'>bwl2: </label><div class='col-sm-8'><input id='{{id}}_bwl2' class='form-control' type='text'{{#bwl2}} value='{{bwl2}}'{{/bwl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kh'>kh: </label><div class='col-sm-8'><input id='{{id}}_kh' class='form-control' type='text'{{#kh}} value='{{kh}}'{{/kh}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kh1'>kh1: </label><div class='col-sm-8'><input id='{{id}}_kh1' class='form-control' type='text'{{#kh1}} value='{{kh1}}'{{/kh1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kh11'>kh11: </label><div class='col-sm-8'><input id='{{id}}_kh11' class='form-control' type='text'{{#kh11}} value='{{kh11}}'{{/kh11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kh17'>kh17: </label><div class='col-sm-8'><input id='{{id}}_kh17' class='form-control' type='text'{{#kh17}} value='{{kh17}}'{{/kh17}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kh2'>kh2: </label><div class='col-sm-8'><input id='{{id}}_kh2' class='form-control' type='text'{{#kh2}} value='{{kh2}}'{{/kh2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki'>ki: </label><div class='col-sm-8'><input id='{{id}}_ki' class='form-control' type='text'{{#ki}} value='{{ki}}'{{/ki}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki1'>ki1: </label><div class='col-sm-8'><input id='{{id}}_ki1' class='form-control' type='text'{{#ki1}} value='{{ki1}}'{{/ki1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki11'>ki11: </label><div class='col-sm-8'><input id='{{id}}_ki11' class='form-control' type='text'{{#ki11}} value='{{ki11}}'{{/ki11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki17'>ki17: </label><div class='col-sm-8'><input id='{{id}}_ki17' class='form-control' type='text'{{#ki17}} value='{{ki17}}'{{/ki17}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ki2'>ki2: </label><div class='col-sm-8'><input id='{{id}}_ki2' class='form-control' type='text'{{#ki2}} value='{{ki2}}'{{/ki2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl'>kl: </label><div class='col-sm-8'><input id='{{id}}_kl' class='form-control' type='text'{{#kl}} value='{{kl}}'{{/kl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl1'>kl1: </label><div class='col-sm-8'><input id='{{id}}_kl1' class='form-control' type='text'{{#kl1}} value='{{kl1}}'{{/kl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl11'>kl11: </label><div class='col-sm-8'><input id='{{id}}_kl11' class='form-control' type='text'{{#kl11}} value='{{kl11}}'{{/kl11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl17'>kl17: </label><div class='col-sm-8'><input id='{{id}}_kl17' class='form-control' type='text'{{#kl17}} value='{{kl17}}'{{/kl17}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kl2'>kl2: </label><div class='col-sm-8'><input id='{{id}}_kl2' class='form-control' type='text'{{#kl2}} value='{{kl2}}'{{/kl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omeganh1'>omeganh1: </label><div class='col-sm-8'><input id='{{id}}_omeganh1' class='form-control' type='text'{{#omeganh1}} value='{{omeganh1}}'{{/omeganh1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omeganh2'>omeganh2: </label><div class='col-sm-8'><input id='{{id}}_omeganh2' class='form-control' type='text'{{#omeganh2}} value='{{omeganh2}}'{{/omeganh2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omeganl1'>omeganl1: </label><div class='col-sm-8'><input id='{{id}}_omeganl1' class='form-control' type='text'{{#omeganl1}} value='{{omeganl1}}'{{/omeganl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_omeganl2'>omeganl2: </label><div class='col-sm-8'><input id='{{id}}_omeganl2' class='form-control' type='text'{{#omeganl2}} value='{{omeganl2}}'{{/omeganl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th1'>th1: </label><div class='col-sm-8'><input id='{{id}}_th1' class='form-control' type='text'{{#th1}} value='{{th1}}'{{/th1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th10'>th10: </label><div class='col-sm-8'><input id='{{id}}_th10' class='form-control' type='text'{{#th10}} value='{{th10}}'{{/th10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th11'>th11: </label><div class='col-sm-8'><input id='{{id}}_th11' class='form-control' type='text'{{#th11}} value='{{th11}}'{{/th11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th12'>th12: </label><div class='col-sm-8'><input id='{{id}}_th12' class='form-control' type='text'{{#th12}} value='{{th12}}'{{/th12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th2'>th2: </label><div class='col-sm-8'><input id='{{id}}_th2' class='form-control' type='text'{{#th2}} value='{{th2}}'{{/th2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th3'>th3: </label><div class='col-sm-8'><input id='{{id}}_th3' class='form-control' type='text'{{#th3}} value='{{th3}}'{{/th3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th4'>th4: </label><div class='col-sm-8'><input id='{{id}}_th4' class='form-control' type='text'{{#th4}} value='{{th4}}'{{/th4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th5'>th5: </label><div class='col-sm-8'><input id='{{id}}_th5' class='form-control' type='text'{{#th5}} value='{{th5}}'{{/th5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th6'>th6: </label><div class='col-sm-8'><input id='{{id}}_th6' class='form-control' type='text'{{#th6}} value='{{th6}}'{{/th6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th7'>th7: </label><div class='col-sm-8'><input id='{{id}}_th7' class='form-control' type='text'{{#th7}} value='{{th7}}'{{/th7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th8'>th8: </label><div class='col-sm-8'><input id='{{id}}_th8' class='form-control' type='text'{{#th8}} value='{{th8}}'{{/th8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_th9'>th9: </label><div class='col-sm-8'><input id='{{id}}_th9' class='form-control' type='text'{{#th9}} value='{{th9}}'{{/th9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti1'>ti1: </label><div class='col-sm-8'><input id='{{id}}_ti1' class='form-control' type='text'{{#ti1}} value='{{ti1}}'{{/ti1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti10'>ti10: </label><div class='col-sm-8'><input id='{{id}}_ti10' class='form-control' type='text'{{#ti10}} value='{{ti10}}'{{/ti10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti11'>ti11: </label><div class='col-sm-8'><input id='{{id}}_ti11' class='form-control' type='text'{{#ti11}} value='{{ti11}}'{{/ti11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti12'>ti12: </label><div class='col-sm-8'><input id='{{id}}_ti12' class='form-control' type='text'{{#ti12}} value='{{ti12}}'{{/ti12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti2'>ti2: </label><div class='col-sm-8'><input id='{{id}}_ti2' class='form-control' type='text'{{#ti2}} value='{{ti2}}'{{/ti2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti3'>ti3: </label><div class='col-sm-8'><input id='{{id}}_ti3' class='form-control' type='text'{{#ti3}} value='{{ti3}}'{{/ti3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti4'>ti4: </label><div class='col-sm-8'><input id='{{id}}_ti4' class='form-control' type='text'{{#ti4}} value='{{ti4}}'{{/ti4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti5'>ti5: </label><div class='col-sm-8'><input id='{{id}}_ti5' class='form-control' type='text'{{#ti5}} value='{{ti5}}'{{/ti5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti6'>ti6: </label><div class='col-sm-8'><input id='{{id}}_ti6' class='form-control' type='text'{{#ti6}} value='{{ti6}}'{{/ti6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti7'>ti7: </label><div class='col-sm-8'><input id='{{id}}_ti7' class='form-control' type='text'{{#ti7}} value='{{ti7}}'{{/ti7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti8'>ti8: </label><div class='col-sm-8'><input id='{{id}}_ti8' class='form-control' type='text'{{#ti8}} value='{{ti8}}'{{/ti8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ti9'>ti9: </label><div class='col-sm-8'><input id='{{id}}_ti9' class='form-control' type='text'{{#ti9}} value='{{ti9}}'{{/ti9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl1'>tl1: </label><div class='col-sm-8'><input id='{{id}}_tl1' class='form-control' type='text'{{#tl1}} value='{{tl1}}'{{/tl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl10'>tl10: </label><div class='col-sm-8'><input id='{{id}}_tl10' class='form-control' type='text'{{#tl10}} value='{{tl10}}'{{/tl10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl11'>tl11: </label><div class='col-sm-8'><input id='{{id}}_tl11' class='form-control' type='text'{{#tl11}} value='{{tl11}}'{{/tl11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl12'>tl12: </label><div class='col-sm-8'><input id='{{id}}_tl12' class='form-control' type='text'{{#tl12}} value='{{tl12}}'{{/tl12}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl2'>tl2: </label><div class='col-sm-8'><input id='{{id}}_tl2' class='form-control' type='text'{{#tl2}} value='{{tl2}}'{{/tl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl3'>tl3: </label><div class='col-sm-8'><input id='{{id}}_tl3' class='form-control' type='text'{{#tl3}} value='{{tl3}}'{{/tl3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl4'>tl4: </label><div class='col-sm-8'><input id='{{id}}_tl4' class='form-control' type='text'{{#tl4}} value='{{tl4}}'{{/tl4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl5'>tl5: </label><div class='col-sm-8'><input id='{{id}}_tl5' class='form-control' type='text'{{#tl5}} value='{{tl5}}'{{/tl5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl6'>tl6: </label><div class='col-sm-8'><input id='{{id}}_tl6' class='form-control' type='text'{{#tl6}} value='{{tl6}}'{{/tl6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl7'>tl7: </label><div class='col-sm-8'><input id='{{id}}_tl7' class='form-control' type='text'{{#tl7}} value='{{tl7}}'{{/tl7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl8'>tl8: </label><div class='col-sm-8'><input id='{{id}}_tl8' class='form-control' type='text'{{#tl8}} value='{{tl8}}'{{/tl8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl9'>tl9: </label><div class='col-sm-8'><input id='{{id}}_tl9' class='form-control' type='text'{{#tl9}} value='{{tl9}}'{{/tl9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vhmax'>vhmax: </label><div class='col-sm-8'><input id='{{id}}_vhmax' class='form-control' type='text'{{#vhmax}} value='{{vhmax}}'{{/vhmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vhmin'>vhmin: </label><div class='col-sm-8'><input id='{{id}}_vhmin' class='form-control' type='text'{{#vhmin}} value='{{vhmin}}'{{/vhmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vimax'>vimax: </label><div class='col-sm-8'><input id='{{id}}_vimax' class='form-control' type='text'{{#vimax}} value='{{vimax}}'{{/vimax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vimin'>vimin: </label><div class='col-sm-8'><input id='{{id}}_vimin' class='form-control' type='text'{{#vimin}} value='{{vimin}}'{{/vimin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vlmax'>vlmax: </label><div class='col-sm-8'><input id='{{id}}_vlmax' class='form-control' type='text'{{#vlmax}} value='{{vlmax}}'{{/vlmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vlmin'>vlmin: </label><div class='col-sm-8'><input id='{{id}}_vlmin' class='form-control' type='text'{{#vlmin}} value='{{vlmin}}'{{/vlmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssIEEE4B" };
-                super.submit (obj);
-                temp = document.getElementById ("bwh1").value; if ("" != temp) obj.bwh1 = temp;
-                temp = document.getElementById ("bwh2").value; if ("" != temp) obj.bwh2 = temp;
-                temp = document.getElementById ("bwl1").value; if ("" != temp) obj.bwl1 = temp;
-                temp = document.getElementById ("bwl2").value; if ("" != temp) obj.bwl2 = temp;
-                temp = document.getElementById ("kh").value; if ("" != temp) obj.kh = temp;
-                temp = document.getElementById ("kh1").value; if ("" != temp) obj.kh1 = temp;
-                temp = document.getElementById ("kh11").value; if ("" != temp) obj.kh11 = temp;
-                temp = document.getElementById ("kh17").value; if ("" != temp) obj.kh17 = temp;
-                temp = document.getElementById ("kh2").value; if ("" != temp) obj.kh2 = temp;
-                temp = document.getElementById ("ki").value; if ("" != temp) obj.ki = temp;
-                temp = document.getElementById ("ki1").value; if ("" != temp) obj.ki1 = temp;
-                temp = document.getElementById ("ki11").value; if ("" != temp) obj.ki11 = temp;
-                temp = document.getElementById ("ki17").value; if ("" != temp) obj.ki17 = temp;
-                temp = document.getElementById ("ki2").value; if ("" != temp) obj.ki2 = temp;
-                temp = document.getElementById ("kl").value; if ("" != temp) obj.kl = temp;
-                temp = document.getElementById ("kl1").value; if ("" != temp) obj.kl1 = temp;
-                temp = document.getElementById ("kl11").value; if ("" != temp) obj.kl11 = temp;
-                temp = document.getElementById ("kl17").value; if ("" != temp) obj.kl17 = temp;
-                temp = document.getElementById ("kl2").value; if ("" != temp) obj.kl2 = temp;
-                temp = document.getElementById ("omeganh1").value; if ("" != temp) obj.omeganh1 = temp;
-                temp = document.getElementById ("omeganh2").value; if ("" != temp) obj.omeganh2 = temp;
-                temp = document.getElementById ("omeganl1").value; if ("" != temp) obj.omeganl1 = temp;
-                temp = document.getElementById ("omeganl2").value; if ("" != temp) obj.omeganl2 = temp;
-                temp = document.getElementById ("th1").value; if ("" != temp) obj.th1 = temp;
-                temp = document.getElementById ("th10").value; if ("" != temp) obj.th10 = temp;
-                temp = document.getElementById ("th11").value; if ("" != temp) obj.th11 = temp;
-                temp = document.getElementById ("th12").value; if ("" != temp) obj.th12 = temp;
-                temp = document.getElementById ("th2").value; if ("" != temp) obj.th2 = temp;
-                temp = document.getElementById ("th3").value; if ("" != temp) obj.th3 = temp;
-                temp = document.getElementById ("th4").value; if ("" != temp) obj.th4 = temp;
-                temp = document.getElementById ("th5").value; if ("" != temp) obj.th5 = temp;
-                temp = document.getElementById ("th6").value; if ("" != temp) obj.th6 = temp;
-                temp = document.getElementById ("th7").value; if ("" != temp) obj.th7 = temp;
-                temp = document.getElementById ("th8").value; if ("" != temp) obj.th8 = temp;
-                temp = document.getElementById ("th9").value; if ("" != temp) obj.th9 = temp;
-                temp = document.getElementById ("ti1").value; if ("" != temp) obj.ti1 = temp;
-                temp = document.getElementById ("ti10").value; if ("" != temp) obj.ti10 = temp;
-                temp = document.getElementById ("ti11").value; if ("" != temp) obj.ti11 = temp;
-                temp = document.getElementById ("ti12").value; if ("" != temp) obj.ti12 = temp;
-                temp = document.getElementById ("ti2").value; if ("" != temp) obj.ti2 = temp;
-                temp = document.getElementById ("ti3").value; if ("" != temp) obj.ti3 = temp;
-                temp = document.getElementById ("ti4").value; if ("" != temp) obj.ti4 = temp;
-                temp = document.getElementById ("ti5").value; if ("" != temp) obj.ti5 = temp;
-                temp = document.getElementById ("ti6").value; if ("" != temp) obj.ti6 = temp;
-                temp = document.getElementById ("ti7").value; if ("" != temp) obj.ti7 = temp;
-                temp = document.getElementById ("ti8").value; if ("" != temp) obj.ti8 = temp;
-                temp = document.getElementById ("ti9").value; if ("" != temp) obj.ti9 = temp;
-                temp = document.getElementById ("tl1").value; if ("" != temp) obj.tl1 = temp;
-                temp = document.getElementById ("tl10").value; if ("" != temp) obj.tl10 = temp;
-                temp = document.getElementById ("tl11").value; if ("" != temp) obj.tl11 = temp;
-                temp = document.getElementById ("tl12").value; if ("" != temp) obj.tl12 = temp;
-                temp = document.getElementById ("tl2").value; if ("" != temp) obj.tl2 = temp;
-                temp = document.getElementById ("tl3").value; if ("" != temp) obj.tl3 = temp;
-                temp = document.getElementById ("tl4").value; if ("" != temp) obj.tl4 = temp;
-                temp = document.getElementById ("tl5").value; if ("" != temp) obj.tl5 = temp;
-                temp = document.getElementById ("tl6").value; if ("" != temp) obj.tl6 = temp;
-                temp = document.getElementById ("tl7").value; if ("" != temp) obj.tl7 = temp;
-                temp = document.getElementById ("tl8").value; if ("" != temp) obj.tl8 = temp;
-                temp = document.getElementById ("tl9").value; if ("" != temp) obj.tl9 = temp;
-                temp = document.getElementById ("vhmax").value; if ("" != temp) obj.vhmax = temp;
-                temp = document.getElementById ("vhmin").value; if ("" != temp) obj.vhmin = temp;
-                temp = document.getElementById ("vimax").value; if ("" != temp) obj.vimax = temp;
-                temp = document.getElementById ("vimin").value; if ("" != temp) obj.vimin = temp;
-                temp = document.getElementById ("vlmax").value; if ("" != temp) obj.vlmax = temp;
-                temp = document.getElementById ("vlmin").value; if ("" != temp) obj.vlmin = temp;
-                temp = document.getElementById ("vstmax").value; if ("" != temp) obj.vstmax = temp;
-                temp = document.getElementById ("vstmin").value; if ("" != temp) obj.vstmin = temp;
+                var obj = obj || { id: id, cls: "PssIEEE4B" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_bwh1").value; if ("" != temp) obj.bwh1 = temp;
+                temp = document.getElementById (id + "_bwh2").value; if ("" != temp) obj.bwh2 = temp;
+                temp = document.getElementById (id + "_bwl1").value; if ("" != temp) obj.bwl1 = temp;
+                temp = document.getElementById (id + "_bwl2").value; if ("" != temp) obj.bwl2 = temp;
+                temp = document.getElementById (id + "_kh").value; if ("" != temp) obj.kh = temp;
+                temp = document.getElementById (id + "_kh1").value; if ("" != temp) obj.kh1 = temp;
+                temp = document.getElementById (id + "_kh11").value; if ("" != temp) obj.kh11 = temp;
+                temp = document.getElementById (id + "_kh17").value; if ("" != temp) obj.kh17 = temp;
+                temp = document.getElementById (id + "_kh2").value; if ("" != temp) obj.kh2 = temp;
+                temp = document.getElementById (id + "_ki").value; if ("" != temp) obj.ki = temp;
+                temp = document.getElementById (id + "_ki1").value; if ("" != temp) obj.ki1 = temp;
+                temp = document.getElementById (id + "_ki11").value; if ("" != temp) obj.ki11 = temp;
+                temp = document.getElementById (id + "_ki17").value; if ("" != temp) obj.ki17 = temp;
+                temp = document.getElementById (id + "_ki2").value; if ("" != temp) obj.ki2 = temp;
+                temp = document.getElementById (id + "_kl").value; if ("" != temp) obj.kl = temp;
+                temp = document.getElementById (id + "_kl1").value; if ("" != temp) obj.kl1 = temp;
+                temp = document.getElementById (id + "_kl11").value; if ("" != temp) obj.kl11 = temp;
+                temp = document.getElementById (id + "_kl17").value; if ("" != temp) obj.kl17 = temp;
+                temp = document.getElementById (id + "_kl2").value; if ("" != temp) obj.kl2 = temp;
+                temp = document.getElementById (id + "_omeganh1").value; if ("" != temp) obj.omeganh1 = temp;
+                temp = document.getElementById (id + "_omeganh2").value; if ("" != temp) obj.omeganh2 = temp;
+                temp = document.getElementById (id + "_omeganl1").value; if ("" != temp) obj.omeganl1 = temp;
+                temp = document.getElementById (id + "_omeganl2").value; if ("" != temp) obj.omeganl2 = temp;
+                temp = document.getElementById (id + "_th1").value; if ("" != temp) obj.th1 = temp;
+                temp = document.getElementById (id + "_th10").value; if ("" != temp) obj.th10 = temp;
+                temp = document.getElementById (id + "_th11").value; if ("" != temp) obj.th11 = temp;
+                temp = document.getElementById (id + "_th12").value; if ("" != temp) obj.th12 = temp;
+                temp = document.getElementById (id + "_th2").value; if ("" != temp) obj.th2 = temp;
+                temp = document.getElementById (id + "_th3").value; if ("" != temp) obj.th3 = temp;
+                temp = document.getElementById (id + "_th4").value; if ("" != temp) obj.th4 = temp;
+                temp = document.getElementById (id + "_th5").value; if ("" != temp) obj.th5 = temp;
+                temp = document.getElementById (id + "_th6").value; if ("" != temp) obj.th6 = temp;
+                temp = document.getElementById (id + "_th7").value; if ("" != temp) obj.th7 = temp;
+                temp = document.getElementById (id + "_th8").value; if ("" != temp) obj.th8 = temp;
+                temp = document.getElementById (id + "_th9").value; if ("" != temp) obj.th9 = temp;
+                temp = document.getElementById (id + "_ti1").value; if ("" != temp) obj.ti1 = temp;
+                temp = document.getElementById (id + "_ti10").value; if ("" != temp) obj.ti10 = temp;
+                temp = document.getElementById (id + "_ti11").value; if ("" != temp) obj.ti11 = temp;
+                temp = document.getElementById (id + "_ti12").value; if ("" != temp) obj.ti12 = temp;
+                temp = document.getElementById (id + "_ti2").value; if ("" != temp) obj.ti2 = temp;
+                temp = document.getElementById (id + "_ti3").value; if ("" != temp) obj.ti3 = temp;
+                temp = document.getElementById (id + "_ti4").value; if ("" != temp) obj.ti4 = temp;
+                temp = document.getElementById (id + "_ti5").value; if ("" != temp) obj.ti5 = temp;
+                temp = document.getElementById (id + "_ti6").value; if ("" != temp) obj.ti6 = temp;
+                temp = document.getElementById (id + "_ti7").value; if ("" != temp) obj.ti7 = temp;
+                temp = document.getElementById (id + "_ti8").value; if ("" != temp) obj.ti8 = temp;
+                temp = document.getElementById (id + "_ti9").value; if ("" != temp) obj.ti9 = temp;
+                temp = document.getElementById (id + "_tl1").value; if ("" != temp) obj.tl1 = temp;
+                temp = document.getElementById (id + "_tl10").value; if ("" != temp) obj.tl10 = temp;
+                temp = document.getElementById (id + "_tl11").value; if ("" != temp) obj.tl11 = temp;
+                temp = document.getElementById (id + "_tl12").value; if ("" != temp) obj.tl12 = temp;
+                temp = document.getElementById (id + "_tl2").value; if ("" != temp) obj.tl2 = temp;
+                temp = document.getElementById (id + "_tl3").value; if ("" != temp) obj.tl3 = temp;
+                temp = document.getElementById (id + "_tl4").value; if ("" != temp) obj.tl4 = temp;
+                temp = document.getElementById (id + "_tl5").value; if ("" != temp) obj.tl5 = temp;
+                temp = document.getElementById (id + "_tl6").value; if ("" != temp) obj.tl6 = temp;
+                temp = document.getElementById (id + "_tl7").value; if ("" != temp) obj.tl7 = temp;
+                temp = document.getElementById (id + "_tl8").value; if ("" != temp) obj.tl8 = temp;
+                temp = document.getElementById (id + "_tl9").value; if ("" != temp) obj.tl9 = temp;
+                temp = document.getElementById (id + "_vhmax").value; if ("" != temp) obj.vhmax = temp;
+                temp = document.getElementById (id + "_vhmin").value; if ("" != temp) obj.vhmin = temp;
+                temp = document.getElementById (id + "_vimax").value; if ("" != temp) obj.vimax = temp;
+                temp = document.getElementById (id + "_vimin").value; if ("" != temp) obj.vimin = temp;
+                temp = document.getElementById (id + "_vlmax").value; if ("" != temp) obj.vlmax = temp;
+                temp = document.getElementById (id + "_vlmin").value; if ("" != temp) obj.vlmin = temp;
+                temp = document.getElementById (id + "_vstmax").value; if ("" != temp) obj.vstmax = temp;
+                temp = document.getElementById (id + "_vstmin").value; if ("" != temp) obj.vstmin = temp;
 
                 return (obj);
             }
@@ -2438,57 +2438,57 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss5_collapse" aria-expanded="true" aria-controls="Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
-                    <div id="Pss5_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss5_collapse" aria-expanded="true" aria-controls="{{id}}_Pss5_collapse" style="margin-left: 10px;">Pss5</a></legend>
+                    <div id="{{id}}_Pss5_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='ctw2'>ctw2: </label><div class='col-sm-8'><input id='ctw2' class='form-check-input' type='checkbox'{{#ctw2}} checked{{/ctw2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='deadband'>deadband: </label><div class='col-sm-8'><input id='deadband' class='form-control' type='text'{{#deadband}} value='{{deadband}}'{{/deadband}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='isfreq'>isfreq: </label><div class='col-sm-8'><input id='isfreq' class='form-check-input' type='checkbox'{{#isfreq}} checked{{/isfreq}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kf'>kf: </label><div class='col-sm-8'><input id='kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpe'>kpe: </label><div class='col-sm-8'><input id='kpe' class='form-control' type='text'{{#kpe}} value='{{kpe}}'{{/kpe}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kpss'>kpss: </label><div class='col-sm-8'><input id='kpss' class='form-control' type='text'{{#kpss}} value='{{kpss}}'{{/kpss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pmm'>pmm: </label><div class='col-sm-8'><input id='pmm' class='form-control' type='text'{{#pmm}} value='{{pmm}}'{{/pmm}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl1'>tl1: </label><div class='col-sm-8'><input id='tl1' class='form-control' type='text'{{#tl1}} value='{{tl1}}'{{/tl1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl2'>tl2: </label><div class='col-sm-8'><input id='tl2' class='form-control' type='text'{{#tl2}} value='{{tl2}}'{{/tl2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl3'>tl3: </label><div class='col-sm-8'><input id='tl3' class='form-control' type='text'{{#tl3}} value='{{tl3}}'{{/tl3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tl4'>tl4: </label><div class='col-sm-8'><input id='tl4' class='form-control' type='text'{{#tl4}} value='{{tl4}}'{{/tl4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tpe'>tpe: </label><div class='col-sm-8'><input id='tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw1'>tw1: </label><div class='col-sm-8'><input id='tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw2'>tw2: </label><div class='col-sm-8'><input id='tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='vadat'>vadat: </label><div class='col-sm-8'><input id='vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmn'>vsmn: </label><div class='col-sm-8'><input id='vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmx'>vsmx: </label><div class='col-sm-8'><input id='vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_ctw2'>ctw2: </label><div class='col-sm-8'><input id='{{id}}_ctw2' class='form-check-input' type='checkbox'{{#ctw2}} checked{{/ctw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_deadband'>deadband: </label><div class='col-sm-8'><input id='{{id}}_deadband' class='form-control' type='text'{{#deadband}} value='{{deadband}}'{{/deadband}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_isfreq'>isfreq: </label><div class='col-sm-8'><input id='{{id}}_isfreq' class='form-check-input' type='checkbox'{{#isfreq}} checked{{/isfreq}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kf'>kf: </label><div class='col-sm-8'><input id='{{id}}_kf' class='form-control' type='text'{{#kf}} value='{{kf}}'{{/kf}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpe'>kpe: </label><div class='col-sm-8'><input id='{{id}}_kpe' class='form-control' type='text'{{#kpe}} value='{{kpe}}'{{/kpe}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kpss'>kpss: </label><div class='col-sm-8'><input id='{{id}}_kpss' class='form-control' type='text'{{#kpss}} value='{{kpss}}'{{/kpss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pmm'>pmm: </label><div class='col-sm-8'><input id='{{id}}_pmm' class='form-control' type='text'{{#pmm}} value='{{pmm}}'{{/pmm}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl1'>tl1: </label><div class='col-sm-8'><input id='{{id}}_tl1' class='form-control' type='text'{{#tl1}} value='{{tl1}}'{{/tl1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl2'>tl2: </label><div class='col-sm-8'><input id='{{id}}_tl2' class='form-control' type='text'{{#tl2}} value='{{tl2}}'{{/tl2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl3'>tl3: </label><div class='col-sm-8'><input id='{{id}}_tl3' class='form-control' type='text'{{#tl3}} value='{{tl3}}'{{/tl3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tl4'>tl4: </label><div class='col-sm-8'><input id='{{id}}_tl4' class='form-control' type='text'{{#tl4}} value='{{tl4}}'{{/tl4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tpe'>tpe: </label><div class='col-sm-8'><input id='{{id}}_tpe' class='form-control' type='text'{{#tpe}} value='{{tpe}}'{{/tpe}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw1'>tw1: </label><div class='col-sm-8'><input id='{{id}}_tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw2'>tw2: </label><div class='col-sm-8'><input id='{{id}}_tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_vadat'>vadat: </label><div class='col-sm-8'><input id='{{id}}_vadat' class='form-check-input' type='checkbox'{{#vadat}} checked{{/vadat}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmn'>vsmn: </label><div class='col-sm-8'><input id='{{id}}_vsmn' class='form-control' type='text'{{#vsmn}} value='{{vsmn}}'{{/vsmn}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmx'>vsmx: </label><div class='col-sm-8'><input id='{{id}}_vsmx' class='form-control' type='text'{{#vsmx}} value='{{vsmx}}'{{/vsmx}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Pss5" };
-                super.submit (obj);
-                temp = document.getElementById ("ctw2").checked; if (temp) obj.ctw2 = true;
-                temp = document.getElementById ("deadband").value; if ("" != temp) obj.deadband = temp;
-                temp = document.getElementById ("isfreq").checked; if (temp) obj.isfreq = true;
-                temp = document.getElementById ("kf").value; if ("" != temp) obj.kf = temp;
-                temp = document.getElementById ("kpe").value; if ("" != temp) obj.kpe = temp;
-                temp = document.getElementById ("kpss").value; if ("" != temp) obj.kpss = temp;
-                temp = document.getElementById ("pmm").value; if ("" != temp) obj.pmm = temp;
-                temp = document.getElementById ("tl1").value; if ("" != temp) obj.tl1 = temp;
-                temp = document.getElementById ("tl2").value; if ("" != temp) obj.tl2 = temp;
-                temp = document.getElementById ("tl3").value; if ("" != temp) obj.tl3 = temp;
-                temp = document.getElementById ("tl4").value; if ("" != temp) obj.tl4 = temp;
-                temp = document.getElementById ("tpe").value; if ("" != temp) obj.tpe = temp;
-                temp = document.getElementById ("tw1").value; if ("" != temp) obj.tw1 = temp;
-                temp = document.getElementById ("tw2").value; if ("" != temp) obj.tw2 = temp;
-                temp = document.getElementById ("vadat").checked; if (temp) obj.vadat = true;
-                temp = document.getElementById ("vsmn").value; if ("" != temp) obj.vsmn = temp;
-                temp = document.getElementById ("vsmx").value; if ("" != temp) obj.vsmx = temp;
+                var obj = obj || { id: id, cls: "Pss5" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_ctw2").checked; if (temp) obj.ctw2 = true;
+                temp = document.getElementById (id + "_deadband").value; if ("" != temp) obj.deadband = temp;
+                temp = document.getElementById (id + "_isfreq").checked; if (temp) obj.isfreq = true;
+                temp = document.getElementById (id + "_kf").value; if ("" != temp) obj.kf = temp;
+                temp = document.getElementById (id + "_kpe").value; if ("" != temp) obj.kpe = temp;
+                temp = document.getElementById (id + "_kpss").value; if ("" != temp) obj.kpss = temp;
+                temp = document.getElementById (id + "_pmm").value; if ("" != temp) obj.pmm = temp;
+                temp = document.getElementById (id + "_tl1").value; if ("" != temp) obj.tl1 = temp;
+                temp = document.getElementById (id + "_tl2").value; if ("" != temp) obj.tl2 = temp;
+                temp = document.getElementById (id + "_tl3").value; if ("" != temp) obj.tl3 = temp;
+                temp = document.getElementById (id + "_tl4").value; if ("" != temp) obj.tl4 = temp;
+                temp = document.getElementById (id + "_tpe").value; if ("" != temp) obj.tpe = temp;
+                temp = document.getElementById (id + "_tw1").value; if ("" != temp) obj.tw1 = temp;
+                temp = document.getElementById (id + "_tw2").value; if ("" != temp) obj.tw2 = temp;
+                temp = document.getElementById (id + "_vadat").checked; if (temp) obj.vadat = true;
+                temp = document.getElementById (id + "_vsmn").value; if ("" != temp) obj.vsmn = temp;
+                temp = document.getElementById (id + "_vsmx").value; if ("" != temp) obj.vsmx = temp;
 
                 return (obj);
             }
@@ -2604,45 +2604,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssSB4_collapse" aria-expanded="true" aria-controls="PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
-                    <div id="PssSB4_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssSB4_collapse" aria-expanded="true" aria-controls="{{id}}_PssSB4_collapse" style="margin-left: 10px;">PssSB4</a></legend>
+                    <div id="{{id}}_PssSB4_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='kx'>kx: </label><div class='col-sm-8'><input id='kx' class='form-control' type='text'{{#kx}} value='{{kx}}'{{/kx}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tc'>tc: </label><div class='col-sm-8'><input id='tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='td'>td: </label><div class='col-sm-8'><input id='td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='te'>te: </label><div class='col-sm-8'><input id='te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tt'>tt: </label><div class='col-sm-8'><input id='tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tx1'>tx1: </label><div class='col-sm-8'><input id='tx1' class='form-control' type='text'{{#tx1}} value='{{tx1}}'{{/tx1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tx2'>tx2: </label><div class='col-sm-8'><input id='tx2' class='form-control' type='text'{{#tx2}} value='{{tx2}}'{{/tx2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_kx'>kx: </label><div class='col-sm-8'><input id='{{id}}_kx' class='form-control' type='text'{{#kx}} value='{{kx}}'{{/kx}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb'>tb: </label><div class='col-sm-8'><input id='{{id}}_tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tc'>tc: </label><div class='col-sm-8'><input id='{{id}}_tc' class='form-control' type='text'{{#tc}} value='{{tc}}'{{/tc}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_td'>td: </label><div class='col-sm-8'><input id='{{id}}_td' class='form-control' type='text'{{#td}} value='{{td}}'{{/td}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_te'>te: </label><div class='col-sm-8'><input id='{{id}}_te' class='form-control' type='text'{{#te}} value='{{te}}'{{/te}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tt'>tt: </label><div class='col-sm-8'><input id='{{id}}_tt' class='form-control' type='text'{{#tt}} value='{{tt}}'{{/tt}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tx1'>tx1: </label><div class='col-sm-8'><input id='{{id}}_tx1' class='form-control' type='text'{{#tx1}} value='{{tx1}}'{{/tx1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tx2'>tx2: </label><div class='col-sm-8'><input id='{{id}}_tx2' class='form-control' type='text'{{#tx2}} value='{{tx2}}'{{/tx2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssSB4" };
-                super.submit (obj);
-                temp = document.getElementById ("kx").value; if ("" != temp) obj.kx = temp;
-                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
-                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
-                temp = document.getElementById ("tc").value; if ("" != temp) obj.tc = temp;
-                temp = document.getElementById ("td").value; if ("" != temp) obj.td = temp;
-                temp = document.getElementById ("te").value; if ("" != temp) obj.te = temp;
-                temp = document.getElementById ("tt").value; if ("" != temp) obj.tt = temp;
-                temp = document.getElementById ("tx1").value; if ("" != temp) obj.tx1 = temp;
-                temp = document.getElementById ("tx2").value; if ("" != temp) obj.tx2 = temp;
-                temp = document.getElementById ("vsmax").value; if ("" != temp) obj.vsmax = temp;
-                temp = document.getElementById ("vsmin").value; if ("" != temp) obj.vsmin = temp;
+                var obj = obj || { id: id, cls: "PssSB4" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_kx").value; if ("" != temp) obj.kx = temp;
+                temp = document.getElementById (id + "_ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById (id + "_tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById (id + "_tc").value; if ("" != temp) obj.tc = temp;
+                temp = document.getElementById (id + "_td").value; if ("" != temp) obj.td = temp;
+                temp = document.getElementById (id + "_te").value; if ("" != temp) obj.te = temp;
+                temp = document.getElementById (id + "_tt").value; if ("" != temp) obj.tt = temp;
+                temp = document.getElementById (id + "_tx1").value; if ("" != temp) obj.tx1 = temp;
+                temp = document.getElementById (id + "_tx2").value; if ("" != temp) obj.tx2 = temp;
+                temp = document.getElementById (id + "_vsmax").value; if ("" != temp) obj.vsmax = temp;
+                temp = document.getElementById (id + "_vsmin").value; if ("" != temp) obj.vsmin = temp;
 
                 return (obj);
             }
@@ -2788,61 +2788,61 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssIEEE3B_collapse" aria-expanded="true" aria-controls="PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
-                    <div id="PssIEEE3B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssIEEE3B_collapse" aria-expanded="true" aria-controls="{{id}}_PssIEEE3B_collapse" style="margin-left: 10px;">PssIEEE3B</a></legend>
+                    <div id="{{id}}_PssIEEE3B_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a1'>a1: </label><div class='col-sm-8'><input id='a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a2'>a2: </label><div class='col-sm-8'><input id='a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a3'>a3: </label><div class='col-sm-8'><input id='a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a4'>a4: </label><div class='col-sm-8'><input id='a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a5'>a5: </label><div class='col-sm-8'><input id='a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a6'>a6: </label><div class='col-sm-8'><input id='a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a7'>a7: </label><div class='col-sm-8'><input id='a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a8'>a8: </label><div class='col-sm-8'><input id='a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw1'>tw1: </label><div class='col-sm-8'><input id='tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw2'>tw2: </label><div class='col-sm-8'><input id='tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw3'>tw3: </label><div class='col-sm-8'><input id='tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmax'>vstmax: </label><div class='col-sm-8'><input id='vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmin'>vstmin: </label><div class='col-sm-8'><input id='vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a1'>a1: </label><div class='col-sm-8'><input id='{{id}}_a1' class='form-control' type='text'{{#a1}} value='{{a1}}'{{/a1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a2'>a2: </label><div class='col-sm-8'><input id='{{id}}_a2' class='form-control' type='text'{{#a2}} value='{{a2}}'{{/a2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a3'>a3: </label><div class='col-sm-8'><input id='{{id}}_a3' class='form-control' type='text'{{#a3}} value='{{a3}}'{{/a3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a4'>a4: </label><div class='col-sm-8'><input id='{{id}}_a4' class='form-control' type='text'{{#a4}} value='{{a4}}'{{/a4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a5'>a5: </label><div class='col-sm-8'><input id='{{id}}_a5' class='form-control' type='text'{{#a5}} value='{{a5}}'{{/a5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a6'>a6: </label><div class='col-sm-8'><input id='{{id}}_a6' class='form-control' type='text'{{#a6}} value='{{a6}}'{{/a6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a7'>a7: </label><div class='col-sm-8'><input id='{{id}}_a7' class='form-control' type='text'{{#a7}} value='{{a7}}'{{/a7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a8'>a8: </label><div class='col-sm-8'><input id='{{id}}_a8' class='form-control' type='text'{{#a8}} value='{{a8}}'{{/a8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks1'>ks1: </label><div class='col-sm-8'><input id='{{id}}_ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks2'>ks2: </label><div class='col-sm-8'><input id='{{id}}_ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw1'>tw1: </label><div class='col-sm-8'><input id='{{id}}_tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw2'>tw2: </label><div class='col-sm-8'><input id='{{id}}_tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw3'>tw3: </label><div class='col-sm-8'><input id='{{id}}_tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssIEEE3B" };
-                super.submit (obj);
-                temp = document.getElementById ("a1").value; if ("" != temp) obj.a1 = temp;
-                temp = document.getElementById ("a2").value; if ("" != temp) obj.a2 = temp;
-                temp = document.getElementById ("a3").value; if ("" != temp) obj.a3 = temp;
-                temp = document.getElementById ("a4").value; if ("" != temp) obj.a4 = temp;
-                temp = document.getElementById ("a5").value; if ("" != temp) obj.a5 = temp;
-                temp = document.getElementById ("a6").value; if ("" != temp) obj.a6 = temp;
-                temp = document.getElementById ("a7").value; if ("" != temp) obj.a7 = temp;
-                temp = document.getElementById ("a8").value; if ("" != temp) obj.a8 = temp;
-                temp = document.getElementById ("inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("ks1").value; if ("" != temp) obj.ks1 = temp;
-                temp = document.getElementById ("ks2").value; if ("" != temp) obj.ks2 = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("tw1").value; if ("" != temp) obj.tw1 = temp;
-                temp = document.getElementById ("tw2").value; if ("" != temp) obj.tw2 = temp;
-                temp = document.getElementById ("tw3").value; if ("" != temp) obj.tw3 = temp;
-                temp = document.getElementById ("vstmax").value; if ("" != temp) obj.vstmax = temp;
-                temp = document.getElementById ("vstmin").value; if ("" != temp) obj.vstmin = temp;
+                var obj = obj || { id: id, cls: "PssIEEE3B" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_a1").value; if ("" != temp) obj.a1 = temp;
+                temp = document.getElementById (id + "_a2").value; if ("" != temp) obj.a2 = temp;
+                temp = document.getElementById (id + "_a3").value; if ("" != temp) obj.a3 = temp;
+                temp = document.getElementById (id + "_a4").value; if ("" != temp) obj.a4 = temp;
+                temp = document.getElementById (id + "_a5").value; if ("" != temp) obj.a5 = temp;
+                temp = document.getElementById (id + "_a6").value; if ("" != temp) obj.a6 = temp;
+                temp = document.getElementById (id + "_a7").value; if ("" != temp) obj.a7 = temp;
+                temp = document.getElementById (id + "_a8").value; if ("" != temp) obj.a8 = temp;
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
+                temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_tw1").value; if ("" != temp) obj.tw1 = temp;
+                temp = document.getElementById (id + "_tw2").value; if ("" != temp) obj.tw2 = temp;
+                temp = document.getElementById (id + "_tw3").value; if ("" != temp) obj.tw3 = temp;
+                temp = document.getElementById (id + "_vstmax").value; if ("" != temp) obj.vstmax = temp;
+                temp = document.getElementById (id + "_vstmin").value; if ("" != temp) obj.vstmin = temp;
 
                 return (obj);
             }
@@ -2958,45 +2958,45 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssELIN2_collapse" aria-expanded="true" aria-controls="PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
-                    <div id="PssELIN2_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssELIN2_collapse" aria-expanded="true" aria-controls="{{id}}_PssELIN2_collapse" style="margin-left: 10px;">PssELIN2</a></legend>
+                    <div id="{{id}}_PssELIN2_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='apss'>apss: </label><div class='col-sm-8'><input id='apss' class='form-control' type='text'{{#apss}} value='{{apss}}'{{/apss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ppss'>ppss: </label><div class='col-sm-8'><input id='ppss' class='form-control' type='text'{{#ppss}} value='{{ppss}}'{{/ppss}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='psslim'>psslim: </label><div class='col-sm-8'><input id='psslim' class='form-control' type='text'{{#psslim}} value='{{psslim}}'{{/psslim}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts1'>ts1: </label><div class='col-sm-8'><input id='ts1' class='form-control' type='text'{{#ts1}} value='{{ts1}}'{{/ts1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts2'>ts2: </label><div class='col-sm-8'><input id='ts2' class='form-control' type='text'{{#ts2}} value='{{ts2}}'{{/ts2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts3'>ts3: </label><div class='col-sm-8'><input id='ts3' class='form-control' type='text'{{#ts3}} value='{{ts3}}'{{/ts3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts4'>ts4: </label><div class='col-sm-8'><input id='ts4' class='form-control' type='text'{{#ts4}} value='{{ts4}}'{{/ts4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts5'>ts5: </label><div class='col-sm-8'><input id='ts5' class='form-control' type='text'{{#ts5}} value='{{ts5}}'{{/ts5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ts6'>ts6: </label><div class='col-sm-8'><input id='ts6' class='form-control' type='text'{{#ts6}} value='{{ts6}}'{{/ts6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_apss'>apss: </label><div class='col-sm-8'><input id='{{id}}_apss' class='form-control' type='text'{{#apss}} value='{{apss}}'{{/apss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks1'>ks1: </label><div class='col-sm-8'><input id='{{id}}_ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks2'>ks2: </label><div class='col-sm-8'><input id='{{id}}_ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ppss'>ppss: </label><div class='col-sm-8'><input id='{{id}}_ppss' class='form-control' type='text'{{#ppss}} value='{{ppss}}'{{/ppss}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_psslim'>psslim: </label><div class='col-sm-8'><input id='{{id}}_psslim' class='form-control' type='text'{{#psslim}} value='{{psslim}}'{{/psslim}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts1'>ts1: </label><div class='col-sm-8'><input id='{{id}}_ts1' class='form-control' type='text'{{#ts1}} value='{{ts1}}'{{/ts1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts2'>ts2: </label><div class='col-sm-8'><input id='{{id}}_ts2' class='form-control' type='text'{{#ts2}} value='{{ts2}}'{{/ts2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts3'>ts3: </label><div class='col-sm-8'><input id='{{id}}_ts3' class='form-control' type='text'{{#ts3}} value='{{ts3}}'{{/ts3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts4'>ts4: </label><div class='col-sm-8'><input id='{{id}}_ts4' class='form-control' type='text'{{#ts4}} value='{{ts4}}'{{/ts4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts5'>ts5: </label><div class='col-sm-8'><input id='{{id}}_ts5' class='form-control' type='text'{{#ts5}} value='{{ts5}}'{{/ts5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ts6'>ts6: </label><div class='col-sm-8'><input id='{{id}}_ts6' class='form-control' type='text'{{#ts6}} value='{{ts6}}'{{/ts6}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssELIN2" };
-                super.submit (obj);
-                temp = document.getElementById ("apss").value; if ("" != temp) obj.apss = temp;
-                temp = document.getElementById ("ks1").value; if ("" != temp) obj.ks1 = temp;
-                temp = document.getElementById ("ks2").value; if ("" != temp) obj.ks2 = temp;
-                temp = document.getElementById ("ppss").value; if ("" != temp) obj.ppss = temp;
-                temp = document.getElementById ("psslim").value; if ("" != temp) obj.psslim = temp;
-                temp = document.getElementById ("ts1").value; if ("" != temp) obj.ts1 = temp;
-                temp = document.getElementById ("ts2").value; if ("" != temp) obj.ts2 = temp;
-                temp = document.getElementById ("ts3").value; if ("" != temp) obj.ts3 = temp;
-                temp = document.getElementById ("ts4").value; if ("" != temp) obj.ts4 = temp;
-                temp = document.getElementById ("ts5").value; if ("" != temp) obj.ts5 = temp;
-                temp = document.getElementById ("ts6").value; if ("" != temp) obj.ts6 = temp;
+                var obj = obj || { id: id, cls: "PssELIN2" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_apss").value; if ("" != temp) obj.apss = temp;
+                temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
+                temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
+                temp = document.getElementById (id + "_ppss").value; if ("" != temp) obj.ppss = temp;
+                temp = document.getElementById (id + "_psslim").value; if ("" != temp) obj.psslim = temp;
+                temp = document.getElementById (id + "_ts1").value; if ("" != temp) obj.ts1 = temp;
+                temp = document.getElementById (id + "_ts2").value; if ("" != temp) obj.ts2 = temp;
+                temp = document.getElementById (id + "_ts3").value; if ("" != temp) obj.ts3 = temp;
+                temp = document.getElementById (id + "_ts4").value; if ("" != temp) obj.ts4 = temp;
+                temp = document.getElementById (id + "_ts5").value; if ("" != temp) obj.ts5 = temp;
+                temp = document.getElementById (id + "_ts6").value; if ("" != temp) obj.ts6 = temp;
 
                 return (obj);
             }
@@ -3178,85 +3178,85 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#Pss2B_collapse" aria-expanded="true" aria-controls="Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
-                    <div id="Pss2B_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_Pss2B_collapse" aria-expanded="true" aria-controls="{{id}}_Pss2B_collapse" style="margin-left: 10px;">Pss2B</a></legend>
+                    <div id="{{id}}_Pss2B_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='a'>a: </label><div class='col-sm-8'><input id='a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks1'>ks1: </label><div class='col-sm-8'><input id='ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks2'>ks2: </label><div class='col-sm-8'><input id='ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks3'>ks3: </label><div class='col-sm-8'><input id='ks3' class='form-control' type='text'{{#ks3}} value='{{ks3}}'{{/ks3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ks4'>ks4: </label><div class='col-sm-8'><input id='ks4' class='form-control' type='text'{{#ks4}} value='{{ks4}}'{{/ks4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='m'>m: </label><div class='col-sm-8'><input id='m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='n'>n: </label><div class='col-sm-8'><input id='n' class='form-control' type='text'{{#n}} value='{{n}}'{{/n}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t11'>t11: </label><div class='col-sm-8'><input id='t11' class='form-control' type='text'{{#t11}} value='{{t11}}'{{/t11}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ta'>ta: </label><div class='col-sm-8'><input id='ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tb'>tb: </label><div class='col-sm-8'><input id='tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw1'>tw1: </label><div class='col-sm-8'><input id='tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw2'>tw2: </label><div class='col-sm-8'><input id='tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw3'>tw3: </label><div class='col-sm-8'><input id='tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='tw4'>tw4: </label><div class='col-sm-8'><input id='tw4' class='form-control' type='text'{{#tw4}} value='{{tw4}}'{{/tw4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi1max'>vsi1max: </label><div class='col-sm-8'><input id='vsi1max' class='form-control' type='text'{{#vsi1max}} value='{{vsi1max}}'{{/vsi1max}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi1min'>vsi1min: </label><div class='col-sm-8'><input id='vsi1min' class='form-control' type='text'{{#vsi1min}} value='{{vsi1min}}'{{/vsi1min}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi2max'>vsi2max: </label><div class='col-sm-8'><input id='vsi2max' class='form-control' type='text'{{#vsi2max}} value='{{vsi2max}}'{{/vsi2max}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsi2min'>vsi2min: </label><div class='col-sm-8'><input id='vsi2min' class='form-control' type='text'{{#vsi2min}} value='{{vsi2min}}'{{/vsi2min}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmax'>vstmax: </label><div class='col-sm-8'><input id='vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vstmin'>vstmin: </label><div class='col-sm-8'><input id='vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_a'>a: </label><div class='col-sm-8'><input id='{{id}}_a' class='form-control' type='text'{{#a}} value='{{a}}'{{/a}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks1'>ks1: </label><div class='col-sm-8'><input id='{{id}}_ks1' class='form-control' type='text'{{#ks1}} value='{{ks1}}'{{/ks1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks2'>ks2: </label><div class='col-sm-8'><input id='{{id}}_ks2' class='form-control' type='text'{{#ks2}} value='{{ks2}}'{{/ks2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks3'>ks3: </label><div class='col-sm-8'><input id='{{id}}_ks3' class='form-control' type='text'{{#ks3}} value='{{ks3}}'{{/ks3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ks4'>ks4: </label><div class='col-sm-8'><input id='{{id}}_ks4' class='form-control' type='text'{{#ks4}} value='{{ks4}}'{{/ks4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_m'>m: </label><div class='col-sm-8'><input id='{{id}}_m' class='form-control' type='text'{{#m}} value='{{m}}'{{/m}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_n'>n: </label><div class='col-sm-8'><input id='{{id}}_n' class='form-control' type='text'{{#n}} value='{{n}}'{{/n}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t10'>t10: </label><div class='col-sm-8'><input id='{{id}}_t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t11'>t11: </label><div class='col-sm-8'><input id='{{id}}_t11' class='form-control' type='text'{{#t11}} value='{{t11}}'{{/t11}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t7'>t7: </label><div class='col-sm-8'><input id='{{id}}_t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t8'>t8: </label><div class='col-sm-8'><input id='{{id}}_t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t9'>t9: </label><div class='col-sm-8'><input id='{{id}}_t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ta'>ta: </label><div class='col-sm-8'><input id='{{id}}_ta' class='form-control' type='text'{{#ta}} value='{{ta}}'{{/ta}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tb'>tb: </label><div class='col-sm-8'><input id='{{id}}_tb' class='form-control' type='text'{{#tb}} value='{{tb}}'{{/tb}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw1'>tw1: </label><div class='col-sm-8'><input id='{{id}}_tw1' class='form-control' type='text'{{#tw1}} value='{{tw1}}'{{/tw1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw2'>tw2: </label><div class='col-sm-8'><input id='{{id}}_tw2' class='form-control' type='text'{{#tw2}} value='{{tw2}}'{{/tw2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw3'>tw3: </label><div class='col-sm-8'><input id='{{id}}_tw3' class='form-control' type='text'{{#tw3}} value='{{tw3}}'{{/tw3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_tw4'>tw4: </label><div class='col-sm-8'><input id='{{id}}_tw4' class='form-control' type='text'{{#tw4}} value='{{tw4}}'{{/tw4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsi1max'>vsi1max: </label><div class='col-sm-8'><input id='{{id}}_vsi1max' class='form-control' type='text'{{#vsi1max}} value='{{vsi1max}}'{{/vsi1max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsi1min'>vsi1min: </label><div class='col-sm-8'><input id='{{id}}_vsi1min' class='form-control' type='text'{{#vsi1min}} value='{{vsi1min}}'{{/vsi1min}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsi2max'>vsi2max: </label><div class='col-sm-8'><input id='{{id}}_vsi2max' class='form-control' type='text'{{#vsi2max}} value='{{vsi2max}}'{{/vsi2max}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsi2min'>vsi2min: </label><div class='col-sm-8'><input id='{{id}}_vsi2min' class='form-control' type='text'{{#vsi2min}} value='{{vsi2min}}'{{/vsi2min}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmax'>vstmax: </label><div class='col-sm-8'><input id='{{id}}_vstmax' class='form-control' type='text'{{#vstmax}} value='{{vstmax}}'{{/vstmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vstmin'>vstmin: </label><div class='col-sm-8'><input id='{{id}}_vstmin' class='form-control' type='text'{{#vstmin}} value='{{vstmin}}'{{/vstmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "Pss2B" };
-                super.submit (obj);
-                temp = document.getElementById ("a").value; if ("" != temp) obj.a = temp;
-                temp = document.getElementById ("inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("ks1").value; if ("" != temp) obj.ks1 = temp;
-                temp = document.getElementById ("ks2").value; if ("" != temp) obj.ks2 = temp;
-                temp = document.getElementById ("ks3").value; if ("" != temp) obj.ks3 = temp;
-                temp = document.getElementById ("ks4").value; if ("" != temp) obj.ks4 = temp;
-                temp = document.getElementById ("m").value; if ("" != temp) obj.m = temp;
-                temp = document.getElementById ("n").value; if ("" != temp) obj.n = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t10").value; if ("" != temp) obj.t10 = temp;
-                temp = document.getElementById ("t11").value; if ("" != temp) obj.t11 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("t7").value; if ("" != temp) obj.t7 = temp;
-                temp = document.getElementById ("t8").value; if ("" != temp) obj.t8 = temp;
-                temp = document.getElementById ("t9").value; if ("" != temp) obj.t9 = temp;
-                temp = document.getElementById ("ta").value; if ("" != temp) obj.ta = temp;
-                temp = document.getElementById ("tb").value; if ("" != temp) obj.tb = temp;
-                temp = document.getElementById ("tw1").value; if ("" != temp) obj.tw1 = temp;
-                temp = document.getElementById ("tw2").value; if ("" != temp) obj.tw2 = temp;
-                temp = document.getElementById ("tw3").value; if ("" != temp) obj.tw3 = temp;
-                temp = document.getElementById ("tw4").value; if ("" != temp) obj.tw4 = temp;
-                temp = document.getElementById ("vsi1max").value; if ("" != temp) obj.vsi1max = temp;
-                temp = document.getElementById ("vsi1min").value; if ("" != temp) obj.vsi1min = temp;
-                temp = document.getElementById ("vsi2max").value; if ("" != temp) obj.vsi2max = temp;
-                temp = document.getElementById ("vsi2min").value; if ("" != temp) obj.vsi2min = temp;
-                temp = document.getElementById ("vstmax").value; if ("" != temp) obj.vstmax = temp;
-                temp = document.getElementById ("vstmin").value; if ("" != temp) obj.vstmin = temp;
+                var obj = obj || { id: id, cls: "Pss2B" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_a").value; if ("" != temp) obj.a = temp;
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
+                temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
+                temp = document.getElementById (id + "_ks3").value; if ("" != temp) obj.ks3 = temp;
+                temp = document.getElementById (id + "_ks4").value; if ("" != temp) obj.ks4 = temp;
+                temp = document.getElementById (id + "_m").value; if ("" != temp) obj.m = temp;
+                temp = document.getElementById (id + "_n").value; if ("" != temp) obj.n = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t10").value; if ("" != temp) obj.t10 = temp;
+                temp = document.getElementById (id + "_t11").value; if ("" != temp) obj.t11 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_t7").value; if ("" != temp) obj.t7 = temp;
+                temp = document.getElementById (id + "_t8").value; if ("" != temp) obj.t8 = temp;
+                temp = document.getElementById (id + "_t9").value; if ("" != temp) obj.t9 = temp;
+                temp = document.getElementById (id + "_ta").value; if ("" != temp) obj.ta = temp;
+                temp = document.getElementById (id + "_tb").value; if ("" != temp) obj.tb = temp;
+                temp = document.getElementById (id + "_tw1").value; if ("" != temp) obj.tw1 = temp;
+                temp = document.getElementById (id + "_tw2").value; if ("" != temp) obj.tw2 = temp;
+                temp = document.getElementById (id + "_tw3").value; if ("" != temp) obj.tw3 = temp;
+                temp = document.getElementById (id + "_tw4").value; if ("" != temp) obj.tw4 = temp;
+                temp = document.getElementById (id + "_vsi1max").value; if ("" != temp) obj.vsi1max = temp;
+                temp = document.getElementById (id + "_vsi1min").value; if ("" != temp) obj.vsi1min = temp;
+                temp = document.getElementById (id + "_vsi2max").value; if ("" != temp) obj.vsi2max = temp;
+                temp = document.getElementById (id + "_vsi2min").value; if ("" != temp) obj.vsi2min = temp;
+                temp = document.getElementById (id + "_vstmax").value; if ("" != temp) obj.vstmax = temp;
+                temp = document.getElementById (id + "_vstmin").value; if ("" != temp) obj.vstmin = temp;
 
                 return (obj);
             }
@@ -3397,59 +3397,59 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#PssWECC_collapse" aria-expanded="true" aria-controls="PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
-                    <div id="PssWECC_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_PssWECC_collapse" aria-expanded="true" aria-controls="{{id}}_PssWECC_collapse" style="margin-left: 10px;">PssWECC</a></legend>
+                    <div id="{{id}}_PssWECC_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + PowerSystemStabilizerDynamics.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k1'>k1: </label><div class='col-sm-8'><input id='k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='k2'>k2: </label><div class='col-sm-8'><input id='k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t1'>t1: </label><div class='col-sm-8'><input id='t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t10'>t10: </label><div class='col-sm-8'><input id='t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t2'>t2: </label><div class='col-sm-8'><input id='t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t3'>t3: </label><div class='col-sm-8'><input id='t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t4'>t4: </label><div class='col-sm-8'><input id='t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t5'>t5: </label><div class='col-sm-8'><input id='t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t6'>t6: </label><div class='col-sm-8'><input id='t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t7'>t7: </label><div class='col-sm-8'><input id='t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t8'>t8: </label><div class='col-sm-8'><input id='t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='t9'>t9: </label><div class='col-sm-8'><input id='t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcl'>vcl: </label><div class='col-sm-8'><input id='vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vcu'>vcu: </label><div class='col-sm-8'><input id='vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmax'>vsmax: </label><div class='col-sm-8'><input id='vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='vsmin'>vsmin: </label><div class='col-sm-8'><input id='vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal1Type'>inputSignal1Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal1Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_inputSignal2Type'>inputSignal2Type: </label><div class='col-sm-8'><select id='{{id}}_inputSignal2Type' class='form-control'>{{#InputSignalKind}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/InputSignalKind}}</select></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k1'>k1: </label><div class='col-sm-8'><input id='{{id}}_k1' class='form-control' type='text'{{#k1}} value='{{k1}}'{{/k1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_k2'>k2: </label><div class='col-sm-8'><input id='{{id}}_k2' class='form-control' type='text'{{#k2}} value='{{k2}}'{{/k2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t1'>t1: </label><div class='col-sm-8'><input id='{{id}}_t1' class='form-control' type='text'{{#t1}} value='{{t1}}'{{/t1}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t10'>t10: </label><div class='col-sm-8'><input id='{{id}}_t10' class='form-control' type='text'{{#t10}} value='{{t10}}'{{/t10}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t2'>t2: </label><div class='col-sm-8'><input id='{{id}}_t2' class='form-control' type='text'{{#t2}} value='{{t2}}'{{/t2}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t3'>t3: </label><div class='col-sm-8'><input id='{{id}}_t3' class='form-control' type='text'{{#t3}} value='{{t3}}'{{/t3}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t4'>t4: </label><div class='col-sm-8'><input id='{{id}}_t4' class='form-control' type='text'{{#t4}} value='{{t4}}'{{/t4}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t5'>t5: </label><div class='col-sm-8'><input id='{{id}}_t5' class='form-control' type='text'{{#t5}} value='{{t5}}'{{/t5}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t6'>t6: </label><div class='col-sm-8'><input id='{{id}}_t6' class='form-control' type='text'{{#t6}} value='{{t6}}'{{/t6}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t7'>t7: </label><div class='col-sm-8'><input id='{{id}}_t7' class='form-control' type='text'{{#t7}} value='{{t7}}'{{/t7}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t8'>t8: </label><div class='col-sm-8'><input id='{{id}}_t8' class='form-control' type='text'{{#t8}} value='{{t8}}'{{/t8}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_t9'>t9: </label><div class='col-sm-8'><input id='{{id}}_t9' class='form-control' type='text'{{#t9}} value='{{t9}}'{{/t9}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcl'>vcl: </label><div class='col-sm-8'><input id='{{id}}_vcl' class='form-control' type='text'{{#vcl}} value='{{vcl}}'{{/vcl}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vcu'>vcu: </label><div class='col-sm-8'><input id='{{id}}_vcu' class='form-control' type='text'{{#vcu}} value='{{vcu}}'{{/vcu}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmax'>vsmax: </label><div class='col-sm-8'><input id='{{id}}_vsmax' class='form-control' type='text'{{#vsmax}} value='{{vsmax}}'{{/vsmax}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_vsmin'>vsmin: </label><div class='col-sm-8'><input id='{{id}}_vsmin' class='form-control' type='text'{{#vsmin}} value='{{vsmin}}'{{/vsmin}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "PssWECC" };
-                super.submit (obj);
-                temp = document.getElementById ("inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById ("k1").value; if ("" != temp) obj.k1 = temp;
-                temp = document.getElementById ("k2").value; if ("" != temp) obj.k2 = temp;
-                temp = document.getElementById ("t1").value; if ("" != temp) obj.t1 = temp;
-                temp = document.getElementById ("t10").value; if ("" != temp) obj.t10 = temp;
-                temp = document.getElementById ("t2").value; if ("" != temp) obj.t2 = temp;
-                temp = document.getElementById ("t3").value; if ("" != temp) obj.t3 = temp;
-                temp = document.getElementById ("t4").value; if ("" != temp) obj.t4 = temp;
-                temp = document.getElementById ("t5").value; if ("" != temp) obj.t5 = temp;
-                temp = document.getElementById ("t6").value; if ("" != temp) obj.t6 = temp;
-                temp = document.getElementById ("t7").value; if ("" != temp) obj.t7 = temp;
-                temp = document.getElementById ("t8").value; if ("" != temp) obj.t8 = temp;
-                temp = document.getElementById ("t9").value; if ("" != temp) obj.t9 = temp;
-                temp = document.getElementById ("vcl").value; if ("" != temp) obj.vcl = temp;
-                temp = document.getElementById ("vcu").value; if ("" != temp) obj.vcu = temp;
-                temp = document.getElementById ("vsmax").value; if ("" != temp) obj.vsmax = temp;
-                temp = document.getElementById ("vsmin").value; if ("" != temp) obj.vsmin = temp;
+                var obj = obj || { id: id, cls: "PssWECC" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
+                temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
+                temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
+                temp = document.getElementById (id + "_t10").value; if ("" != temp) obj.t10 = temp;
+                temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
+                temp = document.getElementById (id + "_t3").value; if ("" != temp) obj.t3 = temp;
+                temp = document.getElementById (id + "_t4").value; if ("" != temp) obj.t4 = temp;
+                temp = document.getElementById (id + "_t5").value; if ("" != temp) obj.t5 = temp;
+                temp = document.getElementById (id + "_t6").value; if ("" != temp) obj.t6 = temp;
+                temp = document.getElementById (id + "_t7").value; if ("" != temp) obj.t7 = temp;
+                temp = document.getElementById (id + "_t8").value; if ("" != temp) obj.t8 = temp;
+                temp = document.getElementById (id + "_t9").value; if ("" != temp) obj.t9 = temp;
+                temp = document.getElementById (id + "_vcl").value; if ("" != temp) obj.vcl = temp;
+                temp = document.getElementById (id + "_vcu").value; if ("" != temp) obj.vcu = temp;
+                temp = document.getElementById (id + "_vsmax").value; if ("" != temp) obj.vsmax = temp;
+                temp = document.getElementById (id + "_vsmin").value; if ("" != temp) obj.vsmin = temp;
 
                 return (obj);
             }

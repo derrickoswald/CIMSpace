@@ -85,8 +85,8 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#StateVariable_collapse" aria-expanded="true" aria-controls="StateVariable_collapse" style="margin-left: 10px;">StateVariable</a></legend>
-                    <div id="StateVariable_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_StateVariable_collapse" aria-expanded="true" aria-controls="{{id}}_StateVariable_collapse" style="margin-left: 10px;">StateVariable</a></legend>
+                    <div id="{{id}}_StateVariable_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + base.Element.prototype.edit_template.call (this) +
                     `
@@ -96,10 +96,10 @@ define
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
-                var obj = obj || { cls: "StateVariable" };
-                super.submit (obj);
+                var obj = obj || { id: id, cls: "StateVariable" };
+                super.submit (id, obj);
 
                 return (obj);
             }
@@ -193,29 +193,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvInjection_collapse" aria-expanded="true" aria-controls="SvInjection_collapse" style="margin-left: 10px;">SvInjection</a></legend>
-                    <div id="SvInjection_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvInjection_collapse" aria-expanded="true" aria-controls="{{id}}_SvInjection_collapse" style="margin-left: 10px;">SvInjection</a></legend>
+                    <div id="{{id}}_SvInjection_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='pInjection'>pInjection: </label><div class='col-sm-8'><input id='pInjection' class='form-control' type='text'{{#pInjection}} value='{{pInjection}}'{{/pInjection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='qInjection'>qInjection: </label><div class='col-sm-8'><input id='qInjection' class='form-control' type='text'{{#qInjection}} value='{{qInjection}}'{{/qInjection}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_pInjection'>pInjection: </label><div class='col-sm-8'><input id='{{id}}_pInjection' class='form-control' type='text'{{#pInjection}} value='{{pInjection}}'{{/pInjection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_qInjection'>qInjection: </label><div class='col-sm-8'><input id='{{id}}_qInjection' class='form-control' type='text'{{#qInjection}} value='{{qInjection}}'{{/qInjection}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='{{id}}_TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SvInjection" };
-                super.submit (obj);
-                temp = document.getElementById ("pInjection").value; if ("" != temp) obj.pInjection = temp;
-                temp = document.getElementById ("qInjection").value; if ("" != temp) obj.qInjection = temp;
-                temp = document.getElementById ("TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
+                var obj = obj || { id: id, cls: "SvInjection" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_pInjection").value; if ("" != temp) obj.pInjection = temp;
+                temp = document.getElementById (id + "_qInjection").value; if ("" != temp) obj.qInjection = temp;
+                temp = document.getElementById (id + "_TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
 
                 return (obj);
             }
@@ -313,27 +313,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvStatus_collapse" aria-expanded="true" aria-controls="SvStatus_collapse" style="margin-left: 10px;">SvStatus</a></legend>
-                    <div id="SvStatus_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvStatus_collapse" aria-expanded="true" aria-controls="{{id}}_SvStatus_collapse" style="margin-left: 10px;">SvStatus</a></legend>
+                    <div id="{{id}}_SvStatus_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
                     `
-                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='inService'>inService: </label><div class='col-sm-8'><input id='inService' class='form-check-input' type='checkbox'{{#inService}} checked{{/inService}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
+                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_inService'>inService: </label><div class='col-sm-8'><input id='{{id}}_inService' class='form-check-input' type='checkbox'{{#inService}} checked{{/inService}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ConductingEquipment'>ConductingEquipment: </label><div class='col-sm-8'><input id='{{id}}_ConductingEquipment' class='form-control' type='text'{{#ConductingEquipment}} value='{{ConductingEquipment}}'{{/ConductingEquipment}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SvStatus" };
-                super.submit (obj);
-                temp = document.getElementById ("inService").checked; if (temp) obj.inService = true;
-                temp = document.getElementById ("ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
+                var obj = obj || { id: id, cls: "SvStatus" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_inService").checked; if (temp) obj.inService = true;
+                temp = document.getElementById (id + "_ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
 
                 return (obj);
             }
@@ -433,27 +433,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvTapStep_collapse" aria-expanded="true" aria-controls="SvTapStep_collapse" style="margin-left: 10px;">SvTapStep</a></legend>
-                    <div id="SvTapStep_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvTapStep_collapse" aria-expanded="true" aria-controls="{{id}}_SvTapStep_collapse" style="margin-left: 10px;">SvTapStep</a></legend>
+                    <div id="{{id}}_SvTapStep_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='position'>position: </label><div class='col-sm-8'><input id='position' class='form-control' type='text'{{#position}} value='{{position}}'{{/position}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TapChanger'>TapChanger: </label><div class='col-sm-8'><input id='TapChanger' class='form-control' type='text'{{#TapChanger}} value='{{TapChanger}}'{{/TapChanger}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_position'>position: </label><div class='col-sm-8'><input id='{{id}}_position' class='form-control' type='text'{{#position}} value='{{position}}'{{/position}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TapChanger'>TapChanger: </label><div class='col-sm-8'><input id='{{id}}_TapChanger' class='form-control' type='text'{{#TapChanger}} value='{{TapChanger}}'{{/TapChanger}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SvTapStep" };
-                super.submit (obj);
-                temp = document.getElementById ("position").value; if ("" != temp) obj.position = temp;
-                temp = document.getElementById ("TapChanger").value; if ("" != temp) obj.TapChanger = temp;
+                var obj = obj || { id: id, cls: "SvTapStep" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_position").value; if ("" != temp) obj.position = temp;
+                temp = document.getElementById (id + "_TapChanger").value; if ("" != temp) obj.TapChanger = temp;
 
                 return (obj);
             }
@@ -551,27 +551,27 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="SvShuntCompensatorSections_collapse" style="margin-left: 10px;">SvShuntCompensatorSections</a></legend>
-                    <div id="SvShuntCompensatorSections_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvShuntCompensatorSections_collapse" aria-expanded="true" aria-controls="{{id}}_SvShuntCompensatorSections_collapse" style="margin-left: 10px;">SvShuntCompensatorSections</a></legend>
+                    <div id="{{id}}_SvShuntCompensatorSections_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='sections'>sections: </label><div class='col-sm-8'><input id='sections' class='form-control' type='text'{{#sections}} value='{{sections}}'{{/sections}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='ShuntCompensator'>ShuntCompensator: </label><div class='col-sm-8'><input id='ShuntCompensator' class='form-control' type='text'{{#ShuntCompensator}} value='{{ShuntCompensator}}'{{/ShuntCompensator}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_sections'>sections: </label><div class='col-sm-8'><input id='{{id}}_sections' class='form-control' type='text'{{#sections}} value='{{sections}}'{{/sections}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_ShuntCompensator'>ShuntCompensator: </label><div class='col-sm-8'><input id='{{id}}_ShuntCompensator' class='form-control' type='text'{{#ShuntCompensator}} value='{{ShuntCompensator}}'{{/ShuntCompensator}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SvShuntCompensatorSections" };
-                super.submit (obj);
-                temp = document.getElementById ("sections").value; if ("" != temp) obj.sections = temp;
-                temp = document.getElementById ("ShuntCompensator").value; if ("" != temp) obj.ShuntCompensator = temp;
+                var obj = obj || { id: id, cls: "SvShuntCompensatorSections" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_sections").value; if ("" != temp) obj.sections = temp;
+                temp = document.getElementById (id + "_ShuntCompensator").value; if ("" != temp) obj.ShuntCompensator = temp;
 
                 return (obj);
             }
@@ -674,29 +674,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvPowerFlow_collapse" aria-expanded="true" aria-controls="SvPowerFlow_collapse" style="margin-left: 10px;">SvPowerFlow</a></legend>
-                    <div id="SvPowerFlow_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvPowerFlow_collapse" aria-expanded="true" aria-controls="{{id}}_SvPowerFlow_collapse" style="margin-left: 10px;">SvPowerFlow</a></legend>
+                    <div id="{{id}}_SvPowerFlow_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='p'>p: </label><div class='col-sm-8'><input id='p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='q'>q: </label><div class='col-sm-8'><input id='q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='Terminal'>Terminal: </label><div class='col-sm-8'><input id='Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_p'>p: </label><div class='col-sm-8'><input id='{{id}}_p' class='form-control' type='text'{{#p}} value='{{p}}'{{/p}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_q'>q: </label><div class='col-sm-8'><input id='{{id}}_q' class='form-control' type='text'{{#q}} value='{{q}}'{{/q}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_Terminal'>Terminal: </label><div class='col-sm-8'><input id='{{id}}_Terminal' class='form-control' type='text'{{#Terminal}} value='{{Terminal}}'{{/Terminal}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SvPowerFlow" };
-                super.submit (obj);
-                temp = document.getElementById ("p").value; if ("" != temp) obj.p = temp;
-                temp = document.getElementById ("q").value; if ("" != temp) obj.q = temp;
-                temp = document.getElementById ("Terminal").value; if ("" != temp) obj.Terminal = temp;
+                var obj = obj || { id: id, cls: "SvPowerFlow" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_p").value; if ("" != temp) obj.p = temp;
+                temp = document.getElementById (id + "_q").value; if ("" != temp) obj.q = temp;
+                temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
                 return (obj);
             }
@@ -797,29 +797,29 @@ define
                 return (
                     `
                     <fieldset>
-                    <legend class='col-form-legend'><a data-toggle="collapse" href="#SvVoltage_collapse" aria-expanded="true" aria-controls="SvVoltage_collapse" style="margin-left: 10px;">SvVoltage</a></legend>
-                    <div id="SvVoltage_collapse" class="collapse in" style="margin-left: 10px;">
+                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_SvVoltage_collapse" aria-expanded="true" aria-controls="{{id}}_SvVoltage_collapse" style="margin-left: 10px;">SvVoltage</a></legend>
+                    <div id="{{id}}_SvVoltage_collapse" class="collapse in" style="margin-left: 10px;">
                     `
                     + StateVariable.prototype.edit_template.call (this) +
                     `
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='angle'>angle: </label><div class='col-sm-8'><input id='angle' class='form-control' type='text'{{#angle}} value='{{angle}}'{{/angle}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='v'>v: </label><div class='col-sm-8'><input id='v' class='form-control' type='text'{{#v}} value='{{v}}'{{/v}}></div></div>
-                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_angle'>angle: </label><div class='col-sm-8'><input id='{{id}}_angle' class='form-control' type='text'{{#angle}} value='{{angle}}'{{/angle}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_v'>v: </label><div class='col-sm-8'><input id='{{id}}_v' class='form-control' type='text'{{#v}} value='{{v}}'{{/v}}></div></div>
+                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_TopologicalNode'>TopologicalNode: </label><div class='col-sm-8'><input id='{{id}}_TopologicalNode' class='form-control' type='text'{{#TopologicalNode}} value='{{TopologicalNode}}'{{/TopologicalNode}}></div></div>
                     </div>
                     <fieldset>
                     `
                 );
             }
 
-            submit (obj)
+            submit (id, obj)
             {
                 var temp;
 
-                var obj = obj || { cls: "SvVoltage" };
-                super.submit (obj);
-                temp = document.getElementById ("angle").value; if ("" != temp) obj.angle = temp;
-                temp = document.getElementById ("v").value; if ("" != temp) obj.v = temp;
-                temp = document.getElementById ("TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
+                var obj = obj || { id: id, cls: "SvVoltage" };
+                super.submit (id, obj);
+                temp = document.getElementById (id + "_angle").value; if ("" != temp) obj.angle = temp;
+                temp = document.getElementById (id + "_v").value; if ("" != temp) obj.v = temp;
+                temp = document.getElementById (id + "_TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
 
                 return (obj);
             }
