@@ -351,6 +351,8 @@ define
                 // assign ConnectivityNode and TopologicalNode based on the terminal or default
                 if (null != terminal)
                 {
+                    if (equipment.BaseVoltage)
+                        ret.BaseVoltage = equipment.BaseVoltage;
                     if (terminal.ConnectivityNode)
                         ret.ConnectivityNode = terminal.ConnectivityNode;
                     if (terminal.TopologicalNode)
@@ -359,13 +361,15 @@ define
                 else if (0 != n)
                 {
                     console.log ("connectivity not found using default terminal for " + equipment.cls + ":" + equipment.id)
+                    if (equipment.BaseVoltage)
+                        ret.BaseVoltage = equipment.BaseVoltage;
                     if (default_terminal.ConnectivityNode)
                         ret.ConnectivityNode = default_terminal.ConnectivityNode;
                     if (default_terminal.TopologicalNode)
                         ret.TopologicalNode = default_terminal.TopologicalNode;
                 }
 
-                return (ret); // { ConnectivityNode: blah, TopologicalNode: blah }
+                return (ret); // { ConnectivityNode: blah, TopologicalNode: blah, BaseVoltage: yadda }
             }
 
             get_best_connectivity_for_equipment (equipments, point)
@@ -524,7 +528,15 @@ define
                 // add the location to the PSR object
                 psr.Location = location.id;
                 var cls = cim.class_map (psr);
-                psr = new cls (psr, this._features);
+                this._elements[0] = new cls (psr, this._features);
+
+                // add the base voltage to the form (if it's conducting equipment)
+                if (psr.BaseVoltage)
+                {
+                    var bv = document.getElementById (id + "_BaseVoltage");
+                    if (bv)
+                        bv.value = psr.BaseVoltage;
+                }
 
                 // update the form
                 document.getElementById (id + "_Location").value = location.id;
@@ -546,6 +558,9 @@ define
                     console.log ("no connectivity found, created ConnectivityNode " + node.id);
                     connectivity = { ConnectivityNode: node.id };
                 }
+                else
+                    if (connectivity.BaseVoltage)
+                        equipment.BaseVoltage = connectivity.BaseVoltage;
 
                 // add the terminal
                 var terminal =
@@ -698,6 +713,9 @@ define
                     console.log ("no connectivity found at end 1, created ConnectivityNode " + node.id);
                     connectivity1 = { ConnectivityNode: node.id };
                 }
+                else
+                    if (connectivity1.BaseVoltage)
+                        line.BaseVoltage = connectivity1.BaseVoltage;
 
                 // add the terminals
                 var terminal1 =
@@ -724,6 +742,9 @@ define
                     console.log ("no connectivity found at end 2, created ConnectivityNode " + node.id);
                     connectivity2 = { ConnectivityNode: node.id };
                 }
+                else
+                    if (connectivity2.BaseVoltage)
+                        line.BaseVoltage = connectivity2.BaseVoltage;
 
                 var terminal2 =
                 {
@@ -746,9 +767,13 @@ define
                 // add the location to the Cable object
                 line.Location = location.id;
                 var cls = cim.class_map (line);
-                line = new cls (line, this._features);
+                this._elements[0] = new cls (line, this._features);
 
-                // update the form
+                // add the base voltage to the form
+                if (line.BaseVoltage)
+                    document.getElementById (id + "_BaseVoltage").value = line.BaseVoltage;
+
+                // add the location to the form
                 document.getElementById (id + "_Location").value = location.id;
 
                 // update the display
@@ -901,8 +926,10 @@ define
                             if (related)
                                 for (var id in related)
                                 {
-                                    if (related[id][relations[i][4]] == element.id)
-                                        relatives.push (related[id]);
+                                    var obj = related[id];
+                                    if (obj[relations[i][4]] == element.id)
+                                        if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                            relatives.push (related[id]);
                                 }
                             for (var j = 0; j < relatives.length; j++)
                                 text = text + this.build (relatives[j]);
