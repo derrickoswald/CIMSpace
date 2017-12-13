@@ -859,6 +859,7 @@ define
 
             build (element)
             {
+                this._elements.push (element);
                 var cls = cim.class_map (element);
                 cls.prototype.condition (element);
                 var template = cls.prototype.edit_template ();
@@ -886,7 +887,7 @@ define
                     this._container.innerHTML = frame;
                     this._frame_height = document.getElementById ("edit_frame").clientHeight; // frame height with no edit template contents
 
-                    this._elements = [ element ];
+                    this._elements = [];
                     var text = this.build (element);
 
                     // get related elements
@@ -910,7 +911,6 @@ define
                 }
                 else
                 {
-                    this._elements.push (element);
                     var text = this.build (element);
                     document.getElementById ("edit_contents").innerHTML = document.getElementById ("edit_contents").innerHTML + text;
                 }
@@ -1031,14 +1031,18 @@ define
             {
                 if (!this._features)
                 {
-                    // delete existing feature
-                    var old_obj = this._elements[0];
-                    var cls = cim.class_map (old_obj);
-                    cls.prototype.remove (old_obj, this._cimmap.get_data ());
-                    old_obj.EditDisposition = "delete";
-                    old_obj.id = this.next_version (old_obj);
-                    old_obj.mRID = old_obj.id;
-                    this._elements[0] = new cls (old_obj, this._cimmap.get_data ());
+                    // delete existing features
+                    for (var i = 0; i < this._elements.length; i++)
+                    {
+                        var old_obj = this._elements[i];
+                        var cls = cim.class_map (old_obj);
+                        cls.prototype.remove (old_obj, this._cimmap.get_data ());
+                        old_obj.EditDisposition = "delete";
+                        old_obj.id = this.next_version (old_obj);
+                        old_obj.mRID = old_obj.id;
+                        this._elements[i] = new cls (old_obj, this._cimmap.get_data ());
+                    }
+                    delete this._elements;
                 }
                 else
                 {
