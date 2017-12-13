@@ -43,6 +43,8 @@ define
                 this.render ();
                 if (null == this._map.getSource ("edit lines"))
                     this.add_layers ();
+                this._resizer = this.on_map_resize.bind (this);
+                this._map.on ("resize", this._resizer);
                 return (this._container);
             }
 
@@ -51,6 +53,12 @@ define
                 // remove features from edit layers
                 this._map.getSource ("edit points").setData ({ "type" : "FeatureCollection", "features" : [] });
                 this._map.getSource ("edit lines").setData ({ "type" : "FeatureCollection", "features" : [] });
+                // turn off the resize listener
+                if (this._resizer)
+                {
+                    this._map.off ("resize", this._resizer);
+                    this._resizer = null;
+                }
                 // destroy the container
                 this._container.parentNode.removeChild (this._container);
                 this._container = null;
@@ -110,6 +118,70 @@ define
                 popup.addTo (this._map);
             }
 
+            distance (a, b)
+            {
+                var dx = a.lng - b.lng;
+                var dy = a.lat - b.lat;
+                return (dx * dx + dy * dy);
+            }
+
+            snap (event)
+            {
+                var ret = event.lngLat
+                var width = 4;
+                var height = 4;
+                var features = this._map.queryRenderedFeatures
+                (
+                    [
+                      [event.point.x - width / 2, event.point.y - height / 2],
+                      [event.point.x + width / 2, event.point.y + height / 2]
+                    ],
+                    {}
+                );
+                if ((null != features) && (0 != features.length))
+                {
+                    var mrid = this._current_feature.mRID;
+                    var best_lnglat = null;
+                    var best_feature = null;
+                    var dist = this.distance.bind (this);
+                    function assign_best (lnglat, feature)
+                    {
+                        best_lnglat = lnglat;
+                        best_feature = feature;
+                        console.log ("snap " + feature.properties.cls + ":" + feature.properties.mRID + " " + dist (ret, lnglat) + " [" + lnglat.lng + "," + lnglat.lat + "]");
+                    }
+                    for (var i = 0; i < features.length; i++)
+                    {
+                        if (features[i].properties.mRID && (mrid != features[i].properties.mRID)) // only our features and not the current one
+                        {
+                            if ("Point" == features[i].geometry.type)
+                            {
+                                var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates);
+                                if (null == best_lnglat)
+                                    assign_best (candidate, features[i]);
+                                else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
+                                    assign_best (candidate, features[i]);
+                            }
+                            else if ("LineString" == features[i].geometry.type)
+                            {
+                                for (var j = 0; j < features[i].geometry.coordinates.length; j++)
+                                {
+                                    var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates[j]);
+                                    if (null == best_lnglat)
+                                        assign_best (candidate, features[i]);
+                                    else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
+                                        assign_best (candidate, features[i]);
+                                }
+                            }
+                        }
+                    }
+                    if (null != best_lnglat)
+                        ret = best_lnglat;
+                }
+
+                return (ret);
+            }
+
             digitize_point_mousedown_listener (points, callback, event)
             {
                 var lnglat = this.snap (event);
@@ -157,70 +229,6 @@ define
                 this.popup ("<h1>Digitize point geometry</h1>");
             }
 
-            distance (a, b)
-            {
-                var dx = a.lng - b.lng;
-                var dy = a.lat - b.lat;
-                return (dx * dx + dy * dy);
-            }
-
-            snap (event)
-            {
-                var ret = event.lngLat
-                var width = 4;
-                var height = 4;
-                var features = this._map.queryRenderedFeatures
-                (
-                    [
-                      [event.point.x - width / 2, event.point.y - height / 2],
-                      [event.point.x + width / 2, event.point.y + height / 2]
-                    ],
-                    {}
-                );
-                if ((null != features) && (0 != features.length))
-                {
-                    var mrid = this._current_feature.mRID;
-                    var best_lnglat = null;
-                    var best_feature = null;
-                    var dist = this.distance.bind (this);
-                    function assign_best (lnglat, feature)
-                    {
-                        best_lnglat = lnglat;
-                        best_feature = feature;
-                        console.log ("snap " + feature.properties.cls + ":" + feature.properties.mRID + " " + dist (ret, lnglat));
-                    }
-                    for (var i = 0; i < features.length; i++)
-                    {
-                        if (features[i].properties.mRID && (mrid != features[i].properties.mRID)) // only our features and not the current one
-                        {
-                            if ("Point" == features[i].geometry.type)
-                            {
-                                var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates);
-                                if (null == best_lnglat)
-                                    assign_best (candidate, features[i]);
-                                else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
-                                    assign_best (candidate, features[i]);
-                            }
-                            else if ("LineString" == features[i].geometry.type)
-                            {
-                                for (var j = 0; j < features[i].geometry.coordinates.length; j++)
-                                {
-                                    var candidate = new mapboxgl.LngLat.convert (features[i].geometry.coordinates[j]);
-                                    if (null == best_lnglat)
-                                        assign_best (candidate, features[i]);
-                                    else if (this.distance (ret, candidate) < this.distance (ret, best_lnglat))
-                                        assign_best (candidate, features[i]);
-                                }
-                            }
-                        }
-                    }
-                    if (null != best_lnglat)
-                        ret = best_lnglat;
-                }
-
-                return (ret);
-            }
-
             digitize_line_mousedown_listener (lines, callback, event)
             {
                 var feature = lines.features[lines.features.length - 1];
@@ -232,7 +240,6 @@ define
 
                 if (leftbutton)
                 {
-                    // ToDo: snap to point or end of line
                     coordinates.push ([lnglat.lng, lnglat.lat]);
                     if (coordinates.length > 2)
                         this._map.getSource ("edit lines").setData (lines);
@@ -357,10 +364,10 @@ define
                 var location =
                 {
                     EditDisposition: "new",
-                    CoordinateSystem: "wgs84",
                     cls: "Location",
                     id: id + "_location",
                     mRID: id + "_location",
+                    CoordinateSystem: "wgs84",
                     type: "geographic"
                 };
                 this._new_elements.push (new Common.Location (location, this._features));
@@ -390,10 +397,205 @@ define
                 this.refresh ();
             }
 
+            get_connectivity_for_equipment (equipment, point)
+            {
+                var ret = {};
+
+                // here we un-screw up the sequence numbers on the PositionPoint elements
+                var data = this._cimmap.get_data ();
+                var points = data.PositionPoint;
+                var ordered = [];
+                for (var id in points)
+                {
+                    if (points[id].Location == equipment.Location)
+                        ordered[points[id].sequenceNumber] = points[id];
+                }
+                if ("undefined" == typeof (ordered[0]))
+                    ordered = ordered.slice (1);
+
+                // heuristic to get the sequence number of the terminal
+                var index = ordered.indexOf (point);
+                var sequence;
+                if (0 == index)
+                    sequence = 1;
+                else if (index < ordered.length / 2)
+                    sequence = 1;
+                else
+                    sequence = 2;
+
+                // get the terminal with that sequence number and the total number of terminals
+                var terminals = data.Terminal;
+                var n = 0;
+                var terminal = null;
+                var default_terminal = null;
+                for (var id in terminals)
+                    if (terminals[id].ConductingEquipment == equipment.id)
+                    {
+                        n = n + 1;
+                        if (null == default_terminal)
+                            default_terminal = terminals[id];
+                        if (terminals[id].sequenceNumber == sequence)
+                            terminal = terminals[id];
+                    }
+
+                // assign ConnectivityNode and TopologicalNode based on the terminal or default
+                if (null != terminal)
+                {
+                    if (terminal.ConnectivityNode)
+                        ret.ConnectivityNode = terminal.ConnectivityNode;
+                    if (terminal.TopologicalNode)
+                        ret.TopologicalNode = terminal.TopologicalNode;
+                }
+                else if (0 != n)
+                {
+                    console.log ("connectivity not found using default terminal for " + equipment.cls + ":" + equipment.id)
+                    if (default_terminal.ConnectivityNode)
+                        ret.ConnectivityNode = default_terminal.ConnectivityNode;
+                    if (default_terminal.TopologicalNode)
+                        ret.TopologicalNode = default_terminal.TopologicalNode;
+                }
+
+                return (ret); // { ConnectivityNode: blah, TopologicalNode: blah }
+            }
+
+            get_best_connectivity_for_equipment (equipments, point)
+            {
+                var ret = {};
+
+                function eq (equipment) { return (this.get_connectivity_for_equipment (equipment, point)); }
+                var list = equipments.map (eq.bind (this));
+                if (0 == list.length)
+                    // no ConnectivityNode just pick the first new one
+                    ret = list[0];
+                else if (1 == list.length)
+                    // one ConnectivityNode, use that
+                    ret = list[0];
+                else
+                    // if they are all the same ConnectivityNode we're still OK
+                    if (list.every (function (connectivity) { return (connectivity.ConnectivityNode == list[0].ConnectivityNode); }))
+                        ret = list[0];
+                    else
+                    {
+                        console.log ("too many ConnectivityNode found, using " + list[0].ConnectivityNode + " for " + equipment.cls + ":" + equipment.id + " from " + JSON.stringify (list, null, 4));
+                        ret = list[0];
+                    }
+
+                return (ret);
+            }
+
+            get_connectivity_for_point (point)
+            {
+                var ret = {};
+                var data = this._cimmap.get_data ();
+                var location = data.Location[point.Location];
+                var equipment = data.ConductingEquipment;
+                var matches = [];
+                for (var id in equipment)
+                {
+                    if (equipment[id].Location == location.id)
+                    {
+                        matches.push (equipment[id]);
+                        console.log ("connectivity found to " + equipment[id].cls + ":" + equipment[id].id);
+                    }
+                }
+                // if there are none, we have a problem Houston
+                // if there is only one, use the best terminal
+                if (1 == matches.length)
+                    ret = this.get_connectivity_for_equipment (matches[0], point);
+                else if (1 < matches.length)
+                    // if there are many pieces of equipment with the same location, try our best to pick up the connectivity
+                    ret = this.get_best_connectivity_for_equipment (matches, point);
+
+                return (ret);
+            }
+
+            get_best_connectivity_for_points (points)
+            {
+                var ret = {};
+
+                function gc (point) { return (this.get_connectivity_for_point (point)); }
+                var list = points.map (gc.bind (this));
+                if (0 != list.length)
+                {
+                    var existing = list.filter (function (connectivity) { return (connectivity.ConnectivityNode); });
+                    var uniques = existing.map (JSON.stringify).filter (function (value, index, self) { return (self.indexOf (value) === index); }).map (JSON.parse);
+                    if (0 == uniques.length)
+                        // no ConnectivityNode just pick the first new one
+                        ret = list[0];
+                    else if (1 == uniques.length)
+                        // one ConnectivityNode, use that
+                        ret = uniques[0];
+                    else
+                        // if they are all the same ConnectivityNode we're still OK
+                        if (uniques.every (function (connectivity) { return (connectivity.ConnectivityNode == uniques[0].ConnectivityNode); }))
+                            ret = uniques[0];
+                        else
+                        {
+                            console.log ("too many ConnectivityNode found, using " + uniques[0].ConnectivityNode + " for points from " + JSON.stringify (uniques, null, 4));
+                            ret = uniques[0];
+                        }
+                }
+
+                return (ret);
+            }
+
+            get_connectivity (lng, lat)
+            {
+                var ret = null;
+
+                // get PositionPoint with matching coordinates
+                var data = this._cimmap.get_data ();
+                var points = data.PositionPoint;
+                var matches = [];
+                for (var id in points)
+                {
+                    var x = points[id].xPosition;
+                    var y = points[id].yPosition;
+                    var dx = lng - x;
+                    var dy = lat - y;
+                    if (dx * dx + dy * dy < 1e-12) // ToDo: a parameter somehow?
+                    {
+                        matches.push (points[id]);
+                        console.log ("match point d = " + (dx * dx + dy * dy).toString () + " " + id + " [" + points[id].xPosition + "," + points[id].yPosition + "]");
+                    }
+                }
+                // if there are no matches, bail out
+                // if there is only one, use that one
+                if (1 == matches.length)
+                    ret = this.get_connectivity_for_point (matches[0]);
+                else if (1 < matches.length)
+                    ret = this.get_best_connectivity_for_points (matches);
+
+                return (ret);
+            }
+
+            new_connectivity (name)
+            {
+
+                return (
+                    {
+                        EditDisposition: "new",
+                        cls: "ConnectivityNode",
+                        id: name,
+                        mRID: name,
+                    }
+                );
+            }
+
+
             make_equipment (feature)
             {
                 var point = this._current_feature;
                 var id = point.id;
+
+                var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
+                if (null == connectivity) // invent a new node if there are none
+                {
+                    var node = this.new_connectivity (id + "_node");
+                    this._new_elements.push (new Core.ConnectivityNode (node, this._features));
+                    console.log ("no connectivity found, created ConnectivityNode " + node.id);
+                    connectivity = { ConnectivityNode: node.id };
+                }
 
                 // add the terminal
                 var terminal =
@@ -401,13 +603,15 @@ define
                     EditDisposition: "new",
                     cls: "Terminal",
                     id: id + "_terminal_1",
+                    mRID: id + "_terminal_1",
                     name: id + "_terminal_1",
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
-                    ConductingEquipment: id
-                    // ConnectivityNode
-                    // TopologicalNode
+                    ConductingEquipment: id,
+                    ConnectivityNode: connectivity.ConnectivityNode
                 };
+                if (connectivity.TopologicalNode)
+                    terminal.TopologicalNode = connectivity.TopologicalNode;
                 this._new_elements.push (new Core.Terminal (terminal, this._features));
 
                 this.make_psr (feature);
@@ -450,31 +654,56 @@ define
                     );
                 }
 
+                var connectivity1 = this.get_connectivity (feature.geometry.coordinates[0][0], feature.geometry.coordinates[0][1]);
+                if (null == connectivity1) // invent a new node if there are none
+                {
+                    var node = this.new_connectivity (id + "_node_1");
+                    this._new_elements.push (new Core.ConnectivityNode (node, this._features));
+                    console.log ("no connectivity found at end 1, created ConnectivityNode " + node.id);
+                    connectivity1 = { ConnectivityNode: node.id };
+                }
+
                 // add the terminals
                 var terminal1 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
                     id: id + "_terminal_1",
+                    mRID: id + "_terminal_1",
                     name: id + "_terminal_1",
                     sequenceNumber: 1,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
-                    ConductingEquipment: id
-                    // ConnectivityNode
-                    // TopologicalNode
+                    ConductingEquipment: id,
+                    ConnectivityNode: connectivity1.ConnectivityNode
                 };
+                if (connectivity1.TopologicalNode)
+                    terminal1.TopologicalNode = connectivity1.TopologicalNode;
+
+                var last = feature.geometry.coordinates.length - 1;
+                var connectivity2 = this.get_connectivity (feature.geometry.coordinates[last][0], feature.geometry.coordinates[last][1]);
+                if (null == connectivity2) // invent a new node if there are none
+                {
+                    var node = this.new_connectivity (id + "_node_2");
+                    this._new_elements.push (new Core.ConnectivityNode (node, this._features));
+                    console.log ("no connectivity found at end 2, created ConnectivityNode " + node.id);
+                    connectivity2 = { ConnectivityNode: node.id };
+                }
+
                 var terminal2 =
                 {
                     EditDisposition: "new",
                     cls: "Terminal",
                     id: id + "_terminal_2",
+                    mRID: id + "_terminal_2",
                     name: id + "_terminal_2",
                     sequenceNumber: 2,
                     phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
-                    ConductingEquipment: id
-                    // ConnectivityNode
-                    // TopologicalNode
+                    ConductingEquipment: id,
+                    ConnectivityNode: connectivity2.ConnectivityNode
                 };
+                if (connectivity2.TopologicalNode)
+                    terminal2.TopologicalNode = connectivity2.TopologicalNode;
+
                 this._new_elements.push (new Core.Terminal (terminal1, this._features));
                 this._new_elements.push (new Core.Terminal (terminal2, this._features));
 
@@ -579,8 +808,6 @@ define
                 cls.prototype.uncondition (feature);
                 document.getElementById ("edit_contents").innerHTML = text;
                 this.on_map_resize ();
-                this._resizer = this.on_map_resize.bind (this);
-                this._map.on ("resize", this.on_map_resize.bind (this));
             }
 
             // sample state transitions
@@ -638,7 +865,6 @@ define
             shutdown ()
             {
                 this._cimmap.unhighlight ();
-                this._map.off ("resize", this._resizer);
                 this.render ();
             }
 
