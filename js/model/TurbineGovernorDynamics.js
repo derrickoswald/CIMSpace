@@ -153,11 +153,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"],
-                        ["TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", "0..1", "1"],
-                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AsynchronousMachineDynamics", "0..1", "0..1", "AsynchronousMachineDynamics", "TurbineGovernorDynamics"],
+                            ["TurbineLoadControllerDynamics", "0..1", "1", "TurbineLoadControllerDynamics", "TurbineGovernorDynamics"],
+                            ["SynchronousMachineDynamics", "0..*", "0..*", "SynchronousMachineDynamics", "TurbineGovernorDynamics"]
+                        ]
+                    )
                 );
             }
         }

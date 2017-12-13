@@ -298,9 +298,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TypeAssets", "GenericAssetModelOrMaterial", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TypeAssets", "0..*", "0..1", "GenericAssetModelOrMaterial", "TypeAssetCatalogue"]
+                        ]
+                    )
                 );
             }
         }

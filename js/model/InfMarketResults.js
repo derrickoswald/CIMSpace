@@ -239,9 +239,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketProductClearing", "AncillaryServiceClearing", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketProductClearing", "0..*", "0..1", "AncillaryServiceClearing", "MarketCaseClearing"]
+                        ]
+                    )
                 );
             }
         }
@@ -352,9 +354,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["InterTieResults", "InterTieResults", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["InterTieResults", "0..*", "0..1", "InterTieResults", "InterTieClearing"]
+                        ]
+                    )
                 );
             }
         }
@@ -482,10 +486,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["InterTieClearing", "InterTieClearing", "0..1", "0..*"],
-                        ["Flowgate", "Flowgate", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["InterTieClearing", "0..1", "0..*", "InterTieClearing", "InterTieResults"],
+                            ["Flowgate", "1", "1..*", "Flowgate", "InterTieResults"]
+                        ]
+                    )
                 );
             }
         }

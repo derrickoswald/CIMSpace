@@ -108,9 +108,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergySource", "EnergySource", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergySource", "0..*", "0..1", "EnergySource", "EnergySchedulingType"]
+                        ]
+                    )
                 );
             }
         }

@@ -126,11 +126,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["VoltageAdjusterDynamics", "VoltageAdjusterDynamics", "0..1", "1"],
-                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"],
-                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["VoltageAdjusterDynamics", "0..1", "1", "VoltageAdjusterDynamics", "PFVArControllerType1Dynamics"],
+                            ["ExcitationSystemDynamics", "1", "0..1", "ExcitationSystemDynamics", "PFVArControllerType1Dynamics"],
+                            ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "PFVArControllerType1Dynamics"]
+                        ]
+                    )
                 );
             }
         }

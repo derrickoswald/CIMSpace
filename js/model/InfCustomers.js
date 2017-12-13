@@ -134,9 +134,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CustomerAgreements", "0..*", "0..1", "CustomerAgreement", "StandardIndustryCode"]
+                        ]
+                    )
                 );
             }
         }
@@ -523,11 +525,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Works", "Work", "0..*", "0..1"],
-                        ["ErpLineItems", "ErpInvoiceLineItem", "0..*", "0..*"],
-                        ["CustomerAccount", "CustomerAccount", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Works", "0..*", "0..1", "Work", "WorkBillingInfo"],
+                            ["ErpLineItems", "0..*", "0..*", "ErpInvoiceLineItem", "WorkBillingInfos"],
+                            ["CustomerAccount", "0..1", "0..*", "CustomerAccount", "WorkBillingInfos"]
+                        ]
+                    )
                 );
             }
         }
@@ -1029,10 +1033,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*"],
-                        ["CustomerAccount", "CustomerAccount", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpInvoiceLineItems", "0..*", "0..*", "ErpInvoiceLineItem", "CustomerBillingInfos"],
+                            ["CustomerAccount", "0..1", "0..*", "CustomerAccount", "CustomerBillingInfos"]
+                        ]
+                    )
                 );
             }
         }

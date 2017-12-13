@@ -193,11 +193,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*"],
-                        ["DCTerminals", "DCBaseTerminal", "0..*", "0..1"],
-                        ["DCEquipmentContainer", "DCEquipmentContainer", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCTopologicalNode", "0..1", "0..*", "DCTopologicalNode", "DCNodes"],
+                            ["DCTerminals", "0..*", "0..1", "DCBaseTerminal", "DCNode"],
+                            ["DCEquipmentContainer", "1", "0..*", "DCEquipmentContainer", "DCNodes"]
+                        ]
+                    )
                 );
             }
         }
@@ -308,9 +310,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCTopologicalNodes", "DCTopologicalNode", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCTopologicalNodes", "1..*", "0..1", "DCTopologicalNode", "DCTopologicalIsland"]
+                        ]
+                    )
                 );
             }
         }
@@ -428,10 +432,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCNode", "DCNode", "0..1", "0..*"],
-                        ["DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCNode", "0..1", "0..*", "DCNode", "DCTerminals"],
+                            ["DCTopologicalNode", "0..1", "0..*", "DCTopologicalNode", "DCTerminals"]
+                        ]
+                    )
                 );
             }
         }
@@ -632,10 +638,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCTerminals", "ACDCConverterDCTerminal", "0..*", "1"],
-                        ["PccTerminal", "Terminal", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCTerminals", "0..*", "1", "ACDCConverterDCTerminal", "DCConductingEquipment"],
+                            ["PccTerminal", "0..1", "0..*", "Terminal", "ConverterDCSides"]
+                        ]
+                    )
                 );
             }
         }
@@ -757,9 +765,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCLineSegments", "DCLineSegment", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCLineSegments", "0..*", "0..1", "DCLineSegment", "PerLengthParameter"]
+                        ]
+                    )
                 );
             }
         }
@@ -875,10 +885,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCTopologicalNode", "DCTopologicalNode", "0..*", "0..1"],
-                        ["DCNodes", "DCNode", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCTopologicalNode", "0..*", "0..1", "DCTopologicalNode", "DCEquipmentContainer"],
+                            ["DCNodes", "0..*", "1", "DCNode", "DCEquipmentContainer"]
+                        ]
+                    )
                 );
             }
         }
@@ -987,9 +999,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["VsConverterDCSides", "VsConverter", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["VsConverterDCSides", "0..*", "0..1", "VsConverter", "CapabilityCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -1103,10 +1117,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCTerminals", "DCTerminal", "0..*", "1"],
-                        ["ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCTerminals", "0..*", "1", "DCTerminal", "DCConductingEquipment"],
+                            ["ProtectiveActionAdjustment", "0..*", "1", "ProtectiveActionAdjustment", "DCConductingEquipment"]
+                        ]
+                    )
                 );
             }
         }
@@ -1226,9 +1242,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCConductingEquipment", "ACDCConverter", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCConductingEquipment", "1", "0..*", "ACDCConverter", "DCTerminals"]
+                        ]
+                    )
                 );
             }
         }
@@ -1339,9 +1357,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCConductingEquipment", "DCConductingEquipment", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCConductingEquipment", "1", "0..*", "DCConductingEquipment", "DCTerminals"]
+                        ]
+                    )
                 );
             }
         }
@@ -1684,9 +1704,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CapabilityCurve", "VsCapabilityCurve", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CapabilityCurve", "0..1", "0..*", "VsCapabilityCurve", "VsConverterDCSides"]
+                        ]
+                    )
                 );
             }
         }
@@ -1797,9 +1819,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Region", "SubGeographicalRegion", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Region", "0..1", "0..*", "SubGeographicalRegion", "DCLines"]
+                        ]
+                    )
                 );
             }
         }
@@ -1917,9 +1941,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Substation", "Substation", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Substation", "0..1", "0..*", "Substation", "DCConverterUnit"]
+                        ]
+                    )
                 );
             }
         }
@@ -2573,9 +2599,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PerLengthParameter", "PerLengthDCLineParameter", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PerLengthParameter", "0..1", "0..*", "PerLengthDCLineParameter", "DCLineSegments"]
+                        ]
+                    )
                 );
             }
         }

@@ -513,19 +513,21 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["QualificationRequirements", "QualificationRequirement", "0..*", "0..*"],
-                        ["MiscCostItems", "MiscCostItem", "0..*", "0..1"],
-                        ["Design", "Design", "0..1", "0..*"],
-                        ["Capabilities", "Capability", "0..*", "0..*"],
-                        ["WorkFlowStep", "WorkFlowStep", "0..1", "0..*"],
-                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..1"],
-                        ["Usages", "Usage", "0..*", "0..1"],
-                        ["LaborItems", "LaborItem", "0..*", "0..1"],
-                        ["OverheadCost", "OverheadCost", "0..1", "0..*"],
-                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"],
-                        ["ContractorItems", "ContractorItem", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["QualificationRequirements", "0..*", "0..*", "QualificationRequirement", "WorkTasks"],
+                            ["MiscCostItems", "0..*", "0..1", "MiscCostItem", "WorkTask"],
+                            ["Design", "0..1", "0..*", "Design", "WorkTasks"],
+                            ["Capabilities", "0..*", "0..*", "Capability", "WorkTasks"],
+                            ["WorkFlowStep", "0..1", "0..*", "WorkFlowStep", "WorkTasks"],
+                            ["WorkCostDetails", "0..*", "0..1", "WorkCostDetail", "WorkTask"],
+                            ["Usages", "0..*", "0..1", "Usage", "WorkTask"],
+                            ["LaborItems", "0..*", "0..1", "LaborItem", "WorkTask"],
+                            ["OverheadCost", "0..1", "0..*", "OverheadCost", "WorkTasks"],
+                            ["DesignLocationCUs", "0..*", "0..*", "DesignLocationCU", "WorkTasks"],
+                            ["ContractorItems", "0..*", "0..1", "ContractorItem", "WorkTask"]
+                        ]
+                    )
                 );
             }
         }
@@ -646,10 +648,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Projects", "Project", "0..*", "0..1"],
-                        ["Works", "Work", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Projects", "0..*", "0..1", "Project", "BusinessCase"],
+                            ["Works", "0..*", "0..1", "Work", "BusinessCase"]
+                        ]
+                    )
                 );
             }
         }
@@ -875,9 +879,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Crews", "OldCrew", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Crews", "0..*", "0..*", "OldCrew", "Assignments"]
+                        ]
+                    )
                 );
             }
         }
@@ -1015,13 +1021,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SubProjects", "Project", "0..*", "0..1"],
-                        ["ParentProject", "Project", "0..1", "0..*"],
-                        ["BusinessCase", "BusinessCase", "0..1", "0..*"],
-                        ["Works", "Work", "0..*", "0..1"],
-                        ["ErpProjectAccounting", "ErpProjectAccounting", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SubProjects", "0..*", "0..1", "Project", "ParentProject"],
+                            ["ParentProject", "0..1", "0..*", "Project", "SubProjects"],
+                            ["BusinessCase", "0..1", "0..*", "BusinessCase", "Projects"],
+                            ["Works", "0..*", "0..1", "Work", "Project"],
+                            ["ErpProjectAccounting", "1", "0..*", "ErpProjectAccounting", "Projects"]
+                        ]
+                    )
                 );
             }
         }
@@ -1134,9 +1142,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkCostDetail", "WorkCostDetail", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkCostDetail", "0..1", "0..1", "WorkCostDetail", "WorkCostSummary"]
+                        ]
+                    )
                 );
             }
         }
@@ -1316,19 +1326,21 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LaborItems", "LaborItem", "0..*", "1"],
-                        ["CostType", "CostType", "1", "0..*"],
-                        ["OverheadCost", "OverheadCost", "0..1", "0..*"],
-                        ["WorkTask", "OldWorkTask", "0..1", "0..*"],
-                        ["Design", "Design", "0..1", "0..*"],
-                        ["ErpProjectAccounting", "ErpProjectAccounting", "1", "0..*"],
-                        ["MiscCostItems", "MiscCostItem", "0..*", "0..1"],
-                        ["ContractorItems", "ContractorItem", "0..*", "1"],
-                        ["Works", "Work", "0..*", "0..*"],
-                        ["WorkCostSummary", "WorkCostSummary", "0..1", "0..1"],
-                        ["PropertyUnits", "PropertyUnit", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LaborItems", "0..*", "1", "LaborItem", "WorkCostDetail"],
+                            ["CostType", "1", "0..*", "CostType", "WorkCostDetails"],
+                            ["OverheadCost", "0..1", "0..*", "OverheadCost", "WorkCostDetails"],
+                            ["WorkTask", "0..1", "0..*", "OldWorkTask", "WorkCostDetails"],
+                            ["Design", "0..1", "0..*", "Design", "WorkCostDetails"],
+                            ["ErpProjectAccounting", "1", "0..*", "ErpProjectAccounting", "WorkCostDetails"],
+                            ["MiscCostItems", "0..*", "0..1", "MiscCostItem", "WorkCostDetail"],
+                            ["ContractorItems", "0..*", "1", "ContractorItem", "WorkCostDetail"],
+                            ["Works", "0..*", "0..*", "Work", "WorkCostDetails"],
+                            ["WorkCostSummary", "0..1", "0..1", "WorkCostSummary", "WorkCostDetail"],
+                            ["PropertyUnits", "0..*", "0..*", "PropertyUnit", "WorkCostDetails"]
+                        ]
+                    )
                 );
             }
         }
@@ -1513,19 +1525,21 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CUWorkEquipmentItems", "CUWorkEquipmentItem", "0..*", "0..*"],
-                        ["CUAssets", "CUAsset", "0..*", "0..*"],
-                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"],
-                        ["CUContractorItems", "CUContractorItem", "0..*", "0..*"],
-                        ["CUGroup", "CUGroup", "0..1", "0..*"],
-                        ["PropertyUnit", "PropertyUnit", "0..1", "0..*"],
-                        ["CULaborItems", "CULaborItem", "0..*", "0..*"],
-                        ["CUMaterialItems", "CUMaterialItem", "0..*", "0..*"],
-                        ["Procedures", "Procedure", "0..*", "0..*"],
-                        ["CostType", "CostType", "0..1", "0..*"],
-                        ["CUAllowableAction", "CUAllowableAction", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CUWorkEquipmentItems", "0..*", "0..*", "CUWorkEquipmentItem", "CompatibleUnits"],
+                            ["CUAssets", "0..*", "0..*", "CUAsset", "CompatibleUnits"],
+                            ["DesignLocationCUs", "0..*", "0..*", "DesignLocationCU", "CompatibleUnits"],
+                            ["CUContractorItems", "0..*", "0..*", "CUContractorItem", "CompatibleUnits"],
+                            ["CUGroup", "0..1", "0..*", "CUGroup", "CompatibleUnits"],
+                            ["PropertyUnit", "0..1", "0..*", "PropertyUnit", "CompatibleUnits"],
+                            ["CULaborItems", "0..*", "0..*", "CULaborItem", "CompatibleUnits"],
+                            ["CUMaterialItems", "0..*", "0..*", "CUMaterialItem", "CompatibleUnits"],
+                            ["Procedures", "0..*", "0..*", "Procedure", "CompatibleUnits"],
+                            ["CostType", "0..1", "0..*", "CostType", "CompatibleUnits"],
+                            ["CUAllowableAction", "0..1", "0..*", "CUAllowableAction", "CompatibleUnits"]
+                        ]
+                    )
                 );
             }
         }
@@ -1809,12 +1823,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpIssueInventories", "ErpIssueInventory", "0..*", "0..1"],
-                        ["ErpReqLineItems", "ErpReqLineItem", "0..*", "0..1"],
-                        ["CUMaterialItems", "CUMaterialItem", "0..*", "0..1"],
-                        ["MaterialItems", "MaterialItem", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpIssueInventories", "0..*", "0..1", "ErpIssueInventory", "TypeMaterial"],
+                            ["ErpReqLineItems", "0..*", "0..1", "ErpReqLineItem", "TypeMaterial"],
+                            ["CUMaterialItems", "0..*", "0..1", "CUMaterialItem", "TypeMaterial"],
+                            ["MaterialItems", "0..*", "0..1", "MaterialItem", "TypeMaterial"]
+                        ]
+                    )
                 );
             }
         }
@@ -2170,9 +2186,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkLocations", "WorkLocation", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkLocations", "0..*", "0..1", "WorkLocation", "OneCallRequest"]
+                        ]
+                    )
                 );
             }
         }
@@ -2343,16 +2361,18 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Work", "Work", "0..1", "0..*"],
-                        ["ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"],
-                        ["WorkTasks", "OldWorkTask", "0..*", "0..1"],
-                        ["ErpBOMs", "ErpBOM", "0..*", "0..1"],
-                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..1"],
-                        ["ConditionFactors", "ConditionFactor", "0..*", "0..*"],
-                        ["DesignLocations", "DesignLocation", "0..*", "1..*"],
-                        ["DesignLocationsCUs", "DesignLocationCU", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Work", "0..1", "0..*", "Work", "Designs"],
+                            ["ErpQuoteLineItem", "0..1", "0..1", "ErpQuoteLineItem", "Design"],
+                            ["WorkTasks", "0..*", "0..1", "OldWorkTask", "Design"],
+                            ["ErpBOMs", "0..*", "0..1", "ErpBOM", "Design"],
+                            ["WorkCostDetails", "0..*", "0..1", "WorkCostDetail", "Design"],
+                            ["ConditionFactors", "0..*", "0..*", "ConditionFactor", "Designs"],
+                            ["DesignLocations", "0..*", "1..*", "DesignLocation", "Designs"],
+                            ["DesignLocationsCUs", "0..*", "0..*", "DesignLocationCU", "Designs"]
+                        ]
+                    )
                 );
             }
         }
@@ -2500,11 +2520,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkCostDetail", "WorkCostDetail", "1", "0..*"],
-                        ["WorkTask", "OldWorkTask", "0..1", "0..*"],
-                        ["ErpPersons", "OldPerson", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkCostDetail", "1", "0..*", "WorkCostDetail", "LaborItems"],
+                            ["WorkTask", "0..1", "0..*", "OldWorkTask", "LaborItems"],
+                            ["ErpPersons", "0..*", "0..*", "OldPerson", "LaborItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -2648,11 +2670,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DesignLocations", "DesignLocation", "0..*", "0..*"],
-                        ["Designs", "Design", "0..*", "0..*"],
-                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DesignLocations", "0..*", "0..*", "DesignLocation", "ConditionFactors"],
+                            ["Designs", "0..*", "0..*", "Design", "ConditionFactors"],
+                            ["DesignLocationCUs", "0..*", "0..*", "DesignLocationCU", "ConditionFactors"]
+                        ]
+                    )
                 );
             }
         }
@@ -2770,9 +2794,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkTask", "OldWorkTask", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkTask", "0..1", "0..*", "OldWorkTask", "Usages"]
+                        ]
+                    )
                 );
             }
         }
@@ -2932,13 +2958,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkCostDetails", "WorkCostDetail", "0..*", "1"],
-                        ["ChildCostTypes", "CostType", "0..*", "0..1"],
-                        ["ParentCostType", "CostType", "0..1", "0..*"],
-                        ["ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"],
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkCostDetails", "0..*", "1", "WorkCostDetail", "CostType"],
+                            ["ChildCostTypes", "0..*", "0..1", "CostType", "ParentCostType"],
+                            ["ParentCostType", "0..1", "0..*", "CostType", "ChildCostTypes"],
+                            ["ErpJournalEntries", "0..*", "0..*", "ErpJournalEntry", "CostTypes"],
+                            ["CompatibleUnits", "0..*", "0..1", "CompatibleUnit", "CostType"]
+                        ]
+                    )
                 );
             }
         }
@@ -3059,9 +3087,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CULaborItems", "CULaborItem", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CULaborItems", "0..*", "0..1", "CULaborItem", "CULaborCode"]
+                        ]
+                    )
                 );
             }
         }
@@ -3215,14 +3245,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ConditionFactors", "ConditionFactor", "0..*", "0..*"],
-                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..1"],
-                        ["MiscCostItems", "MiscCostItem", "0..*", "0..1"],
-                        ["ErpBomItemDatas", "ErpBomItemData", "0..*", "0..1"],
-                        ["WorkLocations", "WorkLocation", "1..*", "0..*"],
-                        ["Designs", "Design", "1..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ConditionFactors", "0..*", "0..*", "ConditionFactor", "DesignLocations"],
+                            ["DesignLocationCUs", "0..*", "0..1", "DesignLocationCU", "DesignLocation"],
+                            ["MiscCostItems", "0..*", "0..1", "MiscCostItem", "DesignLocation"],
+                            ["ErpBomItemDatas", "0..*", "0..1", "ErpBomItemData", "DesignLocation"],
+                            ["WorkLocations", "1..*", "0..*", "WorkLocation", "DesignLocations"],
+                            ["Designs", "1..*", "0..*", "Design", "DesignLocations"]
+                        ]
+                    )
                 );
             }
         }
@@ -3355,10 +3387,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"],
-                        ["TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CompatibleUnits", "0..*", "0..*", "CompatibleUnit", "CUWorkEquipmentItems"],
+                            ["TypeAsset", "0..1", "0..1", "GenericAssetModelOrMaterial", "CUWorkEquipmentAsset"]
+                        ]
+                    )
                 );
             }
         }
@@ -3500,11 +3534,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TypeMaterial", "TypeMaterial", "0..1", "0..*"],
-                        ["PropertyUnits", "PropertyUnit", "0..*", "0..*"],
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TypeMaterial", "0..1", "0..*", "TypeMaterial", "CUMaterialItems"],
+                            ["PropertyUnits", "0..*", "0..*", "PropertyUnit", "CUMaterialItems"],
+                            ["CompatibleUnits", "0..*", "0..*", "CompatibleUnit", "CUMaterialItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -3635,10 +3671,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..1"],
-                        ["WorkTasks", "OldWorkTask", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkCostDetails", "0..*", "0..1", "WorkCostDetail", "OverheadCost"],
+                            ["WorkTasks", "0..*", "0..1", "OldWorkTask", "OverheadCost"]
+                        ]
+                    )
                 );
             }
         }
@@ -3764,10 +3802,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkTasks", "OldWorkTask", "0..*", "0..1"],
-                        ["Work", "Work", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkTasks", "0..*", "0..1", "OldWorkTask", "WorkFlowStep"],
+                            ["Work", "0..1", "0..*", "Work", "WorkFlowSteps"]
+                        ]
+                    )
                 );
             }
         }
@@ -3883,9 +3923,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CompatibleUnits", "0..*", "0..1", "CompatibleUnit", "CUAllowableAction"]
+                        ]
+                    )
                 );
             }
         }
@@ -4024,12 +4066,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkTasks", "OldWorkTask", "0..*", "0..*"],
-                        ["Specifications", "Specification", "0..*", "0..*"],
-                        ["CULaborItems", "CULaborItem", "0..*", "0..*"],
-                        ["Skills", "Skill", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkTasks", "0..*", "0..*", "OldWorkTask", "QualificationRequirements"],
+                            ["Specifications", "0..*", "0..*", "Specification", "QualificationRequirements"],
+                            ["CULaborItems", "0..*", "0..*", "CULaborItem", "QualificationRequirements"],
+                            ["Skills", "0..*", "0..*", "Skill", "QualificationRequirements"]
+                        ]
+                    )
                 );
             }
         }
@@ -4172,11 +4216,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPayables", "ErpPayable", "0..*", "0..*"],
-                        ["WorkCostDetail", "WorkCostDetail", "1", "0..*"],
-                        ["WorkTask", "OldWorkTask", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPayables", "0..*", "0..*", "ErpPayable", "ContractorItems"],
+                            ["WorkCostDetail", "1", "0..*", "WorkCostDetail", "ContractorItems"],
+                            ["WorkTask", "0..1", "0..*", "OldWorkTask", "ContractorItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -4313,12 +4359,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ChildCUGroups", "CUGroup", "0..*", "0..*"],
-                        ["ParentCUGroups", "CUGroup", "0..*", "0..*"],
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..1"],
-                        ["DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ChildCUGroups", "0..*", "0..*", "CUGroup", "ParentCUGroups"],
+                            ["ParentCUGroups", "0..*", "0..*", "CUGroup", "ChildCUGroups"],
+                            ["CompatibleUnits", "0..*", "0..1", "CompatibleUnit", "CUGroup"],
+                            ["DesignLocationCUs", "0..*", "0..*", "DesignLocationCU", "CUGroups"]
+                        ]
+                    )
                 );
             }
         }
@@ -4451,9 +4499,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Crews", "OldCrew", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Crews", "0..*", "0..*", "OldCrew", "ShiftPatterns"]
+                        ]
+                    )
                 );
             }
         }
@@ -4598,11 +4648,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["QualificationRequirements", "QualificationRequirement", "0..*", "0..*"],
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"],
-                        ["CULaborCode", "CULaborCode", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["QualificationRequirements", "0..*", "0..*", "QualificationRequirement", "CULaborItems"],
+                            ["CompatibleUnits", "0..*", "0..*", "CompatibleUnit", "CULaborItems"],
+                            ["CULaborCode", "0..1", "0..*", "CULaborCode", "CULaborItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -4749,11 +4801,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CUMaterialItems", "CUMaterialItem", "0..*", "0..*"],
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..1"],
-                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CUMaterialItems", "0..*", "0..*", "CUMaterialItem", "PropertyUnits"],
+                            ["CompatibleUnits", "0..*", "0..1", "CompatibleUnit", "PropertyUnit"],
+                            ["WorkCostDetails", "0..*", "0..*", "WorkCostDetail", "PropertyUnits"]
+                        ]
+                    )
                 );
             }
         }
@@ -4898,11 +4952,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Crafts", "Craft", "0..*", "0..*"],
-                        ["WorkTasks", "OldWorkTask", "0..*", "0..*"],
-                        ["Crew", "OldCrew", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Crafts", "0..*", "0..*", "Craft", "Capabilities"],
+                            ["WorkTasks", "0..*", "0..*", "OldWorkTask", "Capabilities"],
+                            ["Crew", "0..1", "0..*", "OldCrew", "Capabilities"]
+                        ]
+                    )
                 );
             }
         }
@@ -5085,14 +5141,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DesignLocation", "DesignLocation", "0..1", "0..*"],
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"],
-                        ["CUGroups", "CUGroup", "0..*", "0..*"],
-                        ["WorkTasks", "OldWorkTask", "0..*", "0..*"],
-                        ["Designs", "Design", "0..*", "0..*"],
-                        ["ConditionFactors", "ConditionFactor", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DesignLocation", "0..1", "0..*", "DesignLocation", "DesignLocationCUs"],
+                            ["CompatibleUnits", "0..*", "0..*", "CompatibleUnit", "DesignLocationCUs"],
+                            ["CUGroups", "0..*", "0..*", "CUGroup", "DesignLocationCUs"],
+                            ["WorkTasks", "0..*", "0..*", "OldWorkTask", "DesignLocationCUs"],
+                            ["Designs", "0..*", "0..*", "Design", "DesignLocationsCUs"],
+                            ["ConditionFactors", "0..*", "0..*", "ConditionFactor", "DesignLocationCUs"]
+                        ]
+                    )
                 );
             }
         }
@@ -5245,11 +5303,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkTask", "OldWorkTask", "0..1", "0..*"],
-                        ["DesignLocation", "DesignLocation", "0..1", "0..*"],
-                        ["WorkCostDetail", "WorkCostDetail", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkTask", "0..1", "0..*", "OldWorkTask", "MiscCostItems"],
+                            ["DesignLocation", "0..1", "0..*", "DesignLocation", "MiscCostItems"],
+                            ["WorkCostDetail", "0..1", "0..*", "WorkCostDetail", "MiscCostItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -5377,9 +5437,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CompatibleUnits", "0..*", "0..*", "CompatibleUnit", "CUContractorItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -5512,10 +5574,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"],
-                        ["TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CompatibleUnits", "0..*", "0..*", "CompatibleUnit", "CUAssets"],
+                            ["TypeAsset", "0..1", "0..1", "GenericAssetModelOrMaterial", "CUAsset"]
+                        ]
+                    )
                 );
             }
         }

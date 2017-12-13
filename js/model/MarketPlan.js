@@ -156,15 +156,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketRegionResults", "MarketRegionResults", "0..1", "0..1"],
-                        ["ResourceAwardInstruction", "ResourceAwardInstruction", "0..*", "1"],
-                        ["BidPriceCap", "BidPriceCap", "0..*", "0..1"],
-                        ["ReserveReqs", "ReserveReq", "0..*", "1"],
-                        ["ProductBids", "ProductBid", "0..*", "1"],
-                        ["BidError", "BidError", "0..*", "0..1"],
-                        ["Market", "Market", "0..1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketRegionResults", "0..1", "0..1", "MarketRegionResults", "MarketProduct"],
+                            ["ResourceAwardInstruction", "0..*", "1", "ResourceAwardInstruction", "MarketProduct"],
+                            ["BidPriceCap", "0..*", "0..1", "BidPriceCap", "MarketProduct"],
+                            ["ReserveReqs", "0..*", "1", "ReserveReq", "MarketProduct"],
+                            ["ProductBids", "0..*", "1", "ProductBid", "MarketProduct"],
+                            ["BidError", "0..*", "0..1", "BidError", "MarketProduct"],
+                            ["Market", "0..1", "1..*", "Market", "MarketProducts"]
+                        ]
+                    )
                 );
             }
         }
@@ -304,10 +306,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PlannedMarket", "PlannedMarket", "0..*", "1..*"],
-                        ["MarketActualEvent", "MarketActualEvent", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PlannedMarket", "0..*", "1..*", "PlannedMarket", "PlannedMarketEvent"],
+                            ["MarketActualEvent", "1..*", "1", "MarketActualEvent", "PlannedMarketEvent"]
+                        ]
+                    )
                 );
             }
         }
@@ -440,9 +444,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PlannedMarket", "PlannedMarket", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PlannedMarket", "1..*", "1", "PlannedMarket", "MarketPlan"]
+                        ]
+                    )
                 );
             }
         }
@@ -570,10 +576,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Market", "Market", "0..1", "0..*"],
-                        ["MktActivityRecord", "MktActivityRecord", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Market", "0..1", "0..*", "Market", "MarketFactors"],
+                            ["MktActivityRecord", "0..*", "0..*", "MktActivityRecord", "MarketFactors"]
+                        ]
+                    )
                 );
             }
         }
@@ -746,11 +754,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketFactors", "MarketFactors", "0..*", "0..1"],
-                        ["MarketRun", "MarketRun", "0..*", "1"],
-                        ["MarketProducts", "MarketProduct", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketFactors", "0..*", "0..1", "MarketFactors", "Market"],
+                            ["MarketRun", "0..*", "1", "MarketRun", "Market"],
+                            ["MarketProducts", "1..*", "0..1", "MarketProduct", "Market"]
+                        ]
+                    )
                 );
             }
         }
@@ -881,10 +891,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PlannedMarketEvent", "PlannedMarketEvent", "1", "1..*"],
-                        ["MarketRun", "MarketRun", "0..1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PlannedMarketEvent", "1", "1..*", "PlannedMarketEvent", "MarketActualEvent"],
+                            ["MarketRun", "0..1", "1..*", "MarketRun", "MarketActualEvent"]
+                        ]
+                    )
                 );
             }
         }
@@ -1029,11 +1041,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PlannedMarketEvent", "PlannedMarketEvent", "1..*", "0..*"],
-                        ["MarketRun", "MarketRun", "0..*", "1"],
-                        ["MarketPlan", "MarketPlan", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PlannedMarketEvent", "1..*", "0..*", "PlannedMarketEvent", "PlannedMarket"],
+                            ["MarketRun", "0..*", "1", "MarketRun", "PlannedMarket"],
+                            ["MarketPlan", "1", "1..*", "MarketPlan", "PlannedMarket"]
+                        ]
+                    )
                 );
             }
         }
@@ -1206,11 +1220,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PlannedMarket", "PlannedMarket", "1", "0..*"],
-                        ["Market", "Market", "1", "0..*"],
-                        ["MarketActualEvent", "MarketActualEvent", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PlannedMarket", "1", "0..*", "PlannedMarket", "MarketRun"],
+                            ["Market", "1", "0..*", "Market", "MarketRun"],
+                            ["MarketActualEvent", "1..*", "0..1", "MarketActualEvent", "MarketRun"]
+                        ]
+                    )
                 );
             }
         }
@@ -1345,13 +1361,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketResults", "MarketResults", "0..1", "1"],
-                        ["RTO", "RTO", "0..1", "0..*"],
-                        ["Bids", "Bid", "0..*", "1"],
-                        ["RegisteredResources", "RegisteredResource", "0..*", "0..*"],
-                        ["Settlements", "Settlement", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketResults", "0..1", "1", "MarketResults", "EnergyMarket"],
+                            ["RTO", "0..1", "0..*", "RTO", "EnergyMarkets"],
+                            ["Bids", "0..*", "1", "Bid", "EnergyMarket"],
+                            ["RegisteredResources", "0..*", "0..*", "RegisteredResource", "EnergyMarkets"],
+                            ["Settlements", "0..*", "0..1", "Settlement", "EnergyMarket"]
+                        ]
+                    )
                 );
             }
         }
@@ -1467,9 +1485,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CRR", "CRR", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CRR", "1..*", "1", "CRR", "CRRMarket"]
+                        ]
+                    )
                 );
             }
         }

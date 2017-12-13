@@ -143,11 +143,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AltTieMeas", "AltTieMeas", "0..*", "1"],
-                        ["Terminal", "Terminal", "1", "0..2"],
-                        ["ControlArea", "ControlArea", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AltTieMeas", "0..*", "1", "AltTieMeas", "TieFlow"],
+                            ["Terminal", "1", "0..2", "Terminal", "TieFlow"],
+                            ["ControlArea", "1", "0..*", "ControlArea", "TieFlow"]
+                        ]
+                    )
                 );
             }
         }
@@ -270,11 +272,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ControlArea", "ControlArea", "1", "0..*"],
-                        ["GeneratingUnit", "GeneratingUnit", "1", "0..*"],
-                        ["AltGeneratingUnitMeas", "AltGeneratingUnitMeas", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ControlArea", "1", "0..*", "ControlArea", "ControlAreaGeneratingUnit"],
+                            ["GeneratingUnit", "1", "0..*", "GeneratingUnit", "ControlAreaGeneratingUnit"],
+                            ["AltGeneratingUnitMeas", "0..*", "1", "AltGeneratingUnitMeas", "ControlAreaGeneratingUnit"]
+                        ]
+                    )
                 );
             }
         }
@@ -395,10 +399,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TieFlow", "TieFlow", "1", "0..*"],
-                        ["AnalogValue", "AnalogValue", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TieFlow", "1", "0..*", "TieFlow", "AltTieMeas"],
+                            ["AnalogValue", "1", "0..*", "AnalogValue", "AltTieMeas"]
+                        ]
+                    )
                 );
             }
         }
@@ -519,10 +525,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AnalogValue", "AnalogValue", "1", "0..*"],
-                        ["ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AnalogValue", "1", "0..*", "AnalogValue", "AltGeneratingUnit"],
+                            ["ControlAreaGeneratingUnit", "1", "0..*", "ControlAreaGeneratingUnit", "AltGeneratingUnitMeas"]
+                        ]
+                    )
                 );
             }
         }
@@ -662,11 +670,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"],
-                        ["TieFlow", "TieFlow", "0..*", "1"],
-                        ["EnergyArea", "EnergyArea", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ControlAreaGeneratingUnit", "0..*", "1", "ControlAreaGeneratingUnit", "ControlArea"],
+                            ["TieFlow", "0..*", "1", "TieFlow", "ControlArea"],
+                            ["EnergyArea", "0..1", "0..1", "EnergyArea", "ControlArea"]
+                        ]
+                    )
                 );
             }
         }

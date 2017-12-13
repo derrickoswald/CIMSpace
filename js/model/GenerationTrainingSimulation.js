@@ -137,9 +137,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CombustionTurbine", "CombustionTurbine", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CombustionTurbine", "1", "0..1", "CombustionTurbine", "CTTempActivePowerCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -257,9 +259,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SteamTurbines", "SteamTurbine", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SteamTurbines", "0..*", "0..*", "SteamTurbine", "SteamSupplys"]
+                        ]
+                    )
                 );
             }
         }
@@ -377,9 +381,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SynchronousMachines", "SynchronousMachine", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SynchronousMachines", "0..*", "0..*", "SynchronousMachine", "PrimeMovers"]
+                        ]
+                    )
                 );
             }
         }
@@ -1226,9 +1232,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CombustionTurbines", "CombustionTurbine", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CombustionTurbines", "0..*", "0..1", "CombustionTurbine", "HeatRecoveryBoiler"]
+                        ]
+                    )
                 );
             }
         }
@@ -1760,9 +1768,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SteamSupplys", "SteamSupply", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SteamSupplys", "0..*", "0..*", "SteamSupply", "SteamTurbines"]
+                        ]
+                    )
                 );
             }
         }
@@ -1923,11 +1933,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AirCompressor", "AirCompressor", "0..1", "1"],
-                        ["HeatRecoveryBoiler", "HeatRecoveryBoiler", "0..1", "0..*"],
-                        ["CTTempActivePowerCurve", "CTTempActivePowerCurve", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AirCompressor", "0..1", "1", "AirCompressor", "CombustionTurbine"],
+                            ["HeatRecoveryBoiler", "0..1", "0..*", "HeatRecoveryBoiler", "CombustionTurbines"],
+                            ["CTTempActivePowerCurve", "0..1", "1", "CTTempActivePowerCurve", "CombustionTurbine"]
+                        ]
+                    )
                 );
             }
         }

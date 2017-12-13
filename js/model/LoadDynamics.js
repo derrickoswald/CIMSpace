@@ -207,9 +207,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LoadAggregate", "LoadAggregate", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LoadAggregate", "1", "0..1", "LoadAggregate", "LoadMotor"]
+                        ]
+                    )
                 );
             }
         }
@@ -322,9 +324,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyConsumer", "EnergyConsumer", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyConsumer", "0..*", "0..1", "EnergyConsumer", "LoadDynamics"]
+                        ]
+                    )
                 );
             }
         }
@@ -522,9 +526,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LoadAggregate", "LoadAggregate", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LoadAggregate", "1", "0..1", "LoadAggregate", "LoadStatic"]
+                        ]
+                    )
                 );
             }
         }
@@ -944,10 +950,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LoadMotor", "LoadMotor", "0..1", "1"],
-                        ["LoadStatic", "LoadStatic", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LoadMotor", "0..1", "1", "LoadMotor", "LoadAggregate"],
+                            ["LoadStatic", "0..1", "1", "LoadStatic", "LoadAggregate"]
+                        ]
+                    )
                 );
             }
         }

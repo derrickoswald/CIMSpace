@@ -128,9 +128,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Faults", "Fault", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Faults", "0..*", "0..*", "Fault", "FaultCauseTypes"]
+                        ]
+                    )
                 );
             }
         }
@@ -389,11 +391,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["FaultyEquipment", "Equipment", "0..1", "0..*"],
-                        ["FaultCauseTypes", "FaultCauseType", "0..*", "0..*"],
-                        ["Outage", "Outage", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["FaultyEquipment", "0..1", "0..*", "Equipment", "Faults"],
+                            ["FaultCauseTypes", "0..*", "0..*", "FaultCauseType", "Faults"],
+                            ["Outage", "0..1", "0..*", "Outage", "Faults"]
+                        ]
+                    )
                 );
             }
         }
@@ -509,9 +513,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ACLineSegment", "ACLineSegment", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ACLineSegment", "0..1", "0..*", "ACLineSegment", "LineFaults"]
+                        ]
+                    )
                 );
             }
         }
@@ -624,9 +630,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Terminal", "Terminal", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Terminal", "0..1", "0..*", "Terminal", "EquipmentFaults"]
+                        ]
+                    )
                 );
             }
         }

@@ -136,9 +136,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AuxillaryValues", "AuxiliaryValues", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AuxillaryValues", "1..*", "1", "AuxiliaryValues", "AuxillaryCost"]
+                        ]
+                    )
                 );
             }
         }
@@ -264,10 +266,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
-                        ["ExpectedEnergy", "ExpectedEnergy", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResource", "0..1", "0..*", "RegisteredResource", "ExpectedEnergyValues"],
+                            ["ExpectedEnergy", "1", "1..*", "ExpectedEnergy", "ExpectedEnergyValues"]
+                        ]
+                    )
                 );
             }
         }
@@ -383,10 +387,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredLoad", "RegisteredLoad", "0..1", "0..*"],
-                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredLoad", "0..1", "0..*", "RegisteredLoad", "AuxillaryObject"],
+                            ["RegisteredGenerator", "0..1", "0..*", "RegisteredGenerator", "AuxillaryObject"]
+                        ]
+                    )
                 );
             }
         }
@@ -507,10 +513,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TradingHubPrice", "TradingHubPrice", "1", "1..*"],
-                        ["AggregatedPnode", "AggregatedPnode", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TradingHubPrice", "1", "1..*", "TradingHubPrice", "TradingHubValues"],
+                            ["AggregatedPnode", "1", "0..*", "AggregatedPnode", "TradingHubValues"]
+                        ]
+                    )
                 );
             }
         }
@@ -641,9 +649,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TradingHubValues", "TradingHubValues", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TradingHubValues", "1..*", "1", "TradingHubValues", "TradingHubPrice"]
+                        ]
+                    )
                 );
             }
         }
@@ -769,9 +779,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ExpectedEnergyValues", "ExpectedEnergyValues", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ExpectedEnergyValues", "1..*", "1", "ExpectedEnergyValues", "ExpectedEnergy"]
+                        ]
+                    )
                 );
             }
         }
@@ -897,9 +909,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AuxillaryData", "AuxiliaryValues", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AuxillaryData", "1..*", "1", "AuxiliaryValues", "TenMinAuxillaryData"]
+                        ]
+                    )
                 );
             }
         }
@@ -1027,9 +1041,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AllocationResultValues", "AllocationResultValues", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AllocationResultValues", "1..*", "1", "AllocationResultValues", "AllocationResult"]
+                        ]
+                    )
                 );
             }
         }
@@ -1170,10 +1186,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredResource", "RegisteredResource", "0..1", "0..*"],
-                        ["AllocationResult", "AllocationResult", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResource", "0..1", "0..*", "RegisteredResource", "AllocationResultValues"],
+                            ["AllocationResult", "1", "1..*", "AllocationResult", "AllocationResultValues"]
+                        ]
+                    )
                 );
             }
         }
@@ -1299,9 +1317,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AuxillaryValues", "AuxiliaryValues", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AuxillaryValues", "1..*", "1", "AuxiliaryValues", "FiveMinAuxillaryData"]
+                        ]
+                    )
                 );
             }
         }
@@ -1462,11 +1482,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AuxillaryCost", "AuxiliaryCost", "1", "1..*"],
-                        ["FiveMinAuxillaryData", "FiveMinAuxiliaryData", "1", "1..*"],
-                        ["TenMinAuxillaryData", "TenMinAuxiliaryData", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AuxillaryCost", "1", "1..*", "AuxiliaryCost", "AuxillaryValues"],
+                            ["FiveMinAuxillaryData", "1", "1..*", "FiveMinAuxiliaryData", "AuxillaryValues"],
+                            ["TenMinAuxillaryData", "1", "1..*", "TenMinAuxiliaryData", "AuxillaryData"]
+                        ]
+                    )
                 );
             }
         }

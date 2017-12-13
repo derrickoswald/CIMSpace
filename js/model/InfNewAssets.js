@@ -229,9 +229,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AccordingToSchedules", "ScheduledEventData", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AccordingToSchedules", "0..*", "1", "ScheduledEventData", "InspectionDataSet"]
+                        ]
+                    )
                 );
             }
         }

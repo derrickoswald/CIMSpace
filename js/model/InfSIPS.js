@@ -258,9 +258,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Gate", "Gate", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Gate", "1", "1..*", "Gate", "GateInputPin"]
+                        ]
+                    )
                 );
             }
         }
@@ -398,11 +400,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TriggerCondition", "TriggerCondition", "0..*", "1"],
-                        ["Stage", "Stage", "1..*", "1"],
-                        ["GateArmed", "Gate", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TriggerCondition", "0..*", "1", "TriggerCondition", "RemedialActionScheme"],
+                            ["Stage", "1..*", "1", "Stage", "RemedialActionScheme"],
+                            ["GateArmed", "0..1", "0..*", "Gate", "RemedialActionScheme"]
+                        ]
+                    )
                 );
             }
         }
@@ -548,13 +552,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Stage", "Stage", "1", "1..*"],
-                        ["GateTrigger", "Gate", "0..1", "0..*"],
-                        ["GateArmed", "Gate", "0..1", "0..*"],
-                        ["ProtectiveActionCollection", "ProtectiveActionCollection", "1", "0..*"],
-                        ["GateComCondition", "Gate", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Stage", "1", "1..*", "Stage", "StageTrigger"],
+                            ["GateTrigger", "0..1", "0..*", "Gate", "StageTrigger"],
+                            ["GateArmed", "0..1", "0..*", "Gate", "StageTriggerArmed"],
+                            ["ProtectiveActionCollection", "1", "0..*", "ProtectiveActionCollection", "StageTrigger"],
+                            ["GateComCondition", "0..1", "0..*", "Gate", "StageTriggerCom"]
+                        ]
+                    )
                 );
             }
         }
@@ -690,12 +696,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProtectionEquipment", "ProtectionEquipment", "0..1", "0..*"],
-                        ["GateComCondition", "Gate", "0..1", "0..*"],
-                        ["ProtectiveActionCollection", "ProtectiveActionCollection", "1", "1..*"],
-                        ["GateEnabledCondition", "Gate", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProtectionEquipment", "0..1", "0..*", "ProtectionEquipment", "ProtectiveAction"],
+                            ["GateComCondition", "0..1", "0..*", "Gate", "ProtectiveActionCom"],
+                            ["ProtectiveActionCollection", "1", "1..*", "ProtectiveActionCollection", "ProtectiveAction"],
+                            ["GateEnabledCondition", "0..1", "0..*", "Gate", "ProtectiveActionEnabled"]
+                        ]
+                    )
                 );
             }
         }
@@ -823,10 +831,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MeasurementCalculator", "MeasurementCalculator", "1", "1..*"],
-                        ["Measurement", "Measurement", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MeasurementCalculator", "1", "1..*", "MeasurementCalculator", "MeasurementCalculatorInput"],
+                            ["Measurement", "1", "0..*", "Measurement", "MeasurementCalculatorInput"]
+                        ]
+                    )
                 );
             }
         }
@@ -984,17 +994,19 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GateInputPin", "GateInputPin", "1..*", "1"],
-                        ["RemedialActionScheme", "RemedialActionScheme", "0..*", "0..1"],
-                        ["ProtectiveActionCom", "ProtectiveAction", "0..*", "0..1"],
-                        ["PinGate", "PinGate", "0..*", "1"],
-                        ["StageTrigger", "StageTrigger", "0..*", "0..1"],
-                        ["StageTriggerArmed", "StageTrigger", "0..*", "0..1"],
-                        ["ProtectiveActionEnabled", "ProtectiveAction", "0..*", "0..1"],
-                        ["TriggerCondition", "TriggerCondition", "0..*", "1"],
-                        ["StageTriggerCom", "StageTrigger", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GateInputPin", "1..*", "1", "GateInputPin", "Gate"],
+                            ["RemedialActionScheme", "0..*", "0..1", "RemedialActionScheme", "GateArmed"],
+                            ["ProtectiveActionCom", "0..*", "0..1", "ProtectiveAction", "GateComCondition"],
+                            ["PinGate", "0..*", "1", "PinGate", "GateOutput"],
+                            ["StageTrigger", "0..*", "0..1", "StageTrigger", "GateTrigger"],
+                            ["StageTriggerArmed", "0..*", "0..1", "StageTrigger", "GateArmed"],
+                            ["ProtectiveActionEnabled", "0..*", "0..1", "ProtectiveAction", "GateEnabledCondition"],
+                            ["TriggerCondition", "0..*", "1", "TriggerCondition", "GateTrigger"],
+                            ["StageTriggerCom", "0..*", "0..1", "StageTrigger", "GateComCondition"]
+                        ]
+                    )
                 );
             }
         }
@@ -1115,10 +1127,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["StageTrigger", "StageTrigger", "1..*", "1"],
-                        ["RemedialActionScheme", "RemedialActionScheme", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["StageTrigger", "1..*", "1", "StageTrigger", "Stage"],
+                            ["RemedialActionScheme", "1", "1..*", "RemedialActionScheme", "Stage"]
+                        ]
+                    )
                 );
             }
         }
@@ -1241,10 +1255,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MeasurementCalculatorInput", "MeasurementCalculatorInput", "1..*", "1"],
-                        ["PinMeasurement", "PinMeasurement", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MeasurementCalculatorInput", "1..*", "1", "MeasurementCalculatorInput", "MeasurementCalculator"],
+                            ["PinMeasurement", "0..*", "0..1", "PinMeasurement", "MeasurementCalculator"]
+                        ]
+                    )
                 );
             }
         }
@@ -1360,10 +1376,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RemedialActionScheme", "RemedialActionScheme", "1", "0..*"],
-                        ["GateTrigger", "Gate", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RemedialActionScheme", "1", "0..*", "RemedialActionScheme", "TriggerCondition"],
+                            ["GateTrigger", "1", "0..*", "Gate", "TriggerCondition"]
+                        ]
+                    )
                 );
             }
         }
@@ -1477,10 +1495,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProtectiveAction", "ProtectiveAction", "1..*", "1"],
-                        ["StageTrigger", "StageTrigger", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProtectiveAction", "1..*", "1", "ProtectiveAction", "ProtectiveActionCollection"],
+                            ["StageTrigger", "0..*", "1", "StageTrigger", "ProtectiveActionCollection"]
+                        ]
+                    )
                 );
             }
         }
@@ -1598,9 +1618,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Equipment", "Equipment", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Equipment", "1", "0..*", "Equipment", "PinEquipment"]
+                        ]
+                    )
                 );
             }
         }
@@ -1711,9 +1733,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GateOutput", "Gate", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GateOutput", "1", "0..*", "Gate", "PinGate"]
+                        ]
+                    )
                 );
             }
         }
@@ -1831,9 +1855,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Terminal", "Terminal", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Terminal", "1", "0..*", "Terminal", "PinTerminal"]
+                        ]
+                    )
                 );
             }
         }
@@ -1951,9 +1977,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BranchGroup", "BranchGroup", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BranchGroup", "1", "0..*", "BranchGroup", "PinBranchGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -2069,10 +2097,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Measurement", "Measurement", "0..1", "0..*"],
-                        ["MeasurementCalculator", "MeasurementCalculator", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Measurement", "0..1", "0..*", "Measurement", "PinMeasurement"],
+                            ["MeasurementCalculator", "0..1", "0..*", "MeasurementCalculator", "PinMeasurement"]
+                        ]
+                    )
                 );
             }
         }
@@ -2193,9 +2223,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegulatingControl", "RegulatingControl", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegulatingControl", "1", "0..*", "RegulatingControl", "ProtectiveActionRegulation"]
+                        ]
+                    )
                 );
             }
         }
@@ -2345,11 +2377,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Measurement", "Measurement", "0..1", "0..*"],
-                        ["ConductingEquipment", "ConductingEquipment", "1", "0..*"],
-                        ["DCConductingEquipment", "DCConductingEquipment", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Measurement", "0..1", "0..*", "Measurement", "ProtectiveActionAdjustment"],
+                            ["ConductingEquipment", "1", "0..*", "ConductingEquipment", "ProtectiveActionAdjustment"],
+                            ["DCConductingEquipment", "1", "0..*", "DCConductingEquipment", "ProtectiveActionAdjustment"]
+                        ]
+                    )
                 );
             }
         }
@@ -2465,9 +2499,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Equipment", "Equipment", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Equipment", "1", "0..*", "Equipment", "ProtectiveActionEquipment"]
+                        ]
+                    )
                 );
             }
         }

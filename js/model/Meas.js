@@ -141,12 +141,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Commands", "Command", "0..*", "0..1"],
-                        ["RaiseLowerCommands", "RaiseLowerCommand", "0..*", "0..1"],
-                        ["Discretes", "Discrete", "0..*", "0..1"],
-                        ["Values", "ValueToAlias", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Commands", "0..*", "0..1", "Command", "ValueAliasSet"],
+                            ["RaiseLowerCommands", "0..*", "0..1", "RaiseLowerCommand", "ValueAliasSet"],
+                            ["Discretes", "0..*", "0..1", "Discrete", "ValueAliasSet"],
+                            ["Values", "1..*", "1", "ValueToAlias", "ValueAliasSet"]
+                        ]
+                    )
                 );
             }
         }
@@ -291,13 +293,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MeasurementValueSource", "MeasurementValueSource", "1", "0..*"],
-                        ["ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"],
-                        ["ErpPerson", "OldPerson", "0..1", "0..*"],
-                        ["MeasurementValueQuality", "MeasurementValueQuality", "0..1", "1"],
-                        ["RemoteSource", "RemoteSource", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MeasurementValueSource", "1", "0..*", "MeasurementValueSource", "MeasurementValues"],
+                            ["ProcedureDataSets", "0..*", "0..*", "ProcedureDataSet", "MeasurementValues"],
+                            ["ErpPerson", "0..1", "0..*", "OldPerson", "MeasurementValues"],
+                            ["MeasurementValueQuality", "0..1", "1", "MeasurementValueQuality", "MeasurementValue"],
+                            ["RemoteSource", "0..1", "1", "RemoteSource", "MeasurementValue"]
+                        ]
+                    )
                 );
             }
         }
@@ -573,9 +577,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Procedures", "Procedure", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Procedures", "0..*", "0..*", "Procedure", "Limits"]
+                        ]
+                    )
                 );
             }
         }
@@ -718,10 +724,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerSystemResource", "PowerSystemResource", "0..1", "0..*"],
-                        ["RemoteControl", "RemoteControl", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerSystemResource", "0..1", "0..*", "PowerSystemResource", "Controls"],
+                            ["RemoteControl", "0..1", "1", "RemoteControl", "Control"]
+                        ]
+                    )
                 );
             }
         }
@@ -832,9 +840,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MeasurementValues", "MeasurementValue", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MeasurementValues", "0..*", "1", "MeasurementValue", "MeasurementValueSource"]
+                        ]
+                    )
                 );
             }
         }
@@ -1006,16 +1016,18 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Terminal", "ACDCTerminal", "0..1", "0..*"],
-                        ["Procedures", "Procedure", "0..*", "0..*"],
-                        ["Locations", "Location", "0..*", "0..*"],
-                        ["ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "0..1"],
-                        ["MeasurementCalculatorInput", "MeasurementCalculatorInput", "0..*", "1"],
-                        ["Asset", "Asset", "0..1", "0..*"],
-                        ["PinMeasurement", "PinMeasurement", "0..*", "0..1"],
-                        ["PowerSystemResource", "PowerSystemResource", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Terminal", "0..1", "0..*", "ACDCTerminal", "Measurements"],
+                            ["Procedures", "0..*", "0..*", "Procedure", "Measurements"],
+                            ["Locations", "0..*", "0..*", "Location", "Measurements"],
+                            ["ProtectiveActionAdjustment", "0..*", "0..1", "ProtectiveActionAdjustment", "Measurement"],
+                            ["MeasurementCalculatorInput", "0..*", "1", "MeasurementCalculatorInput", "Measurement"],
+                            ["Asset", "0..1", "0..*", "Asset", "Measurements"],
+                            ["PinMeasurement", "0..*", "0..1", "PinMeasurement", "Measurement"],
+                            ["PowerSystemResource", "0..1", "0..*", "PowerSystemResource", "Measurements"]
+                        ]
+                    )
                 );
             }
         }
@@ -1237,9 +1249,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ValueAliasSet", "ValueAliasSet", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ValueAliasSet", "1", "1..*", "ValueAliasSet", "Values"]
+                        ]
+                    )
                 );
             }
         }
@@ -1360,10 +1374,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Command", "Command", "0..1", "1"],
-                        ["Discrete", "Discrete", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Command", "0..1", "1", "Command", "DiscreteValue"],
+                            ["Discrete", "1", "0..*", "Discrete", "DiscreteValues"]
+                        ]
+                    )
                 );
             }
         }
@@ -1479,9 +1495,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["StringMeasurement", "StringMeasurement", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["StringMeasurement", "1", "0..*", "StringMeasurement", "StringMeasurementValues"]
+                        ]
+                    )
                 );
             }
         }
@@ -1602,10 +1620,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Accumulator", "Accumulator", "1", "0..*"],
-                        ["AccumulatorReset", "AccumulatorReset", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Accumulator", "1", "0..*", "Accumulator", "AccumulatorValues"],
+                            ["AccumulatorReset", "0..1", "1", "AccumulatorReset", "AccumulatorValue"]
+                        ]
+                    )
                 );
             }
         }
@@ -1736,12 +1756,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Analog", "Analog", "1", "0..*"],
-                        ["AltTieMeas", "AltTieMeas", "0..*", "1"],
-                        ["AnalogControl", "AnalogControl", "0..1", "1"],
-                        ["AltGeneratingUnit", "AltGeneratingUnitMeas", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Analog", "1", "0..*", "Analog", "AnalogValues"],
+                            ["AltTieMeas", "0..*", "1", "AltTieMeas", "AnalogValue"],
+                            ["AnalogControl", "0..1", "1", "AnalogControl", "AnalogValue"],
+                            ["AltGeneratingUnit", "0..*", "1", "AltGeneratingUnitMeas", "AnalogValue"]
+                        ]
+                    )
                 );
             }
         }
@@ -1854,9 +1876,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MeasurementValue", "MeasurementValue", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MeasurementValue", "1", "0..1", "MeasurementValue", "MeasurementValueQuality"]
+                        ]
+                    )
                 );
             }
         }
@@ -1972,9 +1996,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LimitSet", "AccumulatorLimitSet", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LimitSet", "1", "1..*", "AccumulatorLimitSet", "Limits"]
+                        ]
+                    )
                 );
             }
         }
@@ -2090,9 +2116,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LimitSet", "AnalogLimitSet", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LimitSet", "1", "0..*", "AnalogLimitSet", "Limits"]
+                        ]
+                    )
                 );
             }
         }
@@ -2203,9 +2231,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AccumulatorValue", "AccumulatorValue", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AccumulatorValue", "1", "0..1", "AccumulatorValue", "AccumulatorReset"]
+                        ]
+                    )
                 );
             }
         }
@@ -2326,9 +2356,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AnalogValue", "AnalogValue", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AnalogValue", "1", "0..1", "AnalogValue", "AnalogControl"]
+                        ]
+                    )
                 );
             }
         }
@@ -2454,10 +2486,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DiscreteValue", "DiscreteValue", "1", "0..1"],
-                        ["ValueAliasSet", "ValueAliasSet", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DiscreteValue", "1", "0..1", "DiscreteValue", "Command"],
+                            ["ValueAliasSet", "0..1", "0..*", "ValueAliasSet", "Commands"]
+                        ]
+                    )
                 );
             }
         }
@@ -2661,9 +2695,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ValueAliasSet", "ValueAliasSet", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ValueAliasSet", "0..1", "0..*", "ValueAliasSet", "RaiseLowerCommands"]
+                        ]
+                    )
                 );
             }
         }
@@ -2903,10 +2939,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ValueAliasSet", "ValueAliasSet", "0..1", "0..*"],
-                        ["DiscreteValues", "DiscreteValue", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ValueAliasSet", "0..1", "0..*", "ValueAliasSet", "Discretes"],
+                            ["DiscreteValues", "0..*", "1", "DiscreteValue", "Discrete"]
+                        ]
+                    )
                 );
             }
         }
@@ -3044,10 +3082,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AnalogValues", "AnalogValue", "0..*", "1"],
-                        ["LimitSets", "AnalogLimitSet", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AnalogValues", "0..*", "1", "AnalogValue", "Analog"],
+                            ["LimitSets", "0..*", "0..*", "AnalogLimitSet", "Measurements"]
+                        ]
+                    )
                 );
             }
         }
@@ -3170,10 +3210,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AccumulatorValues", "AccumulatorValue", "0..*", "1"],
-                        ["LimitSets", "AccumulatorLimitSet", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AccumulatorValues", "0..*", "1", "AccumulatorValue", "Accumulator"],
+                            ["LimitSets", "0..*", "0..*", "AccumulatorLimitSet", "Measurements"]
+                        ]
+                    )
                 );
             }
         }
@@ -3282,9 +3324,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["StringMeasurementValues", "StringMeasurementValue", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["StringMeasurementValues", "0..*", "1", "StringMeasurementValue", "StringMeasurement"]
+                        ]
+                    )
                 );
             }
         }
@@ -3402,10 +3446,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Limits", "AccumulatorLimit", "1..*", "1"],
-                        ["Measurements", "Accumulator", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Limits", "1..*", "1", "AccumulatorLimit", "LimitSet"],
+                            ["Measurements", "0..*", "0..*", "Accumulator", "LimitSets"]
+                        ]
+                    )
                 );
             }
         }
@@ -3523,10 +3569,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Measurements", "Analog", "0..*", "0..*"],
-                        ["Limits", "AnalogLimit", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Measurements", "0..*", "0..*", "Analog", "LimitSets"],
+                            ["Limits", "0..*", "1", "AnalogLimit", "LimitSet"]
+                        ]
+                    )
                 );
             }
         }

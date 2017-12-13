@@ -232,9 +232,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3IEC", "1", "1", "WindTurbineType3IEC", "WindContPitchAngleIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -392,11 +394,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"],
-                        ["WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", "0..1", "1"],
-                        ["WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindPitchContPowerIEC"],
+                            ["WindGenTurbineType1bIEC", "0..1", "1", "WindGenTurbineType1bIEC", "WindPitchContPowerIEC"],
+                            ["WindGenTurbineType2IEC", "0..1", "1", "WindGenTurbineType2IEC", "WindPitchContPowerIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -534,10 +538,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType4aIEC", "WindTurbineType4aIEC", "0..1", "0..1"],
-                        ["WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType4aIEC", "0..1", "0..1", "WindTurbineType4aIEC", "WindGenType4IEC"],
+                            ["WindTurbineType4bIEC", "0..1", "0..1", "WindTurbineType4bIEC", "WindGenType4IEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -747,10 +753,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"],
-                        ["WindPlantIEC", "WindPlantIEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindPlantReactiveControlIEC"],
+                            ["WindPlantIEC", "1", "1", "WindPlantIEC", "WindPlantReactiveControlIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -983,10 +991,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1"],
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3IEC", "1", "1", "WindTurbineType3IEC", "WindContPType3IEC"],
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindContPType3IEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -1218,9 +1228,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3or4IEC", "1", "1", "WindTurbineType3or4IEC", "WIndContQIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -1333,9 +1345,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindGenTurbineType1aIEC", "1", "1", "WindGenTurbineType1aIEC", "WindAeroConstIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -1456,11 +1470,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergySource", "EnergySource", "1", "0..1"],
-                        ["WindPlantDynamics", "WindPlantDynamics", "0..1", "1..*"],
-                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergySource", "1", "0..1", "EnergySource", "WindTurbineType3or4Dynamics"],
+                            ["WindPlantDynamics", "0..1", "1..*", "WindPlantDynamics", "WindTurbineType3or4Dynamics"],
+                            ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "WindTurbineType3or4Dynamics"]
+                        ]
+                    )
                 );
             }
         }
@@ -1588,10 +1604,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1"],
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3or4IEC", "0..1", "0..1", "WindTurbineType3or4IEC", "WindContQPQULimIEC"],
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindContQPQULimIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -1734,11 +1752,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"],
-                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "1"],
-                        ["WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType1or2IEC", "0..1", "1", "WindTurbineType1or2IEC", "WindMechIEC"],
+                            ["WindTurbineType3IEC", "0..1", "1", "WindTurbineType3IEC", "WindMechIEC"],
+                            ["WindTurbineType4bIEC", "0..1", "1", "WindTurbineType4bIEC", "WindMechIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -1886,9 +1906,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3IEC", "1", "0..1", "WindTurbineType3IEC", "WindAeroTwoDimIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -2011,9 +2033,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3or4IEC", "0..1", "0..1", "WindTurbineType3or4IEC", "WindContQLimIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -2139,9 +2163,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3IEC", "0..1", "0..1", "WindTurbineType3IEC", "WindGenType3IEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -2299,11 +2325,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"],
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"],
-                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType1or2IEC", "0..1", "1", "WindTurbineType1or2IEC", "WindProtectionIEC"],
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindProtectionIEC"],
+                            ["WindTurbineType3or4IEC", "0..1", "1", "WindTurbineType3or4IEC", "WindProtectionIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -2461,10 +2489,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "1", "1"],
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindGenTurbineType2IEC", "1", "1", "WindGenTurbineType2IEC", "WindContRotorRIEC"],
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindContRotorRIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -2597,9 +2627,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType4bIEC", "WindTurbineType4bIEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType4bIEC", "1", "1", "WindTurbineType4bIEC", "WindContPType4bIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -2727,9 +2759,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3or4IEC", "1", "1", "WindTurbineType3or4IEC", "WindRefFrameRotIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -2902,17 +2936,19 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindPitchContPowerIEC", "WindPitchContPowerIEC", "0..1", "1..*"],
-                        ["WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "0..1", "1..*"],
-                        ["WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "1..*"],
-                        ["WindGenType3bIEC", "WindGenType3bIEC", "0..1", "1..*"],
-                        ["WindContPType3IEC", "WindContPType3IEC", "0..1", "1..*"],
-                        ["WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "0..1", "1..*"],
-                        ["WindProtectionIEC", "WindProtectionIEC", "0..1", "1..*"],
-                        ["WindContCurrLimIEC", "WindContCurrLimIEC", "0..1", "1..*"],
-                        ["WindContRotorRIEC", "WindContRotorRIEC", "0..1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindPitchContPowerIEC", "0..1", "1..*", "WindPitchContPowerIEC", "WindDynamicsLookupTable"],
+                            ["WindPlantFreqPcontrolIEC", "0..1", "1..*", "WindPlantFreqPcontrolIEC", "WindDynamicsLookupTable"],
+                            ["WindContQPQULimIEC", "0..1", "1..*", "WindContQPQULimIEC", "WindDynamicsLookupTable"],
+                            ["WindGenType3bIEC", "0..1", "1..*", "WindGenType3bIEC", "WindDynamicsLookupTable"],
+                            ["WindContPType3IEC", "0..1", "1..*", "WindContPType3IEC", "WindDynamicsLookupTable"],
+                            ["WindPlantReactiveControlIEC", "0..1", "1..*", "WindPlantReactiveControlIEC", "WindDynamicsLookupTable"],
+                            ["WindProtectionIEC", "0..1", "1..*", "WindProtectionIEC", "WindDynamicsLookupTable"],
+                            ["WindContCurrLimIEC", "0..1", "1..*", "WindContCurrLimIEC", "WindDynamicsLookupTable"],
+                            ["WindContRotorRIEC", "0..1", "1..*", "WindContRotorRIEC", "WindDynamicsLookupTable"]
+                        ]
+                    )
                 );
             }
         }
@@ -3028,10 +3064,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "1", "0..1"],
-                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AsynchronousMachineDynamics", "1", "0..1", "AsynchronousMachineDynamics", "WindTurbineType1or2Dynamics"],
+                            ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "WindTurbineType1or2Dynamics"]
+                        ]
+                    )
                 );
             }
         }
@@ -3224,10 +3262,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"],
-                        ["WindPlantIEC", "WindPlantIEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindPlantFreqPcontrolIEC"],
+                            ["WindPlantIEC", "1", "1", "WindPlantIEC", "WindPlantFreqPcontrolIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -3355,9 +3395,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType4aIEC", "WindTurbineType4aIEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType4aIEC", "1", "1", "WindTurbineType4aIEC", "WindContPType4aIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -3510,10 +3552,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1"],
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3or4IEC", "1", "1", "WindTurbineType3or4IEC", "WindContCurrLimIEC"],
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindContCurrLimIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -3636,9 +3680,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3IEC", "1", "0..1", "WindTurbineType3IEC", "WindAeroOneDimIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -3754,10 +3800,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"],
-                        ["WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "WindPlantDynamics"],
+                            ["WindTurbineType3or4Dynamics", "1..*", "0..1", "WindTurbineType3or4Dynamics", "WindPlantDynamics"]
+                        ]
+                    )
                 );
             }
         }
@@ -3893,14 +3941,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindRefFrameRotIEC", "WindRefFrameRotIEC", "1", "1"],
-                        ["WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "0..1"],
-                        ["WindContCurrLimIEC", "WindContCurrLimIEC", "1", "1"],
-                        ["WIndContQIEC", "WindContQIEC", "1", "1"],
-                        ["WindContQLimIEC", "WindContQLimIEC", "0..1", "0..1"],
-                        ["WindProtectionIEC", "WindProtectionIEC", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindRefFrameRotIEC", "1", "1", "WindRefFrameRotIEC", "WindTurbineType3or4IEC"],
+                            ["WindContQPQULimIEC", "0..1", "0..1", "WindContQPQULimIEC", "WindTurbineType3or4IEC"],
+                            ["WindContCurrLimIEC", "1", "1", "WindContCurrLimIEC", "WindTurbineType3or4IEC"],
+                            ["WIndContQIEC", "1", "1", "WindContQIEC", "WindTurbineType3or4IEC"],
+                            ["WindContQLimIEC", "0..1", "0..1", "WindContQLimIEC", "WindTurbineType3or4IEC"],
+                            ["WindProtectionIEC", "1", "0..1", "WindProtectionIEC", "WindTurbineType3or4IEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -4011,9 +4061,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindGenType3aIEC", "WindGenType3aIEC", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindGenType3aIEC", "0..1", "0..1", "WindGenType3aIEC", "WindTurbineType4IEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -4149,14 +4201,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindGenType3IEC", "WindGenType3IEC", "0..1", "0..1"],
-                        ["WindContPitchAngleIEC", "WindContPitchAngleIEC", "1", "1"],
-                        ["WindContPType3IEC", "WindContPType3IEC", "1", "1"],
-                        ["WindAeroTwoDimIEC", "WindAeroTwoDimIEC", "0..1", "1"],
-                        ["WindMechIEC", "WindMechIEC", "1", "0..1"],
-                        ["WindAeroOneDimIEC", "WindAeroOneDimIEC", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindGenType3IEC", "0..1", "0..1", "WindGenType3IEC", "WindTurbineType3IEC"],
+                            ["WindContPitchAngleIEC", "1", "1", "WindContPitchAngleIEC", "WindTurbineType3IEC"],
+                            ["WindContPType3IEC", "1", "1", "WindContPType3IEC", "WindTurbineType3IEC"],
+                            ["WindAeroTwoDimIEC", "0..1", "1", "WindAeroTwoDimIEC", "WindTurbineType3IEC"],
+                            ["WindMechIEC", "1", "0..1", "WindMechIEC", "WindTurbineType3IEC"],
+                            ["WindAeroOneDimIEC", "0..1", "1", "WindAeroOneDimIEC", "WindTurbineType3IEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -4274,10 +4328,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1"],
-                        ["WindContPType4aIEC", "WindContPType4aIEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindGenType4IEC", "0..1", "0..1", "WindGenType4IEC", "WindTurbineType4aIEC"],
+                            ["WindContPType4aIEC", "1", "1", "WindContPType4aIEC", "WindTurbineType4aIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -4400,11 +4456,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindContPType4bIEC", "WindContPType4bIEC", "1", "1"],
-                        ["WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1"],
-                        ["WindMechIEC", "WindMechIEC", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindContPType4bIEC", "1", "1", "WindContPType4bIEC", "WindTurbineType4bIEC"],
+                            ["WindGenType4IEC", "0..1", "0..1", "WindGenType4IEC", "WindTurbineType4bIEC"],
+                            ["WindMechIEC", "1", "0..1", "WindMechIEC", "WindTurbineType4bIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -4527,9 +4585,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType4IEC", "WindTurbineType4IEC", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType4IEC", "0..1", "0..1", "WindTurbineType4IEC", "WindGenType3aIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -4657,9 +4717,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindDynamicsLookupTable", "1..*", "0..1", "WindDynamicsLookupTable", "WindGenType3bIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -4777,10 +4839,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindProtectionIEC", "WindProtectionIEC", "1", "0..1"],
-                        ["WindMechIEC", "WindMechIEC", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindProtectionIEC", "1", "0..1", "WindProtectionIEC", "WindTurbineType1or2IEC"],
+                            ["WindMechIEC", "1", "0..1", "WindMechIEC", "WindTurbineType1or2IEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -4893,9 +4957,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindPitchContPowerIEC", "1", "0..1", "WindPitchContPowerIEC", "WindGenTurbineType1bIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -5008,9 +5074,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindAeroConstIEC", "WindAeroConstIEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindAeroConstIEC", "1", "1", "WindAeroConstIEC", "WindGenTurbineType1aIEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -5128,10 +5196,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindContRotorRIEC", "WindContRotorRIEC", "1", "1"],
-                        ["WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindContRotorRIEC", "1", "1", "WindContRotorRIEC", "WindGenTurbineType2IEC"],
+                            ["WindPitchContPowerIEC", "1", "0..1", "WindPitchContPowerIEC", "WindGenTurbineType2IEC"]
+                        ]
+                    )
                 );
             }
         }
@@ -5249,10 +5319,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "1", "1"],
-                        ["WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindPlantReactiveControlIEC", "1", "1", "WindPlantReactiveControlIEC", "WindPlantIEC"],
+                            ["WindPlantFreqPcontrolIEC", "1", "1", "WindPlantFreqPcontrolIEC", "WindPlantIEC"]
+                        ]
+                    )
                 );
             }
         }

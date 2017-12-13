@@ -119,10 +119,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..1"],
-                        ["AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SynchronousMachineDynamics", "0..1", "0..1", "SynchronousMachineDynamics", "MechanicalLoadDynamics"],
+                            ["AsynchronousMachineDynamics", "0..1", "0..1", "AsynchronousMachineDynamics", "MechanicalLoadDynamics"]
+                        ]
+                    )
                 );
             }
         }

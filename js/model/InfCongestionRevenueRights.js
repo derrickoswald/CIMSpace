@@ -127,11 +127,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MktMeasurement", "MktMeasurement", "0..1", "0..*"],
-                        ["MktOrganisation", "MktOrganisation", "0..*", "0..*"],
-                        ["Flowgate", "Flowgate", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MktMeasurement", "0..1", "0..*", "MktMeasurement", "ViolationLimit"],
+                            ["MktOrganisation", "0..*", "0..*", "MktOrganisation", "ViolationLimit"],
+                            ["Flowgate", "0..1", "0..*", "Flowgate", "ViolationLimits"]
+                        ]
+                    )
                 );
             }
         }
@@ -279,11 +281,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyPriceCurve", "EnergyPriceCurve", "0..1", "0..*"],
-                        ["Flowgate", "Flowgate", "0..1", "0..*"],
-                        ["Pnodes", "Pnode", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyPriceCurve", "0..1", "0..*", "EnergyPriceCurve", "FTRs"],
+                            ["Flowgate", "0..1", "0..*", "Flowgate", "FTRs"],
+                            ["Pnodes", "0..*", "0..*", "Pnode", "FTRs"]
+                        ]
+                    )
                 );
             }
         }

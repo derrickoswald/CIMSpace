@@ -112,9 +112,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ModelingAuthoritySets", "ModelingAuthoritySet", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ModelingAuthoritySets", "1..*", "1", "ModelingAuthoritySet", "ModelingAuthority"]
+                        ]
+                    )
                 );
             }
         }
@@ -227,9 +229,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ModelingAuthority", "ModelingAuthority", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ModelingAuthority", "1", "1..*", "ModelingAuthority", "ModelingAuthoritySets"]
+                        ]
+                    )
                 );
             }
         }

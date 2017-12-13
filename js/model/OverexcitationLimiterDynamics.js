@@ -116,9 +116,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ExcitationSystemDynamics", "1", "0..1", "ExcitationSystemDynamics", "OverexcitationLimiterDynamics"]
+                        ]
+                    )
                 );
             }
         }

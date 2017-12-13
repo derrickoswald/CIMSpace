@@ -202,10 +202,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Names", "Name", "0..*", "1"],
-                        ["NameTypeAuthority", "NameTypeAuthority", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Names", "0..*", "1", "Name", "NameType"],
+                            ["NameTypeAuthority", "0..1", "0..*", "NameTypeAuthority", "NameTypes"]
+                        ]
+                    )
                 );
             }
         }
@@ -331,9 +333,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["IntervalSchedule", "IrregularIntervalSchedule", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["IntervalSchedule", "1", "1..*", "IrregularIntervalSchedule", "TimePoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -459,9 +463,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["IntervalSchedule", "RegularIntervalSchedule", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["IntervalSchedule", "1", "1..*", "RegularIntervalSchedule", "TimePoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -584,10 +590,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["NameType", "NameType", "1", "0..*"],
-                        ["IdentifiedObject", "IdentifiedObject", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["NameType", "1", "0..*", "NameType", "Names"],
+                            ["IdentifiedObject", "1", "0..*", "IdentifiedObject", "Names"]
+                        ]
+                    )
                 );
             }
         }
@@ -734,10 +742,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Names", "Name", "0..*", "1"],
-                        ["DiagramObjects", "DiagramObject", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Names", "0..*", "1", "Name", "IdentifiedObject"],
+                            ["DiagramObjects", "0..*", "0..1", "DiagramObject", "IdentifiedObject"]
+                        ]
+                    )
                 );
             }
         }
@@ -870,9 +880,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Curve", "Curve", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Curve", "1", "0..*", "Curve", "CurveDatas"]
+                        ]
+                    )
                 );
             }
         }
@@ -993,9 +1005,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["NameTypes", "NameType", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["NameTypes", "0..*", "0..1", "NameType", "NameTypeAuthority"]
+                        ]
+                    )
                 );
             }
         }
@@ -1116,10 +1130,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OperatingParticipant", "OperatingParticipant", "1", "0..*"],
-                        ["PowerSystemResource", "PowerSystemResource", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OperatingParticipant", "1", "0..*", "OperatingParticipant", "OperatingShare"],
+                            ["PowerSystemResource", "1", "0..*", "PowerSystemResource", "OperatingShare"]
+                        ]
+                    )
                 );
             }
         }
@@ -1277,9 +1293,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CurveDatas", "CurveData", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CurveDatas", "0..*", "1", "CurveData", "Curve"]
+                        ]
+                    )
                 );
             }
         }
@@ -1390,9 +1408,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerSystemResources", "PowerSystemResource", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerSystemResources", "0..*", "0..1", "PowerSystemResource", "PSRType"]
+                        ]
+                    )
                 );
             }
         }
@@ -1523,12 +1543,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["VoltageLevel", "VoltageLevel", "0..*", "1"],
-                        ["TransformerEnds", "TransformerEnd", "0..*", "0..1"],
-                        ["TopologicalNode", "TopologicalNode", "0..*", "0..1"],
-                        ["ConductingEquipment", "ConductingEquipment", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["VoltageLevel", "0..*", "1", "VoltageLevel", "BaseVoltage"],
+                            ["TransformerEnds", "0..*", "0..1", "TransformerEnd", "BaseVoltage"],
+                            ["TopologicalNode", "0..*", "0..1", "TopologicalNode", "BaseVoltage"],
+                            ["ConductingEquipment", "0..*", "0..1", "ConductingEquipment", "BaseVoltage"]
+                        ]
+                    )
                 );
             }
         }
@@ -1649,11 +1671,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ConnectivityNodeContainer", "ConnectivityNodeContainer", "1", "0..*"],
-                        ["TopologicalNode", "TopologicalNode", "0..1", "0..*"],
-                        ["Terminals", "Terminal", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ConnectivityNodeContainer", "1", "0..*", "ConnectivityNodeContainer", "ConnectivityNodes"],
+                            ["TopologicalNode", "0..1", "0..*", "TopologicalNode", "ConnectivityNodes"],
+                            ["Terminals", "0..*", "0..1", "Terminal", "ConnectivityNode"]
+                        ]
+                    )
                 );
             }
         }
@@ -1762,9 +1786,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Regions", "SubGeographicalRegion", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Regions", "0..*", "0..1", "SubGeographicalRegion", "Region"]
+                        ]
+                    )
                 );
             }
         }
@@ -2021,11 +2047,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Measurements", "Measurement", "0..*", "0..1"],
-                        ["BusNameMarker", "BusNameMarker", "0..1", "1..*"],
-                        ["OperationalLimitSet", "OperationalLimitSet", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Measurements", "0..*", "0..1", "Measurement", "Terminal"],
+                            ["BusNameMarker", "0..1", "1..*", "BusNameMarker", "Terminal"],
+                            ["OperationalLimitSet", "0..*", "0..1", "OperationalLimitSet", "Terminal"]
+                        ]
+                    )
                 );
             }
         }
@@ -2136,9 +2164,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OperatingShare", "OperatingShare", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OperatingShare", "0..*", "1", "OperatingShare", "OperatingParticipant"]
+                        ]
+                    )
                 );
             }
         }
@@ -2351,9 +2381,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReportingGroup", "ReportingGroup", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReportingGroup", "0..*", "0..1", "ReportingGroup", "ReportingSuperGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -2548,24 +2580,26 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RemoteInputSignal", "RemoteInputSignal", "0..*", "1"],
-                        ["TieFlow", "TieFlow", "0..2", "1"],
-                        ["TopologicalNode", "TopologicalNode", "0..1", "0..*"],
-                        ["HasSecondMutualCoupling", "MutualCoupling", "0..*", "1"],
-                        ["HasFirstMutualCoupling", "MutualCoupling", "0..*", "1"],
-                        ["TransformerEnd", "TransformerEnd", "0..*", "0..1"],
-                        ["RegulatingControl", "RegulatingControl", "0..*", "0..1"],
-                        ["ConductingEquipment", "ConductingEquipment", "1", "0..*"],
-                        ["EquipmentFaults", "EquipmentFault", "0..*", "0..1"],
-                        ["ConverterDCSides", "ACDCConverter", "0..*", "0..1"],
-                        ["SvPowerFlow", "SvPowerFlow", "0..1", "1"],
-                        ["PinTerminal", "PinTerminal", "0..*", "1"],
-                        ["Bushing", "Bushing", "0..1", "0..1"],
-                        ["ConnectivityNode", "ConnectivityNode", "0..1", "0..*"],
-                        ["AuxiliaryEquipment", "AuxiliaryEquipment", "0..*", "1"],
-                        ["BranchGroupTerminal", "BranchGroupTerminal", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RemoteInputSignal", "0..*", "1", "RemoteInputSignal", "Terminal"],
+                            ["TieFlow", "0..2", "1", "TieFlow", "Terminal"],
+                            ["TopologicalNode", "0..1", "0..*", "TopologicalNode", "Terminal"],
+                            ["HasSecondMutualCoupling", "0..*", "1", "MutualCoupling", "Second_Terminal"],
+                            ["HasFirstMutualCoupling", "0..*", "1", "MutualCoupling", "First_Terminal"],
+                            ["TransformerEnd", "0..*", "0..1", "TransformerEnd", "Terminal"],
+                            ["RegulatingControl", "0..*", "0..1", "RegulatingControl", "Terminal"],
+                            ["ConductingEquipment", "1", "0..*", "ConductingEquipment", "Terminals"],
+                            ["EquipmentFaults", "0..*", "0..1", "EquipmentFault", "Terminal"],
+                            ["ConverterDCSides", "0..*", "0..1", "ACDCConverter", "PccTerminal"],
+                            ["SvPowerFlow", "0..1", "1", "SvPowerFlow", "Terminal"],
+                            ["PinTerminal", "0..*", "1", "PinTerminal", "Terminal"],
+                            ["Bushing", "0..1", "0..1", "Bushing", "Terminal"],
+                            ["ConnectivityNode", "0..1", "0..*", "ConnectivityNode", "Terminals"],
+                            ["AuxiliaryEquipment", "0..*", "1", "AuxiliaryEquipment", "Terminal"],
+                            ["BranchGroupTerminal", "0..*", "1", "BranchGroupTerminal", "Terminal"]
+                        ]
+                    )
                 );
             }
         }
@@ -2691,12 +2725,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCLines", "DCLine", "0..*", "0..1"],
-                        ["Lines", "Line", "0..*", "0..1"],
-                        ["Region", "GeographicalRegion", "0..1", "0..*"],
-                        ["Substations", "Substation", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCLines", "0..*", "0..1", "DCLine", "Region"],
+                            ["Lines", "0..*", "0..1", "Line", "Region"],
+                            ["Region", "0..1", "0..*", "GeographicalRegion", "Regions"],
+                            ["Substations", "0..*", "0..1", "Substation", "Region"]
+                        ]
+                    )
                 );
             }
         }
@@ -2865,19 +2901,21 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AssetDatasheet", "AssetInfo", "0..1", "0..*"],
-                        ["Clearances", "ClearanceDocument", "0..*", "0..*"],
-                        ["Location", "Location", "0..1", "0..*"],
-                        ["ReportingGroup", "ReportingGroup", "0..*", "0..*"],
-                        ["PSREvents", "PSREvent", "0..*", "0..1"],
-                        ["PSRType", "PSRType", "0..1", "0..*"],
-                        ["OperatingShare", "OperatingShare", "0..*", "1"],
-                        ["OperationTags", "OperationTag", "0..*", "0..1"],
-                        ["Controls", "Control", "0..*", "0..1"],
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["Measurements", "Measurement", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AssetDatasheet", "0..1", "0..*", "AssetInfo", "PowerSystemResources"],
+                            ["Clearances", "0..*", "0..*", "ClearanceDocument", "TaggedPSRs"],
+                            ["Location", "0..1", "0..*", "Location", "PowerSystemResources"],
+                            ["ReportingGroup", "0..*", "0..*", "ReportingGroup", "PowerSystemResource"],
+                            ["PSREvents", "0..*", "0..1", "PSREvent", "PowerSystemResource"],
+                            ["PSRType", "0..1", "0..*", "PSRType", "PowerSystemResources"],
+                            ["OperatingShare", "0..*", "1", "OperatingShare", "PowerSystemResource"],
+                            ["OperationTags", "0..*", "0..1", "OperationTag", "PowerSystemResource"],
+                            ["Controls", "0..*", "0..1", "Control", "PowerSystemResource"],
+                            ["Assets", "0..*", "0..*", "Asset", "PowerSystemResources"],
+                            ["Measurements", "0..*", "0..1", "Measurement", "PowerSystemResource"]
+                        ]
+                    )
                 );
             }
         }
@@ -2986,9 +3024,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimePoints", "IrregularTimePoint", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimePoints", "1..*", "1", "IrregularTimePoint", "IntervalSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -3222,12 +3262,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerSystemResource", "PowerSystemResource", "0..*", "0..*"],
-                        ["TopologicalNode", "TopologicalNode", "0..*", "0..1"],
-                        ["ReportingSuperGroup", "ReportingSuperGroup", "0..1", "0..*"],
-                        ["BusNameMarker", "BusNameMarker", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerSystemResource", "0..*", "0..*", "PowerSystemResource", "ReportingGroup"],
+                            ["TopologicalNode", "0..*", "0..1", "TopologicalNode", "ReportingGroup"],
+                            ["ReportingSuperGroup", "0..1", "0..*", "ReportingSuperGroup", "ReportingGroup"],
+                            ["BusNameMarker", "0..*", "0..1", "BusNameMarker", "ReportingGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -3348,9 +3390,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimePoints", "RegularTimePoint", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimePoints", "1..*", "1", "RegularTimePoint", "IntervalSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -3464,10 +3508,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ConnectivityNodes", "ConnectivityNode", "0..*", "1"],
-                        ["TopologicalNode", "TopologicalNode", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ConnectivityNodes", "0..*", "1", "ConnectivityNode", "ConnectivityNodeContainer"],
+                            ["TopologicalNode", "0..*", "0..1", "TopologicalNode", "ConnectivityNodeContainer"]
+                        ]
+                    )
                 );
             }
         }
@@ -3651,20 +3697,22 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PinEquipment", "PinEquipment", "0..*", "1"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
-                        ["Faults", "Fault", "0..*", "0..1"],
-                        ["EquipmentContainer", "EquipmentContainer", "0..1", "0..*"],
-                        ["OperationalRestrictions", "OperationalRestriction", "0..*", "0..*"],
-                        ["Outages", "Outage", "0..*", "0..*"],
-                        ["ContingencyEquipment", "ContingencyEquipment", "0..*", "1"],
-                        ["ProtectiveActionEquipment", "ProtectiveActionEquipment", "0..*", "1"],
-                        ["WeatherStation", "WeatherStation", "0..*", "0..*"],
-                        ["LimitDependencyModel", "LimitDependency", "0..*", "0..1"],
-                        ["EqiupmentLimitSeriesComponent", "EquipmentLimitSeriesComponent", "0..*", "1"],
-                        ["OperationalLimitSet", "OperationalLimitSet", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PinEquipment", "0..*", "1", "PinEquipment", "Equipment"],
+                            ["UsagePoints", "0..*", "0..*", "UsagePoint", "Equipments"],
+                            ["Faults", "0..*", "0..1", "Fault", "FaultyEquipment"],
+                            ["EquipmentContainer", "0..1", "0..*", "EquipmentContainer", "Equipments"],
+                            ["OperationalRestrictions", "0..*", "0..*", "OperationalRestriction", "Equipments"],
+                            ["Outages", "0..*", "0..*", "Outage", "Equipments"],
+                            ["ContingencyEquipment", "0..*", "1", "ContingencyEquipment", "Equipment"],
+                            ["ProtectiveActionEquipment", "0..*", "1", "ProtectiveActionEquipment", "Equipment"],
+                            ["WeatherStation", "0..*", "0..*", "WeatherStation", "Equipment"],
+                            ["LimitDependencyModel", "0..*", "0..1", "LimitDependency", "Equipment"],
+                            ["EqiupmentLimitSeriesComponent", "0..*", "1", "EquipmentLimitSeriesComponent", "Equipment"],
+                            ["OperationalLimitSet", "0..*", "0..1", "OperationalLimitSet", "Equipment"]
+                        ]
+                    )
                 );
             }
         }
@@ -3773,9 +3821,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Equipments", "Equipment", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Equipments", "0..*", "0..1", "Equipment", "EquipmentContainer"]
+                        ]
+                    )
                 );
             }
         }
@@ -3908,11 +3958,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BaseVoltage", "BaseVoltage", "1", "0..*"],
-                        ["Bays", "Bay", "0..*", "0..1"],
-                        ["Substation", "Substation", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BaseVoltage", "1", "0..*", "BaseVoltage", "VoltageLevel"],
+                            ["Bays", "0..*", "0..1", "Bay", "VoltageLevel"],
+                            ["Substation", "1", "0..*", "Substation", "VoltageLevels"]
+                        ]
+                    )
                 );
             }
         }
@@ -4055,15 +4107,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProtectionEquipments", "ProtectionEquipment", "0..*", "0..*"],
-                        ["GroundingAction", "GroundAction", "0..1", "0..1"],
-                        ["BaseVoltage", "BaseVoltage", "0..1", "0..*"],
-                        ["ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1"],
-                        ["SvStatus", "SvStatus", "0..1", "1"],
-                        ["Terminals", "Terminal", "0..*", "1"],
-                        ["JumpingAction", "JumperAction", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProtectionEquipments", "0..*", "0..*", "ProtectionEquipment", "ConductingEquipments"],
+                            ["GroundingAction", "0..1", "0..1", "GroundAction", "GroundedEquipment"],
+                            ["BaseVoltage", "0..1", "0..*", "BaseVoltage", "ConductingEquipment"],
+                            ["ProtectiveActionAdjustment", "0..*", "1", "ProtectiveActionAdjustment", "ConductingEquipment"],
+                            ["SvStatus", "0..1", "1", "SvStatus", "ConductingEquipment"],
+                            ["Terminals", "0..*", "1", "Terminal", "ConductingEquipment"],
+                            ["JumpingAction", "0..1", "0..*", "JumperAction", "JumpedEquipments"]
+                        ]
+                    )
                 );
             }
         }
@@ -4189,12 +4243,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCConverterUnit", "DCConverterUnit", "0..*", "0..1"],
-                        ["Bays", "Bay", "0..*", "0..1"],
-                        ["Region", "SubGeographicalRegion", "0..1", "0..*"],
-                        ["VoltageLevels", "VoltageLevel", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCConverterUnit", "0..*", "0..1", "DCConverterUnit", "Substation"],
+                            ["Bays", "0..*", "0..1", "Bay", "Substation"],
+                            ["Region", "0..1", "0..*", "SubGeographicalRegion", "Substations"],
+                            ["VoltageLevels", "0..*", "1", "VoltageLevel", "Substation"]
+                        ]
+                    )
                 );
             }
         }
@@ -4336,10 +4392,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Substation", "Substation", "0..1", "0..*"],
-                        ["VoltageLevel", "VoltageLevel", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Substation", "0..1", "0..*", "Substation", "Bays"],
+                            ["VoltageLevel", "0..1", "0..*", "VoltageLevel", "Bays"]
+                        ]
+                    )
                 );
             }
         }

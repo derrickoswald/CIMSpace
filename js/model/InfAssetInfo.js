@@ -389,12 +389,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AssetModel", "ProductAssetModel", "0..1", "0..*"],
-                        ["ErpPOLineItems", "ErpPOLineItem", "0..*", "0..1"],
-                        ["ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "0..1"],
-                        ["AssetModelCatalogue", "AssetModelCatalogue", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AssetModel", "0..1", "0..*", "ProductAssetModel", "AssetModelCatalogueItems"],
+                            ["ErpPOLineItems", "0..*", "0..1", "ErpPOLineItem", "AssetModelCatalogueItem"],
+                            ["ErpQuoteLineItems", "0..*", "0..1", "ErpQuoteLineItem", "AssetModelCatalogueItem"],
+                            ["AssetModelCatalogue", "1", "0..*", "AssetModelCatalogue", "AssetModelCatalogueItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -969,9 +971,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AssetModelCatalogueItems", "AssetModelCatalogueItem", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AssetModelCatalogueItems", "0..*", "1", "AssetModelCatalogueItem", "AssetModelCatalogue"]
+                        ]
+                    )
                 );
             }
         }

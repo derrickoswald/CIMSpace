@@ -372,30 +372,32 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OperationTags", "OperationTag", "0..*", "0..1"],
-                        ["ActivityRecords", "ActivityRecord", "0..*", "0..*"],
-                        ["FinancialInfo", "FinancialInfo", "0..1", "0..1"],
-                        ["ErpItemMaster", "ErpItemMaster", "0..1", "0..1"],
-                        ["AssetContainer", "AssetContainer", "0..1", "0..*"],
-                        ["Mediums", "Medium", "0..*", "0..*"],
-                        ["ScheduledEvents", "ScheduledEvent", "0..*", "0..*"],
-                        ["OrganisationRoles", "AssetOrganisationRole", "0..*", "0..*"],
-                        ["WorkTasks", "WorkTask", "0..*", "0..*"],
-                        ["Procedures", "Procedure", "0..*", "0..*"],
-                        ["Reconditionings", "Reconditioning", "0..*", "0..1"],
-                        ["PowerSystemResources", "PowerSystemResource", "0..*", "0..*"],
-                        ["Location", "Location", "0..1", "0..*"],
-                        ["AssetPropertyCurves", "AssetPropertyCurve", "0..*", "0..*"],
-                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
-                        ["ErpInventory", "ErpInventory", "0..1", "0..1"],
-                        ["ErpRecDeliveryItems", "ErpRecDelvLineItem", "0..*", "0..*"],
-                        ["ReliabilityInfos", "ReliabilityInfo", "0..*", "0..*"],
-                        ["Measurements", "Measurement", "0..*", "0..1"],
-                        ["AssetInfo", "AssetInfo", "0..1", "0..*"],
-                        ["Ownerships", "Ownership", "0..*", "0..1"],
-                        ["ReplacementWorkTasks", "WorkTask", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OperationTags", "0..*", "0..1", "OperationTag", "Asset"],
+                            ["ActivityRecords", "0..*", "0..*", "ActivityRecord", "Assets"],
+                            ["FinancialInfo", "0..1", "0..1", "FinancialInfo", "Asset"],
+                            ["ErpItemMaster", "0..1", "0..1", "ErpItemMaster", "Asset"],
+                            ["AssetContainer", "0..1", "0..*", "AssetContainer", "Assets"],
+                            ["Mediums", "0..*", "0..*", "Medium", "Assets"],
+                            ["ScheduledEvents", "0..*", "0..*", "ScheduledEvent", "Assets"],
+                            ["OrganisationRoles", "0..*", "0..*", "AssetOrganisationRole", "Assets"],
+                            ["WorkTasks", "0..*", "0..*", "WorkTask", "Assets"],
+                            ["Procedures", "0..*", "0..*", "Procedure", "Assets"],
+                            ["Reconditionings", "0..*", "0..1", "Reconditioning", "Asset"],
+                            ["PowerSystemResources", "0..*", "0..*", "PowerSystemResource", "Assets"],
+                            ["Location", "0..1", "0..*", "Location", "Assets"],
+                            ["AssetPropertyCurves", "0..*", "0..*", "AssetPropertyCurve", "Assets"],
+                            ["ConfigurationEvents", "0..*", "0..1", "ConfigurationEvent", "ChangedAsset"],
+                            ["ErpInventory", "0..1", "0..1", "ErpInventory", "Asset"],
+                            ["ErpRecDeliveryItems", "0..*", "0..*", "ErpRecDelvLineItem", "Assets"],
+                            ["ReliabilityInfos", "0..*", "0..*", "ReliabilityInfo", "Assets"],
+                            ["Measurements", "0..*", "0..1", "Measurement", "Asset"],
+                            ["AssetInfo", "0..1", "0..*", "AssetInfo", "Assets"],
+                            ["Ownerships", "0..*", "0..1", "Ownership", "Asset"],
+                            ["ReplacementWorkTasks", "0..*", "0..1", "WorkTask", "OldAsset"]
+                        ]
+                    )
                 );
             }
         }
@@ -634,11 +636,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerSystemResources", "PowerSystemResource", "0..*", "0..1"],
-                        ["AssetModel", "AssetModel", "0..1", "0..1"],
-                        ["Assets", "Asset", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerSystemResources", "0..*", "0..1", "PowerSystemResource", "AssetDatasheet"],
+                            ["AssetModel", "0..1", "0..1", "AssetModel", "AssetInfo"],
+                            ["Assets", "0..*", "0..1", "Asset", "AssetInfo"]
+                        ]
+                    )
                 );
             }
         }
@@ -751,9 +755,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Assets", "Asset", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Assets", "0..*", "0..*", "Asset", "OrganisationRoles"]
+                        ]
+                    )
                 );
             }
         }
@@ -862,9 +868,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProductAssetModels", "ProductAssetModel", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProductAssetModels", "0..*", "0..1", "ProductAssetModel", "Manufacturer"]
+                        ]
+                    )
                 );
             }
         }
@@ -1003,12 +1011,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransformerObservations", "TransformerObservation", "0..*", "0..*"],
-                        ["MeasurementValues", "MeasurementValue", "0..*", "0..*"],
-                        ["Properties", "UserAttribute", "0..*", "0..*"],
-                        ["Procedure", "Procedure", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransformerObservations", "0..*", "0..*", "TransformerObservation", "ProcedureDataSets"],
+                            ["MeasurementValues", "0..*", "0..*", "MeasurementValue", "ProcedureDataSets"],
+                            ["Properties", "0..*", "0..*", "UserAttribute", "ProcedureDataSets"],
+                            ["Procedure", "0..1", "0..*", "Procedure", "ProcedureDataSets"]
+                        ]
+                    )
                 );
             }
         }
@@ -1267,9 +1277,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AssetContainer", "AssetContainer", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AssetContainer", "0..1", "0..*", "AssetContainer", "Seals"]
+                        ]
+                    )
                 );
             }
         }
@@ -1384,9 +1396,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Locations", "Location", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Locations", "0..*", "0..*", "Location", "Hazards"]
+                        ]
+                    )
                 );
             }
         }
@@ -1633,10 +1647,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpInventoryCounts", "ErpInventoryCount", "0..*", "0..1"],
-                        ["AssetInfo", "AssetInfo", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpInventoryCounts", "0..*", "0..1", "ErpInventoryCount", "AssetModel"],
+                            ["AssetInfo", "0..1", "0..1", "AssetInfo", "AssetModel"]
+                        ]
+                    )
                 );
             }
         }
@@ -1792,13 +1808,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Measurements", "Measurement", "0..*", "0..*"],
-                        ["Limits", "Limit", "0..*", "0..*"],
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["ProcedureDataSets", "ProcedureDataSet", "0..*", "0..1"],
-                        ["CompatibleUnits", "CompatibleUnit", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Measurements", "0..*", "0..*", "Measurement", "Procedures"],
+                            ["Limits", "0..*", "0..*", "Limit", "Procedures"],
+                            ["Assets", "0..*", "0..*", "Asset", "Procedures"],
+                            ["ProcedureDataSets", "0..*", "0..1", "ProcedureDataSet", "Procedure"],
+                            ["CompatibleUnits", "0..*", "0..*", "CompatibleUnit", "Procedures"]
+                        ]
+                    )
                 );
             }
         }
@@ -1921,11 +1939,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Seals", "Seal", "0..*", "0..1"],
-                        ["Assets", "Asset", "0..*", "0..1"],
-                        ["LandProperties", "LandProperty", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Seals", "0..*", "0..1", "Seal", "AssetContainer"],
+                            ["Assets", "0..*", "0..1", "Asset", "AssetContainer"],
+                            ["LandProperties", "0..*", "0..*", "LandProperty", "AssetContainers"]
+                        ]
+                    )
                 );
             }
         }
@@ -2228,9 +2248,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Ownerships", "Ownership", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Ownerships", "0..*", "0..1", "Ownership", "AssetOwner"]
+                        ]
+                    )
                 );
             }
         }
@@ -2482,12 +2504,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AssetModelCatalogueItems", "AssetModelCatalogueItem", "0..*", "0..1"],
-                        ["GenericAssetModelOrMaterial", "GenericAssetModelOrMaterial", "0..1", "0..*"],
-                        ["Manufacturer", "Manufacturer", "0..1", "0..*"],
-                        ["OperationalRestrictions", "OperationalRestriction", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AssetModelCatalogueItems", "0..*", "0..1", "AssetModelCatalogueItem", "AssetModel"],
+                            ["GenericAssetModelOrMaterial", "0..1", "0..*", "GenericAssetModelOrMaterial", "ProductAssetModels"],
+                            ["Manufacturer", "0..1", "0..*", "Manufacturer", "ProductAssetModels"],
+                            ["OperationalRestrictions", "0..*", "0..1", "OperationalRestriction", "ProductAssetModel"]
+                        ]
+                    )
                 );
             }
         }

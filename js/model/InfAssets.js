@@ -500,15 +500,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["QualificationRequirements", "QualificationRequirement", "0..*", "0..*"],
-                        ["Ratings", "UserAttribute", "0..*", "0..1"],
-                        ["AssetPropertyCurves", "AssetPropertyCurve", "0..*", "0..1"],
-                        ["ReliabilityInfos", "ReliabilityInfo", "0..*", "0..1"],
-                        ["Mediums", "Medium", "0..*", "0..1"],
-                        ["DimensionsInfos", "DimensionsInfo", "0..*", "0..*"],
-                        ["AssetProperites", "UserAttribute", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["QualificationRequirements", "0..*", "0..*", "QualificationRequirement", "Specifications"],
+                            ["Ratings", "0..*", "0..1", "UserAttribute", "RatingSpecification"],
+                            ["AssetPropertyCurves", "0..*", "0..1", "AssetPropertyCurve", "Specification"],
+                            ["ReliabilityInfos", "0..*", "0..1", "ReliabilityInfo", "Specification"],
+                            ["Mediums", "0..*", "0..1", "Medium", "Specification"],
+                            ["DimensionsInfos", "0..*", "0..*", "DimensionsInfo", "Specifications"],
+                            ["AssetProperites", "0..*", "0..1", "UserAttribute", "PropertySpecification"]
+                        ]
+                    )
                 );
             }
         }
@@ -786,10 +788,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WireSpacingInfos", "WireSpacingInfo", "0..*", "0..*"],
-                        ["StructureSupports", "StructureSupport", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WireSpacingInfos", "0..*", "0..*", "WireSpacingInfo", "Structures"],
+                            ["StructureSupports", "0..*", "0..1", "StructureSupport", "SecuredStructure"]
+                        ]
+                    )
                 );
             }
         }
@@ -945,15 +949,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpBomItemDatas", "ErpBomItemData", "0..*", "0..1"],
-                        ["CUWorkEquipmentAsset", "CUWorkEquipmentItem", "0..1", "0..1"],
-                        ["ErpReqLineItems", "ErpReqLineItem", "0..*", "0..1"],
-                        ["ProductAssetModels", "ProductAssetModel", "0..*", "0..1"],
-                        ["ErpInventoryIssues", "ErpIssueInventory", "0..*", "0..1"],
-                        ["TypeAssetCatalogue", "TypeAssetCatalogue", "0..1", "0..*"],
-                        ["CUAsset", "CUAsset", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpBomItemDatas", "0..*", "0..1", "ErpBomItemData", "TypeAsset"],
+                            ["CUWorkEquipmentAsset", "0..1", "0..1", "CUWorkEquipmentItem", "TypeAsset"],
+                            ["ErpReqLineItems", "0..*", "0..1", "ErpReqLineItem", "TypeAsset"],
+                            ["ProductAssetModels", "0..*", "0..1", "ProductAssetModel", "GenericAssetModelOrMaterial"],
+                            ["ErpInventoryIssues", "0..*", "0..1", "ErpIssueInventory", "TypeAsset"],
+                            ["TypeAssetCatalogue", "0..1", "0..*", "TypeAssetCatalogue", "TypeAssets"],
+                            ["CUAsset", "0..1", "0..1", "CUAsset", "TypeAsset"]
+                        ]
+                    )
                 );
             }
         }
@@ -1085,9 +1091,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Reconditionings", "Reconditioning", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Reconditionings", "0..*", "0..*", "Reconditioning", "PowerRatings"]
+                        ]
+                    )
                 );
             }
         }
@@ -1255,9 +1263,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Asset", "Asset", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Asset", "0..1", "0..1", "Asset", "FinancialInfo"]
+                        ]
+                    )
                 );
             }
         }
@@ -1407,9 +1417,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SecuredStructure", "Structure", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SecuredStructure", "0..1", "0..*", "Structure", "StructureSupports"]
+                        ]
+                    )
                 );
             }
         }
@@ -1525,9 +1537,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WireSpacingInfos", "WireSpacingInfo", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WireSpacingInfos", "0..*", "0..1", "WireSpacingInfo", "DuctBank"]
+                        ]
+                    )
                 );
             }
         }
@@ -1670,10 +1684,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BushingInsulationPFs", "BushingInsulationPF", "0..*", "0..1"],
-                        ["Terminal", "Terminal", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BushingInsulationPFs", "0..*", "0..1", "BushingInsulationPF", "Bushing"],
+                            ["Terminal", "0..1", "0..1", "Terminal", "Bushing"]
+                        ]
+                    )
                 );
             }
         }
@@ -1801,10 +1817,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["Specification", "Specification", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Assets", "0..*", "0..*", "Asset", "ReliabilityInfos"],
+                            ["Specification", "0..1", "0..*", "Specification", "ReliabilityInfos"]
+                        ]
+                    )
                 );
             }
         }
@@ -1945,11 +1963,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ToWinding", "TransformerEnd", "1", "0..*"],
-                        ["FromWinding", "TransformerEnd", "1", "0..*"],
-                        ["TransformerObservation", "TransformerObservation", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ToWinding", "1", "0..*", "TransformerEnd", "ToWindingInsulations"],
+                            ["FromWinding", "1", "0..*", "TransformerEnd", "FromWindingInsulations"],
+                            ["TransformerObservation", "0..1", "0..*", "TransformerObservation", "WindingInsulationPFs"]
+                        ]
+                    )
                 );
             }
         }
@@ -2166,10 +2186,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["Specification", "Specification", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Assets", "0..*", "0..*", "Asset", "AssetPropertyCurves"],
+                            ["Specification", "0..1", "0..*", "Specification", "AssetPropertyCurves"]
+                        ]
+                    )
                 );
             }
         }
@@ -2309,9 +2331,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Specifications", "Specification", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Specifications", "0..*", "0..*", "Specification", "DimensionsInfos"]
+                        ]
+                    )
                 );
             }
         }
@@ -2516,13 +2540,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"],
-                        ["Reconditioning", "Reconditioning", "1", "0..*"],
-                        ["Transformer", "TransformerTank", "0..1", "0..*"],
-                        ["BushingInsultationPFs", "BushingInsulationPF", "0..*", "0..1"],
-                        ["WindingInsulationPFs", "WindingInsulation", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProcedureDataSets", "0..*", "0..*", "ProcedureDataSet", "TransformerObservations"],
+                            ["Reconditioning", "1", "0..*", "Reconditioning", "TransformerObservations"],
+                            ["Transformer", "0..1", "0..*", "TransformerTank", "TransformerObservations"],
+                            ["BushingInsultationPFs", "0..*", "0..1", "BushingInsulationPF", "TransformerObservation"],
+                            ["WindingInsulationPFs", "0..*", "0..1", "WindingInsulation", "TransformerObservation"]
+                        ]
+                    )
                 );
             }
         }
@@ -2770,11 +2796,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransformerObservations", "TransformerObservation", "0..*", "1"],
-                        ["Asset", "Asset", "0..1", "0..*"],
-                        ["PowerRatings", "CoolingPowerRating", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransformerObservations", "0..*", "1", "TransformerObservation", "Reconditioning"],
+                            ["Asset", "0..1", "0..*", "Asset", "Reconditionings"],
+                            ["PowerRatings", "0..*", "0..*", "CoolingPowerRating", "Reconditionings"]
+                        ]
+                    )
                 );
             }
         }
@@ -2904,10 +2932,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["Specification", "Specification", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Assets", "0..*", "0..*", "Asset", "Mediums"],
+                            ["Specification", "0..1", "0..*", "Specification", "Mediums"]
+                        ]
+                    )
                 );
             }
         }
@@ -3141,10 +3171,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Bushing", "Bushing", "0..1", "0..*"],
-                        ["TransformerObservation", "TransformerObservation", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Bushing", "0..1", "0..*", "Bushing", "BushingInsulationPFs"],
+                            ["TransformerObservation", "0..1", "0..*", "TransformerObservation", "BushingInsultationPFs"]
+                        ]
+                    )
                 );
             }
         }
@@ -3272,9 +3304,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Pole", "Pole", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Pole", "0..1", "0..*", "Pole", "Streetlights"]
+                        ]
+                    )
                 );
             }
         }
@@ -3446,9 +3480,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Streetlights", "Streetlight", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Streetlights", "0..*", "0..1", "Streetlight", "Pole"]
+                        ]
+                    )
                 );
             }
         }

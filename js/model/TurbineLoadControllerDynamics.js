@@ -114,9 +114,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TurbineGovernorDynamics", "TurbineGovernorDynamics", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TurbineGovernorDynamics", "1", "0..1", "TurbineGovernorDynamics", "TurbineLoadControllerDynamics"]
+                        ]
+                    )
                 );
             }
         }

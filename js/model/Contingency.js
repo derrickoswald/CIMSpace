@@ -130,9 +130,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ContingencyElement", "ContingencyElement", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ContingencyElement", "0..*", "1", "ContingencyElement", "Contingency"]
+                        ]
+                    )
                 );
             }
         }
@@ -243,9 +245,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Contingency", "Contingency", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Contingency", "1", "0..*", "Contingency", "ContingencyElement"]
+                        ]
+                    )
                 );
             }
         }
@@ -363,9 +367,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Equipment", "Equipment", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Equipment", "1", "0..*", "Equipment", "ContingencyEquipment"]
+                        ]
+                    )
                 );
             }
         }

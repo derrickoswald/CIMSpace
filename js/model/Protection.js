@@ -126,9 +126,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProtectedSwitch", "ProtectedSwitch", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProtectedSwitch", "1", "0..*", "ProtectedSwitch", "RecloseSequences"]
+                        ]
+                    )
                 );
             }
         }
@@ -285,11 +287,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProtectiveAction", "ProtectiveAction", "0..*", "0..1"],
-                        ["ConductingEquipments", "ConductingEquipment", "0..*", "0..*"],
-                        ["ProtectedSwitches", "ProtectedSwitch", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProtectiveAction", "0..*", "0..1", "ProtectiveAction", "ProtectionEquipment"],
+                            ["ConductingEquipments", "0..*", "0..*", "ConductingEquipment", "ProtectionEquipments"],
+                            ["ProtectedSwitches", "0..*", "0..*", "ProtectedSwitch", "OperatedByProtectionEquipment"]
+                        ]
+                    )
                 );
             }
         }

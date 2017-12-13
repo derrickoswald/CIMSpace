@@ -154,10 +154,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DiagramObject", "DiagramObject", "1", "0..*"],
-                        ["DiagramObjectGluePoint", "DiagramObjectGluePoint", "0..1", "2..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DiagramObject", "1", "0..*", "DiagramObject", "DiagramObjectPoints"],
+                            ["DiagramObjectGluePoint", "0..1", "2..*", "DiagramObjectGluePoint", "DiagramObjectPoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -268,9 +270,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["StyledObjects", "DiagramObject", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["StyledObjects", "0..*", "0..1", "DiagramObject", "DiagramObjectStyle"]
+                        ]
+                    )
                 );
             }
         }
@@ -379,9 +383,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DiagramObjectPoints", "DiagramObjectPoint", "2..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DiagramObjectPoints", "2..*", "0..1", "DiagramObjectPoint", "DiagramObjectGluePoint"]
+                        ]
+                    )
                 );
             }
         }
@@ -526,10 +532,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DiagramElements", "DiagramObject", "0..*", "0..1"],
-                        ["DiagramStyle", "DiagramStyle", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DiagramElements", "0..*", "0..1", "DiagramObject", "Diagram"],
+                            ["DiagramStyle", "0..1", "0..*", "DiagramStyle", "Diagram"]
+                        ]
+                    )
                 );
             }
         }
@@ -649,9 +657,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["VisibleObjects", "DiagramObject", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["VisibleObjects", "0..*", "0..*", "DiagramObject", "VisibilityLayers"]
+                        ]
+                    )
                 );
             }
         }
@@ -811,13 +821,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Diagram", "Diagram", "0..1", "0..*"],
-                        ["DiagramObjectStyle", "DiagramObjectStyle", "0..1", "0..*"],
-                        ["DiagramObjectPoints", "DiagramObjectPoint", "0..*", "1"],
-                        ["IdentifiedObject", "IdentifiedObject", "0..1", "0..*"],
-                        ["VisibilityLayers", "VisibilityLayer", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Diagram", "0..1", "0..*", "Diagram", "DiagramElements"],
+                            ["DiagramObjectStyle", "0..1", "0..*", "DiagramObjectStyle", "StyledObjects"],
+                            ["DiagramObjectPoints", "0..*", "1", "DiagramObjectPoint", "DiagramObject"],
+                            ["IdentifiedObject", "0..1", "0..*", "IdentifiedObject", "DiagramObjects"],
+                            ["VisibilityLayers", "0..*", "0..*", "VisibilityLayer", "VisibleObjects"]
+                        ]
+                    )
                 );
             }
         }
@@ -928,9 +940,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Diagram", "Diagram", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Diagram", "0..*", "0..1", "Diagram", "DiagramStyle"]
+                        ]
+                    )
                 );
             }
         }

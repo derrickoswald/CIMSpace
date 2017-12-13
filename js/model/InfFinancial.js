@@ -125,10 +125,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ControlledBy", "HostControlArea", "1", "1"],
-                        ["CAChildOf", "TieLine", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ControlledBy", "1", "1", "HostControlArea", "Controls"],
+                            ["CAChildOf", "0..*", "0..*", "TieLine", "ParentOfA"]
+                        ]
+                    )
                 );
             }
         }
@@ -344,10 +346,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LocationFor", "TransmissionPath", "0..*", "0..*"],
-                        ["TransmissionProvider", "TransmissionProvider", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LocationFor", "0..*", "0..*", "TransmissionPath", "LocatedOn"],
+                            ["TransmissionProvider", "1", "1..*", "TransmissionProvider", "TransmissionProducts"]
+                        ]
+                    )
                 );
             }
         }
@@ -465,9 +469,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MktOrganisation", "MktOrganisation", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MktOrganisation", "0..*", "0..*", "MktOrganisation", "IntSchedAgreement"]
+                        ]
+                    )
                 );
             }
         }
@@ -576,9 +582,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CustChildOf", "TieLine", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CustChildOf", "0..*", "0..1", "TieLine", "ParentOfB"]
+                        ]
+                    )
                 );
             }
         }
@@ -694,10 +702,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["For", "LossProfile", "0..*", "0..1"],
-                        ["TransmissionProducts", "TransmissionProduct", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["For", "0..*", "0..1", "LossProfile", "HasLoss_"],
+                            ["TransmissionProducts", "1..*", "1", "TransmissionProduct", "TransmissionProvider"]
+                        ]
+                    )
                 );
             }
         }
@@ -815,10 +825,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Resells_EnergyProduct", "EnergyProduct", "0..*", "0..*"],
-                        ["HoldsTitleTo_EnergyProducts", "EnergyProduct", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Resells_EnergyProduct", "0..*", "0..*", "EnergyProduct", "ResoldBy_Marketer"],
+                            ["HoldsTitleTo_EnergyProducts", "0..*", "0..1", "EnergyProduct", "TitleHeldBy_Marketer"]
+                        ]
+                    )
                 );
             }
         }
@@ -927,9 +939,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProvidedBy", "EnergyProduct", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProvidedBy", "1..*", "1", "EnergyProduct", "GenerationProvider"]
+                        ]
+                    )
                 );
             }
         }

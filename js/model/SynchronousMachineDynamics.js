@@ -187,13 +187,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"],
-                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "0..1", "1"],
-                        ["SynchronousMachine", "SynchronousMachine", "1", "0..1"],
-                        ["GenICompensationForGenJ", "GenICompensationForGenJ", "0..*", "1"],
-                        ["TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MechanicalLoadDynamics", "0..1", "0..1", "MechanicalLoadDynamics", "SynchronousMachineDynamics"],
+                            ["ExcitationSystemDynamics", "0..1", "1", "ExcitationSystemDynamics", "SynchronousMachineDynamics"],
+                            ["SynchronousMachine", "1", "0..1", "SynchronousMachine", "SynchronousMachineDynamics"],
+                            ["GenICompensationForGenJ", "0..*", "1", "GenICompensationForGenJ", "SynchronousMachineDynamics"],
+                            ["TurbineGovernorDynamics", "0..*", "0..*", "TurbineGovernorDynamics", "SynchronousMachineDynamics"]
+                        ]
+                    )
                 );
             }
         }

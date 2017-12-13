@@ -307,50 +307,6 @@ define
                 this.popup ("<h1>Digitize linear geometry<br>Right-click to finsh</h1>");
             }
 
-            create_from (proto)
-            {
-                proto.EditDisposition = "new";
-                this._features = {};
-                var cls = cim.class_map (proto);
-                var obj = new cls (proto, this._features);
-                if (this._features.IdentifiedObject)
-                    proto.mRID = proto.id;
-                obj = new cls (proto, this._features); // do it again, possibly with mRID set
-
-                // here's some rules
-                var digitize_point = false;
-                var digitize_line = false;
-                if (this._features.Conductor)
-                    digitize_line = true;
-                else if (this._features.PowerSystemResource)
-                    digitize_point = true;
-                this.edit (obj, true);
-
-                if (this._features.Conductor)
-                    this.digitize_line (obj, this.make_cable.bind (this));
-                else if (this._features.ConductingEquipment)
-                    this.digitize_point (obj, this.make_equipment.bind (this));
-                else if (this._features.PowerSystemResource)
-                    this.digitize_point (obj, this.make_psr.bind (this));
-            }
-
-            create ()
-            {
-                var class_name = document.getElementById ("class_name").value;
-                var id = class_name + (~~(1e6 * Math.random ())).toString ();
-                var proto = { cls: class_name, id: id };
-                this.create_from (proto);
-            }
-
-            create_new ()
-            {
-                var proto = JSON.parse (JSON.stringify (this._elements[0]));
-                proto.id = proto.cls + (~~(1e6 * Math.random ())).toString ();
-                delete proto.aliasName;
-                delete proto.length;
-                this.create_from (proto);
-            }
-
             get_connectivity_for_equipment (equipment, point)
             {
                 var ret = {};
@@ -552,7 +508,7 @@ define
                 };
                 this.edit (new Common.Location (location, this._features));
 
-                // set the position points
+                // set the position point
                 var pp =
                 {
                     EditDisposition: "new",
@@ -607,6 +563,92 @@ define
                 if (connectivity.TopologicalNode)
                     terminal.TopologicalNode = connectivity.TopologicalNode;
                 this.edit (new Core.Terminal (terminal, this._features));
+
+                this.make_psr (feature);
+            }
+
+            make_transformer (feature)
+            {
+                var trafo = this._elements[0];
+                var id = trafo.id;
+
+                // ToDo: assume it's the primary?
+                var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
+                if (null == connectivity) // invent a new node if there are none
+                {
+                    var node = this.new_connectivity (id + "_node_1");
+                    this.edit (new Core.ConnectivityNode (node, this._features));
+                    console.log ("no connectivity found, created primary ConnectivityNode " + node.id);
+                    connectivity = { ConnectivityNode: node.id };
+                }
+
+                // add the terminal
+                var terminal1 =
+                {
+                    EditDisposition: "new",
+                    cls: "Terminal",
+                    id: id + "_terminal_1",
+                    mRID: id + "_terminal_1",
+                    name: id + "_terminal_1",
+                    sequenceNumber: 1,
+                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    ConductingEquipment: id,
+                    ConnectivityNode: connectivity.ConnectivityNode
+                };
+                if (connectivity.TopologicalNode)
+                    terminal1.TopologicalNode = connectivity.TopologicalNode;
+                this.edit (new Core.Terminal (terminal1, this._features));
+
+                // add a secondary connectivity node
+                {
+                    var node = this.new_connectivity (id + "_node_2");
+                    this.edit (new Core.ConnectivityNode (node, this._features));
+                    console.log ("created secondary ConnectivityNode " + node.id);
+                    connectivity = { ConnectivityNode: node.id };
+                }
+                var terminal2 =
+                {
+                    EditDisposition: "new",
+                    cls: "Terminal",
+                    id: id + "_terminal_2",
+                    mRID: id + "_terminal_2",
+                    name: id + "_terminal_2",
+                    sequenceNumber: 2,
+                    phases: "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode.ABC",
+                    ConductingEquipment: id,
+                    ConnectivityNode: connectivity.ConnectivityNode
+                };
+                this.edit (new Core.Terminal (terminal2, this._features));
+
+                // add power transformer ends
+                var end1 =
+                {
+                    EditDisposition: "new",
+                    cls: "PowerTransformerEnd",
+                    id: id + "_end_1",
+                    mRID: id + "_end_1",
+                    description: "PowerTransformer End",
+                    name: id + "_end_1",
+                    endNumber: 1,
+                    Terminal: terminal1.id,
+                    connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.D",
+                    PowerTransformer: id
+                };
+                var end2 =
+                {
+                    EditDisposition: "new",
+                    cls: "PowerTransformerEnd",
+                    id: id + "_end_2",
+                    mRID: id + "_end_2",
+                    description: "PowerTransformer End",
+                    name: id + "_end_2",
+                    endNumber: 2,
+                    Terminal: terminal2.id,
+                    connectionKind: "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection.Yn",
+                    PowerTransformer: id
+                };
+                this.edit (new Wires.PowerTransformerEnd (end1, this._features));
+                this.edit (new Wires.PowerTransformerEnd (end2, this._features));
 
                 this.make_psr (feature);
             }
@@ -713,6 +755,46 @@ define
                 this.refresh ();
             }
 
+            create_from (proto)
+            {
+                proto.EditDisposition = "new";
+                this._features = {};
+                var cls = cim.class_map (proto);
+                var obj = new cls (proto, this._features);
+                if (this._features.IdentifiedObject)
+                    proto.mRID = proto.id;
+                obj = new cls (proto, this._features); // do it again, possibly with mRID set
+
+                this.edit (obj, true);
+
+                // here's some rules
+                if (this._features.Conductor)
+                    this.digitize_line (obj, this.make_cable.bind (this));
+                else if (this._features.PowerTransformer)
+                    this.digitize_point (obj, this.make_transformer.bind (this));
+                else if (this._features.ConductingEquipment)
+                    this.digitize_point (obj, this.make_equipment.bind (this));
+                else if (this._features.PowerSystemResource)
+                    this.digitize_point (obj, this.make_psr.bind (this));
+            }
+
+            create ()
+            {
+                var class_name = document.getElementById ("class_name").value;
+                var id = class_name + (~~(1e6 * Math.random ())).toString ();
+                var proto = { cls: class_name, id: id };
+                this.create_from (proto);
+            }
+
+            create_new ()
+            {
+                var proto = JSON.parse (JSON.stringify (this._elements[0]));
+                proto.id = proto.cls + (~~(1e6 * Math.random ())).toString ();
+                delete proto.aliasName;
+                delete proto.length;
+                this.create_from (proto);
+            }
+
             add_layers ()
             {
                 // the lines GeoJSON
@@ -775,8 +857,19 @@ define
                     guts.style.maxHeight = (max_height - this._frame_height).toString () + "px";
             }
 
+            build (element)
+            {
+                var cls = cim.class_map (element);
+                cls.prototype.condition (element);
+                var template = cls.prototype.edit_template ();
+                var text = mustache.render (template, element);
+                cls.prototype.uncondition (element);
+                return (text);
+            }
+
             edit (element, top_level)
             {
+                var cls = cim.class_map (element);
                 if (top_level)
                 {
                     var frame =
@@ -794,15 +887,33 @@ define
                     this._frame_height = document.getElementById ("edit_frame").clientHeight; // frame height with no edit template contents
 
                     this._elements = [ element ];
+                    var text = this.build (element);
+
+                    // get related elements
+                    var relations = cls.prototype.relations ();
+                    for (var i = 0; i < relations.length; i++)
+                        if (relations[i][2] == "0..1" || relations[i][2] == "1")
+                        {
+                            var data = this._cimmap.get_data ();
+                            var related = data[relations[i][3]];
+                            var relatives = [];
+                            if (related)
+                                for (var id in related)
+                                {
+                                    if (related[id][relations[i][4]] == element.id)
+                                        relatives.push (related[id]);
+                                }
+                            for (var j = 0; j < relatives.length; j++)
+                                text = text + this.build (relatives[j]);
+                        }
+                    document.getElementById ("edit_contents").innerHTML = text;
                 }
                 else
+                {
                     this._elements.push (element);
-                var cls = cim.class_map (element);
-                cls.prototype.condition (element);
-                var template = cls.prototype.edit_template ();
-                var text = mustache.render (template, element);
-                cls.prototype.uncondition (element);
-                document.getElementById ("edit_contents").innerHTML = document.getElementById ("edit_contents").innerHTML + text;
+                    var text = this.build (element);
+                    document.getElementById ("edit_contents").innerHTML = document.getElementById ("edit_contents").innerHTML + text;
+                }
                 this.on_map_resize ();
             }
 

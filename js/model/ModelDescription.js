@@ -572,12 +572,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Supersedes", "Model", "0..*", "0..*"],
-                        ["SupersededBy", "Model", "0..*", "0..*"],
-                        ["DependentOn", "Model", "0..*", "0..*"],
-                        ["Depending", "Model", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Supersedes", "0..*", "0..*", "Model", "SupersededBy"],
+                            ["SupersededBy", "0..*", "0..*", "Model", "Supersedes"],
+                            ["DependentOn", "0..*", "0..*", "Model", "Depending"],
+                            ["Depending", "0..*", "0..*", "Model", "DependentOn"]
+                        ]
+                    )
                 );
             }
         }
@@ -975,10 +977,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["forwardDifferences", "Statements", "0..1", ""],
-                        ["reverseDifferences", "Statements", "0..1", ""]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["forwardDifferences", "0..1", "", "Statements", ""],
+                            ["reverseDifferences", "0..1", "", "Statements", ""]
+                        ]
+                    )
                 );
             }
         }

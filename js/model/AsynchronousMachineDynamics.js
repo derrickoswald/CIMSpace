@@ -137,12 +137,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..1", "0..1"],
-                        ["AsynchronousMachine", "AsynchronousMachine", "1", "0..1"],
-                        ["WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "1"],
-                        ["MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TurbineGovernorDynamics", "0..1", "0..1", "TurbineGovernorDynamics", "AsynchronousMachineDynamics"],
+                            ["AsynchronousMachine", "1", "0..1", "AsynchronousMachine", "AsynchronousMachineDynamics"],
+                            ["WindTurbineType1or2Dynamics", "0..1", "1", "WindTurbineType1or2Dynamics", "AsynchronousMachineDynamics"],
+                            ["MechanicalLoadDynamics", "0..1", "0..1", "MechanicalLoadDynamics", "AsynchronousMachineDynamics"]
+                        ]
+                    )
                 );
             }
         }

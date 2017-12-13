@@ -214,16 +214,18 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "1"],
-                        ["UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "1"],
-                        ["DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "1"],
-                        ["PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "1"],
-                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"],
-                        ["VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "1"],
-                        ["OverexcitationLimiterDynamics", "OverexcitationLimiterDynamics", "0..1", "1"],
-                        ["PFVArControllerType2Dynamics", "PFVArControllerType2Dynamics", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerSystemStabilizerDynamics", "0..1", "1", "PowerSystemStabilizerDynamics", "ExcitationSystemDynamics"],
+                            ["UnderexcitationLimiterDynamics", "0..1", "1", "UnderexcitationLimiterDynamics", "ExcitationSystemDynamics"],
+                            ["DiscontinuousExcitationControlDynamics", "0..1", "1", "DiscontinuousExcitationControlDynamics", "ExcitationSystemDynamics"],
+                            ["PFVArControllerType1Dynamics", "0..1", "1", "PFVArControllerType1Dynamics", "ExcitationSystemDynamics"],
+                            ["SynchronousMachineDynamics", "1", "0..1", "SynchronousMachineDynamics", "ExcitationSystemDynamics"],
+                            ["VoltageCompensatorDynamics", "0..1", "1", "VoltageCompensatorDynamics", "ExcitationSystemDynamics"],
+                            ["OverexcitationLimiterDynamics", "0..1", "1", "OverexcitationLimiterDynamics", "ExcitationSystemDynamics"],
+                            ["PFVArControllerType2Dynamics", "0..1", "1", "PFVArControllerType2Dynamics", "ExcitationSystemDynamics"]
+                        ]
+                    )
                 );
             }
         }

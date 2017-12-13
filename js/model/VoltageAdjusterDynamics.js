@@ -116,9 +116,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PFVArControllerType1Dynamics", "1", "0..1", "PFVArControllerType1Dynamics", "VoltageAdjusterDynamics"]
+                        ]
+                    )
                 );
             }
         }

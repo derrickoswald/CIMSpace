@@ -129,9 +129,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Terminal", "Terminal", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Terminal", "1", "0..*", "Terminal", "AuxiliaryEquipment"]
+                        ]
+                    )
                 );
             }
         }

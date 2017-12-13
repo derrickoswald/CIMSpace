@@ -215,12 +215,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Transactions", "Transaction", "1..*", "0..1"],
-                        ["VendorShift", "VendorShift", "0..1", "0..*"],
-                        ["CashierShift", "CashierShift", "0..1", "0..*"],
-                        ["Tenders", "Tender", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Transactions", "1..*", "0..1", "Transaction", "Receipt"],
+                            ["VendorShift", "0..1", "0..*", "VendorShift", "Receipts"],
+                            ["CashierShift", "0..1", "0..*", "CashierShift", "Receipts"],
+                            ["Tenders", "1..*", "1", "Tender", "Receipt"]
+                        ]
+                    )
                 );
             }
         }
@@ -351,9 +353,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Tender", "Tender", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Tender", "1", "0..1", "Tender", "Card"]
+                        ]
+                    )
                 );
             }
         }
@@ -633,13 +637,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AuxiliaryAccounts", "AuxiliaryAccount", "0..*", "0..*"],
-                        ["ConsumptionTariffIntervals", "ConsumptionTariffInterval", "0..*", "0..*"],
-                        ["ChildCharges", "Charge", "0..*", "0..1"],
-                        ["ParentCharge", "Charge", "0..1", "0..*"],
-                        ["TimeTariffIntervals", "TimeTariffInterval", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AuxiliaryAccounts", "0..*", "0..*", "AuxiliaryAccount", "Charges"],
+                            ["ConsumptionTariffIntervals", "0..*", "0..*", "ConsumptionTariffInterval", "Charges"],
+                            ["ChildCharges", "0..*", "0..1", "Charge", "ParentCharge"],
+                            ["ParentCharge", "0..1", "0..*", "Charge", "ChildCharges"],
+                            ["TimeTariffIntervals", "0..*", "0..*", "TimeTariffInterval", "Charges"]
+                        ]
+                    )
                 );
             }
         }
@@ -773,11 +779,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeTariffIntervals", "TimeTariffInterval", "0..*", "0..*"],
-                        ["Tariffs", "Tariff", "0..*", "0..*"],
-                        ["ConsumptionTariffIntervals", "ConsumptionTariffInterval", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeTariffIntervals", "0..*", "0..*", "TimeTariffInterval", "TariffProfiles"],
+                            ["Tariffs", "0..*", "0..*", "Tariff", "TariffProfiles"],
+                            ["ConsumptionTariffIntervals", "0..*", "0..*", "ConsumptionTariffInterval", "TariffProfiles"]
+                        ]
+                    )
                 );
             }
         }
@@ -1030,11 +1038,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Charges", "Charge", "0..*", "0..*"],
-                        ["TouTariffIntervals", "TimeTariffInterval", "0..*", "0..*"],
-                        ["TariffProfiles", "TariffProfile", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Charges", "0..*", "0..*", "Charge", "ConsumptionTariffIntervals"],
+                            ["TouTariffIntervals", "0..*", "0..*", "TimeTariffInterval", "ConsumptionTariffIntervals"],
+                            ["TariffProfiles", "0..*", "0..*", "TariffProfile", "ConsumptionTariffIntervals"]
+                        ]
+                    )
                 );
             }
         }
@@ -1173,11 +1183,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TariffProfiles", "TariffProfile", "0..*", "0..*"],
-                        ["ConsumptionTariffIntervals", "ConsumptionTariffInterval", "0..*", "0..*"],
-                        ["Charges", "Charge", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TariffProfiles", "0..*", "0..*", "TariffProfile", "TimeTariffIntervals"],
+                            ["ConsumptionTariffIntervals", "0..*", "0..*", "ConsumptionTariffInterval", "TouTariffIntervals"],
+                            ["Charges", "0..*", "0..*", "Charge", "TimeTariffIntervals"]
+                        ]
+                    )
                 );
             }
         }
@@ -1340,10 +1352,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CustomerAgreement", "CustomerAgreement", "0..1", "0..*"],
-                        ["AuxiliaryAccounts", "AuxiliaryAccount", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CustomerAgreement", "0..1", "0..*", "CustomerAgreement", "AuxiliaryAgreements"],
+                            ["AuxiliaryAccounts", "1..*", "0..1", "AuxiliaryAccount", "AuxiliaryAgreement"]
+                        ]
+                    )
                 );
             }
         }
@@ -1454,9 +1468,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["VendorShifts", "VendorShift", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["VendorShifts", "0..*", "0..1", "VendorShift", "Vendor"]
+                        ]
+                    )
                 );
             }
         }
@@ -1696,9 +1712,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CashierShifts", "CashierShift", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CashierShifts", "0..*", "0..1", "CashierShift", "PointOfSale"]
+                        ]
+                    )
                 );
             }
         }
@@ -2066,9 +2084,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CashierShifts", "CashierShift", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CashierShifts", "0..*", "0..1", "CashierShift", "Cashier"]
+                        ]
+                    )
                 );
             }
         }
@@ -2201,11 +2221,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CustomerAgreements", "CustomerAgreement", "0..*", "1"],
-                        ["BankAccounts", "BankAccount", "0..*", "0..1"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CustomerAgreements", "0..*", "1", "CustomerAgreement", "ServiceSupplier"],
+                            ["BankAccounts", "0..*", "0..1", "BankAccount", "ServiceSupplier"],
+                            ["UsagePoints", "0..*", "0..1", "UsagePoint", "ServiceSupplier"]
+                        ]
+                    )
                 );
             }
         }
@@ -2343,9 +2365,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Tender", "Tender", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Tender", "1", "0..1", "Tender", "Cheque"]
+                        ]
+                    )
                 );
             }
         }
@@ -2485,11 +2509,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Cheque", "Cheque", "0..1", "1"],
-                        ["Card", "Card", "0..1", "1"],
-                        ["Receipt", "Receipt", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Cheque", "0..1", "1", "Cheque", "Tender"],
+                            ["Card", "0..1", "1", "Card", "Tender"],
+                            ["Receipt", "1", "1..*", "Receipt", "Tenders"]
+                        ]
+                    )
                 );
             }
         }
@@ -2602,9 +2628,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MerchantAccounts", "MerchantAccount", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MerchantAccounts", "0..*", "0..*", "MerchantAccount", "Transactors"]
+                        ]
+                    )
                 );
             }
         }
@@ -2752,11 +2780,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PaymentTransactions", "Transaction", "0..*", "0..1"],
-                        ["Charges", "Charge", "0..*", "0..*"],
-                        ["AuxiliaryAgreement", "AuxiliaryAgreement", "0..1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PaymentTransactions", "0..*", "0..1", "Transaction", "AuxiliaryAccount"],
+                            ["Charges", "0..*", "0..*", "Charge", "AuxiliaryAccounts"],
+                            ["AuxiliaryAgreement", "0..1", "1..*", "AuxiliaryAgreement", "AuxiliaryAccounts"]
+                        ]
+                    )
                 );
             }
         }
@@ -2986,9 +3016,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MerchantAccounts", "MerchantAccount", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MerchantAccounts", "0..*", "0..1", "MerchantAccount", "MerchantAgreement"]
+                        ]
+                    )
                 );
             }
         }
@@ -3176,16 +3208,18 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["UserAttributes", "UserAttribute", "0..*", "0..1"],
-                        ["PricingStructure", "PricingStructure", "0..1", "0..*"],
-                        ["AuxiliaryAccount", "AuxiliaryAccount", "0..1", "0..*"],
-                        ["Receipt", "Receipt", "0..1", "1..*"],
-                        ["VendorShift", "VendorShift", "0..1", "0..*"],
-                        ["CashierShift", "CashierShift", "0..1", "0..*"],
-                        ["Meter", "Meter", "0..1", "0..*"],
-                        ["CustomerAccount", "CustomerAccount", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["UserAttributes", "0..*", "0..1", "UserAttribute", "Transaction"],
+                            ["PricingStructure", "0..1", "0..*", "PricingStructure", "Transactions"],
+                            ["AuxiliaryAccount", "0..1", "0..*", "AuxiliaryAccount", "PaymentTransactions"],
+                            ["Receipt", "0..1", "1..*", "Receipt", "Transactions"],
+                            ["VendorShift", "0..1", "0..*", "VendorShift", "Transactions"],
+                            ["CashierShift", "0..1", "0..*", "CashierShift", "Transactions"],
+                            ["Meter", "0..1", "0..*", "Meter", "VendingTransactions"],
+                            ["CustomerAccount", "0..1", "0..*", "CustomerAccount", "PaymentTransactions"]
+                        ]
+                    )
                 );
             }
         }
@@ -3320,11 +3354,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Transactors", "Transactor", "0..*", "0..*"],
-                        ["VendorShifts", "VendorShift", "0..*", "0..1"],
-                        ["MerchantAgreement", "MerchantAgreement", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Transactors", "0..*", "0..*", "Transactor", "MerchantAccounts"],
+                            ["VendorShifts", "0..*", "0..1", "VendorShift", "MerchantAccount"],
+                            ["MerchantAgreement", "0..1", "0..*", "MerchantAgreement", "MerchantAccounts"]
+                        ]
+                    )
                 );
             }
         }
@@ -3455,12 +3491,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Cashier", "Cashier", "0..1", "0..*"],
-                        ["PointOfSale", "PointOfSale", "0..1", "0..*"],
-                        ["Receipts", "Receipt", "0..*", "0..1"],
-                        ["Transactions", "Transaction", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Cashier", "0..1", "0..*", "Cashier", "CashierShifts"],
+                            ["PointOfSale", "0..1", "0..*", "PointOfSale", "CashierShifts"],
+                            ["Receipts", "0..*", "0..1", "Receipt", "CashierShift"],
+                            ["Transactions", "0..*", "0..1", "Transaction", "CashierShift"]
+                        ]
+                    )
                 );
             }
         }
@@ -3598,12 +3636,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Receipts", "Receipt", "0..*", "0..1"],
-                        ["Transactions", "Transaction", "0..*", "0..1"],
-                        ["Vendor", "Vendor", "0..1", "0..*"],
-                        ["MerchantAccount", "MerchantAccount", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Receipts", "0..*", "0..1", "Receipt", "VendorShift"],
+                            ["Transactions", "0..*", "0..1", "Transaction", "VendorShift"],
+                            ["Vendor", "0..1", "0..*", "Vendor", "VendorShifts"],
+                            ["MerchantAccount", "0..1", "0..*", "MerchantAccount", "VendorShifts"]
+                        ]
+                    )
                 );
             }
         }

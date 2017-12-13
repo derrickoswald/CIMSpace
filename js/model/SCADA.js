@@ -143,9 +143,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RemoteUnit", "RemoteUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RemoteUnit", "1", "0..*", "RemoteUnit", "RemotePoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -272,10 +274,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CommunicationLinks", "CommunicationLink", "1..*", "0..*"],
-                        ["RemotePoints", "RemotePoint", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CommunicationLinks", "1..*", "0..*", "CommunicationLink", "RemoteUnits"],
+                            ["RemotePoints", "0..*", "1", "RemotePoint", "RemoteUnit"]
+                        ]
+                    )
                 );
             }
         }
@@ -390,9 +394,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RemoteUnits", "RemoteUnit", "0..*", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RemoteUnits", "0..*", "1..*", "RemoteUnit", "CommunicationLinks"]
+                        ]
+                    )
                 );
             }
         }
@@ -523,9 +529,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MeasurementValue", "MeasurementValue", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MeasurementValue", "1", "0..1", "MeasurementValue", "RemoteSource"]
+                        ]
+                    )
                 );
             }
         }
@@ -651,9 +659,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Control", "Control", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Control", "1", "0..1", "Control", "RemoteControl"]
+                        ]
+                    )
                 );
             }
         }

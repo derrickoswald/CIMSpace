@@ -372,9 +372,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LandProperty", "LandProperty", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LandProperty", "0..1", "0..*", "LandProperty", "LocationGrants"]
+                        ]
+                    )
                 );
             }
         }
@@ -502,10 +504,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Locations", "Location", "0..*", "0..*"],
-                        ["Crews", "OldCrew", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Locations", "0..*", "0..*", "Location", "Routes"],
+                            ["Crews", "0..*", "0..1", "OldCrew", "Route"]
+                        ]
+                    )
                 );
             }
         }
@@ -678,15 +682,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpOrganisationRoles", "PropertyOrganisationRole", "0..*", "1.."],
-                        ["LocationGrants", "LocationGrant", "0..*", "0..1"],
-                        ["RightOfWays", "RightOfWay", "0..*", "0..*"],
-                        ["Locations", "Location", "0..*", "0..*"],
-                        ["AssetContainers", "AssetContainer", "0..*", "0..*"],
-                        ["ErpSiteLevelDatas", "ErpSiteLevelData", "0..*", "0..1"],
-                        ["ErpPersonRoles", "PersonPropertyRole", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpOrganisationRoles", "0..*", "1..", "PropertyOrganisationRole", "LandProperty"],
+                            ["LocationGrants", "0..*", "0..1", "LocationGrant", "LandProperty"],
+                            ["RightOfWays", "0..*", "0..*", "RightOfWay", "LandProperties"],
+                            ["Locations", "0..*", "0..*", "Location", "LandProperties"],
+                            ["AssetContainers", "0..*", "0..*", "AssetContainer", "LandProperties"],
+                            ["ErpSiteLevelDatas", "0..*", "0..1", "ErpSiteLevelData", "LandProperty"],
+                            ["ErpPersonRoles", "0..*", "1", "PersonPropertyRole", "LandProperty"]
+                        ]
+                    )
                 );
             }
         }
@@ -806,9 +812,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LandProperties", "LandProperty", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LandProperties", "0..*", "0..*", "LandProperty", "RightOfWays"]
+                        ]
+                    )
                 );
             }
         }

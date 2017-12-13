@@ -114,9 +114,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EquivalentEquipments", "EquivalentEquipment", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EquivalentEquipments", "0..*", "0..1", "EquivalentEquipment", "EquivalentNetwork"]
+                        ]
+                    )
                 );
             }
         }
@@ -229,9 +231,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EquivalentNetwork", "EquivalentNetwork", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EquivalentNetwork", "0..1", "0..*", "EquivalentNetwork", "EquivalentEquipments"]
+                        ]
+                    )
                 );
             }
         }
@@ -707,9 +711,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReactiveCapabilityCurve", "ReactiveCapabilityCurve", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReactiveCapabilityCurve", "0..1", "0..*", "ReactiveCapabilityCurve", "EquivalentInjection"]
+                        ]
+                    )
                 );
             }
         }

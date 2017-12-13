@@ -138,11 +138,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OperationalLimitValue", "OperationalLimit", "0..*", "1"],
-                        ["Terminal", "ACDCTerminal", "0..1", "0..*"],
-                        ["Equipment", "Equipment", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OperationalLimitValue", "0..*", "1", "OperationalLimit", "OperationalLimitSet"],
+                            ["Terminal", "0..1", "0..*", "ACDCTerminal", "OperationalLimitSet"],
+                            ["Equipment", "0..1", "0..*", "Equipment", "OperationalLimitSet"]
+                        ]
+                    )
                 );
             }
         }
@@ -272,12 +274,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OperationalLimitSet", "OperationalLimitSet", "1", "0..*"],
-                        ["OperationalLimitType", "OperationalLimitType", "0..1", "0..*"],
-                        ["LimitScalingLimit", "LimitScalingLimit", "0..*", "1"],
-                        ["LimitDependencyModel", "LimitDependency", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OperationalLimitSet", "1", "0..*", "OperationalLimitSet", "OperationalLimitValue"],
+                            ["OperationalLimitType", "0..1", "0..*", "OperationalLimitType", "OperationalLimit"],
+                            ["LimitScalingLimit", "0..*", "1", "LimitScalingLimit", "SourceOperationalLimit"],
+                            ["LimitDependencyModel", "0..*", "0..*", "LimitDependency", "OperationalLimit"]
+                        ]
+                    )
                 );
             }
         }
@@ -398,10 +402,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BranchGroup", "BranchGroup", "1", "0..*"],
-                        ["Terminal", "Terminal", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BranchGroup", "1", "0..*", "BranchGroup", "BranchGroupTerminal"],
+                            ["Terminal", "1", "0..*", "Terminal", "BranchGroupTerminal"]
+                        ]
+                    )
                 );
             }
         }
@@ -549,10 +555,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PinBranchGroup", "PinBranchGroup", "0..*", "1"],
-                        ["BranchGroupTerminal", "BranchGroupTerminal", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PinBranchGroup", "0..*", "1", "PinBranchGroup", "BranchGroup"],
+                            ["BranchGroupTerminal", "0..*", "1", "BranchGroupTerminal", "BranchGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -685,11 +693,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OperationalLimit", "OperationalLimit", "0..*", "0..1"],
-                        ["SourceOperationalLimitTypeScaling", "OperatonalLimitTypeScaling", "0..*", "0..1"],
-                        ["TargetOperationalLimitmTypeScaling", "OperatonalLimitTypeScaling", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OperationalLimit", "0..*", "0..1", "OperationalLimit", "OperationalLimitType"],
+                            ["SourceOperationalLimitTypeScaling", "0..*", "0..1", "OperatonalLimitTypeScaling", "SourceOperationalLimitType"],
+                            ["TargetOperationalLimitmTypeScaling", "0..1", "1", "OperatonalLimitTypeScaling", "TargetOperationalLimit"]
+                        ]
+                    )
                 );
             }
         }

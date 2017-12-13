@@ -196,9 +196,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketParticipant", "MarketParticipant", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketParticipant", "0..*", "0..*", "MarketParticipant", "MarketRole"]
+                        ]
+                    )
                 );
             }
         }
@@ -670,49 +672,51 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ResourceDispatchResults", "ResourceDispatchResults", "0..*", "0..1"],
-                        ["HostControlArea", "HostControlArea", "0..1", "0..*"],
-                        ["DefaultBid", "DefaultBid", "0..1", "1"],
-                        ["AllocationResultValues", "AllocationResultValues", "0..*", "0..1"],
-                        ["ResourceAncillaryServiceQualification", "ResourceAncillaryServiceQualification", "0..*", "1"],
-                        ["InterTie", "SchedulingPoint", "0..*", "0..*"],
-                        ["Commitments", "Commitments", "0..*", "1"],
-                        ["AggregateNode", "AggregateNode", "0..*", "0..*"],
-                        ["ResourceAwardInstruction", "ResourceAwardInstruction", "0..*", "0..1"],
-                        ["LoadFollowingOperatorInput", "LoadFollowingOperatorInput", "0..*", "0..1"],
-                        ["ControlAreaDesignation", "ControlAreaDesignation", "0..*", "0..*"],
-                        ["ResourceLoadFollowingInst", "ResourceLoadFollowingInst", "0..*", "0..1"],
-                        ["DotInstruction", "DotInstruction", "0..*", "0..1"],
-                        ["OrgResOwnership", "OrgResOwnership", "0..*", "1"],
-                        ["Instructions", "Instructions", "0..*", "1"],
-                        ["DopInstruction", "DopInstruction", "0..*", "0..1"],
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
-                        ["ResourceGroups", "ResourceGroup", "0..*", "1..*"],
-                        ["MktOrganisation", "MktOrganisation", "0..1", "0..*"],
-                        ["ExpectedEnergyValues", "ExpectedEnergyValues", "0..*", "0..1"],
-                        ["ResourceCertification", "ResourceCertification", "0..*", "0..*"],
-                        ["MktConnectivityNode", "MktConnectivityNode", "0..1", "0..*"],
-                        ["Pnode", "Pnode", "0..1", "0..*"],
-                        ["FormerReference", "FormerReference", "0..*", "1"],
-                        ["SubstitutionResourceList", "SubstitutionResourceList", "0..*", "0..1"],
-                        ["RUCAwardInstruction", "RUCAwardInstruction", "0..*", "0..1"],
-                        ["RMROperatorInput", "RMROperatorInput", "0..*", "0..1"],
-                        ["MPMTestThreshold", "MPMTestThreshold", "0..*", "0..*"],
-                        ["DispatchInstReply", "DispatchInstReply", "0..*", "1"],
-                        ["IntermittentResourceEligibility", "IntermittentResourceEligibility", "0..*", "1"],
-                        ["EnergyMarkets", "EnergyMarket", "0..*", "0..*"],
-                        ["ResourceCapacity", "ResourceCapacity", "0..*", "0..*"],
-                        ["ExPostResourceResults", "ExPostResourceResults", "0..*", "0..1"],
-                        ["LoadFollowingInst", "LoadFollowingInst", "0..*", "1"],
-                        ["AdjacentCASet", "AdjacentCASet", "0..1", "0..*"],
-                        ["ForbiddenRegion", "ForbiddenRegion", "0..*", "0..*"],
-                        ["ContractDistributionFactor", "ContractDistributionFactor", "0..*", "0..1"],
-                        ["MPMResourceStatus", "MPMResourceStatus", "0..*", "0..1"],
-                        ["SubControlArea", "SubControlArea", "0..*", "0..*"],
-                        ["RampRateCurve", "RampRateCurve", "0..*", "0..*"],
-                        ["ResourceVerifiableCosts", "ResourceVerifiableCosts", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ResourceDispatchResults", "0..*", "0..1", "ResourceDispatchResults", "RegisteredResource"],
+                            ["HostControlArea", "0..1", "0..*", "HostControlArea", "RegisteredResource"],
+                            ["DefaultBid", "0..1", "1", "DefaultBid", "RegisteredResource"],
+                            ["AllocationResultValues", "0..*", "0..1", "AllocationResultValues", "RegisteredResource"],
+                            ["ResourceAncillaryServiceQualification", "0..*", "1", "ResourceAncillaryServiceQualification", "RegisteredResource"],
+                            ["InterTie", "0..*", "0..*", "SchedulingPoint", "RegisteredResource"],
+                            ["Commitments", "0..*", "1", "Commitments", "RegisteredResource"],
+                            ["AggregateNode", "0..*", "0..*", "AggregateNode", "RegisteredResource"],
+                            ["ResourceAwardInstruction", "0..*", "0..1", "ResourceAwardInstruction", "RegisteredResource"],
+                            ["LoadFollowingOperatorInput", "0..*", "0..1", "LoadFollowingOperatorInput", "RegisteredResource"],
+                            ["ControlAreaDesignation", "0..*", "0..*", "ControlAreaDesignation", "RegisteredResource"],
+                            ["ResourceLoadFollowingInst", "0..*", "0..1", "ResourceLoadFollowingInst", "RegisteredResource"],
+                            ["DotInstruction", "0..*", "0..1", "DotInstruction", "RegisteredResource"],
+                            ["OrgResOwnership", "0..*", "1", "OrgResOwnership", "RegisteredResource"],
+                            ["Instructions", "0..*", "1", "Instructions", "RegisteredResource"],
+                            ["DopInstruction", "0..*", "0..1", "DopInstruction", "RegisteredResouce"],
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "RegisteredResource"],
+                            ["ResourceGroups", "0..*", "1..*", "ResourceGroup", "RegisteredResources"],
+                            ["MktOrganisation", "0..1", "0..*", "MktOrganisation", "RegisteredResource"],
+                            ["ExpectedEnergyValues", "0..*", "0..1", "ExpectedEnergyValues", "RegisteredResource"],
+                            ["ResourceCertification", "0..*", "0..*", "ResourceCertification", "RegisteredResource"],
+                            ["MktConnectivityNode", "0..1", "0..*", "MktConnectivityNode", "RegisteredResource"],
+                            ["Pnode", "0..1", "0..*", "Pnode", "RegisteredResources"],
+                            ["FormerReference", "0..*", "1", "FormerReference", "RegisteredResource"],
+                            ["SubstitutionResourceList", "0..*", "0..1", "SubstitutionResourceList", "RegisteredResource"],
+                            ["RUCAwardInstruction", "0..*", "0..1", "RUCAwardInstruction", "RegisteredResource"],
+                            ["RMROperatorInput", "0..*", "0..1", "RMROperatorInput", "RegisteredResource"],
+                            ["MPMTestThreshold", "0..*", "0..*", "MPMTestThreshold", "RegisteredResource"],
+                            ["DispatchInstReply", "0..*", "1", "DispatchInstReply", "RegisteredResource"],
+                            ["IntermittentResourceEligibility", "0..*", "1", "IntermittentResourceEligibility", "RegisteredResource"],
+                            ["EnergyMarkets", "0..*", "0..*", "EnergyMarket", "RegisteredResources"],
+                            ["ResourceCapacity", "0..*", "0..*", "ResourceCapacity", "RegisteredResource"],
+                            ["ExPostResourceResults", "0..*", "0..1", "ExPostResourceResults", "RegisteredResource"],
+                            ["LoadFollowingInst", "0..*", "1", "LoadFollowingInst", "RegisteredResource"],
+                            ["AdjacentCASet", "0..1", "0..*", "AdjacentCASet", "RegisteredResource"],
+                            ["ForbiddenRegion", "0..*", "0..*", "ForbiddenRegion", "RegisteredResource"],
+                            ["ContractDistributionFactor", "0..*", "0..1", "ContractDistributionFactor", "RegisteredResource"],
+                            ["MPMResourceStatus", "0..*", "0..1", "MPMResourceStatus", "RegisteredResource"],
+                            ["SubControlArea", "0..*", "0..*", "SubControlArea", "RegisteredResource"],
+                            ["RampRateCurve", "0..*", "0..*", "RampRateCurve", "RegisteredResource"],
+                            ["ResourceVerifiableCosts", "0..1", "1", "ResourceVerifiableCosts", "RegisteredResource"]
+                        ]
+                    )
                 );
             }
         }
@@ -846,12 +850,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketRole", "MarketRole", "0..*", "0..*"],
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
-                        ["Bid", "Bid", "0..*", "0..1"],
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketRole", "0..*", "0..*", "MarketRole", "MarketParticipant"],
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "MarketParticipant"],
+                            ["Bid", "0..*", "0..1", "Bid", "MarketParticipant"],
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "MarketParticipant"]
+                        ]
+                    )
                 );
             }
         }

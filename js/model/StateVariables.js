@@ -223,9 +223,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TopologicalNode", "TopologicalNode", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TopologicalNode", "1", "0..1", "TopologicalNode", "SvInjection"]
+                        ]
+                    )
                 );
             }
         }
@@ -341,9 +343,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ConductingEquipment", "ConductingEquipment", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ConductingEquipment", "1", "0..1", "ConductingEquipment", "SvStatus"]
+                        ]
+                    )
                 );
             }
         }
@@ -461,9 +465,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TapChanger", "TapChanger", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TapChanger", "1", "0..1", "TapChanger", "SvTapStep"]
+                        ]
+                    )
                 );
             }
         }
@@ -579,9 +585,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ShuntCompensator", "ShuntCompensator", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ShuntCompensator", "1", "0..1", "ShuntCompensator", "SvShuntCompensatorSections"]
+                        ]
+                    )
                 );
             }
         }
@@ -704,9 +712,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Terminal", "Terminal", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Terminal", "1", "0..1", "Terminal", "SvPowerFlow"]
+                        ]
+                    )
                 );
             }
         }
@@ -827,9 +837,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TopologicalNode", "TopologicalNode", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TopologicalNode", "1", "0..1", "TopologicalNode", "SvVoltage"]
+                        ]
+                    )
                 );
             }
         }

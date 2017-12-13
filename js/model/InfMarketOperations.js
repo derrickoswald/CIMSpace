@@ -422,9 +422,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResource", "0..*", "0..*", "RegisteredResource", "ResourceCertification"]
+                        ]
+                    )
                 );
             }
         }

@@ -567,9 +567,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpTimeEntries", "ErpTimeEntry", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpTimeEntries", "0..*", "1", "ErpTimeEntry", "ErpTimeSheet"]
+                        ]
+                    )
                 );
             }
         }
@@ -695,12 +697,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpRecDelLineItem", "ErpRecDelvLineItem", "0..1", "0..1"],
-                        ["ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1"],
-                        ["AssetModelCatalogueItem", "AssetModelCatalogueItem", "0..1", "0..*"],
-                        ["ErpPurchaseOrder", "ErpPurchaseOrder", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpRecDelLineItem", "0..1", "0..1", "ErpRecDelvLineItem", "ErpPOLineItem"],
+                            ["ErpReqLineItem", "0..1", "0..1", "ErpReqLineItem", "ErpPOLineItem"],
+                            ["AssetModelCatalogueItem", "0..1", "0..*", "AssetModelCatalogueItem", "ErpPOLineItems"],
+                            ["ErpPurchaseOrder", "1", "0..*", "ErpPurchaseOrder", "ErpPOLineItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -811,9 +815,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpRecDelvLineItems", "ErpRecDelvLineItem", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpRecDelvLineItems", "0..*", "1", "ErpRecDelvLineItem", "ErpReceiveDelivery"]
+                        ]
+                    )
                 );
             }
         }
@@ -947,11 +953,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"],
-                        ["ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*"],
-                        ["ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPayableLineItems", "0..*", "0..*", "ErpPayableLineItem", "ErpPayments"],
+                            ["ErpRecLineItems", "0..*", "0..*", "ErpRecLineItem", "ErpPayments"],
+                            ["ErpInvoiceLineItems", "0..*", "0..*", "ErpInvoiceLineItem", "ErpPayments"]
+                        ]
+                    )
                 );
             }
         }
@@ -1062,9 +1070,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpJournalEntries", "ErpJournalEntry", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpJournalEntries", "0..*", "1", "ErpJournalEntry", "ErpJournal"]
+                        ]
+                    )
                 );
             }
         }
@@ -1231,10 +1241,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "1"],
-                        ["CustomerAccount", "CustomerAccount", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpInvoiceLineItems", "0..*", "1", "ErpInvoiceLineItem", "ErpInvoice"],
+                            ["CustomerAccount", "0..1", "0..*", "CustomerAccount", "ErpInvoicees"]
+                        ]
+                    )
                 );
             }
         }
@@ -1345,9 +1357,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPOLineItems", "ErpPOLineItem", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPOLineItems", "0..*", "1", "ErpPOLineItem", "ErpPurchaseOrder"]
+                        ]
+                    )
                 );
             }
         }
@@ -1458,9 +1472,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpLedgerEntries", "ErpLedgerEntry", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpLedgerEntries", "0..*", "1", "ErpLedgerEntry", "ErpLedger"]
+                        ]
+                    )
                 );
             }
         }
@@ -1571,9 +1587,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpReqLineItems", "ErpReqLineItem", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpReqLineItems", "0..*", "1", "ErpReqLineItem", "ErpRequisition"]
+                        ]
+                    )
                 );
             }
         }
@@ -1691,10 +1709,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Design", "Design", "0..1", "0..*"],
-                        ["ErpBomItemDatas", "ErpBomItemData", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Design", "0..1", "0..*", "Design", "ErpBOMs"],
+                            ["ErpBomItemDatas", "0..*", "1", "ErpBomItemData", "ErpBOM"]
+                        ]
+                    )
                 );
             }
         }
@@ -1820,12 +1840,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpTimeEntries", "ErpTimeEntry", "0..*", "0..1"],
-                        ["WorkCostDetails", "WorkCostDetail", "0..*", "1"],
-                        ["Projects", "Project", "0..*", "1"],
-                        ["Works", "Work", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpTimeEntries", "0..*", "0..1", "ErpTimeEntry", "ErpProjectAccounting"],
+                            ["WorkCostDetails", "0..*", "1", "WorkCostDetail", "ErpProjectAccounting"],
+                            ["Projects", "0..*", "1", "Project", "ErpProjectAccounting"],
+                            ["Works", "0..*", "0..1", "Work", "ErpProjectAccounting"]
+                        ]
+                    )
                 );
             }
         }
@@ -2046,20 +2068,22 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ContainerErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..*"],
-                        ["ComponentErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..1"],
-                        ["ErpPayableLineItem", "ErpPayableLineItem", "0..1", "0..1"],
-                        ["ErpInvoice", "ErpInvoice", "1", "0..*"],
-                        ["CustomerBillingInfos", "CustomerBillingInfo", "0..*", "0..*"],
-                        ["ErpRecLineItem", "ErpRecLineItem", "0..1", "0..1"],
-                        ["UserAttributes", "UserAttribute", "0..*", "0..*"],
-                        ["ErpRecDelvLineItem", "ErpRecDelvLineItem", "0..1", "0..1"],
-                        ["ErpPayments", "ErpPayment", "0..*", "0..*"],
-                        ["ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"],
-                        ["WorkBillingInfos", "WorkBillingInfo", "0..*", "0..*"],
-                        ["ErpJournalEntries", "ErpJournalEntry", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ContainerErpInvoiceLineItem", "0..1", "0..*", "ErpInvoiceLineItem", "ComponentErpInvoiceLineItems"],
+                            ["ComponentErpInvoiceLineItems", "0..*", "0..1", "ErpInvoiceLineItem", "ContainerErpInvoiceLineItem"],
+                            ["ErpPayableLineItem", "0..1", "0..1", "ErpPayableLineItem", "ErpInvoiceLineItem"],
+                            ["ErpInvoice", "1", "0..*", "ErpInvoice", "ErpInvoiceLineItems"],
+                            ["CustomerBillingInfos", "0..*", "0..*", "CustomerBillingInfo", "ErpInvoiceLineItems"],
+                            ["ErpRecLineItem", "0..1", "0..1", "ErpRecLineItem", "ErpInvoiceLineItem"],
+                            ["UserAttributes", "0..*", "0..*", "UserAttribute", "ErpInvoiceLineItems"],
+                            ["ErpRecDelvLineItem", "0..1", "0..1", "ErpRecDelvLineItem", "ErpInvoiceLineItem"],
+                            ["ErpPayments", "0..*", "0..*", "ErpPayment", "ErpInvoiceLineItems"],
+                            ["ErpQuoteLineItem", "0..1", "0..1", "ErpQuoteLineItem", "ErpInvoiceLineItem"],
+                            ["WorkBillingInfos", "0..*", "0..*", "WorkBillingInfo", "ErpLineItems"],
+                            ["ErpJournalEntries", "0..*", "0..1", "ErpJournalEntry", "ErpInvoiceLineItem"]
+                        ]
+                    )
                 );
             }
         }
@@ -2269,9 +2293,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpRecLineItems", "ErpRecLineItem", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpRecLineItems", "0..*", "1", "ErpRecLineItem", "ErpReceivable"]
+                        ]
+                    )
                 );
             }
         }
@@ -2488,10 +2514,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPayableLineItems", "ErpPayableLineItem", "0..*", "1"],
-                        ["ContractorItems", "ContractorItem", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPayableLineItems", "0..*", "1", "ErpPayableLineItem", "ErpPayable"],
+                            ["ContractorItems", "0..*", "0..*", "ContractorItem", "ErpPayables"]
+                        ]
+                    )
                 );
             }
         }
@@ -2602,9 +2630,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpLedBudLineItems", "ErpLedBudLineItem", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpLedBudLineItems", "0..*", "1", "ErpLedBudLineItem", "ErpLedgerBudget"]
+                        ]
+                    )
                 );
             }
         }
@@ -2715,9 +2745,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpQuoteLineItems", "0..*", "1", "ErpQuoteLineItem", "ErpQuote"]
+                        ]
+                    )
                 );
             }
         }
@@ -2838,10 +2870,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpLedgerBudget", "ErpLedgerBudget", "1", "0..*"],
-                        ["ErpLedBudLineItem", "ErpLedgerEntry", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpLedgerBudget", "1", "0..*", "ErpLedgerBudget", "ErpLedBudLineItems"],
+                            ["ErpLedBudLineItem", "0..1", "0..1", "ErpLedgerEntry", "ErpLedgerEntry"]
+                        ]
+                    )
                 );
             }
         }
@@ -2959,9 +2993,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AssetModel", "AssetModel", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AssetModel", "0..1", "0..*", "AssetModel", "ErpInventoryCounts"]
+                        ]
+                    )
                 );
             }
         }
@@ -3082,10 +3118,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpTimeSheet", "ErpTimeSheet", "1", "0..*"],
-                        ["ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpTimeSheet", "1", "0..*", "ErpTimeSheet", "ErpTimeEntries"],
+                            ["ErpProjectAccounting", "0..1", "0..*", "ErpProjectAccounting", "ErpTimeEntries"]
+                        ]
+                    )
                 );
             }
         }
@@ -3221,13 +3259,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Design", "Design", "0..1", "0..1"],
-                        ["ErpQuote", "ErpQuote", "1", "0..*"],
-                        ["ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"],
-                        ["ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1"],
-                        ["AssetModelCatalogueItem", "AssetModelCatalogueItem", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Design", "0..1", "0..1", "Design", "ErpQuoteLineItem"],
+                            ["ErpQuote", "1", "0..*", "ErpQuote", "ErpQuoteLineItems"],
+                            ["ErpInvoiceLineItem", "0..1", "0..1", "ErpInvoiceLineItem", "ErpQuoteLineItem"],
+                            ["ErpReqLineItem", "0..1", "0..1", "ErpReqLineItem", "ErpQuoteLineItem"],
+                            ["AssetModelCatalogueItem", "0..1", "0..*", "AssetModelCatalogueItem", "ErpQuoteLineItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -3387,12 +3427,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpJounalEntry", "ErpJournalEntry", "0..1", "0..1"],
-                        ["ErpLedgerEntry", "ErpLedBudLineItem", "0..1", "0..1"],
-                        ["UserAttributes", "UserAttribute", "0..*", "0..*"],
-                        ["ErpLedger", "ErpLedger", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpJounalEntry", "0..1", "0..1", "ErpJournalEntry", "ErpLedgerEntry"],
+                            ["ErpLedgerEntry", "0..1", "0..1", "ErpLedBudLineItem", "ErpLedBudLineItem"],
+                            ["UserAttributes", "0..*", "0..*", "UserAttribute", "ErpLedgerEntries"],
+                            ["ErpLedger", "1", "0..*", "ErpLedger", "ErpLedgerEntries"]
+                        ]
+                    )
                 );
             }
         }
@@ -3510,9 +3552,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Asset", "Asset", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Asset", "0..1", "0..1", "Asset", "ErpItemMaster"]
+                        ]
+                    )
                 );
             }
         }
@@ -3647,12 +3691,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPayments", "ErpPayment", "0..*", "0..*"],
-                        ["ErpPayable", "ErpPayable", "1", "0..*"],
-                        ["ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"],
-                        ["ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPayments", "0..*", "0..*", "ErpPayment", "ErpPayableLineItems"],
+                            ["ErpPayable", "1", "0..*", "ErpPayable", "ErpPayableLineItems"],
+                            ["ErpInvoiceLineItem", "0..1", "0..1", "ErpInvoiceLineItem", "ErpPayableLineItem"],
+                            ["ErpJournalEntries", "0..*", "0..*", "ErpJournalEntry", "ErpPayableLineItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -3787,12 +3833,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"],
-                        ["ErpPayments", "ErpPayment", "0..*", "0..*"],
-                        ["ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"],
-                        ["ErpReceivable", "ErpReceivable", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpInvoiceLineItem", "0..1", "0..1", "ErpInvoiceLineItem", "ErpRecLineItem"],
+                            ["ErpPayments", "0..*", "0..*", "ErpPayment", "ErpRecLineItems"],
+                            ["ErpJournalEntries", "0..*", "0..*", "ErpJournalEntry", "ErpRecLineItems"],
+                            ["ErpReceivable", "1", "0..*", "ErpReceivable", "ErpRecLineItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -3913,10 +3961,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TypeMaterial", "TypeMaterial", "0..1", "0..*"],
-                        ["TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TypeMaterial", "0..1", "0..*", "TypeMaterial", "ErpIssueInventories"],
+                            ["TypeAsset", "0..1", "0..*", "GenericAssetModelOrMaterial", "ErpInventoryIssues"]
+                        ]
+                    )
                 );
             }
         }
@@ -4034,9 +4084,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Asset", "Asset", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Asset", "0..1", "0..1", "Asset", "ErpInventory"]
+                        ]
+                    )
                 );
             }
         }
@@ -4192,13 +4244,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"],
-                        ["TypeMaterial", "TypeMaterial", "0..1", "0..*"],
-                        ["ErpRequisition", "ErpRequisition", "1", "0..*"],
-                        ["TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*"],
-                        ["ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPOLineItem", "0..1", "0..1", "ErpPOLineItem", "ErpReqLineItem"],
+                            ["TypeMaterial", "0..1", "0..*", "TypeMaterial", "ErpReqLineItems"],
+                            ["ErpRequisition", "1", "0..*", "ErpRequisition", "ErpReqLineItems"],
+                            ["TypeAsset", "0..1", "0..*", "GenericAssetModelOrMaterial", "ErpReqLineItems"],
+                            ["ErpQuoteLineItem", "0..1", "0..1", "ErpQuoteLineItem", "ErpReqLineItem"]
+                        ]
+                    )
                 );
             }
         }
@@ -4314,9 +4368,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPersons", "OldPerson", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPersons", "0..*", "0..1", "OldPerson", "ErpPersonnel"]
+                        ]
+                    )
                 );
             }
         }
@@ -4488,14 +4544,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpLedgerEntry", "ErpLedgerEntry", "0..1", "0..1"],
-                        ["ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"],
-                        ["ErpJournal", "ErpJournal", "1", "0..*"],
-                        ["ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*"],
-                        ["CostTypes", "CostType", "0..*", "0..*"],
-                        ["ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpLedgerEntry", "0..1", "0..1", "ErpLedgerEntry", "ErpJounalEntry"],
+                            ["ErpPayableLineItems", "0..*", "0..*", "ErpPayableLineItem", "ErpJournalEntries"],
+                            ["ErpJournal", "1", "0..*", "ErpJournal", "ErpJournalEntries"],
+                            ["ErpRecLineItems", "0..*", "0..*", "ErpRecLineItem", "ErpJournalEntries"],
+                            ["CostTypes", "0..*", "0..*", "CostType", "ErpJournalEntries"],
+                            ["ErpInvoiceLineItem", "0..1", "0..*", "ErpInvoiceLineItem", "ErpJournalEntries"]
+                        ]
+                    )
                 );
             }
         }
@@ -4616,11 +4674,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*"],
-                        ["DesignLocation", "DesignLocation", "0..1", "0..*"],
-                        ["ErpBOM", "ErpBOM", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TypeAsset", "0..1", "0..*", "GenericAssetModelOrMaterial", "ErpBomItemDatas"],
+                            ["DesignLocation", "0..1", "0..*", "DesignLocation", "ErpBomItemDatas"],
+                            ["ErpBOM", "1", "0..*", "ErpBOM", "ErpBomItemDatas"]
+                        ]
+                    )
                 );
             }
         }
@@ -4738,9 +4798,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LandProperty", "LandProperty", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LandProperty", "0..1", "0..*", "LandProperty", "ErpSiteLevelDatas"]
+                        ]
+                    )
                 );
             }
         }
@@ -4875,12 +4937,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"],
-                        ["ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"],
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["ErpReceiveDelivery", "ErpReceiveDelivery", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPOLineItem", "0..1", "0..1", "ErpPOLineItem", "ErpRecDelLineItem"],
+                            ["ErpInvoiceLineItem", "0..1", "0..1", "ErpInvoiceLineItem", "ErpRecDelvLineItem"],
+                            ["Assets", "0..*", "0..*", "Asset", "ErpRecDeliveryItems"],
+                            ["ErpReceiveDelivery", "1", "0..*", "ErpReceiveDelivery", "ErpRecDelvLineItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -4991,9 +5055,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpPersons", "OldPerson", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpPersons", "0..*", "0..1", "OldPerson", "ErpCompetency"]
+                        ]
+                    )
                 );
             }
         }

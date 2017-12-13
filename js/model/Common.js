@@ -171,9 +171,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ConfigurationEvents", "0..*", "0..1", "ConfigurationEvent", "ChangedDocument"]
+                        ]
+                    )
                 );
             }
         }
@@ -403,10 +405,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
-                        ["Organisation", "Organisation", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ConfigurationEvents", "0..*", "0..1", "ConfigurationEvent", "ChangedOrganisationRole"],
+                            ["Organisation", "0..1", "0..*", "Organisation", "Roles"]
+                        ]
+                    )
                 );
             }
         }
@@ -678,12 +682,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CrewMembers", "CrewMember", "0..*", "0..1"],
-                        ["WorkAssets", "WorkAsset", "0..*", "0..1"],
-                        ["WorkTasks", "WorkTask", "0..*", "0..*"],
-                        ["CrewType", "CrewType", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CrewMembers", "0..*", "0..1", "CrewMember", "Crew"],
+                            ["WorkAssets", "0..*", "0..1", "WorkAsset", "Crew"],
+                            ["WorkTasks", "0..*", "0..*", "WorkTask", "Crews"],
+                            ["CrewType", "0..1", "0..*", "CrewType", "Crews"]
+                        ]
+                    )
                 );
             }
         }
@@ -816,10 +822,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["ScheduledEventData", "ScheduledEventData", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Assets", "0..*", "0..*", "Asset", "ScheduledEvents"],
+                            ["ScheduledEventData", "0..1", "0..*", "ScheduledEventData", "ScheduledEvents"]
+                        ]
+                    )
                 );
             }
         }
@@ -1069,9 +1077,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSchedule", "TimeSchedule", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSchedule", "1", "0..*", "TimeSchedule", "TimePoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -1216,10 +1226,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["Organisations", "Organisation", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Assets", "0..*", "0..*", "Asset", "ActivityRecords"],
+                            ["Organisations", "0..*", "0..*", "Organisation", "ActivityRecords"]
+                        ]
+                    )
                 );
             }
         }
@@ -1457,11 +1469,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
-                        ["Person", "Person", "0..1", "0..*"],
-                        ["Appointments", "Appointment", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ConfigurationEvents", "0..*", "0..1", "ConfigurationEvent", "ChangedPersonRole"],
+                            ["Person", "0..1", "0..*", "Person", "Roles"],
+                            ["Appointments", "0..*", "0..*", "Appointment", "Persons"]
+                        ]
+                    )
                 );
             }
         }
@@ -1577,9 +1591,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Locations", "Location", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Locations", "0..*", "0..1", "Location", "CoordinateSystem"]
+                        ]
+                    )
                 );
             }
         }
@@ -1962,11 +1978,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Crews", "OldCrew", "0..*", "1..*"],
-                        ["ActivityRecords", "ActivityRecord", "0..*", "0..*"],
-                        ["Roles", "OrganisationRole", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Crews", "0..*", "1..*", "OldCrew", "Organisations"],
+                            ["ActivityRecords", "0..*", "0..*", "ActivityRecord", "Organisations"],
+                            ["Roles", "0..*", "0..1", "OrganisationRole", "Organisation"]
+                        ]
+                    )
                 );
             }
         }
@@ -2077,9 +2095,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Crews", "Crew", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Crews", "0..*", "0..1", "Crew", "CrewType"]
+                        ]
+                    )
                 );
             }
         }
@@ -2292,18 +2312,20 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Assets", "Asset", "0..*", "0..1"],
-                        ["PowerSystemResources", "PowerSystemResource", "0..*", "0..1"],
-                        ["Measurements", "Measurement", "0..*", "0..*"],
-                        ["Hazards", "AssetLocationHazard", "0..*", "0..*"],
-                        ["LandProperties", "LandProperty", "0..*", "0..*"],
-                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
-                        ["Crews", "OldCrew", "0..*", "0..*"],
-                        ["PositionPoints", "PositionPoint", "0..*", "1"],
-                        ["Routes", "Route", "0..*", "0..*"],
-                        ["CoordinateSystem", "CoordinateSystem", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Assets", "0..*", "0..1", "Asset", "Location"],
+                            ["PowerSystemResources", "0..*", "0..1", "PowerSystemResource", "Location"],
+                            ["Measurements", "0..*", "0..*", "Measurement", "Locations"],
+                            ["Hazards", "0..*", "0..*", "AssetLocationHazard", "Locations"],
+                            ["LandProperties", "0..*", "0..*", "LandProperty", "Locations"],
+                            ["ConfigurationEvents", "0..*", "0..1", "ConfigurationEvent", "ChangedLocation"],
+                            ["Crews", "0..*", "0..*", "OldCrew", "Locations"],
+                            ["PositionPoints", "0..*", "1", "PositionPoint", "Location"],
+                            ["Routes", "0..*", "0..*", "Route", "Locations"],
+                            ["CoordinateSystem", "0..1", "0..*", "CoordinateSystem", "Locations"]
+                        ]
+                    )
                 );
             }
         }
@@ -2424,10 +2446,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AssetOwner", "AssetOwner", "0..1", "0..*"],
-                        ["Asset", "Asset", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AssetOwner", "0..1", "0..*", "AssetOwner", "Ownerships"],
+                            ["Asset", "0..1", "0..*", "Asset", "Ownerships"]
+                        ]
+                    )
                 );
             }
         }
@@ -2684,9 +2708,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Location", "Location", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Location", "1", "0..*", "Location", "PositionPoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -2843,14 +2869,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*"],
-                        ["Transaction", "Transaction", "0..1", "0..*"],
-                        ["RatingSpecification", "Specification", "0..1", "0..*"],
-                        ["ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"],
-                        ["ErpLedgerEntries", "ErpLedgerEntry", "0..*", "0..*"],
-                        ["PropertySpecification", "Specification", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ErpInvoiceLineItems", "0..*", "0..*", "ErpInvoiceLineItem", "UserAttributes"],
+                            ["Transaction", "0..1", "0..*", "Transaction", "UserAttributes"],
+                            ["RatingSpecification", "0..1", "0..*", "Specification", "Ratings"],
+                            ["ProcedureDataSets", "0..*", "0..*", "ProcedureDataSet", "Properties"],
+                            ["ErpLedgerEntries", "0..*", "0..*", "ErpLedgerEntry", "UserAttributes"],
+                            ["PropertySpecification", "0..1", "0..*", "Specification", "AssetProperites"]
+                        ]
+                    )
                 );
             }
         }
@@ -2981,10 +3009,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["InspectionDataSet", "InspectionDataSet", "1", "0..*"],
-                        ["ScheduledEvents", "ScheduledEvent", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["InspectionDataSet", "1", "0..*", "InspectionDataSet", "AccordingToSchedules"],
+                            ["ScheduledEvents", "0..*", "0..1", "ScheduledEvent", "ScheduledEventData"]
+                        ]
+                    )
                 );
             }
         }
@@ -3259,9 +3289,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Roles", "PersonRole", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Roles", "0..*", "0..1", "PersonRole", "Person"]
+                        ]
+                    )
                 );
             }
         }
@@ -3391,10 +3423,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Works", "Work", "0..*", "0..*"],
-                        ["Persons", "PersonRole", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Works", "0..*", "0..*", "Work", "Appointments"],
+                            ["Persons", "0..*", "0..*", "PersonRole", "Appointments"]
+                        ]
+                    )
                 );
             }
         }
@@ -3681,9 +3715,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimePoints", "TimePoint", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimePoints", "0..*", "1", "TimePoint", "TimeSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -3950,15 +3986,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ChangedPersonRole", "PersonRole", "0..1", "0..*"],
-                        ["ChangedOrganisationRole", "OrganisationRole", "0..1", "0..*"],
-                        ["ChangedAsset", "Asset", "0..1", "0..*"],
-                        ["ChangedLocation", "Location", "0..1", "0..*"],
-                        ["ChangedServiceCategory", "ServiceCategory", "0..1", "0..*"],
-                        ["ChangedUsagePoint", "UsagePoint", "0..1", "0..*"],
-                        ["ChangedDocument", "Document", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ChangedPersonRole", "0..1", "0..*", "PersonRole", "ConfigurationEvents"],
+                            ["ChangedOrganisationRole", "0..1", "0..*", "OrganisationRole", "ConfigurationEvents"],
+                            ["ChangedAsset", "0..1", "0..*", "Asset", "ConfigurationEvents"],
+                            ["ChangedLocation", "0..1", "0..*", "Location", "ConfigurationEvents"],
+                            ["ChangedServiceCategory", "0..1", "0..*", "ServiceCategory", "ConfigurationEvents"],
+                            ["ChangedUsagePoint", "0..1", "0..*", "UsagePoint", "ConfigurationEvents"],
+                            ["ChangedDocument", "0..1", "0..*", "Document", "ConfigurationEvents"]
+                        ]
+                    )
                 );
             }
         }
@@ -4171,10 +4209,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Crew", "Crew", "0..1", "0..*"],
-                        ["SwitchingSteps", "SwitchingStep", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Crew", "0..1", "0..*", "Crew", "CrewMembers"],
+                            ["SwitchingSteps", "0..*", "0..1", "SwitchingStep", "CrewMember"]
+                        ]
+                    )
                 );
             }
         }
@@ -4288,10 +4328,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Incidents", "Incident", "0..*", "0..1"],
-                        ["SwitchingSteps", "SwitchingStep", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Incidents", "0..*", "0..1", "Incident", "Owner"],
+                            ["SwitchingSteps", "0..*", "0..1", "SwitchingStep", "Operator"]
+                        ]
+                    )
                 );
             }
         }

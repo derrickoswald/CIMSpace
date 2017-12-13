@@ -261,12 +261,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DuctBank", "DuctBank", "0..1", "0..*"],
-                        ["WirePositions", "WirePosition", "1..*", "0..1"],
-                        ["Structures", "Structure", "0..*", "0..*"],
-                        ["PerLengthParameters", "PerLengthLineParameter", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DuctBank", "0..1", "0..*", "DuctBank", "WireSpacingInfos"],
+                            ["WirePositions", "1..*", "0..1", "WirePosition", "WireSpacingInfo"],
+                            ["Structures", "0..*", "0..*", "Structure", "WireSpacingInfos"],
+                            ["PerLengthParameters", "0..*", "0..1", "PerLengthLineParameter", "WireSpacingInfo"]
+                        ]
+                    )
                 );
             }
         }
@@ -556,10 +558,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerTransformerInfo", "PowerTransformerInfo", "1", "1..*"],
-                        ["TransformerEndInfos", "TransformerEndInfo", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerTransformerInfo", "1", "1..*", "PowerTransformerInfo", "TransformerTankInfos"],
+                            ["TransformerEndInfos", "1..*", "1", "TransformerEndInfo", "TransformerTankInfo"]
+                        ]
+                    )
                 );
             }
         }
@@ -777,9 +781,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransformerTankInfos", "TransformerTankInfo", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransformerTankInfos", "1..*", "1", "TransformerTankInfo", "PowerTransformerInfo"]
+                        ]
+                    )
                 );
             }
         }
@@ -971,9 +977,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PerLengthParameters", "PerLengthLineParameter", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PerLengthParameters", "0..*", "0..*", "PerLengthLineParameter", "WireInfos"]
+                        ]
+                    )
                 );
             }
         }
@@ -1104,9 +1112,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ShuntCompensatorControl", "ShuntCompensatorControl", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ShuntCompensatorControl", "0..1", "0..1", "ShuntCompensatorControl", "ShuntCompensatorInfo"]
+                        ]
+                    )
                 );
             }
         }
@@ -1356,9 +1366,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WireSpacingInfo", "WireSpacingInfo", "0..1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WireSpacingInfo", "0..1", "1..*", "WireSpacingInfo", "WirePositions"]
+                        ]
+                    )
                 );
             }
         }
@@ -1563,18 +1575,20 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergisedEndNoLoadTests", "NoLoadTest", "0..*", "0..1"],
-                        ["ToMeshImpedances", "TransformerMeshImpedance", "0..*", "0..*"],
-                        ["EnergisedEndShortCircuitTests", "ShortCircuitTest", "0..*", "1"],
-                        ["GroundedEndShortCircuitTests", "ShortCircuitTest", "0..*", "1..*"],
-                        ["TransformerStarImpedance", "TransformerStarImpedance", "0..1", "0..1"],
-                        ["TransformerTankInfo", "TransformerTankInfo", "1", "1..*"],
-                        ["OpenEndOpenCircuitTests", "OpenCircuitTest", "0..*", "1"],
-                        ["FromMeshImpedances", "TransformerMeshImpedance", "0..*", "0..1"],
-                        ["CoreAdmittance", "TransformerCoreAdmittance", "0..1", "0..1"],
-                        ["EnergisedEndOpenCircuitTests", "OpenCircuitTest", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergisedEndNoLoadTests", "0..*", "0..1", "NoLoadTest", "EnergisedEnd"],
+                            ["ToMeshImpedances", "0..*", "0..*", "TransformerMeshImpedance", "ToTransformerEndInfos"],
+                            ["EnergisedEndShortCircuitTests", "0..*", "1", "ShortCircuitTest", "EnergisedEnd"],
+                            ["GroundedEndShortCircuitTests", "0..*", "1..*", "ShortCircuitTest", "GroundedEnds"],
+                            ["TransformerStarImpedance", "0..1", "0..1", "TransformerStarImpedance", "TransformerEndInfo"],
+                            ["TransformerTankInfo", "1", "1..*", "TransformerTankInfo", "TransformerEndInfos"],
+                            ["OpenEndOpenCircuitTests", "0..*", "1", "OpenCircuitTest", "OpenEnd"],
+                            ["FromMeshImpedances", "0..*", "0..1", "TransformerMeshImpedance", "FromTransformerEndInfo"],
+                            ["CoreAdmittance", "0..1", "0..1", "TransformerCoreAdmittance", "TransformerEndInfo"],
+                            ["EnergisedEndOpenCircuitTests", "0..*", "1", "OpenCircuitTest", "EnergisedEnd"]
+                        ]
+                    )
                 );
             }
         }
@@ -2318,10 +2332,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergisedEnd", "TransformerEndInfo", "1", "0..*"],
-                        ["GroundedEnds", "TransformerEndInfo", "1..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergisedEnd", "1", "0..*", "TransformerEndInfo", "EnergisedEndShortCircuitTests"],
+                            ["GroundedEnds", "1..*", "0..*", "TransformerEndInfo", "GroundedEndShortCircuitTests"]
+                        ]
+                    )
                 );
             }
         }
@@ -2459,9 +2475,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergisedEnd", "TransformerEndInfo", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergisedEnd", "0..1", "0..*", "TransformerEndInfo", "EnergisedEndNoLoadTests"]
+                        ]
+                    )
                 );
             }
         }
@@ -2604,10 +2622,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OpenEnd", "TransformerEndInfo", "1", "0..*"],
-                        ["EnergisedEnd", "TransformerEndInfo", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OpenEnd", "1", "0..*", "TransformerEndInfo", "OpenEndOpenCircuitTests"],
+                            ["EnergisedEnd", "1", "0..*", "TransformerEndInfo", "EnergisedEndOpenCircuitTests"]
+                        ]
+                    )
                 );
             }
         }

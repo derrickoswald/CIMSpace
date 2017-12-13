@@ -117,10 +117,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ResourceGroup", "ResourceGroup", "1", "0..*"],
-                        ["RTOs", "RTO", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ResourceGroup", "1", "0..*", "ResourceGroup", "ResourceGroupReqs"],
+                            ["RTOs", "0..*", "0..*", "RTO", "ResourceGroupReqs"]
+                        ]
+                    )
                 );
             }
         }
@@ -233,9 +235,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReserveReq", "ReserveReq", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReserveReq", "1", "1", "ReserveReq", "ReserveReqCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -363,10 +367,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ResourceGroupReqs", "ResourceGroupReq", "0..*", "1"],
-                        ["RegisteredResources", "RegisteredResource", "1..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ResourceGroupReqs", "0..*", "1", "ResourceGroupReq", "ResourceGroup"],
+                            ["RegisteredResources", "1..*", "0..*", "RegisteredResource", "ResourceGroups"]
+                        ]
+                    )
                 );
             }
         }
@@ -479,9 +485,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReserveReq", "ReserveReq", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReserveReq", "0..1", "0..1", "ReserveReq", "SensitivityPriceCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -602,11 +610,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketProduct", "MarketProduct", "1", "0..*"],
-                        ["SensitivityPriceCurve", "SensitivityPriceCurve", "0..1", "0..1"],
-                        ["ReserveReqCurve", "ReserveReqCurve", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketProduct", "1", "0..*", "MarketProduct", "ReserveReqs"],
+                            ["SensitivityPriceCurve", "0..1", "0..1", "SensitivityPriceCurve", "ReserveReq"],
+                            ["ReserveReqCurve", "1", "1", "ReserveReqCurve", "ReserveReq"]
+                        ]
+                    )
                 );
             }
         }

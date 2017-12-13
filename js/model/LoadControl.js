@@ -317,9 +317,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Switches", "Switch", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Switches", "0..*", "0..*", "Switch", "ConnectDisconnectFunctions"]
+                        ]
+                    )
                 );
             }
         }

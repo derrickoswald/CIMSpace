@@ -295,11 +295,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceGroups", "EndDeviceGroup", "0..*", "0..*"],
-                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..*"],
-                        ["UsagePointGroups", "UsagePointGroup", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceGroups", "0..*", "0..*", "EndDeviceGroup", "DemandResponsePrograms"],
+                            ["CustomerAgreements", "0..*", "0..*", "CustomerAgreement", "DemandResponsePrograms"],
+                            ["UsagePointGroups", "0..*", "0..*", "UsagePointGroup", "DemandResponsePrograms"]
+                        ]
+                    )
                 );
             }
         }
@@ -433,11 +435,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DemandResponsePrograms", "DemandResponseProgram", "0..*", "0..*"],
-                        ["EndDeviceControls", "EndDeviceControl", "0..*", "0..*"],
-                        ["EndDevices", "EndDevice", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DemandResponsePrograms", "0..*", "0..*", "DemandResponseProgram", "EndDeviceGroups"],
+                            ["EndDeviceControls", "0..*", "0..*", "EndDeviceControl", "EndDeviceGroups"],
+                            ["EndDevices", "0..*", "0..*", "EndDevice", "EndDeviceGroups"]
+                        ]
+                    )
                 );
             }
         }
@@ -737,10 +741,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceFunction", "EndDeviceFunction", "0..1", "0..*"],
-                        ["Channels", "Channel", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceFunction", "0..1", "0..*", "EndDeviceFunction", "Registers"],
+                            ["Channels", "0..*", "0..1", "Channel", "Register"]
+                        ]
+                    )
                 );
             }
         }
@@ -929,14 +935,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceGroups", "EndDeviceGroup", "0..*", "0..*"],
-                        ["EndDeviceControlType", "EndDeviceControlType", "1", "0..*"],
-                        ["EndDeviceAction", "EndDeviceAction", "0..1", "0..1"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
-                        ["UsagePointGroups", "UsagePointGroup", "0..*", "0..*"],
-                        ["EndDevices", "EndDevice", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceGroups", "0..*", "0..*", "EndDeviceGroup", "EndDeviceControls"],
+                            ["EndDeviceControlType", "1", "0..*", "EndDeviceControlType", "EndDeviceControls"],
+                            ["EndDeviceAction", "0..1", "0..1", "EndDeviceAction", "EndDeviceControl"],
+                            ["UsagePoints", "0..*", "0..*", "UsagePoint", "EndDeviceControls"],
+                            ["UsagePointGroups", "0..*", "0..*", "UsagePointGroup", "EndDeviceControls"],
+                            ["EndDevices", "0..*", "0..*", "EndDevice", "EndDeviceControls"]
+                        ]
+                    )
                 );
             }
         }
@@ -1112,9 +1120,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PanPricing", "PanPricing", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PanPricing", "0..1", "0..*", "PanPricing", "PanPricingDetails"]
+                        ]
+                    )
                 );
             }
         }
@@ -1408,25 +1418,27 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Equipments", "Equipment", "0..*", "0..*"],
-                        ["MeterReadings", "MeterReading", "0..*", "0..1"],
-                        ["CustomerAgreement", "CustomerAgreement", "0..1", "0..*"],
-                        ["PricingStructures", "PricingStructure", "0..*", "0..*"],
-                        ["ServiceSupplier", "ServiceSupplier", "0..1", "0..*"],
-                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
-                        ["EndDevices", "EndDevice", "0..*", "0..1"],
-                        ["Outages", "Outage", "0..*", "0..*"],
-                        ["MeterServiceWorks", "MeterServiceWork", "0..*", "0..1"],
-                        ["MetrologyRequirements", "MetrologyRequirement", "0..*", "0..*"],
-                        ["ServiceMultipliers", "ServiceMultiplier", "0..*", "0..1"],
-                        ["UsagePointLocation", "UsagePointLocation", "0..1", "0..*"],
-                        ["EndDeviceEvents", "EndDeviceEvent", "0..*", "0..1"],
-                        ["ServiceCategory", "ServiceCategory", "0..1", "0..*"],
-                        ["ServiceLocation", "ServiceLocation", "0..1", "0..*"],
-                        ["UsagePointGroups", "UsagePointGroup", "0..*", "0..*"],
-                        ["EndDeviceControls", "EndDeviceControl", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Equipments", "0..*", "0..*", "Equipment", "UsagePoints"],
+                            ["MeterReadings", "0..*", "0..1", "MeterReading", "UsagePoint"],
+                            ["CustomerAgreement", "0..1", "0..*", "CustomerAgreement", "UsagePoints"],
+                            ["PricingStructures", "0..*", "0..*", "PricingStructure", "UsagePoints"],
+                            ["ServiceSupplier", "0..1", "0..*", "ServiceSupplier", "UsagePoints"],
+                            ["ConfigurationEvents", "0..*", "0..1", "ConfigurationEvent", "ChangedUsagePoint"],
+                            ["EndDevices", "0..*", "0..1", "EndDevice", "UsagePoint"],
+                            ["Outages", "0..*", "0..*", "Outage", "UsagePoints"],
+                            ["MeterServiceWorks", "0..*", "0..1", "MeterServiceWork", "UsagePoint"],
+                            ["MetrologyRequirements", "0..*", "0..*", "MetrologyRequirement", "UsagePoints"],
+                            ["ServiceMultipliers", "0..*", "0..1", "ServiceMultiplier", "UsagePoint"],
+                            ["UsagePointLocation", "0..1", "0..*", "UsagePointLocation", "UsagePoints"],
+                            ["EndDeviceEvents", "0..*", "0..1", "EndDeviceEvent", "UsagePoint"],
+                            ["ServiceCategory", "0..1", "0..*", "ServiceCategory", "UsagePoints"],
+                            ["ServiceLocation", "0..1", "0..*", "ServiceLocation", "UsagePoints"],
+                            ["UsagePointGroups", "0..*", "0..*", "UsagePointGroup", "UsagePoints"],
+                            ["EndDeviceControls", "0..*", "0..*", "EndDeviceControl", "UsagePoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -1656,9 +1668,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceEvent", "EndDeviceEvent", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceEvent", "0..1", "0..*", "EndDeviceEvent", "EndDeviceEventDetails"]
+                        ]
+                    )
                 );
             }
         }
@@ -1806,14 +1820,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["UsagePoint", "UsagePoint", "0..1", "0..*"],
-                        ["Meter", "Meter", "0..1", "0..*"],
-                        ["Readings", "Reading", "0..*", "0..*"],
-                        ["EndDeviceEvents", "EndDeviceEvent", "0..*", "0..1"],
-                        ["CustomerAgreement", "CustomerAgreement", "0..1", "0..*"],
-                        ["IntervalBlocks", "IntervalBlock", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["UsagePoint", "0..1", "0..*", "UsagePoint", "MeterReadings"],
+                            ["Meter", "0..1", "0..*", "Meter", "MeterReadings"],
+                            ["Readings", "0..*", "0..*", "Reading", "MeterReadings"],
+                            ["EndDeviceEvents", "0..*", "0..1", "EndDeviceEvent", "MeterReading"],
+                            ["CustomerAgreement", "0..1", "0..*", "CustomerAgreement", "MeterReadings"],
+                            ["IntervalBlocks", "0..*", "0..1", "IntervalBlock", "MeterReading"]
+                        ]
+                    )
                 );
             }
         }
@@ -1936,10 +1952,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Register", "Register", "0..1", "0..*"],
-                        ["ReadingType", "ReadingType", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Register", "0..1", "0..*", "Register", "Channels"],
+                            ["ReadingType", "0..1", "0..1", "ReadingType", "Channel"]
+                        ]
+                    )
                 );
             }
         }
@@ -2072,10 +2090,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReadingQualityType", "ReadingQualityType", "1", "0..*"],
-                        ["Reading", "BaseReading", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReadingQualityType", "1", "0..*", "ReadingQualityType", "ReadingQualities"],
+                            ["Reading", "0..1", "0..*", "BaseReading", "ReadingQualities"]
+                        ]
+                    )
                 );
             }
         }
@@ -2198,9 +2218,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Meter", "Meter", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Meter", "0..1", "0..*", "Meter", "MeterMultipliers"]
+                        ]
+                    )
                 );
             }
         }
@@ -2326,9 +2348,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["UsagePoints", "UsagePoint", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["UsagePoints", "0..*", "0..1", "UsagePoint", "UsagePointLocation"]
+                        ]
+                    )
                 );
             }
         }
@@ -2455,10 +2479,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReadingTypes", "ReadingType", "1..*", "0..*"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReadingTypes", "1..*", "0..*", "ReadingType", "MetrologyRequirements"],
+                            ["UsagePoints", "0..*", "0..*", "UsagePoint", "MetrologyRequirements"]
+                        ]
+                    )
                 );
             }
         }
@@ -2579,10 +2605,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Registers", "Register", "0..*", "0..1"],
-                        ["EndDevice", "EndDevice", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Registers", "0..*", "0..1", "Register", "EndDeviceFunction"],
+                            ["EndDevice", "0..1", "0..*", "EndDevice", "EndDeviceFunctions"]
+                        ]
+                    )
                 );
             }
         }
@@ -2710,9 +2738,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ComFunctions", "ComFunction", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ComFunctions", "0..*", "0..1", "ComFunction", "ComModule"]
+                        ]
+                    )
                 );
             }
         }
@@ -2927,13 +2957,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Readings", "Reading", "0..*", "1"],
-                        ["PendingCalculation", "PendingCalculation", "0..1", "1"],
-                        ["IntervalBlocks", "IntervalBlock", "0..*", "1"],
-                        ["MetrologyRequirements", "MetrologyRequirement", "0..*", "1..*"],
-                        ["Channel", "Channel", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Readings", "0..*", "1", "Reading", "ReadingType"],
+                            ["PendingCalculation", "0..1", "1", "PendingCalculation", "ReadingType"],
+                            ["IntervalBlocks", "0..*", "1", "IntervalBlock", "ReadingType"],
+                            ["MetrologyRequirements", "0..*", "1..*", "MetrologyRequirement", "ReadingTypes"],
+                            ["Channel", "0..1", "0..1", "Channel", "ReadingType"]
+                        ]
+                    )
                 );
             }
         }
@@ -3063,12 +3095,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PendingCalculation", "PendingCalculation", "0..1", "0..*"],
-                        ["ReadingType", "ReadingType", "1", "0..*"],
-                        ["IntervalReadings", "IntervalReading", "0..*", "0..*"],
-                        ["MeterReading", "MeterReading", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PendingCalculation", "0..1", "0..*", "PendingCalculation", "IntervalBlocks"],
+                            ["ReadingType", "1", "0..*", "ReadingType", "IntervalBlocks"],
+                            ["IntervalReadings", "0..*", "0..*", "IntervalReading", "IntervalBlocks"],
+                            ["MeterReading", "0..1", "0..*", "MeterReading", "IntervalBlocks"]
+                        ]
+                    )
                 );
             }
         }
@@ -3320,9 +3354,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceControl", "EndDeviceControl", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceControl", "0..1", "0..1", "EndDeviceControl", "EndDeviceAction"]
+                        ]
+                    )
                 );
             }
         }
@@ -3455,9 +3491,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReadingQualities", "ReadingQuality", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReadingQualities", "0..*", "0..1", "ReadingQuality", "Reading"]
+                        ]
+                    )
                 );
             }
         }
@@ -3603,13 +3641,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceEventDetails", "EndDeviceEventDetail", "0..*", "0..1"],
-                        ["EndDevice", "EndDevice", "0..1", "0..*"],
-                        ["UsagePoint", "UsagePoint", "0..1", "0..*"],
-                        ["MeterReading", "MeterReading", "0..1", "0..*"],
-                        ["EndDeviceEventType", "EndDeviceEventType", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceEventDetails", "0..*", "0..1", "EndDeviceEventDetail", "EndDeviceEvent"],
+                            ["EndDevice", "0..1", "0..*", "EndDevice", "EndDeviceEvents"],
+                            ["UsagePoint", "0..1", "0..*", "UsagePoint", "EndDeviceEvents"],
+                            ["MeterReading", "0..1", "0..*", "MeterReading", "EndDeviceEvents"],
+                            ["EndDeviceEventType", "1", "0..*", "EndDeviceEventType", "EndDeviceEvents"]
+                        ]
+                    )
                 );
             }
         }
@@ -3732,9 +3772,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["UsagePoint", "UsagePoint", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["UsagePoint", "0..1", "0..*", "UsagePoint", "ServiceMultipliers"]
+                        ]
+                    )
                 );
             }
         }
@@ -3877,10 +3919,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReadingType", "ReadingType", "1", "0..1"],
-                        ["IntervalBlocks", "IntervalBlock", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReadingType", "1", "0..1", "ReadingType", "PendingCalculation"],
+                            ["IntervalBlocks", "0..*", "0..1", "IntervalBlock", "PendingCalculation"]
+                        ]
+                    )
                 );
             }
         }
@@ -4122,9 +4166,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceControls", "EndDeviceControl", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceControls", "0..*", "1", "EndDeviceControl", "EndDeviceControlType"]
+                        ]
+                    )
                 );
             }
         }
@@ -4258,11 +4304,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
-                        ["EndDeviceControls", "EndDeviceControl", "0..*", "0..*"],
-                        ["DemandResponsePrograms", "DemandResponseProgram", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["UsagePoints", "0..*", "0..*", "UsagePoint", "UsagePointGroups"],
+                            ["EndDeviceControls", "0..*", "0..*", "EndDeviceControl", "UsagePointGroups"],
+                            ["DemandResponsePrograms", "0..*", "0..*", "DemandResponseProgram", "UsagePointGroups"]
+                        ]
+                    )
                 );
             }
         }
@@ -4383,11 +4431,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Meter", "Meter", "0..1", "0..*"],
-                        ["OldMeter", "Meter", "0..1", "0..*"],
-                        ["UsagePoint", "UsagePoint", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Meter", "0..1", "0..*", "Meter", "MeterServiceWorks"],
+                            ["OldMeter", "0..1", "0..*", "Meter", "MeterReplacementWorks"],
+                            ["UsagePoint", "0..1", "0..*", "UsagePoint", "MeterServiceWorks"]
+                        ]
+                    )
                 );
             }
         }
@@ -4515,9 +4565,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReadingQualities", "ReadingQuality", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReadingQualities", "0..*", "1", "ReadingQuality", "ReadingQualityType"]
+                        ]
+                    )
                 );
             }
         }
@@ -4650,9 +4702,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceEvents", "EndDeviceEvent", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceEvents", "0..*", "1", "EndDeviceEvent", "EndDeviceEventType"]
+                        ]
+                    )
                 );
             }
         }
@@ -4829,16 +4883,18 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDeviceFunctions", "EndDeviceFunction", "0..*", "0..1"],
-                        ["EndDeviceInfo", "EndDeviceInfo", "0..1", "0..*"],
-                        ["EndDeviceEvents", "EndDeviceEvent", "0..*", "0..1"],
-                        ["ServiceLocation", "ServiceLocation", "0..1", "0..*"],
-                        ["Customer", "Customer", "0..1", "0..*"],
-                        ["UsagePoint", "UsagePoint", "0..1", "0..*"],
-                        ["EndDeviceGroups", "EndDeviceGroup", "0..*", "0..*"],
-                        ["EndDeviceControls", "EndDeviceControl", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDeviceFunctions", "0..*", "0..1", "EndDeviceFunction", "EndDevice"],
+                            ["EndDeviceInfo", "0..1", "0..*", "EndDeviceInfo", "EndDevices"],
+                            ["EndDeviceEvents", "0..*", "0..1", "EndDeviceEvent", "EndDevice"],
+                            ["ServiceLocation", "0..1", "0..*", "ServiceLocation", "EndDevices"],
+                            ["Customer", "0..1", "0..*", "Customer", "EndDevices"],
+                            ["UsagePoint", "0..1", "0..*", "UsagePoint", "EndDevices"],
+                            ["EndDeviceGroups", "0..*", "0..*", "EndDeviceGroup", "EndDevices"],
+                            ["EndDeviceControls", "0..*", "0..*", "EndDeviceControl", "EndDevices"]
+                        ]
+                    )
                 );
             }
         }
@@ -5163,9 +5219,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDevices", "EndDevice", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDevices", "0..*", "0..1", "EndDevice", "EndDeviceInfo"]
+                        ]
+                    )
                 );
             }
         }
@@ -5408,9 +5466,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ComModule", "ComModule", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ComModule", "0..1", "0..*", "ComModule", "ComFunctions"]
+                        ]
+                    )
                 );
             }
         }
@@ -5806,9 +5866,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PanPricingDetails", "PanPricingDetail", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PanPricingDetails", "0..*", "0..1", "PanPricingDetail", "PanPricing"]
+                        ]
+                    )
                 );
             }
         }
@@ -5923,9 +5985,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["IntervalBlocks", "IntervalBlock", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["IntervalBlocks", "0..*", "0..*", "IntervalBlock", "IntervalReadings"]
+                        ]
+                    )
                 );
             }
         }
@@ -6052,10 +6116,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ReadingType", "ReadingType", "1", "0..*"],
-                        ["MeterReadings", "MeterReading", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ReadingType", "1", "0..*", "ReadingType", "Readings"],
+                            ["MeterReadings", "0..*", "0..*", "MeterReading", "Readings"]
+                        ]
+                    )
                 );
             }
         }
@@ -6193,13 +6259,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MeterServiceWorks", "MeterServiceWork", "0..*", "0..1"],
-                        ["MeterReadings", "MeterReading", "0..*", "0..1"],
-                        ["MeterMultipliers", "MeterMultiplier", "0..*", "0..1"],
-                        ["MeterReplacementWorks", "MeterServiceWork", "0..*", "0..1"],
-                        ["VendingTransactions", "Transaction", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MeterServiceWorks", "0..*", "0..1", "MeterServiceWork", "Meter"],
+                            ["MeterReadings", "0..*", "0..1", "MeterReading", "Meter"],
+                            ["MeterMultipliers", "0..*", "0..1", "MeterMultiplier", "Meter"],
+                            ["MeterReplacementWorks", "0..*", "0..1", "MeterServiceWork", "OldMeter"],
+                            ["VendingTransactions", "0..*", "0..1", "Transaction", "Meter"]
+                        ]
+                    )
                 );
             }
         }

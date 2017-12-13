@@ -122,10 +122,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ForMktMeasurement", "MktMeasurement", "1..*", "1"],
-                        ["ByMktMeasurement", "MktMeasurement", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ForMktMeasurement", "1..*", "1", "MktMeasurement", "ForTiePoint"],
+                            ["ByMktMeasurement", "1..*", "1", "MktMeasurement", "ByTiePoint"]
+                        ]
+                    )
                 );
             }
         }

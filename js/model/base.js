@@ -425,6 +425,11 @@ define
             {
                 return (obj || { id: id });
             }
+
+            relations ()
+            {
+                return ([]);
+            }
          }
 
         return (

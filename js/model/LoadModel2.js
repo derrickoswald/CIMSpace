@@ -116,9 +116,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LoadGroup", "NonConformLoadGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LoadGroup", "0..1", "0..*", "NonConformLoadGroup", "EnergyConsumers"]
+                        ]
+                    )
                 );
             }
         }
@@ -229,9 +231,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LoadGroup", "ConformLoadGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LoadGroup", "0..1", "0..*", "ConformLoadGroup", "EnergyConsumers"]
+                        ]
+                    )
                 );
             }
         }

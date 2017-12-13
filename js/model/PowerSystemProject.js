@@ -308,11 +308,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Collection", "PowerSystemSubProject", "0..*", "1"],
-                        ["Collection", "PowerSystemProject", "0..*", "0..1"],
-                        ["Project", "PowerSystemProject", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Collection", "0..*", "1", "PowerSystemSubProject", "Project"],
+                            ["Collection", "0..*", "0..1", "PowerSystemProject", "Project"],
+                            ["Project", "0..1", "0..*", "PowerSystemProject", "Collection"]
+                        ]
+                    )
                 );
             }
         }
@@ -556,9 +558,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Project", "PowerSystemProject", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Project", "1", "0..*", "PowerSystemProject", "Collection"]
+                        ]
+                    )
                 );
             }
         }

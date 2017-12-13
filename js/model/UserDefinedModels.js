@@ -123,9 +123,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "PFVArControllerType2UserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -241,9 +243,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "TurbineLoadControllerUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -359,9 +363,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "VoltageAdjusterUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -477,9 +483,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "TurbineGovernorUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -595,9 +603,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "LoadUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -713,9 +723,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "ExcitationSystemUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -831,9 +843,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "WindPlantUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -949,9 +963,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "PowerSystemStabilizerUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -1067,9 +1083,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "WindType3or4UserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -1185,9 +1203,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "AsynchronousMachineUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -1303,9 +1323,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "PFVArControllerType1UserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -1421,9 +1443,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "MechanicalLoadUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -1539,9 +1563,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "VoltageCompensatorUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -1657,9 +1683,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "UnderexcitationLimiterUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -1775,9 +1803,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "WindType1or2UserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -1893,9 +1923,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "OverexcitationLimiterUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -2113,26 +2145,28 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TurbineGovernorUserDefined", "TurbineGovernorUserDefined", "0..1", "0..*"],
-                        ["PFVArControllerType2UserDefined", "PFVArControllerType2UserDefined", "0..1", "0..*"],
-                        ["WindType1or2UserDefined", "WindType1or2UserDefined", "0..1", "0..*"],
-                        ["VoltageAdjusterUserDefined", "VoltageAdjusterUserDefined", "0..1", "0..*"],
-                        ["TurbineLoadControllerUserDefined", "TurbineLoadControllerUserDefined", "0..1", "0..*"],
-                        ["DiscontinuousExcitationControlUserDefined", "DiscontinuousExcitationControlUserDefined", "0..1", "0..*"],
-                        ["PowerSystemStabilizerUserDefined", "PowerSystemStabilizerUserDefined", "0..1", "0..*"],
-                        ["ExcitationSystemUserDefined", "ExcitationSystemUserDefined", "0..1", "0..*"],
-                        ["LoadUserDefined", "LoadUserDefined", "0..1", "0..*"],
-                        ["AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", "0..1", "0..*"],
-                        ["VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", "0..1", "0..*"],
-                        ["SynchronousMachineUserDefined", "SynchronousMachineUserDefined", "0..1", "0..*"],
-                        ["MechanicalLoadUserDefined", "MechanicalLoadUserDefined", "0..1", "0..*"],
-                        ["WindType3or4UserDefined", "WindType3or4UserDefined", "0..1", "0..*"],
-                        ["PFVArControllerType1UserDefined", "PFVArControllerType1UserDefined", "0..1", "0..*"],
-                        ["WindPlantUserDefined", "WindPlantUserDefined", "0..1", "0..*"],
-                        ["UnderexcitationLimiterUserDefined", "UnderexcitationLimiterUserDefined", "0..1", "0..*"],
-                        ["OverexcitationLimiterUserDefined", "OverexcitationLimiterUserDefined", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TurbineGovernorUserDefined", "0..1", "0..*", "TurbineGovernorUserDefined", "ProprietaryParameterDynamics"],
+                            ["PFVArControllerType2UserDefined", "0..1", "0..*", "PFVArControllerType2UserDefined", "ProprietaryParameterDynamics"],
+                            ["WindType1or2UserDefined", "0..1", "0..*", "WindType1or2UserDefined", "ProprietaryParameterDynamics"],
+                            ["VoltageAdjusterUserDefined", "0..1", "0..*", "VoltageAdjusterUserDefined", "ProprietaryParameterDynamics"],
+                            ["TurbineLoadControllerUserDefined", "0..1", "0..*", "TurbineLoadControllerUserDefined", "ProprietaryParameterDynamics"],
+                            ["DiscontinuousExcitationControlUserDefined", "0..1", "0..*", "DiscontinuousExcitationControlUserDefined", "ProprietaryParameterDynamics"],
+                            ["PowerSystemStabilizerUserDefined", "0..1", "0..*", "PowerSystemStabilizerUserDefined", "ProprietaryParameterDynamics"],
+                            ["ExcitationSystemUserDefined", "0..1", "0..*", "ExcitationSystemUserDefined", "ProprietaryParameterDynamics"],
+                            ["LoadUserDefined", "0..1", "0..*", "LoadUserDefined", "ProprietaryParameterDynamics"],
+                            ["AsynchronousMachineUserDefined", "0..1", "0..*", "AsynchronousMachineUserDefined", "ProprietaryParameterDynamics"],
+                            ["VoltageCompensatorUserDefined", "0..1", "0..*", "VoltageCompensatorUserDefined", "ProprietaryParameterDynamics"],
+                            ["SynchronousMachineUserDefined", "0..1", "0..*", "SynchronousMachineUserDefined", "ProprietaryParameterDynamics"],
+                            ["MechanicalLoadUserDefined", "0..1", "0..*", "MechanicalLoadUserDefined", "ProprietaryParameterDynamics"],
+                            ["WindType3or4UserDefined", "0..1", "0..*", "WindType3or4UserDefined", "ProprietaryParameterDynamics"],
+                            ["PFVArControllerType1UserDefined", "0..1", "0..*", "PFVArControllerType1UserDefined", "ProprietaryParameterDynamics"],
+                            ["WindPlantUserDefined", "0..1", "0..*", "WindPlantUserDefined", "ProprietaryParameterDynamics"],
+                            ["UnderexcitationLimiterUserDefined", "0..1", "0..*", "UnderexcitationLimiterUserDefined", "ProprietaryParameterDynamics"],
+                            ["OverexcitationLimiterUserDefined", "0..1", "0..*", "OverexcitationLimiterUserDefined", "ProprietaryParameterDynamics"]
+                        ]
+                    )
                 );
             }
         }
@@ -2248,9 +2282,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "SynchronousMachineUserDefined"]
+                        ]
+                    )
                 );
             }
         }
@@ -2366,9 +2402,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProprietaryParameterDynamics", "0..*", "0..1", "ProprietaryParameterDynamics", "DiscontinuousExcitationControlUserDefined"]
+                        ]
+                    )
                 );
             }
         }

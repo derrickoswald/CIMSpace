@@ -126,9 +126,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TemperatureDependentLimitTable", "TemperatureDependentLimitTable", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TemperatureDependentLimitTable", "1", "0..*", "TemperatureDependentLimitTable", "TemperatureLimitTablePoint"]
+                        ]
+                    )
                 );
             }
         }
@@ -251,10 +253,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SourceOperationalLimitType", "OperationalLimitType", "0..1", "0..*"],
-                        ["TargetOperationalLimit", "OperationalLimitType", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SourceOperationalLimitType", "0..1", "0..*", "OperationalLimitType", "SourceOperationalLimitTypeScaling"],
+                            ["TargetOperationalLimit", "1", "0..1", "OperationalLimitType", "TargetOperationalLimitmTypeScaling"]
+                        ]
+                    )
                 );
             }
         }
@@ -370,10 +374,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Season", "Season", "0..1", "0..*"],
-                        ["ScheduledLimitDependency", "ScheduledLimitDependency", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Season", "0..1", "0..*", "Season", "ScheduledLimits"],
+                            ["ScheduledLimitDependency", "1", "0..*", "ScheduledLimitDependency", "ScheduledLimitValues"]
+                        ]
+                    )
                 );
             }
         }
@@ -486,9 +492,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Equipment", "Equipment", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Equipment", "0..*", "0..*", "Equipment", "WeatherStation"]
+                        ]
+                    )
                 );
             }
         }
@@ -608,10 +616,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Equipment", "Equipment", "0..1", "0..*"],
-                        ["OperationalLimit", "OperationalLimit", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Equipment", "0..1", "0..*", "Equipment", "LimitDependencyModel"],
+                            ["OperationalLimit", "0..*", "0..*", "OperationalLimit", "LimitDependencyModel"]
+                        ]
+                    )
                 );
             }
         }
@@ -727,10 +737,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SeriesEquipmentDependentLimit", "SeriesEquipmentDependentLimit", "1", "0..*"],
-                        ["Equipment", "Equipment", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SeriesEquipmentDependentLimit", "1", "0..*", "SeriesEquipmentDependentLimit", "EquipmentLimitSeriesComponent"],
+                            ["Equipment", "1", "0..*", "Equipment", "EqiupmentLimitSeriesComponent"]
+                        ]
+                    )
                 );
             }
         }
@@ -1258,9 +1270,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SourceOperationalLimit", "OperationalLimit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SourceOperationalLimit", "1", "0..*", "OperationalLimit", "LimitScalingLimit"]
+                        ]
+                    )
                 );
             }
         }
@@ -1462,9 +1476,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ScheduledLimitValues", "ScheduledLimitValue", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ScheduledLimitValues", "0..*", "1", "ScheduledLimitValue", "ScheduledLimitDependency"]
+                        ]
+                    )
                 );
             }
         }
@@ -1575,9 +1591,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EquipmentLimitSeriesComponent", "EquipmentLimitSeriesComponent", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EquipmentLimitSeriesComponent", "0..*", "1", "EquipmentLimitSeriesComponent", "SeriesEquipmentDependentLimit"]
+                        ]
+                    )
                 );
             }
         }
@@ -1810,9 +1828,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TemperatureLimitTablePoint", "TemperatureDependentLimitPoint", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TemperatureLimitTablePoint", "0..*", "1", "TemperatureDependentLimitPoint", "TemperatureDependentLimitTable"]
+                        ]
+                    )
                 );
             }
         }

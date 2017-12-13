@@ -304,9 +304,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ShuntCompensatorInfo", "ShuntCompensatorInfo", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ShuntCompensatorInfo", "0..1", "0..1", "ShuntCompensatorInfo", "ShuntCompensatorControl"]
+                        ]
+                    )
                 );
             }
         }

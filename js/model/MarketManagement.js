@@ -160,13 +160,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AceTariffType", "AceTariffType", "0..*", "0..*"],
-                        ["Reason", "Reason", "0..*", "0..*"],
-                        ["Period", "Period", "1", "0..*"],
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
-                        ["Price", "Price", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AceTariffType", "0..*", "0..*", "AceTariffType", "Point"],
+                            ["Reason", "0..*", "0..*", "Reason", "Point"],
+                            ["Period", "1", "0..*", "Period", "Point"],
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "Point"],
+                            ["Price", "0..*", "0..1", "Price", "Point"]
+                        ]
+                    )
                 );
             }
         }
@@ -310,12 +312,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
-                        ["Point", "Point", "0..*", "0..*"],
-                        ["Period", "Period", "0..*", "0..*"],
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "Reason"],
+                            ["Point", "0..*", "0..*", "Point", "Reason"],
+                            ["Period", "0..*", "0..*", "Period", "Reason"],
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "Reason"]
+                        ]
+                    )
                 );
             }
         }
@@ -440,10 +444,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
-                        ["AceTariffType", "AceTariffType", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "Unit"],
+                            ["AceTariffType", "0..*", "0..*", "AceTariffType", "Unit"]
+                        ]
+                    )
                 );
             }
         }
@@ -566,9 +572,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "DateAndOrTime"]
+                        ]
+                    )
                 );
             }
         }
@@ -686,9 +694,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "MktPSRType"]
+                        ]
+                    )
                 );
             }
         }
@@ -820,11 +830,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Point", "Point", "0..*", "0..*"],
-                        ["Unit", "Unit", "0..*", "0..*"],
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Point", "0..*", "0..*", "Point", "AceTariffType"],
+                            ["Unit", "0..*", "0..*", "Unit", "AceTariffType"],
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "AceTariffType"]
+                        ]
+                    )
                 );
             }
         }
@@ -1000,18 +1012,20 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
-                        ["Period", "Period", "0..*", "0..*"],
-                        ["AttributeInstanceComponent", "AttributeInstanceComponent", "0..*", "0..*"],
-                        ["selfMarketDocument", "MarketDocument", "0..*", "0..*"],
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"],
-                        ["Reason", "Reason", "0..*", "0..*"],
-                        ["Process", "Process", "0..*", "0..*"],
-                        ["AceTariffType", "AceTariffType", "0..*", "0..*"],
-                        ["Domain", "Domain", "0..*", "0..*"],
-                        ["MarketParticipant", "MarketParticipant", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "MarketDocument"],
+                            ["Period", "0..*", "0..*", "Period", "MarketDocument"],
+                            ["AttributeInstanceComponent", "0..*", "0..*", "AttributeInstanceComponent", "MarketDocument"],
+                            ["selfMarketDocument", "0..*", "0..*", "MarketDocument", "MarketDocument"],
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "selfMarketDocument"],
+                            ["Reason", "0..*", "0..*", "Reason", "MarketDocument"],
+                            ["Process", "0..*", "0..*", "Process", "MarketDocument"],
+                            ["AceTariffType", "0..*", "0..*", "AceTariffType", "MarketDocument"],
+                            ["Domain", "0..*", "0..*", "Domain", "MarketDocument"],
+                            ["MarketParticipant", "0..*", "0..*", "MarketParticipant", "MarketDocument"]
+                        ]
+                    )
                 );
             }
         }
@@ -1131,10 +1145,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "Domain"],
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "Domain"]
+                        ]
+                    )
                 );
             }
         }
@@ -1247,9 +1263,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "MarketEvaluationPoint"]
+                        ]
+                    )
                 );
             }
         }
@@ -1391,12 +1409,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"],
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"],
-                        ["Reason", "Reason", "0..*", "0..*"],
-                        ["Point", "Point", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "Period"],
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "Period"],
+                            ["Reason", "0..*", "0..*", "Reason", "Period"],
+                            ["Point", "0..*", "1", "Point", "Period"]
+                        ]
+                    )
                 );
             }
         }
@@ -1514,9 +1534,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "MarketObjectStatus"]
+                        ]
+                    )
                 );
             }
         }
@@ -1651,10 +1673,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"],
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "AttributeInstanceComponent"],
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "AttributeInstanceComponent"]
+                        ]
+                    )
                 );
             }
         }
@@ -1797,9 +1821,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "Auction"]
+                        ]
+                    )
                 );
             }
         }
@@ -1925,9 +1951,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Point", "Point", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Point", "0..1", "0..*", "Point", "Price"]
+                        ]
+                    )
                 );
             }
         }
@@ -2050,9 +2078,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "Process"]
+                        ]
+                    )
                 );
             }
         }
@@ -2293,23 +2323,25 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketDocument", "MarketDocument", "0..*", "0..*"],
-                        ["FlowDirection", "FlowDirection", "0..*", "0..*"],
-                        ["Period", "Period", "0..*", "0..*"],
-                        ["Auction", "Auction", "0..*", "0..*"],
-                        ["DateAndOrTime", "DateAndOrTime", "0..*", "0..*"],
-                        ["AttributeInstanceComponent", "AttributeInstanceComponent", "0..*", "0..*"],
-                        ["Domain", "Domain", "0..*", "0..*"],
-                        ["Unit", "Unit", "0..*", "0..*"],
-                        ["Reason", "Reason", "0..*", "0..*"],
-                        ["MarketParticipant", "MarketParticipant", "0..*", "0..*"],
-                        ["MarketEvaluationPoint", "MarketEvaluationPoint", "0..*", "0..*"],
-                        ["MarketObjectStatus", "MarketObjectStatus", "0..*", "0..*"],
-                        ["Point", "Point", "0..*", "0..*"],
-                        ["MktPSRType", "MktPSRType", "0..*", "0..*"],
-                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketDocument", "0..*", "0..*", "MarketDocument", "TimeSeries"],
+                            ["FlowDirection", "0..*", "0..*", "FlowDirection", "TimeSeries"],
+                            ["Period", "0..*", "0..*", "Period", "TimeSeries"],
+                            ["Auction", "0..*", "0..*", "Auction", "TimeSeries"],
+                            ["DateAndOrTime", "0..*", "0..*", "DateAndOrTime", "TimeSeries"],
+                            ["AttributeInstanceComponent", "0..*", "0..*", "AttributeInstanceComponent", "TimeSeries"],
+                            ["Domain", "0..*", "0..*", "Domain", "TimeSeries"],
+                            ["Unit", "0..*", "0..*", "Unit", "TimeSeries"],
+                            ["Reason", "0..*", "0..*", "Reason", "TimeSeries"],
+                            ["MarketParticipant", "0..*", "0..*", "MarketParticipant", "TimeSeries"],
+                            ["MarketEvaluationPoint", "0..*", "0..*", "MarketEvaluationPoint", "TimeSeries"],
+                            ["MarketObjectStatus", "0..*", "0..*", "MarketObjectStatus", "TimeSeries"],
+                            ["Point", "0..*", "0..*", "Point", "TimeSeries"],
+                            ["MktPSRType", "0..*", "0..*", "MktPSRType", "TimeSeries"],
+                            ["RegisteredResource", "0..*", "0..*", "RegisteredResource", "TimeSeries"]
+                        ]
+                    )
                 );
             }
         }
@@ -2427,9 +2459,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TimeSeries", "TimeSeries", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TimeSeries", "0..*", "0..*", "TimeSeries", "FlowDirection"]
+                        ]
+                    )
                 );
             }
         }

@@ -157,11 +157,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Source", "Pnode", "0..*", "0..*"],
-                        ["Sink", "Pnode", "0..*", "0..*"],
-                        ["CRR", "CRR", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Source", "0..*", "0..*", "Pnode", "SourceCRRSegment"],
+                            ["Sink", "0..*", "0..*", "Pnode", "SinkCRRSegment"],
+                            ["CRR", "1", "1..*", "CRR", "CRRSegment"]
+                        ]
+                    )
                 );
             }
         }
@@ -314,12 +316,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CRROrgRole", "CRROrgRole", "1..*", "1"],
-                        ["CRRMarket", "CRRMarket", "1", "1..*"],
-                        ["Flowgate", "Flowgate", "0..1", "0..1"],
-                        ["CRRSegment", "CRRSegment", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CRROrgRole", "1..*", "1", "CRROrgRole", "CRR"],
+                            ["CRRMarket", "1", "1..*", "CRRMarket", "CRR"],
+                            ["Flowgate", "0..1", "0..1", "Flowgate", "CRR"],
+                            ["CRRSegment", "1..*", "1", "CRRSegment", "CRR"]
+                        ]
+                    )
                 );
             }
         }
@@ -445,10 +449,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CRR", "CRR", "1", "1..*"],
-                        ["MktOrganisation", "MktOrganisation", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CRR", "1", "1..*", "CRR", "CRROrgRole"],
+                            ["MktOrganisation", "1", "0..*", "MktOrganisation", "CRROrgRole"]
+                        ]
+                    )
                 );
             }
         }

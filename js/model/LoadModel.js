@@ -131,10 +131,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ScheduledLimits", "ScheduledLimitValue", "0..*", "0..1"],
-                        ["SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ScheduledLimits", "0..*", "0..1", "ScheduledLimitValue", "Season"],
+                            ["SeasonDayTypeSchedules", "0..*", "0..1", "SeasonDayTypeSchedule", "Season"]
+                        ]
+                    )
                 );
             }
         }
@@ -250,10 +252,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Season", "Season", "0..1", "0..*"],
-                        ["DayType", "DayType", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Season", "0..1", "0..*", "Season", "SeasonDayTypeSchedules"],
+                            ["DayType", "0..1", "0..*", "DayType", "SeasonDayTypeSchedules"]
+                        ]
+                    )
                 );
             }
         }
@@ -364,9 +368,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SubLoadArea", "SubLoadArea", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SubLoadArea", "1", "1..*", "SubLoadArea", "LoadGroups"]
+                        ]
+                    )
                 );
             }
         }
@@ -479,9 +485,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ControlArea", "ControlArea", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ControlArea", "0..1", "0..1", "ControlArea", "EnergyArea"]
+                        ]
+                    )
                 );
             }
         }
@@ -592,9 +600,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SeasonDayTypeSchedules", "0..*", "0..1", "SeasonDayTypeSchedule", "DayType"]
+                        ]
+                    )
                 );
             }
         }
@@ -762,9 +772,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyConsumer", "EnergyConsumer", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyConsumer", "0..*", "0..1", "EnergyConsumer", "LoadResponse"]
+                        ]
+                    )
                 );
             }
         }
@@ -885,9 +897,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyConsumers", "EnergyConsumer", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyConsumers", "1..*", "0..1", "EnergyConsumer", "PowerCutZone"]
+                        ]
+                    )
                 );
             }
         }
@@ -998,9 +1012,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["NonConformLoadGroup", "NonConformLoadGroup", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["NonConformLoadGroup", "1", "1..*", "NonConformLoadGroup", "NonConformLoadSchedules"]
+                        ]
+                    )
                 );
             }
         }
@@ -1113,9 +1129,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ConformLoadGroup", "ConformLoadGroup", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ConformLoadGroup", "1", "1..*", "ConformLoadGroup", "ConformLoadSchedules"]
+                        ]
+                    )
                 );
             }
         }
@@ -1229,10 +1247,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyConsumers", "NonConformLoad", "0..*", "0..1"],
-                        ["NonConformLoadSchedules", "NonConformLoadSchedule", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyConsumers", "0..*", "0..1", "NonConformLoad", "LoadGroup"],
+                            ["NonConformLoadSchedules", "1..*", "1", "NonConformLoadSchedule", "NonConformLoadGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -1346,10 +1366,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyConsumers", "ConformLoad", "0..*", "0..1"],
-                        ["ConformLoadSchedules", "ConformLoadSchedule", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyConsumers", "0..*", "0..1", "ConformLoad", "LoadGroup"],
+                            ["ConformLoadSchedules", "1..*", "1", "ConformLoadSchedule", "ConformLoadGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -1465,10 +1487,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LoadArea", "LoadArea", "1", "1..*"],
-                        ["LoadGroups", "LoadGroup", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LoadArea", "1", "1..*", "LoadArea", "SubLoadAreas"],
+                            ["LoadGroups", "1..*", "1", "LoadGroup", "SubLoadArea"]
+                        ]
+                    )
                 );
             }
         }
@@ -1577,9 +1601,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SubLoadAreas", "SubLoadArea", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SubLoadAreas", "1..*", "1", "SubLoadArea", "LoadArea"]
+                        ]
+                    )
                 );
             }
         }

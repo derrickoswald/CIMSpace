@@ -134,13 +134,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SideA_SubControlArea", "SubControlArea", "1", "0..*"],
-                        ["EnergyTransaction", "EnergyTransaction", "0..1", "0..*"],
-                        ["ParentOfA", "ControlAreaOperator", "0..*", "0..*"],
-                        ["ParentOfB", "CustomerConsumer", "0..1", "0..*"],
-                        ["SideB_SubControlArea", "SubControlArea", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SideA_SubControlArea", "1", "0..*", "SubControlArea", "SideA_TieLines"],
+                            ["EnergyTransaction", "0..1", "0..*", "EnergyTransaction", "TieLines"],
+                            ["ParentOfA", "0..*", "0..*", "ControlAreaOperator", "CAChildOf"],
+                            ["ParentOfB", "0..1", "0..*", "CustomerConsumer", "CustChildOf"],
+                            ["SideB_SubControlArea", "1", "0..*", "SubControlArea", "SideB_TieLines"]
+                        ]
+                    )
                 );
             }
         }
@@ -253,9 +255,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyTransaction", "EnergyTransaction", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyTransaction", "1", "0..*", "EnergyTransaction", "CurtailmentProfiles"]
+                        ]
+                    )
                 );
             }
         }
@@ -369,10 +373,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransmissionRightOfWays", "TransmissionRightOfWay", "1..*", "1"],
-                        ["ContainedIn", "TransmissionPath", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransmissionRightOfWays", "1..*", "1", "TransmissionRightOfWay", "TransmissionCorridor"],
+                            ["ContainedIn", "0..*", "1", "TransmissionPath", "For"]
+                        ]
+                    )
                 );
             }
         }
@@ -485,9 +491,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SubControlArea", "SubControlArea", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SubControlArea", "1", "0..*", "SubControlArea", "InadvertentAccount"]
+                        ]
+                    )
                 );
             }
         }
@@ -603,10 +611,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["HasLoss_", "TransmissionProvider", "0..1", "0..*"],
-                        ["EnergyTransaction", "EnergyTransaction", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["HasLoss_", "0..1", "0..*", "TransmissionProvider", "For"],
+                            ["EnergyTransaction", "1", "0..*", "EnergyTransaction", "LossProfiles"]
+                        ]
+                    )
                 );
             }
         }
@@ -727,9 +737,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["InternalControlArea", "InternalControlArea", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["InternalControlArea", "1", "0..1", "InternalControlArea", "CurrentScheduledInterchange"]
+                        ]
+                    )
                 );
             }
         }
@@ -855,9 +867,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["InternalControlArea", "InternalControlArea", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["InternalControlArea", "1", "0..*", "InternalControlArea", "CurrentEmergencySI"]
+                        ]
+                    )
                 );
             }
         }
@@ -998,9 +1012,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SubControlArea", "SubControlArea", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SubControlArea", "0..*", "1", "SubControlArea", "AreaReserveSpecification"]
+                        ]
+                    )
                 );
             }
         }
@@ -1133,11 +1149,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MktMeasurement", "MktMeasurement", "1", "0..*"],
-                        ["Receive_SubControlArea", "SubControlArea", "1", "0..*"],
-                        ["Send_SubControlArea", "SubControlArea", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MktMeasurement", "1", "0..*", "MktMeasurement", "DynamicSchedule"],
+                            ["Receive_SubControlArea", "1", "0..*", "SubControlArea", "Receive_DynamicSchedules"],
+                            ["Send_SubControlArea", "1", "0..*", "SubControlArea", "Send_DynamicSchedules"]
+                        ]
+                    )
                 );
             }
         }
@@ -1265,12 +1283,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyTransactions", "EnergyTransaction", "1..*", "1"],
-                        ["ResoldBy_Marketer", "Marketer", "0..*", "0..*"],
-                        ["GenerationProvider", "GenerationProvider", "1", "1..*"],
-                        ["TitleHeldBy_Marketer", "Marketer", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyTransactions", "1..*", "1", "EnergyTransaction", "EnergyProduct"],
+                            ["ResoldBy_Marketer", "0..*", "0..*", "Marketer", "Resells_EnergyProduct"],
+                            ["GenerationProvider", "1", "1..*", "GenerationProvider", "ProvidedBy"],
+                            ["TitleHeldBy_Marketer", "0..1", "0..*", "Marketer", "HoldsTitleTo_EnergyProducts"]
+                        ]
+                    )
                 );
             }
         }
@@ -1386,10 +1406,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MktLine", "MktLine", "0..*", "0..1"],
-                        ["TransmissionCorridor", "TransmissionCorridor", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MktLine", "0..*", "0..1", "MktLine", "TransmissionRightOfWay"],
+                            ["TransmissionCorridor", "1", "1..*", "TransmissionCorridor", "TransmissionRightOfWays"]
+                        ]
+                    )
                 );
             }
         }
@@ -1507,10 +1529,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CurrentEmergencySI", "CurrentEmergencyScheduledInterchange", "0..*", "1"],
-                        ["CurrentScheduledInterchange", "CurrentScheduledInterchange", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CurrentEmergencySI", "0..*", "1", "CurrentEmergencyScheduledInterchange", "InternalControlArea"],
+                            ["CurrentScheduledInterchange", "0..1", "1", "CurrentScheduledInterchange", "InternalControlArea"]
+                        ]
+                    )
                 );
             }
         }

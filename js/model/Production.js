@@ -369,11 +369,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RotatingMachine", "RotatingMachine", "1", "0..1"],
-                        ["HydroPumpOpSchedule", "HydroPumpOpSchedule", "0..1", "1"],
-                        ["HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RotatingMachine", "1", "0..1", "RotatingMachine", "HydroPump"],
+                            ["HydroPumpOpSchedule", "0..1", "1", "HydroPumpOpSchedule", "HydroPump"],
+                            ["HydroPowerPlant", "0..1", "0..*", "HydroPowerPlant", "HydroPumps"]
+                        ]
+                    )
                 );
             }
         }
@@ -486,9 +488,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["HydroGeneratingUnit", "1", "0..1", "HydroGeneratingUnit", "PenstockLossCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -631,10 +635,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1"],
-                        ["SteamSendoutSchedule", "SteamSendoutSchedule", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnits", "0..*", "0..1", "ThermalGeneratingUnit", "CogenerationPlant"],
+                            ["SteamSendoutSchedule", "1", "1", "SteamSendoutSchedule", "CogenerationPlant"]
+                        ]
+                    )
                 );
             }
         }
@@ -752,9 +758,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnit", "1", "0..1", "ThermalGeneratingUnit", "IncrementalHeatRateCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -952,15 +960,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TargetLevelSchedule", "TargetLevelSchedule", "0..1", "1"],
-                        ["LevelVsVolumeCurves", "LevelVsVolumeCurve", "0..*", "1"],
-                        ["SpillsIntoReservoirs", "Reservoir", "0..*", "0..1"],
-                        ["SpillsFromReservoir", "Reservoir", "0..1", "0..*"],
-                        ["HydroPowerPlants", "HydroPowerPlant", "0..*", "0..1"],
-                        ["UpstreamFromHydroPowerPlants", "HydroPowerPlant", "0..*", "1"],
-                        ["InflowForecasts", "InflowForecast", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TargetLevelSchedule", "0..1", "1", "TargetLevelSchedule", "Reservoir"],
+                            ["LevelVsVolumeCurves", "0..*", "1", "LevelVsVolumeCurve", "Reservoir"],
+                            ["SpillsIntoReservoirs", "0..*", "0..1", "Reservoir", "SpillsFromReservoir"],
+                            ["SpillsFromReservoir", "0..1", "0..*", "Reservoir", "SpillsIntoReservoirs"],
+                            ["HydroPowerPlants", "0..*", "0..1", "HydroPowerPlant", "Reservoir"],
+                            ["UpstreamFromHydroPowerPlants", "0..*", "1", "HydroPowerPlant", "GenSourcePumpDischargeReservoir"],
+                            ["InflowForecasts", "0..*", "1", "InflowForecast", "Reservoir"]
+                        ]
+                    )
                 );
             }
         }
@@ -1194,9 +1204,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["StartupModel", "StartupModel", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["StartupModel", "1", "0..1", "StartupModel", "StartIgnFuelCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -1309,9 +1321,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Reservoir", "Reservoir", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Reservoir", "1", "0..*", "Reservoir", "LevelVsVolumeCurves"]
+                        ]
+                    )
                 );
             }
         }
@@ -1424,9 +1438,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GeneratingUnit", "GeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GeneratingUnit", "1", "0..*", "GeneratingUnit", "GrossToNetActivePowerCurves"]
+                        ]
+                    )
                 );
             }
         }
@@ -1547,10 +1563,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CombustionTurbine", "CombustionTurbine", "1", "0..1"],
-                        ["CAESPlant", "CAESPlant", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CombustionTurbine", "1", "0..1", "CombustionTurbine", "AirCompressor"],
+                            ["CAESPlant", "1", "1", "CAESPlant", "AirCompressor"]
+                        ]
+                    )
                 );
             }
         }
@@ -1817,10 +1835,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["FossilFuel", "FossilFuel", "1", "0..*"],
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["FossilFuel", "1", "0..*", "FossilFuel", "FuelAllocationSchedules"],
+                            ["ThermalGeneratingUnit", "1", "0..*", "ThermalGeneratingUnit", "FuelAllocationSchedules"]
+                        ]
+                    )
                 );
             }
         }
@@ -1933,9 +1953,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["HydroGeneratingUnit", "1", "0..*", "HydroGeneratingUnit", "HydroGeneratingEfficiencyCurves"]
+                        ]
+                    )
                 );
             }
         }
@@ -2048,9 +2070,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GeneratingUnit", "GeneratingUnit", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GeneratingUnit", "1", "0..1", "GeneratingUnit", "GenUnitOpSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -2168,9 +2192,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnit", "1", "0..1", "ThermalGeneratingUnit", "HeatRateCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -2288,9 +2314,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GeneratingUnit", "GeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GeneratingUnit", "1", "0..*", "GeneratingUnit", "GenUnitOpCostCurves"]
+                        ]
+                    )
                 );
             }
         }
@@ -2401,9 +2429,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CogenerationPlant", "CogenerationPlant", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CogenerationPlant", "1", "1", "CogenerationPlant", "SteamSendoutSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -2516,9 +2546,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["HydroGeneratingUnit", "1", "0..*", "HydroGeneratingUnit", "TailbayLossCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -2644,10 +2676,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "0..1", "0..1"],
-                        ["AirCompressor", "AirCompressor", "1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnit", "0..1", "0..1", "ThermalGeneratingUnit", "CAESPlant"],
+                            ["AirCompressor", "1", "1", "AirCompressor", "CAESPlant"]
+                        ]
+                    )
                 );
             }
         }
@@ -2777,9 +2811,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnit", "1", "0..*", "ThermalGeneratingUnit", "EmissionCurves"]
+                        ]
+                    )
                 );
             }
         }
@@ -2897,9 +2933,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["StartupModel", "StartupModel", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["StartupModel", "1", "0..1", "StartupModel", "StartMainFuelCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -3015,9 +3053,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["StartupModel", "StartupModel", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["StartupModel", "1", "0..1", "StartupModel", "StartRampCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -3187,10 +3227,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"],
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["FuelAllocationSchedules", "0..*", "1", "FuelAllocationSchedule", "FossilFuel"],
+                            ["ThermalGeneratingUnit", "1", "0..*", "ThermalGeneratingUnit", "FossilFuels"]
+                        ]
+                    )
                 );
             }
         }
@@ -3512,13 +3554,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RotatingMachine", "RotatingMachine", "1..*", "0..1"],
-                        ["GenUnitOpSchedule", "GenUnitOpSchedule", "0..1", "1"],
-                        ["GenUnitOpCostCurves", "GenUnitOpCostCurve", "0..*", "1"],
-                        ["ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"],
-                        ["GrossToNetActivePowerCurves", "GrossToNetActivePowerCurve", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RotatingMachine", "1..*", "0..1", "RotatingMachine", "GeneratingUnit"],
+                            ["GenUnitOpSchedule", "0..1", "1", "GenUnitOpSchedule", "GeneratingUnit"],
+                            ["GenUnitOpCostCurves", "0..*", "1", "GenUnitOpCostCurve", "GeneratingUnit"],
+                            ["ControlAreaGeneratingUnit", "0..*", "1", "ControlAreaGeneratingUnit", "GeneratingUnit"],
+                            ["GrossToNetActivePowerCurves", "0..*", "1", "GrossToNetActivePowerCurve", "GeneratingUnit"]
+                        ]
+                    )
                 );
             }
         }
@@ -3693,12 +3737,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["HydroPumps", "HydroPump", "0..*", "0..1"],
-                        ["Reservoir", "Reservoir", "0..1", "0..*"],
-                        ["GenSourcePumpDischargeReservoir", "Reservoir", "1", "0..*"],
-                        ["HydroGeneratingUnits", "HydroGeneratingUnit", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["HydroPumps", "0..*", "0..1", "HydroPump", "HydroPowerPlant"],
+                            ["Reservoir", "0..1", "0..*", "Reservoir", "HydroPowerPlants"],
+                            ["GenSourcePumpDischargeReservoir", "1", "0..*", "Reservoir", "UpstreamFromHydroPowerPlants"],
+                            ["HydroGeneratingUnits", "0..*", "0..1", "HydroGeneratingUnit", "HydroPowerPlant"]
+                        ]
+                    )
                 );
             }
         }
@@ -3811,9 +3857,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["HydroPump", "HydroPump", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["HydroPump", "1", "0..1", "HydroPump", "HydroPumpOpSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -3934,9 +3982,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnit", "1", "0..1", "ThermalGeneratingUnit", "ShutdownCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -4063,9 +4113,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnit", "1", "0..*", "ThermalGeneratingUnit", "EmmissionAccounts"]
+                        ]
+                    )
                 );
             }
         }
@@ -4203,9 +4255,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnit", "1", "0..1", "ThermalGeneratingUnit", "HeatInputCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -4381,12 +4435,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["StartIgnFuelCurve", "StartIgnFuelCurve", "0..1", "1"],
-                        ["ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1"],
-                        ["StartMainFuelCurve", "StartMainFuelCurve", "0..1", "1"],
-                        ["StartRampCurve", "StartRampCurve", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["StartIgnFuelCurve", "0..1", "1", "StartIgnFuelCurve", "StartupModel"],
+                            ["ThermalGeneratingUnit", "1", "0..1", "ThermalGeneratingUnit", "StartupModel"],
+                            ["StartMainFuelCurve", "0..1", "1", "StartMainFuelCurve", "StartupModel"],
+                            ["StartRampCurve", "0..1", "1", "StartRampCurve", "StartupModel"]
+                        ]
+                    )
                 );
             }
         }
@@ -4626,9 +4682,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ThermalGeneratingUnits", "0..*", "0..1", "ThermalGeneratingUnit", "CombinedCyclePlant"]
+                        ]
+                    )
                 );
             }
         }
@@ -4751,9 +4809,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Reservoir", "Reservoir", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Reservoir", "1", "0..1", "Reservoir", "TargetLevelSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -4866,9 +4926,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Reservoir", "Reservoir", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Reservoir", "1", "0..*", "Reservoir", "InflowForecasts"]
+                        ]
+                    )
                 );
             }
         }
@@ -5039,20 +5101,22 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ShutdownCurve", "ShutdownCurve", "0..1", "1"],
-                        ["CogenerationPlant", "CogenerationPlant", "0..1", "0..*"],
-                        ["HeatRateCurve", "HeatRateCurve", "0..1", "1"],
-                        ["EmissionCurves", "EmissionCurve", "0..*", "1"],
-                        ["CAESPlant", "CAESPlant", "0..1", "0..1"],
-                        ["StartupModel", "StartupModel", "0..1", "1"],
-                        ["EmmissionAccounts", "EmissionAccount", "0..*", "1"],
-                        ["FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"],
-                        ["CombinedCyclePlant", "CombinedCyclePlant", "0..1", "0..*"],
-                        ["IncrementalHeatRateCurve", "IncrementalHeatRateCurve", "0..1", "1"],
-                        ["FossilFuels", "FossilFuel", "0..*", "1"],
-                        ["HeatInputCurve", "HeatInputCurve", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ShutdownCurve", "0..1", "1", "ShutdownCurve", "ThermalGeneratingUnit"],
+                            ["CogenerationPlant", "0..1", "0..*", "CogenerationPlant", "ThermalGeneratingUnits"],
+                            ["HeatRateCurve", "0..1", "1", "HeatRateCurve", "ThermalGeneratingUnit"],
+                            ["EmissionCurves", "0..*", "1", "EmissionCurve", "ThermalGeneratingUnit"],
+                            ["CAESPlant", "0..1", "0..1", "CAESPlant", "ThermalGeneratingUnit"],
+                            ["StartupModel", "0..1", "1", "StartupModel", "ThermalGeneratingUnit"],
+                            ["EmmissionAccounts", "0..*", "1", "EmissionAccount", "ThermalGeneratingUnit"],
+                            ["FuelAllocationSchedules", "0..*", "1", "FuelAllocationSchedule", "ThermalGeneratingUnit"],
+                            ["CombinedCyclePlant", "0..1", "0..*", "CombinedCyclePlant", "ThermalGeneratingUnits"],
+                            ["IncrementalHeatRateCurve", "0..1", "1", "IncrementalHeatRateCurve", "ThermalGeneratingUnit"],
+                            ["FossilFuels", "0..*", "1", "FossilFuel", "ThermalGeneratingUnit"],
+                            ["HeatInputCurve", "0..1", "1", "HeatInputCurve", "ThermalGeneratingUnit"]
+                        ]
+                    )
                 );
             }
         }
@@ -5190,12 +5254,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TailbayLossCurve", "TailbayLossCurve", "0..*", "1"],
-                        ["HydroGeneratingEfficiencyCurves", "HydroGeneratingEfficiencyCurve", "0..*", "1"],
-                        ["PenstockLossCurve", "PenstockLossCurve", "0..1", "1"],
-                        ["HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TailbayLossCurve", "0..*", "1", "TailbayLossCurve", "HydroGeneratingUnit"],
+                            ["HydroGeneratingEfficiencyCurves", "0..*", "1", "HydroGeneratingEfficiencyCurve", "HydroGeneratingUnit"],
+                            ["PenstockLossCurve", "0..1", "1", "PenstockLossCurve", "HydroGeneratingUnit"],
+                            ["HydroPowerPlant", "0..1", "0..*", "HydroPowerPlant", "HydroGeneratingUnits"]
+                        ]
+                    )
                 );
             }
         }

@@ -306,10 +306,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransformerEndInfo", "TransformerEndInfo", "0..1", "0..1"],
-                        ["TransformerEnd", "TransformerEnd", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransformerEndInfo", "0..1", "0..1", "TransformerEndInfo", "TransformerStarImpedance"],
+                            ["TransformerEnd", "0..*", "0..1", "TransformerEnd", "StarImpedance"]
+                        ]
+                    )
                 );
             }
         }
@@ -465,10 +467,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Second_Terminal", "Terminal", "1", "0..*"],
-                        ["First_Terminal", "Terminal", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Second_Terminal", "1", "0..*", "Terminal", "HasSecondMutualCoupling"],
+                            ["First_Terminal", "1", "0..*", "Terminal", "HasFirstMutualCoupling"]
+                        ]
+                    )
                 );
             }
         }
@@ -641,12 +645,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerCutZone", "PowerCutZone", "0..1", "1..*"],
-                        ["EnergyConsumerPhase", "EnergyConsumerPhase", "0..*", "1"],
-                        ["LoadDynamics", "LoadDynamics", "0..1", "0..*"],
-                        ["LoadResponse", "LoadResponseCharacteristic", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerCutZone", "0..1", "1..*", "PowerCutZone", "EnergyConsumers"],
+                            ["EnergyConsumerPhase", "0..*", "1", "EnergyConsumerPhase", "EnergyConsumer"],
+                            ["LoadDynamics", "0..1", "0..*", "LoadDynamics", "EnergyConsumer"],
+                            ["LoadResponse", "0..1", "0..*", "LoadResponseCharacteristic", "EnergyConsumer"]
+                        ]
+                    )
                 );
             }
         }
@@ -952,14 +958,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Outage", "Outage", "0..1", "0..*"],
-                        ["CompositeSwitch", "CompositeSwitch", "0..1", "0..*"],
-                        ["ConnectDisconnectFunctions", "ConnectDisconnectFunction", "0..*", "0..*"],
-                        ["SwitchAction", "SwitchAction", "0..1", "0..1"],
-                        ["SwitchSchedules", "SwitchSchedule", "0..*", "1"],
-                        ["SwitchPhase", "SwitchPhase", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Outage", "0..1", "0..*", "Outage", "OpenedSwitches"],
+                            ["CompositeSwitch", "0..1", "0..*", "CompositeSwitch", "Switches"],
+                            ["ConnectDisconnectFunctions", "0..*", "0..*", "ConnectDisconnectFunction", "Switches"],
+                            ["SwitchAction", "0..1", "0..1", "SwitchAction", "OperatedSwitch"],
+                            ["SwitchSchedules", "0..*", "1", "SwitchSchedule", "Switch"],
+                            ["SwitchPhase", "0..*", "1", "SwitchPhase", "Switch"]
+                        ]
+                    )
                 );
             }
         }
@@ -1097,10 +1105,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransformerEnd", "TransformerEnd", "0..*", "0..1"],
-                        ["TransformerEndInfo", "TransformerEndInfo", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransformerEnd", "0..*", "0..1", "TransformerEnd", "CoreAdmittance"],
+                            ["TransformerEndInfo", "0..1", "0..1", "TransformerEndInfo", "CoreAdmittance"]
+                        ]
+                    )
                 );
             }
         }
@@ -1218,10 +1228,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegulationSchedule", "RegulationSchedule", "0..1", "0..*"],
-                        ["BusbarSection", "BusbarSection", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegulationSchedule", "0..1", "0..*", "RegulationSchedule", "VoltageControlZones"],
+                            ["BusbarSection", "1", "0..1", "BusbarSection", "VoltageControlZone"]
+                        ]
+                    )
                 );
             }
         }
@@ -1373,12 +1385,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ToTransformerEnd", "TransformerEnd", "1..*", "0..*"],
-                        ["ToTransformerEndInfos", "TransformerEndInfo", "0..*", "0..*"],
-                        ["FromTransformerEndInfo", "TransformerEndInfo", "0..1", "0..*"],
-                        ["FromTransformerEnd", "TransformerEnd", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ToTransformerEnd", "1..*", "0..*", "TransformerEnd", "ToMeshImpedance"],
+                            ["ToTransformerEndInfos", "0..*", "0..*", "TransformerEndInfo", "ToMeshImpedances"],
+                            ["FromTransformerEndInfo", "0..1", "0..*", "TransformerEndInfo", "FromMeshImpedances"],
+                            ["FromTransformerEnd", "1", "0..*", "TransformerEnd", "FromMeshImpedance"]
+                        ]
+                    )
                 );
             }
         }
@@ -1514,9 +1528,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["NonlinearShuntCompensator", "NonlinearShuntCompensator", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["NonlinearShuntCompensator", "1", "1..*", "NonlinearShuntCompensator", "NonlinearShuntCompensatorPoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -1642,9 +1658,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["NonlinearShuntCompensatorPhase", "NonlinearShuntCompensatorPhase", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["NonlinearShuntCompensatorPhase", "1", "1..*", "NonlinearShuntCompensatorPhase", "NonlinearShuntCompensatorPhasePoints"]
+                        ]
+                    )
                 );
             }
         }
@@ -1904,11 +1922,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EquivalentInjection", "EquivalentInjection", "0..*", "0..1"],
-                        ["InitiallyUsedBySynchronousMachines", "SynchronousMachine", "1..*", "0..1"],
-                        ["SynchronousMachines", "SynchronousMachine", "1..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EquivalentInjection", "0..*", "0..1", "EquivalentInjection", "ReactiveCapabilityCurve"],
+                            ["InitiallyUsedBySynchronousMachines", "1..*", "0..1", "SynchronousMachine", "InitialReactiveCapabilityCurve"],
+                            ["SynchronousMachines", "1..*", "0..*", "SynchronousMachine", "ReactiveCapabilityCurves"]
+                        ]
+                    )
                 );
             }
         }
@@ -2119,10 +2139,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RatioTapChanger", "RatioTapChanger", "0..*", "0..1"],
-                        ["RatioTapChangerTablePoint", "RatioTapChangerTablePoint", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RatioTapChanger", "0..*", "0..1", "RatioTapChanger", "RatioTapChangerTable"],
+                            ["RatioTapChangerTablePoint", "1..*", "1", "RatioTapChangerTablePoint", "RatioTapChangerTable"]
+                        ]
+                    )
                 );
             }
         }
@@ -2275,10 +2297,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerTransformerEnd", "PowerTransformerEnd", "0..*", "0..1"],
-                        ["TransformerTanks", "TransformerTank", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerTransformerEnd", "0..*", "0..1", "PowerTransformerEnd", "PowerTransformer"],
+                            ["TransformerTanks", "0..*", "0..1", "TransformerTank", "PowerTransformer"]
+                        ]
+                    )
                 );
             }
         }
@@ -2416,9 +2440,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyConsumer", "EnergyConsumer", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyConsumer", "1", "0..*", "EnergyConsumer", "EnergyConsumerPhase"]
+                        ]
+                    )
                 );
             }
         }
@@ -2536,10 +2562,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WireInfos", "WireInfo", "0..*", "0..*"],
-                        ["WireSpacingInfo", "WireSpacingInfo", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WireInfos", "0..*", "0..*", "WireInfo", "PerLengthParameters"],
+                            ["WireSpacingInfo", "0..1", "0..*", "WireSpacingInfo", "PerLengthParameters"]
+                        ]
+                    )
                 );
             }
         }
@@ -2670,9 +2698,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PhaseImpedance", "PerLengthPhaseImpedance", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PhaseImpedance", "1", "1..*", "PerLengthPhaseImpedance", "PhaseImpedanceData"]
+                        ]
+                    )
                 );
             }
         }
@@ -2786,10 +2816,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PhaseTapChangerTabular", "PhaseTapChangerTabular", "0..*", "0..1"],
-                        ["PhaseTapChangerTablePoint", "PhaseTapChangerTablePoint", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PhaseTapChangerTabular", "0..*", "0..1", "PhaseTapChangerTabular", "PhaseTapChangerTable"],
+                            ["PhaseTapChangerTablePoint", "1..*", "1", "PhaseTapChangerTablePoint", "PhaseTapChangerTable"]
+                        ]
+                    )
                 );
             }
         }
@@ -2900,9 +2932,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Region", "SubGeographicalRegion", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Region", "0..1", "0..*", "SubGeographicalRegion", "Lines"]
+                        ]
+                    )
                 );
             }
         }
@@ -3025,11 +3059,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransformerTankEnds", "TransformerTankEnd", "1..*", "0..1"],
-                        ["TransformerObservations", "TransformerObservation", "0..*", "0..1"],
-                        ["PowerTransformer", "PowerTransformer", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransformerTankEnds", "1..*", "0..1", "TransformerTankEnd", "TransformerTank"],
+                            ["TransformerObservations", "0..*", "0..1", "TransformerObservation", "Transformer"],
+                            ["PowerTransformer", "0..1", "0..*", "PowerTransformer", "TransformerTanks"]
+                        ]
+                    )
                 );
             }
         }
@@ -3140,9 +3176,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TapChanger", "TapChanger", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TapChanger", "1", "0..*", "TapChanger", "TapSchedules"]
+                        ]
+                    )
                 );
             }
         }
@@ -3366,9 +3404,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ACLineSegment", "ACLineSegment", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ACLineSegment", "1", "0..*", "ACLineSegment", "Clamp"]
+                        ]
+                    )
                 );
             }
         }
@@ -3484,10 +3524,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["VoltageControlZones", "VoltageControlZone", "0..*", "0..1"],
-                        ["RegulatingControl", "RegulatingControl", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["VoltageControlZones", "0..*", "0..1", "VoltageControlZone", "RegulationSchedule"],
+                            ["RegulatingControl", "1", "0..*", "RegulatingControl", "RegulationSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -3605,9 +3647,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ACLineSegment", "ACLineSegment", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ACLineSegment", "1", "0..*", "ACLineSegment", "ACLineSegmentPhases"]
+                        ]
+                    )
                 );
             }
         }
@@ -3802,18 +3846,20 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ToMeshImpedance", "TransformerMeshImpedance", "0..*", "1..*"],
-                        ["ToWindingInsulations", "WindingInsulation", "0..*", "1"],
-                        ["CoreAdmittance", "TransformerCoreAdmittance", "0..1", "0..*"],
-                        ["PhaseTapChanger", "PhaseTapChanger", "0..1", "1"],
-                        ["BaseVoltage", "BaseVoltage", "0..1", "0..*"],
-                        ["FromWindingInsulations", "WindingInsulation", "0..*", "1"],
-                        ["RatioTapChanger", "RatioTapChanger", "0..1", "1"],
-                        ["StarImpedance", "TransformerStarImpedance", "0..1", "0..*"],
-                        ["FromMeshImpedance", "TransformerMeshImpedance", "0..*", "1"],
-                        ["Terminal", "Terminal", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ToMeshImpedance", "0..*", "1..*", "TransformerMeshImpedance", "ToTransformerEnd"],
+                            ["ToWindingInsulations", "0..*", "1", "WindingInsulation", "ToWinding"],
+                            ["CoreAdmittance", "0..1", "0..*", "TransformerCoreAdmittance", "TransformerEnd"],
+                            ["PhaseTapChanger", "0..1", "1", "PhaseTapChanger", "TransformerEnd"],
+                            ["BaseVoltage", "0..1", "0..*", "BaseVoltage", "TransformerEnds"],
+                            ["FromWindingInsulations", "0..*", "1", "WindingInsulation", "FromWinding"],
+                            ["RatioTapChanger", "0..1", "1", "RatioTapChanger", "TransformerEnd"],
+                            ["StarImpedance", "0..1", "0..*", "TransformerStarImpedance", "TransformerEnd"],
+                            ["FromMeshImpedance", "0..*", "1", "TransformerMeshImpedance", "FromTransformerEnd"],
+                            ["Terminal", "0..1", "0..*", "Terminal", "TransformerEnd"]
+                        ]
+                    )
                 );
             }
         }
@@ -3926,9 +3972,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Switch", "Switch", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Switch", "1", "0..*", "Switch", "SwitchSchedules"]
+                        ]
+                    )
                 );
             }
         }
@@ -4093,12 +4141,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProtectiveActionRegulation", "ProtectiveActionRegulation", "0..*", "1"],
-                        ["RegulationSchedule", "RegulationSchedule", "0..*", "1"],
-                        ["RegulatingCondEq", "RegulatingCondEq", "0..*", "0..1"],
-                        ["Terminal", "Terminal", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProtectiveActionRegulation", "0..*", "1", "ProtectiveActionRegulation", "RegulatingControl"],
+                            ["RegulationSchedule", "0..*", "1", "RegulationSchedule", "RegulatingControl"],
+                            ["RegulatingCondEq", "0..*", "0..1", "RegulatingCondEq", "RegulatingControl"],
+                            ["Terminal", "0..1", "0..*", "Terminal", "RegulatingControl"]
+                        ]
+                    )
                 );
             }
         }
@@ -4269,11 +4319,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TapSchedules", "TapSchedule", "0..*", "1"],
-                        ["TapChangerControl", "TapChangerControl", "0..1", "0..*"],
-                        ["SvTapStep", "SvTapStep", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TapSchedules", "0..*", "1", "TapSchedule", "TapChanger"],
+                            ["TapChangerControl", "0..1", "0..*", "TapChangerControl", "TapChanger"],
+                            ["SvTapStep", "0..1", "1", "SvTapStep", "TapChanger"]
+                        ]
+                    )
                 );
             }
         }
@@ -4449,11 +4501,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "1"],
-                        ["EnergySourceAction", "EnergySourceAction", "0..1", "0..1"],
-                        ["EnergySchedulingType", "EnergySchedulingType", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WindTurbineType3or4Dynamics", "0..1", "1", "WindTurbineType3or4Dynamics", "EnergySource"],
+                            ["EnergySourceAction", "0..1", "0..1", "EnergySourceAction", "EnergySource"],
+                            ["EnergySchedulingType", "0..1", "0..*", "EnergySchedulingType", "EnergySource"]
+                        ]
+                    )
                 );
             }
         }
@@ -4581,9 +4635,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ShuntCompensator", "ShuntCompensator", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ShuntCompensator", "1", "0..*", "ShuntCompensator", "ShuntCompensatorPhase"]
+                        ]
+                    )
                 );
             }
         }
@@ -4718,9 +4774,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Switch", "Switch", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Switch", "1", "0..*", "Switch", "SwitchPhase"]
+                        ]
+                    )
                 );
             }
         }
@@ -4838,9 +4896,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Switches", "Switch", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Switches", "0..*", "0..1", "Switch", "CompositeSwitch"]
+                        ]
+                    )
                 );
             }
         }
@@ -4956,9 +5016,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegulatingControl", "RegulatingControl", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegulatingControl", "0..1", "0..*", "RegulatingControl", "RegulatingCondEq"]
+                        ]
+                    )
                 );
             }
         }
@@ -5071,9 +5133,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GroundAction", "GroundAction", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GroundAction", "0..1", "0..1", "GroundAction", "Ground"]
+                        ]
+                    )
                 );
             }
         }
@@ -5692,10 +5756,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RecloseSequences", "RecloseSequence", "0..*", "1"],
-                        ["OperatedByProtectionEquipment", "ProtectionEquipment", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RecloseSequences", "0..*", "1", "RecloseSequence", "ProtectedSwitch"],
+                            ["OperatedByProtectionEquipment", "0..*", "0..*", "ProtectionEquipment", "ProtectedSwitches"]
+                        ]
+                    )
                 );
             }
         }
@@ -5818,10 +5884,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ACLineSegment", "ACLineSegment", "1", "0..*"],
-                        ["CutAction", "CutAction", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ACLineSegment", "1", "0..*", "ACLineSegment", "Cut"],
+                            ["CutAction", "0..1", "0..1", "CutAction", "Cut"]
+                        ]
+                    )
                 );
             }
         }
@@ -6038,9 +6106,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["JumperAction", "JumperAction", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["JumperAction", "0..1", "0..1", "JumperAction", "Jumper"]
+                        ]
+                    )
                 );
             }
         }
@@ -6449,9 +6519,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PhaseTapChangerTable", "PhaseTapChangerTable", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PhaseTapChangerTable", "1", "1..*", "PhaseTapChangerTable", "PhaseTapChangerTablePoint"]
+                        ]
+                    )
                 );
             }
         }
@@ -6562,9 +6634,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RatioTapChangerTable", "RatioTapChangerTable", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RatioTapChangerTable", "1", "1..*", "RatioTapChangerTable", "RatioTapChangerTablePoint"]
+                        ]
+                    )
                 );
             }
         }
@@ -6779,9 +6853,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["VoltageControlZone", "VoltageControlZone", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["VoltageControlZone", "0..1", "1", "VoltageControlZone", "BusbarSection"]
+                        ]
+                    )
                 );
             }
         }
@@ -6890,9 +6966,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ACLineSegments", "ACLineSegment", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ACLineSegments", "0..*", "0..1", "ACLineSegment", "PerLengthImpedance"]
+                        ]
+                    )
                 );
             }
         }
@@ -7008,9 +7086,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PhaseImpedanceData", "PhaseImpedanceData", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PhaseImpedanceData", "1..*", "1", "PhaseImpedanceData", "PhaseImpedance"]
+                        ]
+                    )
                 );
             }
         }
@@ -7566,9 +7646,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerTransformer", "PowerTransformer", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerTransformer", "0..1", "0..*", "PowerTransformer", "PowerTransformerEnd"]
+                        ]
+                    )
                 );
             }
         }
@@ -7684,9 +7766,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransformerTank", "TransformerTank", "0..1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransformerTank", "0..1", "1..*", "TransformerTank", "TransformerTankEnds"]
+                        ]
+                    )
                 );
             }
         }
@@ -7827,9 +7911,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TapChanger", "TapChanger", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TapChanger", "0..*", "0..1", "TapChanger", "TapChangerControl"]
+                        ]
+                    )
                 );
             }
         }
@@ -7942,9 +8028,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransformerEnd", "TransformerEnd", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransformerEnd", "1", "0..1", "TransformerEnd", "PhaseTapChanger"]
+                        ]
+                    )
                 );
             }
         }
@@ -8188,10 +8276,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RatioTapChangerTable", "RatioTapChangerTable", "0..1", "0..*"],
-                        ["TransformerEnd", "TransformerEnd", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RatioTapChangerTable", "0..1", "0..*", "RatioTapChangerTable", "RatioTapChanger"],
+                            ["TransformerEnd", "1", "0..1", "TransformerEnd", "RatioTapChanger"]
+                        ]
+                    )
                 );
             }
         }
@@ -8414,9 +8504,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PhaseTapChangerTable", "PhaseTapChangerTable", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PhaseTapChangerTable", "0..1", "0..*", "PhaseTapChangerTable", "PhaseTapChangerTabular"]
+                        ]
+                    )
                 );
             }
         }
@@ -8839,9 +8931,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["NonlinearShuntCompensatorPhasePoints", "NonlinearShuntCompensatorPhasePoint", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["NonlinearShuntCompensatorPhasePoints", "1..*", "1", "NonlinearShuntCompensatorPhasePoint", "NonlinearShuntCompensatorPhase"]
+                        ]
+                    )
                 );
             }
         }
@@ -9011,10 +9105,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ShuntCompensatorPhase", "ShuntCompensatorPhase", "0..*", "1"],
-                        ["SvShuntCompensatorSections", "SvShuntCompensatorSections", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ShuntCompensatorPhase", "0..*", "1", "ShuntCompensatorPhase", "ShuntCompensator"],
+                            ["SvShuntCompensatorSections", "0..1", "1", "SvShuntCompensatorSections", "ShuntCompensator"]
+                        ]
+                    )
                 );
             }
         }
@@ -9155,10 +9251,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GeneratingUnit", "GeneratingUnit", "0..1", "1..*"],
-                        ["HydroPump", "HydroPump", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GeneratingUnit", "0..1", "1..*", "GeneratingUnit", "RotatingMachine"],
+                            ["HydroPump", "0..1", "1", "HydroPump", "RotatingMachine"]
+                        ]
+                    )
                 );
             }
         }
@@ -9574,12 +9672,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PrimeMovers", "PrimeMover", "0..*", "0..*"],
-                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "1"],
-                        ["InitialReactiveCapabilityCurve", "ReactiveCapabilityCurve", "0..1", "1..*"],
-                        ["ReactiveCapabilityCurves", "ReactiveCapabilityCurve", "0..*", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PrimeMovers", "0..*", "0..*", "PrimeMover", "SynchronousMachines"],
+                            ["SynchronousMachineDynamics", "0..1", "1", "SynchronousMachineDynamics", "SynchronousMachine"],
+                            ["InitialReactiveCapabilityCurve", "0..1", "1..*", "ReactiveCapabilityCurve", "InitiallyUsedBySynchronousMachines"],
+                            ["ReactiveCapabilityCurves", "0..*", "1..*", "ReactiveCapabilityCurve", "SynchronousMachines"]
+                        ]
+                    )
                 );
             }
         }
@@ -9821,9 +9921,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["NonlinearShuntCompensatorPoints", "NonlinearShuntCompensatorPoint", "1..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["NonlinearShuntCompensatorPoints", "1..*", "1", "NonlinearShuntCompensatorPoint", "NonlinearShuntCompensator"]
+                        ]
+                    )
                 );
             }
         }
@@ -10346,9 +10448,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AsynchronousMachineDynamics", "0..1", "1", "AsynchronousMachineDynamics", "AsynchronousMachine"]
+                        ]
+                    )
                 );
             }
         }
@@ -10536,15 +10640,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LineGroundingAction", "GroundAction", "0..1", "0..1"],
-                        ["Cut", "Cut", "0..*", "1"],
-                        ["LineFaults", "LineFault", "0..*", "0..1"],
-                        ["LineJumpingAction", "JumperAction", "0..1", "0..*"],
-                        ["ACLineSegmentPhases", "ACLineSegmentPhase", "0..*", "1"],
-                        ["Clamp", "Clamp", "0..*", "1"],
-                        ["PerLengthImpedance", "PerLengthImpedance", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LineGroundingAction", "0..1", "0..1", "GroundAction", "AlongACLineSegment"],
+                            ["Cut", "0..*", "1", "Cut", "ACLineSegment"],
+                            ["LineFaults", "0..*", "0..1", "LineFault", "ACLineSegment"],
+                            ["LineJumpingAction", "0..1", "0..*", "JumperAction", "AlongACLineSegments"],
+                            ["ACLineSegmentPhases", "0..*", "1", "ACLineSegmentPhase", "ACLineSegment"],
+                            ["Clamp", "0..*", "1", "Clamp", "ACLineSegment"],
+                            ["PerLengthImpedance", "0..1", "0..*", "PerLengthImpedance", "ACLineSegments"]
+                        ]
+                    )
                 );
             }
         }

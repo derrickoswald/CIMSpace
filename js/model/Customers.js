@@ -236,11 +236,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TroubleTickets", "TroubleTicket", "0..*", "0..1"],
-                        ["Customer", "Customer", "0..1", "0..*"],
-                        ["Incident", "Incident", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TroubleTickets", "0..*", "0..1", "TroubleTicket", "Notification"],
+                            ["Customer", "0..1", "0..*", "Customer", "Notifications"],
+                            ["Incident", "0..1", "0..*", "Incident", "CustomerNotifications"]
+                        ]
+                    )
                 );
             }
         }
@@ -411,13 +413,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Tariffs", "Tariff", "0..*", "0..*"],
-                        ["Transactions", "Transaction", "0..*", "0..1"],
-                        ["ServiceCategory", "ServiceCategory", "1", "0..*"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
-                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Tariffs", "0..*", "0..*", "Tariff", "PricingStructures"],
+                            ["Transactions", "0..*", "0..1", "Transaction", "PricingStructure"],
+                            ["ServiceCategory", "1", "0..*", "ServiceCategory", "PricingStructures"],
+                            ["UsagePoints", "0..*", "0..*", "UsagePoint", "PricingStructures"],
+                            ["CustomerAgreements", "0..*", "0..*", "CustomerAgreement", "PricingStructures"]
+                        ]
+                    )
                 );
             }
         }
@@ -549,10 +553,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PricingStructures", "PricingStructure", "0..*", "0..*"],
-                        ["TariffProfiles", "TariffProfile", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PricingStructures", "0..*", "0..*", "PricingStructure", "Tariffs"],
+                            ["TariffProfiles", "0..*", "0..*", "TariffProfile", "Tariffs"]
+                        ]
+                    )
                 );
             }
         }
@@ -732,15 +738,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Works", "Work", "0..*", "0..*"],
-                        ["ErpPersons", "OldPerson", "0..*", "0..1"],
-                        ["Notifications", "CustomerNotification", "0..*", "0..1"],
-                        ["EndDevices", "EndDevice", "0..*", "0..1"],
-                        ["CustomerAgreements", "CustomerAgreement", "0..*", "1"],
-                        ["CustomerAccounts", "CustomerAccount", "0..*", "1"],
-                        ["TroubleTickets", "TroubleTicket", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Works", "0..*", "0..*", "Work", "Customers"],
+                            ["ErpPersons", "0..*", "0..1", "OldPerson", "CustomerData"],
+                            ["Notifications", "0..*", "0..1", "CustomerNotification", "Customer"],
+                            ["EndDevices", "0..*", "0..1", "EndDevice", "Customer"],
+                            ["CustomerAgreements", "0..*", "1", "CustomerAgreement", "Customer"],
+                            ["CustomerAccounts", "0..*", "1", "CustomerAccount", "Customer"],
+                            ["TroubleTickets", "0..*", "0..1", "TroubleTicket", "Customer"]
+                        ]
+                    )
                 );
             }
         }
@@ -858,10 +866,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Incident", "Incident", "0..1", "0..*"],
-                        ["TroubleTicket", "TroubleTicket", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Incident", "0..1", "0..*", "Incident", "Hazards"],
+                            ["TroubleTicket", "0..1", "0..*", "TroubleTicket", "Hazards"]
+                        ]
+                    )
                 );
             }
         }
@@ -1035,19 +1045,21 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ServiceCategory", "ServiceCategory", "0..1", "0..*"],
-                        ["ServiceSupplier", "ServiceSupplier", "1", "0..*"],
-                        ["AuxiliaryAgreements", "AuxiliaryAgreement", "0..*", "0..1"],
-                        ["DemandResponsePrograms", "DemandResponseProgram", "0..*", "0..*"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..1"],
-                        ["Customer", "Customer", "1", "0..*"],
-                        ["CustomerAccount", "CustomerAccount", "1", "0..*"],
-                        ["StandardIndustryCode", "StandardIndustryCode", "0..1", "0..*"],
-                        ["PricingStructures", "PricingStructure", "0..*", "0..*"],
-                        ["MeterReadings", "MeterReading", "0..*", "0..1"],
-                        ["ServiceLocations", "ServiceLocation", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ServiceCategory", "0..1", "0..*", "ServiceCategory", "CustomerAgreements"],
+                            ["ServiceSupplier", "1", "0..*", "ServiceSupplier", "CustomerAgreements"],
+                            ["AuxiliaryAgreements", "0..*", "0..1", "AuxiliaryAgreement", "CustomerAgreement"],
+                            ["DemandResponsePrograms", "0..*", "0..*", "DemandResponseProgram", "CustomerAgreements"],
+                            ["UsagePoints", "0..*", "0..1", "UsagePoint", "CustomerAgreement"],
+                            ["Customer", "1", "0..*", "Customer", "CustomerAgreements"],
+                            ["CustomerAccount", "1", "0..*", "CustomerAccount", "CustomerAgreements"],
+                            ["StandardIndustryCode", "0..1", "0..*", "StandardIndustryCode", "CustomerAgreements"],
+                            ["PricingStructures", "0..*", "0..*", "PricingStructure", "CustomerAgreements"],
+                            ["MeterReadings", "0..*", "0..1", "MeterReading", "CustomerAgreement"],
+                            ["ServiceLocations", "0..*", "0..*", "ServiceLocation", "CustomerAgreements"]
+                        ]
+                    )
                 );
             }
         }
@@ -1185,11 +1197,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndDevices", "EndDevice", "0..*", "0..1"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..1"],
-                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndDevices", "0..*", "0..1", "EndDevice", "ServiceLocation"],
+                            ["UsagePoints", "0..*", "0..1", "UsagePoint", "ServiceLocation"],
+                            ["CustomerAgreements", "0..*", "0..*", "CustomerAgreement", "ServiceLocations"]
+                        ]
+                    )
                 );
             }
         }
@@ -1322,12 +1336,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CustomerAgreements", "CustomerAgreement", "0..*", "0..1"],
-                        ["PricingStructures", "PricingStructure", "0..*", "1"],
-                        ["ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CustomerAgreements", "0..*", "0..1", "CustomerAgreement", "ServiceCategory"],
+                            ["PricingStructures", "0..*", "1", "PricingStructure", "ServiceCategory"],
+                            ["ConfigurationEvents", "0..*", "0..1", "ConfigurationEvent", "ChangedServiceCategory"],
+                            ["UsagePoints", "0..*", "0..1", "UsagePoint", "ServiceCategory"]
+                        ]
+                    )
                 );
             }
         }
@@ -1476,12 +1492,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Notification", "CustomerNotification", "0..1", "0..*"],
-                        ["Incident", "Incident", "0..1", "0..*"],
-                        ["Customer", "Customer", "0..1", "0..*"],
-                        ["Hazards", "IncidentHazard", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Notification", "0..1", "0..*", "CustomerNotification", "TroubleTickets"],
+                            ["Incident", "0..1", "0..*", "Incident", "TroubleTickets"],
+                            ["Customer", "0..1", "0..*", "Customer", "TroubleTickets"],
+                            ["Hazards", "0..*", "0..1", "IncidentHazard", "TroubleTicket"]
+                        ]
+                    )
                 );
             }
         }
@@ -1629,14 +1647,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CustomerAgreements", "CustomerAgreement", "0..*", "1"],
-                        ["Customer", "Customer", "1", "0..*"],
-                        ["WorkBillingInfos", "WorkBillingInfo", "0..*", "0..1"],
-                        ["ErpInvoicees", "ErpInvoice", "0..*", "0..1"],
-                        ["CustomerBillingInfos", "CustomerBillingInfo", "0..*", "0..1"],
-                        ["PaymentTransactions", "Transaction", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CustomerAgreements", "0..*", "1", "CustomerAgreement", "CustomerAccount"],
+                            ["Customer", "1", "0..*", "Customer", "CustomerAccounts"],
+                            ["WorkBillingInfos", "0..*", "0..1", "WorkBillingInfo", "CustomerAccount"],
+                            ["ErpInvoicees", "0..*", "0..1", "ErpInvoice", "CustomerAccount"],
+                            ["CustomerBillingInfos", "0..*", "0..1", "CustomerBillingInfo", "CustomerAccount"],
+                            ["PaymentTransactions", "0..*", "0..1", "Transaction", "CustomerAccount"]
+                        ]
+                    )
                 );
             }
         }

@@ -181,17 +181,19 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Terminal", "Terminal", "1", "0..*"],
-                        ["VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "0..1"],
-                        ["WindPlantDynamics", "WindPlantDynamics", "0..1", "0..1"],
-                        ["PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "0..*"],
-                        ["WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "0..1"],
-                        ["UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "0..1"],
-                        ["WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "0..1"],
-                        ["PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "0..1"],
-                        ["DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Terminal", "1", "0..*", "Terminal", "RemoteInputSignal"],
+                            ["VoltageCompensatorDynamics", "0..1", "0..1", "VoltageCompensatorDynamics", "RemoteInputSignal"],
+                            ["WindPlantDynamics", "0..1", "0..1", "WindPlantDynamics", "RemoteInputSignal"],
+                            ["PowerSystemStabilizerDynamics", "0..1", "0..*", "PowerSystemStabilizerDynamics", "RemoteInputSignal"],
+                            ["WindTurbineType3or4Dynamics", "0..1", "0..1", "WindTurbineType3or4Dynamics", "RemoteInputSignal"],
+                            ["UnderexcitationLimiterDynamics", "0..1", "0..1", "UnderexcitationLimiterDynamics", "RemoteInputSignal"],
+                            ["WindTurbineType1or2Dynamics", "0..1", "0..1", "WindTurbineType1or2Dynamics", "RemoteInputSignal"],
+                            ["PFVArControllerType1Dynamics", "0..1", "0..1", "PFVArControllerType1Dynamics", "RemoteInputSignal"],
+                            ["DiscontinuousExcitationControlDynamics", "0..1", "0..1", "DiscontinuousExcitationControlDynamics", "RemoteInputSignal"]
+                        ]
+                    )
                 );
             }
         }

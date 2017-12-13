@@ -228,17 +228,19 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CutActions", "CutAction", "0..*", "0..1"],
-                        ["ClearanceActions", "ClearanceAction", "0..*", "0..1"],
-                        ["GenericActions", "GenericAction", "0..*", "0..1"],
-                        ["EnergySourceActions", "EnergySourceAction", "0..*", "0..1"],
-                        ["TagActions", "TagAction", "0..*", "0..1"],
-                        ["JumperActions", "JumperAction", "0..*", "0..1"],
-                        ["SwitchingPlan", "SwitchingPlan", "0..1", "0..*"],
-                        ["SwitchActions", "SwitchAction", "0..*", "0..1"],
-                        ["GroundActions", "GroundAction", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CutActions", "0..*", "0..1", "CutAction", "SwitchingStepGroup"],
+                            ["ClearanceActions", "0..*", "0..1", "ClearanceAction", "SwitchingStepGroup"],
+                            ["GenericActions", "0..*", "0..1", "GenericAction", "SwitchingStepGroup"],
+                            ["EnergySourceActions", "0..*", "0..1", "EnergySourceAction", "SwitchingStepGroup"],
+                            ["TagActions", "0..*", "0..1", "TagAction", "SwitchingStepGroup"],
+                            ["JumperActions", "0..*", "0..1", "JumperAction", "SwitchingStepGroup"],
+                            ["SwitchingPlan", "0..1", "0..*", "SwitchingPlan", "SwitchingStepGroups"],
+                            ["SwitchActions", "0..*", "0..1", "SwitchAction", "SwitchingStepGroup"],
+                            ["GroundActions", "0..*", "0..1", "GroundAction", "SwitchingStepGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -355,11 +357,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Asset", "Asset", "0..1", "0..*"],
-                        ["TagAction", "TagAction", "0..1", "0..1"],
-                        ["PowerSystemResource", "PowerSystemResource", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Asset", "0..1", "0..*", "Asset", "OperationTags"],
+                            ["TagAction", "0..1", "0..1", "TagAction", "OperationTag"],
+                            ["PowerSystemResource", "0..1", "0..*", "PowerSystemResource", "OperationTags"]
+                        ]
+                    )
                 );
             }
         }
@@ -477,9 +481,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PowerSystemResource", "PowerSystemResource", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PowerSystemResource", "0..1", "0..*", "PowerSystemResource", "PSREvents"]
+                        ]
+                    )
                 );
             }
         }
@@ -666,17 +672,19 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OutageSchedule", "OutageSchedule", "0..1", "0..*"],
-                        ["PlannedSwitchActions", "SwitchAction", "0..*", "0..1"],
-                        ["Equipments", "Equipment", "0..*", "0..*"],
-                        ["OpenedSwitches", "Switch", "0..*", "0..1"],
-                        ["Faults", "Fault", "0..*", "0..1"],
-                        ["SwitchingPlans", "SwitchingPlan", "0..*", "0..1"],
-                        ["UpdatedRatings", "OperationalUpdatedRating", "0..*", "1"],
-                        ["UsagePoints", "UsagePoint", "0..*", "0..*"],
-                        ["Incident", "Incident", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OutageSchedule", "0..1", "0..*", "OutageSchedule", "PlannedOutages"],
+                            ["PlannedSwitchActions", "0..*", "0..1", "SwitchAction", "PlannedOutage"],
+                            ["Equipments", "0..*", "0..*", "Equipment", "Outages"],
+                            ["OpenedSwitches", "0..*", "0..1", "Switch", "Outage"],
+                            ["Faults", "0..*", "0..1", "Fault", "Outage"],
+                            ["SwitchingPlans", "0..*", "0..1", "SwitchingPlan", "Outage"],
+                            ["UpdatedRatings", "0..*", "1", "OperationalUpdatedRating", "PlannedOutage"],
+                            ["UsagePoints", "0..*", "0..*", "UsagePoint", "Outages"],
+                            ["Incident", "0..1", "0..1", "Incident", "Outage"]
+                        ]
+                    )
                 );
             }
         }
@@ -821,14 +829,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Hazards", "IncidentHazard", "0..*", "0..1"],
-                        ["Owner", "Operator", "0..1", "0..*"],
-                        ["TroubleTickets", "TroubleTicket", "0..*", "0..1"],
-                        ["Works", "Work", "0..*", "0..*"],
-                        ["CustomerNotifications", "CustomerNotification", "0..*", "0..1"],
-                        ["Outage", "Outage", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Hazards", "0..*", "0..1", "IncidentHazard", "Incident"],
+                            ["Owner", "0..1", "0..*", "Operator", "Incidents"],
+                            ["TroubleTickets", "0..*", "0..1", "TroubleTicket", "Incident"],
+                            ["Works", "0..*", "0..*", "Work", "Incidents"],
+                            ["CustomerNotifications", "0..*", "0..1", "CustomerNotification", "Incident"],
+                            ["Outage", "0..1", "0..1", "Outage", "Incident"]
+                        ]
+                    )
                 );
             }
         }
@@ -958,10 +968,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Equipments", "Equipment", "0..*", "0..*"],
-                        ["ProductAssetModel", "ProductAssetModel", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Equipments", "0..*", "0..*", "Equipment", "OperationalRestrictions"],
+                            ["ProductAssetModel", "0..1", "0..*", "ProductAssetModel", "OperationalRestrictions"]
+                        ]
+                    )
                 );
             }
         }
@@ -1072,9 +1084,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SwitchingPlan", "SwitchingPlan", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SwitchingPlan", "0..1", "0..*", "SwitchingPlan", "SafetyDocuments"]
+                        ]
+                    )
                 );
             }
         }
@@ -1296,9 +1310,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PlannedOutages", "Outage", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PlannedOutages", "0..*", "0..1", "Outage", "OutageSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -1439,10 +1455,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["CrewMember", "CrewMember", "0..1", "0..*"],
-                        ["Operator", "Operator", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["CrewMember", "0..1", "0..*", "CrewMember", "SwitchingSteps"],
+                            ["Operator", "0..1", "0..*", "Operator", "SwitchingSteps"]
+                        ]
+                    )
                 );
             }
         }
@@ -1581,12 +1599,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SafetyDocuments", "SafetyDocument", "0..*", "0..1"],
-                        ["Outage", "Outage", "0..1", "0..*"],
-                        ["SwitchingStepGroups", "SwitchingStepGroup", "0..*", "0..1"],
-                        ["WorkTasks", "WorkTask", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SafetyDocuments", "0..*", "0..1", "SafetyDocument", "SwitchingPlan"],
+                            ["Outage", "0..1", "0..*", "Outage", "SwitchingPlans"],
+                            ["SwitchingStepGroups", "0..*", "0..1", "SwitchingStepGroup", "SwitchingPlan"],
+                            ["WorkTasks", "0..*", "0..1", "WorkTask", "SwitchingPlan"]
+                        ]
+                    )
                 );
             }
         }
@@ -1702,9 +1722,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PlannedOutage", "Outage", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PlannedOutage", "1", "0..*", "Outage", "UpdatedRatings"]
+                        ]
+                    )
                 );
             }
         }
@@ -1834,10 +1856,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TaggedPSRs", "PowerSystemResource", "0..*", "0..*"],
-                        ["ClearanceAction", "ClearanceAction", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TaggedPSRs", "0..*", "0..*", "PowerSystemResource", "Clearances"],
+                            ["ClearanceAction", "0..1", "0..1", "ClearanceAction", "Clearance"]
+                        ]
+                    )
                 );
             }
         }
@@ -1948,9 +1972,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SwitchingStepGroup", "0..1", "0..*", "SwitchingStepGroup", "GenericActions"]
+                        ]
+                    )
                 );
             }
         }
@@ -2073,10 +2099,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Clearance", "ClearanceDocument", "0..1", "0..1"],
-                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Clearance", "0..1", "0..1", "ClearanceDocument", "ClearanceAction"],
+                            ["SwitchingStepGroup", "0..1", "0..*", "SwitchingStepGroup", "ClearanceActions"]
+                        ]
+                    )
                 );
             }
         }
@@ -2209,12 +2237,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Ground", "Ground", "0..1", "0..1"],
-                        ["AlongACLineSegment", "ACLineSegment", "0..1", "0..1"],
-                        ["GroundedEquipment", "ConductingEquipment", "0..1", "0..1"],
-                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Ground", "0..1", "0..1", "Ground", "GroundAction"],
+                            ["AlongACLineSegment", "0..1", "0..1", "ACLineSegment", "LineGroundingAction"],
+                            ["GroundedEquipment", "0..1", "0..1", "ConductingEquipment", "GroundingAction"],
+                            ["SwitchingStepGroup", "0..1", "0..*", "SwitchingStepGroup", "GroundActions"]
+                        ]
+                    )
                 );
             }
         }
@@ -2337,10 +2367,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"],
-                        ["Cut", "Cut", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["SwitchingStepGroup", "0..1", "0..*", "SwitchingStepGroup", "CutActions"],
+                            ["Cut", "0..1", "0..1", "Cut", "CutAction"]
+                        ]
+                    )
                 );
             }
         }
@@ -2468,11 +2500,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PlannedOutage", "Outage", "0..1", "0..*"],
-                        ["OperatedSwitch", "Switch", "0..1", "0..1"],
-                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PlannedOutage", "0..1", "0..*", "Outage", "PlannedSwitchActions"],
+                            ["OperatedSwitch", "0..1", "0..1", "Switch", "SwitchAction"],
+                            ["SwitchingStepGroup", "0..1", "0..*", "SwitchingStepGroup", "SwitchActions"]
+                        ]
+                    )
                 );
             }
         }
@@ -2605,12 +2639,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AlongACLineSegments", "ACLineSegment", "0..*", "0..1"],
-                        ["Jumper", "Jumper", "0..1", "0..1"],
-                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"],
-                        ["JumpedEquipments", "ConductingEquipment", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AlongACLineSegments", "0..*", "0..1", "ACLineSegment", "LineJumpingAction"],
+                            ["Jumper", "0..1", "0..1", "Jumper", "JumperAction"],
+                            ["SwitchingStepGroup", "0..1", "0..*", "SwitchingStepGroup", "JumperActions"],
+                            ["JumpedEquipments", "0..*", "0..1", "ConductingEquipment", "JumpingAction"]
+                        ]
+                    )
                 );
             }
         }
@@ -2733,10 +2769,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OperationTag", "OperationTag", "0..1", "0..1"],
-                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OperationTag", "0..1", "0..1", "OperationTag", "TagAction"],
+                            ["SwitchingStepGroup", "0..1", "0..*", "SwitchingStepGroup", "TagActions"]
+                        ]
+                    )
                 );
             }
         }
@@ -2859,10 +2897,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergySource", "EnergySource", "0..1", "0..1"],
-                        ["SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergySource", "0..1", "0..1", "EnergySource", "EnergySourceAction"],
+                            ["SwitchingStepGroup", "0..1", "0..*", "SwitchingStepGroup", "EnergySourceActions"]
+                        ]
+                    )
                 );
             }
         }

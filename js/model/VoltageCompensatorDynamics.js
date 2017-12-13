@@ -131,10 +131,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["VcompIEEEType2", "VCompIEEEType2", "1", "2..*"],
-                        ["SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["VcompIEEEType2", "1", "2..*", "VCompIEEEType2", "GenICompensationForGenJ"],
+                            ["SynchronousMachineDynamics", "1", "0..*", "SynchronousMachineDynamics", "GenICompensationForGenJ"]
+                        ]
+                    )
                 );
             }
         }
@@ -250,10 +252,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"],
-                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "VoltageCompensatorDynamics"],
+                            ["ExcitationSystemDynamics", "1", "0..1", "ExcitationSystemDynamics", "VoltageCompensatorDynamics"]
+                        ]
+                    )
                 );
             }
         }
@@ -371,9 +375,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GenICompensationForGenJ", "GenICompensationForGenJ", "2..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GenICompensationForGenJ", "2..*", "1", "GenICompensationForGenJ", "VcompIEEEType2"]
+                        ]
+                    )
                 );
             }
         }

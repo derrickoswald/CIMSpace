@@ -128,10 +128,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Terminal", "ACDCTerminal", "1..*", "0..1"],
-                        ["ReportingGroup", "ReportingGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Terminal", "1..*", "0..1", "ACDCTerminal", "BusNameMarker"],
+                            ["ReportingGroup", "0..1", "0..*", "ReportingGroup", "BusNameMarker"]
+                        ]
+                    )
                 );
             }
         }
@@ -257,12 +259,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DCNodes", "DCNode", "0..*", "0..1"],
-                        ["DCEquipmentContainer", "DCEquipmentContainer", "0..1", "0..*"],
-                        ["DCTerminals", "DCBaseTerminal", "0..*", "0..1"],
-                        ["DCTopologicalIsland", "DCTopologicalIsland", "0..1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DCNodes", "0..*", "0..1", "DCNode", "DCTopologicalNode"],
+                            ["DCEquipmentContainer", "0..1", "0..*", "DCEquipmentContainer", "DCTopologicalNode"],
+                            ["DCTerminals", "0..*", "0..1", "DCBaseTerminal", "DCTopologicalNode"],
+                            ["DCTopologicalIsland", "0..1", "1..*", "DCTopologicalIsland", "DCTopologicalNodes"]
+                        ]
+                    )
                 );
             }
         }
@@ -425,17 +429,19 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AngleRefTopologicalIsland", "TopologicalIsland", "0..1", "0..1"],
-                        ["SvVoltage", "SvVoltage", "0..1", "1"],
-                        ["ReportingGroup", "ReportingGroup", "0..1", "0..*"],
-                        ["SvInjection", "SvInjection", "0..1", "1"],
-                        ["ConnectivityNodes", "ConnectivityNode", "0..*", "0..1"],
-                        ["BaseVoltage", "BaseVoltage", "0..1", "0..*"],
-                        ["Terminal", "Terminal", "0..*", "0..1"],
-                        ["TopologicalIsland", "TopologicalIsland", "0..1", "1..*"],
-                        ["ConnectivityNodeContainer", "ConnectivityNodeContainer", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AngleRefTopologicalIsland", "0..1", "0..1", "TopologicalIsland", "AngleRefTopologicalNode"],
+                            ["SvVoltage", "0..1", "1", "SvVoltage", "TopologicalNode"],
+                            ["ReportingGroup", "0..1", "0..*", "ReportingGroup", "TopologicalNode"],
+                            ["SvInjection", "0..1", "1", "SvInjection", "TopologicalNode"],
+                            ["ConnectivityNodes", "0..*", "0..1", "ConnectivityNode", "TopologicalNode"],
+                            ["BaseVoltage", "0..1", "0..*", "BaseVoltage", "TopologicalNode"],
+                            ["Terminal", "0..*", "0..1", "Terminal", "TopologicalNode"],
+                            ["TopologicalIsland", "0..1", "1..*", "TopologicalIsland", "TopologicalNodes"],
+                            ["ConnectivityNodeContainer", "0..1", "0..*", "ConnectivityNodeContainer", "TopologicalNode"]
+                        ]
+                    )
                 );
             }
         }
@@ -553,10 +559,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AngleRefTopologicalNode", "TopologicalNode", "0..1", "0..1"],
-                        ["TopologicalNodes", "TopologicalNode", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AngleRefTopologicalNode", "0..1", "0..1", "TopologicalNode", "AngleRefTopologicalIsland"],
+                            ["TopologicalNodes", "1..*", "0..1", "TopologicalNode", "TopologicalIsland"]
+                        ]
+                    )
                 );
             }
         }

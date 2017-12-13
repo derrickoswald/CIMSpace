@@ -121,10 +121,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"],
-                        ["RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ExcitationSystemDynamics", "1", "0..1", "ExcitationSystemDynamics", "UnderexcitationLimiterDynamics"],
+                            ["RemoteInputSignal", "0..1", "0..1", "RemoteInputSignal", "UnderexcitationLimiterDynamics"]
+                        ]
+                    )
                 );
             }
         }

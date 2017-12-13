@@ -154,15 +154,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LossPenaltyFactor", "LossSensitivity", "0..*", "1"],
-                        ["RTO", "RTO", "1", "0..*"],
-                        ["RegisteredResource", "RegisteredResource", "0..*", "0..1"],
-                        ["CnodeDistributionFactor", "CnodeDistributionFactor", "0..*", "1"],
-                        ["IndividualPnode", "IndividualPnode", "0..1", "1"],
-                        ["SysLoadDistribuFactor", "SysLoadDistributionFactor", "0..1", "1"],
-                        ["NodeConstraintTerm", "NodeConstraintTerm", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LossPenaltyFactor", "0..*", "1", "LossSensitivity", "MktConnectivityNode"],
+                            ["RTO", "1", "0..*", "RTO", "MktConnectivityNode"],
+                            ["RegisteredResource", "0..*", "0..1", "RegisteredResource", "MktConnectivityNode"],
+                            ["CnodeDistributionFactor", "0..*", "1", "CnodeDistributionFactor", "MktConnectivityNode"],
+                            ["IndividualPnode", "0..1", "1", "IndividualPnode", "MktConnectivityNode"],
+                            ["SysLoadDistribuFactor", "0..1", "1", "SysLoadDistributionFactor", "MktConnectivityNode"],
+                            ["NodeConstraintTerm", "0..*", "1", "NodeConstraintTerm", "MktConnectivityNode"]
+                        ]
+                    )
                 );
             }
         }
@@ -308,14 +310,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["PassThroughBill", "PassThroughBill", "0..*", "0..*"],
-                        ["AttributeProperty", "AttributeProperty", "0..*", "1"],
-                        ["ChargeGroup", "ChargeGroup", "0..*", "0..*"],
-                        ["ChargeType", "ChargeType", "0..*", "0..*"],
-                        ["BillDeterminant", "BillDeterminant", "0..*", "0..*"],
-                        ["MarketStatementLineItem", "MarketStatementLineItem", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["PassThroughBill", "0..*", "0..*", "PassThroughBill", "MktUserAttribute"],
+                            ["AttributeProperty", "0..*", "1", "AttributeProperty", "MktUserAttribute"],
+                            ["ChargeGroup", "0..*", "0..*", "ChargeGroup", "MktUserAttribute"],
+                            ["ChargeType", "0..*", "0..*", "ChargeType", "MktUserAttribute"],
+                            ["BillDeterminant", "0..*", "0..*", "BillDeterminant", "MktUserAttribute"],
+                            ["MarketStatementLineItem", "0..*", "0..*", "MarketStatementLineItem", "MktUserAttribute"]
+                        ]
+                    )
                 );
             }
         }
@@ -431,10 +435,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*"],
-                        ["GeneratingUnitDynamicValues", "GeneratingUnitDynamicValues", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredGenerator", "0..1", "0..*", "RegisteredGenerator", "MktGeneratingUnit"],
+                            ["GeneratingUnitDynamicValues", "0..*", "1", "GeneratingUnitDynamicValues", "MktGeneratingUnit"]
+                        ]
+                    )
                 );
             }
         }
@@ -547,9 +553,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketFactors", "MarketFactors", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketFactors", "0..*", "0..*", "MarketFactors", "MktActivityRecord"]
+                        ]
+                    )
                 );
             }
         }
@@ -663,10 +671,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["AreaLoadCurve", "AreaLoadCurve", "0..*", "0..1"],
-                        ["RegisteredLoad", "RegisteredLoad", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["AreaLoadCurve", "0..*", "0..1", "AreaLoadCurve", "MktLoadArea"],
+                            ["RegisteredLoad", "0..*", "1", "RegisteredLoad", "MktLoadArea"]
+                        ]
+                    )
                 );
             }
         }
@@ -784,10 +794,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TransmissionRightOfWay", "TransmissionRightOfWay", "0..1", "0..*"],
-                        ["Flowgate", "Flowgate", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TransmissionRightOfWay", "0..1", "0..*", "TransmissionRightOfWay", "MktLine"],
+                            ["Flowgate", "0..*", "0..*", "Flowgate", "MktLine"]
+                        ]
+                    )
                 );
             }
         }
@@ -898,9 +910,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketLedgerEntries", "MarketLedgerEntry", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketLedgerEntries", "0..*", "1", "MarketLedgerEntry", "MarketLedger"]
+                        ]
+                    )
                 );
             }
         }
@@ -1023,11 +1037,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EndBFlow", "BranchEndFlow", "0..1", "0..*"],
-                        ["EndAFlow", "BranchEndFlow", "0..1", "0..*"],
-                        ["Flowgate", "Flowgate", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EndBFlow", "0..1", "0..*", "BranchEndFlow", "MktPowerTransformerEndBFlow"],
+                            ["EndAFlow", "0..1", "0..*", "BranchEndFlow", "MktPowerTransformerEndAFlow"],
+                            ["Flowgate", "0..*", "0..*", "Flowgate", "MktPowerTransformer"]
+                        ]
+                    )
                 );
             }
         }
@@ -1192,10 +1208,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketInvoiceLineItems", "MarketInvoiceLineItem", "0..*", "1"],
-                        ["MajorChargeGroup", "MajorChargeGroup", "1..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketInvoiceLineItems", "0..*", "1", "MarketInvoiceLineItem", "MarketInvoice"],
+                            ["MajorChargeGroup", "1..*", "0..*", "MajorChargeGroup", "MarketInvoice"]
+                        ]
+                    )
                 );
             }
         }
@@ -1343,10 +1361,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Settlement", "Settlement", "0..*", "0..*"],
-                        ["MarketLedger", "MarketLedger", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Settlement", "0..*", "0..*", "Settlement", "MarketLedgerEntry"],
+                            ["MarketLedger", "1", "0..*", "MarketLedger", "MarketLedgerEntries"]
+                        ]
+                    )
                 );
             }
         }
@@ -1519,12 +1539,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MarketInvoice", "MarketInvoice", "1", "0..*"],
-                        ["ContainerMarketInvoiceLineItem", "MarketInvoiceLineItem", "0..1", "0..*"],
-                        ["ComponentMarketInvoiceLineItems", "MarketInvoiceLineItem", "0..*", "0..1"],
-                        ["Settlement", "Settlement", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MarketInvoice", "1", "0..*", "MarketInvoice", "MarketInvoiceLineItems"],
+                            ["ContainerMarketInvoiceLineItem", "0..1", "0..*", "MarketInvoiceLineItem", "ComponentMarketInvoiceLineItems"],
+                            ["ComponentMarketInvoiceLineItems", "0..*", "0..1", "MarketInvoiceLineItem", "ContainerMarketInvoiceLineItem"],
+                            ["Settlement", "0..*", "0..*", "Settlement", "MarketInvoiceLineItem"]
+                        ]
+                    )
                 );
             }
         }
@@ -1650,10 +1672,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Flowgate", "Flowgate", "0..1", "0..*"],
-                        ["TerminalConstraintTerm", "TerminalConstraintTerm", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Flowgate", "0..1", "0..*", "Flowgate", "MktTerminal"],
+                            ["TerminalConstraintTerm", "0..*", "1", "TerminalConstraintTerm", "MktTerminal"]
+                        ]
+                    )
                 );
             }
         }
@@ -1840,16 +1864,18 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["IntSchedAgreement", "IntSchedAgreement", "0..*", "0..*"],
-                        ["MarketPerson", "MarketPerson", "0..*", "0..*"],
-                        ["ViolationLimit", "ViolationLimit", "0..*", "0..*"],
-                        ["OrgPnodeAllocation", "OrgPnodeAllocation", "0..*", "1"],
-                        ["CRROrgRole", "CRROrgRole", "0..*", "1"],
-                        ["SchedulingCoordinator", "SchedulingCoordinator", "0..*", "1"],
-                        ["OrgResOwnership", "OrgResOwnership", "0..*", "1"],
-                        ["RegisteredResource", "RegisteredResource", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["IntSchedAgreement", "0..*", "0..*", "IntSchedAgreement", "MktOrganisation"],
+                            ["MarketPerson", "0..*", "0..*", "MarketPerson", "MktOrganisation"],
+                            ["ViolationLimit", "0..*", "0..*", "ViolationLimit", "MktOrganisation"],
+                            ["OrgPnodeAllocation", "0..*", "1", "OrgPnodeAllocation", "MktOrganisation"],
+                            ["CRROrgRole", "0..*", "1", "CRROrgRole", "MktOrganisation"],
+                            ["SchedulingCoordinator", "0..*", "1", "SchedulingCoordinator", "MktOrgansation"],
+                            ["OrgResOwnership", "0..*", "1", "OrgResOwnership", "MktOrganisation"],
+                            ["RegisteredResource", "0..*", "0..1", "RegisteredResource", "MktOrganisation"]
+                        ]
+                    )
                 );
             }
         }
@@ -1965,10 +1991,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredLoad", "RegisteredLoad", "0..1", "0..*"],
-                        ["EnergyConsumerData", "EnergyConsumerData", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredLoad", "0..1", "0..*", "RegisteredLoad", "MktEnergyConsumer"],
+                            ["EnergyConsumerData", "0..*", "1", "EnergyConsumerData", "MktEnergyConsumer"]
+                        ]
+                    )
                 );
             }
         }
@@ -2099,13 +2127,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["DynamicSchedule", "DynamicSchedule", "0..*", "1"],
-                        ["ViolationLimit", "ViolationLimit", "0..*", "0..1"],
-                        ["Pnode", "Pnode", "0..1", "0..*"],
-                        ["ForTiePoint", "TiePoint", "1", "1..*"],
-                        ["ByTiePoint", "TiePoint", "1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["DynamicSchedule", "0..*", "1", "DynamicSchedule", "MktMeasurement"],
+                            ["ViolationLimit", "0..*", "0..1", "ViolationLimit", "MktMeasurement"],
+                            ["Pnode", "0..1", "0..*", "Pnode", "MktMeasurement"],
+                            ["ForTiePoint", "1", "1..*", "TiePoint", "ForMktMeasurement"],
+                            ["ByTiePoint", "1", "1..*", "TiePoint", "ByMktMeasurement"]
+                        ]
+                    )
                 );
             }
         }

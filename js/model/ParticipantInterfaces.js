@@ -150,12 +150,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ChargeGroupParent", "ChargeGroup", "0..1", "0..*"],
-                        ["ChargeGroupChild", "ChargeGroup", "0..*", "0..1"],
-                        ["MktUserAttribute", "MktUserAttribute", "0..*", "0..*"],
-                        ["ChargeType", "ChargeType", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ChargeGroupParent", "0..1", "0..*", "ChargeGroup", "ChargeGroupChild"],
+                            ["ChargeGroupChild", "0..*", "0..1", "ChargeGroup", "ChargeGroupParent"],
+                            ["MktUserAttribute", "0..*", "0..*", "MktUserAttribute", "ChargeGroup"],
+                            ["ChargeType", "0..*", "0..*", "ChargeType", "ChargeGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -291,14 +293,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BidSelfSched", "BidSelfSched", "0..*", "1"],
-                        ["MarketProduct", "MarketProduct", "1", "0..*"],
-                        ["BidDistributionFactor", "BidDistributionFactor", "0..*", "1"],
-                        ["BidHourlyProductSchedule", "BidHourlyProductSchedule", "0..*", "1"],
-                        ["Bid", "Bid", "1", "1..*"],
-                        ["BidSchedule", "BidPriceSchedule", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BidSelfSched", "0..*", "1", "BidSelfSched", "ProductBid"],
+                            ["MarketProduct", "1", "0..*", "MarketProduct", "ProductBids"],
+                            ["BidDistributionFactor", "0..*", "1", "BidDistributionFactor", "ProductBid"],
+                            ["BidHourlyProductSchedule", "0..*", "1", "BidHourlyProductSchedule", "ProductBid"],
+                            ["Bid", "1", "1..*", "Bid", "ProductBids"],
+                            ["BidSchedule", "0..*", "1", "BidPriceSchedule", "ProductBid"]
+                        ]
+                    )
                 );
             }
         }
@@ -429,9 +433,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredResource", "RegisteredResource", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResource", "1", "0..*", "RegisteredResource", "LoadFollowingInst"]
+                        ]
+                    )
                 );
             }
         }
@@ -557,9 +563,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MktUserAttribute", "MktUserAttribute", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MktUserAttribute", "1", "0..*", "MktUserAttribute", "AttributeProperty"]
+                        ]
+                    )
                 );
             }
         }
@@ -679,10 +687,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LoadBid", "LoadBid", "1", "0..*"],
-                        ["RegisteredLoad", "RegisteredLoad", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LoadBid", "1", "0..*", "LoadBid", "LoadReductionPriceCurve"],
+                            ["RegisteredLoad", "0..*", "0..*", "RegisteredLoad", "LoadReductionPriceCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -793,9 +803,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProductBid", "ProductBid", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProductBid", "1", "0..*", "ProductBid", "BidHourlyProductSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -913,10 +925,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..1"],
-                        ["GeneratingBid", "GeneratingBid", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredGenerator", "0..1", "0..1", "RegisteredGenerator", "StartUpTimeCurve"],
+                            ["GeneratingBid", "0..*", "0..1", "GeneratingBid", "StartUpTimeCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -1034,10 +1048,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyTransactions", "EnergyTransaction", "0..*", "0..*"],
-                        ["FTRs", "FTR", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyTransactions", "0..*", "0..*", "EnergyTransaction", "EnergyPriceCurves"],
+                            ["FTRs", "0..*", "0..1", "FTR", "EnergyPriceCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -1218,13 +1234,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProductBid", "ProductBid", "1", "0..*"],
-                        ["TransmissionContractRight", "ContractRight", "0..1", "0..*"],
-                        ["HostControlArea", "HostControlArea", "0..1", "0..*"],
-                        ["AdjacentCASet", "AdjacentCASet", "0..1", "0..*"],
-                        ["SubControlArea", "SubControlArea", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProductBid", "1", "0..*", "ProductBid", "BidSelfSched"],
+                            ["TransmissionContractRight", "0..1", "0..*", "ContractRight", "BidSelfSched"],
+                            ["HostControlArea", "0..1", "0..*", "HostControlArea", "BidSelfSched"],
+                            ["AdjacentCASet", "0..1", "0..*", "AdjacentCASet", "BidSelfSched"],
+                            ["SubControlArea", "0..1", "0..*", "SubControlArea", "BidSelfSched"]
+                        ]
+                    )
                 );
             }
         }
@@ -1350,10 +1368,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BidPriceCurve", "BidPriceCurve", "1", "0..*"],
-                        ["ProductBid", "ProductBid", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BidPriceCurve", "1", "0..*", "BidPriceCurve", "BidSchedule"],
+                            ["ProductBid", "1", "0..*", "ProductBid", "BidSchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -1513,10 +1533,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ChargeTypes", "ChargeType", "0..*", "0..*"],
-                        ["BillDeterminants", "BillDeterminant", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ChargeTypes", "0..*", "0..*", "ChargeType", "ChargeComponents"],
+                            ["BillDeterminants", "0..*", "0..*", "BillDeterminant", "ChargeComponents"]
+                        ]
+                    )
                 );
             }
         }
@@ -1690,12 +1712,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Settlement", "Settlement", "0..*", "1..*"],
-                        ["MarketInvoice", "MarketInvoice", "0..*", "1..*"],
-                        ["ChargeType", "ChargeType", "0..*", "0..*"],
-                        ["MktScheduledEvent", "MarketScheduledEvent", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Settlement", "0..*", "1..*", "Settlement", "MajorChargeGroup"],
+                            ["MarketInvoice", "0..*", "1..*", "MarketInvoice", "MajorChargeGroup"],
+                            ["ChargeType", "0..*", "0..*", "ChargeType", "MajorChargeGroup"],
+                            ["MktScheduledEvent", "0..*", "0..1", "MarketScheduledEvent", "MajorChargeGroup"]
+                        ]
+                    )
                 );
             }
         }
@@ -1866,12 +1890,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MajorChargeGroup", "MajorChargeGroup", "0..*", "0..*"],
-                        ["MktUserAttribute", "MktUserAttribute", "0..*", "0..*"],
-                        ["ChargeComponents", "ChargeComponent", "0..*", "0..*"],
-                        ["ChargeGroup", "ChargeGroup", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MajorChargeGroup", "0..*", "0..*", "MajorChargeGroup", "ChargeType"],
+                            ["MktUserAttribute", "0..*", "0..*", "MktUserAttribute", "ChargeType"],
+                            ["ChargeComponents", "0..*", "0..*", "ChargeComponent", "ChargeTypes"],
+                            ["ChargeGroup", "0..*", "0..*", "ChargeGroup", "ChargeType"]
+                        ]
+                    )
                 );
             }
         }
@@ -1991,10 +2017,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GeneratingBid", "GeneratingBid", "0..*", "0..1"],
-                        ["RegisteredGenerators", "RegisteredGenerator", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GeneratingBid", "0..*", "0..1", "GeneratingBid", "StartUpCostCurve"],
+                            ["RegisteredGenerators", "0..*", "0..*", "RegisteredGenerator", "StartUpCostCurves"]
+                        ]
+                    )
                 );
             }
         }
@@ -2120,10 +2148,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ProductBid", "ProductBid", "1", "0..*"],
-                        ["PnodeDistributionFactor", "PnodeDistributionFactor", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ProductBid", "1", "0..*", "ProductBid", "BidDistributionFactor"],
+                            ["PnodeDistributionFactor", "0..*", "0..1", "PnodeDistributionFactor", "BidDistributionFactor"]
+                        ]
+                    )
                 );
             }
         }
@@ -2253,9 +2283,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Trade", "Trade", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Trade", "0..*", "1", "Trade", "TradeProduct"]
+                        ]
+                    )
                 );
             }
         }
@@ -2396,9 +2428,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Trade", "Trade", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Trade", "0..1", "0..*", "Trade", "TradeError"]
+                        ]
+                    )
                 );
             }
         }
@@ -2569,18 +2603,20 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ActionRequest", "ActionRequest", "1", "0..*"],
-                        ["BidHourlySchedule", "BidHourlySchedule", "0..*", "1"],
-                        ["RMRDetermination", "RMRDetermination", "0..*", "0..1"],
-                        ["ProductBids", "ProductBid", "1..*", "1"],
-                        ["MarketParticipant", "MarketParticipant", "0..1", "0..*"],
-                        ["EnergyMarket", "EnergyMarket", "1", "0..*"],
-                        ["MitigatedBid", "MitigatedBid", "0..*", "0..1"],
-                        ["ChargeProfiles", "ChargeProfile", "0..*", "0..1"],
-                        ["MitigatedBidSegment", "MitigatedBidSegment", "0..*", "1"],
-                        ["SchedulingCoordinator", "SchedulingCoordinator", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ActionRequest", "1", "0..*", "ActionRequest", "Bid"],
+                            ["BidHourlySchedule", "0..*", "1", "BidHourlySchedule", "Bid"],
+                            ["RMRDetermination", "0..*", "0..1", "RMRDetermination", "Bid"],
+                            ["ProductBids", "1..*", "1", "ProductBid", "Bid"],
+                            ["MarketParticipant", "0..1", "0..*", "MarketParticipant", "Bid"],
+                            ["EnergyMarket", "1", "0..*", "EnergyMarket", "Bids"],
+                            ["MitigatedBid", "0..*", "0..1", "MitigatedBid", "Bid"],
+                            ["ChargeProfiles", "0..*", "0..1", "ChargeProfile", "Bid"],
+                            ["MitigatedBidSegment", "0..*", "1", "MitigatedBidSegment", "Bid"],
+                            ["SchedulingCoordinator", "0..1", "0..*", "SchedulingCoordinator", "Bid"]
+                        ]
+                    )
                 );
             }
         }
@@ -2806,17 +2842,19 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TradeProduct", "TradeProduct", "1", "0..*"],
-                        ["submitFromSchedulingCoordinator", "SchedulingCoordinator", "0..1", "0..*"],
-                        ["TradeError", "TradeError", "0..*", "0..1"],
-                        ["ActionRequest", "ActionRequest", "1", "0..*"],
-                        ["To_SC", "SchedulingCoordinator", "1", "0..*"],
-                        ["Pnode", "Pnode", "0..1", "0..*"],
-                        ["submitToSchedulingCoordinator", "SchedulingCoordinator", "0..1", "0..*"],
-                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*"],
-                        ["From_SC", "SchedulingCoordinator", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TradeProduct", "1", "0..*", "TradeProduct", "Trade"],
+                            ["submitFromSchedulingCoordinator", "0..1", "0..*", "SchedulingCoordinator", "SubmitFromSCTrade"],
+                            ["TradeError", "0..*", "0..1", "TradeError", "Trade"],
+                            ["ActionRequest", "1", "0..*", "ActionRequest", "Trade"],
+                            ["To_SC", "1", "0..*", "SchedulingCoordinator", "ToSCTrade"],
+                            ["Pnode", "0..1", "0..*", "Pnode", "Trade"],
+                            ["submitToSchedulingCoordinator", "0..1", "0..*", "SchedulingCoordinator", "SubmitToSCTrade"],
+                            ["RegisteredGenerator", "0..1", "0..*", "RegisteredGenerator", "Trade"],
+                            ["From_SC", "1", "0..*", "SchedulingCoordinator", "FromSCTrade"]
+                        ]
+                    )
                 );
             }
         }
@@ -2974,10 +3012,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["ResourceBid", "ResourceBid", "0..*", "0..*"],
-                        ["MarketProduct", "MarketProduct", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["ResourceBid", "0..*", "0..*", "ResourceBid", "BidError"],
+                            ["MarketProduct", "0..1", "0..*", "MarketProduct", "BidError"]
+                        ]
+                    )
                 );
             }
         }
@@ -3098,10 +3138,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Bid", "Bid", "0..*", "1"],
-                        ["Trade", "Trade", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Bid", "0..*", "1", "Bid", "ActionRequest"],
+                            ["Trade", "0..*", "1", "Trade", "ActionRequest"]
+                        ]
+                    )
                 );
             }
         }
@@ -3237,9 +3279,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredInterTie", "RegisteredInterTie", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredInterTie", "1", "0..*", "RegisteredInterTie", "InterTieDispatchResponse"]
+                        ]
+                    )
                 );
             }
         }
@@ -3350,9 +3394,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GeneratingBids", "GeneratingBid", "1..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GeneratingBids", "1..*", "0..1", "GeneratingBid", "BidSet"]
+                        ]
+                    )
                 );
             }
         }
@@ -3495,12 +3541,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GeneratingBid", "GeneratingBid", "0..1", "0..*"],
-                        ["LoadBid", "LoadBid", "0..1", "0..*"],
-                        ["RegisteredResource", "RegisteredResource", "0..*", "0..*"],
-                        ["InterTieBid", "InterTieBid", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GeneratingBid", "0..1", "0..*", "GeneratingBid", "RampRateCurve"],
+                            ["LoadBid", "0..1", "0..*", "LoadBid", "RampRateCurve"],
+                            ["RegisteredResource", "0..*", "0..*", "RegisteredResource", "RampRateCurve"],
+                            ["InterTieBid", "0..1", "0..*", "InterTieBid", "RampRateCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -3656,9 +3704,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredResource", "RegisteredResource", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredResource", "1", "0..*", "RegisteredResource", "DispatchInstReply"]
+                        ]
+                    )
                 );
             }
         }
@@ -3769,9 +3819,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["GeneratingBids", "GeneratingBid", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["GeneratingBids", "0..*", "0..1", "GeneratingBid", "NotificationTimeCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -3897,9 +3949,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["MajorChargeGroup", "MajorChargeGroup", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["MajorChargeGroup", "0..1", "0..*", "MajorChargeGroup", "MktScheduledEvent"]
+                        ]
+                    )
                 );
             }
         }
@@ -4008,9 +4062,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BidSchedule", "BidPriceSchedule", "0..*", "1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BidSchedule", "0..*", "1", "BidPriceSchedule", "BidPriceCurve"]
+                        ]
+                    )
                 );
             }
         }
@@ -4121,9 +4177,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Bid", "Bid", "1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Bid", "1", "0..*", "Bid", "BidHourlySchedule"]
+                        ]
+                    )
                 );
             }
         }
@@ -4629,9 +4687,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BidError", "BidError", "0..*", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BidError", "0..*", "0..*", "BidError", "ResourceBid"]
+                        ]
+                    )
                 );
             }
         }
@@ -4752,10 +4812,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RegisteredInterTie", "RegisteredInterTie", "0..1", "0..1"],
-                        ["RampRateCurve", "RampRateCurve", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RegisteredInterTie", "0..1", "0..1", "RegisteredInterTie", "InterTieBid"],
+                            ["RampRateCurve", "0..*", "0..1", "RampRateCurve", "InterTieBid"]
+                        ]
+                    )
                 );
             }
         }
@@ -4901,13 +4963,15 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["EnergyProfiles", "EnergyProfile", "1..*", "1"],
-                        ["Receipt_Pnode", "Pnode", "0..1", "0..*"],
-                        ["Delivery_Pnode", "Pnode", "0..1", "0..*"],
-                        ["TransmissionReservation", "TransmissionReservation", "0..1", "0..1"],
-                        ["TransactionBidResults", "TransactionBidResults", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["EnergyProfiles", "1..*", "1", "EnergyProfile", "TransactionBid"],
+                            ["Receipt_Pnode", "0..1", "0..*", "Pnode", "ReceiptTransactionBids"],
+                            ["Delivery_Pnode", "0..1", "0..*", "Pnode", "DeliveryTransactionBids"],
+                            ["TransmissionReservation", "0..1", "0..1", "TransmissionReservation", "TransactionBid"],
+                            ["TransactionBidResults", "0..*", "0..1", "TransactionBidResults", "TransactionBid"]
+                        ]
+                    )
                 );
             }
         }
@@ -5025,9 +5089,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["LoadBid", "LoadBid", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["LoadBid", "0..*", "0..1", "LoadBid", "AreaLoadBid"]
+                        ]
+                    )
                 );
             }
         }
@@ -5223,12 +5289,14 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["RampRateCurve", "RampRateCurve", "0..*", "0..1"],
-                        ["LoadReductionPriceCurve", "LoadReductionPriceCurve", "0..*", "1"],
-                        ["AreaLoadBid", "AreaLoadBid", "0..1", "0..*"],
-                        ["RegisteredLoad", "RegisteredLoad", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["RampRateCurve", "0..*", "0..1", "RampRateCurve", "LoadBid"],
+                            ["LoadReductionPriceCurve", "0..*", "1", "LoadReductionPriceCurve", "LoadBid"],
+                            ["AreaLoadBid", "0..1", "0..*", "AreaLoadBid", "LoadBid"],
+                            ["RegisteredLoad", "0..1", "0..*", "RegisteredLoad", "LoadBids"]
+                        ]
+                    )
                 );
             }
         }
@@ -5454,15 +5522,17 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["NotificationTimeCurve", "NotificationTimeCurve", "0..1", "0..*"],
-                        ["StartUpCostCurve", "StartUpCostCurve", "0..1", "0..*"],
-                        ["RampRateCurve", "RampRateCurve", "0..*", "0..1"],
-                        ["RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*"],
-                        ["SecurityConstraints", "SecurityConstraints", "0..*", "0..1"],
-                        ["StartUpTimeCurve", "StartUpTimeCurve", "0..1", "0..*"],
-                        ["BidSet", "BidSet", "0..1", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["NotificationTimeCurve", "0..1", "0..*", "NotificationTimeCurve", "GeneratingBids"],
+                            ["StartUpCostCurve", "0..1", "0..*", "StartUpCostCurve", "GeneratingBid"],
+                            ["RampRateCurve", "0..*", "0..1", "RampRateCurve", "GeneratingBid"],
+                            ["RegisteredGenerator", "0..1", "0..*", "RegisteredGenerator", "GeneratingBids"],
+                            ["SecurityConstraints", "0..*", "0..1", "SecurityConstraints", "GeneratingBid"],
+                            ["StartUpTimeCurve", "0..1", "0..*", "StartUpTimeCurve", "GeneratingBid"],
+                            ["BidSet", "0..1", "1..*", "BidSet", "GeneratingBids"]
+                        ]
+                    )
                 );
             }
         }

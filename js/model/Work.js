@@ -197,9 +197,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["BaseWork", "BaseWork", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["BaseWork", "0..1", "0..*", "BaseWork", "TimeSchedules"]
+                        ]
+                    )
                 );
             }
         }
@@ -334,10 +336,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["WorkLocation", "WorkLocation", "0..1", "0..*"],
-                        ["TimeSchedules", "WorkTimeSchedule", "0..*", "0..1"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["WorkLocation", "0..1", "0..*", "WorkLocation", "BaseWorks"],
+                            ["TimeSchedules", "0..*", "0..1", "WorkTimeSchedule", "BaseWork"]
+                        ]
+                    )
                 );
             }
         }
@@ -460,11 +464,13 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["OneCallRequest", "OneCallRequest", "0..1", "0..*"],
-                        ["BaseWorks", "BaseWork", "0..*", "0..1"],
-                        ["DesignLocations", "DesignLocation", "0..*", "1..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["OneCallRequest", "0..1", "0..*", "OneCallRequest", "WorkLocations"],
+                            ["BaseWorks", "0..*", "0..1", "BaseWork", "WorkLocation"],
+                            ["DesignLocations", "0..*", "1..*", "DesignLocation", "WorkLocations"]
+                        ]
+                    )
                 );
             }
         }
@@ -587,10 +593,12 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["TypeMaterial", "TypeMaterial", "0..1", "0..*"],
-                        ["WorkTask", "WorkTask", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["TypeMaterial", "0..1", "0..*", "TypeMaterial", "MaterialItems"],
+                            ["WorkTask", "0..1", "0..*", "WorkTask", "MaterialItems"]
+                        ]
+                    )
                 );
             }
         }
@@ -701,9 +709,11 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Crew", "Crew", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Crew", "0..1", "0..*", "Crew", "WorkAssets"]
+                        ]
+                    )
                 );
             }
         }
@@ -861,14 +871,16 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Crews", "Crew", "0..*", "0..*"],
-                        ["Assets", "Asset", "0..*", "0..*"],
-                        ["Work", "Work", "1", "0..*"],
-                        ["MaterialItems", "MaterialItem", "0..*", "0..1"],
-                        ["OldAsset", "Asset", "0..1", "0..*"],
-                        ["SwitchingPlan", "SwitchingPlan", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Crews", "0..*", "0..*", "Crew", "WorkTasks"],
+                            ["Assets", "0..*", "0..*", "Asset", "WorkTasks"],
+                            ["Work", "1", "0..*", "Work", "WorkTasks"],
+                            ["MaterialItems", "0..*", "0..1", "MaterialItem", "WorkTask"],
+                            ["OldAsset", "0..1", "0..*", "Asset", "ReplacementWorkTasks"],
+                            ["SwitchingPlan", "0..1", "0..*", "SwitchingPlan", "WorkTasks"]
+                        ]
+                    )
                 );
             }
         }
@@ -1042,19 +1054,21 @@ define
             relations ()
             {
                 return (
-                    [
-                        ["Appointments", "Appointment", "0..*", "0..*"],
-                        ["Designs", "Design", "0..*", "0..1"],
-                        ["Customers", "Customer", "0..*", "0..*"],
-                        ["WorkFlowSteps", "WorkFlowStep", "0..*", "0..1"],
-                        ["WorkBillingInfo", "WorkBillingInfo", "0..1", "0..*"],
-                        ["Project", "Project", "0..1", "0..*"],
-                        ["WorkTasks", "WorkTask", "0..*", "1"],
-                        ["Incidents", "Incident", "0..*", "0..*"],
-                        ["BusinessCase", "BusinessCase", "0..1", "0..*"],
-                        ["WorkCostDetails", "WorkCostDetail", "0..*", "0..*"],
-                        ["ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"]
-                    ]
+                    super.relations ().concat (
+                        [
+                            ["Appointments", "0..*", "0..*", "Appointment", "Works"],
+                            ["Designs", "0..*", "0..1", "Design", "Work"],
+                            ["Customers", "0..*", "0..*", "Customer", "Works"],
+                            ["WorkFlowSteps", "0..*", "0..1", "WorkFlowStep", "Work"],
+                            ["WorkBillingInfo", "0..1", "0..*", "WorkBillingInfo", "Works"],
+                            ["Project", "0..1", "0..*", "Project", "Works"],
+                            ["WorkTasks", "0..*", "1", "WorkTask", "Work"],
+                            ["Incidents", "0..*", "0..*", "Incident", "Works"],
+                            ["BusinessCase", "0..1", "0..*", "BusinessCase", "Works"],
+                            ["WorkCostDetails", "0..*", "0..*", "WorkCostDetail", "Works"],
+                            ["ErpProjectAccounting", "0..1", "0..*", "ErpProjectAccounting", "Works"]
+                        ]
+                    )
                 );
             }
         }
