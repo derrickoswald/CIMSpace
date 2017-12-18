@@ -164,7 +164,7 @@ define
 
                 var obj = obj || { id: id, cls: "RemoteInputSignal" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_remoteSignalType").value; if ("" != temp) { temp = RemoteSignalKind[temp]; if ("undefined" != typeof (temp)) obj.remoteSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; }
+                temp = document.getElementById (id + "_remoteSignalType").value; if ("" != temp) { temp = RemoteSignalKind[temp]; if ("undefined" != typeof (temp)) obj.remoteSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteSignalKind." + temp; }
                 temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
                 temp = document.getElementById (id + "_VoltageCompensatorDynamics").value; if ("" != temp) obj.VoltageCompensatorDynamics = temp;
                 temp = document.getElementById (id + "_WindPlantDynamics").value; if ("" != temp) obj.WindPlantDynamics = temp;

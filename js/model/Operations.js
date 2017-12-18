@@ -472,7 +472,7 @@ define
 
                 var obj = obj || { id: id, cls: "PSREvent" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PSREventKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PSREventKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PSREventKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PSREventKind." + temp; }
                 temp = document.getElementById (id + "_PowerSystemResource").value; if ("" != temp) obj.PowerSystemResource = temp;
 
                 return (obj);
@@ -2089,7 +2089,7 @@ define
 
                 var obj = obj || { id: id, cls: "ClearanceAction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ClearanceActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ClearanceActionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ClearanceActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ClearanceActionKind." + temp; }
                 temp = document.getElementById (id + "_Clearance").value; if ("" != temp) obj.Clearance = temp;
                 temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
@@ -2225,7 +2225,7 @@ define
 
                 var obj = obj || { id: id, cls: "GroundAction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
                 temp = document.getElementById (id + "_Ground").value; if ("" != temp) obj.Ground = temp;
                 temp = document.getElementById (id + "_AlongACLineSegment").value; if ("" != temp) obj.AlongACLineSegment = temp;
                 temp = document.getElementById (id + "_GroundedEquipment").value; if ("" != temp) obj.GroundedEquipment = temp;
@@ -2357,7 +2357,7 @@ define
 
                 var obj = obj || { id: id, cls: "CutAction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
                 temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
                 temp = document.getElementById (id + "_Cut").value; if ("" != temp) obj.Cut = temp;
 
@@ -2489,7 +2489,7 @@ define
 
                 var obj = obj || { id: id, cls: "SwitchAction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SwitchActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SwitchActionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SwitchActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SwitchActionKind." + temp; }
                 temp = document.getElementById (id + "_PlannedOutage").value; if ("" != temp) obj.PlannedOutage = temp;
                 temp = document.getElementById (id + "_OperatedSwitch").value; if ("" != temp) obj.OperatedSwitch = temp;
                 temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
@@ -2629,7 +2629,7 @@ define
 
                 var obj = obj || { id: id, cls: "JumperAction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
                 temp = document.getElementById (id + "_Jumper").value; if ("" != temp) obj.Jumper = temp;
                 temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
@@ -2759,7 +2759,7 @@ define
 
                 var obj = obj || { id: id, cls: "TagAction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TagActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TagActionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TagActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TagActionKind." + temp; }
                 temp = document.getElementById (id + "_OperationTag").value; if ("" != temp) obj.OperationTag = temp;
                 temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 
@@ -2887,7 +2887,7 @@ define
 
                 var obj = obj || { id: id, cls: "EnergySourceAction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TempEquipActionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TempEquipActionKind." + temp; }
                 temp = document.getElementById (id + "_EnergySource").value; if ("" != temp) obj.EnergySource = temp;
                 temp = document.getElementById (id + "_SwitchingStepGroup").value; if ("" != temp) obj.SwitchingStepGroup = temp;
 

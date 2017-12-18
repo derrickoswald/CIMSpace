@@ -365,7 +365,7 @@ define
                 var obj = obj || { id: id, cls: "ICCPInformationMessage" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_localReference").value; if ("" != temp) obj.localReference = temp;
-                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
 
                 return (obj);
             }
@@ -473,7 +473,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
+                temp = document.getElementById (id + "_scope").value; if ("" != temp) { temp = ICCPPScope[temp]; if ("undefined" != typeof (temp)) obj.scope = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPPScope." + temp; }
 
                 return (obj);
             }
@@ -1026,7 +1026,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPIndicationPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPIndicationPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; }
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPIndicationPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPIndicationPointType." + temp; }
 
                 return (obj);
             }
@@ -1128,7 +1128,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPControlPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_deviceClass").value; if ("" != temp) { temp = ICCPControlPointDeviceClass[temp]; if ("undefined" != typeof (temp)) obj.deviceClass = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; }
+                temp = document.getElementById (id + "_deviceClass").value; if ("" != temp) { temp = ICCPControlPointDeviceClass[temp]; if ("undefined" != typeof (temp)) obj.deviceClass = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPControlPointDeviceClass." + temp; }
 
                 return (obj);
             }
@@ -1323,7 +1323,7 @@ define
 
                 var obj = obj || { id: id, cls: "ICCPSetPoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPSetPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; }
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ICCPSetPointType[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ICCPSetPointType." + temp; }
 
                 return (obj);
             }

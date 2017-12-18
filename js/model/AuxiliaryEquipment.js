@@ -449,7 +449,7 @@ define
                 temp = document.getElementById (id + "_accuracyClass").value; if ("" != temp) obj.accuracyClass = temp;
                 temp = document.getElementById (id + "_nominalRatio").value; if ("" != temp) obj.nominalRatio = temp;
                 temp = document.getElementById (id + "_ptClass").value; if ("" != temp) obj.ptClass = temp;
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = PotentialTransformerKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PotentialTransformerKind." + temp; }
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = PotentialTransformerKind[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#PotentialTransformerKind." + temp; }
 
                 return (obj);
             }

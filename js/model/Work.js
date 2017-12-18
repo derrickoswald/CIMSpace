@@ -188,7 +188,7 @@ define
 
                 var obj = obj || { id: id, cls: "WorkTimeSchedule" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkTimeScheduleKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTimeScheduleKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkTimeScheduleKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTimeScheduleKind." + temp; }
                 temp = document.getElementById (id + "_BaseWork").value; if ("" != temp) obj.BaseWork = temp;
 
                 return (obj);
@@ -325,9 +325,9 @@ define
 
                 var obj = obj || { id: id, cls: "BaseWork" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = WorkKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkKind." + temp; }
                 temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById (id + "_statusKind").value; if ("" != temp) { temp = WorkStatusKind[temp]; if ("undefined" != typeof (temp)) obj.statusKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkStatusKind." + temp; }
+                temp = document.getElementById (id + "_statusKind").value; if ("" != temp) { temp = WorkStatusKind[temp]; if ("undefined" != typeof (temp)) obj.statusKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkStatusKind." + temp; }
                 temp = document.getElementById (id + "_WorkLocation").value; if ("" != temp) obj.WorkLocation = temp;
 
                 return (obj);
@@ -857,7 +857,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_instruction").value; if ("" != temp) obj.instruction = temp;
                 temp = document.getElementById (id + "_schedOverride").value; if ("" != temp) obj.schedOverride = temp;
-                temp = document.getElementById (id + "_taskKind").value; if ("" != temp) { temp = WorkTaskKind[temp]; if ("undefined" != typeof (temp)) obj.taskKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTaskKind." + temp; }
+                temp = document.getElementById (id + "_taskKind").value; if ("" != temp) { temp = WorkTaskKind[temp]; if ("undefined" != typeof (temp)) obj.taskKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkTaskKind." + temp; }
                 temp = document.getElementById (id + "_crewETA").value; if ("" != temp) obj.crewETA = temp;
                 temp = document.getElementById (id + "_Crews").value; if ("" != temp) obj.Crews = temp.split (",");
                 temp = document.getElementById (id + "_Assets").value; if ("" != temp) obj.Assets = temp.split (",");
@@ -1302,7 +1302,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_odometerReadDateTime").value; if ("" != temp) obj.odometerReadDateTime = temp;
                 temp = document.getElementById (id + "_odometerReading").value; if ("" != temp) obj.odometerReading = temp;
-                temp = document.getElementById (id + "_usageKind").value; if ("" != temp) { temp = VehicleUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VehicleUsageKind." + temp; }
+                temp = document.getElementById (id + "_usageKind").value; if ("" != temp) { temp = VehicleUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#VehicleUsageKind." + temp; }
 
                 return (obj);
             }

@@ -1018,7 +1018,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_billingDate").value; if ("" != temp) obj.billingDate = temp;
                 temp = document.getElementById (id + "_dueDate").value; if ("" != temp) obj.dueDate = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerBillingKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerBillingKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerBillingKind." + temp; }
                 temp = document.getElementById (id + "_lastPaymentAmt").value; if ("" != temp) obj.lastPaymentAmt = temp;
                 temp = document.getElementById (id + "_lastPaymentDate").value; if ("" != temp) obj.lastPaymentDate = temp;
                 temp = document.getElementById (id + "_outBalance").value; if ("" != temp) obj.outBalance = temp;

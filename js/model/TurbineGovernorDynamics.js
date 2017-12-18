@@ -974,7 +974,7 @@ define
                 temp = document.getElementById (id + "_rclose").value; if ("" != temp) obj.rclose = temp;
                 temp = document.getElementById (id + "_rdown").value; if ("" != temp) obj.rdown = temp;
                 temp = document.getElementById (id + "_ropen").value; if ("" != temp) obj.ropen = temp;
-                temp = document.getElementById (id + "_rselect").value; if ("" != temp) { temp = DroopSignalFeedbackKind[temp]; if ("undefined" != typeof (temp)) obj.rselect = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; }
+                temp = document.getElementById (id + "_rselect").value; if ("" != temp) { temp = DroopSignalFeedbackKind[temp]; if ("undefined" != typeof (temp)) obj.rselect = "http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; }
                 temp = document.getElementById (id + "_rup").value; if ("" != temp) obj.rup = temp;
                 temp = document.getElementById (id + "_ta").value; if ("" != temp) obj.ta = temp;
                 temp = document.getElementById (id + "_tact").value; if ("" != temp) obj.tact = temp;
@@ -4284,7 +4284,7 @@ define
                 temp = document.getElementById (id + "_rclose").value; if ("" != temp) obj.rclose = temp;
                 temp = document.getElementById (id + "_rdown").value; if ("" != temp) obj.rdown = temp;
                 temp = document.getElementById (id + "_ropen").value; if ("" != temp) obj.ropen = temp;
-                temp = document.getElementById (id + "_rselect").value; if ("" != temp) { temp = DroopSignalFeedbackKind[temp]; if ("undefined" != typeof (temp)) obj.rselect = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; }
+                temp = document.getElementById (id + "_rselect").value; if ("" != temp) { temp = DroopSignalFeedbackKind[temp]; if ("undefined" != typeof (temp)) obj.rselect = "http://iec.ch/TC57/2013/CIM-schema-cim16#DroopSignalFeedbackKind." + temp; }
                 temp = document.getElementById (id + "_rup").value; if ("" != temp) obj.rup = temp;
                 temp = document.getElementById (id + "_ta").value; if ("" != temp) obj.ta = temp;
                 temp = document.getElementById (id + "_tact").value; if ("" != temp) obj.tact = temp;
@@ -6701,7 +6701,7 @@ define
                 temp = document.getElementById (id + "_bp").value; if ("" != temp) obj.bp = temp;
                 temp = document.getElementById (id + "_db1").value; if ("" != temp) obj.db1 = temp;
                 temp = document.getElementById (id + "_etamax").value; if ("" != temp) obj.etamax = temp;
-                temp = document.getElementById (id + "_governorControl").value; if ("" != temp) { temp = FrancisGovernorControlKind[temp]; if ("undefined" != typeof (temp)) obj.governorControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FrancisGovernorControlKind." + temp; }
+                temp = document.getElementById (id + "_governorControl").value; if ("" != temp) { temp = FrancisGovernorControlKind[temp]; if ("undefined" != typeof (temp)) obj.governorControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#FrancisGovernorControlKind." + temp; }
                 temp = document.getElementById (id + "_h1").value; if ("" != temp) obj.h1 = temp;
                 temp = document.getElementById (id + "_h2").value; if ("" != temp) obj.h2 = temp;
                 temp = document.getElementById (id + "_hn").value; if ("" != temp) obj.hn = temp;

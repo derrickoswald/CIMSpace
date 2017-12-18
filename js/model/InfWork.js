@@ -2347,7 +2347,7 @@ define
                 var obj = obj || { id: id, cls: "Design" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_costEstimate").value; if ("" != temp) obj.costEstimate = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = DesignKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DesignKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = DesignKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#DesignKind." + temp; }
                 temp = document.getElementById (id + "_price").value; if ("" != temp) obj.price = temp;
                 temp = document.getElementById (id + "_Work").value; if ("" != temp) obj.Work = temp;
                 temp = document.getElementById (id + "_ErpQuoteLineItem").value; if ("" != temp) obj.ErpQuoteLineItem = temp;
@@ -2658,7 +2658,7 @@ define
                 var obj = obj || { id: id, cls: "ConditionFactor" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_cfValue").value; if ("" != temp) obj.cfValue = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ConditionFactorKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ConditionFactorKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ConditionFactorKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ConditionFactorKind." + temp; }
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_DesignLocations").value; if ("" != temp) obj.DesignLocations = temp.split (",");
                 temp = document.getElementById (id + "_Designs").value; if ("" != temp) obj.Designs = temp.split (",");
@@ -4789,7 +4789,7 @@ define
                 var obj = obj || { id: id, cls: "PropertyUnit" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accountingUsage").value; if ("" != temp) obj.accountingUsage = temp;
-                temp = document.getElementById (id + "_activityCode").value; if ("" != temp) { temp = WorkActionKind[temp]; if ("undefined" != typeof (temp)) obj.activityCode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; }
+                temp = document.getElementById (id + "_activityCode").value; if ("" != temp) { temp = WorkActionKind[temp]; if ("undefined" != typeof (temp)) obj.activityCode = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; }
                 temp = document.getElementById (id + "_propertyAccount").value; if ("" != temp) obj.propertyAccount = temp;
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_CUMaterialItems").value; if ("" != temp) obj.CUMaterialItems = temp.split (",");
@@ -5122,7 +5122,7 @@ define
                 var obj = obj || { id: id, cls: "DesignLocationCU" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_cuAccount").value; if ("" != temp) obj.cuAccount = temp;
-                temp = document.getElementById (id + "_cuAction").value; if ("" != temp) { temp = WorkActionKind[temp]; if ("undefined" != typeof (temp)) obj.cuAction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; }
+                temp = document.getElementById (id + "_cuAction").value; if ("" != temp) { temp = WorkActionKind[temp]; if ("undefined" != typeof (temp)) obj.cuAction = "http://iec.ch/TC57/2013/CIM-schema-cim16#WorkActionKind." + temp; }
                 temp = document.getElementById (id + "_cuQuantity").value; if ("" != temp) obj.cuQuantity = temp;
                 temp = document.getElementById (id + "_cuUsage").value; if ("" != temp) obj.cuUsage = temp;
                 temp = document.getElementById (id + "_removalDate").value; if ("" != temp) obj.removalDate = temp;

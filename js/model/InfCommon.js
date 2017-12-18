@@ -760,7 +760,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_certificationPeriod").value; if ("" != temp) obj.certificationPeriod = temp;
                 temp = document.getElementById (id + "_effectiveDateTime").value; if ("" != temp) obj.effectiveDateTime = temp;
-                temp = document.getElementById (id + "_level").value; if ("" != temp) { temp = SkillLevelKind[temp]; if ("undefined" != typeof (temp)) obj.level = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SkillLevelKind." + temp; }
+                temp = document.getElementById (id + "_level").value; if ("" != temp) { temp = SkillLevelKind[temp]; if ("undefined" != typeof (temp)) obj.level = "http://iec.ch/TC57/2013/CIM-schema-cim16#SkillLevelKind." + temp; }
                 temp = document.getElementById (id + "_ErpPerson").value; if ("" != temp) obj.ErpPerson = temp;
                 temp = document.getElementById (id + "_Crafts").value; if ("" != temp) obj.Crafts = temp.split (",");
                 temp = document.getElementById (id + "_QualificationRequirements").value; if ("" != temp) obj.QualificationRequirements = temp.split (",");

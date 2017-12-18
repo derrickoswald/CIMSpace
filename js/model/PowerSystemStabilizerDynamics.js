@@ -514,8 +514,8 @@ define
 
                 var obj = obj || { id: id, cls: "PssIEEE2B" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
                 temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
                 temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
                 temp = document.getElementById (id + "_ks3").value; if ("" != temp) obj.ks3 = temp;
@@ -716,8 +716,8 @@ define
 
                 var obj = obj || { id: id, cls: "Pss2ST" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
                 temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
                 temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
                 temp = document.getElementById (id + "_lsmax").value; if ("" != temp) obj.lsmax = temp;
@@ -1271,7 +1271,7 @@ define
                 temp = document.getElementById (id + "_a6").value; if ("" != temp) obj.a6 = temp;
                 temp = document.getElementById (id + "_a7").value; if ("" != temp) obj.a7 = temp;
                 temp = document.getElementById (id + "_a8").value; if ("" != temp) obj.a8 = temp;
-                temp = document.getElementById (id + "_inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
                 temp = document.getElementById (id + "_kd").checked; if (temp) obj.kd = true;
                 temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
@@ -1592,7 +1592,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_a1").value; if ("" != temp) obj.a1 = temp;
                 temp = document.getElementById (id + "_a2").value; if ("" != temp) obj.a2 = temp;
-                temp = document.getElementById (id + "_inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignalType").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignalType = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
                 temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
                 temp = document.getElementById (id + "_t2").value; if ("" != temp) obj.t2 = temp;
@@ -2834,8 +2834,8 @@ define
                 temp = document.getElementById (id + "_a6").value; if ("" != temp) obj.a6 = temp;
                 temp = document.getElementById (id + "_a7").value; if ("" != temp) obj.a7 = temp;
                 temp = document.getElementById (id + "_a8").value; if ("" != temp) obj.a8 = temp;
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
                 temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
                 temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;
@@ -3229,8 +3229,8 @@ define
                 var obj = obj || { id: id, cls: "Pss2B" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_a").value; if ("" != temp) obj.a = temp;
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
                 temp = document.getElementById (id + "_ks1").value; if ("" != temp) obj.ks1 = temp;
                 temp = document.getElementById (id + "_ks2").value; if ("" != temp) obj.ks2 = temp;
                 temp = document.getElementById (id + "_ks3").value; if ("" != temp) obj.ks3 = temp;
@@ -3434,8 +3434,8 @@ define
 
                 var obj = obj || { id: id, cls: "PssWECC" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
-                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal1Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal1Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
+                temp = document.getElementById (id + "_inputSignal2Type").value; if ("" != temp) { temp = InputSignalKind[temp]; if ("undefined" != typeof (temp)) obj.inputSignal2Type = "http://iec.ch/TC57/2013/CIM-schema-cim16#InputSignalKind." + temp; }
                 temp = document.getElementById (id + "_k1").value; if ("" != temp) obj.k1 = temp;
                 temp = document.getElementById (id + "_k2").value; if ("" != temp) obj.k2 = temp;
                 temp = document.getElementById (id + "_t1").value; if ("" != temp) obj.t1 = temp;

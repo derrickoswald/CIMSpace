@@ -214,10 +214,10 @@ define
                 var obj = obj || { id: id, cls: "CapacitancePerLength" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
 
                 return (obj);
             }
@@ -346,10 +346,10 @@ define
                 var obj = obj || { id: id, cls: "CostPerVolume" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
 
                 return (obj);
             }
@@ -564,8 +564,8 @@ define
 
                 var obj = obj || { id: id, cls: "ReactivePower" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -791,8 +791,8 @@ define
 
                 var obj = obj || { id: id, cls: "Reactance" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -921,10 +921,10 @@ define
 
                 var obj = obj || { id: id, cls: "ResistancePerLength" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1041,8 +1041,8 @@ define
 
                 var obj = obj || { id: id, cls: "AngleRadians" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1159,8 +1159,8 @@ define
 
                 var obj = obj || { id: id, cls: "Voltage" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1289,10 +1289,10 @@ define
 
                 var obj = obj || { id: id, cls: "ActivePowerChangeRate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1417,11 +1417,11 @@ define
 
                 var obj = obj || { id: id, cls: "ActivePowerPerCurrentFlow" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_demoninatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.demoninatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_demoninatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.demoninatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
 
                 return (obj);
             }
@@ -1549,10 +1549,10 @@ define
 
                 var obj = obj || { id: id, cls: "CostRate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1669,8 +1669,8 @@ define
 
                 var obj = obj || { id: id, cls: "WaterLevel" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -1886,8 +1886,8 @@ define
 
                 var obj = obj || { id: id, cls: "Admittance" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2016,10 +2016,10 @@ define
 
                 var obj = obj || { id: id, cls: "CostPerEnergyUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2148,10 +2148,10 @@ define
 
                 var obj = obj || { id: id, cls: "ReactancePerLength" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2480,10 +2480,10 @@ define
 
                 var obj = obj || { id: id, cls: "Damping" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2602,8 +2602,8 @@ define
 
                 var obj = obj || { id: id, cls: "PU" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2720,8 +2720,8 @@ define
 
                 var obj = obj || { id: id, cls: "ActivePower" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2838,8 +2838,8 @@ define
 
                 var obj = obj || { id: id, cls: "Capacitance" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -2958,8 +2958,8 @@ define
 
                 var obj = obj || { id: id, cls: "Conductance" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -3089,10 +3089,10 @@ define
                 var obj = obj || { id: id, cls: "InductancePerLength" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
 
                 return (obj);
             }
@@ -3220,10 +3220,10 @@ define
 
                 var obj = obj || { id: id, cls: "VolumeFlowRate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -3538,8 +3538,8 @@ define
 
                 var obj = obj || { id: id, cls: "CurrentFlow" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -3656,8 +3656,8 @@ define
 
                 var obj = obj || { id: id, cls: "KiloActivePower" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -3774,8 +3774,8 @@ define
 
                 var obj = obj || { id: id, cls: "Impedance" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -3894,8 +3894,8 @@ define
 
                 var obj = obj || { id: id, cls: "PerCent" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4012,8 +4012,8 @@ define
 
                 var obj = obj || { id: id, cls: "Seconds" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4142,10 +4142,10 @@ define
 
                 var obj = obj || { id: id, cls: "ActivePowerPerFrequency" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4262,8 +4262,8 @@ define
 
                 var obj = obj || { id: id, cls: "Money" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4489,8 +4489,8 @@ define
 
                 var obj = obj || { id: id, cls: "ApparentPower" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4607,8 +4607,8 @@ define
 
                 var obj = obj || { id: id, cls: "Volume" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4725,8 +4725,8 @@ define
 
                 var obj = obj || { id: id, cls: "AngleDegrees" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -4945,9 +4945,9 @@ define
                 var obj = obj || { id: id, cls: "DecimalQuantity" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_currency").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.currency = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_currency").value; if ("" != temp) { temp = Currency[temp]; if ("undefined" != typeof (temp)) obj.currency = "http://iec.ch/TC57/2013/CIM-schema-cim16#Currency." + temp; }
 
                 return (obj);
             }
@@ -5063,8 +5063,8 @@ define
 
                 var obj = obj || { id: id, cls: "RealEnergy" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -5280,8 +5280,8 @@ define
 
                 var obj = obj || { id: id, cls: "Length" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -5398,8 +5398,8 @@ define
 
                 var obj = obj || { id: id, cls: "Temperature" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -5516,8 +5516,8 @@ define
 
                 var obj = obj || { id: id, cls: "FloatQuantity" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -5634,8 +5634,8 @@ define
 
                 var obj = obj || { id: id, cls: "Susceptance" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -5752,8 +5752,8 @@ define
 
                 var obj = obj || { id: id, cls: "Frequency" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -5871,8 +5871,8 @@ define
                 var obj = obj || { id: id, cls: "Area" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
 
                 return (obj);
             }
@@ -5988,8 +5988,8 @@ define
 
                 var obj = obj || { id: id, cls: "Minutes" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -6227,10 +6227,10 @@ define
 
                 var obj = obj || { id: id, cls: "VoltagePerReactivePower" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -6347,8 +6347,8 @@ define
 
                 var obj = obj || { id: id, cls: "Hours" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -6477,10 +6477,10 @@ define
 
                 var obj = obj || { id: id, cls: "Speed" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -6597,8 +6597,8 @@ define
 
                 var obj = obj || { id: id, cls: "Displacement" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -6826,10 +6826,10 @@ define
 
                 var obj = obj || { id: id, cls: "RotationSpeed" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -6946,8 +6946,8 @@ define
 
                 var obj = obj || { id: id, cls: "Resistance" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -7064,8 +7064,8 @@ define
 
                 var obj = obj || { id: id, cls: "Weight" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -7182,8 +7182,8 @@ define
 
                 var obj = obj || { id: id, cls: "Pressure" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -7312,10 +7312,10 @@ define
 
                 var obj = obj || { id: id, cls: "ConductancePerLength" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -7541,10 +7541,10 @@ define
 
                 var obj = obj || { id: id, cls: "SusceptancePerLength" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_denominatorMultiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.denominatorMultiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_denominatorUnit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.denominatorUnit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -7661,8 +7661,8 @@ define
 
                 var obj = obj || { id: id, cls: "StringQuantity" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -7779,8 +7779,8 @@ define
 
                 var obj = obj || { id: id, cls: "IntegerQuantity" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);
@@ -8006,8 +8006,8 @@ define
 
                 var obj = obj || { id: id, cls: "Inductance" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
-                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
+                temp = document.getElementById (id + "_multiplier").value; if ("" != temp) { temp = UnitMultiplier[temp]; if ("undefined" != typeof (temp)) obj.multiplier = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitMultiplier." + temp; }
+                temp = document.getElementById (id + "_unit").value; if ("" != temp) { temp = UnitSymbol[temp]; if ("undefined" != typeof (temp)) obj.unit = "http://iec.ch/TC57/2013/CIM-schema-cim16#UnitSymbol." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
 
                 return (obj);

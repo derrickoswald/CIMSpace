@@ -517,7 +517,7 @@ define
                 temp = document.getElementById (id + "_kq3").value; if ("" != temp) obj.kq3 = temp;
                 temp = document.getElementById (id + "_kq4").value; if ("" != temp) obj.kq4 = temp;
                 temp = document.getElementById (id + "_kqf").value; if ("" != temp) obj.kqf = temp;
-                temp = document.getElementById (id + "_staticLoadModelType").value; if ("" != temp) { temp = StaticLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.staticLoadModelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; }
+                temp = document.getElementById (id + "_staticLoadModelType").value; if ("" != temp) { temp = StaticLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.staticLoadModelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StaticLoadModelKind." + temp; }
                 temp = document.getElementById (id + "_LoadAggregate").value; if ("" != temp) obj.LoadAggregate = temp;
 
                 return (obj);
@@ -825,7 +825,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_bs").value; if ("" != temp) obj.bs = temp;
                 temp = document.getElementById (id + "_bt").value; if ("" != temp) obj.bt = temp;
-                temp = document.getElementById (id + "_genericNonLinearLoadModelType").value; if ("" != temp) { temp = GenericNonLinearLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.genericNonLinearLoadModelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; }
+                temp = document.getElementById (id + "_genericNonLinearLoadModelType").value; if ("" != temp) { temp = GenericNonLinearLoadModelKind[temp]; if ("undefined" != typeof (temp)) obj.genericNonLinearLoadModelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#GenericNonLinearLoadModelKind." + temp; }
                 temp = document.getElementById (id + "_ls").value; if ("" != temp) obj.ls = temp;
                 temp = document.getElementById (id + "_lt").value; if ("" != temp) obj.lt = temp;
                 temp = document.getElementById (id + "_pt").value; if ("" != temp) obj.pt = temp;

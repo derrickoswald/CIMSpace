@@ -624,7 +624,7 @@ define
                 var obj = obj || { id: id, cls: "Charge" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_fixedPortion").value; if ("" != temp) obj.fixedPortion = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ChargeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ChargeKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ChargeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ChargeKind." + temp; }
                 temp = document.getElementById (id + "_variablePortion").value; if ("" != temp) obj.variablePortion = temp;
                 temp = document.getElementById (id + "_AuxiliaryAccounts").value; if ("" != temp) obj.AuxiliaryAccounts = temp.split (",");
                 temp = document.getElementById (id + "_ConsumptionTariffIntervals").value; if ("" != temp) obj.ConsumptionTariffIntervals = temp.split (",");
@@ -2213,7 +2213,7 @@ define
                 var obj = obj || { id: id, cls: "ServiceSupplier" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_issuerIdentificationNumber").value; if ("" != temp) obj.issuerIdentificationNumber = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SupplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SupplierKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SupplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SupplierKind." + temp; }
 
                 return (obj);
             }
@@ -2355,7 +2355,7 @@ define
                 temp = document.getElementById (id + "_bankAccountDetail").value; if ("" != temp) obj.bankAccountDetail = temp;
                 temp = document.getElementById (id + "_chequeNumber").value; if ("" != temp) obj.chequeNumber = temp;
                 temp = document.getElementById (id + "_date").value; if ("" != temp) obj.date = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ChequeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ChequeKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ChequeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ChequeKind." + temp; }
                 temp = document.getElementById (id + "_micrNumber").value; if ("" != temp) obj.micrNumber = temp;
                 temp = document.getElementById (id + "_Tender").value; if ("" != temp) obj.Tender = temp;
 
@@ -2498,7 +2498,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
                 temp = document.getElementById (id + "_change").value; if ("" != temp) obj.change = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TenderKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TenderKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TenderKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TenderKind." + temp; }
                 temp = document.getElementById (id + "_Cheque").value; if ("" != temp) obj.Cheque = temp;
                 temp = document.getElementById (id + "_Card").value; if ("" != temp) obj.Card = temp;
                 temp = document.getElementById (id + "_Receipt").value; if ("" != temp) obj.Receipt = temp;
@@ -3188,7 +3188,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_diverseReference").value; if ("" != temp) obj.diverseReference = temp;
                 temp = document.getElementById (id + "_donorReference").value; if ("" != temp) obj.donorReference = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TransactionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransactionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = TransactionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransactionKind." + temp; }
                 temp = document.getElementById (id + "_line").value; if ("" != temp) obj.line = temp;
                 temp = document.getElementById (id + "_receiverReference").value; if ("" != temp) obj.receiverReference = temp;
                 temp = document.getElementById (id + "_reversedId").value; if ("" != temp) obj.reversedId = temp;

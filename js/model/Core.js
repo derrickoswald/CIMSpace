@@ -1277,7 +1277,7 @@ define
 
                 var obj = obj || { id: id, cls: "Curve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_curveStyle").value; if ("" != temp) { temp = CurveStyle[temp]; if ("undefined" != typeof (temp)) obj.curveStyle = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CurveStyle." + temp; }
+                temp = document.getElementById (id + "_curveStyle").value; if ("" != temp) { temp = CurveStyle[temp]; if ("undefined" != typeof (temp)) obj.curveStyle = "http://iec.ch/TC57/2013/CIM-schema-cim16#CurveStyle." + temp; }
                 temp = document.getElementById (id + "_xMultiplier").value; if ("" != temp) obj.xMultiplier = temp;
                 temp = document.getElementById (id + "_xUnit").value; if ("" != temp) obj.xUnit = temp;
                 temp = document.getElementById (id + "_y1Multiplier").value; if ("" != temp) obj.y1Multiplier = temp;
@@ -2567,7 +2567,7 @@ define
 
                 var obj = obj || { id: id, cls: "Terminal" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_phases").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phases = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
+                temp = document.getElementById (id + "_phases").value; if ("" != temp) { temp = PhaseCode[temp]; if ("undefined" != typeof (temp)) obj.phases = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseCode." + temp; }
                 temp = document.getElementById (id + "_TopologicalNode").value; if ("" != temp) obj.TopologicalNode = temp;
                 temp = document.getElementById (id + "_ConductingEquipment").value; if ("" != temp) obj.ConductingEquipment = temp;
                 temp = document.getElementById (id + "_SvPowerFlow").value; if ("" != temp) obj.SvPowerFlow = temp;
@@ -4381,8 +4381,8 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_bayEnergyMeasFlag").checked; if (temp) obj.bayEnergyMeasFlag = true;
                 temp = document.getElementById (id + "_bayPowerMeasFlag").checked; if (temp) obj.bayPowerMeasFlag = true;
-                temp = document.getElementById (id + "_breakerConfiguration").value; if ("" != temp) { temp = BreakerConfiguration[temp]; if ("undefined" != typeof (temp)) obj.breakerConfiguration = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BreakerConfiguration." + temp; }
-                temp = document.getElementById (id + "_busBarConfiguration").value; if ("" != temp) { temp = BusbarConfiguration[temp]; if ("undefined" != typeof (temp)) obj.busBarConfiguration = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BusbarConfiguration." + temp; }
+                temp = document.getElementById (id + "_breakerConfiguration").value; if ("" != temp) { temp = BreakerConfiguration[temp]; if ("undefined" != typeof (temp)) obj.breakerConfiguration = "http://iec.ch/TC57/2013/CIM-schema-cim16#BreakerConfiguration." + temp; }
+                temp = document.getElementById (id + "_busBarConfiguration").value; if ("" != temp) { temp = BusbarConfiguration[temp]; if ("undefined" != typeof (temp)) obj.busBarConfiguration = "http://iec.ch/TC57/2013/CIM-schema-cim16#BusbarConfiguration." + temp; }
                 temp = document.getElementById (id + "_Substation").value; if ("" != temp) obj.Substation = temp;
                 temp = document.getElementById (id + "_VoltageLevel").value; if ("" != temp) obj.VoltageLevel = temp;
 

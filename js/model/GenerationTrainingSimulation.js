@@ -796,7 +796,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_auxPowerVersusFrequency").value; if ("" != temp) obj.auxPowerVersusFrequency = temp;
                 temp = document.getElementById (id + "_auxPowerVersusVoltage").value; if ("" != temp) obj.auxPowerVersusVoltage = temp;
-                temp = document.getElementById (id + "_boilerControlMode").value; if ("" != temp) { temp = BoilerControlMode[temp]; if ("undefined" != typeof (temp)) obj.boilerControlMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; }
+                temp = document.getElementById (id + "_boilerControlMode").value; if ("" != temp) { temp = BoilerControlMode[temp]; if ("undefined" != typeof (temp)) obj.boilerControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#BoilerControlMode." + temp; }
                 temp = document.getElementById (id + "_controlErrorBiasP").value; if ("" != temp) obj.controlErrorBiasP = temp;
                 temp = document.getElementById (id + "_controlIC").value; if ("" != temp) obj.controlIC = temp;
                 temp = document.getElementById (id + "_controlPC").value; if ("" != temp) obj.controlPC = temp;
@@ -1593,7 +1593,7 @@ define
                 temp = document.getElementById (id + "_transientDroopTime").value; if ("" != temp) obj.transientDroopTime = temp;
                 temp = document.getElementById (id + "_transientRegulation").value; if ("" != temp) obj.transientRegulation = temp;
                 temp = document.getElementById (id + "_turbineRating").value; if ("" != temp) obj.turbineRating = temp;
-                temp = document.getElementById (id + "_turbineType").value; if ("" != temp) { temp = TurbineType[temp]; if ("undefined" != typeof (temp)) obj.turbineType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; }
+                temp = document.getElementById (id + "_turbineType").value; if ("" != temp) { temp = TurbineType[temp]; if ("undefined" != typeof (temp)) obj.turbineType = "http://iec.ch/TC57/2013/CIM-schema-cim16#TurbineType." + temp; }
                 temp = document.getElementById (id + "_waterStartingTime").value; if ("" != temp) obj.waterStartingTime = temp;
 
                 return (obj);

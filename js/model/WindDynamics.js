@@ -742,7 +742,7 @@ define
                 temp = document.getElementById (id + "_txft").value; if ("" != temp) obj.txft = temp;
                 temp = document.getElementById (id + "_txfv").value; if ("" != temp) obj.txfv = temp;
                 temp = document.getElementById (id + "_uwpqdip").value; if ("" != temp) obj.uwpqdip = temp;
-                temp = document.getElementById (id + "_windPlantQcontrolModesType").value; if ("" != temp) { temp = WindPlantQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windPlantQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindPlantQcontrolModeKind." + temp; }
+                temp = document.getElementById (id + "_windPlantQcontrolModesType").value; if ("" != temp) { temp = WindPlantQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windPlantQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindPlantQcontrolModeKind." + temp; }
                 temp = document.getElementById (id + "_xrefmax").value; if ("" != temp) obj.xrefmax = temp;
                 temp = document.getElementById (id + "_xrefmin").value; if ("" != temp) obj.xrefmin = temp;
                 temp = document.getElementById (id + "_WindPlantIEC").value; if ("" != temp) obj.WindPlantIEC = temp;
@@ -1217,8 +1217,8 @@ define
                 temp = document.getElementById (id + "_umin").value; if ("" != temp) obj.umin = temp;
                 temp = document.getElementById (id + "_uqdip").value; if ("" != temp) obj.uqdip = temp;
                 temp = document.getElementById (id + "_uref0").value; if ("" != temp) obj.uref0 = temp;
-                temp = document.getElementById (id + "_windQcontrolModesType").value; if ("" != temp) { temp = WindQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindQcontrolModeKind." + temp; }
-                temp = document.getElementById (id + "_windUVRTQcontrolModesType").value; if ("" != temp) { temp = WindUVRTQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windUVRTQcontrolModesType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindUVRTQcontrolModeKind." + temp; }
+                temp = document.getElementById (id + "_windQcontrolModesType").value; if ("" != temp) { temp = WindQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindQcontrolModeKind." + temp; }
+                temp = document.getElementById (id + "_windUVRTQcontrolModesType").value; if ("" != temp) { temp = WindUVRTQcontrolModeKind[temp]; if ("undefined" != typeof (temp)) obj.windUVRTQcontrolModesType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindUVRTQcontrolModeKind." + temp; }
                 temp = document.getElementById (id + "_xdroop").value; if ("" != temp) obj.xdroop = temp;
                 temp = document.getElementById (id + "_WindTurbineType3or4IEC").value; if ("" != temp) obj.WindTurbineType3or4IEC = temp;
 
@@ -2917,7 +2917,7 @@ define
                 var obj = obj || { id: id, cls: "WindDynamicsLookupTable" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_input").value; if ("" != temp) obj.input = temp;
-                temp = document.getElementById (id + "_lookupTableFunctionType").value; if ("" != temp) { temp = WindLookupTableFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.lookupTableFunctionType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindLookupTableFunctionKind." + temp; }
+                temp = document.getElementById (id + "_lookupTableFunctionType").value; if ("" != temp) { temp = WindLookupTableFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.lookupTableFunctionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindLookupTableFunctionKind." + temp; }
                 temp = document.getElementById (id + "_output").value; if ("" != temp) obj.output = temp;
                 temp = document.getElementById (id + "_sequence").value; if ("" != temp) obj.sequence = temp;
                 temp = document.getElementById (id + "_WindPitchContPowerIEC").value; if ("" != temp) obj.WindPitchContPowerIEC = temp;

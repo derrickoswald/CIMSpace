@@ -1195,7 +1195,7 @@ define
 
                 var obj = obj || { id: id, cls: "StartIgnFuelCurve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_ignitionFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.ignitionFuelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = document.getElementById (id + "_ignitionFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.ignitionFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
                 temp = document.getElementById (id + "_StartupModel").value; if ("" != temp) obj.StartupModel = temp;
 
                 return (obj);
@@ -1823,7 +1823,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_fuelAllocationEndDate").value; if ("" != temp) obj.fuelAllocationEndDate = temp;
                 temp = document.getElementById (id + "_fuelAllocationStartDate").value; if ("" != temp) obj.fuelAllocationStartDate = temp;
-                temp = document.getElementById (id + "_fuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fuelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = document.getElementById (id + "_fuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
                 temp = document.getElementById (id + "_maxFuelAllocation").value; if ("" != temp) obj.maxFuelAllocation = temp;
                 temp = document.getElementById (id + "_minFuelAllocation").value; if ("" != temp) obj.minFuelAllocation = temp;
                 temp = document.getElementById (id + "_FossilFuel").value; if ("" != temp) obj.FossilFuel = temp;
@@ -2801,7 +2801,7 @@ define
                 var obj = obj || { id: id, cls: "EmissionCurve" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_emissionContent").value; if ("" != temp) obj.emissionContent = temp;
-                temp = document.getElementById (id + "_emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
+                temp = document.getElementById (id + "_emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
                 temp = document.getElementById (id + "_isNetGrossP").checked; if (temp) obj.isNetGrossP = true;
                 temp = document.getElementById (id + "_ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
 
@@ -2924,7 +2924,7 @@ define
 
                 var obj = obj || { id: id, cls: "StartMainFuelCurve" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_mainFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.mainFuelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = document.getElementById (id + "_mainFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.mainFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
                 temp = document.getElementById (id + "_StartupModel").value; if ("" != temp) obj.StartupModel = temp;
 
                 return (obj);
@@ -3209,7 +3209,7 @@ define
 
                 var obj = obj || { id: id, cls: "FossilFuel" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_fossilFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fossilFuelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
+                temp = document.getElementById (id + "_fossilFuelType").value; if ("" != temp) { temp = FuelType[temp]; if ("undefined" != typeof (temp)) obj.fossilFuelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#FuelType." + temp; }
                 temp = document.getElementById (id + "_fuelCost").value; if ("" != temp) obj.fuelCost = temp;
                 temp = document.getElementById (id + "_fuelDispatchCost").value; if ("" != temp) obj.fuelDispatchCost = temp;
                 temp = document.getElementById (id + "_fuelEffFactor").value; if ("" != temp) obj.fuelEffFactor = temp;
@@ -3517,8 +3517,8 @@ define
                 temp = document.getElementById (id + "_controlPulseLow").value; if ("" != temp) obj.controlPulseLow = temp;
                 temp = document.getElementById (id + "_controlResponseRate").value; if ("" != temp) obj.controlResponseRate = temp;
                 temp = document.getElementById (id + "_efficiency").value; if ("" != temp) obj.efficiency = temp;
-                temp = document.getElementById (id + "_genControlMode").value; if ("" != temp) { temp = GeneratorControlMode[temp]; if ("undefined" != typeof (temp)) obj.genControlMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlMode." + temp; }
-                temp = document.getElementById (id + "_genControlSource").value; if ("" != temp) { temp = GeneratorControlSource[temp]; if ("undefined" != typeof (temp)) obj.genControlSource = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlSource." + temp; }
+                temp = document.getElementById (id + "_genControlMode").value; if ("" != temp) { temp = GeneratorControlMode[temp]; if ("undefined" != typeof (temp)) obj.genControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlMode." + temp; }
+                temp = document.getElementById (id + "_genControlSource").value; if ("" != temp) { temp = GeneratorControlSource[temp]; if ("undefined" != typeof (temp)) obj.genControlSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#GeneratorControlSource." + temp; }
                 temp = document.getElementById (id + "_governorMPL").value; if ("" != temp) obj.governorMPL = temp;
                 temp = document.getElementById (id + "_governorSCD").value; if ("" != temp) obj.governorSCD = temp;
                 temp = document.getElementById (id + "_highControlLimit").value; if ("" != temp) obj.highControlLimit = temp;
@@ -3721,7 +3721,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_dischargeTravelDelay").value; if ("" != temp) obj.dischargeTravelDelay = temp;
                 temp = document.getElementById (id + "_genRatedP").value; if ("" != temp) obj.genRatedP = temp;
-                temp = document.getElementById (id + "_hydroPlantStorageType").value; if ("" != temp) { temp = HydroPlantStorageKind[temp]; if ("undefined" != typeof (temp)) obj.hydroPlantStorageType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#HydroPlantStorageKind." + temp; }
+                temp = document.getElementById (id + "_hydroPlantStorageType").value; if ("" != temp) { temp = HydroPlantStorageKind[temp]; if ("undefined" != typeof (temp)) obj.hydroPlantStorageType = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroPlantStorageKind." + temp; }
                 temp = document.getElementById (id + "_penstockType").value; if ("" != temp) obj.penstockType = temp;
                 temp = document.getElementById (id + "_plantDischargeCapacity").value; if ("" != temp) obj.plantDischargeCapacity = temp;
                 temp = document.getElementById (id + "_plantRatedHead").value; if ("" != temp) obj.plantRatedHead = temp;
@@ -4103,8 +4103,8 @@ define
 
                 var obj = obj || { id: id, cls: "EmissionAccount" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
-                temp = document.getElementById (id + "_emissionValueSource").value; if ("" != temp) { temp = EmissionValueSource[temp]; if ("undefined" != typeof (temp)) obj.emissionValueSource = "#http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionValueSource." + temp; }
+                temp = document.getElementById (id + "_emissionType").value; if ("" != temp) { temp = EmissionType[temp]; if ("undefined" != typeof (temp)) obj.emissionType = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionType." + temp; }
+                temp = document.getElementById (id + "_emissionValueSource").value; if ("" != temp) { temp = EmissionValueSource[temp]; if ("undefined" != typeof (temp)) obj.emissionValueSource = "http://iec.ch/TC57/2013/CIM-schema-cim16#EmissionValueSource." + temp; }
                 temp = document.getElementById (id + "_ThermalGeneratingUnit").value; if ("" != temp) obj.ThermalGeneratingUnit = temp;
 
                 return (obj);
@@ -5243,7 +5243,7 @@ define
 
                 var obj = obj || { id: id, cls: "HydroGeneratingUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_energyConversionCapability").value; if ("" != temp) { temp = HydroEnergyConversionKind[temp]; if ("undefined" != typeof (temp)) obj.energyConversionCapability = "#http://iec.ch/TC57/2013/CIM-schema-cim16#HydroEnergyConversionKind." + temp; }
+                temp = document.getElementById (id + "_energyConversionCapability").value; if ("" != temp) { temp = HydroEnergyConversionKind[temp]; if ("undefined" != typeof (temp)) obj.energyConversionCapability = "http://iec.ch/TC57/2013/CIM-schema-cim16#HydroEnergyConversionKind." + temp; }
                 temp = document.getElementById (id + "_hydroUnitWaterCost").value; if ("" != temp) obj.hydroUnitWaterCost = temp;
                 temp = document.getElementById (id + "_PenstockLossCurve").value; if ("" != temp) obj.PenstockLossCurve = temp;
                 temp = document.getElementById (id + "_HydroPowerPlant").value; if ("" != temp) obj.HydroPowerPlant = temp;
@@ -5368,7 +5368,7 @@ define
 
                 var obj = obj || { id: id, cls: "WindGeneratingUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_windGenUnitType").value; if ("" != temp) { temp = WindGenUnitKind[temp]; if ("undefined" != typeof (temp)) obj.windGenUnitType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindGenUnitKind." + temp; }
+                temp = document.getElementById (id + "_windGenUnitType").value; if ("" != temp) { temp = WindGenUnitKind[temp]; if ("undefined" != typeof (temp)) obj.windGenUnitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindGenUnitKind." + temp; }
 
                 return (obj);
             }

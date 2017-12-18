@@ -255,7 +255,7 @@ define
 
                 var obj = obj || { id: id, cls: "FaultIndicatorInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_resetKind").value; if ("" != temp) { temp = FaultIndicatorResetKind[temp]; if ("undefined" != typeof (temp)) obj.resetKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FaultIndicatorResetKind." + temp; }
+                temp = document.getElementById (id + "_resetKind").value; if ("" != temp) { temp = FaultIndicatorResetKind[temp]; if ("undefined" != typeof (temp)) obj.resetKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#FaultIndicatorResetKind." + temp; }
 
                 return (obj);
             }
@@ -1211,12 +1211,12 @@ define
 
                 var obj = obj || { id: id, cls: "OldTransformerTankInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = TransformerConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerConstructionKind." + temp; }
+                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = TransformerConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerConstructionKind." + temp; }
                 temp = document.getElementById (id + "_coreCoilsWeight").value; if ("" != temp) obj.coreCoilsWeight = temp;
-                temp = document.getElementById (id + "_coreKind").value; if ("" != temp) { temp = TransformerCoreKind[temp]; if ("undefined" != typeof (temp)) obj.coreKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerCoreKind." + temp; }
-                temp = document.getElementById (id + "_function").value; if ("" != temp) { temp = TransformerFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.function = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerFunctionKind." + temp; }
+                temp = document.getElementById (id + "_coreKind").value; if ("" != temp) { temp = TransformerCoreKind[temp]; if ("undefined" != typeof (temp)) obj.coreKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerCoreKind." + temp; }
+                temp = document.getElementById (id + "_function").value; if ("" != temp) { temp = TransformerFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.function = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerFunctionKind." + temp; }
                 temp = document.getElementById (id + "_neutralBIL").value; if ("" != temp) obj.neutralBIL = temp;
-                temp = document.getElementById (id + "_oilPreservationKind").value; if ("" != temp) { temp = OilPreservationKind[temp]; if ("undefined" != typeof (temp)) obj.oilPreservationKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OilPreservationKind." + temp; }
+                temp = document.getElementById (id + "_oilPreservationKind").value; if ("" != temp) { temp = OilPreservationKind[temp]; if ("undefined" != typeof (temp)) obj.oilPreservationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#OilPreservationKind." + temp; }
 
                 return (obj);
             }
@@ -1357,7 +1357,7 @@ define
                 temp = document.getElementById (id + "_ganged").checked; if (temp) obj.ganged = true;
                 temp = document.getElementById (id + "_initOpMode").value; if ("" != temp) obj.initOpMode = temp;
                 temp = document.getElementById (id + "_interruptingRating").value; if ("" != temp) obj.interruptingRating = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CompositeSwitchKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CompositeSwitchKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CompositeSwitchKind." + temp; }
                 temp = document.getElementById (id + "_phaseCode").value; if ("" != temp) obj.phaseCode = temp;
                 temp = document.getElementById (id + "_phaseCount").value; if ("" != temp) obj.phaseCount = temp;
                 temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
@@ -1613,7 +1613,7 @@ define
                 temp = document.getElementById (id + "_dayOverLoadRating").value; if ("" != temp) obj.dayOverLoadRating = temp;
                 temp = document.getElementById (id + "_hourOverLoadRating").value; if ("" != temp) obj.hourOverLoadRating = temp;
                 temp = document.getElementById (id + "_solidInsulationWeight").value; if ("" != temp) obj.solidInsulationWeight = temp;
-                temp = document.getElementById (id + "_windingInsulationKind").value; if ("" != temp) { temp = WindingInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.windingInsulationKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindingInsulationKind." + temp; }
+                temp = document.getElementById (id + "_windingInsulationKind").value; if ("" != temp) { temp = WindingInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.windingInsulationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingInsulationKind." + temp; }
 
                 return (obj);
             }

@@ -661,7 +661,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_netInterchange").value; if ("" != temp) obj.netInterchange = temp;
                 temp = document.getElementById (id + "_pTolerance").value; if ("" != temp) obj.pTolerance = temp;
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ControlAreaTypeKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ControlAreaTypeKind." + temp; }
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = ControlAreaTypeKind[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#ControlAreaTypeKind." + temp; }
                 temp = document.getElementById (id + "_EnergyArea").value; if ("" != temp) obj.EnergyArea = temp;
 
                 return (obj);

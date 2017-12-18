@@ -684,7 +684,7 @@ define
                 var obj = obj || { id: id, cls: "OperationalLimitType" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_acceptableDuration").value; if ("" != temp) obj.acceptableDuration = temp;
-                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = OperationalLimitDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; }
+                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = OperationalLimitDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#OperationalLimitDirectionKind." + temp; }
                 temp = document.getElementById (id + "_TargetOperationalLimitmTypeScaling").value; if ("" != temp) obj.TargetOperationalLimitmTypeScaling = temp;
 
                 return (obj);

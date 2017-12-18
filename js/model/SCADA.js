@@ -265,7 +265,7 @@ define
 
                 var obj = obj || { id: id, cls: "RemoteUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_remoteUnitType").value; if ("" != temp) { temp = RemoteUnitType[temp]; if ("undefined" != typeof (temp)) obj.remoteUnitType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteUnitType." + temp; }
+                temp = document.getElementById (id + "_remoteUnitType").value; if ("" != temp) { temp = RemoteUnitType[temp]; if ("undefined" != typeof (temp)) obj.remoteUnitType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemoteUnitType." + temp; }
                 temp = document.getElementById (id + "_CommunicationLinks").value; if ("" != temp) obj.CommunicationLinks = temp.split (",");
 
                 return (obj);

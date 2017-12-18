@@ -251,7 +251,7 @@ define
                 temp = document.getElementById (id + "_isCable").checked; if (temp) obj.isCable = true;
                 temp = document.getElementById (id + "_phaseWireCount").value; if ("" != temp) obj.phaseWireCount = temp;
                 temp = document.getElementById (id + "_phaseWireSpacing").value; if ("" != temp) obj.phaseWireSpacing = temp;
-                temp = document.getElementById (id + "_usage").value; if ("" != temp) { temp = WireUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usage = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireUsageKind." + temp; }
+                temp = document.getElementById (id + "_usage").value; if ("" != temp) { temp = WireUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usage = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireUsageKind." + temp; }
                 temp = document.getElementById (id + "_DuctBank").value; if ("" != temp) obj.DuctBank = temp;
                 temp = document.getElementById (id + "_Structures").value; if ("" != temp) obj.Structures = temp.split (",");
 
@@ -958,9 +958,9 @@ define
                 temp = document.getElementById (id + "_coreStrandCount").value; if ("" != temp) obj.coreStrandCount = temp;
                 temp = document.getElementById (id + "_gmr").value; if ("" != temp) obj.gmr = temp;
                 temp = document.getElementById (id + "_insulated").checked; if (temp) obj.insulated = true;
-                temp = document.getElementById (id + "_insulationMaterial").value; if ("" != temp) { temp = WireInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.insulationMaterial = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireInsulationKind." + temp; }
+                temp = document.getElementById (id + "_insulationMaterial").value; if ("" != temp) { temp = WireInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.insulationMaterial = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireInsulationKind." + temp; }
                 temp = document.getElementById (id + "_insulationThickness").value; if ("" != temp) obj.insulationThickness = temp;
-                temp = document.getElementById (id + "_material").value; if ("" != temp) { temp = WireMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.material = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WireMaterialKind." + temp; }
+                temp = document.getElementById (id + "_material").value; if ("" != temp) { temp = WireMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.material = "http://iec.ch/TC57/2013/CIM-schema-cim16#WireMaterialKind." + temp; }
                 temp = document.getElementById (id + "_rAC25").value; if ("" != temp) obj.rAC25 = temp;
                 temp = document.getElementById (id + "_rAC50").value; if ("" != temp) obj.rAC50 = temp;
                 temp = document.getElementById (id + "_rAC75").value; if ("" != temp) obj.rAC75 = temp;
@@ -1842,16 +1842,16 @@ define
 
                 var obj = obj || { id: id, cls: "CableInfo" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = CableConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableConstructionKind." + temp; }
+                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = CableConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableConstructionKind." + temp; }
                 temp = document.getElementById (id + "_diameterOverCore").value; if ("" != temp) obj.diameterOverCore = temp;
                 temp = document.getElementById (id + "_diameterOverInsulation").value; if ("" != temp) obj.diameterOverInsulation = temp;
                 temp = document.getElementById (id + "_diameterOverJacket").value; if ("" != temp) obj.diameterOverJacket = temp;
                 temp = document.getElementById (id + "_diameterOverScreen").value; if ("" != temp) obj.diameterOverScreen = temp;
                 temp = document.getElementById (id + "_isStrandFill").checked; if (temp) obj.isStrandFill = true;
                 temp = document.getElementById (id + "_nominalTemperature").value; if ("" != temp) obj.nominalTemperature = temp;
-                temp = document.getElementById (id + "_outerJacketKind").value; if ("" != temp) { temp = CableOuterJacketKind[temp]; if ("undefined" != typeof (temp)) obj.outerJacketKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableOuterJacketKind." + temp; }
+                temp = document.getElementById (id + "_outerJacketKind").value; if ("" != temp) { temp = CableOuterJacketKind[temp]; if ("undefined" != typeof (temp)) obj.outerJacketKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableOuterJacketKind." + temp; }
                 temp = document.getElementById (id + "_sheathAsNeutral").checked; if (temp) obj.sheathAsNeutral = true;
-                temp = document.getElementById (id + "_shieldMaterial").value; if ("" != temp) { temp = CableShieldMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.shieldMaterial = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CableShieldMaterialKind." + temp; }
+                temp = document.getElementById (id + "_shieldMaterial").value; if ("" != temp) { temp = CableShieldMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.shieldMaterial = "http://iec.ch/TC57/2013/CIM-schema-cim16#CableShieldMaterialKind." + temp; }
 
                 return (obj);
             }

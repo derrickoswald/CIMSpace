@@ -185,7 +185,7 @@ define
 
                 var obj = obj || { id: id, cls: "MarketRole" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_roleType").value; if ("" != temp) { temp = MarketRoleKind[temp]; if ("undefined" != typeof (temp)) obj.roleType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#MarketRoleKind." + temp; }
+                temp = document.getElementById (id + "_roleType").value; if ("" != temp) { temp = MarketRoleKind[temp]; if ("undefined" != typeof (temp)) obj.roleType = "http://iec.ch/TC57/2013/CIM-schema-cim16#MarketRoleKind." + temp; }
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_MarketParticipant").value; if ("" != temp) obj.MarketParticipant = temp.split (",");

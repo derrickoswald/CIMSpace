@@ -222,7 +222,7 @@ define
 
                 var obj = obj || { id: id, cls: "CustomerNotification" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_trigger").value; if ("" != temp) { temp = NotificationTriggerKind[temp]; if ("undefined" != typeof (temp)) obj.trigger = "#http://iec.ch/TC57/2013/CIM-schema-cim16#NotificationTriggerKind." + temp; }
+                temp = document.getElementById (id + "_trigger").value; if ("" != temp) { temp = NotificationTriggerKind[temp]; if ("undefined" != typeof (temp)) obj.trigger = "http://iec.ch/TC57/2013/CIM-schema-cim16#NotificationTriggerKind." + temp; }
                 temp = document.getElementById (id + "_earliestDateTimeToCall").value; if ("" != temp) obj.earliestDateTimeToCall = temp;
                 temp = document.getElementById (id + "_latestDateTimeToCall").value; if ("" != temp) obj.latestDateTimeToCall = temp;
                 temp = document.getElementById (id + "_contactType").value; if ("" != temp) obj.contactType = temp;
@@ -400,7 +400,7 @@ define
                 temp = document.getElementById (id + "_dailyCeilingUsage").value; if ("" != temp) obj.dailyCeilingUsage = temp;
                 temp = document.getElementById (id + "_dailyEstimatedUsage").value; if ("" != temp) obj.dailyEstimatedUsage = temp;
                 temp = document.getElementById (id + "_dailyFloorUsage").value; if ("" != temp) obj.dailyFloorUsage = temp;
-                temp = document.getElementById (id + "_revenueKind").value; if ("" != temp) { temp = RevenueKind[temp]; if ("undefined" != typeof (temp)) obj.revenueKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RevenueKind." + temp; }
+                temp = document.getElementById (id + "_revenueKind").value; if ("" != temp) { temp = RevenueKind[temp]; if ("undefined" != typeof (temp)) obj.revenueKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RevenueKind." + temp; }
                 temp = document.getElementById (id + "_taxExemption").checked; if (temp) obj.taxExemption = true;
                 temp = document.getElementById (id + "_Tariffs").value; if ("" != temp) obj.Tariffs = temp.split (",");
                 temp = document.getElementById (id + "_ServiceCategory").value; if ("" != temp) obj.ServiceCategory = temp;
@@ -723,7 +723,7 @@ define
 
                 var obj = obj || { id: id, cls: "Customer" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CustomerKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CustomerKind." + temp; }
                 temp = document.getElementById (id + "_pucNumber").value; if ("" != temp) obj.pucNumber = temp;
                 temp = document.getElementById (id + "_specialNeed").value; if ("" != temp) obj.specialNeed = temp;
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
@@ -1328,7 +1328,7 @@ define
 
                 var obj = obj || { id: id, cls: "ServiceCategory" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ServiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ServiceKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ServiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ServiceKind." + temp; }
 
                 return (obj);
             }
@@ -1479,7 +1479,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_dateTimeOfReport").value; if ("" != temp) obj.dateTimeOfReport = temp;
                 temp = document.getElementById (id + "_troubleCode").value; if ("" != temp) obj.troubleCode = temp;
-                temp = document.getElementById (id + "_reportingKind").value; if ("" != temp) { temp = TroubleReportingKind[temp]; if ("undefined" != typeof (temp)) obj.reportingKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TroubleReportingKind." + temp; }
+                temp = document.getElementById (id + "_reportingKind").value; if ("" != temp) { temp = TroubleReportingKind[temp]; if ("undefined" != typeof (temp)) obj.reportingKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TroubleReportingKind." + temp; }
                 temp = document.getElementById (id + "_resolvedDateTime").value; if ("" != temp) obj.resolvedDateTime = temp;
                 temp = document.getElementById (id + "_firstResponder").value; if ("" != temp) obj.firstResponder = temp;
                 temp = document.getElementById (id + "_Notification").value; if ("" != temp) obj.Notification = temp;

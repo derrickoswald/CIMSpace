@@ -1266,8 +1266,8 @@ define
                 var obj = obj || { id: id, cls: "Seal" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_appliedDateTime").value; if ("" != temp) obj.appliedDateTime = temp;
-                temp = document.getElementById (id + "_condition").value; if ("" != temp) { temp = SealConditionKind[temp]; if ("undefined" != typeof (temp)) obj.condition = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SealConditionKind." + temp; }
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SealKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SealKind." + temp; }
+                temp = document.getElementById (id + "_condition").value; if ("" != temp) { temp = SealConditionKind[temp]; if ("undefined" != typeof (temp)) obj.condition = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealConditionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = SealKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#SealKind." + temp; }
                 temp = document.getElementById (id + "_sealNumber").value; if ("" != temp) obj.sealNumber = temp;
                 temp = document.getElementById (id + "_AssetContainer").value; if ("" != temp) obj.AssetContainer = temp;
 
@@ -1795,7 +1795,7 @@ define
                 var obj = obj || { id: id, cls: "Procedure" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_instruction").value; if ("" != temp) obj.instruction = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ProcedureKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProcedureKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ProcedureKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProcedureKind." + temp; }
                 temp = document.getElementById (id + "_sequenceNumber").value; if ("" != temp) obj.sequenceNumber = temp;
                 temp = document.getElementById (id + "_Measurements").value; if ("" != temp) obj.Measurements = temp.split (",");
                 temp = document.getElementById (id + "_Limits").value; if ("" != temp) obj.Limits = temp.split (",");
@@ -2490,10 +2490,10 @@ define
 
                 var obj = obj || { id: id, cls: "ProductAssetModel" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_corporateStandardKind").value; if ("" != temp) { temp = CorporateStandardKind[temp]; if ("undefined" != typeof (temp)) obj.corporateStandardKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CorporateStandardKind." + temp; }
+                temp = document.getElementById (id + "_corporateStandardKind").value; if ("" != temp) { temp = CorporateStandardKind[temp]; if ("undefined" != typeof (temp)) obj.corporateStandardKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CorporateStandardKind." + temp; }
                 temp = document.getElementById (id + "_modelNumber").value; if ("" != temp) obj.modelNumber = temp;
                 temp = document.getElementById (id + "_modelVersion").value; if ("" != temp) obj.modelVersion = temp;
-                temp = document.getElementById (id + "_usageKind").value; if ("" != temp) { temp = AssetModelUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AssetModelUsageKind." + temp; }
+                temp = document.getElementById (id + "_usageKind").value; if ("" != temp) { temp = AssetModelUsageKind[temp]; if ("undefined" != typeof (temp)) obj.usageKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AssetModelUsageKind." + temp; }
                 temp = document.getElementById (id + "_weightTotal").value; if ("" != temp) obj.weightTotal = temp;
                 temp = document.getElementById (id + "_GenericAssetModelOrMaterial").value; if ("" != temp) obj.GenericAssetModelOrMaterial = temp;
                 temp = document.getElementById (id + "_Manufacturer").value; if ("" != temp) obj.Manufacturer = temp;

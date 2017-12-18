@@ -1233,7 +1233,7 @@ define
 
                 var obj = obj || { id: id, cls: "ACDCConverterDCTerminal" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_polarity").value; if ("" != temp) { temp = DCPolarityKind[temp]; if ("undefined" != typeof (temp)) obj.polarity = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DCPolarityKind." + temp; }
+                temp = document.getElementById (id + "_polarity").value; if ("" != temp) { temp = DCPolarityKind[temp]; if ("undefined" != typeof (temp)) obj.polarity = "http://iec.ch/TC57/2013/CIM-schema-cim16#DCPolarityKind." + temp; }
                 temp = document.getElementById (id + "_DCConductingEquipment").value; if ("" != temp) obj.DCConductingEquipment = temp;
 
                 return (obj);
@@ -1522,7 +1522,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_maxIdc").value; if ("" != temp) obj.maxIdc = temp;
                 temp = document.getElementById (id + "_ratedIdc").value; if ("" != temp) obj.ratedIdc = temp;
-                temp = document.getElementById (id + "_pPccControl").value; if ("" != temp) { temp = CsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CsPpccControlKind." + temp; }
+                temp = document.getElementById (id + "_pPccControl").value; if ("" != temp) { temp = CsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#CsPpccControlKind." + temp; }
                 temp = document.getElementById (id + "_alpha").value; if ("" != temp) obj.alpha = temp;
                 temp = document.getElementById (id + "_gamma").value; if ("" != temp) obj.gamma = temp;
                 temp = document.getElementById (id + "_maxAlpha").value; if ("" != temp) obj.maxAlpha = temp;
@@ -1533,7 +1533,7 @@ define
                 temp = document.getElementById (id + "_targetGamma").value; if ("" != temp) obj.targetGamma = temp;
                 temp = document.getElementById (id + "_targetIdc").value; if ("" != temp) obj.targetIdc = temp;
                 temp = document.getElementById (id + "_minIdc").value; if ("" != temp) obj.minIdc = temp;
-                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) { temp = CsOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CsOperatingModeKind." + temp; }
+                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) { temp = CsOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#CsOperatingModeKind." + temp; }
 
                 return (obj);
             }
@@ -1685,7 +1685,7 @@ define
 
                 var obj = obj || { id: id, cls: "VsConverter" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_pPccControl").value; if ("" != temp) { temp = VsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VsPpccControlKind." + temp; }
+                temp = document.getElementById (id + "_pPccControl").value; if ("" != temp) { temp = VsPpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.pPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#VsPpccControlKind." + temp; }
                 temp = document.getElementById (id + "_qShare").value; if ("" != temp) obj.qShare = temp;
                 temp = document.getElementById (id + "_targetQpcc").value; if ("" != temp) obj.targetQpcc = temp;
                 temp = document.getElementById (id + "_targetUpcc").value; if ("" != temp) obj.targetUpcc = temp;
@@ -1695,7 +1695,7 @@ define
                 temp = document.getElementById (id + "_uf").value; if ("" != temp) obj.uf = temp;
                 temp = document.getElementById (id + "_maxValveCurrent").value; if ("" != temp) obj.maxValveCurrent = temp;
                 temp = document.getElementById (id + "_maxModulationIndex").value; if ("" != temp) obj.maxModulationIndex = temp;
-                temp = document.getElementById (id + "_qPccControl").value; if ("" != temp) { temp = VsQpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.qPccControl = "#http://iec.ch/TC57/2013/CIM-schema-cim16#VsQpccControlKind." + temp; }
+                temp = document.getElementById (id + "_qPccControl").value; if ("" != temp) { temp = VsQpccControlKind[temp]; if ("undefined" != typeof (temp)) obj.qPccControl = "http://iec.ch/TC57/2013/CIM-schema-cim16#VsQpccControlKind." + temp; }
                 temp = document.getElementById (id + "_CapabilityCurve").value; if ("" != temp) obj.CapabilityCurve = temp;
 
                 return (obj);
@@ -1932,7 +1932,7 @@ define
 
                 var obj = obj || { id: id, cls: "DCConverterUnit" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_operationMode").value; if ("" != temp) { temp = DCConverterOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operationMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DCConverterOperatingModeKind." + temp; }
+                temp = document.getElementById (id + "_operationMode").value; if ("" != temp) { temp = DCConverterOperatingModeKind[temp]; if ("undefined" != typeof (temp)) obj.operationMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#DCConverterOperatingModeKind." + temp; }
                 temp = document.getElementById (id + "_Substation").value; if ("" != temp) obj.Substation = temp;
 
                 return (obj);

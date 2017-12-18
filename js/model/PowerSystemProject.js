@@ -153,8 +153,8 @@ define
                 temp = document.getElementById (id + "_actualStart").value; if ("" != temp) obj.actualStart = temp;
                 temp = document.getElementById (id + "_scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
                 temp = document.getElementById (id + "_scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
-                temp = document.getElementById (id + "_stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
+                temp = document.getElementById (id + "_stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
 
                 return (obj);
             }
@@ -296,7 +296,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_name").value; if ("" != temp) obj.name = temp;
                 temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
-                temp = document.getElementById (id + "_state").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.state = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                temp = document.getElementById (id + "_state").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.state = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
                 temp = document.getElementById (id + "_type").value; if ("" != temp) obj.type = temp;
                 temp = document.getElementById (id + "_version").value; if ("" != temp) obj.version = temp;
                 temp = document.getElementById (id + "_description").value; if ("" != temp) obj.description = temp;
@@ -445,8 +445,8 @@ define
                 temp = document.getElementById (id + "_actualStart").value; if ("" != temp) obj.actualStart = temp;
                 temp = document.getElementById (id + "_scheduledEnd").value; if ("" != temp) obj.scheduledEnd = temp;
                 temp = document.getElementById (id + "_scheduledStart").value; if ("" != temp) obj.scheduledStart = temp;
-                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
-                temp = document.getElementById (id + "_stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
+                temp = document.getElementById (id + "_status").value; if ("" != temp) { temp = ProjectStepStatusKind[temp]; if ("undefined" != typeof (temp)) obj.status = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProjectStepStatusKind." + temp; }
+                temp = document.getElementById (id + "_stepType").value; if ("" != temp) { temp = StepKind[temp]; if ("undefined" != typeof (temp)) obj.stepType = "http://iec.ch/TC57/2013/CIM-schema-cim16#StepKind." + temp; }
 
                 return (obj);
             }

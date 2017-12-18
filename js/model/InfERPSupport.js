@@ -1225,9 +1225,9 @@ define
                 var obj = obj || { id: id, cls: "ErpInvoice" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
-                temp = document.getElementById (id + "_billMediaKind").value; if ("" != temp) { temp = BillMediaKind[temp]; if ("undefined" != typeof (temp)) obj.billMediaKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BillMediaKind." + temp; }
+                temp = document.getElementById (id + "_billMediaKind").value; if ("" != temp) { temp = BillMediaKind[temp]; if ("undefined" != typeof (temp)) obj.billMediaKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#BillMediaKind." + temp; }
                 temp = document.getElementById (id + "_dueDate").value; if ("" != temp) obj.dueDate = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceKind." + temp; }
                 temp = document.getElementById (id + "_mailedDate").value; if ("" != temp) obj.mailedDate = temp;
                 temp = document.getElementById (id + "_proForma").checked; if (temp) obj.proForma = true;
                 temp = document.getElementById (id + "_referenceNumber").value; if ("" != temp) obj.referenceNumber = temp;
@@ -2045,7 +2045,7 @@ define
                 temp = document.getElementById (id + "_billPeriod").value; if ("" != temp) obj.billPeriod = temp;
                 temp = document.getElementById (id + "_glAccount").value; if ("" != temp) obj.glAccount = temp;
                 temp = document.getElementById (id + "_glDateTime").value; if ("" != temp) obj.glDateTime = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceLineItemKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceLineItemKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ErpInvoiceLineItemKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpInvoiceLineItemKind." + temp; }
                 temp = document.getElementById (id + "_lineAmount").value; if ("" != temp) obj.lineAmount = temp;
                 temp = document.getElementById (id + "_lineNumber").value; if ("" != temp) obj.lineNumber = temp;
                 temp = document.getElementById (id + "_lineVersion").value; if ("" != temp) obj.lineVersion = temp;
@@ -3411,7 +3411,7 @@ define
                 var obj = obj || { id: id, cls: "ErpLedgerEntry" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_accountID").value; if ("" != temp) obj.accountID = temp;
-                temp = document.getElementById (id + "_accountKind").value; if ("" != temp) { temp = ErpAccountKind[temp]; if ("undefined" != typeof (temp)) obj.accountKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ErpAccountKind." + temp; }
+                temp = document.getElementById (id + "_accountKind").value; if ("" != temp) { temp = ErpAccountKind[temp]; if ("undefined" != typeof (temp)) obj.accountKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ErpAccountKind." + temp; }
                 temp = document.getElementById (id + "_amount").value; if ("" != temp) obj.amount = temp;
                 temp = document.getElementById (id + "_postedDateTime").value; if ("" != temp) obj.postedDateTime = temp;
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;

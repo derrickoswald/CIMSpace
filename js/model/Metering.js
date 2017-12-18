@@ -1383,9 +1383,9 @@ define
 
                 var obj = obj || { id: id, cls: "UsagePoint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_amiBillingReady").value; if ("" != temp) { temp = AmiBillingReadyKind[temp]; if ("undefined" != typeof (temp)) obj.amiBillingReady = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AmiBillingReadyKind." + temp; }
+                temp = document.getElementById (id + "_amiBillingReady").value; if ("" != temp) { temp = AmiBillingReadyKind[temp]; if ("undefined" != typeof (temp)) obj.amiBillingReady = "http://iec.ch/TC57/2013/CIM-schema-cim16#AmiBillingReadyKind." + temp; }
                 temp = document.getElementById (id + "_checkBilling").checked; if (temp) obj.checkBilling = true;
-                temp = document.getElementById (id + "_connectionState").value; if ("" != temp) { temp = UsagePointConnectedKind[temp]; if ("undefined" != typeof (temp)) obj.connectionState = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UsagePointConnectedKind." + temp; }
+                temp = document.getElementById (id + "_connectionState").value; if ("" != temp) { temp = UsagePointConnectedKind[temp]; if ("undefined" != typeof (temp)) obj.connectionState = "http://iec.ch/TC57/2013/CIM-schema-cim16#UsagePointConnectedKind." + temp; }
                 temp = document.getElementById (id + "_estimatedLoad").value; if ("" != temp) obj.estimatedLoad = temp;
                 temp = document.getElementById (id + "_grounded").checked; if (temp) obj.grounded = true;
                 temp = document.getElementById (id + "_isSdp").checked; if (temp) obj.isSdp = true;
@@ -2208,7 +2208,7 @@ define
 
                 var obj = obj || { id: id, cls: "MeterMultiplier" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = MeterMultiplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#MeterMultiplierKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = MeterMultiplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MeterMultiplierKind." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
                 temp = document.getElementById (id + "_Meter").value; if ("" != temp) obj.Meter = temp;
 
@@ -2469,7 +2469,7 @@ define
 
                 var obj = obj || { id: id, cls: "MetrologyRequirement" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_reason").value; if ("" != temp) { temp = ReadingReasonKind[temp]; if ("undefined" != typeof (temp)) obj.reason = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ReadingReasonKind." + temp; }
+                temp = document.getElementById (id + "_reason").value; if ("" != temp) { temp = ReadingReasonKind[temp]; if ("undefined" != typeof (temp)) obj.reason = "http://iec.ch/TC57/2013/CIM-schema-cim16#ReadingReasonKind." + temp; }
                 temp = document.getElementById (id + "_ReadingTypes").value; if ("" != temp) obj.ReadingTypes = temp.split (",");
                 temp = document.getElementById (id + "_UsagePoints").value; if ("" != temp) obj.UsagePoints = temp.split (",");
 
@@ -3222,7 +3222,7 @@ define
                 temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
                 temp = document.getElementById (id + "_durationIndefinite").checked; if (temp) obj.durationIndefinite = true;
                 temp = document.getElementById (id + "_interval").value; if ("" != temp) obj.interval = temp;
-                temp = document.getElementById (id + "_randomisation").value; if ("" != temp) { temp = RandomisationKind[temp]; if ("undefined" != typeof (temp)) obj.randomisation = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RandomisationKind." + temp; }
+                temp = document.getElementById (id + "_randomisation").value; if ("" != temp) { temp = RandomisationKind[temp]; if ("undefined" != typeof (temp)) obj.randomisation = "http://iec.ch/TC57/2013/CIM-schema-cim16#RandomisationKind." + temp; }
 
                 return (obj);
             }
@@ -3762,7 +3762,7 @@ define
 
                 var obj = obj || { id: id, cls: "ServiceMultiplier" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ServiceMultiplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ServiceMultiplierKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ServiceMultiplierKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ServiceMultiplierKind." + temp; }
                 temp = document.getElementById (id + "_value").value; if ("" != temp) obj.value = temp;
                 temp = document.getElementById (id + "_UsagePoint").value; if ("" != temp) obj.UsagePoint = temp;
 
@@ -5330,7 +5330,7 @@ define
 
                 var obj = obj || { id: id, cls: "SimpleEndDeviceFunction" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = EndDeviceFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceFunctionKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = EndDeviceFunctionKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#EndDeviceFunctionKind." + temp; }
 
                 return (obj);
             }
@@ -5456,8 +5456,8 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_amrAddress").value; if ("" != temp) obj.amrAddress = temp;
                 temp = document.getElementById (id + "_amrRouter").value; if ("" != temp) obj.amrRouter = temp;
-                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = ComDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ComDirectionKind." + temp; }
-                temp = document.getElementById (id + "_technology").value; if ("" != temp) { temp = ComTechnologyKind[temp]; if ("undefined" != typeof (temp)) obj.technology = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ComTechnologyKind." + temp; }
+                temp = document.getElementById (id + "_direction").value; if ("" != temp) { temp = ComDirectionKind[temp]; if ("undefined" != typeof (temp)) obj.direction = "http://iec.ch/TC57/2013/CIM-schema-cim16#ComDirectionKind." + temp; }
+                temp = document.getElementById (id + "_technology").value; if ("" != temp) { temp = ComTechnologyKind[temp]; if ("undefined" != typeof (temp)) obj.technology = "http://iec.ch/TC57/2013/CIM-schema-cim16#ComTechnologyKind." + temp; }
                 temp = document.getElementById (id + "_ComModule").value; if ("" != temp) obj.ComModule = temp;
 
                 return (obj);
@@ -5590,7 +5590,7 @@ define
                 temp = document.getElementById (id + "_confirmationRequired").checked; if (temp) obj.confirmationRequired = true;
                 temp = document.getElementById (id + "_priority").value; if ("" != temp) obj.priority = temp;
                 temp = document.getElementById (id + "_textMessage").value; if ("" != temp) obj.textMessage = temp;
-                temp = document.getElementById (id + "_transmissionMode").value; if ("" != temp) { temp = TransmissionModeKind[temp]; if ("undefined" != typeof (temp)) obj.transmissionMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransmissionModeKind." + temp; }
+                temp = document.getElementById (id + "_transmissionMode").value; if ("" != temp) { temp = TransmissionModeKind[temp]; if ("undefined" != typeof (temp)) obj.transmissionMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransmissionModeKind." + temp; }
 
                 return (obj);
             }
@@ -6106,7 +6106,7 @@ define
 
                 var obj = obj || { id: id, cls: "Reading" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_reason").value; if ("" != temp) { temp = ReadingReasonKind[temp]; if ("undefined" != typeof (temp)) obj.reason = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ReadingReasonKind." + temp; }
+                temp = document.getElementById (id + "_reason").value; if ("" != temp) { temp = ReadingReasonKind[temp]; if ("undefined" != typeof (temp)) obj.reason = "http://iec.ch/TC57/2013/CIM-schema-cim16#ReadingReasonKind." + temp; }
                 temp = document.getElementById (id + "_ReadingType").value; if ("" != temp) obj.ReadingType = temp;
                 temp = document.getElementById (id + "_MeterReadings").value; if ("" != temp) obj.MeterReadings = temp.split (",");
 

@@ -352,7 +352,7 @@ define
 
                 var obj = obj || { id: id, cls: "FACTSDevice" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = FACTSDeviceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FACTSDeviceKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = FACTSDeviceKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#FACTSDeviceKind." + temp; }
 
                 return (obj);
             }
@@ -628,7 +628,7 @@ define
                 var obj = obj || { id: id, cls: "FailureEvent" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_corporateCode").value; if ("" != temp) obj.corporateCode = temp;
-                temp = document.getElementById (id + "_failureIsolationMethod").value; if ("" != temp) { temp = FailureIsolationMethodKind[temp]; if ("undefined" != typeof (temp)) obj.failureIsolationMethod = "#http://iec.ch/TC57/2013/CIM-schema-cim16#FailureIsolationMethodKind." + temp; }
+                temp = document.getElementById (id + "_failureIsolationMethod").value; if ("" != temp) { temp = FailureIsolationMethodKind[temp]; if ("undefined" != typeof (temp)) obj.failureIsolationMethod = "http://iec.ch/TC57/2013/CIM-schema-cim16#FailureIsolationMethodKind." + temp; }
                 temp = document.getElementById (id + "_faultLocatingMethod").value; if ("" != temp) obj.faultLocatingMethod = temp;
                 temp = document.getElementById (id + "_location").value; if ("" != temp) obj.location = temp;
 
@@ -776,7 +776,7 @@ define
                 temp = document.getElementById (id + "_fumigantAppliedDate").value; if ("" != temp) obj.fumigantAppliedDate = temp;
                 temp = document.getElementById (id + "_fumigantName").value; if ("" != temp) obj.fumigantName = temp;
                 temp = document.getElementById (id + "_height").value; if ("" != temp) obj.height = temp;
-                temp = document.getElementById (id + "_materialKind").value; if ("" != temp) { temp = StructureMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.materialKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StructureMaterialKind." + temp; }
+                temp = document.getElementById (id + "_materialKind").value; if ("" != temp) { temp = StructureMaterialKind[temp]; if ("undefined" != typeof (temp)) obj.materialKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#StructureMaterialKind." + temp; }
                 temp = document.getElementById (id + "_ratedVoltage").value; if ("" != temp) obj.ratedVoltage = temp;
                 temp = document.getElementById (id + "_removeWeed").checked; if (temp) obj.removeWeed = true;
                 temp = document.getElementById (id + "_weedRemovedDate").value; if ("" != temp) obj.weedRemovedDate = temp;
@@ -1080,7 +1080,7 @@ define
 
                 var obj = obj || { id: id, cls: "CoolingPowerRating" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_coolingKind").value; if ("" != temp) { temp = CoolingKind[temp]; if ("undefined" != typeof (temp)) obj.coolingKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CoolingKind." + temp; }
+                temp = document.getElementById (id + "_coolingKind").value; if ("" != temp) { temp = CoolingKind[temp]; if ("undefined" != typeof (temp)) obj.coolingKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CoolingKind." + temp; }
                 temp = document.getElementById (id + "_powerRating").value; if ("" != temp) obj.powerRating = temp;
                 temp = document.getElementById (id + "_stage").value; if ("" != temp) obj.stage = temp;
                 temp = document.getElementById (id + "_Reconditionings").value; if ("" != temp) obj.Reconditionings = temp.split (",");
@@ -1402,11 +1402,11 @@ define
 
                 var obj = obj || { id: id, cls: "StructureSupport" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_anchorKind").value; if ("" != temp) { temp = AnchorKind[temp]; if ("undefined" != typeof (temp)) obj.anchorKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AnchorKind." + temp; }
+                temp = document.getElementById (id + "_anchorKind").value; if ("" != temp) { temp = AnchorKind[temp]; if ("undefined" != typeof (temp)) obj.anchorKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnchorKind." + temp; }
                 temp = document.getElementById (id + "_anchorRodCount").value; if ("" != temp) obj.anchorRodCount = temp;
                 temp = document.getElementById (id + "_anchorRodLength").value; if ("" != temp) obj.anchorRodLength = temp;
                 temp = document.getElementById (id + "_direction").value; if ("" != temp) obj.direction = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = StructureSupportKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StructureSupportKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = StructureSupportKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#StructureSupportKind." + temp; }
                 temp = document.getElementById (id + "_length").value; if ("" != temp) obj.length = temp;
                 temp = document.getElementById (id + "_size").value; if ("" != temp) obj.size = temp;
                 temp = document.getElementById (id + "_SecuredStructure").value; if ("" != temp) obj.SecuredStructure = temp;
@@ -1675,7 +1675,7 @@ define
                 temp = document.getElementById (id + "_c1PowerFactor").value; if ("" != temp) obj.c1PowerFactor = temp;
                 temp = document.getElementById (id + "_c2Capacitance").value; if ("" != temp) obj.c2Capacitance = temp;
                 temp = document.getElementById (id + "_c2PowerFactor").value; if ("" != temp) obj.c2PowerFactor = temp;
-                temp = document.getElementById (id + "_insulationKind").value; if ("" != temp) { temp = BushingInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.insulationKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BushingInsulationKind." + temp; }
+                temp = document.getElementById (id + "_insulationKind").value; if ("" != temp) { temp = BushingInsulationKind[temp]; if ("undefined" != typeof (temp)) obj.insulationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#BushingInsulationKind." + temp; }
                 temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
                 return (obj);
@@ -2665,8 +2665,8 @@ define
 
                 var obj = obj || { id: id, cls: "Joint" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_configurationKind").value; if ("" != temp) { temp = JointConfigurationKind[temp]; if ("undefined" != typeof (temp)) obj.configurationKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#JointConfigurationKind." + temp; }
-                temp = document.getElementById (id + "_fillKind").value; if ("" != temp) { temp = JointFillKind[temp]; if ("undefined" != typeof (temp)) obj.fillKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#JointFillKind." + temp; }
+                temp = document.getElementById (id + "_configurationKind").value; if ("" != temp) { temp = JointConfigurationKind[temp]; if ("undefined" != typeof (temp)) obj.configurationKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#JointConfigurationKind." + temp; }
+                temp = document.getElementById (id + "_fillKind").value; if ("" != temp) { temp = JointFillKind[temp]; if ("undefined" != typeof (temp)) obj.fillKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#JointFillKind." + temp; }
                 temp = document.getElementById (id + "_insulation").value; if ("" != temp) obj.insulation = temp;
 
                 return (obj);
@@ -2921,7 +2921,7 @@ define
 
                 var obj = obj || { id: id, cls: "Medium" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = MediumKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#MediumKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = MediumKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#MediumKind." + temp; }
                 temp = document.getElementById (id + "_volumeSpec").value; if ("" != temp) obj.volumeSpec = temp;
                 temp = document.getElementById (id + "_Assets").value; if ("" != temp) obj.Assets = temp.split (",");
                 temp = document.getElementById (id + "_Specification").value; if ("" != temp) obj.Specification = temp;
@@ -3161,7 +3161,7 @@ define
                 var obj = obj || { id: id, cls: "BushingInsulationPF" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
-                temp = document.getElementById (id + "_testKind").value; if ("" != temp) { temp = BushingInsulationPfTestKind[temp]; if ("undefined" != typeof (temp)) obj.testKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#BushingInsulationPfTestKind." + temp; }
+                temp = document.getElementById (id + "_testKind").value; if ("" != temp) { temp = BushingInsulationPfTestKind[temp]; if ("undefined" != typeof (temp)) obj.testKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#BushingInsulationPfTestKind." + temp; }
                 temp = document.getElementById (id + "_Bushing").value; if ("" != temp) obj.Bushing = temp;
                 temp = document.getElementById (id + "_TransformerObservation").value; if ("" != temp) obj.TransformerObservation = temp;
 
@@ -3294,7 +3294,7 @@ define
                 var obj = obj || { id: id, cls: "Streetlight" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_armLength").value; if ("" != temp) obj.armLength = temp;
-                temp = document.getElementById (id + "_lampKind").value; if ("" != temp) { temp = StreetlightLampKind[temp]; if ("undefined" != typeof (temp)) obj.lampKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#StreetlightLampKind." + temp; }
+                temp = document.getElementById (id + "_lampKind").value; if ("" != temp) { temp = StreetlightLampKind[temp]; if ("undefined" != typeof (temp)) obj.lampKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#StreetlightLampKind." + temp; }
                 temp = document.getElementById (id + "_lightRating").value; if ("" != temp) obj.lightRating = temp;
                 temp = document.getElementById (id + "_Pole").value; if ("" != temp) obj.Pole = temp;
 
@@ -3462,17 +3462,17 @@ define
 
                 var obj = obj || { id: id, cls: "Pole" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_baseKind").value; if ("" != temp) { temp = PoleBaseKind[temp]; if ("undefined" != typeof (temp)) obj.baseKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PoleBaseKind." + temp; }
+                temp = document.getElementById (id + "_baseKind").value; if ("" != temp) { temp = PoleBaseKind[temp]; if ("undefined" != typeof (temp)) obj.baseKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PoleBaseKind." + temp; }
                 temp = document.getElementById (id + "_breastBlock").checked; if (temp) obj.breastBlock = true;
                 temp = document.getElementById (id + "_classification").value; if ("" != temp) obj.classification = temp;
                 temp = document.getElementById (id + "_construction").value; if ("" != temp) obj.construction = temp;
                 temp = document.getElementById (id + "_diameter").value; if ("" != temp) obj.diameter = temp;
                 temp = document.getElementById (id + "_jpaReference").value; if ("" != temp) obj.jpaReference = temp;
                 temp = document.getElementById (id + "_length").value; if ("" != temp) obj.length = temp;
-                temp = document.getElementById (id + "_preservativeKind").value; if ("" != temp) { temp = PolePreservativeKind[temp]; if ("undefined" != typeof (temp)) obj.preservativeKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PolePreservativeKind." + temp; }
+                temp = document.getElementById (id + "_preservativeKind").value; if ("" != temp) { temp = PolePreservativeKind[temp]; if ("undefined" != typeof (temp)) obj.preservativeKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PolePreservativeKind." + temp; }
                 temp = document.getElementById (id + "_speciesType").value; if ("" != temp) obj.speciesType = temp;
                 temp = document.getElementById (id + "_treatedDateTime").value; if ("" != temp) obj.treatedDateTime = temp;
-                temp = document.getElementById (id + "_treatmentKind").value; if ("" != temp) { temp = PoleTreatmentKind[temp]; if ("undefined" != typeof (temp)) obj.treatmentKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PoleTreatmentKind." + temp; }
+                temp = document.getElementById (id + "_treatmentKind").value; if ("" != temp) { temp = PoleTreatmentKind[temp]; if ("undefined" != typeof (temp)) obj.treatmentKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PoleTreatmentKind." + temp; }
 
                 return (obj);
             }
@@ -3591,7 +3591,7 @@ define
 
                 var obj = obj || { id: id, cls: "Tower" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = TowerConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TowerConstructionKind." + temp; }
+                temp = document.getElementById (id + "_constructionKind").value; if ("" != temp) { temp = TowerConstructionKind[temp]; if ("undefined" != typeof (temp)) obj.constructionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#TowerConstructionKind." + temp; }
 
                 return (obj);
             }
@@ -3710,7 +3710,7 @@ define
                 var obj = obj || { id: id, cls: "UndergroundStructure" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_hasVentilation").checked; if (temp) obj.hasVentilation = true;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = UndergroundStructureKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#UndergroundStructureKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = UndergroundStructureKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#UndergroundStructureKind." + temp; }
                 temp = document.getElementById (id + "_material").value; if ("" != temp) obj.material = temp;
                 temp = document.getElementById (id + "_sealingWarrantyExpiresDate").value; if ("" != temp) obj.sealingWarrantyExpiresDate = temp;
 

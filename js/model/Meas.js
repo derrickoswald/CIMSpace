@@ -461,7 +461,7 @@ define
                 temp = document.getElementById (id + "_source").value; if ("" != temp) obj.source = temp;
                 temp = document.getElementById (id + "_suspect").checked; if (temp) obj.suspect = true;
                 temp = document.getElementById (id + "_test").checked; if (temp) obj.test = true;
-                temp = document.getElementById (id + "_validity").value; if ("" != temp) { temp = Validity[temp]; if ("undefined" != typeof (temp)) obj.validity = "#http://iec.ch/TC57/2013/CIM-schema-cim16#Validity." + temp; }
+                temp = document.getElementById (id + "_validity").value; if ("" != temp) { temp = Validity[temp]; if ("undefined" != typeof (temp)) obj.validity = "http://iec.ch/TC57/2013/CIM-schema-cim16#Validity." + temp; }
 
                 return (obj);
             }

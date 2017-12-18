@@ -358,7 +358,7 @@ define
 
                 var obj = obj || { id: id, cls: "ContingencyEquipment" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_contingentStatus").value; if ("" != temp) { temp = ContingencyEquipmentStatusKind[temp]; if ("undefined" != typeof (temp)) obj.contingentStatus = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; }
+                temp = document.getElementById (id + "_contingentStatus").value; if ("" != temp) { temp = ContingencyEquipmentStatusKind[temp]; if ("undefined" != typeof (temp)) obj.contingentStatus = "http://iec.ch/TC57/2013/CIM-schema-cim16#ContingencyEquipmentStatusKind." + temp; }
                 temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);

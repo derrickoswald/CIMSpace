@@ -519,7 +519,7 @@ define
 
                 var obj = obj || { id: id, cls: "Diagram" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_orientation").value; if ("" != temp) { temp = OrientationKind[temp]; if ("undefined" != typeof (temp)) obj.orientation = "#http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind." + temp; }
+                temp = document.getElementById (id + "_orientation").value; if ("" != temp) { temp = OrientationKind[temp]; if ("undefined" != typeof (temp)) obj.orientation = "http://iec.ch/TC57/2013/CIM-schema-cim16#OrientationKind." + temp; }
                 temp = document.getElementById (id + "_x1InitialView").value; if ("" != temp) obj.x1InitialView = temp;
                 temp = document.getElementById (id + "_x2InitialView").value; if ("" != temp) obj.x2InitialView = temp;
                 temp = document.getElementById (id + "_y1InitialView").value; if ("" != temp) obj.y1InitialView = temp;

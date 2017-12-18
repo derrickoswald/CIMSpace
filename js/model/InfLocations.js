@@ -253,7 +253,7 @@ define
 
                 var obj = obj || { id: id, cls: "Zone" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ZoneKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ZoneKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ZoneKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ZoneKind." + temp; }
 
                 return (obj);
             }
@@ -668,9 +668,9 @@ define
 
                 var obj = obj || { id: id, cls: "LandProperty" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_demographicKind").value; if ("" != temp) { temp = DemographicKind[temp]; if ("undefined" != typeof (temp)) obj.demographicKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#DemographicKind." + temp; }
+                temp = document.getElementById (id + "_demographicKind").value; if ("" != temp) { temp = DemographicKind[temp]; if ("undefined" != typeof (temp)) obj.demographicKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#DemographicKind." + temp; }
                 temp = document.getElementById (id + "_externalRecordReference").value; if ("" != temp) obj.externalRecordReference = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = LandPropertyKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#LandPropertyKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = LandPropertyKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#LandPropertyKind." + temp; }
                 temp = document.getElementById (id + "_status").value; if ("" != temp) obj.status = temp;
                 temp = document.getElementById (id + "_RightOfWays").value; if ("" != temp) obj.RightOfWays = temp.split (",");
                 temp = document.getElementById (id + "_Locations").value; if ("" != temp) obj.Locations = temp.split (",");

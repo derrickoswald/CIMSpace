@@ -315,7 +315,7 @@ define
                 var obj = obj || { id: id, cls: "SynchronousMachineDetailed" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_efdBaseRatio").value; if ("" != temp) obj.efdBaseRatio = temp;
-                temp = document.getElementById (id + "_ifdBaseType").value; if ("" != temp) { temp = IfdBaseKind[temp]; if ("undefined" != typeof (temp)) obj.ifdBaseType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#IfdBaseKind." + temp; }
+                temp = document.getElementById (id + "_ifdBaseType").value; if ("" != temp) { temp = IfdBaseKind[temp]; if ("undefined" != typeof (temp)) obj.ifdBaseType = "http://iec.ch/TC57/2013/CIM-schema-cim16#IfdBaseKind." + temp; }
                 temp = document.getElementById (id + "_saturationFactor120QAxis").value; if ("" != temp) obj.saturationFactor120QAxis = temp;
                 temp = document.getElementById (id + "_saturationFactorQAxis").value; if ("" != temp) obj.saturationFactorQAxis = temp;
 
@@ -791,8 +791,8 @@ define
                 var obj = obj || { id: id, cls: "SynchronousMachineTimeConstantReactance" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_ks").value; if ("" != temp) obj.ks = temp;
-                temp = document.getElementById (id + "_modelType").value; if ("" != temp) { temp = SynchronousMachineModelKind[temp]; if ("undefined" != typeof (temp)) obj.modelType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineModelKind." + temp; }
-                temp = document.getElementById (id + "_rotorType").value; if ("" != temp) { temp = RotorKind[temp]; if ("undefined" != typeof (temp)) obj.rotorType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RotorKind." + temp; }
+                temp = document.getElementById (id + "_modelType").value; if ("" != temp) { temp = SynchronousMachineModelKind[temp]; if ("undefined" != typeof (temp)) obj.modelType = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineModelKind." + temp; }
+                temp = document.getElementById (id + "_rotorType").value; if ("" != temp) { temp = RotorKind[temp]; if ("undefined" != typeof (temp)) obj.rotorType = "http://iec.ch/TC57/2013/CIM-schema-cim16#RotorKind." + temp; }
                 temp = document.getElementById (id + "_tc").value; if ("" != temp) obj.tc = temp;
                 temp = document.getElementById (id + "_tpdo").value; if ("" != temp) obj.tpdo = temp;
                 temp = document.getElementById (id + "_tppdo").value; if ("" != temp) obj.tppdo = temp;

@@ -378,7 +378,7 @@ define
 
                 var obj = obj || { id: id, cls: "Fault" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PhaseConnectedFaultKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PhaseConnectedFaultKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseConnectedFaultKind." + temp; }
                 temp = document.getElementById (id + "_phases").value; if ("" != temp) obj.phases = temp;
                 temp = document.getElementById (id + "_impedance").value; if ("" != temp) obj.impedance = temp;
                 temp = document.getElementById (id + "_FaultyEquipment").value; if ("" != temp) obj.FaultyEquipment = temp;

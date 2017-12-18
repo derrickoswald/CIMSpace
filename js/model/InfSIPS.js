@@ -245,7 +245,7 @@ define
                 var obj = obj || { id: id, cls: "GateInputPin" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_absoluteValue").checked; if (temp) obj.absoluteValue = true;
-                temp = document.getElementById (id + "_aDLogicKind").value; if ("" != temp) { temp = AnalogToDigitalLogicKind[temp]; if ("undefined" != typeof (temp)) obj.aDLogicKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; }
+                temp = document.getElementById (id + "_aDLogicKind").value; if ("" != temp) { temp = AnalogToDigitalLogicKind[temp]; if ("undefined" != typeof (temp)) obj.aDLogicKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#AnalogToDigitalLogicKind." + temp; }
                 temp = document.getElementById (id + "_duration").value; if ("" != temp) obj.duration = temp;
                 temp = document.getElementById (id + "_negate").checked; if (temp) obj.negate = true;
                 temp = document.getElementById (id + "_thresholdPercentage").value; if ("" != temp) obj.thresholdPercentage = temp;
@@ -390,7 +390,7 @@ define
                 var obj = obj || { id: id, cls: "RemedialActionScheme" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_armed").checked; if (temp) obj.armed = true;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = RemedialActionSchemeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = RemedialActionSchemeKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#RemedialActionSchemeKind." + temp; }
                 temp = document.getElementById (id + "_normalArmed").checked; if (temp) obj.normalArmed = true;
                 temp = document.getElementById (id + "_GateArmed").value; if ("" != temp) obj.GateArmed = temp;
 
@@ -986,7 +986,7 @@ define
 
                 var obj = obj || { id: id, cls: "Gate" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = GateLogicKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = GateLogicKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#GateLogicKind." + temp; }
 
                 return (obj);
             }
@@ -1247,7 +1247,7 @@ define
 
                 var obj = obj || { id: id, cls: "MeasurementCalculator" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CalculationKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = CalculationKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#CalculationKind." + temp; }
 
                 return (obj);
             }
@@ -1609,7 +1609,7 @@ define
 
                 var obj = obj || { id: id, cls: "PinEquipment" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinEquipmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinEquipmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinEquipmentKind." + temp; }
                 temp = document.getElementById (id + "_Equipment").value; if ("" != temp) obj.Equipment = temp;
 
                 return (obj);
@@ -1846,7 +1846,7 @@ define
 
                 var obj = obj || { id: id, cls: "PinTerminal" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinTerminalKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinTerminalKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinTerminalKind." + temp; }
                 temp = document.getElementById (id + "_Terminal").value; if ("" != temp) obj.Terminal = temp;
 
                 return (obj);
@@ -1968,7 +1968,7 @@ define
 
                 var obj = obj || { id: id, cls: "PinBranchGroup" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinBranchGroupKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = PinBranchGroupKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#PinBranchGroupKind." + temp; }
                 temp = document.getElementById (id + "_BranchGroup").value; if ("" != temp) obj.BranchGroup = temp;
 
                 return (obj);
@@ -2364,7 +2364,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_byPercentage").value; if ("" != temp) obj.byPercentage = temp;
                 temp = document.getElementById (id + "_byValue").value; if ("" != temp) obj.byValue = temp;
-                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ProtectiveActionAdjustmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; }
+                temp = document.getElementById (id + "_kind").value; if ("" != temp) { temp = ProtectiveActionAdjustmentKind[temp]; if ("undefined" != typeof (temp)) obj.kind = "http://iec.ch/TC57/2013/CIM-schema-cim16#ProtectiveActionAdjustmentKind." + temp; }
                 temp = document.getElementById (id + "_reduce").checked; if (temp) obj.reduce = true;
                 temp = document.getElementById (id + "_setValue").value; if ("" != temp) obj.setValue = temp;
                 temp = document.getElementById (id + "_Measurement").value; if ("" != temp) obj.Measurement = temp;

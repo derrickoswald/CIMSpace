@@ -495,9 +495,29 @@ define
                 );
             }
 
+            primary_element ()
+            {
+                var element = this._elements[0];
+                var id = element.id;
+                // read attributes from the form
+                var cls = cim.class_map (element);
+                element = Object.assign (element, cls.prototype.submit (element.id));
+                if (element.mRID)
+                    element.id = element.mRID; // reassign id based on mRID
+                if (id != element.id)
+                {
+                    // update the form if the id changed
+                    this._elements = [];
+                    var text = this.build (element);
+                    document.getElementById ("edit_contents").innerHTML = text;
+                }
+
+                return (element);
+            }
+
             make_psr (feature)
             {
-                var psr = this._elements[0];
+                var psr = this.primary_element ();
                 var id = psr.id;
 
                 // create the location
@@ -547,7 +567,7 @@ define
 
             make_equipment (feature)
             {
-                var equipment = this._elements[0];
+                var equipment = this.primary_element ();
                 var id = equipment.id;
 
                 var connectivity = this.get_connectivity (feature.geometry.coordinates[0], feature.geometry.coordinates[1]);
@@ -584,7 +604,7 @@ define
 
             make_transformer (feature)
             {
-                var trafo = this._elements[0];
+                var trafo = this.primary_element ();
                 var id = trafo.id;
 
                 // ToDo: assume it's the primary?
@@ -670,7 +690,7 @@ define
 
             make_cable (feature)
             {
-                var line = this._elements[0];
+                var line = this.primary_element ();
                 var id = line.id;
 
                 // create the location
@@ -815,8 +835,6 @@ define
             {
                 var proto = JSON.parse (JSON.stringify (this._elements[0]));
                 proto.id = proto.cls + (~~(1e6 * Math.random ())).toString ();
-                delete proto.aliasName;
-                delete proto.length;
                 this.create_from (proto);
             }
 
@@ -921,18 +939,21 @@ define
                         if (relations[i][2] == "0..1" || relations[i][2] == "1")
                         {
                             var data = this._cimmap.get_data ();
-                            var related = data[relations[i][3]];
-                            var relatives = [];
-                            if (related)
-                                for (var id in related)
-                                {
-                                    var obj = related[id];
-                                    if (obj[relations[i][4]] == element.id)
-                                        if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
-                                            relatives.push (related[id]);
-                                }
-                            for (var j = 0; j < relatives.length; j++)
-                                text = text + this.build (relatives[j]);
+                            if (data)
+                            {
+                                var related = data[relations[i][3]];
+                                var relatives = [];
+                                if (related)
+                                    for (var id in related)
+                                    {
+                                        var obj = related[id];
+                                        if (obj[relations[i][4]] == element.id)
+                                            if (!obj.EditDisposition || (obj.EditDisposition != "delete"))
+                                                relatives.push (related[id]);
+                                    }
+                                for (var j = 0; j < relatives.length; j++)
+                                    text = text + this.build (relatives[j]);
+                            }
                         }
                     document.getElementById ("edit_contents").innerHTML = text;
                 }
@@ -1010,39 +1031,46 @@ define
 
             save ()
             {
+                if (null == this._cimmap.get_data ())
+                    this._cimmap.set_data ({});
+
                 if (!this._features)
                 {
                     // editing an existing object
-                    var old_obj = this._elements[0];
-                    var original_id = old_obj.id;
-                    var cls = cim.class_map (old_obj);
-                    var version = this.next_version (old_obj);
-                    cls.prototype.remove (old_obj, this._cimmap.get_data ());
-                    old_obj.id = version;
-                    old_obj.mRID = version;
-                    old_obj.EditDisposition = "delete";
-                    var deleted = new cls (old_obj, this._cimmap.get_data ());
-                    var obj = cls.prototype.submit (original_id);
-                    obj.id = obj.mRID;
-                    obj.cls = old_obj.cls;
-                    obj.EditDisposition = "edit";
-                    // console.log (JSON.stringify (obj, null, 4));
-                    this._elements[0] = new cls (obj, this._cimmap.get_data ());
+                    for (var i = 0; i < this._elements.length; i++)
+                    {
+                        var element = this._elements[i];
+                        var id = element.id;
+                        var cls = cim.class_map (element);
+                        // delete the old object and replace it with a "deleted" version
+                        var version = this.next_version (element);
+                        cls.prototype.remove (element, this._cimmap.get_data ());
+                        element.id = version;
+                        element.mRID = version;
+                        element.EditDisposition = "delete";
+                        var deleted = new cls (element, this._cimmap.get_data ());
+                        // add a new object with a possibly changed mRID
+                        element = cls.prototype.submit (id);
+                        if (element.mRID)
+                            element.id = element.mRID;
+                        else
+                            element.id = id;
+                        element.cls = deleted.cls;
+                        element.EditDisposition = "edit";
+                        new cls (element, this._cimmap.get_data ());
+                    }
                 }
                 else
                 {
                     // saving a new set of objects
-                    var id = this._elements[0].id;
                     for (var i = 0; i < this._elements.length; i++)
                     {
-                        var feature = this._elements[i];
-                        var obj = this._features[feature.cls][feature.id];
-                        var cls = cim.class_map (obj);
-                        if (id == obj.id)
-                            obj = Object.assign (obj, cls.prototype.submit (id));
-                        var created = new cls (obj, this._cimmap.get_data ());
-                        if (id == created.id)
-                            this._elements[0] = created;
+                        var element = this._elements[i];
+                        var cls = cim.class_map (element);
+                        element = Object.assign (element, cls.prototype.submit (element.id));
+                        if (element.mRID)
+                            element.id = element.mRID; // reassign id based on mRID
+                        new cls (element, this._cimmap.get_data ());
                     }
                     delete this._elements;
                     delete this._features;

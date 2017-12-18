@@ -630,7 +630,7 @@ define
                 temp = document.getElementById (id + "_grounded").checked; if (temp) obj.grounded = true;
                 temp = document.getElementById (id + "_pfixed").value; if ("" != temp) obj.pfixed = temp;
                 temp = document.getElementById (id + "_pfixedPct").value; if ("" != temp) obj.pfixedPct = temp;
-                temp = document.getElementById (id + "_phaseConnection").value; if ("" != temp) { temp = PhaseShuntConnectionKind[temp]; if ("undefined" != typeof (temp)) obj.phaseConnection = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; }
+                temp = document.getElementById (id + "_phaseConnection").value; if ("" != temp) { temp = PhaseShuntConnectionKind[temp]; if ("undefined" != typeof (temp)) obj.phaseConnection = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; }
                 temp = document.getElementById (id + "_qfixed").value; if ("" != temp) obj.qfixed = temp;
                 temp = document.getElementById (id + "_qfixedPct").value; if ("" != temp) obj.qfixedPct = temp;
                 temp = document.getElementById (id + "_p").value; if ("" != temp) obj.p = temp;
@@ -2429,7 +2429,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_pfixed").value; if ("" != temp) obj.pfixed = temp;
                 temp = document.getElementById (id + "_pfixedPct").value; if ("" != temp) obj.pfixedPct = temp;
-                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
                 temp = document.getElementById (id + "_qfixed").value; if ("" != temp) obj.qfixed = temp;
                 temp = document.getElementById (id + "_qfixedPct").value; if ("" != temp) obj.qfixedPct = temp;
                 temp = document.getElementById (id + "_EnergyConsumer").value; if ("" != temp) obj.EnergyConsumer = temp;
@@ -3638,7 +3638,7 @@ define
 
                 var obj = obj || { id: id, cls: "ACLineSegmentPhase" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
                 temp = document.getElementById (id + "_ACLineSegment").value; if ("" != temp) obj.ACLineSegment = temp;
 
                 return (obj);
@@ -4127,7 +4127,7 @@ define
                 var obj = obj || { id: id, cls: "RegulatingControl" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_discrete").checked; if (temp) obj.discrete = true;
-                temp = document.getElementById (id + "_mode").value; if ("" != temp) { temp = RegulatingControlModeKind[temp]; if ("undefined" != typeof (temp)) obj.mode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#RegulatingControlModeKind." + temp; }
+                temp = document.getElementById (id + "_mode").value; if ("" != temp) { temp = RegulatingControlModeKind[temp]; if ("undefined" != typeof (temp)) obj.mode = "http://iec.ch/TC57/2013/CIM-schema-cim16#RegulatingControlModeKind." + temp; }
                 temp = document.getElementById (id + "_monitoredPhase").value; if ("" != temp) obj.monitoredPhase = temp;
                 temp = document.getElementById (id + "_targetDeadband").value; if ("" != temp) obj.targetDeadband = temp;
                 temp = document.getElementById (id + "_targetValue").value; if ("" != temp) obj.targetValue = temp;
@@ -4626,7 +4626,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_maximumSections").value; if ("" != temp) obj.maximumSections = temp;
                 temp = document.getElementById (id + "_normalSections").value; if ("" != temp) obj.normalSections = temp;
-                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = document.getElementById (id + "_phase").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phase = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
                 temp = document.getElementById (id + "_ShuntCompensator").value; if ("" != temp) obj.ShuntCompensator = temp;
 
                 return (obj);
@@ -4763,8 +4763,8 @@ define
                 var obj = obj || { id: id, cls: "SwitchPhase" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_normalOpen").checked; if (temp) obj.normalOpen = true;
-                temp = document.getElementById (id + "_phaseSide1").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phaseSide1 = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
-                temp = document.getElementById (id + "_phaseSide2").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phaseSide2 = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = document.getElementById (id + "_phaseSide1").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phaseSide1 = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
+                temp = document.getElementById (id + "_phaseSide2").value; if ("" != temp) { temp = SinglePhaseKind[temp]; if ("undefined" != typeof (temp)) obj.phaseSide2 = "http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind." + temp; }
                 temp = document.getElementById (id + "_closed").checked; if (temp) obj.closed = true;
                 temp = document.getElementById (id + "_Switch").value; if ("" != temp) obj.Switch = temp;
 
@@ -7360,7 +7360,7 @@ define
 
                 var obj = obj || { id: id, cls: "PetersenCoil" };
                 super.submit (id, obj);
-                temp = document.getElementById (id + "_mode").value; if ("" != temp) { temp = PetersenCoilModeKind[temp]; if ("undefined" != typeof (temp)) obj.mode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PetersenCoilModeKind." + temp; }
+                temp = document.getElementById (id + "_mode").value; if ("" != temp) { temp = PetersenCoilModeKind[temp]; if ("undefined" != typeof (temp)) obj.mode = "http://iec.ch/TC57/2013/CIM-schema-cim16#PetersenCoilModeKind." + temp; }
                 temp = document.getElementById (id + "_nominalU").value; if ("" != temp) obj.nominalU = temp;
                 temp = document.getElementById (id + "_offsetCurrent").value; if ("" != temp) obj.offsetCurrent = temp;
                 temp = document.getElementById (id + "_positionCurrent").value; if ("" != temp) obj.positionCurrent = temp;
@@ -7628,7 +7628,7 @@ define
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_b").value; if ("" != temp) obj.b = temp;
                 temp = document.getElementById (id + "_b0").value; if ("" != temp) obj.b0 = temp;
-                temp = document.getElementById (id + "_connectionKind").value; if ("" != temp) { temp = WindingConnection[temp]; if ("undefined" != typeof (temp)) obj.connectionKind = "#http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection." + temp; }
+                temp = document.getElementById (id + "_connectionKind").value; if ("" != temp) { temp = WindingConnection[temp]; if ("undefined" != typeof (temp)) obj.connectionKind = "http://iec.ch/TC57/2013/CIM-schema-cim16#WindingConnection." + temp; }
                 temp = document.getElementById (id + "_g").value; if ("" != temp) obj.g = temp;
                 temp = document.getElementById (id + "_g0").value; if ("" != temp) obj.g0 = temp;
                 temp = document.getElementById (id + "_phaseAngleClock").value; if ("" != temp) obj.phaseAngleClock = temp;
@@ -8266,7 +8266,7 @@ define
                 var obj = obj || { id: id, cls: "RatioTapChanger" };
                 super.submit (id, obj);
                 temp = document.getElementById (id + "_stepVoltageIncrement").value; if ("" != temp) obj.stepVoltageIncrement = temp;
-                temp = document.getElementById (id + "_tculControlMode").value; if ("" != temp) { temp = TransformerControlMode[temp]; if ("undefined" != typeof (temp)) obj.tculControlMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerControlMode." + temp; }
+                temp = document.getElementById (id + "_tculControlMode").value; if ("" != temp) { temp = TransformerControlMode[temp]; if ("undefined" != typeof (temp)) obj.tculControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#TransformerControlMode." + temp; }
                 temp = document.getElementById (id + "_RatioTapChangerTable").value; if ("" != temp) obj.RatioTapChangerTable = temp;
                 temp = document.getElementById (id + "_TransformerEnd").value; if ("" != temp) obj.TransformerEnd = temp;
 
@@ -9092,7 +9092,7 @@ define
                 temp = document.getElementById (id + "_maximumSections").value; if ("" != temp) obj.maximumSections = temp;
                 temp = document.getElementById (id + "_nomU").value; if ("" != temp) obj.nomU = temp;
                 temp = document.getElementById (id + "_normalSections").value; if ("" != temp) obj.normalSections = temp;
-                temp = document.getElementById (id + "_phaseConnection").value; if ("" != temp) { temp = PhaseShuntConnectionKind[temp]; if ("undefined" != typeof (temp)) obj.phaseConnection = "#http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; }
+                temp = document.getElementById (id + "_phaseConnection").value; if ("" != temp) { temp = PhaseShuntConnectionKind[temp]; if ("undefined" != typeof (temp)) obj.phaseConnection = "http://iec.ch/TC57/2013/CIM-schema-cim16#PhaseShuntConnectionKind." + temp; }
                 temp = document.getElementById (id + "_switchOnCount").value; if ("" != temp) obj.switchOnCount = temp;
                 temp = document.getElementById (id + "_switchOnDate").value; if ("" != temp) obj.switchOnDate = temp;
                 temp = document.getElementById (id + "_voltageSensitivity").value; if ("" != temp) obj.voltageSensitivity = temp;
@@ -9636,7 +9636,7 @@ define
                 temp = document.getElementById (id + "_baseQ").value; if ("" != temp) obj.baseQ = temp;
                 temp = document.getElementById (id + "_condenserP").value; if ("" != temp) obj.condenserP = temp;
                 temp = document.getElementById (id + "_coolantCondition").value; if ("" != temp) obj.coolantCondition = temp;
-                temp = document.getElementById (id + "_coolantType").value; if ("" != temp) { temp = CoolantType[temp]; if ("undefined" != typeof (temp)) obj.coolantType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#CoolantType." + temp; }
+                temp = document.getElementById (id + "_coolantType").value; if ("" != temp) { temp = CoolantType[temp]; if ("undefined" != typeof (temp)) obj.coolantType = "http://iec.ch/TC57/2013/CIM-schema-cim16#CoolantType." + temp; }
                 temp = document.getElementById (id + "_earthing").checked; if (temp) obj.earthing = true;
                 temp = document.getElementById (id + "_earthingStarPointR").value; if ("" != temp) obj.earthingStarPointR = temp;
                 temp = document.getElementById (id + "_earthingStarPointX").value; if ("" != temp) obj.earthingStarPointX = temp;
@@ -9647,7 +9647,7 @@ define
                 temp = document.getElementById (id + "_minQ").value; if ("" != temp) obj.minQ = temp;
                 temp = document.getElementById (id + "_minU").value; if ("" != temp) obj.minU = temp;
                 temp = document.getElementById (id + "_mu").value; if ("" != temp) obj.mu = temp;
-                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) { temp = SynchronousMachineOperatingMode[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineOperatingMode." + temp; }
+                temp = document.getElementById (id + "_operatingMode").value; if ("" != temp) { temp = SynchronousMachineOperatingMode[temp]; if ("undefined" != typeof (temp)) obj.operatingMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineOperatingMode." + temp; }
                 temp = document.getElementById (id + "_qPercent").value; if ("" != temp) obj.qPercent = temp;
                 temp = document.getElementById (id + "_r").value; if ("" != temp) obj.r = temp;
                 temp = document.getElementById (id + "_r0").value; if ("" != temp) obj.r0 = temp;
@@ -9656,8 +9656,8 @@ define
                 temp = document.getElementById (id + "_satDirectSubtransX").value; if ("" != temp) obj.satDirectSubtransX = temp;
                 temp = document.getElementById (id + "_satDirectSyncX").value; if ("" != temp) obj.satDirectSyncX = temp;
                 temp = document.getElementById (id + "_satDirectTransX").value; if ("" != temp) obj.satDirectTransX = temp;
-                temp = document.getElementById (id + "_shortCircuitRotorType").value; if ("" != temp) { temp = ShortCircuitRotorKind[temp]; if ("undefined" != typeof (temp)) obj.shortCircuitRotorType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#ShortCircuitRotorKind." + temp; }
-                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = SynchronousMachineKind[temp]; if ("undefined" != typeof (temp)) obj.type = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineKind." + temp; }
+                temp = document.getElementById (id + "_shortCircuitRotorType").value; if ("" != temp) { temp = ShortCircuitRotorKind[temp]; if ("undefined" != typeof (temp)) obj.shortCircuitRotorType = "http://iec.ch/TC57/2013/CIM-schema-cim16#ShortCircuitRotorKind." + temp; }
+                temp = document.getElementById (id + "_type").value; if ("" != temp) { temp = SynchronousMachineKind[temp]; if ("undefined" != typeof (temp)) obj.type = "http://iec.ch/TC57/2013/CIM-schema-cim16#SynchronousMachineKind." + temp; }
                 temp = document.getElementById (id + "_voltageRegulationRange").value; if ("" != temp) obj.voltageRegulationRange = temp;
                 temp = document.getElementById (id + "_x0").value; if ("" != temp) obj.x0 = temp;
                 temp = document.getElementById (id + "_x2").value; if ("" != temp) obj.x2 = temp;
@@ -9809,7 +9809,7 @@ define
                 temp = document.getElementById (id + "_capacitiveRating").value; if ("" != temp) obj.capacitiveRating = temp;
                 temp = document.getElementById (id + "_inductiveRating").value; if ("" != temp) obj.inductiveRating = temp;
                 temp = document.getElementById (id + "_slope").value; if ("" != temp) obj.slope = temp;
-                temp = document.getElementById (id + "_sVCControlMode").value; if ("" != temp) { temp = SVCControlMode[temp]; if ("undefined" != typeof (temp)) obj.sVCControlMode = "#http://iec.ch/TC57/2013/CIM-schema-cim16#SVCControlMode." + temp; }
+                temp = document.getElementById (id + "_sVCControlMode").value; if ("" != temp) { temp = SVCControlMode[temp]; if ("undefined" != typeof (temp)) obj.sVCControlMode = "http://iec.ch/TC57/2013/CIM-schema-cim16#SVCControlMode." + temp; }
                 temp = document.getElementById (id + "_voltageSetPoint").value; if ("" != temp) obj.voltageSetPoint = temp;
                 temp = document.getElementById (id + "_q").value; if ("" != temp) obj.q = temp;
 
@@ -10439,7 +10439,7 @@ define
                 temp = document.getElementById (id + "_xp").value; if ("" != temp) obj.xp = temp;
                 temp = document.getElementById (id + "_xpp").value; if ("" != temp) obj.xpp = temp;
                 temp = document.getElementById (id + "_xs").value; if ("" != temp) obj.xs = temp;
-                temp = document.getElementById (id + "_asynchronousMachineType").value; if ("" != temp) { temp = AsynchronousMachineKind[temp]; if ("undefined" != typeof (temp)) obj.asynchronousMachineType = "#http://iec.ch/TC57/2013/CIM-schema-cim16#AsynchronousMachineKind." + temp; }
+                temp = document.getElementById (id + "_asynchronousMachineType").value; if ("" != temp) { temp = AsynchronousMachineKind[temp]; if ("undefined" != typeof (temp)) obj.asynchronousMachineType = "http://iec.ch/TC57/2013/CIM-schema-cim16#AsynchronousMachineKind." + temp; }
                 temp = document.getElementById (id + "_AsynchronousMachineDynamics").value; if ("" != temp) obj.AsynchronousMachineDynamics = temp;
 
                 return (obj);
