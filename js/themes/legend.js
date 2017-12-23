@@ -32,7 +32,7 @@ define
 //                "      <span class='custom-control-indicator'></span>\n" +
 //                "      <span class='custom-control-description'>{{{description}}}</span>\n" +
 //                "    </label>\n" +
-                "    <label class='form-check-label'>\n" +
+                "    <label class='form-check-label' for='{{id}}'>\n" +
                 "      <input id='{{id}}' class='form-check-input' type='checkbox' value=''{{enabled}}>\n" +
                 "      {{{description}}}\n" +
                 "    </label>\n" +
@@ -48,7 +48,7 @@ define
                 this._container = document.createElement ("div");
                 this._container.className = "mapboxgl-ctrl";
                 this._container.innerHTML = mustache.render (this._template, { items: this._items, enabled: function () { return (this.checked ? " checked" : ""); } });
-                var list = this._container.getElementsByTagName ("input")
+                var list = this._container.getElementsByTagName ("input");
                 for (var i = 0; i < list.length; i++)
                     list[i].onchange = this.legend_change.bind (this);
                 this._onMap = true;

@@ -292,13 +292,12 @@ define
          */
         function save_name_change (event)
         {
-            var name = document.getElementById ("save_name").value;
-            if (!name.toLowerCase ().endsWith (".zip"))
-                name = name + ".zip";
+            var name = base_name (document.getElementById ("save_name").value);
+            TheCurrentName = name;
             var a = document.getElementById ("save");
-            a.setAttribute ("download", name);
+            a.setAttribute ("download", name + ".zip");
+            Pending.then (generate_rdf, generate_rdf);
         }
-
         /**
          * @summary Event handler for changing the rdf:about text.
          * @description Attached to the about input field.
@@ -349,6 +348,9 @@ define
             var name = TheCurrentName || "save";
             var about = TheCurrentAbout || "";
             var description = TheCurrentDescription || "";
+            var difference_model = document.getElementById ("difference_model").checked;
+            document.getElementById ("save_name").value = name + (difference_model ? "_diff" : "");
+
             if (null == cimmap.get_data ())
                 Pending = Promise.resolve ("no data");
             else
@@ -358,11 +360,9 @@ define
                         {
                             // disable the link until it's ready
                             var a = document.getElementById ("save");
-                            var difference_model = document.getElementById ("difference_model").checked;
                             a.setAttribute ("disabled", "disabled");
                             var file = name + (difference_model ? "_diff" : "") + ".zip"
                             a.setAttribute ("download", file);
-                            document.getElementById ("save_name").value = file;
                             a.onclick = function (event) { event.preventDefault (); event.stopPropagation (); alert ("sorry... not ready yet"); }
                             var begin = new Date ().getTime ();
                             console.log ("starting xml creation");
@@ -379,7 +379,7 @@ define
                                     zip.createWriter (new zip.BlobWriter (),
                                         function (writer)
                                         {
-                                            writer.add (name + ".rdf", new zip.TextReader (text),
+                                            writer.add (name + (difference_model ? "_diff" : "") + ".rdf", new zip.TextReader (text),
                                                 function ()
                                                 {
                                                     writer.close (
