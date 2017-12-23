@@ -371,6 +371,7 @@ define
          * @param {Object} elements - the object with elements to write stored as properties of their mRID
          * (as returned from the parse context: context.parsed.Element[obj.mRID] = obj).
          * @param {Boolean} difference_model - if <code>true</code> output a CIM Difference Model rather than a full model.
+         * @param {Boolean} only_new - if <code>true</code> output a CIM Full Model with only new elements.
          * @param {String} about - the about string for the CIM header.
          * @param {String} description - the description string for the CIM header.
          * @param {String} date - the created string for the CIM header.
@@ -378,7 +379,7 @@ define
          * @function write_xml
          * @memberOf module:cim
          */
-        function write_xml (elements, difference_model, about, description, date)
+        function write_xml (elements, difference_model, only_new, about, description, date)
         {
             var xml = [];
             var exporter;
@@ -431,6 +432,8 @@ define
                 Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "new" || disp == "edit"); }));
                 xml.push ("		</dm:forwardDifferences>");
             }
+            else if (only_new)
+                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" != typeof (disp) || disp == "new"); }));
             else
                 Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" == typeof (disp) || disp != "delete"); }));
             Array.prototype.push.apply (xml, trailer);

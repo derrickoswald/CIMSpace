@@ -325,13 +325,13 @@ define
         }
 
         /**
-         * @summary Event handler for changing to or from a difference model.
+         * @summary Event handler for changing to a different save mode.
          * @description Attached to the difference_model checkbox.
          * @param {object} event - the change event - <em>not used</em>
-         * @function difference_model_change
+         * @function save_mode_change
          * @memberOf module:cimspace
          */
-        function difference_model_change (event)
+        function save_mode_change (event)
         {
             Pending.then (generate_rdf, generate_rdf);
         }
@@ -348,9 +348,15 @@ define
             var name = TheCurrentName || "save";
             var about = TheCurrentAbout || "";
             var description = TheCurrentDescription || "";
+            var full_model = document.getElementById ("full_model").checked;
             var difference_model = document.getElementById ("difference_model").checked;
-            document.getElementById ("save_name").value = name + (difference_model ? "_diff" : "");
-
+            var only_new = document.getElementById ("only_new").checked;
+            var suffix = "";
+            if (difference_model)
+                suffix = "_diff";
+            else if (only_new)
+                suffix = "_new";
+            document.getElementById ("save_name").value = name + suffix;
             if (null == cimmap.get_data ())
                 Pending = Promise.resolve ("no data");
             else
@@ -366,7 +372,7 @@ define
                             a.onclick = function (event) { event.preventDefault (); event.stopPropagation (); alert ("sorry... not ready yet"); }
                             var begin = new Date ().getTime ();
                             console.log ("starting xml creation");
-                            var text = cim.write_xml (cimmap.get_data ().Element, difference_model, about, description);
+                            var text = cim.write_xml (cimmap.get_data ().Element, difference_model, only_new, about, description);
                             var start = new Date ().getTime ();
                             console.log ("finished xml creation (" + (Math.round (start - begin) / 1000) + " seconds)");
                             console.log ("starting zip");
@@ -379,7 +385,7 @@ define
                                     zip.createWriter (new zip.BlobWriter (),
                                         function (writer)
                                         {
-                                            writer.add (name + (difference_model ? "_diff" : "") + ".rdf", new zip.TextReader (text),
+                                            writer.add (name + suffix + ".rdf", new zip.TextReader (text),
                                                 function ()
                                                 {
                                                     writer.close (
@@ -433,7 +439,7 @@ define
                 save_name_change: save_name_change,
                 about_change: about_change,
                 description_change: description_change,
-                difference_model_change: difference_model_change,
+                save_mode_change: save_mode_change,
                 generate_rdf: generate_rdf
             }
         );

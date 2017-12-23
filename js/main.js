@@ -13,7 +13,9 @@ requirejs
         document.getElementById ("save_name").onchange = cimspace.save_name_change;
         document.getElementById ("rdf_about").onchange = cimspace.about_change;
         document.getElementById ("md_description").onchange = cimspace.description_change;
-        document.getElementById ("difference_model").onchange = cimspace.difference_model_change;
+        document.getElementById ("full_model").onchange = cimspace.save_mode_change;
+        document.getElementById ("difference_model").onchange = cimspace.save_mode_change;
+        document.getElementById ("only_new").onchange = cimspace.save_mode_change;
         document.getElementById ("save_file").onclick = cimspace.generate_rdf;
         document.getElementById ("internal_features").onchange = cimmap.redraw;
         document.getElementById ("buildings_3d").onchange = cimmap.buildings_3d;
