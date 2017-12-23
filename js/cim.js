@@ -433,7 +433,7 @@ define
                 xml.push ("		</dm:forwardDifferences>");
             }
             else if (only_new)
-                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" != typeof (disp) || disp == "new"); }));
+                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" != typeof (disp) && disp == "new"); }));
             else
                 Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" == typeof (disp) || disp != "delete"); }));
             Array.prototype.push.apply (xml, trailer);
