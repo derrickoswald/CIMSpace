@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cimnav", "cimedit", "cim", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
+    ["cimnav", "cimedit", "cim", "streetview", "mustache", "themes/cimthemes", "themes/default_theme", "themes/voltage", "themes/island", "themes/inservice"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimmap
      * @version 1.0
      */
-    function (cimnav, CIMEdit, cim, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
+    function (cimnav, CIMEdit, cim, streetview, mustache, ThemeControl, DefaultTheme, VoltageTheme, IslandTheme, InServiceTheme)
     {
         /**
          * The map object.
@@ -294,9 +294,46 @@ define
             var text =
                  "<div class='well'>\n" +
                  content +
+                 "<div id='streetview'></div>\n" +
                 "</div>\n";
             document.getElementById ("feature_detail_contents").innerHTML = text;
             show_details ();
+        }
+
+        function maybe_streetview (feature)
+        {
+            if (feature.Location)
+            {
+                var location = get_data ().Location[feature.Location];
+                if (location.CoordinateSystem == "wgs84")
+                {
+                    var id = location.id;
+                    var coordinates = [];
+                    var points = get_data ().PositionPoint;
+                    for (var property in points)
+                        if (points.hasOwnProperty (property))
+                        {
+                            var point = points[property];
+                            if (point.Location == id)
+                                coordinates[Number (point.sequenceNumber)] = [point.xPosition, point.yPosition];
+                        }
+                    if (0 != coordinates.length)
+                    {
+                        if ("undefined" == typeof (coordinates[0]))
+                            coordinates = coordinates.slice (1);
+                        streetview.urlFor (coordinates[0][0], coordinates[0][1],
+                            function (url)
+                            {
+                                if (-1 != url.indexOf ("pano"))
+                                {
+                                    var link = "<a href='" + url + "' target='_blank'>StreetView</a>";
+                                    document.getElementById ("streetview").innerHTML = link;
+                                }
+                            }
+                        );
+                    }
+                }
+            }
         }
 
         /**
@@ -415,6 +452,7 @@ define
                     {
                         var text = detail_text (feature);
                         showDetails (text);
+                        maybe_streetview (feature);
                     }
                     glow (["in", "mRID", CURRENT_FEATURE]);
                 }
@@ -784,6 +822,7 @@ define
                         equipment.join (', ');
                     // post the text
                     showDetails (text);
+                    maybe_streetview (CIM_Data.Element[CURRENT_FEATURE]);
                     // highlight the elements on screen
                     equipment.unshift ("in", "mRID");
                     glow (equipment);

@@ -4,7 +4,7 @@
 "use strict";
 define
 (
-    ["cim", "cimmap"],
+    ["util", "cim", "cimmap"],
     /**
      * @summary Main entry point for the application.
      * @description Performs application initialization as the first step in the RequireJS load sequence.
@@ -13,7 +13,7 @@ define
      * @exports cimspace
      * @version 1.0
      */
-    function (cim, cimmap)
+    function (util, cim, cimmap)
     {
         // the pending xml creation
         var Pending = null;
@@ -133,35 +133,6 @@ define
         }
 
         /**
-         * @summary Browser independent CORS setup.
-         * @description Creates the CORS request and opens it.
-         * @param {string} method The method type, e.g. "GET" or "POST"
-         * @param {string} url the URL to open the request on
-         * @param {boolean} asynchronous optional parameter for open() call, default <em>true</em>
-         * @returns {object} the request object or <code>null</code> if CORS isn't supported
-         * @memberOf module:cimspace
-         */
-        function createCORSRequest (method, url, asynchronous)
-        {
-            var ret;
-
-            if ("undefined" == typeof (asynchronous))
-                asynchronous = true;
-            ret = new XMLHttpRequest ();
-            if ("withCredentials" in ret) // "withCredentials" only exists on XMLHTTPRequest2 objects
-                ret.open (method, url, asynchronous);
-            else if (typeof XDomainRequest != "undefined") // IE
-            {
-                ret = new XDomainRequest ();
-                ret.open (method, url);
-            }
-            else
-                ret = null; // CORS is not supported by the browser
-
-            return (ret);
-        }
-
-        /**
          * @summary Handler for server connect event.
          * @description Process URL from the connect dialog.
          * @param {object} event - the button click event
@@ -173,7 +144,7 @@ define
             var url;
             if ("" != (url = document.getElementById ("server_url").value))
             {
-                var xmlhttp = createCORSRequest ("GET", url);
+                var xmlhttp = util.createCORSRequest ("GET", url);
                 if (url.endsWith (".zip"))
                 {
                     xmlhttp.setRequestHeader ("Accept", "application/zip");
@@ -186,14 +157,14 @@ define
                     if (4 == xmlhttp.readyState)
                         if (200 == xmlhttp.status || 201 == xmlhttp.status || 202 == xmlhttp.status)
                         {
-                            TheCurrentName = base_name (files[0].name);
+                            TheCurrentName = base_name (url);
                             if (url.endsWith (".zip"))
                                 read_zip (xmlhttp.response);
                             else
                             {
                                 var start = new Date ().getTime ();
                                 console.log ("starting CIM read");
-                                var result = cim.read_full_xml (xmlhttp.response, 0, null, null)
+                                var result = cim.read_full_xml (xmlhttp.response, 0, null, null);
                                 var end = new Date ().getTime ();
                                 console.log ("finished CIM read (" + (Math.round (end - start) / 1000) + " seconds)");
                                 if (0 != result.parsed.ignored)
@@ -203,7 +174,7 @@ define
                             }
                         }
                         else
-                            console.log ("xmlhttp status " + xmlhttp.status)
+                            console.log ("xmlhttp status " + xmlhttp.status);
                 };
                 xmlhttp.send ();
             }
