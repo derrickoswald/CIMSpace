@@ -459,26 +459,32 @@ define
 
                 // get PositionPoint with matching coordinates
                 var data = this._cimmap.get_data ();
-                var points = data.PositionPoint;
-                var matches = [];
-                for (var id in points)
+                if (null != data)
                 {
-                    var x = points[id].xPosition;
-                    var y = points[id].yPosition;
-                    var dx = lng - x;
-                    var dy = lat - y;
-                    if (dx * dx + dy * dy < 1e-12) // ToDo: a parameter somehow?
+                    var points = data.PositionPoint;
+                    if (null != points)
                     {
-                        matches.push (points[id]);
-                        console.log ("match point d = " + (dx * dx + dy * dy).toString () + " " + id + " [" + points[id].xPosition + "," + points[id].yPosition + "]");
+                        var matches = [];
+                        for (var id in points)
+                        {
+                            var x = points[id].xPosition;
+                            var y = points[id].yPosition;
+                            var dx = lng - x;
+                            var dy = lat - y;
+                            if (dx * dx + dy * dy < 1e-12) // ToDo: a parameter somehow?
+                            {
+                                matches.push (points[id]);
+                                console.log ("match point d = " + (dx * dx + dy * dy).toString () + " " + id + " [" + points[id].xPosition + "," + points[id].yPosition + "]");
+                            }
+                        }
+                        // if there are no matches, bail out
+                        // if there is only one, use that one
+                        if (1 == matches.length)
+                            ret = this.get_connectivity_for_point (matches[0]);
+                        else if (1 < matches.length)
+                            ret = this.get_best_connectivity_for_points (matches);
                     }
                 }
-                // if there are no matches, bail out
-                // if there is only one, use that one
-                if (1 == matches.length)
-                    ret = this.get_connectivity_for_point (matches[0]);
-                else if (1 < matches.length)
-                    ret = this.get_best_connectivity_for_points (matches);
 
                 return (ret);
             }

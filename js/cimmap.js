@@ -1047,8 +1047,8 @@ define
         {
             var lng = event.lngLat.lng;
             var lat = event.lngLat.lat;
-            lng = Math.round (lng * 1000) / 1000;
-            lat = Math.round (lat * 1000) / 1000;
+            lng = Math.round (lng * 100000) / 100000;
+            lat = Math.round (lat * 100000) / 100000;
             document.getElementById ("coordinates").innerHTML = "" + lng + "," + lat;
         }
 
