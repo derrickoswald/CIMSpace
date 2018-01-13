@@ -292,7 +292,7 @@ define
         function showDetails (content)
         {
             var text =
-                 "<div class='well'>\n" +
+                 "<div class='well' style='pointer-events: all;'>\n" +
                  content +
                  "<div id='streetview'></div>\n" +
                 "</div>\n";
@@ -990,56 +990,61 @@ define
 
         function default_mousedown_listener (event)
         {
-            var buttons = event.originalEvent.buttons;
-            //    0  : No button or un-initialized
-            //    1  : Primary button (usually left)
-            //    2  : Secondary button (usually right)
-            var leftbutton = 0 != (buttons & 1);
-            var rightbutton = 0 != (buttons & 2);
-            if (leftbutton)
+            // only do something if no key is pressed
+            var key = event.originalEvent.ctrlKey || event.originalEvent.shiftKey || event.originalEvent.altKey || event.originalEvent.metaKey;
+            if (!key)
             {
-                var width = 4;
-                var height = 4;
-                var features = TheMap.queryRenderedFeatures
-                (
-                    [
-                      [event.point.x - width / 2, event.point.y - height / 2],
-                      [event.point.x + width / 2, event.point.y + height / 2]
-                    ],
-                    {}
-                );
-                if ((null != features) && (0 != features.length))
+                var buttons = event.originalEvent.buttons;
+                //    0  : No button or un-initialized
+                //    1  : Primary button (usually left)
+                //    2  : Secondary button (usually right)
+                var leftbutton = 0 != (buttons & 1);
+                var rightbutton = 0 != (buttons & 2);
+                if (leftbutton)
                 {
-                    var selection = [];
-                    for (var i = 0; i < features.length; i++)
+                    var width = 4;
+                    var height = 4;
+                    var features = TheMap.queryRenderedFeatures
+                    (
+                        [
+                          [event.point.x - width / 2, event.point.y - height / 2],
+                          [event.point.x + width / 2, event.point.y + height / 2]
+                        ],
+                        {}
+                    );
+                    if ((null != features) && (0 != features.length))
                     {
-                        var mrid = features[i].properties.mRID;
-                        if (null != mrid && !selection.includes (mrid))
-                            selection.push (mrid);
-                    }
-                    if (selection.length > 0)
-                    {
-                        if (selection[0] != CURRENT_FEATURE)
+                        var selection = [];
+                        for (var i = 0; i < features.length; i++)
                         {
-                            CURRENT_FEATURE = selection[0];
-                            CURRENT_SELECTION = selection;
-                            highlight ();
+                            var mrid = features[i].properties.mRID;
+                            if (null != mrid && !selection.includes (mrid))
+                                selection.push (mrid);
                         }
+                        if (selection.length > 0)
+                        {
+                            if (selection[0] != CURRENT_FEATURE)
+                            {
+                                CURRENT_FEATURE = selection[0];
+                                CURRENT_SELECTION = selection;
+                                highlight ();
+                            }
+                        }
+                        else
+                            unhighlight ();
                     }
                     else
                         unhighlight ();
                 }
-                else
-                    unhighlight ();
-            }
-            else if (rightbutton)
-            {
-                //<i id="" class="fa fa-map-marker"></i>
-                var element = document.createElement ("i");
-                element.className = "fa fa-map-marker fa-2x";
-                var marker = new mapboxgl.Marker (element)
-                  .setLngLat (event.lngLat)
-                  .addTo (event.target);
+                else if (rightbutton)
+                {
+                    //<i id="" class="fa fa-map-marker"></i>
+                    var element = document.createElement ("i");
+                    element.className = "fa fa-map-marker fa-2x";
+                    var marker = new mapboxgl.Marker (element)
+                      .setLngLat (event.lngLat)
+                      .addTo (event.target);
+                }
             }
         }
 
