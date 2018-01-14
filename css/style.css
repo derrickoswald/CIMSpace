@@ -45,6 +45,16 @@ body {
     margin-bottom: 20px;
 }
 
+#view_frame {
+    height: 100%;
+}
+
+#view_contents {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+}
+
 /* allow div in dropdown menus, not just a */
 .dropdown-menu > li > div
 {
