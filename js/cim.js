@@ -381,7 +381,7 @@ define
          */
         function write_xml (elements, difference_model, only_new, about, description, date)
         {
-            var xml = [];
+            var chunks = []; // array of arrays of strings
             var exporter;
             var obj;
 
@@ -421,24 +421,24 @@ define
                 ];
                 trailer = ["</rdf:RDF>"];
             }
-            Array.prototype.push.apply (xml, header);
+            chunks.push (header);
             if (difference_model)
             {
                 // ToDo: check if we need to handle individual attributes with "rdf:Description rdf:about", or if we can use the sledgehammer: delete then new
-                xml.push ("		<dm:reverseDifferences parseType=\"Statements\">");
-                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { return (obj.EditDisposition == "delete" && obj.id.startsWith ("1:")); }));
-                xml.push ("		</dm:reverseDifferences>");
-                xml.push ("		<dm:forwardDifferences parseType=\"Statements\">");
-                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "new" || disp == "edit"); }));
-                xml.push ("		</dm:forwardDifferences>");
+                chunks.push (["		<dm:reverseDifferences parseType=\"Statements\">"]);
+                chunks.push (write_elements (elements, function (obj) { return (obj.EditDisposition == "delete" && obj.id.startsWith ("1:")); }));
+                chunks.push (["		</dm:reverseDifferences>",
+                              "		<dm:forwardDifferences parseType=\"Statements\">"]);
+                chunks.push (write_elements (elements, function (obj) { var disp = obj.EditDisposition; return (disp == "new" || disp == "edit"); }));
+                chunks.push (["		</dm:forwardDifferences>"]);
             }
             else if (only_new)
-                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" != typeof (disp) && disp == "new"); }));
+                chunks.push (write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" != typeof (disp) && disp == "new"); }));
             else
-                Array.prototype.push.apply (xml, write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" == typeof (disp) || disp != "delete"); }));
-            Array.prototype.push.apply (xml, trailer);
+                chunks.push (write_elements (elements, function (obj) { var disp = obj.EditDisposition; return ("undefined" == typeof (disp) || disp != "delete"); }));
+            chunks.push (trailer);
 
-            return (xml.join ("\n"));
+            return (Array.prototype.concat.apply ([], chunks).join ("\n"));
         }
 
         return (
