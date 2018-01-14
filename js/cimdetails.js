@@ -100,22 +100,30 @@ define
                                     if (terminals.hasOwnProperty (property))
                                     {
                                         var term = terminals[property];
-                                        if (node == term.ConnectivityNode)
-                                            if (mrid != term.ConductingEquipment)
-                                                equipment.push (term.ConductingEquipment);
+                                        if (term.EditDisposition != "delete")
+                                            if (node == term.ConnectivityNode)
+                                                if (mrid != term.ConductingEquipment)
+                                                    if (cim_data.Element[term.ConductingEquipment].EditDisposition != "delete")
+                                                        equipment.push (term.ConductingEquipment);
                                     }
                                 return ({ terminal: terminal, equipment: equipment });
                             }
                         );
-                        text = text + "<div>Connected:</div>\n";
-                        for (var i = 0; i < connected.length; i++)
+                        if (connected.some (function (element) { return (0 != element.equipment.length); }))
                         {
-                            var terminal = connected[i].terminal.mRID;
-                            var equipment = connected[i].equipment;
-                            var links = "";
-                            for (var j = 0; j < equipment.length; j++)
-                                links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + equipment[j] + "\"); return false;})'>" + equipment[j] + "</a>";
-                            text = text + "<div>" + terminal + ": " + links + "</div>\n";
+                            text = text + "<div>Connected:</div>\n";
+                            for (var i = 0; i < connected.length; i++)
+                            {
+                                var terminal = connected[i].terminal.mRID;
+                                var equipment = connected[i].equipment;
+                                if (0 != equipment.length)
+                                {
+                                    var links = "";
+                                    for (var j = 0; j < equipment.length; j++)
+                                        links = links + " <a href='#' onclick='require([\"cimmap\"], function(cimmap) { cimmap.select (\"" + equipment[j] + "\"); return false;})'>" + equipment[j] + "</a>";
+                                    text = text + "<div>" + terminal + ": " + links + "</div>\n";
+                                }
+                            }
                         }
                     }
                 }
