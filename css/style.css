@@ -55,6 +55,10 @@ body {
     margin-bottom: 20px;
 }
 
+.mapboxgl-popup-close-button {
+    font-size: large;
+}
+
 /* allow div in dropdown menus, not just a */
 .dropdown-menu > li > div
 {
